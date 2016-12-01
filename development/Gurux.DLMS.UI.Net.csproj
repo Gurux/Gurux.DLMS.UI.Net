@@ -245,6 +245,7 @@
     <Compile Include="GXDLMSTcpUdpSetupView.designer.cs">
       <DependentUpon>GXDLMSTcpUdpSetupView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXDlmsUi.cs" />
     <Compile Include="GXDLMSViewAttribute.cs" />
     <Compile Include="GXHelpers.cs" />
     <Compile Include="GXValueField.cs">
