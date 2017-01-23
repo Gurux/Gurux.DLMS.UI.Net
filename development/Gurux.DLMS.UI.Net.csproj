@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1612.2006, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1612.2006\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1701.1701, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1701.1701\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -122,6 +122,24 @@
     <Compile Include="GXDLMSHdlcSetupView.designer.cs">
       <DependentUpon>GXDLMSHdlcSetupView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXDLMSIEC14908DiagnosticView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908DiagnosticView.designer.cs">
+      <DependentUpon>GXDLMSIEC14908DiagnosticView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908PhysicalStatusView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908PhysicalStatusView.designer.cs">
+      <DependentUpon>GXDLMSIEC14908PhysicalStatusView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908PhysicalSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908PhysicalSetupView.designer.cs">
+      <DependentUpon>GXDLMSIEC14908PhysicalSetupView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXDLMSIECOpticalPortSetupView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +151,36 @@
     </Compile>
     <Compile Include="GXDLMSImageTransferView.designer.cs">
       <DependentUpon>GXDLMSImageTransferView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSSFSKActiveInitiatorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSSFSKActiveInitiatorView.designer.cs">
+      <DependentUpon>GXDLMSSFSKActiveInitiatorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908IdentificationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSIEC14908IdentificationView.designer.cs">
+      <DependentUpon>GXDLMSIEC14908IdentificationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSSFSKMacCountersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSSFSKMacCountersView.designer.cs">
+      <DependentUpon>GXDLMSSFSKMacCountersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSSFSKMacSynchronizationTimeoutsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSSFSKMacSynchronizationTimeoutsView.designer.cs">
+      <DependentUpon>GXDLMSSFSKMacSynchronizationTimeoutsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSSFSKPhyMacSetUpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSSFSKPhyMacSetUpView.designer.cs">
+      <DependentUpon>GXDLMSSFSKPhyMacSetUpView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSIp4SetupView.cs">
       <SubType>Form</SubType>
@@ -151,6 +199,12 @@
     </Compile>
     <Compile Include="GXDLMSMacAddressSetupView.designer.cs">
       <DependentUpon>GXDLMSMacAddressSetupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSMBusMasterPortSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSMBusClientView.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GXDLMSMBusSlavePortSetupView.cs">
       <SubType>Form</SubType>
@@ -302,11 +356,35 @@
     <EmbeddedResource Include="GXDLMSHdlcSetupView.resx">
       <DependentUpon>GXDLMSHdlcSetupView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSIEC14908DiagnosticView.resx">
+      <DependentUpon>GXDLMSIEC14908DiagnosticView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSIEC14908PhysicalStatusView.resx">
+      <DependentUpon>GXDLMSIEC14908PhysicalStatusView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSIEC14908PhysicalSetupView.resx">
+      <DependentUpon>GXDLMSIEC14908PhysicalSetupView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIECOpticalPortSetupView.resx">
       <DependentUpon>GXDLMSIECOpticalPortSetupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSImageTransferView.resx">
       <DependentUpon>GXDLMSImageTransferView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSSFSKActiveInitiatorView.resx">
+      <DependentUpon>GXDLMSSFSKActiveInitiatorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSIEC14908IdentificationView.resx">
+      <DependentUpon>GXDLMSIEC14908IdentificationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSSFSKMacCountersView.resx">
+      <DependentUpon>GXDLMSSFSKMacCountersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSSFSKMacSynchronizationTimeoutsView.resx">
+      <DependentUpon>GXDLMSSFSKMacSynchronizationTimeoutsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSSFSKPhyMacSetUpView.resx">
+      <DependentUpon>GXDLMSSFSKPhyMacSetUpView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIp4SetupView.resx">
       <DependentUpon>GXDLMSIp4SetupView.cs</DependentUpon>
@@ -316,6 +394,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSMacAddressSetupView.resx">
       <DependentUpon>GXDLMSMacAddressSetupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSMBusMasterPortSetupView.resx">
+      <DependentUpon>GXDLMSMBusMasterPortSetupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSMBusClientView.resx">
+      <DependentUpon>GXDLMSMBusClientView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSMBusSlavePortSetupView.resx">
       <DependentUpon>GXDLMSMBusSlavePortSetupView.cs</DependentUpon>
