@@ -47,49 +47,139 @@ namespace Gurux.DLMS.UI
     [GXDLMSViewAttribute(typeof(Gurux.DLMS.Objects.GXDLMSProfileGeneric))]
     partial class GXDLMSProfileGenericView : Form, IGXDLMSView
     {
-
-
-        GXDLMSProfileGeneric m_Target;
+        /// <summary>
+        /// Are there structures in data. Acaris is using this.
+        /// </summary>
+        bool structures = false;
+        /// <summary>
+        /// Target profile genric object.
+        /// </summary>
+        GXDLMSProfileGeneric target;
         /// <summary>
         /// Constructor.
         /// </summary>
         public GXDLMSProfileGenericView()
         {
             InitializeComponent();
-            this.ReadFromRB.CheckedChanged += new System.EventHandler(this.ReadFromRB_CheckedChanged);
-            this.ReadLastRB.CheckedChanged += new System.EventHandler(this.ReadLastRB_CheckedChanged);
-            this.ReadEntryBtn.CheckedChanged += new System.EventHandler(this.ReadEntryRB_CheckedChanged);
-            this.ReadAllRB.CheckedChanged += new System.EventHandler(this.ReadAllRB_CheckedChanged);
         }
 
         #region IGXDLMSView Members
 
         delegate void UpdateTargetEventHandler(GXDLMSObject value);
 
+        private void GetArrayAsString(StringBuilder sb, object value)
+        {
+            sb.Append("{");
+            foreach (object it in (object[])value)
+            {
+                if (it is byte[])
+                {
+                    sb.Append(Gurux.DLMS.GXDLMSTranslator.ToHex(it as byte[]));
+                }
+                else if (it is object[])
+                {
+                    GetArrayAsString(sb, it);
+                }
+                else
+                {
+                    sb.Append(Convert.ToString(it));
+                }
+                sb.Append(", ");
+            }
+            sb.Append("}");
+        }
+
+        void UpdateData(DataTable dt)
+        {
+            if (structures)
+            {
+                List<object[]> data = new List<object[]>();
+                foreach (object[] r in target.Buffer)
+                {
+                    List<object> row = new List<object>();
+                    int index = 0;
+                    foreach (var it in target.CaptureObjects)
+                    {
+                        if (r[index] is object[])
+                        {
+                            StringBuilder sb = new StringBuilder();
+                            GetArrayAsString(sb, r[index]);
+                            row.Add(sb.ToString());
+                        }
+                        else
+                        {
+                            if (r[index] is byte[])
+                            {
+                                row.Add(Gurux.DLMS.GXDLMSTranslator.ToHex(r[index] as byte[]));
+                            }
+                            else if (r[index] is object[])
+                            {
+                                StringBuilder sb = new StringBuilder();
+                                GetArrayAsString(sb, r[index]);
+                                row.Add(sb.ToString());
+                            }
+                            else
+                            {
+                                row.Add(r[index]);
+                            }
+                        }
+                        ++index;
+                    }
+                    data.Add(row.ToArray());
+                }
+                for (int pos = dt.Rows.Count; pos < data.Count; ++pos)
+                {
+                    object[] row = data[pos];
+                    dt.LoadDataRow(row, true);
+                }
+            }
+            else
+            {
+                for (int pos = dt.Rows.Count; pos < target.Buffer.Count; ++pos)
+                {
+                    object[] row = target.Buffer[pos];
+                    dt.LoadDataRow(row, true);
+                }
+            }
+        }
+
         void OnUpdateTarget(GXDLMSObject value)
         {
-            m_Target = (GXDLMSProfileGeneric)value;
+            target = (GXDLMSProfileGeneric)value;
+            structures = false;
             GXDLMSObject obj;
             int index = 0;
-            if (m_Target != null)
+            if (target != null)
             {
                 DataTable table = ProfileGenericView.DataSource as DataTable;
                 ProfileGenericView.DataSource = null;
                 ProfileGenericView.Columns.Clear();
                 DataTable dt = new DataTable();
-                foreach (var it in m_Target.CaptureObjects)
+                foreach (var it in target.CaptureObjects)
                 {
-                    DataColumn dc = dt.Columns.Add(index.ToString());
-                    dc.Caption = it.Key.Description;
-                    int pos = ProfileGenericView.Columns.Add(index.ToString(), it.Key.Description);
-                    ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
-                    ++index;
+                    string[] columns = ((IGXDLMSBase)it.Key).GetNames();
+                    if (it.Value.AttributeIndex == 0)
+                    {
+                        structures = true;
+                        for (int a = 0; a != ((IGXDLMSBase)it.Key).GetAttributeCount(); ++a)
+                        {
+                            DataColumn dc = dt.Columns.Add(index.ToString());
+                            dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[a];
+                            int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                            ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
+                            ++index;
+                        }
+                    }
+                    else
+                    {
+                        DataColumn dc = dt.Columns.Add(index.ToString());
+                        dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                        int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                        ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
+                        ++index;
+                    }
                 }
-                foreach (object[] it in m_Target.Buffer)
-                {
-                    dt.LoadDataRow(it, true);
-                }
-
+                UpdateData(dt);
                 ProfileGenericView.DataSource = dt;
             }
             else
@@ -98,7 +188,7 @@ namespace Gurux.DLMS.UI
             }
 
             //Set initial values...
-            ReadFromRB.Enabled = ReadLastRB.Enabled = ReadEntryBtn.Enabled = m_Target.CaptureObjects.Count != 0;
+            ReadFromRB.Enabled = ReadLastRB.Enabled = ReadEntryBtn.Enabled = target.CaptureObjects.Count != 0;
             ReadFromRB.Checked = ReadLastRB.Checked = ReadEntryBtn.Checked = false;
             StartEntry.Value = 0;
             EndEntry.Value = 1;
@@ -108,49 +198,48 @@ namespace Gurux.DLMS.UI
             {
                 return;
             }
-            index = m_Target.CaptureObjects[0].Value.AttributeIndex;
-            obj = m_Target.CaptureObjects[0].Key;
-            if (index != 0 &&
-                    obj.GetUIDataType(index) != DataType.DateTime)
+            obj = target.CaptureObjects[0].Key;
+            //TODO: Hide other than all if meter is not supporting parameterized access.
+            /*
+            if (m_Target.Parent.)
             {
-                ReadFromRB.Enabled = ReadLastRB.Enabled = false;
-                m_Target.AccessSelector = AccessRange.Entry;
-                m_Target.From = 0;
-                m_Target.To = 1;
+                ReadEntryBtn.Enabled = ReadFromRB.Enabled = ReadLastRB.Enabled = false;
+                m_Target.AccessSelector = AccessRange.All;
             }
             else
             {
-                ReadFromRB.Enabled = ReadLastRB.Enabled = true;
+                ReadEntryBtn.Enabled = ReadFromRB.Enabled = ReadLastRB.Enabled = true;
             }
-            if (m_Target.AccessSelector == AccessRange.Entry)
+            */
+            if (target.AccessSelector == AccessRange.Entry)
             {
-                StartEntry.Value = Convert.ToInt32(m_Target.From);
-                EndEntry.Value = Convert.ToInt32(m_Target.To);
+                StartEntry.Value = Convert.ToInt32(target.From);
+                EndEntry.Value = Convert.ToInt32(target.To);
                 ReadEntryBtn.Checked = true;
             }
-            else if (m_Target.AccessSelector == AccessRange.Last)
+            else if (target.AccessSelector == AccessRange.Last)
             {
-                TimeSpan diff = (DateTime)m_Target.To - (DateTime)m_Target.From;
+                TimeSpan diff = (DateTime)target.To - (DateTime)target.From;
                 ReadLastTB.Value = diff.Days - 1;
                 ReadLastRB.Checked = true;
             }
-            else if (m_Target.AccessSelector == AccessRange.Range)
+            else if (target.AccessSelector == AccessRange.Range)
             {
-                if ((DateTime)m_Target.From == DateTime.MinValue)
+                if ((DateTime)target.From == DateTime.MinValue)
                 {
                     StartPick.Checked = false;
                 }
                 else
                 {
-                    StartPick.Value = (DateTime)m_Target.From;
+                    StartPick.Value = (DateTime)target.From;
                 }
-                if ((DateTime)m_Target.To == DateTime.MaxValue)
+                if ((DateTime)target.To == DateTime.MaxValue)
                 {
                     ToPick.Checked = false;
                 }
                 else
                 {
-                    ToPick.Value = (DateTime)m_Target.To;
+                    ToPick.Value = (DateTime)target.To;
                 }
                 ReadFromRB.Checked = true;
             }
@@ -164,7 +253,7 @@ namespace Gurux.DLMS.UI
         {
             get
             {
-                return m_Target;
+                return target;
             }
             set
             {
@@ -184,13 +273,14 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 DataTable dt = ProfileGenericView.DataSource as DataTable;
-                if (m_Target.Buffer.Count < dt.Rows.Count)
+                if (target.Buffer.Count < dt.Rows.Count)
                 {
                     dt.Rows.Clear();
                 }
-                for (int pos = dt.Rows.Count; pos < m_Target.Buffer.Count; ++pos)
+                UpdateData(dt);
+                for (int pos = dt.Rows.Count; pos < target.Buffer.Count; ++pos)
                 {
-                    object[] row = m_Target.Buffer[pos];
+                    object[] row = target.Buffer[pos];
                     dt.LoadDataRow(row, true);
                 }
                 ProfileGenericView.Refresh();
@@ -235,22 +325,22 @@ namespace Gurux.DLMS.UI
             StartEntry.ReadOnly = EndEntry.ReadOnly = !ReadEntryBtn.Checked;
             if (ReadEntryBtn.Checked)
             {
-                m_Target.AccessSelector = AccessRange.Entry;
+                target.AccessSelector = AccessRange.Entry;
                 StartEntry_ValueChanged(null, null);
             }
             else if (ReadLastRB.Checked)
             {
-                m_Target.AccessSelector = AccessRange.Last;
+                target.AccessSelector = AccessRange.Last;
                 ReadLastTB_ValueChanged(null, null);
             }
             else if (ReadFromRB.Checked)
             {
-                m_Target.AccessSelector = AccessRange.Range;
+                target.AccessSelector = AccessRange.Range;
                 StartPick_ValueChanged(null, null);
             }
             else if (ReadAllRB.Checked)
             {
-                m_Target.AccessSelector = AccessRange.All;
+                target.AccessSelector = AccessRange.All;
             }
         }
 
@@ -258,6 +348,7 @@ namespace Gurux.DLMS.UI
         {
             if (ReadEntryBtn.Checked)
             {
+                ReadLastRB.Checked = ReadAllRB.Checked = ReadFromRB.Checked = false;
                 UpdateView();
             }
         }
@@ -266,6 +357,7 @@ namespace Gurux.DLMS.UI
         {
             if (ReadLastRB.Checked)
             {
+                ReadEntryBtn.Checked = ReadAllRB.Checked = ReadFromRB.Checked = false;
                 UpdateView();
             }
         }
@@ -273,6 +365,7 @@ namespace Gurux.DLMS.UI
         {
             if (ReadAllRB.Checked)
             {
+                ReadEntryBtn.Checked = ReadLastRB.Checked = ReadFromRB.Checked = false;
                 UpdateView();
             }
         }
@@ -282,6 +375,7 @@ namespace Gurux.DLMS.UI
         {
             if (ReadFromRB.Checked)
             {
+                ReadEntryBtn.Checked = ReadLastRB.Checked = ReadAllRB.Checked = false;
                 UpdateView();
             }
         }
@@ -290,31 +384,31 @@ namespace Gurux.DLMS.UI
         {
             if (ReadFromRB.Checked)
             {
-                m_Target.From = Convert.ToInt32(StartEntry.Value);
-                m_Target.To = Convert.ToInt32(EndEntry.Value);
+                target.From = Convert.ToInt32(StartEntry.Value);
+                target.To = Convert.ToInt32(EndEntry.Value);
                 if (StartPick.Checked)
                 {
-                    m_Target.From = StartPick.Value.Date;
+                    target.From = StartPick.Value.Date;
                 }
                 else
                 {
-                    m_Target.From = DateTime.MinValue;
+                    target.From = DateTime.MinValue;
                 }
 
                 if (ToPick.Checked)
                 {
-                    if (m_Target.CapturePeriod != 0)
+                    if (target.CapturePeriod != 0)
                     {
-                        m_Target.To = ToPick.Value.Date.AddDays(1).AddSeconds(-m_Target.CapturePeriod);
+                        target.To = ToPick.Value.Date.AddDays(1).AddSeconds(-target.CapturePeriod);
                     }
                     else
                     {
-                        m_Target.To = ToPick.Value.Date.AddDays(1).AddMinutes(-1);
+                        target.To = ToPick.Value.Date.AddDays(1).AddMinutes(-1);
                     }
                 }
                 else
                 {
-                    m_Target.To = DateTime.MaxValue;
+                    target.To = DateTime.MaxValue;
                 }
             }
         }
@@ -323,8 +417,8 @@ namespace Gurux.DLMS.UI
         {
             if (ReadEntryBtn.Checked)
             {
-                m_Target.From = StartEntry.Value;
-                m_Target.To = EndEntry.Value;
+                target.From = StartEntry.Value;
+                target.To = EndEntry.Value;
             }
         }
 
@@ -332,8 +426,8 @@ namespace Gurux.DLMS.UI
         {
             if (ReadLastRB.Checked)
             {
-                m_Target.From = DateTime.Now.Date.AddDays(-Convert.ToInt32(ReadLastTB.Value)).Date;
-                m_Target.To = DateTime.Now.AddDays(1).Date;
+                target.From = DateTime.Now.Date.AddDays(-Convert.ToInt32(ReadLastTB.Value)).Date;
+                target.To = DateTime.Now.AddDays(1).Date;
             }
         }
     }
