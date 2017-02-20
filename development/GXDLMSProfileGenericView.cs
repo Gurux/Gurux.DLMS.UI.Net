@@ -173,7 +173,16 @@ namespace Gurux.DLMS.UI
                     else
                     {
                         DataColumn dc = dt.Columns.Add(index.ToString());
-                        dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                        string str = it.Key.LogicalName;
+                        if (it.Value.AttributeIndex < columns.Length)
+                        {
+                            str += Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                        }
+                        if (!string.IsNullOrEmpty(it.Key.Description))
+                        {
+                            str += Environment.NewLine + it.Key.Description;
+                        }
+                        dc.Caption = str;
                         int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
                         ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
                         ++index;
