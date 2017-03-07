@@ -57,24 +57,6 @@ namespace Gurux.DLMS.UI
 
     delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
 
-    public class GXButton : Button
-    {
-        /// <summary>
-        /// Action index.
-        /// </summary>
-        public int Index
-        {
-            get;
-            set;
-        }
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [Browsable(false)]
-        public GXDLMSObject Target
-        {
-            get;
-            set;
-        }
-    }
 
     public partial class GXValueField : UserControl
     {

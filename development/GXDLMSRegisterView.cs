@@ -33,10 +33,7 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using Gurux.DLMS;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 
@@ -117,10 +114,9 @@ namespace Gurux.DLMS.UI
             }
         }
 
+
+
+
         #endregion
-
-
-
-
     }
 }

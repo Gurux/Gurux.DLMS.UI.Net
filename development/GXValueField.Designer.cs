@@ -66,46 +66,48 @@ namespace Gurux.DLMS.UI
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.checkedlistBox1 = new System.Windows.Forms.CheckedListBox();
-
             this.SuspendLayout();
-            //
+            // 
             // textBox1
-            //
+            // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(194, 20);
-            //
+            this.textBox1.TabIndex = 2;
+            // 
             // comboBox1
-            //
+            // 
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(194, 21);
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            //
+            this.comboBox1.TabIndex = 1;
+            // 
             // listBox1
-            //
+            // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(194, 17);
+            this.listBox1.Size = new System.Drawing.Size(194, 22);
+            this.listBox1.TabIndex = 0;
             this.listBox1.Visible = false;
-            //
+            // 
             // checkedlistBox1
-            //
+            // 
             this.checkedlistBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkedlistBox1.FormattingEnabled = true;
             this.checkedlistBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkedlistBox1.Name = "listBox1";
-            this.checkedlistBox1.Size = new System.Drawing.Size(194, 17);
+            this.checkedlistBox1.Name = "checkedlistBox1";
+            this.checkedlistBox1.Size = new System.Drawing.Size(194, 22);
+            this.checkedlistBox1.TabIndex = 3;
             this.checkedlistBox1.Visible = false;
-
-            //
+            // 
             // GXValueField
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listBox1);
