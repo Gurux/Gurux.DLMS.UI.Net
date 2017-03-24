@@ -42,82 +42,96 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSLimiter))]
-partial class GXDLMSLimiterView : Form, IGXDLMSView
-{
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSLimiterView()
+    [GXDLMSViewAttribute(typeof(GXDLMSLimiter))]
+    partial class GXDLMSLimiterView : Form, IGXDLMSView
     {
-        InitializeComponent();
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSLimiterView()
+        {
+            InitializeComponent();
+        }
+
+        #region IGXDLMSView Members
+
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            if (index == 2)
+            {
+                MonitoredValueTB.Text = Convert.ToString(((GXDLMSLimiter)Target).MonitoredValue);
+                MonitoredIndexTB.Text = ((GXDLMSLimiter)Target).MonitoredAttributeIndex.ToString();
+            }
+            else if (index == 10)
+            {
+                EmergencyProfileActiveCB.Checked = (bool)value;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return DescriptionTB.Text;
+            }
+            set
+            {
+                DescriptionTB.Text = value;
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+            if (Dirty && index == 2)
+            {
+                errorProvider1.SetError(MonitoredValueTB, Properties.Resources.ValueChangedTxt);
+            }
+            else
+            {
+                errorProvider1.Clear();
+            }
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        #endregion
+
+
+
     }
-
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 2)
-        {
-            MonitoredValueTB.Text = Convert.ToString(((GXDLMSLimiter)Target).MonitoredValue);
-            MonitoredIndexTB.Text = ((GXDLMSLimiter)Target).MonitoredAttributeIndex.ToString();
-        }
-        else if (index == 10)
-        {
-            EmergencyProfileActiveCB.Checked = (bool)value;
-        }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return DescriptionTB.Text;
-        }
-        set
-        {
-            DescriptionTB.Text = value;
-        }
-    }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-        if (Dirty && index == 2)
-        {
-            errorProvider1.SetError(MonitoredValueTB, Properties.Resources.ValueChangedTxt);
-        }
-        else
-        {
-            errorProvider1.Clear();
-        }
-    }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-    }
-
-    #endregion
-
-
-
-}
 }

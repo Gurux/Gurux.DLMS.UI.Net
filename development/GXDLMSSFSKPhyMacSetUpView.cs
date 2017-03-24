@@ -42,84 +42,98 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSSFSKPhyMacSetUp))]
-public partial class GXDLMSSFSKPhyMacSetUpView : Form, IGXDLMSView
-{
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSSFSKPhyMacSetUpView()
+    [GXDLMSViewAttribute(typeof(GXDLMSSFSKPhyMacSetUp))]
+    public partial class GXDLMSSFSKPhyMacSetUpView : Form, IGXDLMSView
     {
-        InitializeComponent();
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSSFSKPhyMacSetUpView()
+        {
+            InitializeComponent();
+        }
+        #region IGXDLMSView Members
+
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            if (index == 11)
+            {
+                RepeaterStatusCB.Checked = (Target as GXDLMSSFSKPhyMacSetUp).RepeaterStatus;
+            }
+            else if (index == 14)
+            {
+                SynchronizationLockedCB.Checked = (Target as GXDLMSSFSKPhyMacSetUp).SynchronizationLocked;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+            if (index == 11)
+            {
+                RepeaterStatusCB.Enabled = (access & AccessMode.Write) != 0;
+            }
+            else if (index == 14)
+            {
+                SynchronizationLockedCB.Enabled = (access & AccessMode.Write) != 0;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+        #endregion
+
+
+
+
     }
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 11)
-        {
-            RepeaterStatusCB.Checked = (Target as GXDLMSSFSKPhyMacSetUp).RepeaterStatus;
-        }
-        else if (index == 14)
-        {
-            SynchronizationLockedCB.Checked = (Target as GXDLMSSFSKPhyMacSetUp).SynchronizationLocked;
-        }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        if (index == 11)
-        {
-            RepeaterStatusCB.Enabled = (access & AccessMode.Write) != 0;
-        }
-        else if (index == 14)
-        {
-            SynchronizationLockedCB.Enabled = (access & AccessMode.Write) != 0;
-        }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return null;
-        }
-        set
-        {
-        }
-    }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-
-    }
-
-    #endregion
-
-
-
-
-}
 }

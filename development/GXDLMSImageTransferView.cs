@@ -42,88 +42,103 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSImageTransfer))]
-public partial class GXDLMSImageTransferView : Form, IGXDLMSView
-{
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSImageTransferView()
+    [GXDLMSViewAttribute(typeof(GXDLMSImageTransfer))]
+    public partial class GXDLMSImageTransferView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 5)
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSImageTransferView()
         {
-            GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
-            this.ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
+            InitializeComponent();
         }
-        else if (index != 0)
+
+        #region IGXDLMSView Members
+
+        public GXDLMSObject Target
         {
-            throw new IndexOutOfRangeException("index");
+            get;
+            set;
         }
-    }
 
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
+        public void OnValueChanged(int index, object value, bool user)
         {
-            return errorProvider1;
+            if (index == 5)
+            {
+                GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
+                this.ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
+            }
+            else if (index != 0)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
-    }
 
-    public string Description
-    {
-        get
+
+        public void PreAction(ValueEventArgs arg)
         {
-            return DescriptionTB.Text;
+
         }
-        set
+
+        public void PostAction(ValueEventArgs arg)
         {
-            DescriptionTB.Text = value;
-        }
-    }
 
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-        if (Dirty && index == 2)
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
         {
-            errorProvider1.SetError(ImageBlockSizeTB, Properties.Resources.ValueChangedTxt);
+            get
+            {
+                return errorProvider1;
+            }
         }
-        else
+
+        public string Description
         {
-            errorProvider1.Clear();
+            get
+            {
+                return DescriptionTB.Text;
+            }
+            set
+            {
+                DescriptionTB.Text = value;
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+            if (Dirty && index == 2)
+            {
+                errorProvider1.SetError(ImageBlockSizeTB, Properties.Resources.ValueChangedTxt);
+            }
+            else
+            {
+                errorProvider1.Clear();
+            }
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+            //throw new IndexOutOfRangeException("index");
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        #endregion
+
+
+
+
+        private void ValueTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.SetError((Control)sender, "Value changed.");
+        }
+
+        private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            errorProvider1.SetError((Control)sender, "Value changed.");
         }
     }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        //throw new IndexOutOfRangeException("index");
-    }
-
-    #endregion
-
-
-
-
-    private void ValueTB_KeyUp(object sender, KeyEventArgs e)
-    {
-        errorProvider1.SetError((Control)sender, "Value changed.");
-    }
-
-    private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
-    {
-        errorProvider1.SetError((Control)sender, "Value changed.");
-    }
-}
 }

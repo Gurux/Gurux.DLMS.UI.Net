@@ -42,93 +42,107 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSMBusClient))]
-class GXDLMSMBusClientView : Form, IGXDLMSView
-{
-    private GroupBox groupBox1;
-    private Label MBusPortReferenceLbl;
-    private GXValueField LogicalNameTB;
-    private GXValueField CaptureDefinitionTB;
-    private Label CaptureDefinitionLbl;
-    private GXValueField MBusPortReferenceTB;
-    private ErrorProvider errorProvider1;
-    private System.ComponentModel.IContainer components;
-    private Label PrimaryAddressLbl;
-    private Label CapturePeriodLbl;
-    private GXValueField PrimaryAddressTB;
-    private GXValueField CapturePeriodTB;
-    private GXValueField AccessNumberTB;
-    private Label AccessNumberLbl;
-    private GXValueField DeviceTypeTB;
-    private Label DeviceTypeLbl;
-    private GXValueField VersionTB;
-    private Label VersionLbl;
-    private GXValueField ManufacturerIDTB;
-    private Label ManufacturerIDLbl;
-    private GXValueField IdentificationNumberTB;
-    private Label IdentificationNumberLbl;
-    private GXValueField EncryptionKeyStatusTB;
-    private Label EncryptionKeyStatusLbl;
-    private GXValueField ConfigurationTB;
-    private Label ConfigurationLbl;
-    private GXValueField AlarmTB;
-    private Label AlarmLbl;
-    private GXValueField StatusTB;
-    private Label StatusLbl;
-    private Label LogicalNameLbl;
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSMBusClientView()
+    [GXDLMSViewAttribute(typeof(GXDLMSMBusClient))]
+    class GXDLMSMBusClientView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        throw new IndexOutOfRangeException("attributeID");
-    }
-
-    public void OnAccessRightsChange(int attributeID, AccessMode access)
-    {
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
+        private GroupBox groupBox1;
+        private Label MBusPortReferenceLbl;
+        private GXValueField LogicalNameTB;
+        private GXValueField CaptureDefinitionTB;
+        private Label CaptureDefinitionLbl;
+        private GXValueField MBusPortReferenceTB;
+        private ErrorProvider errorProvider1;
+        private System.ComponentModel.IContainer components;
+        private Label PrimaryAddressLbl;
+        private Label CapturePeriodLbl;
+        private GXValueField PrimaryAddressTB;
+        private GXValueField CapturePeriodTB;
+        private GXValueField AccessNumberTB;
+        private Label AccessNumberLbl;
+        private GXValueField DeviceTypeTB;
+        private Label DeviceTypeLbl;
+        private GXValueField VersionTB;
+        private Label VersionLbl;
+        private GXValueField ManufacturerIDTB;
+        private Label ManufacturerIDLbl;
+        private GXValueField IdentificationNumberTB;
+        private Label IdentificationNumberLbl;
+        private GXValueField EncryptionKeyStatusTB;
+        private Label EncryptionKeyStatusLbl;
+        private GXValueField ConfigurationTB;
+        private Label ConfigurationLbl;
+        private GXValueField AlarmTB;
+        private Label AlarmLbl;
+        private GXValueField StatusTB;
+        private Label StatusLbl;
+        private Label LogicalNameLbl;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSMBusClientView()
         {
-            return errorProvider1;
+            InitializeComponent();
         }
-    }
+        #region IGXDLMSView Members
 
-    public string Description
-    {
-        get
+        public GXDLMSObject Target
         {
-            return null;
+            get;
+            set;
         }
-        set
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            throw new IndexOutOfRangeException("attributeID");
+        }
+
+        public void OnAccessRightsChange(int attributeID, AccessMode access)
         {
         }
-    }
 
-    public void OnDirtyChange(int index, bool Dirty)
-    {
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
 
-    }
+        public void PreAction(ValueEventArgs arg)
+        {
 
-    #endregion
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+        #endregion
 
 
-    private void InitializeComponent()
-    {
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSMBusClientView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -167,7 +181,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.EncryptionKeyStatusTB);
             this.groupBox1.Controls.Add(this.EncryptionKeyStatusLbl);
@@ -207,7 +221,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // EncryptionKeyStatusTB
             // 
-            this.EncryptionKeyStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.EncryptionKeyStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EncryptionKeyStatusTB.Index = 14;
             this.EncryptionKeyStatusTB.Location = new System.Drawing.Point(122, 361);
@@ -228,7 +242,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // ConfigurationTB
             // 
-            this.ConfigurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ConfigurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfigurationTB.Index = 13;
             this.ConfigurationTB.Location = new System.Drawing.Point(122, 335);
@@ -248,7 +262,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // AlarmTB
             // 
-            this.AlarmTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.AlarmTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AlarmTB.Index = 12;
             this.AlarmTB.Location = new System.Drawing.Point(122, 309);
@@ -268,7 +282,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // StatusTB
             // 
-            this.StatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.StatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StatusTB.Index = 11;
             this.StatusTB.Location = new System.Drawing.Point(122, 283);
@@ -288,7 +302,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // AccessNumberTB
             // 
-            this.AccessNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.AccessNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AccessNumberTB.Index = 10;
             this.AccessNumberTB.Location = new System.Drawing.Point(122, 256);
@@ -308,7 +322,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // DeviceTypeTB
             // 
-            this.DeviceTypeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DeviceTypeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DeviceTypeTB.Index = 9;
             this.DeviceTypeTB.Location = new System.Drawing.Point(122, 230);
@@ -328,7 +342,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // VersionTB
             // 
-            this.VersionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.VersionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.VersionTB.Index = 8;
             this.VersionTB.Location = new System.Drawing.Point(122, 204);
@@ -348,7 +362,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // ManufacturerIDTB
             // 
-            this.ManufacturerIDTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ManufacturerIDTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ManufacturerIDTB.Index = 7;
             this.ManufacturerIDTB.Location = new System.Drawing.Point(122, 178);
@@ -368,7 +382,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // IdentificationNumberTB
             // 
-            this.IdentificationNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.IdentificationNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IdentificationNumberTB.Index = 6;
             this.IdentificationNumberTB.Location = new System.Drawing.Point(122, 152);
@@ -388,7 +402,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // PrimaryAddressTB
             // 
-            this.PrimaryAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PrimaryAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrimaryAddressTB.Index = 5;
             this.PrimaryAddressTB.Location = new System.Drawing.Point(122, 125);
@@ -408,7 +422,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // CapturePeriodTB
             // 
-            this.CapturePeriodTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.CapturePeriodTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CapturePeriodTB.Index = 4;
             this.CapturePeriodTB.Location = new System.Drawing.Point(122, 99);
@@ -428,7 +442,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // CaptureDefinitionTB
             // 
-            this.CaptureDefinitionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.CaptureDefinitionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CaptureDefinitionTB.Index = 3;
             this.CaptureDefinitionTB.Location = new System.Drawing.Point(122, 73);
@@ -448,7 +462,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // MBusPortReferenceTB
             // 
-            this.MBusPortReferenceTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MBusPortReferenceTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MBusPortReferenceTB.Index = 2;
             this.MBusPortReferenceTB.Location = new System.Drawing.Point(122, 47);
@@ -468,7 +482,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             // 
             // LogicalNameTB
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(122, 21);
@@ -503,7 +517,7 @@ class GXDLMSMBusClientView : Form, IGXDLMSView
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
-    }
+        }
 
-}
+    }
 }

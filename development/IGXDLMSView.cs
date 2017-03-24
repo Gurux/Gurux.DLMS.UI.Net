@@ -60,9 +60,16 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Called after access rights changed and if  Attribute ID is not set to GXValueField.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="access"></param>
-        void OnAccessRightsChange(int index, AccessMode access);
+        /// <param name="index">Attribute index.</param>
+        /// <param name="mode">Attribute access mode.</param>
+        void OnAccessRightsChange(int index, AccessMode mode);
+
+        /// <summary>
+        /// Called after action access rights changed and if Attribute ID is not set to GXButton.
+        /// </summary>
+        /// <param name="index">Action index.</param>
+        /// <param name="mode">Method access mode.</param>
+        void OnAccessRightsChange(int index, MethodAccessMode mode);
 
         /// <summary>
         /// Called to update UI after value has change.
@@ -70,6 +77,18 @@ namespace Gurux.DLMS.UI
         /// <param name="index"></param>
         /// <param name="Dirty"></param>
         void OnDirtyChange(int index, bool Dirty);
+
+        /// <summary>
+        /// Called before action executed.
+        /// </summary>
+        /// <param name="arg">Value event argument.</param>
+        void PreAction(ValueEventArgs arg);
+
+        /// <summary>
+        /// Called after action executed.
+        /// </summary>
+        /// <param name="arg">Value event argument.</param>
+        void PostAction(ValueEventArgs arg);
 
         System.Windows.Forms.ErrorProvider ErrorProvider
         {

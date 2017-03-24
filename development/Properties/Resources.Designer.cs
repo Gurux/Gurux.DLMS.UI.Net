@@ -61,6 +61,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action accomplish..
+        /// </summary>
+        internal static string ActionImplemented {
+            get {
+                return ResourceManager.GetString("ActionImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a hardware fault..
         /// </summary>
         internal static string HardwareFaultTxt {
@@ -88,6 +97,24 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to capture current values?.
+        /// </summary>
+        internal static string ProfileGenericCaptureWarning {
+            get {
+                return ResourceManager.GetString("ProfileGenericCaptureWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to reset historical data?.
+        /// </summary>
+        internal static string ProfileGenericResetWarning {
+            get {
+                return ResourceManager.GetString("ProfileGenericResetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Applications updated..
         /// </summary>
         internal static string ProtocolsUpdatedTxt {
@@ -102,6 +129,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string ReadWriteDeniedTxt {
             get {
                 return ResourceManager.GetString("ReadWriteDeniedTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to reset register value?.
+        /// </summary>
+        internal static string RegisterResetWarning {
+            get {
+                return ResourceManager.GetString("RegisterResetWarning", resourceCulture);
             }
         }
         

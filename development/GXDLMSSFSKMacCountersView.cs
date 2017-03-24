@@ -42,77 +42,91 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSSFSKMacCounters))]
-public partial class GXDLMSSFSKMacCountersView : Form, IGXDLMSView
-{
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSSFSKMacCountersView()
+    [GXDLMSViewAttribute(typeof(GXDLMSSFSKMacCounters))]
+    public partial class GXDLMSSFSKMacCountersView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSSFSKMacCountersView()
+        {
+            InitializeComponent();
+        }
+        #region IGXDLMSView Members
 
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
 
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 3)
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            if (index == 3)
+            {
+
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+
+            }
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+            if (index != 3)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        public void PreAction(ValueEventArgs arg)
         {
 
         }
-        else
+
+        public void PostAction(ValueEventArgs arg)
         {
-            throw new IndexOutOfRangeException("index");
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+
+
+
+        #endregion
+
+        private void BroadcastFramesCounterTB_Load(object sender, EventArgs e)
+        {
 
         }
     }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        if (index != 3)
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return null;
-        }
-        set
-        {
-        }
-    }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-
-    }
-
-
-
-
-    #endregion
-
-    private void BroadcastFramesCounterTB_Load(object sender, EventArgs e)
-    {
-
-    }
-}
 }

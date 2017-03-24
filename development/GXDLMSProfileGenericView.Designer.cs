@@ -93,6 +93,8 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
+            this.CaptureBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -110,6 +112,8 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.CaptureBtn);
+            this.groupBox1.Controls.Add(this.ResetBtn);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.CapturePeriodTB);
             this.groupBox1.Controls.Add(this.groupBox3);
@@ -445,6 +449,28 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
+            // ResetBtn
+            // 
+            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetBtn.Index = 1;
+            this.ResetBtn.Location = new System.Drawing.Point(420, 32);
+            this.ResetBtn.Name = "ResetBtn";
+            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.ResetBtn.TabIndex = 16;
+            this.ResetBtn.Text = "Reset";
+            this.ResetBtn.UseVisualStyleBackColor = true;
+            // 
+            // CaptureBtn
+            // 
+            this.CaptureBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CaptureBtn.Index = 2;
+            this.CaptureBtn.Location = new System.Drawing.Point(420, 61);
+            this.CaptureBtn.Name = "CaptureBtn";
+            this.CaptureBtn.Size = new System.Drawing.Size(75, 23);
+            this.CaptureBtn.TabIndex = 17;
+            this.CaptureBtn.Text = "Capture";
+            this.CaptureBtn.UseVisualStyleBackColor = true;
+            // 
             // GXDLMSProfileGenericView
             // 
             this.ClientSize = new System.Drawing.Size(517, 582);
@@ -466,8 +492,10 @@ namespace Gurux.DLMS.UI
             this.ResumeLayout(false);
 
         }
+
         #endregion
 
-
+        private GXButton CaptureBtn;
+        private GXButton ResetBtn;
     }
 }

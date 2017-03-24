@@ -56,5 +56,13 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false)]
+        public IGXDLMSView View
+        {
+            get;
+            set;
+        }
     }
 }

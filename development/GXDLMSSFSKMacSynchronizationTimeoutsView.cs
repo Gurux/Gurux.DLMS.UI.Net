@@ -42,65 +42,79 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSSFSKMacSynchronizationTimeouts))]
-public partial class GXDLMSSFSKMacSynchronizationTimeoutsView : Form, IGXDLMSView
-{
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSSFSKMacSynchronizationTimeoutsView()
+    [GXDLMSViewAttribute(typeof(GXDLMSSFSKMacSynchronizationTimeouts))]
+    public partial class GXDLMSSFSKMacSynchronizationTimeoutsView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSSFSKMacSynchronizationTimeoutsView()
         {
+            InitializeComponent();
+        }
+        #region IGXDLMSView Members
+
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+
             throw new IndexOutOfRangeException("index");
         }
-    }
 
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-
-        throw new IndexOutOfRangeException("index");
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return null;
-        }
-        set
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
+
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+        #endregion
+
+
+
+
     }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-
-    }
-
-    #endregion
-
-
-
-
-}
 }

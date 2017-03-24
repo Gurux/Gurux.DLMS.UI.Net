@@ -300,6 +300,33 @@ namespace Gurux.DLMS.UI
         {
         }
 
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        public void PreAction(ValueEventArgs arg)
+        {
+            arg.Value = (byte)0;
+            DialogResult ret;
+            if (arg.Index == 1)
+            {
+                //Reset.
+                ret = MessageBox.Show(this, Properties.Resources.ProfileGenericResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                arg.Handled = ret != DialogResult.Yes;
+            }
+            else if (arg.Index == 2)
+            {
+                //Capture.
+                ret = MessageBox.Show(this, Properties.Resources.ProfileGenericCaptureWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                arg.Handled = ret != DialogResult.Yes;
+            }
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public System.Windows.Forms.ErrorProvider ErrorProvider
         {
             get

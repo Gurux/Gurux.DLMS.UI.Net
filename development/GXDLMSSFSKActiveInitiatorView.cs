@@ -42,75 +42,89 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSSFSKActiveInitiator))]
-public partial class GXDLMSSFSKActiveInitiatorView : Form, IGXDLMSView
-{
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSSFSKActiveInitiatorView()
+    [GXDLMSViewAttribute(typeof(GXDLMSSFSKActiveInitiator))]
+    public partial class GXDLMSSFSKActiveInitiatorView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSSFSKActiveInitiatorView()
+        {
+            InitializeComponent();
+        }
+        #region IGXDLMSView Members
 
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
 
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 2)
+        public void OnValueChanged(int index, object value, bool user)
         {
-            GXDLMSSFSKActiveInitiator target = Target as GXDLMSSFSKActiveInitiator;
-            SystemTitleTB.Text = target.SystemTitle;
-            MACAddressTB.Text = target.MacAddress.ToString();
-            LSAPSelectorTB.Text = target.LSapSelector.ToString();
+            if (index == 2)
+            {
+                GXDLMSSFSKActiveInitiator target = Target as GXDLMSSFSKActiveInitiator;
+                SystemTitleTB.Text = target.SystemTitle;
+                MACAddressTB.Text = target.MacAddress.ToString();
+                LSAPSelectorTB.Text = target.LSapSelector.ToString();
+            }
+            else if (index != 0)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
-        else if (index != 0)
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
 
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        if (index == 2)
+        public void OnAccessRightsChange(int index, AccessMode access)
         {
-            SystemTitleTB.ReadOnly = MACAddressTB.ReadOnly = LSAPSelectorTB.ReadOnly = (access & AccessMode.Write) != 0;
+            if (index == 2)
+            {
+                SystemTitleTB.ReadOnly = MACAddressTB.ReadOnly = LSAPSelectorTB.ReadOnly = (access & AccessMode.Write) != 0;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
 
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return null;
-        }
-        set
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
+
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+        #endregion
     }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-
-    }
-
-    #endregion
-}
 }

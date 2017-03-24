@@ -42,92 +42,106 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSHdlcSetup))]
-partial class GXDLMSHdlcSetupView : Form, IGXDLMSView
-{
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSHdlcSetupView()
+    [GXDLMSViewAttribute(typeof(GXDLMSHdlcSetup))]
+    partial class GXDLMSHdlcSetupView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
 
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        throw new IndexOutOfRangeException("index");
-    }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        throw new NotImplementedException();
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSHdlcSetupView()
         {
-            return errorProvider1;
+            InitializeComponent();
         }
-    }
+        #region IGXDLMSView Members
 
-    public string Description
-    {
-        get
+        public GXDLMSObject Target
         {
-            return null;
+            get;
+            set;
         }
-        set
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            throw new IndexOutOfRangeException("index");
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
-    }
 
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-        switch (index)
+        public void PreAction(ValueEventArgs arg)
         {
-        case 2:
-            errorProvider1.SetError(SpeedTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 3:
-            errorProvider1.SetError(TransmitWindowSizeTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 4:
-            errorProvider1.SetError(TransmitMaxLengthTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 5:
-            errorProvider1.SetError(ReceiveWindowSizeTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 6:
-            errorProvider1.SetError(ReceiveMaxLengthTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 7:
-            errorProvider1.SetError(InternalTimeOutLTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 8:
-            errorProvider1.SetError(InactivityTimeoutTB, Properties.Resources.ValueChangedTxt);
-            break;
-        case 9:
-            errorProvider1.SetError(DeviceAddressTB, Properties.Resources.ValueChangedTxt);
-            break;
-        default:
-            errorProvider1.Clear();
-            break;
+
         }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(SpeedTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(TransmitWindowSizeTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(TransmitMaxLengthTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 5:
+                    errorProvider1.SetError(ReceiveWindowSizeTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 6:
+                    errorProvider1.SetError(ReceiveMaxLengthTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 7:
+                    errorProvider1.SetError(InternalTimeOutLTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 8:
+                    errorProvider1.SetError(InactivityTimeoutTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 9:
+                    errorProvider1.SetError(DeviceAddressTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
+        }
+
+        #endregion
+
+
+
+
     }
-
-    #endregion
-
-
-
-
-}
 }

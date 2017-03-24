@@ -81,6 +81,18 @@ namespace Gurux.DLMS.UI
         public void OnAccessRightsChange(int index, AccessMode access)
         {
         }
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider
         {

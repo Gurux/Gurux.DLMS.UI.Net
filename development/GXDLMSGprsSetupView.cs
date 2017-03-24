@@ -42,91 +42,105 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSGprsSetup))]
-partial class GXDLMSGprsSetupView : Form, IGXDLMSView
-{
-
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSGprsSetupView()
-    {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        GXDLMSGprsSetup target = Target as GXDLMSGprsSetup;
-        if (index == 4)
-        {
-            CPrecedenceTB.Text = target.DefaultQualityOfService.Precedence.ToString();
-            CDelayTB.Text = target.DefaultQualityOfService.Delay.ToString();
-            CReliabilityTB.Text = target.DefaultQualityOfService.Reliability.ToString();
-            CPeakThroughputTB.Text = target.DefaultQualityOfService.PeakThroughput.ToString();
-            CMeanThroughputTB.Text = target.DefaultQualityOfService.MeanThroughput.ToString();
-            MPrecedenceTB.Text = target.RequestedQualityOfService.Precedence.ToString();
-            MDelayTB.Text = target.RequestedQualityOfService.Delay.ToString();
-            MReliabilityTB.Text = target.RequestedQualityOfService.Reliability.ToString();
-            MPeakThroughputTB.Text = target.RequestedQualityOfService.PeakThroughput.ToString();
-            MMeanThroughputTB.Text = target.RequestedQualityOfService.MeanThroughput.ToString();
-        }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        if (index == 4)
-        {
-            CPrecedenceTB.ReadOnly = !(access == AccessMode.Write || access == AccessMode.ReadWrite);
-            CReliabilityTB.ReadOnly = CDelayTB.ReadOnly = CPrecedenceTB.ReadOnly;
-            CPeakThroughputTB.ReadOnly = CMeanThroughputTB.ReadOnly = CPrecedenceTB.ReadOnly;
-            MPrecedenceTB.ReadOnly = MDelayTB.ReadOnly = MReliabilityTB.ReadOnly = CPrecedenceTB.ReadOnly;
-            MPeakThroughputTB.ReadOnly = MMeanThroughputTB.ReadOnly = CPrecedenceTB.ReadOnly;
-        }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return null;
-        }
-        set
-        {
-        }
-    }
-
-    public void OnDirtyChange(int index, bool Dirty)
+    [GXDLMSViewAttribute(typeof(GXDLMSGprsSetup))]
+    partial class GXDLMSGprsSetupView : Form, IGXDLMSView
     {
 
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSGprsSetupView()
+        {
+            InitializeComponent();
+        }
+        #region IGXDLMSView Members
+
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            GXDLMSGprsSetup target = Target as GXDLMSGprsSetup;
+            if (index == 4)
+            {
+                CPrecedenceTB.Text = target.DefaultQualityOfService.Precedence.ToString();
+                CDelayTB.Text = target.DefaultQualityOfService.Delay.ToString();
+                CReliabilityTB.Text = target.DefaultQualityOfService.Reliability.ToString();
+                CPeakThroughputTB.Text = target.DefaultQualityOfService.PeakThroughput.ToString();
+                CMeanThroughputTB.Text = target.DefaultQualityOfService.MeanThroughput.ToString();
+                MPrecedenceTB.Text = target.RequestedQualityOfService.Precedence.ToString();
+                MDelayTB.Text = target.RequestedQualityOfService.Delay.ToString();
+                MReliabilityTB.Text = target.RequestedQualityOfService.Reliability.ToString();
+                MPeakThroughputTB.Text = target.RequestedQualityOfService.PeakThroughput.ToString();
+                MMeanThroughputTB.Text = target.RequestedQualityOfService.MeanThroughput.ToString();
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+            if (index == 4)
+            {
+                CPrecedenceTB.ReadOnly = !(access == AccessMode.Write || access == AccessMode.ReadWrite);
+                CReliabilityTB.ReadOnly = CDelayTB.ReadOnly = CPrecedenceTB.ReadOnly;
+                CPeakThroughputTB.ReadOnly = CMeanThroughputTB.ReadOnly = CPrecedenceTB.ReadOnly;
+                MPrecedenceTB.ReadOnly = MDelayTB.ReadOnly = MReliabilityTB.ReadOnly = CPrecedenceTB.ReadOnly;
+                MPeakThroughputTB.ReadOnly = MMeanThroughputTB.ReadOnly = CPrecedenceTB.ReadOnly;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+        #endregion
+
+
+
     }
-
-    #endregion
-
-
-
-}
 }

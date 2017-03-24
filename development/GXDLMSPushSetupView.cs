@@ -42,120 +42,131 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSPushSetup))]
-partial class GXDLMSPushSetupView : Form, IGXDLMSView
-{
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSPushSetupView()
+    [GXDLMSViewAttribute(typeof(GXDLMSPushSetup))]
+    partial class GXDLMSPushSetupView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
 
-    #region IGXDLMSView Members
-
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
-
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 2)
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSPushSetupView()
         {
-            ObjectsLV.Items.Clear();
-            foreach (var it in ((GXDLMSPushSetup)Target).PushObjectList)
+            InitializeComponent();
+        }
+
+        #region IGXDLMSView Members
+
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
+
+        public void OnValueChanged(int index, object value, bool user)
+        {
+            if (index == 2)
             {
-                ListViewItem li = new ListViewItem(it.Key.ObjectType.ToString());
-                li.SubItems.Add(it.Key.LogicalName);
-                li.SubItems.Add(it.Value.AttributeIndex.ToString());
-                li.SubItems.Add(it.Value.DataIndex.ToString());
-                ObjectsLV.Items.Add(li);
+                ObjectsLV.Items.Clear();
+                foreach (var it in ((GXDLMSPushSetup)Target).PushObjectList)
+                {
+                    ListViewItem li = new ListViewItem(it.Key.ObjectType.ToString());
+                    li.SubItems.Add(it.Key.LogicalName);
+                    li.SubItems.Add(it.Value.AttributeIndex.ToString());
+                    li.SubItems.Add(it.Value.DataIndex.ToString());
+                    ObjectsLV.Items.Add(li);
+                }
+            }
+            else if (index == 3)
+            {
+                ServiceTB.Text = ((GXDLMSPushSetup)Target).Service.ToString();
+                DestinationTB.Text = ((GXDLMSPushSetup)Target).Destination;
+                MessageTB.Text = ((GXDLMSPushSetup)Target).Message.ToString();
+            }
+            else if (index == 4)
+            {
+                CommunicationWindowLV.Items.Clear();
+                foreach (KeyValuePair<GXDateTime, GXDateTime> it in ((GXDLMSPushSetup)Target).CommunicationWindow)
+                {
+                    ListViewItem li = new ListViewItem(it.Key.ToString());
+                    li.SubItems.Add(it.Value.ToString());
+                    CommunicationWindowLV.Items.Add(li);
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
             }
         }
-        else if (index == 3)
+
+        public void PreAction(ValueEventArgs arg)
         {
-            ServiceTB.Text = ((GXDLMSPushSetup)Target).Service.ToString();
-            DestinationTB.Text = ((GXDLMSPushSetup)Target).Destination;
-            MessageTB.Text = ((GXDLMSPushSetup)Target).Message.ToString();
+
         }
-        else if (index == 4)
+
+        public void PostAction(ValueEventArgs arg)
         {
-            CommunicationWindowLV.Items.Clear();
-            foreach (KeyValuePair<GXDateTime, GXDateTime> it in ((GXDLMSPushSetup)Target).CommunicationWindow)
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
             {
-                ListViewItem li = new ListViewItem(it.Key.ToString());
-                li.SubItems.Add(it.Value.ToString());
-                CommunicationWindowLV.Items.Add(li);
+                return errorProvider1;
             }
         }
-        else
+
+        public string Description
         {
-            throw new IndexOutOfRangeException("index");
+            get
+            {
+                return DescriptionTB.Text;
+            }
+            set
+            {
+                DescriptionTB.Text = value;
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+            errorProvider1.Clear();
+        }
+
+        public void OnAccessRightsChange(int index, AccessMode access)
+        {
+            if (index == 2)
+            {
+                ObjectsLV.Enabled = access != AccessMode.NoAccess;
+            }
+            else if (index == 3)
+            {
+                ServiceTB.ReadOnly = DestinationTB.ReadOnly = MessageTB.ReadOnly = access == AccessMode.NoAccess;
+            }
+            else if (index == 4)
+            {
+                CommunicationWindowLV.Enabled = access != AccessMode.NoAccess;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+        }
+
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        {
+        }
+
+        #endregion
+
+        private void ValueTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.SetError((Control)sender, "Value changed.");
+        }
+
+        private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            errorProvider1.SetError((Control)sender, "Value changed.");
         }
     }
-
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return DescriptionTB.Text;
-        }
-        set
-        {
-            DescriptionTB.Text = value;
-        }
-    }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-        errorProvider1.Clear();
-    }
-
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        if (index == 2)
-        {
-            ObjectsLV.Enabled = access != AccessMode.NoAccess;
-        }
-        else if (index == 3)
-        {
-            ServiceTB.ReadOnly = DestinationTB.ReadOnly = MessageTB.ReadOnly = access == AccessMode.NoAccess;
-        }
-        else if (index == 4)
-        {
-            CommunicationWindowLV.Enabled = access != AccessMode.NoAccess;
-        }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
-
-    #endregion
-
-
-
-
-    private void ValueTB_KeyUp(object sender, KeyEventArgs e)
-    {
-        errorProvider1.SetError((Control)sender, "Value changed.");
-    }
-
-    private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
-    {
-        errorProvider1.SetError((Control)sender, "Value changed.");
-    }
-}
 }

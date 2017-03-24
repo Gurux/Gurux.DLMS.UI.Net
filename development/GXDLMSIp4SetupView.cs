@@ -42,77 +42,92 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-[GXDLMSViewAttribute(typeof(GXDLMSIp4Setup))]
-public partial class GXDLMSIp4SetupView : Form, IGXDLMSView
-{
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public GXDLMSIp4SetupView()
+    [GXDLMSViewAttribute(typeof(GXDLMSIp4Setup))]
+    public partial class GXDLMSIp4SetupView : Form, IGXDLMSView
     {
-        InitializeComponent();
-    }
-    #region IGXDLMSView Members
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GXDLMSIp4SetupView()
+        {
+            InitializeComponent();
+        }
+        #region IGXDLMSView Members
 
-    public GXDLMSObject Target
-    {
-        get;
-        set;
-    }
+        public GXDLMSObject Target
+        {
+            get;
+            set;
+        }
 
-    public void OnValueChanged(int index, object value, bool user)
-    {
-        if (index == 8)
+        public void OnValueChanged(int index, object value, bool user)
         {
-            GXDLMSIp4Setup target = Target as GXDLMSIp4Setup;
-            this.UseDHCCB.Checked = target.UseDHCP;
+            if (index == 8)
+            {
+                GXDLMSIp4Setup target = Target as GXDLMSIp4Setup;
+                this.UseDHCCB.Checked = target.UseDHCP;
+            }
+            else if (index != 0)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
-        else if (index != 0)
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
 
-    public void OnAccessRightsChange(int index, AccessMode access)
-    {
-        if (index == 8)
+        public void OnAccessRightsChange(int index, AccessMode access)
         {
-            this.UseDHCCB.Enabled = (access & AccessMode.Write) != 0;
+            if (index == 8)
+            {
+                this.UseDHCCB.Enabled = (access & AccessMode.Write) != 0;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
-        else
-        {
-            throw new IndexOutOfRangeException("index");
-        }
-    }
 
-    public System.Windows.Forms.ErrorProvider ErrorProvider
-    {
-        get
-        {
-            return errorProvider1;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return null;
-        }
-        set
+        public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
+
+
+        public void PreAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public void PostAction(ValueEventArgs arg)
+        {
+
+        }
+
+        public System.Windows.Forms.ErrorProvider ErrorProvider
+        {
+            get
+            {
+                return errorProvider1;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+            }
+        }
+
+        public void OnDirtyChange(int index, bool Dirty)
+        {
+
+        }
+
+        #endregion
+
+
+
+
     }
-
-    public void OnDirtyChange(int index, bool Dirty)
-    {
-
-    }
-
-    #endregion
-
-
-
-
-}
 }
