@@ -100,12 +100,12 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(ValueEventArgs arg)
         {
-
+            arg.Value = (sbyte)0;
         }
 
         public void PostAction(ValueEventArgs arg)
         {
-
+            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

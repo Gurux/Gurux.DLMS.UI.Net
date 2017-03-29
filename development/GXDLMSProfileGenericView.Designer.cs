@@ -63,6 +63,8 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSProfileGenericView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CaptureBtn = new Gurux.DLMS.UI.GXButton();
+            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.label5 = new System.Windows.Forms.Label();
             this.CapturePeriodTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -93,8 +95,6 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
-            this.CaptureBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -130,6 +130,28 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Profile Generic";
+            // 
+            // CaptureBtn
+            // 
+            this.CaptureBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CaptureBtn.Index = 2;
+            this.CaptureBtn.Location = new System.Drawing.Point(420, 61);
+            this.CaptureBtn.Name = "CaptureBtn";
+            this.CaptureBtn.Size = new System.Drawing.Size(75, 23);
+            this.CaptureBtn.TabIndex = 17;
+            this.CaptureBtn.Text = "Capture";
+            this.CaptureBtn.UseVisualStyleBackColor = true;
+            // 
+            // ResetBtn
+            // 
+            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetBtn.Index = 1;
+            this.ResetBtn.Location = new System.Drawing.Point(420, 32);
+            this.ResetBtn.Name = "ResetBtn";
+            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.ResetBtn.TabIndex = 16;
+            this.ResetBtn.Text = "Reset";
+            this.ResetBtn.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -308,7 +330,7 @@ namespace Gurux.DLMS.UI
             // 
             this.EndEntry.Location = new System.Drawing.Point(238, 20);
             this.EndEntry.Maximum = new decimal(new int[] {
-            100000,
+            -1,
             0,
             0,
             0});
@@ -320,6 +342,11 @@ namespace Gurux.DLMS.UI
             // StartEntry
             // 
             this.StartEntry.Location = new System.Drawing.Point(94, 19);
+            this.StartEntry.Maximum = new decimal(new int[] {
+            -2,
+            0,
+            0,
+            0});
             this.StartEntry.Name = "StartEntry";
             this.StartEntry.Size = new System.Drawing.Size(86, 20);
             this.StartEntry.TabIndex = 10;
@@ -448,28 +475,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // ResetBtn
-            // 
-            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetBtn.Index = 1;
-            this.ResetBtn.Location = new System.Drawing.Point(420, 32);
-            this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.ResetBtn.TabIndex = 16;
-            this.ResetBtn.Text = "Reset";
-            this.ResetBtn.UseVisualStyleBackColor = true;
-            // 
-            // CaptureBtn
-            // 
-            this.CaptureBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CaptureBtn.Index = 2;
-            this.CaptureBtn.Location = new System.Drawing.Point(420, 61);
-            this.CaptureBtn.Name = "CaptureBtn";
-            this.CaptureBtn.Size = new System.Drawing.Size(75, 23);
-            this.CaptureBtn.TabIndex = 17;
-            this.CaptureBtn.Text = "Capture";
-            this.CaptureBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSProfileGenericView
             // 

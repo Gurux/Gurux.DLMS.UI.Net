@@ -89,15 +89,17 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PushBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.GXSendDestinationAndMethodGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // groupBox1
-            //
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.PushBtn);
             this.groupBox1.Controls.Add(this.RepetitionDelayTB);
             this.groupBox1.Controls.Add(this.LblRepetitionDelay);
             this.groupBox1.Controls.Add(this.NumberOfRetriesTB);
@@ -115,75 +117,75 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(421, 427);
+            this.groupBox1.Size = new System.Drawing.Size(421, 462);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data Object";
-            //
+            // 
             // RepetitionDelayTB
-            //
-            this.RepetitionDelayTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                             | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.RepetitionDelayTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RepetitionDelayTB.Index = 7;
             this.RepetitionDelayTB.Location = new System.Drawing.Point(103, 401);
             this.RepetitionDelayTB.Name = "RepetitionDelayTB";
             this.RepetitionDelayTB.Size = new System.Drawing.Size(296, 20);
             this.RepetitionDelayTB.TabIndex = 22;
             this.RepetitionDelayTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            //
+            // 
             // LblRepetitionDelay
-            //
+            // 
             this.LblRepetitionDelay.AutoSize = true;
             this.LblRepetitionDelay.Location = new System.Drawing.Point(7, 404);
             this.LblRepetitionDelay.Name = "LblRepetitionDelay";
             this.LblRepetitionDelay.Size = new System.Drawing.Size(86, 13);
             this.LblRepetitionDelay.TabIndex = 21;
             this.LblRepetitionDelay.Text = "Repetition delay:";
-            //
+            // 
             // NumberOfRetriesTB
-            //
-            this.NumberOfRetriesTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                             | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.NumberOfRetriesTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberOfRetriesTB.Index = 6;
             this.NumberOfRetriesTB.Location = new System.Drawing.Point(103, 376);
             this.NumberOfRetriesTB.Name = "NumberOfRetriesTB";
             this.NumberOfRetriesTB.Size = new System.Drawing.Size(296, 20);
             this.NumberOfRetriesTB.TabIndex = 20;
             this.NumberOfRetriesTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            //
+            // 
             // NumberOfRetriesLbl
-            //
+            // 
             this.NumberOfRetriesLbl.AutoSize = true;
             this.NumberOfRetriesLbl.Location = new System.Drawing.Point(7, 379);
             this.NumberOfRetriesLbl.Name = "NumberOfRetriesLbl";
             this.NumberOfRetriesLbl.Size = new System.Drawing.Size(90, 13);
             this.NumberOfRetriesLbl.TabIndex = 19;
             this.NumberOfRetriesLbl.Text = "Number of retries:";
-            //
+            // 
             // RandomisationStartIntervalTB
-            //
-            this.RandomisationStartIntervalTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.RandomisationStartIntervalTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RandomisationStartIntervalTB.Index = 5;
             this.RandomisationStartIntervalTB.Location = new System.Drawing.Point(103, 350);
             this.RandomisationStartIntervalTB.Name = "RandomisationStartIntervalTB";
             this.RandomisationStartIntervalTB.Size = new System.Drawing.Size(296, 20);
             this.RandomisationStartIntervalTB.TabIndex = 18;
             this.RandomisationStartIntervalTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            //
+            // 
             // RandomisationStartIntervalLbl
-            //
+            // 
             this.RandomisationStartIntervalLbl.AutoSize = true;
             this.RandomisationStartIntervalLbl.Location = new System.Drawing.Point(7, 353);
             this.RandomisationStartIntervalLbl.Name = "RandomisationStartIntervalLbl";
             this.RandomisationStartIntervalLbl.Size = new System.Drawing.Size(80, 13);
             this.RandomisationStartIntervalLbl.TabIndex = 17;
             this.RandomisationStartIntervalLbl.Text = "Randomisation:";
-            //
+            // 
             // GXSendDestinationAndMethodGB
-            //
-            this.GXSendDestinationAndMethodGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.GXSendDestinationAndMethodGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GXSendDestinationAndMethodGB.Controls.Add(this.MessageLbl);
             this.GXSendDestinationAndMethodGB.Controls.Add(this.MessageTB);
             this.GXSendDestinationAndMethodGB.Controls.Add(this.DestinationLbl);
@@ -196,196 +198,205 @@ namespace Gurux.DLMS.UI
             this.GXSendDestinationAndMethodGB.TabIndex = 16;
             this.GXSendDestinationAndMethodGB.TabStop = false;
             this.GXSendDestinationAndMethodGB.Text = "Send destination and method";
-            //
+            // 
             // MessageLbl
-            //
+            // 
             this.MessageLbl.AutoSize = true;
             this.MessageLbl.Location = new System.Drawing.Point(7, 74);
             this.MessageLbl.Name = "MessageLbl";
             this.MessageLbl.Size = new System.Drawing.Size(53, 13);
             this.MessageLbl.TabIndex = 11;
             this.MessageLbl.Text = "Message:";
-            //
+            // 
             // MessageTB
-            //
-            this.MessageTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.MessageTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageTB.Location = new System.Drawing.Point(103, 71);
             this.MessageTB.Name = "MessageTB";
             this.MessageTB.Size = new System.Drawing.Size(297, 20);
             this.MessageTB.TabIndex = 10;
-            //
+            // 
             // DestinationLbl
-            //
+            // 
             this.DestinationLbl.AutoSize = true;
             this.DestinationLbl.Location = new System.Drawing.Point(7, 48);
             this.DestinationLbl.Name = "DestinationLbl";
             this.DestinationLbl.Size = new System.Drawing.Size(63, 13);
             this.DestinationLbl.TabIndex = 9;
             this.DestinationLbl.Text = "Destination:";
-            //
+            // 
             // DestinationTB
-            //
-            this.DestinationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                         | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.DestinationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DestinationTB.Location = new System.Drawing.Point(103, 45);
             this.DestinationTB.Name = "DestinationTB";
             this.DestinationTB.Size = new System.Drawing.Size(297, 20);
             this.DestinationTB.TabIndex = 8;
-            //
+            // 
             // ServiceLbl
-            //
+            // 
             this.ServiceLbl.AutoSize = true;
             this.ServiceLbl.Location = new System.Drawing.Point(7, 22);
             this.ServiceLbl.Name = "ServiceLbl";
             this.ServiceLbl.Size = new System.Drawing.Size(46, 13);
             this.ServiceLbl.TabIndex = 7;
             this.ServiceLbl.Text = "Service:";
-            //
+            // 
             // ServiceTB
-            //
-            this.ServiceTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.ServiceTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ServiceTB.Location = new System.Drawing.Point(103, 19);
             this.ServiceTB.Name = "ServiceTB";
             this.ServiceTB.Size = new System.Drawing.Size(297, 20);
             this.ServiceTB.TabIndex = 6;
-            //
+            // 
             // CommunicationWindowLV
-            //
-            this.CommunicationWindowLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                 | System.Windows.Forms.AnchorStyles.Left)
-                                                 | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.CommunicationWindowLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CommunicationWindowLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.StartHeader,
-            this.EndHeader
-        });
+            this.EndHeader});
             this.CommunicationWindowLV.FullRowSelect = true;
             this.CommunicationWindowLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.CommunicationWindowLV.HideSelection = false;
             this.CommunicationWindowLV.Location = new System.Drawing.Point(102, 268);
             this.CommunicationWindowLV.Name = "CommunicationWindowLV";
-            this.CommunicationWindowLV.Size = new System.Drawing.Size(296, 75);
+            this.CommunicationWindowLV.Size = new System.Drawing.Size(296, 110);
             this.CommunicationWindowLV.TabIndex = 15;
             this.CommunicationWindowLV.UseCompatibleStateImageBehavior = false;
             this.CommunicationWindowLV.View = System.Windows.Forms.View.Details;
-            //
+            // 
             // StartHeader
-            //
+            // 
             this.StartHeader.Text = "Start";
             this.StartHeader.Width = 128;
-            //
+            // 
             // EndHeader
-            //
+            // 
             this.EndHeader.Text = "End";
             this.EndHeader.Width = 157;
-            //
+            // 
             // CommunicationWindowLbl
-            //
+            // 
             this.CommunicationWindowLbl.Location = new System.Drawing.Point(6, 268);
             this.CommunicationWindowLbl.Name = "CommunicationWindowLbl";
             this.CommunicationWindowLbl.Size = new System.Drawing.Size(91, 61);
             this.CommunicationWindowLbl.TabIndex = 14;
             this.CommunicationWindowLbl.Text = "Communication Window:";
-            //
+            // 
             // ObjectsLV
-            //
-            this.ObjectsLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                     | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.ObjectsLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ObjectsLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TypeHeader,
             this.LogicalNameHeader,
             this.AttributeIndexHeader,
-            this.DataIndexHeader
-        });
+            this.DataIndexHeader});
             this.ObjectsLV.FullRowSelect = true;
             this.ObjectsLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ObjectsLV.HideSelection = false;
             this.ObjectsLV.Location = new System.Drawing.Point(103, 74);
             this.ObjectsLV.Name = "ObjectsLV";
-            this.ObjectsLV.Size = new System.Drawing.Size(296, 75);
+            this.ObjectsLV.Size = new System.Drawing.Size(296, 110);
             this.ObjectsLV.TabIndex = 13;
             this.ObjectsLV.UseCompatibleStateImageBehavior = false;
             this.ObjectsLV.View = System.Windows.Forms.View.Details;
-            //
+            // 
             // TypeHeader
-            //
+            // 
             this.TypeHeader.Text = "Type";
             this.TypeHeader.Width = 48;
-            //
+            // 
             // LogicalNameHeader
-            //
+            // 
             this.LogicalNameHeader.Text = "LogicalName";
             this.LogicalNameHeader.Width = 76;
-            //
+            // 
             // AttributeIndexHeader
-            //
+            // 
             this.AttributeIndexHeader.Text = "Attribute Index";
             this.AttributeIndexHeader.Width = 85;
-            //
+            // 
             // DataIndexHeader
-            //
+            // 
             this.DataIndexHeader.Text = "Data Index";
             this.DataIndexHeader.Width = 74;
-            //
+            // 
             // DescriptionLbl
-            //
+            // 
             this.DescriptionLbl.AutoSize = true;
             this.DescriptionLbl.Location = new System.Drawing.Point(7, 22);
             this.DescriptionLbl.Name = "DescriptionLbl";
             this.DescriptionLbl.Size = new System.Drawing.Size(63, 13);
             this.DescriptionLbl.TabIndex = 5;
             this.DescriptionLbl.Text = "Description:";
-            //
+            // 
             // DescriptionTB
-            //
-            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                         | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTB.Location = new System.Drawing.Point(103, 19);
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(297, 20);
             this.DescriptionTB.TabIndex = 4;
-            //
+            // 
             // ValueLbl
-            //
+            // 
             this.ValueLbl.AutoSize = true;
             this.ValueLbl.Location = new System.Drawing.Point(7, 74);
             this.ValueLbl.Name = "ValueLbl";
             this.ValueLbl.Size = new System.Drawing.Size(46, 13);
             this.ValueLbl.TabIndex = 2;
             this.ValueLbl.Text = "Objects:";
-            //
+            // 
             // LogicalNameTB
-            //
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                         | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(296, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            //
+            // 
             // LogicalNameLbl
-            //
+            // 
             this.LogicalNameLbl.AutoSize = true;
             this.LogicalNameLbl.Location = new System.Drawing.Point(7, 48);
             this.LogicalNameLbl.Name = "LogicalNameLbl";
             this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
             this.LogicalNameLbl.TabIndex = 0;
             this.LogicalNameLbl.Text = "Logical Name:";
-            //
+            // 
             // errorProvider1
-            //
+            // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            //
+            // 
+            // PushBtn
+            // 
+            this.PushBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PushBtn.Index = 1;
+            this.PushBtn.Location = new System.Drawing.Point(323, 427);
+            this.PushBtn.Name = "PushBtn";
+            this.PushBtn.Size = new System.Drawing.Size(75, 23);
+            this.PushBtn.TabIndex = 23;
+            this.PushBtn.Text = "Push";
+            this.PushBtn.UseVisualStyleBackColor = true;
+            // 
             // GXDLMSPushSetupView
-            //
-            this.ClientSize = new System.Drawing.Size(445, 451);
+            // 
+            this.ClientSize = new System.Drawing.Size(445, 480);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSPushSetupView";
@@ -397,8 +408,9 @@ namespace Gurux.DLMS.UI
             this.ResumeLayout(false);
 
         }
+
         #endregion
 
-
+        private GXButton PushBtn;
     }
 }

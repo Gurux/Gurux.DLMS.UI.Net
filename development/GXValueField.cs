@@ -270,6 +270,12 @@ namespace Gurux.DLMS.UI
                     {
                         foreach (var it in Enum.GetValues(value.GetType()))
                         {
+                            if (it is ClockStatus &&
+                                (((ClockStatus)it) == ClockStatus.Ok) ||
+                                ((ClockStatus)it) == ClockStatus.Skip)
+                            {
+                                continue;
+                            }
                             checkedlistBox1.Items.Add(it);
                         }
                     }
@@ -433,7 +439,11 @@ namespace Gurux.DLMS.UI
                         if (((int)it & (int)value) != 0 ||
                                 ((int)it == (int)value))
                         {
-                            checkedlistBox1.SetItemChecked(checkedlistBox1.Items.IndexOf(it), true);
+                            int pos = checkedlistBox1.Items.IndexOf(it);
+                            if (pos != -1)
+                            {
+                                checkedlistBox1.SetItemChecked(pos, true);
+                            }
                         }
                     }
                     checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;

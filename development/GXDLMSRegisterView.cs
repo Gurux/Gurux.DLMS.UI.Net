@@ -88,7 +88,7 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(ValueEventArgs arg)
         {
-            arg.Value = (byte)0;
+            arg.Value = (sbyte)0;
             DialogResult ret;
             if (arg.Index == 1)
             {
