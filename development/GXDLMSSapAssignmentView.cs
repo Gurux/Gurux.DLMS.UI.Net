@@ -84,12 +84,12 @@ namespace Gurux.DLMS.UI
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
-        public void PreAction(ValueEventArgs arg)
+        public void PreAction(ActionType type, ValueEventArgs arg)
         {
 
         }
 
-        public void PostAction(ValueEventArgs arg)
+        public void PostAction(ActionType type, ValueEventArgs arg)
         {
 
         }

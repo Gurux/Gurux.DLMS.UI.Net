@@ -118,12 +118,19 @@ namespace Gurux.DLMS.UI
 
         }
 
-        public void PreAction(ValueEventArgs arg)
+        public void PreAction(ActionType type, ValueEventArgs arg)
         {
-
+            arg.Value = DateTime.Now;
+            DialogResult ret;
+            if (arg.Index == 2)
+            {
+                //Reset.
+                ret = MessageBox.Show(this, Properties.Resources.TimeSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                arg.Handled = ret != DialogResult.Yes;
+            }
         }
 
-        public void PostAction(ValueEventArgs arg)
+        public void PostAction(ActionType type, ValueEventArgs arg)
         {
 
         }

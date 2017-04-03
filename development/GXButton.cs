@@ -49,6 +49,16 @@ namespace Gurux.DLMS.UI
             set;
         }
 
+        /// <summary>
+        /// Is this attribute or action index.
+        /// </summary>
+        [DefaultValue(ActionType.Action)]
+        public ActionType Action
+        {
+            get;
+            set;
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
         public GXDLMSObject Target
@@ -64,5 +74,24 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
+    }
+
+    /// <summary>
+    /// What kind of action button executes.
+    /// </summary>
+    public enum ActionType
+    {
+        /// <summary>
+        /// Action is executed.
+        /// </summary>
+        Action = 0,
+        /// <summary>
+        /// Read is executed.
+        /// </summary>
+        Read,
+        /// <summary>
+        /// Write is executed.
+        /// </summary>
+        Write
     }
 }

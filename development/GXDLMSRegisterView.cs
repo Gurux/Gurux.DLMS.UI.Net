@@ -86,7 +86,7 @@ namespace Gurux.DLMS.UI
         {
         }
 
-        public void PreAction(ValueEventArgs arg)
+        public void PreAction(ActionType type, ValueEventArgs arg)
         {
             arg.Value = (sbyte)0;
             DialogResult ret;
@@ -98,7 +98,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void PostAction(ValueEventArgs arg)
+        public void PostAction(ActionType type, ValueEventArgs arg)
         {
             MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

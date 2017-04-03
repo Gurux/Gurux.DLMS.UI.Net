@@ -43,6 +43,9 @@ namespace Gurux.DLMS.UI
 {
     public interface IGXDLMSView
     {
+        /// <summary>
+        /// Selected COSEM object.
+        /// </summary>
         GXDLMSObject Target
         {
             get;
@@ -81,14 +84,16 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Called before action executed.
         /// </summary>
+        /// <param name="type">Action type.</param>
         /// <param name="arg">Value event argument.</param>
-        void PreAction(ValueEventArgs arg);
+        void PreAction(ActionType type, ValueEventArgs arg);
 
         /// <summary>
         /// Called after action executed.
         /// </summary>
+        /// <param name="type">Action type.</param>
         /// <param name="arg">Value event argument.</param>
-        void PostAction(ValueEventArgs arg);
+        void PostAction(ActionType type, ValueEventArgs arg);
 
         System.Windows.Forms.ErrorProvider ErrorProvider
         {

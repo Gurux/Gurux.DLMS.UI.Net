@@ -159,6 +159,9 @@
   <data name="TemporaryFailureTxt" xml:space="preserve">
     <value>Access Error : Device reports a temporary failure.</value>
   </data>
+  <data name="TimeSetWarning" xml:space="preserve">
+    <value>Are you sure that you want to set current time to the meter?</value>
+  </data>
   <data name="UnavailableObjectTxt" xml:space="preserve">
     <value>Access Error : Device reports a unavailable object.</value>
   </data>

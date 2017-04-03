@@ -187,6 +187,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to set current time to the meter?.
+        /// </summary>
+        internal static string TimeSetWarning {
+            get {
+                return ResourceManager.GetString("TimeSetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a unavailable object..
         /// </summary>
         internal static string UnavailableObjectTxt {
