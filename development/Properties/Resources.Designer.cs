@@ -97,6 +97,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid ASCII characters..
+        /// </summary>
+        internal static string InvalidASCII {
+            get {
+                return ResourceManager.GetString("InvalidASCII", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure that you want to capture current values?.
         /// </summary>
         internal static string ProfileGenericCaptureWarning {

@@ -45,21 +45,6 @@ namespace Gurux.DLMS.UI
     [GXDLMSViewAttribute(typeof(GXDLMSAssociationLogicalName))]
     partial class GXDLMSAssociationLogicalNameView : Form, IGXDLMSView
     {
-
-
-
-
-
-
-
-
-
-
-
-        private System.ComponentModel.IContainer components;
-
-
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -78,9 +63,10 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user)
         {
+            GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+            //object list.
             if (index == 2)
             {
-                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
                 GXDLMSObjectCollection items = target.ObjectList;
                 CallingWindowLV.Items.Clear();
                 if (items != null)
@@ -121,6 +107,56 @@ namespace Gurux.DLMS.UI
                             li.SubItems.Add(str);
                         }
                     }
+                }
+            }
+            //Associated partners ID.
+            else if (index == 3)
+            {
+                ClientSAPTb.Text = Convert.ToString(target.ClientSAP);
+                ServerSAPTb.Text = Convert.ToString(target.ServerSAP);
+            }
+            else if (index == 4)
+            {
+                //            Application context name.
+                ApplicationJointISOCTTTb.Text = Convert.ToString(target.ApplicationContextName.JointIsoCtt);
+                ApplicationCountryTb.Text = Convert.ToString(target.ApplicationContextName.Country);
+                ApplicationCountryNameTb.Text = Convert.ToString(target.ApplicationContextName.CountryName);
+                ApplicationIdentifiedOrganizationTb.Text = Convert.ToString(target.ApplicationContextName.IdentifiedOrganization);
+                ApplicationDLMSUATb.Text = Convert.ToString(target.ApplicationContextName.DlmsUA);
+                ApplicationContextTb.Text = Convert.ToString(target.ApplicationContextName.ApplicationContext);
+                ApplicationContextIDTb.Text = Convert.ToString(target.ApplicationContextName.ContextId);
+            }
+            else if (index == 5)
+            {
+                //             xDLMS_context_info
+                ConformanceTB.Text = target.XDLMSContextInfo.Conformance.ToString();
+                MaxReceivePDUSizeTb.Text = target.XDLMSContextInfo.MaxReceivePduSize.ToString();
+                MaxSendPDUSizeTb.Text = target.XDLMSContextInfo.MaxSendPpuSize.ToString();
+                DLMSVersionNumberTB.Text = target.XDLMSContextInfo.DlmsVersionNumber.ToString();
+                CypheringInfoTb.Text = GXDLMSTranslator.ToHex(target.XDLMSContextInfo.CypheringInfo);
+            }
+            else if (index == 6)
+            {
+                // authentication_mechanism_name 
+                AuthenticationJointISOCTTTb.Text = Convert.ToString(target.AuthenticationMechanismName.JointIsoCtt);
+                AuthenticationCountryTb.Text = Convert.ToString(target.AuthenticationMechanismName.Country);
+                AuthenticationCountryNameTb.Text = Convert.ToString(target.AuthenticationMechanismName.CountryName);
+                AuthenticationIdentifiedorganizationTb.Text = Convert.ToString(target.AuthenticationMechanismName.IdentifiedOrganization);
+                AuthenticationDLMSUATb.Text = Convert.ToString(target.AuthenticationMechanismName.DlmsUA);
+                AuthenticationMechanismNameTb.Text = Convert.ToString(target.AuthenticationMechanismName.AuthenticationMechanismName);
+                AuthenticationMechanismIdTb.Text = Convert.ToString(target.AuthenticationMechanismName.MechanismId);
+            }
+            else
+            {
+                //LLS secret.
+                if (IsAscii(target.Secret))
+                {
+                    SecretAsciiCb.Checked = true;
+                    SecretTB.Text = ASCIIEncoding.ASCII.GetString(target.Secret);
+                }
+                else
+                {
+                    SecretTB.Text = GXDLMSTranslator.ToHex(target.Secret);
                 }
             }
         }
@@ -167,9 +203,51 @@ namespace Gurux.DLMS.UI
 
         }
 
+
+
         #endregion
 
+        public static bool IsAscii(byte[] value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            foreach (byte it in value)
+            {
+                if (it < 0x21 || it > 0x7E)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
-
+        private void SecretAsciiCb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SecretAsciiCb.Checked)
+                {
+                    byte[] data = GXDLMSTranslator.HexToBytes(SecretTB.Text);
+                    if (!IsAscii(data))
+                    {
+                        SecretAsciiCb.CheckedChanged -= SecretAsciiCb_CheckedChanged;
+                        SecretAsciiCb.Checked = !SecretAsciiCb.Checked;
+                        SecretAsciiCb.CheckedChanged += SecretAsciiCb_CheckedChanged;
+                        throw new ArgumentOutOfRangeException(Properties.Resources.InvalidASCII);
+                    }
+                    SecretTB.Text = ASCIIEncoding.ASCII.GetString(data);
+                }
+                else
+                {
+                    SecretTB.Text = GXDLMSTranslator.ToHex(ASCIIEncoding.ASCII.GetBytes(SecretTB.Text));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
     }
 }

@@ -129,6 +129,9 @@
   <data name="InstallManufacturersOnlineTxt" xml:space="preserve">
     <value>Device Manufacturer settings are not present. Do you want to install them online from Gurux Web?</value>
   </data>
+  <data name="InvalidASCII" xml:space="preserve">
+    <value>Invalid ASCII characters.</value>
+  </data>
   <data name="ProfileGenericCaptureWarning" xml:space="preserve">
     <value>Are you sure that you want to capture current values?</value>
   </data>
