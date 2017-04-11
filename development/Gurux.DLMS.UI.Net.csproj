@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1704.703, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1704.0703\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1704.1101, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1704.1101\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -88,6 +88,24 @@
     </Compile>
     <Compile Include="GXDLMSClockView.designer.cs">
       <DependentUpon>GXDLMSClockView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSG3Plc6LoWPanView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSG3Plc6LoWPanView.designer.cs">
+      <DependentUpon>GXDLMSG3Plc6LoWPanView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSG3PlcMacSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSG3PlcMacSetupView.designer.cs">
+      <DependentUpon>GXDLMSG3PlcMacSetupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSG3PlcMacLayerCountersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSG3PlcMacLayerCountersView.designer.cs">
+      <DependentUpon>GXDLMSG3PlcMacLayerCountersView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSDataView.cs">
       <SubType>Form</SubType>
@@ -154,6 +172,24 @@
     </Compile>
     <Compile Include="GXDLMSImageTransferView.designer.cs">
       <DependentUpon>GXDLMSImageTransferView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSKeyTableDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSKeyTableDlg.Designer.cs">
+      <DependentUpon>GXDLMSKeyTableDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSNeighbourTableDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSNeighbourTableDlg.Designer.cs">
+      <DependentUpon>GXDLMSNeighbourTableDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSRoutingTableDlg .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSRoutingTableDlg .Designer.cs">
+      <DependentUpon>GXDLMSRoutingTableDlg .cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSSFSKActiveInitiatorView.cs">
       <SubType>Form</SubType>
@@ -341,6 +377,15 @@
     <EmbeddedResource Include="GXDLMSClockView.resx">
       <DependentUpon>GXDLMSClockView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSG3Plc6LoWPanView.resx">
+      <DependentUpon>GXDLMSG3Plc6LoWPanView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSG3PlcMacSetupView.resx">
+      <DependentUpon>GXDLMSG3PlcMacSetupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSG3PlcMacLayerCountersView.resx">
+      <DependentUpon>GXDLMSG3PlcMacLayerCountersView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSDataView.resx">
       <DependentUpon>GXDLMSDataView.cs</DependentUpon>
     </EmbeddedResource>
@@ -373,6 +418,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSImageTransferView.resx">
       <DependentUpon>GXDLMSImageTransferView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSKeyTableDlg.resx">
+      <DependentUpon>GXDLMSKeyTableDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSNeighbourTableDlg.resx">
+      <DependentUpon>GXDLMSNeighbourTableDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSRoutingTableDlg .resx">
+      <DependentUpon>GXDLMSRoutingTableDlg .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSSFSKActiveInitiatorView.resx">
       <DependentUpon>GXDLMSSFSKActiveInitiatorView.cs</DependentUpon>
