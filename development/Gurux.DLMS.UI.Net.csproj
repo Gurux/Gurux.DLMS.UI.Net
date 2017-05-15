@@ -389,6 +389,9 @@
     <EmbeddedResource Include="GXDLMSAssociationViewDlg.resx">
       <DependentUpon>GXDLMSAssociationViewDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSMBusMasterPortSetupView.resx">
+      <DependentUpon>GXDLMSMBusMasterPortSetupView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSProfileGenericColumnDlg.resx">
       <DependentUpon>GXDLMSProfileGenericColumnDlg.cs</DependentUpon>
     </EmbeddedResource>
