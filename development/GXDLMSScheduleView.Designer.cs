@@ -71,7 +71,7 @@ namespace Gurux.DLMS.UI
             this.ValueTB.Name = "ValueTB";
             this.ValueTB.Size = new System.Drawing.Size(208, 20);
             this.ValueTB.TabIndex = 0;
-            this.ValueTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ValueLbl
             //
@@ -91,7 +91,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

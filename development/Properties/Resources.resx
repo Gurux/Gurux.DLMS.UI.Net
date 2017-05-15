@@ -132,6 +132,15 @@
   <data name="InvalidASCII" xml:space="preserve">
     <value>Invalid ASCII characters.</value>
   </data>
+  <data name="InvalidIndex" xml:space="preserve">
+    <value>Invalid Index.</value>
+  </data>
+  <data name="InvalidObisCode" xml:space="preserve">
+    <value>Invalid OBIS code</value>
+  </data>
+  <data name="InvalidTarget" xml:space="preserve">
+    <value>Invalid target.</value>
+  </data>
   <data name="ProfileGenericCaptureWarning" xml:space="preserve">
     <value>Are you sure that you want to capture current values?</value>
   </data>
@@ -164,6 +173,9 @@
   </data>
   <data name="TimeSetWarning" xml:space="preserve">
     <value>Are you sure that you want to set current time to the meter?</value>
+  </data>
+  <data name="TimeZoneSetWarning" xml:space="preserve">
+    <value>Are you sure that you want to set time zone of the PC to the meter?</value>
   </data>
   <data name="UnavailableObjectTxt" xml:space="preserve">
     <value>Access Error : Device reports a unavailable object.</value>

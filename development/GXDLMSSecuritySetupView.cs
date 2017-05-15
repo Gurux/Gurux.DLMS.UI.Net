@@ -45,7 +45,7 @@ namespace Gurux.DLMS.UI
     [GXDLMSViewAttribute(typeof(GXDLMSSecuritySetup))]
     partial class GXDLMSSecuritySetupView : Form, IGXDLMSView
     {
-
+        private GXDLMSObject target;
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -58,13 +58,35 @@ namespace Gurux.DLMS.UI
 
         public GXDLMSObject Target
         {
-            get;
-            set;
+            get
+            {
+                return target;
+            }
+            set
+            {
+                target = value;
+                if (target != null)
+                {
+                    if (target.Version == 0)
+                    {
+                        SecurityPolicyTB.Type = ValueFieldType.CompoBox;
+                        SuiteTB.Enabled = false;
+                    }
+                    else
+                    {
+                        SecurityPolicyTB.Type = ValueFieldType.CheckedListBox;
+                        SuiteTB.Enabled = true;
+                    }
+                }
+            }
         }
 
         public void OnValueChanged(int index, object value, bool user)
         {
-            throw new IndexOutOfRangeException("index");
+            if (index != 6)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void PreAction(ActionType type, ValueEventArgs arg)
@@ -99,11 +121,7 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-            if (Dirty && index == 2)
-            {
-                errorProvider1.SetError(SecurityPolicyTB, Properties.Resources.ValueChangedTxt);
-            }
-            else
+            if (!Dirty)
             {
                 errorProvider1.Clear();
             }
@@ -111,7 +129,10 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
-            throw new IndexOutOfRangeException("index");
+            if (index != 6)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)

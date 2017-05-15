@@ -62,7 +62,7 @@
             this.MacAddressTB.Name = "MacAddressTB";
             this.MacAddressTB.Size = new System.Drawing.Size(213, 20);
             this.MacAddressTB.TabIndex = 9;
-            this.MacAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MacAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // MacAddressLbl
             // 
@@ -82,7 +82,7 @@
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(213, 20);
             this.LogicalNameTB.TabIndex = 7;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

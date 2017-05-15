@@ -76,6 +76,17 @@ namespace Gurux.DLMS.UI
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ProfileGenericView = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ColumnRemoveBtn = new System.Windows.Forms.Button();
+            this.ColumnEditBtn = new System.Windows.Forms.Button();
+            this.ColumnAddBtn = new System.Windows.Forms.Button();
+            this.CaptureObjectsLv = new System.Windows.Forms.ListView();
+            this.ObjectTypeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogicalNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AttributeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ObjectsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ReadAllRB = new System.Windows.Forms.RadioButton();
             this.ReadLastTB = new System.Windows.Forms.NumericUpDown();
@@ -95,11 +106,14 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.SortObjectBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProfileGenericView)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.ObjectsMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReadLastTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EndEntry)).BeginInit();
@@ -167,13 +181,15 @@ namespace Gurux.DLMS.UI
             this.CapturePeriodTB.Index = 4;
             this.CapturePeriodTB.Location = new System.Drawing.Point(297, 144);
             this.CapturePeriodTB.Name = "CapturePeriodTB";
+            this.CapturePeriodTB.NotifyChanges = false;
             this.CapturePeriodTB.Size = new System.Drawing.Size(185, 20);
             this.CapturePeriodTB.TabIndex = 15;
             this.CapturePeriodTB.TabStop = false;
-            this.CapturePeriodTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.SortObjectBtn);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.SortObjectTB);
             this.groupBox3.Controls.Add(this.label4);
@@ -200,10 +216,12 @@ namespace Gurux.DLMS.UI
             this.SortObjectTB.Index = 6;
             this.SortObjectTB.Location = new System.Drawing.Point(294, 18);
             this.SortObjectTB.Name = "SortObjectTB";
-            this.SortObjectTB.Size = new System.Drawing.Size(185, 20);
+            this.SortObjectTB.NotifyChanges = false;
+            this.SortObjectTB.ReadOnly = true;
+            this.SortObjectTB.Size = new System.Drawing.Size(104, 20);
             this.SortObjectTB.TabIndex = 15;
             this.SortObjectTB.TabStop = false;
-            this.SortObjectTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.SortObjectTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // label4
             // 
@@ -219,11 +237,12 @@ namespace Gurux.DLMS.UI
             this.SortModeTB.Index = 5;
             this.SortModeTB.Location = new System.Drawing.Point(94, 18);
             this.SortModeTB.Name = "SortModeTB";
+            this.SortModeTB.NotifyChanges = false;
             this.SortModeTB.ReadOnly = true;
             this.SortModeTB.Size = new System.Drawing.Size(134, 20);
             this.SortModeTB.TabIndex = 13;
             this.SortModeTB.TabStop = false;
-            this.SortModeTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+            this.SortModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // tabControl1
             // 
@@ -266,13 +285,116 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ColumnRemoveBtn);
+            this.tabPage2.Controls.Add(this.ColumnEditBtn);
+            this.tabPage2.Controls.Add(this.ColumnAddBtn);
+            this.tabPage2.Controls.Add(this.CaptureObjectsLv);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(482, 291);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Graph";
+            this.tabPage2.Text = "Capture Objects";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ColumnRemoveBtn
+            // 
+            this.ColumnRemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColumnRemoveBtn.Location = new System.Drawing.Point(383, 251);
+            this.ColumnRemoveBtn.Name = "ColumnRemoveBtn";
+            this.ColumnRemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.ColumnRemoveBtn.TabIndex = 28;
+            this.ColumnRemoveBtn.Text = "Remove";
+            this.ColumnRemoveBtn.UseVisualStyleBackColor = true;
+            this.ColumnRemoveBtn.Click += new System.EventHandler(this.ColumnRemoveBtn_Click);
+            // 
+            // ColumnEditBtn
+            // 
+            this.ColumnEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColumnEditBtn.Location = new System.Drawing.Point(302, 251);
+            this.ColumnEditBtn.Name = "ColumnEditBtn";
+            this.ColumnEditBtn.Size = new System.Drawing.Size(75, 23);
+            this.ColumnEditBtn.TabIndex = 27;
+            this.ColumnEditBtn.Text = "Edit...";
+            this.ColumnEditBtn.UseVisualStyleBackColor = true;
+            this.ColumnEditBtn.Click += new System.EventHandler(this.ColumnEditBtn_Click);
+            // 
+            // ColumnAddBtn
+            // 
+            this.ColumnAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColumnAddBtn.Location = new System.Drawing.Point(221, 251);
+            this.ColumnAddBtn.Name = "ColumnAddBtn";
+            this.ColumnAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.ColumnAddBtn.TabIndex = 26;
+            this.ColumnAddBtn.Text = "Add...";
+            this.ColumnAddBtn.UseVisualStyleBackColor = true;
+            this.ColumnAddBtn.Click += new System.EventHandler(this.ColumnAddBtn_Click);
+            // 
+            // CaptureObjectsLv
+            // 
+            this.CaptureObjectsLv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CaptureObjectsLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ObjectTypeHeader,
+            this.LogicalNameHeader,
+            this.AttributeHeader});
+            this.CaptureObjectsLv.ContextMenuStrip = this.ObjectsMenu;
+            this.CaptureObjectsLv.FullRowSelect = true;
+            this.CaptureObjectsLv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.CaptureObjectsLv.HideSelection = false;
+            this.CaptureObjectsLv.Location = new System.Drawing.Point(0, 2);
+            this.CaptureObjectsLv.Name = "CaptureObjectsLv";
+            this.CaptureObjectsLv.Size = new System.Drawing.Size(458, 243);
+            this.CaptureObjectsLv.TabIndex = 25;
+            this.CaptureObjectsLv.UseCompatibleStateImageBehavior = false;
+            this.CaptureObjectsLv.View = System.Windows.Forms.View.Details;
+            this.CaptureObjectsLv.DoubleClick += new System.EventHandler(this.ColumnEditBtn_Click);
+            // 
+            // ObjectTypeHeader
+            // 
+            this.ObjectTypeHeader.Text = "Object type:";
+            this.ObjectTypeHeader.Width = 105;
+            // 
+            // LogicalNameHeader
+            // 
+            this.LogicalNameHeader.Text = "Logical Name:";
+            this.LogicalNameHeader.Width = 106;
+            // 
+            // AttributeHeader
+            // 
+            this.AttributeHeader.Text = "Attribute Index:";
+            this.AttributeHeader.Width = 97;
+            // 
+            // ObjectsMenu
+            // 
+            this.ObjectsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.ObjectsMenu.Name = "contextMenuStrip1";
+            this.ObjectsMenu.Size = new System.Drawing.Size(118, 70);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.ColumnAddBtn_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.ColumnEditBtn_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.ColumnRemoveBtn_Click);
             // 
             // groupBox2
             // 
@@ -427,20 +549,22 @@ namespace Gurux.DLMS.UI
             this.EntriesTB.Index = 8;
             this.EntriesTB.Location = new System.Drawing.Point(186, 167);
             this.EntriesTB.Name = "EntriesTB";
+            this.EntriesTB.NotifyChanges = false;
             this.EntriesTB.Size = new System.Drawing.Size(57, 20);
             this.EntriesTB.TabIndex = 7;
             this.EntriesTB.TabStop = false;
-            this.EntriesTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.EntriesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // EntriesInUseTB
             // 
             this.EntriesInUseTB.Index = 7;
             this.EntriesInUseTB.Location = new System.Drawing.Point(94, 167);
             this.EntriesInUseTB.Name = "EntriesInUseTB";
+            this.EntriesInUseTB.NotifyChanges = false;
             this.EntriesInUseTB.Size = new System.Drawing.Size(66, 20);
             this.EntriesInUseTB.TabIndex = 5;
             this.EntriesInUseTB.TabStop = false;
-            this.EntriesInUseTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.EntriesInUseTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -456,10 +580,11 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(94, 141);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(140, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.TabStop = false;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // label1
             // 
@@ -476,6 +601,15 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
+            // SortObjectBtn
+            // 
+            this.SortObjectBtn.Location = new System.Drawing.Point(404, 15);
+            this.SortObjectBtn.Name = "SortObjectBtn";
+            this.SortObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.SortObjectBtn.TabIndex = 18;
+            this.SortObjectBtn.Text = "Change...";
+            this.SortObjectBtn.UseVisualStyleBackColor = true;
+            // 
             // GXDLMSProfileGenericView
             // 
             this.ClientSize = new System.Drawing.Size(517, 582);
@@ -488,6 +622,8 @@ namespace Gurux.DLMS.UI
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ProfileGenericView)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.ObjectsMenu.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReadLastTB)).EndInit();
@@ -502,5 +638,17 @@ namespace Gurux.DLMS.UI
 
         private GXButton CaptureBtn;
         private GXButton ResetBtn;
+        private Button ColumnRemoveBtn;
+        private Button ColumnEditBtn;
+        private Button ColumnAddBtn;
+        private ListView CaptureObjectsLv;
+        private ColumnHeader ObjectTypeHeader;
+        private ColumnHeader LogicalNameHeader;
+        private ColumnHeader AttributeHeader;
+        private ContextMenuStrip ObjectsMenu;
+        private ToolStripMenuItem addToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem removeToolStripMenuItem;
+        private Button SortObjectBtn;
     }
 }

@@ -109,7 +109,7 @@ namespace Gurux.DLMS.UI
             this.ImageTransferStatusCB.ReadOnly = true;
             this.ImageTransferStatusCB.Size = new System.Drawing.Size(171, 59);
             this.ImageTransferStatusCB.TabIndex = 19;
-            this.ImageTransferStatusCB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+            this.ImageTransferStatusCB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             //
             // ImageTransferStatusLbl
             //
@@ -148,7 +148,7 @@ namespace Gurux.DLMS.UI
             this.ImageFirstNotTransferredBlockNumberTB.Name = "ImageFirstNotTransferredBlockNumberTB";
             this.ImageFirstNotTransferredBlockNumberTB.Size = new System.Drawing.Size(171, 20);
             this.ImageFirstNotTransferredBlockNumberTB.TabIndex = 8;
-            this.ImageFirstNotTransferredBlockNumberTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ImageFirstNotTransferredBlockNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ImageFirstNotTransferredBlockNumberLbl
             //
@@ -168,7 +168,7 @@ namespace Gurux.DLMS.UI
             this.ImageTransferredBlocksStatusTB.Name = "ImageTransferredBlocksStatusTB";
             this.ImageTransferredBlocksStatusTB.Size = new System.Drawing.Size(171, 20);
             this.ImageTransferredBlocksStatusTB.TabIndex = 6;
-            this.ImageTransferredBlocksStatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ImageTransferredBlocksStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ImageTransferredBlocksStatusLbl
             //
@@ -207,7 +207,7 @@ namespace Gurux.DLMS.UI
             this.ImageBlockSizeTB.Name = "ImageBlockSizeTB";
             this.ImageBlockSizeTB.Size = new System.Drawing.Size(171, 20);
             this.ImageBlockSizeTB.TabIndex = 0;
-            this.ImageBlockSizeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ImageBlockSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.ImageBlockSizeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.ImageBlockSizeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             //
@@ -229,7 +229,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //
@@ -255,7 +255,7 @@ namespace Gurux.DLMS.UI
             this.ImageActivateInfoTB.Name = "ImageActivateInfoTB";
             this.ImageActivateInfoTB.Size = new System.Drawing.Size(171, 20);
             this.ImageActivateInfoTB.TabIndex = 21;
-            this.ImageActivateInfoTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ImageActivateInfoTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ImageActivateInfoLbl
             //

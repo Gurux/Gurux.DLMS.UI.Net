@@ -369,7 +369,7 @@ namespace Gurux.DLMS.UI
             this.ACalendarNameTB.ReadOnly = true;
             this.ACalendarNameTB.Size = new System.Drawing.Size(208, 20);
             this.ACalendarNameTB.TabIndex = 12;
-            this.ACalendarNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ACalendarNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ACalendarNameLbl
             //
@@ -570,7 +570,7 @@ namespace Gurux.DLMS.UI
             this.PCalendarNameTB.ReadOnly = true;
             this.PCalendarNameTB.Size = new System.Drawing.Size(208, 20);
             this.PCalendarNameTB.TabIndex = 20;
-            this.PCalendarNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.PCalendarNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // PCalendarNameLbl
             //
@@ -589,7 +589,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

@@ -131,7 +131,7 @@ namespace Gurux.DLMS.UI
             this.SecondaryDNSAddressTB.Name = "SecondaryDNSAddressTB";
             this.SecondaryDNSAddressTB.Size = new System.Drawing.Size(206, 20);
             this.SecondaryDNSAddressTB.TabIndex = 9;
-            this.SecondaryDNSAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.SecondaryDNSAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // SecondaryDNSAddressLbl
             //
@@ -151,7 +151,7 @@ namespace Gurux.DLMS.UI
             this.PrimaryDNSAddressTB.Name = "PrimaryDNSAddressTB";
             this.PrimaryDNSAddressTB.Size = new System.Drawing.Size(206, 20);
             this.PrimaryDNSAddressTB.TabIndex = 8;
-            this.PrimaryDNSAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.PrimaryDNSAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // PrimaryDNSAddressLbl
             //
@@ -180,7 +180,7 @@ namespace Gurux.DLMS.UI
             this.GatewayIPAddressTB.Name = "GatewayIPAddressTB";
             this.GatewayIPAddressTB.Size = new System.Drawing.Size(206, 20);
             this.GatewayIPAddressTB.TabIndex = 6;
-            this.GatewayIPAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.GatewayIPAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // GatewayIPAddressLbl
             //
@@ -200,7 +200,7 @@ namespace Gurux.DLMS.UI
             this.SubnetMaskTB.Name = "SubnetMaskTB";
             this.SubnetMaskTB.Size = new System.Drawing.Size(206, 20);
             this.SubnetMaskTB.TabIndex = 5;
-            this.SubnetMaskTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.SubnetMaskTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // SubnetMaskLbl
             //
@@ -220,7 +220,7 @@ namespace Gurux.DLMS.UI
             this.IPOptionsTB.Name = "IPOptionsTB";
             this.IPOptionsTB.Size = new System.Drawing.Size(206, 20);
             this.IPOptionsTB.TabIndex = 4;
-            this.IPOptionsTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.IPOptionsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // IPOptionsLbl
             //
@@ -240,7 +240,7 @@ namespace Gurux.DLMS.UI
             this.MulticastIPAddressTB.Name = "MulticastIPAddressTB";
             this.MulticastIPAddressTB.Size = new System.Drawing.Size(206, 20);
             this.MulticastIPAddressTB.TabIndex = 3;
-            this.MulticastIPAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MulticastIPAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // MulticastIPAddressLbl
             //
@@ -260,7 +260,7 @@ namespace Gurux.DLMS.UI
             this.IPAddressTB.Name = "IPAddressTB";
             this.IPAddressTB.Size = new System.Drawing.Size(206, 20);
             this.IPAddressTB.TabIndex = 2;
-            this.IPAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.IPAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // IPAddressLbl
             //
@@ -280,7 +280,7 @@ namespace Gurux.DLMS.UI
             this.DataLinkLayerTB.Name = "DataLinkLayerTB";
             this.DataLinkLayerTB.Size = new System.Drawing.Size(206, 20);
             this.DataLinkLayerTB.TabIndex = 1;
-            this.DataLinkLayerTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.DataLinkLayerTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // DataLinkLayerLbl
             //
@@ -300,7 +300,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
             this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

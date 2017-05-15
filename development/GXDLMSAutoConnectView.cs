@@ -69,18 +69,19 @@ namespace Gurux.DLMS.UI
                 CallingWindowLV.Items.Clear();
                 foreach (var it in target.CallingWindow)
                 {
-                    ListViewItem li = CallingWindowLV.Items.Add(it.Key.ToString());
-                    li.SubItems.Add(it.Value.ToString());
+                    ListViewItem li = CallingWindowLV.Items.Add(it.Key.ToFormatString());
+                    li.SubItems.Add(it.Value.ToFormatString());
+                    li.Tag = it;
                 }
             }
             else if (index == 6)
             {
-                DestinationTB.Text = "";
+                DestinationLv.Items.Clear();
                 if (target.Destinations != null)
                 {
                     foreach (string it in target.Destinations)
                     {
-                        DestinationTB.Text = it + Environment.NewLine;
+                        DestinationLv.Items.Add(it);
                     }
                 }
             }
@@ -133,5 +134,180 @@ namespace Gurux.DLMS.UI
         }
 
         #endregion
+
+        /// <summary>
+        /// Add calling window time.
+        /// </summary>
+        private void TimeAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
+                KeyValuePair<GXDateTime, GXDateTime> it = new KeyValuePair<GXDateTime, GXDateTime>(DateTime.Now, DateTime.Now);
+                GXDateTimeDlg dlg = new GXDateTimeDlg(it.Key, it.Value);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    ListViewItem li = CallingWindowLV.Items.Add(it.Key.ToFormatString());
+                    li.SubItems.Add(it.Value.ToFormatString());
+                    li.Tag = it;
+                    target.CallingWindow.Add(it);
+                    errorProvider1.SetError(CallingWindowLV, "Value changed.");
+                    Target.UpdateDirty(5, target.CallingWindow);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit calling window time.
+        /// </summary>
+        /// 
+        private void TimeEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CallingWindowLV.SelectedItems.Count == 1)
+                {
+                    GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
+                    ListViewItem li = CallingWindowLV.SelectedItems[0];
+                    KeyValuePair<GXDateTime, GXDateTime> it = (KeyValuePair<GXDateTime, GXDateTime>)li.Tag;
+                    GXDateTimeDlg dlg = new GXDateTimeDlg(it.Key, it.Value);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        li.SubItems[0].Text = it.Key.ToFormatString();
+                        li.SubItems[1].Text = it.Value.ToFormatString();
+                        errorProvider1.SetError(CallingWindowLV, "Value changed.");
+                        Target.UpdateDirty(5, target.CallingWindow);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove calling window time.
+        /// </summary>
+        private void TimeRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
+                while (CallingWindowLV.SelectedItems.Count != 0)
+                {
+                    KeyValuePair<GXDateTime, GXDateTime> item = (KeyValuePair<GXDateTime, GXDateTime>)CallingWindowLV.SelectedItems[0].Tag;
+                    CallingWindowLV.Items.Remove(CallingWindowLV.SelectedItems[0]);
+                    errorProvider1.SetError(CallingWindowLV, "Value changed.");
+                    Target.UpdateDirty(5, target.CallingWindow);
+                    target.CallingWindow.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Add destination.
+        /// </summary>
+        private void DestinationAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
+                List<string> entries = new List<string>();
+                if (target.Destinations != null)
+                {
+                    entries.AddRange(target.Destinations);
+                }
+                GXTextDlg dlg = new GXTextDlg("Destination", "Destination", "");
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    string tmp = dlg.GetValue();
+                    ListViewItem li = DestinationLv.Items.Add(tmp);
+                    entries.Add(tmp);
+                    errorProvider1.SetError(DestinationLv, "Value changed.");
+                    Target.UpdateDirty(6, target.Destinations);
+                    target.Destinations = entries.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit destination.
+        /// </summary>
+        private void DestinationEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DestinationLv.SelectedItems.Count == 1)
+                {
+                    GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
+                    List<string> entries = new List<string>();
+                    if (target.Destinations != null)
+                    {
+                        entries.AddRange(target.Destinations);
+                    }
+                    ListViewItem li = DestinationLv.SelectedItems[0];
+                    GXTextDlg dlg = new GXTextDlg("Destination", "Destination", li.Text);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        string tmp = dlg.GetValue();
+                        int pos = DestinationLv.SelectedIndices[0];
+                        li.SubItems[0].Text = tmp;
+                        entries.RemoveAt(pos);
+                        entries.Insert(pos, tmp);
+                        errorProvider1.SetError(DestinationLv, "Value changed.");
+                        Target.UpdateDirty(6, target.Destinations);
+                        target.Destinations = entries.ToArray();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        /// <summary>
+        /// Remove destination.
+        /// </summary>
+        private void DestinationRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
+                List<string> entries = new List<string>();
+                if (target.Destinations != null)
+                {
+                    entries.AddRange(target.Destinations);
+                }
+                while (DestinationLv.SelectedItems.Count != 0)
+                {
+                    string item = DestinationLv.SelectedItems[0].Text;
+                    DestinationLv.Items.Remove(DestinationLv.SelectedItems[0]);
+                    errorProvider1.SetError(DestinationLv, "Value changed.");
+                    Target.UpdateDirty(6, target.Destinations);
+                    entries.Remove(item);
+                }
+                target.Destinations = entries.ToArray();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

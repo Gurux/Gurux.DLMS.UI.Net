@@ -53,9 +53,9 @@ namespace Gurux.DLMS.UI
         /// <param name="index">Attribute index.</param>
         /// <param name="value">Updated value.</param>
         /// <returns></returns>
-        private static bool UpdateProperty(IGXDLMSView view, ControlCollection controls, int index, object value)
+        private static GXValueField UpdateProperty(IGXDLMSView view, ControlCollection controls, int index, object value)
         {
-            bool found = false;
+            GXValueField item = null;
             foreach (Control it in controls)
             {
                 if (it is GXValueField)
@@ -66,7 +66,7 @@ namespace Gurux.DLMS.UI
                         obj.Target = view.Target;
                         obj.UpdateValueItems(view.Target, index, value);
                         obj.Value = value;
-                        found = true;
+                        item = obj;
                     }
                 }
                 else if (it is GXButton)
@@ -76,14 +76,14 @@ namespace Gurux.DLMS.UI
                 }
                 else if (it.Controls.Count != 0)
                 {
-                    found = UpdateProperty(view, it.Controls, index, value);
+                    item = UpdateProperty(view, it.Controls, index, value);
                 }
-                if (found)
+                if (item != null)
                 {
                     break;
                 }
             }
-            return found;
+            return item;
         }
 
         /// <summary>
@@ -126,12 +126,12 @@ namespace Gurux.DLMS.UI
                 object value = null;
                 bool dirty = view.Target.GetDirty(it, out value);
                 value = view.Target.GetValues()[it - 1];
-                bool bFound = UpdateProperty(view, ((Form)view).Controls, it, value);
-                if (!bFound)
+                GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value);
+                if (item == null || item.NotifyChanges)
                 {
                     view.OnAccessRightsChange(it, view.Target.GetAccess(it));
                 }
-                if (!bFound)
+                if (item == null || item.NotifyChanges)
                 {
                     view.OnValueChanged(it, value, false);
                 }

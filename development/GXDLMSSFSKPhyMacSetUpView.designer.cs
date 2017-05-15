@@ -138,7 +138,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.TransmissionSpeedTB.ReadOnly = true;
         this.TransmissionSpeedTB.Size = new System.Drawing.Size(206, 20);
         this.TransmissionSpeedTB.TabIndex = 27;
-        this.TransmissionSpeedTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.TransmissionSpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // TransmissionSpeedLbl
         //
@@ -167,7 +167,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.InitiatorMacAddressTB.Name = "InitiatorMacAddressTB";
         this.InitiatorMacAddressTB.Size = new System.Drawing.Size(206, 20);
         this.InitiatorMacAddressTB.TabIndex = 23;
-        this.InitiatorMacAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.InitiatorMacAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // InitiatorMacAddressLbl
         //
@@ -187,7 +187,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.MinDeltaCreditTB.Name = "MinDeltaCreditTB";
         this.MinDeltaCreditTB.Size = new System.Drawing.Size(206, 20);
         this.MinDeltaCreditTB.TabIndex = 21;
-        this.MinDeltaCreditTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.MinDeltaCreditTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // MinDeltaCreditLbl
         //
@@ -218,7 +218,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.RepeaterTB.ReadOnly = true;
         this.RepeaterTB.Size = new System.Drawing.Size(173, 20);
         this.RepeaterTB.TabIndex = 19;
-        this.RepeaterTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.RepeaterTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // RepeaterLbl
         //
@@ -238,7 +238,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.MacGroupAddressesTB.Name = "MacGroupAddressesTB";
         this.MacGroupAddressesTB.Size = new System.Drawing.Size(206, 20);
         this.MacGroupAddressesTB.TabIndex = 9;
-        this.MacGroupAddressesTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.MacGroupAddressesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // MacGroupAddressesLbl
         //
@@ -258,7 +258,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.MacAddressTB.Name = "MacAddressTB";
         this.MacAddressTB.Size = new System.Drawing.Size(206, 20);
         this.MacAddressTB.TabIndex = 8;
-        this.MacAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.MacAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // MacAddressLbl
         //
@@ -278,7 +278,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.FrequencyTB.Name = "FrequencyTB";
         this.FrequencyTB.Size = new System.Drawing.Size(206, 20);
         this.FrequencyTB.TabIndex = 6;
-        this.FrequencyTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.FrequencyTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // FrequencyLbl
         //
@@ -298,7 +298,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.SearchInitiatorThresholdTB.Name = "SearchInitiatorThresholdTB";
         this.SearchInitiatorThresholdTB.Size = new System.Drawing.Size(206, 20);
         this.SearchInitiatorThresholdTB.TabIndex = 5;
-        this.SearchInitiatorThresholdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.SearchInitiatorThresholdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // SearchInitiatorThresholdLbl
         //
@@ -318,7 +318,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.MaxTransmittingGainTB.Name = "MaxTransmittingGainTB";
         this.MaxTransmittingGainTB.Size = new System.Drawing.Size(206, 20);
         this.MaxTransmittingGainTB.TabIndex = 4;
-        this.MaxTransmittingGainTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.MaxTransmittingGainTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // MaxTransmittingGainLbl
         //
@@ -338,7 +338,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.MaxReceivingGainTB.Name = "MaxReceivingGainTB";
         this.MaxReceivingGainTB.Size = new System.Drawing.Size(206, 20);
         this.MaxReceivingGainTB.TabIndex = 3;
-        this.MaxReceivingGainTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.MaxReceivingGainTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // MaxReceivingGainLbl
         //
@@ -359,7 +359,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.DeltaElectricalPhaseTB.ReadOnly = true;
         this.DeltaElectricalPhaseTB.Size = new System.Drawing.Size(206, 20);
         this.DeltaElectricalPhaseTB.TabIndex = 2;
-        this.DeltaElectricalPhaseTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.DeltaElectricalPhaseTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // DeltaElectricalPhaseLbl
         //
@@ -380,7 +380,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.InitiatorElectricalPhaseTB.ReadOnly = true;
         this.InitiatorElectricalPhaseTB.Size = new System.Drawing.Size(206, 20);
         this.InitiatorElectricalPhaseTB.TabIndex = 1;
-        this.InitiatorElectricalPhaseTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.InitiatorElectricalPhaseTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // InitiatorElectricalPhaseLbl
         //
@@ -400,7 +400,7 @@ public partial class GXDLMSSFSKPhyMacSetUpView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

@@ -138,9 +138,13 @@ namespace Gurux.DLMS.UI
 
         }
 
+
+
         #endregion
 
+        private void GXDLMSGprsSetupView_Load(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

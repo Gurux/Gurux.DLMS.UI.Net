@@ -75,21 +75,17 @@ namespace Gurux.DLMS.UI
                 {
                     ScriptNameTB.Text = schedule.ExecutedScriptLogicalName;
                 }
-
                 ScriptSelectorTB.Text = schedule.ExecutedScriptSelector.ToString();
-            }
-            else if (index == 3)
-            {
-                ScriptTypeTB.Text = schedule.Type.ToString();
             }
             else if (index == 4)
             {
-                CallingWindowLV.Items.Clear();
+                Time.Items.Clear();
                 if (schedule.ExecutionTime != null)
                 {
                     foreach (GXDateTime it in schedule.ExecutionTime)
                     {
-                        ListViewItem li = CallingWindowLV.Items.Add(it.ToString());
+                        ListViewItem li = Time.Items.Add(it.ToFormatString());
+                        li.Tag = it;
                     }
                 }
             }
@@ -137,9 +133,103 @@ namespace Gurux.DLMS.UI
 
         }
 
+
+
         #endregion
 
+        /// <summary>
+        /// Add execution time.
+        /// </summary>
+        private void TimeAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSActionSchedule target = Target as GXDLMSActionSchedule;
+                List<GXDateTime> entries = new List<GXDateTime>();
+                if (target.ExecutionTime != null)
+                {
+                    entries.AddRange(target.ExecutionTime);
+                }
+                GXDateTime it = new GXDateTime(DateTime.Now);
+                GXDateTimeDlg dlg = new GXDateTimeDlg(it);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    ListViewItem li = Time.Items.Add(it.ToFormatString());
+                    li.Tag = it;
+                    entries.Add(it);
+                    errorProvider1.SetError(Time, "Value changed.");
+                    Target.UpdateDirty(4, target.ExecutionTime);
+                    target.ExecutionTime = entries.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        /// <summary>
+        /// Edit execution time.
+        /// </summary>
+        private void TimeEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Time.SelectedItems.Count == 1)
+                {
+                    GXDLMSActionSchedule target = Target as GXDLMSActionSchedule;
+                    List<GXDateTime> entries = new List<GXDateTime>();
+                    if (target.ExecutionTime != null)
+                    {
+                        entries.AddRange(target.ExecutionTime);
+                    }
+                    ListViewItem li = Time.SelectedItems[0];
+                    GXDateTime it = (GXDateTime)li.Tag;
+                    GXDateTimeDlg dlg = new GXDateTimeDlg(it);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        li.SubItems[0].Text = it.ToFormatString();
+                        errorProvider1.SetError(Time, "Value changed.");
+                        Target.UpdateDirty(4, target.ExecutionTime);
+                        target.ExecutionTime = entries.ToArray();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        /// <summary>
+        /// Remove execution time.
+        /// </summary>
+        private void TimeRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSActionSchedule target = Target as GXDLMSActionSchedule;
+                List<GXDateTime> entries = new List<GXDateTime>();
+                if (target.ExecutionTime != null)
+                {
+                    entries.AddRange(target.ExecutionTime);
+                }
+                while (Time.SelectedItems.Count != 0)
+                {
+                    GXDateTime item = (GXDateTime)Time.SelectedItems[0].Tag;
+                    Time.Items.Remove(Time.SelectedItems[0]);
+                    errorProvider1.SetError(Time, "Value changed.");
+                    Target.UpdateDirty(4, target.ExecutionTime);
+                    entries.Remove(item);
+                }
+                target.ExecutionTime = entries.ToArray();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

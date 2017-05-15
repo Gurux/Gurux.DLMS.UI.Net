@@ -108,19 +108,10 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        private void OkBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         /// <summary>
-        /// Add new action.
+        /// Add new script.
         /// </summary>
-        private void addToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void AddScript(object sender, EventArgs e)
         {
             try
             {
@@ -138,9 +129,9 @@ namespace Gurux.DLMS.UI
             }
         }
         /// <summary>
-        /// Edit action.
+        /// Edit script.
         /// </summary>
-        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void EditScript(object sender, EventArgs e)
         {
             try
             {
@@ -161,9 +152,9 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
-        /// Remove selected action.
+        /// Remove selected script.
         /// </summary>
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveScript(object sender, EventArgs e)
         {
             while (Actions.SelectedItems.Count != 0)
             {

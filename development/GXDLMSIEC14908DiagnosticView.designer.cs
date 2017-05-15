@@ -115,7 +115,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.PlcTestRateTB.Name = "PlcTestRateTB";
         this.PlcTestRateTB.Size = new System.Drawing.Size(206, 20);
         this.PlcTestRateTB.TabIndex = 19;
-        this.PlcTestRateTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.PlcTestRateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // PlcTestRateLbl
         //
@@ -135,7 +135,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.FrequencyInvalidTB.Name = "FrequencyInvalidTB";
         this.FrequencyInvalidTB.Size = new System.Drawing.Size(206, 20);
         this.FrequencyInvalidTB.TabIndex = 15;
-        this.FrequencyInvalidTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.FrequencyInvalidTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // FrequencyInvalidLbl
         //
@@ -155,7 +155,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.LateAckTB.Name = "LateAckTB";
         this.LateAckTB.Size = new System.Drawing.Size(206, 20);
         this.LateAckTB.TabIndex = 14;
-        this.LateAckTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.LateAckTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // LateAckLbl
         //
@@ -175,7 +175,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.BacklogOverflowsTB.Name = "BacklogOverflowsTB";
         this.BacklogOverflowsTB.Size = new System.Drawing.Size(206, 20);
         this.BacklogOverflowsTB.TabIndex = 12;
-        this.BacklogOverflowsTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.BacklogOverflowsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // BacklogOverflowsLbl
         //
@@ -195,7 +195,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.UnexpectedPlcCommandCountTB.Name = "UnexpectedPlcCommandCountTB";
         this.UnexpectedPlcCommandCountTB.Size = new System.Drawing.Size(206, 20);
         this.UnexpectedPlcCommandCountTB.TabIndex = 11;
-        this.UnexpectedPlcCommandCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.UnexpectedPlcCommandCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // UnexpectedPlcCommandCountLbl
         //
@@ -215,7 +215,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.TransmitNoDataTB.Name = "TransmitNoDataTB";
         this.TransmitNoDataTB.Size = new System.Drawing.Size(206, 20);
         this.TransmitNoDataTB.TabIndex = 9;
-        this.TransmitNoDataTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.TransmitNoDataTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // TransmitNoDataLbl
         //
@@ -235,7 +235,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.NoReceiveBufferTB.Name = "NoReceiveBufferTB";
         this.NoReceiveBufferTB.Size = new System.Drawing.Size(206, 20);
         this.NoReceiveBufferTB.TabIndex = 4;
-        this.NoReceiveBufferTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.NoReceiveBufferTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // NoReceiveBufferLbl
         //
@@ -255,7 +255,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.ReceivedMessageStatusTB.Name = "ReceivedMessageStatusTB";
         this.ReceivedMessageStatusTB.Size = new System.Drawing.Size(206, 20);
         this.ReceivedMessageStatusTB.TabIndex = 3;
-        this.ReceivedMessageStatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.ReceivedMessageStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // ReceivedMessageStatusLbl
         //
@@ -275,7 +275,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.TransceiverStateTB.Name = "TransceiverStateTB";
         this.TransceiverStateTB.Size = new System.Drawing.Size(206, 20);
         this.TransceiverStateTB.TabIndex = 2;
-        this.TransceiverStateTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.TransceiverStateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // TransceiverStateLbl
         //
@@ -295,7 +295,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.PlcSignalQualityStatusTB.Name = "PlcSignalQualityStatusTB";
         this.PlcSignalQualityStatusTB.Size = new System.Drawing.Size(206, 20);
         this.PlcSignalQualityStatusTB.TabIndex = 1;
-        this.PlcSignalQualityStatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.PlcSignalQualityStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // PlcSignalQualityStatusLbl
         //
@@ -315,7 +315,7 @@ public partial class GXDLMSIEC14908DiagnosticView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

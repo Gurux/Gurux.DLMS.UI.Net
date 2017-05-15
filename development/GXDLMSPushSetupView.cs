@@ -39,6 +39,7 @@ using System.Windows.Forms;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS;
 using Gurux.DLMS.Enums;
+using Gurux.DLMS.Objects.Enums;
 
 namespace Gurux.DLMS.UI
 {
@@ -52,6 +53,9 @@ namespace Gurux.DLMS.UI
         public GXDLMSPushSetupView()
         {
             InitializeComponent();
+            ServiceCB.Items.AddRange(new object[] { ServiceType.Tcp, ServiceType.Udp, ServiceType.Ftp,
+                ServiceType.Smtp, ServiceType.Sms, ServiceType.Hdlc, ServiceType.MBus, ServiceType.ZigBee });
+            MessageCB.Items.AddRange(new object[] { MessageType.CosemApdu, MessageType.CosemApduXml, MessageType.ManufacturerSpesific });
         }
 
         #region IGXDLMSView Members
@@ -78,9 +82,16 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 3)
             {
-                ServiceTB.Text = ((GXDLMSPushSetup)Target).Service.ToString();
+                ServiceCB.SelectedIndexChanged -= new System.EventHandler(this.ServiceCB_SelectedIndexChanged);
+                ServiceCB.SelectedItem = ((GXDLMSPushSetup)Target).Service;
+                ServiceCB.SelectedIndexChanged += new System.EventHandler(this.ServiceCB_SelectedIndexChanged);
+
+                DestinationTB.TextChanged -= new System.EventHandler(this.DestinationTB_TextChanged);
                 DestinationTB.Text = ((GXDLMSPushSetup)Target).Destination;
-                MessageTB.Text = ((GXDLMSPushSetup)Target).Message.ToString();
+                DestinationTB.TextChanged += new System.EventHandler(this.DestinationTB_TextChanged);
+                MessageCB.SelectedIndexChanged -= new System.EventHandler(this.MessageCB_SelectedIndexChanged);
+                MessageCB.SelectedItem = ((GXDLMSPushSetup)Target).Message;
+                MessageCB.SelectedIndexChanged += new System.EventHandler(this.MessageCB_SelectedIndexChanged);
             }
             else if (index == 4)
             {
@@ -141,7 +152,8 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 3)
             {
-                ServiceTB.ReadOnly = DestinationTB.ReadOnly = MessageTB.ReadOnly = access == AccessMode.NoAccess;
+                MessageCB.Enabled = MessageCB.Enabled = access != AccessMode.NoAccess;
+                DestinationTB.ReadOnly = access == AccessMode.NoAccess;
             }
             else if (index == 4)
             {
@@ -155,18 +167,135 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
+            if (index == 1)
+            {
+                PushBtn.Enabled = mode == MethodAccessMode.Access;
+            }
         }
 
-        #endregion
+        #endregion        
 
-        private void ValueTB_KeyUp(object sender, KeyEventArgs e)
+        private void ServiceCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             errorProvider1.SetError((Control)sender, "Value changed.");
+            (Target as GXDLMSPushSetup).Service = (ServiceType)ServiceCB.SelectedItem;
+            Target.UpdateDirty(3, ServiceCB.SelectedItem);
         }
 
-        private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
+        private void MessageCB_SelectedIndexChanged(object sender, EventArgs e)
         {
+            (Target as GXDLMSPushSetup).Message = (MessageType)MessageCB.SelectedItem;
             errorProvider1.SetError((Control)sender, "Value changed.");
+            Target.UpdateDirty(3, MessageCB.SelectedItem);
+        }
+
+        private void DestinationTB_TextChanged(object sender, EventArgs e)
+        {
+            (Target as GXDLMSPushSetup).Description = DestinationTB.Text;
+            errorProvider1.SetError((Control)sender, "Value changed.");
+            Target.UpdateDirty(3, DestinationTB.Text);
+        }
+
+        /// <summary>
+        /// Add new Object.
+        /// </summary>
+        private void ObjectsAddBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Edit Object.
+        /// </summary>
+        private void ObjectsEditBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Remove Object.
+        /// </summary>
+        private void ObjectsRemoveBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Add new communication window item.
+        /// </summary>
+        private void CommunicationAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSPushSetup target = Target as GXDLMSPushSetup;
+                KeyValuePair<GXDateTime, GXDateTime> it = new KeyValuePair<GXDateTime, GXDateTime>(new GXDateTime(DateTime.Now), new GXDateTime(DateTime.Now));
+                GXDateTimeDlg dlg = new GXDateTimeDlg(it.Key, it.Value);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    ListViewItem li = CommunicationWindowLV.Items.Add(it.Key.ToFormatString());
+                    li.SubItems.Add(it.Value.ToFormatString());
+                    li.Tag = it;
+                    target.CommunicationWindow.Add(it);
+                    errorProvider1.SetError(CommunicationWindowLV, "Value changed.");
+                    Target.UpdateDirty(4, target.CommunicationWindow);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit communication window item.
+        /// </summary>
+        private void CommunicationEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CommunicationWindowLV.SelectedItems.Count == 1)
+                {
+                    GXDLMSPushSetup target = Target as GXDLMSPushSetup;
+                    ListViewItem li = CommunicationWindowLV.SelectedItems[0];
+                    KeyValuePair<GXDateTime, GXDateTime> it = (KeyValuePair<GXDateTime, GXDateTime>)li.Tag;
+                    GXDateTimeDlg dlg = new GXDateTimeDlg(it.Key, it.Value);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        li.SubItems[0].Text = it.Key.ToFormatString();
+                        li.SubItems[1].Text = it.Value.ToFormatString();
+                        errorProvider1.SetError(CommunicationWindowLV, "Value changed.");
+                        Target.UpdateDirty(4, target.CommunicationWindow);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove communication window item.
+        /// </summary>
+        private void CommunicationRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSPushSetup target = Target as GXDLMSPushSetup;
+                while (CommunicationWindowLV.SelectedItems.Count != 0)
+                {
+                    KeyValuePair<GXDateTime, GXDateTime> item = (KeyValuePair<GXDateTime, GXDateTime>)CommunicationWindowLV.SelectedItems[0].Tag;
+                    CommunicationWindowLV.Items.Remove(CommunicationWindowLV.SelectedItems[0]);
+                    errorProvider1.SetError(CommunicationWindowLV, "Value changed.");
+                    Target.UpdateDirty(4, target.CommunicationWindow);
+                    target.CommunicationWindow.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

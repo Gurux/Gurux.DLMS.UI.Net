@@ -314,7 +314,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 35;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ActionUnderThresholdTB
             //
@@ -325,7 +325,7 @@ namespace Gurux.DLMS.UI
             this.ActionUnderThresholdTB.Name = "ActionUnderThresholdTB";
             this.ActionUnderThresholdTB.Size = new System.Drawing.Size(171, 40);
             this.ActionUnderThresholdTB.TabIndex = 32;
-            this.ActionUnderThresholdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ActionUnderThresholdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ActionOverThresholdTB
             //
@@ -336,7 +336,7 @@ namespace Gurux.DLMS.UI
             this.ActionOverThresholdTB.Name = "ActionOverThresholdTB";
             this.ActionOverThresholdTB.Size = new System.Drawing.Size(171, 35);
             this.ActionOverThresholdTB.TabIndex = 30;
-            this.ActionOverThresholdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ActionOverThresholdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // EmergencyProfileGroupIDsTB
             //
@@ -348,7 +348,7 @@ namespace Gurux.DLMS.UI
             this.EmergencyProfileGroupIDsTB.ReadOnly = true;
             this.EmergencyProfileGroupIDsTB.Size = new System.Drawing.Size(171, 33);
             this.EmergencyProfileGroupIDsTB.TabIndex = 27;
-            this.EmergencyProfileGroupIDsTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.EmergencyProfileGroupIDsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // EmergencyProfileTB
             //
@@ -359,7 +359,7 @@ namespace Gurux.DLMS.UI
             this.EmergencyProfileTB.Name = "EmergencyProfileTB";
             this.EmergencyProfileTB.Size = new System.Drawing.Size(171, 20);
             this.EmergencyProfileTB.TabIndex = 25;
-            this.EmergencyProfileTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.EmergencyProfileTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // MinUnderThresholdDurationTB
             //
@@ -370,7 +370,7 @@ namespace Gurux.DLMS.UI
             this.MinUnderThresholdDurationTB.Name = "MinUnderThresholdDurationTB";
             this.MinUnderThresholdDurationTB.Size = new System.Drawing.Size(171, 20);
             this.MinUnderThresholdDurationTB.TabIndex = 23;
-            this.MinUnderThresholdDurationTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MinUnderThresholdDurationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // MinOverThresholdDurationTB
             //
@@ -381,7 +381,7 @@ namespace Gurux.DLMS.UI
             this.MinOverThresholdDurationTB.Name = "MinOverThresholdDurationTB";
             this.MinOverThresholdDurationTB.Size = new System.Drawing.Size(171, 20);
             this.MinOverThresholdDurationTB.TabIndex = 21;
-            this.MinOverThresholdDurationTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MinOverThresholdDurationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ThresholdEmergencyTB
             //
@@ -392,7 +392,7 @@ namespace Gurux.DLMS.UI
             this.ThresholdEmergencyTB.Name = "ThresholdEmergencyTB";
             this.ThresholdEmergencyTB.Size = new System.Drawing.Size(171, 20);
             this.ThresholdEmergencyTB.TabIndex = 19;
-            this.ThresholdEmergencyTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ThresholdEmergencyTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ThresholdNormalTB
             //
@@ -403,7 +403,7 @@ namespace Gurux.DLMS.UI
             this.ThresholdNormalTB.Name = "ThresholdNormalTB";
             this.ThresholdNormalTB.Size = new System.Drawing.Size(171, 20);
             this.ThresholdNormalTB.TabIndex = 17;
-            this.ThresholdNormalTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ThresholdNormalTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ThresholdActiveTB
             //
@@ -414,7 +414,7 @@ namespace Gurux.DLMS.UI
             this.ThresholdActiveTB.Name = "ThresholdActiveTB";
             this.ThresholdActiveTB.Size = new System.Drawing.Size(171, 20);
             this.ThresholdActiveTB.TabIndex = 15;
-            this.ThresholdActiveTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ThresholdActiveTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // GXDLMSLimiterView
             //

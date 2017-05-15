@@ -42,9 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-    [GXDLMSViewAttribute(typeof(Gurux.DLMS.Objects.GXDLMSSpecialDaysTable))]
+    [GXDLMSViewAttribute(typeof(GXDLMSSpecialDaysTable))]
     partial class GXDLMSSpecialDaysTableView : Form, IGXDLMSView
     {
+        List<GXDLMSSpecialDay> entries = new List<Objects.GXDLMSSpecialDay>();
 
         /// <summary>
         /// Constructor.
@@ -67,14 +68,17 @@ namespace Gurux.DLMS.UI
             {
                 GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
                 GXDLMSSpecialDay[] items = target.Entries;
-                CallingWindowLV.Items.Clear();
+                SpecialDay.Items.Clear();
+                entries.Clear();
                 if (items != null)
                 {
+                    entries.AddRange(items);
                     foreach (GXDLMSSpecialDay it in items)
                     {
-                        ListViewItem li = CallingWindowLV.Items.Add(it.Index.ToString());
+                        ListViewItem li = SpecialDay.Items.Add(it.Index.ToString());
                         li.SubItems.Add(it.Date.ToString());
                         li.SubItems.Add(it.DayId.ToString());
+                        li.Tag = it;
                     }
                 }
             }
@@ -91,7 +95,11 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(ActionType type, ValueEventArgs arg)
         {
-
+            //Entries are handled using actions.
+            if (arg.Index == 2)
+            {
+                arg.Handled = true;
+            }
         }
 
         public void PostAction(ActionType type, ValueEventArgs arg)
@@ -125,8 +133,85 @@ namespace Gurux.DLMS.UI
 
         #endregion
 
+        /// <summary>
+        /// Add special day.
+        /// </summary>
+        private void DayAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSSpecialDay it = new GXDLMSSpecialDay();
+                GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
+                    ListViewItem li = SpecialDay.Items.Add(it.Index.ToString());
+                    li.SubItems.Add(it.Date.ToString());
+                    li.SubItems.Add(it.DayId.ToString());
+                    li.Tag = it;
+                    entries.Add(it);
+                    errorProvider1.SetError(SpecialDay, "Value changed.");
+                    Target.UpdateDirty(2, target.Entries);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        /// <summary>
+        /// Edit special day.
+        /// </summary>
+        private void DayEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SpecialDay.SelectedItems.Count == 1)
+                {
+                    ListViewItem li = SpecialDay.SelectedItems[0];
+                    GXDLMSSpecialDay it = (GXDLMSSpecialDay)li.Tag;
+                    GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
+                        li.SubItems[0].Text = it.Index.ToString();
+                        li.SubItems[1].Text = it.Date.ToString();
+                        li.SubItems[2].Text = it.DayId.ToString();
+                        errorProvider1.SetError(SpecialDay, "Value changed.");
+                        Target.UpdateDirty(2, target.Entries);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-
+        /// <summary>
+        /// Remove special day.
+        /// </summary>
+        private void DayRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
+                while (SpecialDay.SelectedItems.Count != 0)
+                {
+                    GXDLMSSpecialDay item = (GXDLMSSpecialDay)SpecialDay.SelectedItems[0].Tag;
+                    SpecialDay.Items.Remove(SpecialDay.SelectedItems[0]);
+                    errorProvider1.SetError(SpecialDay, "Value changed.");
+                    Target.UpdateDirty(2, target.Entries);
+                    entries.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

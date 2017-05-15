@@ -42,7 +42,7 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-    [GXDLMSViewAttribute(typeof(Gurux.DLMS.Objects.GXDLMSRegisterActivation))]
+    [GXDLMSViewAttribute(typeof(GXDLMSRegisterActivation))]
     partial class GXDLMSRegisterActivationView : Form, IGXDLMSView
     {
         /// <summary>
@@ -62,10 +62,57 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user)
         {
+            GXDLMSRegisterActivation target = (GXDLMSRegisterActivation)Target;
+            if (index == 2)
+            {
+                // register_assignment
+                Assigments.Items.Clear();
+                if (target.RegisterAssignment != null)
+                {
+                    foreach (GXDLMSObjectDefinition it in target.RegisterAssignment)
+                    {
+                        ListViewItem li = new ListViewItem(it.ObjectType.ToString());
+                        li.SubItems.Add(it.LogicalName);
+                        Assigments.Items.Add(li);
+                    }
+                }
+            }
+            else if (index == 3)
+            {
+                // mask_list
+                Masks.Items.Clear();
+                StringBuilder sb = new StringBuilder();
+                foreach (KeyValuePair<byte[], byte[]> it in target.MaskList)
+                {
+                    ListViewItem li = new ListViewItem(GXDLMSTranslator.ToHex(it.Key));
+                    sb.Length = 0;
+                    foreach (byte v in it.Value)
+                    {
+                        sb.Append(v);
+                        sb.Append(", ");
+                    }
+                    if (sb.Length != 0)
+                    {
+                        sb.Length -= 2;
+                    }
+                    li.SubItems.Add(sb.ToString());
+                    Masks.Items.Add(li);
+                }
+            }
         }
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
+            if (index == 2)
+            {
+                // register_assignment
+                Assigments.Enabled = access != AccessMode.NoAccess;
+            }
+            else if (index == 3)
+            {
+                // mask_list
+                Masks.Enabled = access != AccessMode.NoAccess;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)

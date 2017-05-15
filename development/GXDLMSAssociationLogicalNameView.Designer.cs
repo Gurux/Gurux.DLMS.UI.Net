@@ -23,7 +23,10 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.CallingWindowLV = new System.Windows.Forms.ListView();
+            this.ObjectRemoveBtn = new System.Windows.Forms.Button();
+            this.ObjectEditBtn = new System.Windows.Forms.Button();
+            this.ObjectAddBtn = new System.Windows.Forms.Button();
+            this.ObjectsView = new System.Windows.Forms.ListView();
             this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VersionHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LogicalNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,7 +44,6 @@ namespace Gurux.DLMS.UI
             this.ClientSAPLbl = new System.Windows.Forms.Label();
             this.SecretLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.CypheringInfoTb = new System.Windows.Forms.TextBox();
             this.CypheringInfoLbl = new System.Windows.Forms.Label();
@@ -83,9 +85,14 @@ namespace Gurux.DLMS.UI
             this.AuthenticationCountryLbl = new System.Windows.Forms.Label();
             this.AuthenticationJointISOCTTTb = new System.Windows.Forms.TextBox();
             this.AuthenticationJointISOCTTLbl = new System.Windows.Forms.Label();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.ObjectsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -95,6 +102,7 @@ namespace Gurux.DLMS.UI
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.ObjectsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -130,7 +138,10 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.CallingWindowLV);
+            this.tabPage1.Controls.Add(this.ObjectRemoveBtn);
+            this.tabPage1.Controls.Add(this.ObjectEditBtn);
+            this.tabPage1.Controls.Add(this.ObjectAddBtn);
+            this.tabPage1.Controls.Add(this.ObjectsView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -139,24 +150,60 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "Objects";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // CallingWindowLV
+            // ObjectRemoveBtn
             // 
-            this.CallingWindowLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ObjectRemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObjectRemoveBtn.Location = new System.Drawing.Point(409, 219);
+            this.ObjectRemoveBtn.Name = "ObjectRemoveBtn";
+            this.ObjectRemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.ObjectRemoveBtn.TabIndex = 20;
+            this.ObjectRemoveBtn.Text = "Remove";
+            this.ObjectRemoveBtn.UseVisualStyleBackColor = true;
+            this.ObjectRemoveBtn.Click += new System.EventHandler(this.ObjectRemoveBtn_Click);
+            // 
+            // ObjectEditBtn
+            // 
+            this.ObjectEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObjectEditBtn.Location = new System.Drawing.Point(328, 219);
+            this.ObjectEditBtn.Name = "ObjectEditBtn";
+            this.ObjectEditBtn.Size = new System.Drawing.Size(75, 23);
+            this.ObjectEditBtn.TabIndex = 19;
+            this.ObjectEditBtn.Text = "Edit...";
+            this.ObjectEditBtn.UseVisualStyleBackColor = true;
+            this.ObjectEditBtn.Click += new System.EventHandler(this.ObjectEditBtn_Click);
+            // 
+            // ObjectAddBtn
+            // 
+            this.ObjectAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObjectAddBtn.Location = new System.Drawing.Point(247, 219);
+            this.ObjectAddBtn.Name = "ObjectAddBtn";
+            this.ObjectAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.ObjectAddBtn.TabIndex = 18;
+            this.ObjectAddBtn.Text = "Add...";
+            this.ObjectAddBtn.UseVisualStyleBackColor = true;
+            this.ObjectAddBtn.Click += new System.EventHandler(this.ObjectAddBtn_Click);
+            // 
+            // ObjectsView
+            // 
+            this.ObjectsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObjectsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ClassIdHeader,
             this.VersionHeader,
             this.LogicalNameHeader,
             this.AttributeAccesssHeader,
             this.MethodAccessHeader});
-            this.CallingWindowLV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CallingWindowLV.FullRowSelect = true;
-            this.CallingWindowLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.CallingWindowLV.HideSelection = false;
-            this.CallingWindowLV.Location = new System.Drawing.Point(3, 3);
-            this.CallingWindowLV.Name = "CallingWindowLV";
-            this.CallingWindowLV.Size = new System.Drawing.Size(503, 239);
-            this.CallingWindowLV.TabIndex = 14;
-            this.CallingWindowLV.UseCompatibleStateImageBehavior = false;
-            this.CallingWindowLV.View = System.Windows.Forms.View.Details;
+            this.ObjectsView.ContextMenuStrip = this.ObjectsMenu;
+            this.ObjectsView.FullRowSelect = true;
+            this.ObjectsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.ObjectsView.HideSelection = false;
+            this.ObjectsView.Location = new System.Drawing.Point(3, 3);
+            this.ObjectsView.Name = "ObjectsView";
+            this.ObjectsView.Size = new System.Drawing.Size(482, 210);
+            this.ObjectsView.TabIndex = 14;
+            this.ObjectsView.UseCompatibleStateImageBehavior = false;
+            this.ObjectsView.View = System.Windows.Forms.View.Details;
             // 
             // ClassIdHeader
             // 
@@ -301,17 +348,6 @@ namespace Gurux.DLMS.UI
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Association Status:";
-            // 
-            // gxValueField1
-            // 
-            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gxValueField1.Index = 8;
-            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
-            this.gxValueField1.Name = "gxValueField1";
-            this.gxValueField1.Size = new System.Drawing.Size(243, 20);
-            this.gxValueField1.TabIndex = 20;
-            this.gxValueField1.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
             // 
             // tabPage3
             // 
@@ -703,17 +739,6 @@ namespace Gurux.DLMS.UI
             this.AuthenticationJointISOCTTLbl.TabIndex = 43;
             this.AuthenticationJointISOCTTLbl.Text = "Joint ISO CTT:";
             // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -728,6 +753,58 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            // 
+            // gxValueField1
+            // 
+            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gxValueField1.Index = 8;
+            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
+            this.gxValueField1.Name = "gxValueField1";
+            this.gxValueField1.Size = new System.Drawing.Size(243, 20);
+            this.gxValueField1.TabIndex = 20;
+            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // ObjectsMenu
+            // 
+            this.ObjectsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.ObjectsMenu.Name = "contextMenuStrip1";
+            this.ObjectsMenu.Size = new System.Drawing.Size(153, 92);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.ObjectAddBtn_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.ObjectEditBtn_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.ObjectRemoveBtn_Click);
             // 
             // GXDLMSAssociationLogicalNameView
             // 
@@ -750,6 +827,7 @@ namespace Gurux.DLMS.UI
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.ObjectsMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -758,7 +836,7 @@ namespace Gurux.DLMS.UI
 
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private ListView CallingWindowLV;
+        private ListView ObjectsView;
         private ColumnHeader ClassIdHeader;
         private ColumnHeader VersionHeader;
         private ColumnHeader LogicalNameHeader;
@@ -818,5 +896,12 @@ namespace Gurux.DLMS.UI
         private Label AuthenticationJointISOCTTLbl;
         private CheckBox SecretAsciiCb;
         private TextBox SecretTB;
+        private Button ObjectRemoveBtn;
+        private Button ObjectEditBtn;
+        private Button ObjectAddBtn;
+        private ContextMenuStrip ObjectsMenu;
+        private ToolStripMenuItem addToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem removeToolStripMenuItem;
     }
 }

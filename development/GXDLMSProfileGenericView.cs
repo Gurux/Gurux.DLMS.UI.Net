@@ -36,7 +36,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using Gurux.DLMS;
 using System.Data;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
@@ -44,7 +43,7 @@ using Gurux.DLMS.Objects.Enums;
 
 namespace Gurux.DLMS.UI
 {
-    [GXDLMSViewAttribute(typeof(Gurux.DLMS.Objects.GXDLMSProfileGeneric))]
+    [GXDLMSViewAttribute(typeof(GXDLMSProfileGeneric))]
     partial class GXDLMSProfileGenericView : Form, IGXDLMSView
     {
         /// <summary>
@@ -294,6 +293,17 @@ namespace Gurux.DLMS.UI
                 }
                 ProfileGenericView.Refresh();
             }
+            if (index == 3)
+            {
+                CaptureObjectsLv.Items.Clear();
+                foreach (var it in (Target as GXDLMSProfileGeneric).CaptureObjects)
+                {
+                    ListViewItem li = CaptureObjectsLv.Items.Add(it.Key.ObjectType.ToString());
+                    li.SubItems.Add(it.Key.LogicalName);
+                    li.SubItems.Add(it.Value.AttributeIndex.ToString());
+                    li.Tag = it;
+                }
+            }
         }
 
         public void OnAccessRightsChange(int index, AccessMode access)
@@ -464,6 +474,91 @@ namespace Gurux.DLMS.UI
             {
                 target.From = DateTime.Now.Date.AddDays(-Convert.ToInt32(ReadLastTB.Value)).Date;
                 target.To = DateTime.Now.AddDays(1).Date;
+            }
+        }
+
+        /// <summary>
+        /// Add new capture object.
+        /// </summary>
+        private void ColumnAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
+                GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = new GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>();
+                GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    it = dlg.GetTarget();
+                    ListViewItem li = CaptureObjectsLv.Items.Add(it.Key.ObjectType.ToString());
+                    li.SubItems.Add(it.Key.LogicalName);
+                    li.SubItems.Add(it.Value.AttributeIndex.ToString());
+                    li.Tag = it;
+                    target.CaptureObjects.Add(it);
+                }
+                errorProvider1.SetError(CaptureObjectsLv, "Value changed.");
+                Target.UpdateDirty(3, target.CaptureObjects);
+            }
+            catch (Exception ex)
+            {
+                DialogResult = DialogResult.None;
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit capture object.
+        /// </summary>
+        private void ColumnEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CaptureObjectsLv.SelectedItems.Count == 1)
+                {
+                    GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
+                    ListViewItem li = CaptureObjectsLv.SelectedItems[0];
+                    GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
+                    GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        it = dlg.GetTarget();
+                        li.SubItems[0].Text = it.Key.ObjectType.ToString();
+                        li.SubItems[1].Text = it.Key.LogicalName;
+                        li.SubItems[2].Text = it.Value.AttributeIndex.ToString();
+                        errorProvider1.SetError(CaptureObjectsLv, "Value changed.");
+                        Target.UpdateDirty(3, target.CaptureObjects);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove capture object.
+        /// </summary>
+        private void ColumnRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> item;
+                GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
+                while (CaptureObjectsLv.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = CaptureObjectsLv.SelectedItems[0];
+                    item = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
+                    CaptureObjectsLv.Items.Remove(CaptureObjectsLv.SelectedItems[0]);
+                    errorProvider1.SetError(CaptureObjectsLv, "Value changed.");
+                    Target.UpdateDirty(3, target.CaptureObjects);
+                    target.CaptureObjects.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -71,13 +71,13 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXDLMSSeasonProfile it in target.SeasonProfileActive)
                     {
-                        ListViewItem li = SeasonProfileActiveLV.Items.Add(it.Name);
+                        ListViewItem li = SeasonProfileActiveLV.Items.Add(GXDLMSTranslator.ToHex(it.Name));
                         li.SubItems.AddRange(new string[] { "", "", "", "", "", "" });
                         li.SubItems[this.YearHeader.Index].Text = it.Start.Value.Year.ToString();
                         li.SubItems[this.MonthHeader.Index].Text = it.Start.Value.Month.ToString();
                         li.SubItems[this.DayHeader.Index].Text = it.Start.Value.Day.ToString();
                         li.SubItems[this.StartHeader.Index].Text = it.Start.ToString();
-                        li.SubItems[this.WeekNameHeader.Index].Text = it.WeekName;
+                        li.SubItems[this.WeekNameHeader.Index].Text = GXDLMSTranslator.ToHex(it.WeekName);
                     }
                 }
             }
@@ -88,7 +88,7 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXDLMSWeekProfile it in target.WeekProfileTableActive)
                     {
-                        ListViewItem li = AWeekProfileLV.Items.Add(it.Name);
+                        ListViewItem li = AWeekProfileLV.Items.Add(GXDLMSTranslator.ToHex(it.Name));
                         li.SubItems.AddRange(new string[] { it.Monday.ToString(), it.Tuesday.ToString(), it.Wednesday.ToString(), it.Thursday.ToString(), it.Friday.ToString(), it.Saturday.ToString(), it.Sunday.ToString() });
                     }
                 }
@@ -127,13 +127,13 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXDLMSSeasonProfile it in target.SeasonProfilePassive)
                     {
-                        ListViewItem li = SeasonProfilePassiveLV.Items.Add(it.Name);
+                        ListViewItem li = SeasonProfilePassiveLV.Items.Add(GXDLMSTranslator.ToHex(it.Name));
                         li.SubItems.AddRange(new string[] { "", "", "", "", "", "" });
                         li.SubItems[this.YearHeader.Index].Text = it.Start.Value.Year.ToString();
                         li.SubItems[this.MonthHeader.Index].Text = it.Start.Value.Month.ToString();
                         li.SubItems[this.DayHeader.Index].Text = it.Start.Value.Day.ToString();
                         li.SubItems[this.StartHeader.Index].Text = it.Start.ToString();
-                        li.SubItems[this.WeekNameHeader.Index].Text = it.WeekName;
+                        li.SubItems[this.WeekNameHeader.Index].Text = GXDLMSTranslator.ToHex(it.WeekName);
                     }
                 }
             }
@@ -144,7 +144,7 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXDLMSWeekProfile it in target.WeekProfileTablePassive)
                     {
-                        ListViewItem li = PWeekProfileLV.Items.Add(it.Name);
+                        ListViewItem li = PWeekProfileLV.Items.Add(GXDLMSTranslator.ToHex(it.Name));
                         li.SubItems.AddRange(new string[] { it.Monday.ToString(), it.Tuesday.ToString(), it.Wednesday.ToString(), it.Thursday.ToString(), it.Friday.ToString(), it.Saturday.ToString(), it.Sunday.ToString() });
                     }
                 }

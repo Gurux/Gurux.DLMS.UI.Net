@@ -155,7 +155,7 @@ public partial class GXDLMSIEC14908IdentificationView
         this.UniqueNodeIdTb.Name = "UniqueNodeIdTb";
         this.UniqueNodeIdTb.Size = new System.Drawing.Size(206, 20);
         this.UniqueNodeIdTb.TabIndex = 9;
-        this.UniqueNodeIdTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.UniqueNodeIdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // ProgramIdTB
         //
@@ -166,7 +166,7 @@ public partial class GXDLMSIEC14908IdentificationView
         this.ProgramIdTB.Name = "ProgramIdTB";
         this.ProgramIdTB.Size = new System.Drawing.Size(206, 20);
         this.ProgramIdTB.TabIndex = 4;
-        this.ProgramIdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.ProgramIdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // DomainIdTB
         //
@@ -177,7 +177,7 @@ public partial class GXDLMSIEC14908IdentificationView
         this.DomainIdTB.Name = "DomainIdTB";
         this.DomainIdTB.Size = new System.Drawing.Size(206, 20);
         this.DomainIdTB.TabIndex = 3;
-        this.DomainIdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.DomainIdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // SubnetIdTB
         //
@@ -188,7 +188,7 @@ public partial class GXDLMSIEC14908IdentificationView
         this.SubnetIdTB.Name = "SubnetIdTB";
         this.SubnetIdTB.Size = new System.Drawing.Size(206, 20);
         this.SubnetIdTB.TabIndex = 2;
-        this.SubnetIdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.SubnetIdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // NodeIdTB
         //
@@ -199,7 +199,7 @@ public partial class GXDLMSIEC14908IdentificationView
         this.NodeIdTB.Name = "NodeIdTB";
         this.NodeIdTB.Size = new System.Drawing.Size(206, 20);
         this.NodeIdTB.TabIndex = 1;
-        this.NodeIdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.NodeIdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // LogicalNameTB
         //
@@ -210,7 +210,7 @@ public partial class GXDLMSIEC14908IdentificationView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // GXDLMSIEC14908IdentificationView
         //

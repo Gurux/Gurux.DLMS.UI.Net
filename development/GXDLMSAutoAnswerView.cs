@@ -73,8 +73,9 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (var it in target.ListeningWindow)
                     {
-                        ListViewItem li = ListeningWindowLV.Items.Add(it.Key.ToString());
-                        li.SubItems.Add(GXHelpers.ConvertDLMS2String(it.Value.ToString()));
+                        ListViewItem li = ListeningWindowLV.Items.Add(it.Key.ToFormatString());
+                        li.SubItems.Add(it.Value.ToFormatString());
+                        li.Tag = it;
                     }
                 }
             }
@@ -154,5 +155,85 @@ namespace Gurux.DLMS.UI
         }
 
         #endregion
+
+        /// <summary>
+        /// Add calling window time.
+        /// </summary>
+        private void TimeAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAutoAnswer target = Target as GXDLMSAutoAnswer;
+                KeyValuePair<GXDateTime, GXDateTime> it = new KeyValuePair<GXDateTime, GXDateTime>(DateTime.Now, DateTime.Now);
+                GXDateTimeDlg dlg = new GXDateTimeDlg(it.Key, it.Value);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    ListViewItem li = ListeningWindowLV.Items.Add(it.Key.ToFormatString());
+                    li.SubItems.Add(it.Value.ToFormatString());
+                    li.Tag = it;
+                    target.ListeningWindow.Add(it);
+                    errorProvider1.SetError(ListeningWindowLV, "Value changed.");
+                    Target.UpdateDirty(5, target.ListeningWindow);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit calling window time.
+        /// </summary>
+        /// 
+        private void TimeEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ListeningWindowLV.SelectedItems.Count == 1)
+                {
+                    GXDLMSAutoAnswer target = Target as GXDLMSAutoAnswer;
+                    ListViewItem li = ListeningWindowLV.SelectedItems[0];
+                    KeyValuePair<GXDateTime, GXDateTime> it = (KeyValuePair<GXDateTime, GXDateTime>)li.Tag;
+                    GXDateTimeDlg dlg = new GXDateTimeDlg(it.Key, it.Value);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        li.SubItems[0].Text = it.Key.ToFormatString();
+                        li.SubItems[1].Text = it.Value.ToFormatString();
+                        errorProvider1.SetError(ListeningWindowLV, "Value changed.");
+                        Target.UpdateDirty(5, target.ListeningWindow);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove calling window time.
+        /// </summary>
+        private void TimeRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAutoAnswer target = Target as GXDLMSAutoAnswer;
+                while (ListeningWindowLV.SelectedItems.Count != 0)
+                {
+                    KeyValuePair<GXDateTime, GXDateTime> item = (KeyValuePair<GXDateTime, GXDateTime>)ListeningWindowLV.SelectedItems[0].Tag;
+                    ListeningWindowLV.Items.Remove(ListeningWindowLV.SelectedItems[0]);
+                    errorProvider1.SetError(ListeningWindowLV, "Value changed.");
+                    Target.UpdateDirty(5, target.ListeningWindow);
+                    target.ListeningWindow.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

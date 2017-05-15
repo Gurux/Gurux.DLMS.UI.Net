@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1704.1101, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1704.1101\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1705.1201, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1705.1201\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -46,6 +46,33 @@
   <ItemGroup>
     <Compile Include="GXButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GXDLMSAssociationViewDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSAssociationViewDlg.designer.cs">
+      <DependentUpon>GXDLMSAssociationViewDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSMBusMasterPortSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSProfileGenericColumnDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSProfileGenericColumnDlg.designer.cs">
+      <DependentUpon>GXDLMSProfileGenericColumnDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXTextDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXTextDlg.Designer.cs">
+      <DependentUpon>GXTextDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDateTimeDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDateTimeDlg.Designer.cs">
+      <DependentUpon>GXDateTimeDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSActionScheduleView.cs">
       <SubType>Form</SubType>
@@ -239,9 +266,6 @@
     <Compile Include="GXDLMSMacAddressSetupView.designer.cs">
       <DependentUpon>GXDLMSMacAddressSetupView.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXDLMSMBusMasterPortSetupView.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GXDLMSMBusClientView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +350,12 @@
     <Compile Include="GXDLMSSecuritySetupView.designer.cs">
       <DependentUpon>GXDLMSSecuritySetupView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXDLMSSpecialDaysTableDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSSpecialDaysTableDlg.Designer.cs">
+      <DependentUpon>GXDLMSSpecialDaysTableDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXDLMSSpecialDaysTableView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -356,6 +386,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GXDLMSAssociationViewDlg.resx">
+      <DependentUpon>GXDLMSAssociationViewDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSProfileGenericColumnDlg.resx">
+      <DependentUpon>GXDLMSProfileGenericColumnDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXTextDlg.resx">
+      <DependentUpon>GXTextDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDateTimeDlg.resx">
+      <DependentUpon>GXDateTimeDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSActionScheduleView.resx">
       <DependentUpon>GXDLMSActionScheduleView.cs</DependentUpon>
     </EmbeddedResource>
@@ -452,9 +494,6 @@
     <EmbeddedResource Include="GXDLMSMacAddressSetupView.resx">
       <DependentUpon>GXDLMSMacAddressSetupView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GXDLMSMBusMasterPortSetupView.resx">
-      <DependentUpon>GXDLMSMBusMasterPortSetupView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSMBusClientView.resx">
       <DependentUpon>GXDLMSMBusClientView.cs</DependentUpon>
     </EmbeddedResource>
@@ -499,6 +538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSSecuritySetupView.resx">
       <DependentUpon>GXDLMSSecuritySetupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSSpecialDaysTableDlg.resx">
+      <DependentUpon>GXDLMSSpecialDaysTableDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSSpecialDaysTableView.resx">
       <DependentUpon>GXDLMSSpecialDaysTableView.cs</DependentUpon>

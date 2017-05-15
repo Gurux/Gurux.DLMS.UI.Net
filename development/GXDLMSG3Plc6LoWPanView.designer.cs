@@ -841,7 +841,7 @@ namespace Gurux.DLMS.UI
             this.gxValueField1.ReadOnly = true;
             this.gxValueField1.Size = new System.Drawing.Size(104, 112);
             this.gxValueField1.TabIndex = 10;
-            this.gxValueField1.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // CoordShortAddressTb
             // 
@@ -851,7 +851,7 @@ namespace Gurux.DLMS.UI
             this.CoordShortAddressTb.ReadOnly = true;
             this.CoordShortAddressTb.Size = new System.Drawing.Size(104, 20);
             this.CoordShortAddressTb.TabIndex = 8;
-            this.CoordShortAddressTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CoordShortAddressTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.CoordShortAddressTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.CoordShortAddressTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -863,7 +863,7 @@ namespace Gurux.DLMS.UI
             this.MetricTypeTb.ReadOnly = true;
             this.MetricTypeTb.Size = new System.Drawing.Size(104, 20);
             this.MetricTypeTb.TabIndex = 7;
-            this.MetricTypeTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MetricTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.MetricTypeTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.MetricTypeTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -875,7 +875,7 @@ namespace Gurux.DLMS.UI
             this.ActiveKeyIndexTb.ReadOnly = true;
             this.ActiveKeyIndexTb.Size = new System.Drawing.Size(104, 20);
             this.ActiveKeyIndexTb.TabIndex = 6;
-            this.ActiveKeyIndexTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ActiveKeyIndexTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.ActiveKeyIndexTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.ActiveKeyIndexTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -887,7 +887,7 @@ namespace Gurux.DLMS.UI
             this.PathDiscoveryTimeTb.ReadOnly = true;
             this.PathDiscoveryTimeTb.Size = new System.Drawing.Size(104, 20);
             this.PathDiscoveryTimeTb.TabIndex = 5;
-            this.PathDiscoveryTimeTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.PathDiscoveryTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.PathDiscoveryTimeTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.PathDiscoveryTimeTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -899,7 +899,7 @@ namespace Gurux.DLMS.UI
             this.MaxJoinWaitTimeTB.ReadOnly = true;
             this.MaxJoinWaitTimeTB.Size = new System.Drawing.Size(104, 20);
             this.MaxJoinWaitTimeTB.TabIndex = 4;
-            this.MaxJoinWaitTimeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MaxJoinWaitTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.MaxJoinWaitTimeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.MaxJoinWaitTimeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -911,7 +911,7 @@ namespace Gurux.DLMS.UI
             this.BroadcastLogTableEntryTtlTb.ReadOnly = true;
             this.BroadcastLogTableEntryTtlTb.Size = new System.Drawing.Size(104, 20);
             this.BroadcastLogTableEntryTtlTb.TabIndex = 3;
-            this.BroadcastLogTableEntryTtlTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.BroadcastLogTableEntryTtlTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.BroadcastLogTableEntryTtlTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.BroadcastLogTableEntryTtlTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -923,7 +923,7 @@ namespace Gurux.DLMS.UI
             this.SecurityLevelTb.ReadOnly = true;
             this.SecurityLevelTb.Size = new System.Drawing.Size(104, 20);
             this.SecurityLevelTb.TabIndex = 2;
-            this.SecurityLevelTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.SecurityLevelTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.SecurityLevelTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.SecurityLevelTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -935,7 +935,7 @@ namespace Gurux.DLMS.UI
             this.WeakLqiValueTb.ReadOnly = true;
             this.WeakLqiValueTb.Size = new System.Drawing.Size(104, 20);
             this.WeakLqiValueTb.TabIndex = 1;
-            this.WeakLqiValueTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.WeakLqiValueTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.WeakLqiValueTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.WeakLqiValueTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -947,7 +947,7 @@ namespace Gurux.DLMS.UI
             this.MaxHopsTb.ReadOnly = true;
             this.MaxHopsTb.Size = new System.Drawing.Size(104, 20);
             this.MaxHopsTb.TabIndex = 0;
-            this.MaxHopsTb.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MaxHopsTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             this.MaxHopsTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.MaxHopsTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -960,7 +960,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(570, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // GXDLMSG3Plc6LoWPanView
             // 

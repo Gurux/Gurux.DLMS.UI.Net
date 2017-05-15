@@ -96,7 +96,7 @@ namespace Gurux.DLMS.UI
             this.CaptureTimeTB.Name = "CaptureTimeTB";
             this.CaptureTimeTB.Size = new System.Drawing.Size(208, 20);
             this.CaptureTimeTB.TabIndex = 2;
-            this.CaptureTimeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CaptureTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // CaptureTimeLbl
             //
@@ -116,7 +116,7 @@ namespace Gurux.DLMS.UI
             this.StatusTB.Name = "StatusTB";
             this.StatusTB.Size = new System.Drawing.Size(208, 20);
             this.StatusTB.TabIndex = 1;
-            this.StatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // StatusLbl
             //
@@ -136,7 +136,7 @@ namespace Gurux.DLMS.UI
             this.UnitTB.Name = "UnitTB";
             this.UnitTB.Size = new System.Drawing.Size(208, 20);
             this.UnitTB.TabIndex = 5;
-            this.UnitTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.UnitTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // UnitLbl
             //
@@ -156,7 +156,7 @@ namespace Gurux.DLMS.UI
             this.ScalerTB.Name = "ScalerTB";
             this.ScalerTB.Size = new System.Drawing.Size(208, 20);
             this.ScalerTB.TabIndex = 4;
-            this.ScalerTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ScalerTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ScalerLbl
             //
@@ -176,7 +176,7 @@ namespace Gurux.DLMS.UI
             this.ValueTB.Name = "ValueTB";
             this.ValueTB.Size = new System.Drawing.Size(208, 20);
             this.ValueTB.TabIndex = 0;
-            this.ValueTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ValueLbl
             //
@@ -196,7 +196,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 3;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

@@ -1,33 +1,33 @@
 ﻿namespace Gurux.DLMS.UI
 {
-partial class GXDLMSScriptDlg
-{
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    /// <summary>
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
+    partial class GXDLMSScriptDlg
     {
-        if (disposing && (components != null))
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
         {
-            components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
         }
-        base.Dispose(disposing);
-    }
 
-    #region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             this.OkBtn = new System.Windows.Forms.Button();
             this.CancelBtn = new System.Windows.Forms.Button();
@@ -49,6 +49,9 @@ partial class GXDLMSScriptDlg
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IdTb = new System.Windows.Forms.TextBox();
+            this.RemoveBtn = new System.Windows.Forms.Button();
+            this.EditBtn = new System.Windows.Forms.Button();
+            this.AddBtn = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,19 +60,18 @@ partial class GXDLMSScriptDlg
             // 
             this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBtn.Location = new System.Drawing.Point(156, 167);
+            this.OkBtn.Location = new System.Drawing.Point(258, 272);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
             this.OkBtn.TabIndex = 0;
             this.OkBtn.Text = "OK";
             this.OkBtn.UseVisualStyleBackColor = true;
-            this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
             // CancelBtn
             // 
             this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(237, 167);
+            this.CancelBtn.Location = new System.Drawing.Point(339, 272);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 1;
@@ -84,12 +86,11 @@ partial class GXDLMSScriptDlg
             this.IdLbl.Size = new System.Drawing.Size(50, 13);
             this.IdLbl.TabIndex = 2;
             this.IdLbl.Text = "Identifier:";
-            this.IdLbl.Click += new System.EventHandler(this.label1_Click);
             // 
             // Actions
             // 
-            this.Actions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Actions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Actions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TypeCh,
@@ -102,11 +103,11 @@ partial class GXDLMSScriptDlg
             this.Actions.HideSelection = false;
             this.Actions.Location = new System.Drawing.Point(14, 66);
             this.Actions.Name = "Actions";
-            this.Actions.Size = new System.Drawing.Size(298, 78);
+            this.Actions.Size = new System.Drawing.Size(400, 160);
             this.Actions.TabIndex = 3;
             this.Actions.UseCompatibleStateImageBehavior = false;
             this.Actions.View = System.Windows.Forms.View.Details;
-            this.Actions.DoubleClick += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            this.Actions.DoubleClick += new System.EventHandler(this.EditScript);
             // 
             // TypeCh
             // 
@@ -145,21 +146,21 @@ partial class GXDLMSScriptDlg
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem2_Click);
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.AddScript);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.EditScript);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.RemoveScript);
             // 
             // ActionsLbl
             // 
@@ -176,7 +177,7 @@ partial class GXDLMSScriptDlg
             this.fileToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(324, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(426, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -193,23 +194,23 @@ partial class GXDLMSScriptDlg
             // addToolStripMenuItem2
             // 
             this.addToolStripMenuItem2.Name = "addToolStripMenuItem2";
-            this.addToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
             this.addToolStripMenuItem2.Text = "Add";
-            this.addToolStripMenuItem2.Click += new System.EventHandler(this.addToolStripMenuItem2_Click);
+            this.addToolStripMenuItem2.Click += new System.EventHandler(this.AddScript);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.editToolStripMenuItem1.Text = "Edit";
-            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.EditScript);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.RemoveScript);
             // 
             // IdTb
             // 
@@ -218,13 +219,47 @@ partial class GXDLMSScriptDlg
             this.IdTb.Size = new System.Drawing.Size(43, 20);
             this.IdTb.TabIndex = 0;
             // 
+            // RemoveBtn
+            // 
+            this.RemoveBtn.Location = new System.Drawing.Point(339, 232);
+            this.RemoveBtn.Name = "RemoveBtn";
+            this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveBtn.TabIndex = 9;
+            this.RemoveBtn.Text = "Remove...";
+            this.RemoveBtn.UseVisualStyleBackColor = true;
+            this.RemoveBtn.Click += new System.EventHandler(this.RemoveScript);
+            // 
+            // EditBtn
+            // 
+            this.EditBtn.Location = new System.Drawing.Point(258, 232);
+            this.EditBtn.Name = "EditBtn";
+            this.EditBtn.Size = new System.Drawing.Size(75, 23);
+            this.EditBtn.TabIndex = 8;
+            this.EditBtn.Text = "Edit...";
+            this.EditBtn.UseVisualStyleBackColor = true;
+            this.EditBtn.Click += new System.EventHandler(this.EditScript);
+            // 
+            // AddBtn
+            // 
+            this.AddBtn.Location = new System.Drawing.Point(177, 232);
+            this.AddBtn.Name = "AddBtn";
+            this.AddBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddBtn.TabIndex = 7;
+            this.AddBtn.Text = "Add...";
+            this.AddBtn.UseVisualStyleBackColor = true;
+            this.AddBtn.Click += new System.EventHandler(this.AddScript);
+            // 
             // GXDLMSScriptDlg
             // 
             this.AcceptButton = this.OkBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(324, 202);
+            this.ClientSize = new System.Drawing.Size(426, 307);
+            this.ControlBox = false;
+            this.Controls.Add(this.RemoveBtn);
+            this.Controls.Add(this.EditBtn);
+            this.Controls.Add(this.AddBtn);
             this.Controls.Add(this.IdTb);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.ActionsLbl);
@@ -234,6 +269,7 @@ partial class GXDLMSScriptDlg
             this.Controls.Add(this.OkBtn);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GXDLMSScriptDlg";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Script";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -242,29 +278,32 @@ partial class GXDLMSScriptDlg
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button OkBtn;
+        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Label IdLbl;
+        private System.Windows.Forms.ListView Actions;
+        private System.Windows.Forms.Label ActionsLbl;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader TypeCh;
+        private System.Windows.Forms.ColumnHeader ObjectCh;
+        private System.Windows.Forms.ColumnHeader LnCh;
+        private System.Windows.Forms.ColumnHeader IndexCh;
+        private System.Windows.Forms.ColumnHeader ParametersCh;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.TextBox IdTb;
+        private System.Windows.Forms.Button RemoveBtn;
+        private System.Windows.Forms.Button EditBtn;
+        private System.Windows.Forms.Button AddBtn;
     }
-
-    #endregion
-
-    private System.Windows.Forms.Button OkBtn;
-    private System.Windows.Forms.Button CancelBtn;
-    private System.Windows.Forms.Label IdLbl;
-    private System.Windows.Forms.ListView Actions;
-    private System.Windows.Forms.Label ActionsLbl;
-    private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-    private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
-    private System.Windows.Forms.ColumnHeader TypeCh;
-    private System.Windows.Forms.ColumnHeader ObjectCh;
-    private System.Windows.Forms.ColumnHeader LnCh;
-    private System.Windows.Forms.ColumnHeader IndexCh;
-    private System.Windows.Forms.ColumnHeader ParametersCh;
-    private System.Windows.Forms.MenuStrip menuStrip1;
-    private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
-    private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem2;
-    private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
-    private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-    private System.Windows.Forms.TextBox IdTb;
-}
 }

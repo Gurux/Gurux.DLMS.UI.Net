@@ -116,7 +116,7 @@ namespace Gurux.DLMS.UI
             this.RxDataBroadcastCountTB.ReadOnly = true;
             this.RxDataBroadcastCountTB.Size = new System.Drawing.Size(104, 20);
             this.RxDataBroadcastCountTB.TabIndex = 20;
-            this.RxDataBroadcastCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.RxDataBroadcastCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // RxDataBroadcastCountLbl
             // 
@@ -135,7 +135,7 @@ namespace Gurux.DLMS.UI
             this.TxDataBroadcastCountTB.ReadOnly = true;
             this.TxDataBroadcastCountTB.Size = new System.Drawing.Size(104, 20);
             this.TxDataBroadcastCountTB.TabIndex = 18;
-            this.TxDataBroadcastCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.TxDataBroadcastCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TxDataBroadcastCountLbl
             // 
@@ -154,7 +154,7 @@ namespace Gurux.DLMS.UI
             this.BadCrcCountTB.ReadOnly = true;
             this.BadCrcCountTB.Size = new System.Drawing.Size(104, 20);
             this.BadCrcCountTB.TabIndex = 16;
-            this.BadCrcCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.BadCrcCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // BadCrcCountLbl
             // 
@@ -173,7 +173,7 @@ namespace Gurux.DLMS.UI
             this.CSMANoAckCountTB.ReadOnly = true;
             this.CSMANoAckCountTB.Size = new System.Drawing.Size(104, 20);
             this.CSMANoAckCountTB.TabIndex = 14;
-            this.CSMANoAckCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CSMANoAckCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // CSMANoAckCountLbl
             // 
@@ -192,7 +192,7 @@ namespace Gurux.DLMS.UI
             this.CSMAFailCountTB.ReadOnly = true;
             this.CSMAFailCountTB.Size = new System.Drawing.Size(104, 20);
             this.CSMAFailCountTB.TabIndex = 12;
-            this.CSMAFailCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CSMAFailCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // CSMAFailCountLbl
             // 
@@ -211,7 +211,7 @@ namespace Gurux.DLMS.UI
             this.RxCmdPacketCountTB.ReadOnly = true;
             this.RxCmdPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.RxCmdPacketCountTB.TabIndex = 10;
-            this.RxCmdPacketCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.RxCmdPacketCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // RxCmdPacketCountLbl
             // 
@@ -230,7 +230,7 @@ namespace Gurux.DLMS.UI
             this.TxCmdPacketCountTB.ReadOnly = true;
             this.TxCmdPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.TxCmdPacketCountTB.TabIndex = 8;
-            this.TxCmdPacketCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.TxCmdPacketCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TxCmdPacketCountLbl
             // 
@@ -249,7 +249,7 @@ namespace Gurux.DLMS.UI
             this.RxDataPacketCountTB.ReadOnly = true;
             this.RxDataPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.RxDataPacketCountTB.TabIndex = 6;
-            this.RxDataPacketCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.RxDataPacketCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // RxDataPacketCountLbl
             // 
@@ -287,7 +287,7 @@ namespace Gurux.DLMS.UI
             this.TxDataPacketCountTB.ReadOnly = true;
             this.TxDataPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.TxDataPacketCountTB.TabIndex = 0;
-            this.TxDataPacketCountTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.TxDataPacketCountTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TxDataPacketCountLbl
             // 
@@ -307,7 +307,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(347, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

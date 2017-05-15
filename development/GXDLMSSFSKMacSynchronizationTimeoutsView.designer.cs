@@ -91,7 +91,7 @@ public partial class GXDLMSSFSKMacSynchronizationTimeoutsView
         this.TimeOutFrameNotOKTB.Name = "TimeOutFrameNotOKTB";
         this.TimeOutFrameNotOKTB.Size = new System.Drawing.Size(206, 20);
         this.TimeOutFrameNotOKTB.TabIndex = 4;
-        this.TimeOutFrameNotOKTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.TimeOutFrameNotOKTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // TimeOutFrameNotOKLbl
         //
@@ -111,7 +111,7 @@ public partial class GXDLMSSFSKMacSynchronizationTimeoutsView
         this.TimeOutNotAddressedTB.Name = "TimeOutNotAddressedTB";
         this.TimeOutNotAddressedTB.Size = new System.Drawing.Size(206, 20);
         this.TimeOutNotAddressedTB.TabIndex = 3;
-        this.TimeOutNotAddressedTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.TimeOutNotAddressedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // TimeOutNotAddressedLbl
         //
@@ -131,7 +131,7 @@ public partial class GXDLMSSFSKMacSynchronizationTimeoutsView
         this.SynchronizationConfirmationTimeoutTB.Name = "SynchronizationConfirmationTimeoutTB";
         this.SynchronizationConfirmationTimeoutTB.Size = new System.Drawing.Size(206, 20);
         this.SynchronizationConfirmationTimeoutTB.TabIndex = 2;
-        this.SynchronizationConfirmationTimeoutTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.SynchronizationConfirmationTimeoutTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // SynchronizationConfirmationTimeoutLbl
         //
@@ -151,7 +151,7 @@ public partial class GXDLMSSFSKMacSynchronizationTimeoutsView
         this.SearchInitiatorTimeoutTB.Name = "SearchInitiatorTimeoutTB";
         this.SearchInitiatorTimeoutTB.Size = new System.Drawing.Size(206, 20);
         this.SearchInitiatorTimeoutTB.TabIndex = 1;
-        this.SearchInitiatorTimeoutTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.SearchInitiatorTimeoutTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // SearchInitiatorTimeoutLbl
         //
@@ -171,7 +171,7 @@ public partial class GXDLMSSFSKMacSynchronizationTimeoutsView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

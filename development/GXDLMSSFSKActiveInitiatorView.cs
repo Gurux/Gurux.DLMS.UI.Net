@@ -65,7 +65,7 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 GXDLMSSFSKActiveInitiator target = Target as GXDLMSSFSKActiveInitiator;
-                SystemTitleTB.Text = target.SystemTitle;
+                SystemTitleTB.Text = GXDLMSTranslator.ToHex(target.SystemTitle);
                 MACAddressTB.Text = target.MacAddress.ToString();
                 LSAPSelectorTB.Text = target.LSapSelector.ToString();
             }

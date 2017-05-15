@@ -245,7 +245,7 @@ namespace Gurux.DLMS.UI
             this.BusAddressTB.Name = "BusAddressTB";
             this.BusAddressTB.Size = new System.Drawing.Size(168, 20);
             this.BusAddressTB.TabIndex = 20;
-            this.BusAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.BusAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // AddressStateTB
             //
@@ -256,7 +256,7 @@ namespace Gurux.DLMS.UI
             this.AddressStateTB.Name = "AddressStateTB";
             this.AddressStateTB.Size = new System.Drawing.Size(168, 20);
             this.AddressStateTB.TabIndex = 18;
-            this.AddressStateTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.AddressStateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // AvailableBaudrateTB
             //
@@ -267,7 +267,7 @@ namespace Gurux.DLMS.UI
             this.AvailableBaudrateTB.Name = "AvailableBaudrateTB";
             this.AvailableBaudrateTB.Size = new System.Drawing.Size(168, 20);
             this.AvailableBaudrateTB.TabIndex = 3;
-            this.AvailableBaudrateTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.AvailableBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // DefaultBaudrateTB
             //
@@ -278,7 +278,7 @@ namespace Gurux.DLMS.UI
             this.DefaultBaudrateTB.Name = "DefaultBaudrateTB";
             this.DefaultBaudrateTB.Size = new System.Drawing.Size(168, 20);
             this.DefaultBaudrateTB.TabIndex = 2;
-            this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameTB
             //
@@ -289,7 +289,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // GXDLMSMBusSlavePortSetupView
             //

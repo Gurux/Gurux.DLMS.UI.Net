@@ -97,7 +97,7 @@ namespace Gurux.DLMS.UI
             this.InactivityTimeoutTB.Name = "InactivityTimeoutTB";
             this.InactivityTimeoutTB.Size = new System.Drawing.Size(171, 20);
             this.InactivityTimeoutTB.TabIndex = 11;
-            this.InactivityTimeoutTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.InactivityTimeoutTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // InactivityTimeoutLbl
             //
@@ -117,7 +117,7 @@ namespace Gurux.DLMS.UI
             this.MaxConnectionsTB.Name = "MaxConnectionsTB";
             this.MaxConnectionsTB.Size = new System.Drawing.Size(171, 20);
             this.MaxConnectionsTB.TabIndex = 9;
-            this.MaxConnectionsTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MaxConnectionsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // MaxConnectionsLbl
             //
@@ -137,7 +137,7 @@ namespace Gurux.DLMS.UI
             this.MaximumSegmentSizeTB.Name = "MaximumSegmentSizeTB";
             this.MaximumSegmentSizeTB.Size = new System.Drawing.Size(171, 20);
             this.MaximumSegmentSizeTB.TabIndex = 7;
-            this.MaximumSegmentSizeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MaximumSegmentSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // MaximumSegmentSizeLbl
             //
@@ -157,7 +157,7 @@ namespace Gurux.DLMS.UI
             this.IPReferenceTB.Name = "IPReferenceTB";
             this.IPReferenceTB.Size = new System.Drawing.Size(171, 20);
             this.IPReferenceTB.TabIndex = 5;
-            this.IPReferenceTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.IPReferenceTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // IPReferenceLbl
             //
@@ -177,7 +177,7 @@ namespace Gurux.DLMS.UI
             this.PortTB.Name = "PortTB";
             this.PortTB.Size = new System.Drawing.Size(171, 20);
             this.PortTB.TabIndex = 3;
-            this.PortTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.PortTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // PortLbl
             //
@@ -197,7 +197,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

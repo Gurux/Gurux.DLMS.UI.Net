@@ -47,11 +47,26 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-    public enum GXValueFieldType
+    /// <summary>
+    /// How value is shown.
+    /// </summary>
+    public enum ValueFieldType
     {
+        /// <summary>
+        /// Value is shown as text box.
+        /// </summary>
         TextBox = 1,
+        /// <summary>
+        /// Value is shown as compo box.
+        /// </summary>
         CompoBox = 2,
+        /// <summary>
+        /// Value is shown as list box.
+        /// </summary>
         ListBox = 3,
+        /// <summary>
+        /// Value is shown as checked list box.
+        /// </summary>
         CheckedListBox = 4
     }
 
@@ -61,7 +76,7 @@ namespace Gurux.DLMS.UI
     public partial class GXValueField : UserControl
     {
         bool dirty;
-        GXValueFieldType type;
+        ValueFieldType type;
         List<GXObisValueItem> Items;
 
         /// <summary>
@@ -70,7 +85,7 @@ namespace Gurux.DLMS.UI
         public GXValueField()
         {
             InitializeComponent();
-            Type = GXValueFieldType.TextBox;
+            Type = ValueFieldType.TextBox;
             comboBox1.Visible = false;
             dirty = false;
         }
@@ -79,6 +94,18 @@ namespace Gurux.DLMS.UI
         /// Attribute index.
         /// </summary>
         public int Index
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Are changes notified.
+        /// </summary>
+        /// <remarks>
+        /// This can be used if UI needs to change when value or access rights change.
+        /// </remarks>
+        public bool NotifyChanges
         {
             get;
             set;
@@ -111,7 +138,7 @@ namespace Gurux.DLMS.UI
         }
 
 
-        public GXValueFieldType Type
+        public ValueFieldType Type
         {
             get
             {
@@ -120,16 +147,24 @@ namespace Gurux.DLMS.UI
             set
             {
                 SetDirty(false, null);
+                if (Type == ValueFieldType.CompoBox)
+                {
+                    comboBox1.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
+                }
+                else if (Type == ValueFieldType.CheckedListBox)
+                {
+                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                }
                 type = value;
-                textBox1.Visible = type == GXValueFieldType.TextBox;
-                comboBox1.Visible = type == GXValueFieldType.CompoBox;
-                listBox1.Visible = type == GXValueFieldType.ListBox;
-                checkedlistBox1.Visible = type == GXValueFieldType.CheckedListBox;
-                if (Type == GXValueFieldType.CompoBox)
+                textBox1.Visible = type == ValueFieldType.TextBox;
+                comboBox1.Visible = type == ValueFieldType.CompoBox;
+                listBox1.Visible = type == ValueFieldType.ListBox;
+                checkedlistBox1.Visible = type == ValueFieldType.CheckedListBox;
+                if (Type == ValueFieldType.CompoBox)
                 {
                     comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
                 }
-                else if (Type == GXValueFieldType.CheckedListBox)
+                else if (Type == ValueFieldType.CheckedListBox)
                 {
                     checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
                 }
@@ -138,12 +173,27 @@ namespace Gurux.DLMS.UI
 
         private void CheckedlistBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            SetDirty(true, e);
+            int value = 0;
+            foreach (var it in checkedlistBox1.Items)
+            {
+                value |= Convert.ToInt32(it);
+            }
+            SetDirty(true, value);
         }
 
-        void textBox1_TextChanged(object sender, EventArgs e)
+        void textBox1_LostFocus(object sender, EventArgs e)
         {
-            SetDirty(true, textBox1.Text);
+            try
+            {
+                if (Target != null && string.Compare(Convert.ToString(Target.GetValues()[Index - 1]), textBox1.Text) != 0)
+                {
+                    SetDirty(true, textBox1.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void SetDirty(bool dirty, object value)
@@ -152,7 +202,54 @@ namespace Gurux.DLMS.UI
             if (dirty && Index != 0)
             {
                 ValueEventArgs v = new ValueEventArgs(Target, Index, 0, null);
-                (Target as IGXDLMSBase).SetValue(null, v);
+                DataType dt = Target.GetUIDataType(Index);
+                if (dt != DataType.None && dt != DataType.Enum)
+                {
+                    if (dt == DataType.DateTime)
+                    {
+                        if (value is string)
+                        {
+                            value = new GXDateTime((string)value);
+                        }
+                    }
+                    else if (dt == DataType.Date)
+                    {
+                        if (value is string)
+                        {
+                            value = new GXDate((string)value);
+                        }
+
+                    }
+                    else if (dt == DataType.Time)
+                    {
+                        if (value is string)
+                        {
+                            value = new GXTime((string)value);
+                        }
+                    }
+                    else
+                    {
+                        value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
+                    }
+                }
+
+                dt = Target.GetDataType(Index);
+                if (dt != DataType.None && dt != DataType.Enum && dt != DataType.Array)
+                {
+                    if (dt == DataType.OctetString)
+                    {
+                        if (value is string)
+                        {
+                            value = GXDLMSTranslator.HexToBytes((string)value);
+                        }
+                    }
+                    else
+                    {
+                        value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
+                    }
+                }
+                v.Value = value;
+                (Target as IGXDLMSBase).SetValue((Target.Parent.Parent as GXDLMSClient).Settings, v);
                 (this.ParentForm as IGXDLMSView).OnDirtyChange(Index, true);
                 Target.UpdateDirty(Index, value);
             }
@@ -230,11 +327,11 @@ namespace Gurux.DLMS.UI
                 {
                     Items = null;
                 }
-                if (this.Type == GXValueFieldType.TextBox)
+                if (this.Type == ValueFieldType.TextBox)
                 {
-                    this.Type = Items == null || Items.Count == 0 ? GXValueFieldType.TextBox : GXValueFieldType.CompoBox;
+                    this.Type = Items == null || Items.Count == 0 ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
                 }
-                else if (this.Type == GXValueFieldType.CompoBox)
+                else if (this.Type == ValueFieldType.CompoBox)
                 {
                     comboBox1.Items.Clear();
                     if (Items != null && Items.Count != 0)
@@ -252,7 +349,7 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if (this.Type == GXValueFieldType.ListBox)
+                else if (this.Type == ValueFieldType.ListBox)
                 {
                     listBox1.Items.Clear();
                     if (value is Enum)
@@ -263,7 +360,7 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if (this.Type == GXValueFieldType.CheckedListBox)
+                else if (this.Type == ValueFieldType.CheckedListBox)
                 {
                     checkedlistBox1.Items.Clear();
                     if (value is Enum)
@@ -271,8 +368,8 @@ namespace Gurux.DLMS.UI
                         foreach (var it in Enum.GetValues(value.GetType()))
                         {
                             if (it is ClockStatus &&
-                                (((ClockStatus)it) == ClockStatus.Ok) ||
-                                ((ClockStatus)it) == ClockStatus.Skip)
+                                (((ClockStatus)it) == ClockStatus.Ok ||
+                                ((ClockStatus)it) == ClockStatus.Skip))
                             {
                                 continue;
                             }
@@ -289,19 +386,19 @@ namespace Gurux.DLMS.UI
         {
             get
             {
-                if (Type == GXValueFieldType.TextBox)
+                if (Type == ValueFieldType.TextBox)
                 {
                     return this.textBox1.ReadOnly;
                 }
-                else if (Type == GXValueFieldType.CompoBox)
+                else if (Type == ValueFieldType.CompoBox)
                 {
                     return this.comboBox1.Enabled;
                 }
-                else if (Type == GXValueFieldType.ListBox)
+                else if (Type == ValueFieldType.ListBox)
                 {
                     return this.listBox1.Enabled;
                 }
-                else if (Type == GXValueFieldType.CheckedListBox)
+                else if (Type == ValueFieldType.CheckedListBox)
                 {
                     return this.checkedlistBox1.Enabled;
                 }
@@ -309,19 +406,19 @@ namespace Gurux.DLMS.UI
             }
             set
             {
-                if (Type == GXValueFieldType.TextBox)
+                if (Type == ValueFieldType.TextBox)
                 {
                     this.textBox1.ReadOnly = value;
                 }
-                else if (Type == GXValueFieldType.CompoBox)
+                else if (Type == ValueFieldType.CompoBox)
                 {
                     this.comboBox1.Enabled = !value;
                 }
-                else if (Type == GXValueFieldType.ListBox)
+                else if (Type == ValueFieldType.ListBox)
                 {
                     this.listBox1.Enabled = !value;
                 }
-                else if (Type == GXValueFieldType.CheckedListBox)
+                else if (Type == ValueFieldType.CheckedListBox)
                 {
                     this.checkedlistBox1.Enabled = !value;
                 }
@@ -345,13 +442,13 @@ namespace Gurux.DLMS.UI
             {
                 str = GXHelpers.ConvertDLMS2String(value);
             }
-            if (Type == GXValueFieldType.TextBox)
+            if (Type == ValueFieldType.TextBox)
             {
-                textBox1.TextChanged -= new EventHandler(textBox1_TextChanged);
+                textBox1.LostFocus -= new EventHandler(textBox1_LostFocus);
                 this.textBox1.Text = str;
-                textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
+                textBox1.LostFocus += new EventHandler(textBox1_LostFocus);
             }
-            else if (Type == GXValueFieldType.CompoBox)
+            else if (Type == ValueFieldType.CompoBox)
             {
                 if (comboBox1.Items.Count != 0)
                 {
@@ -392,7 +489,7 @@ namespace Gurux.DLMS.UI
                 }
                 this.comboBox1.Text = str;
             }
-            else if (Type == GXValueFieldType.ListBox)
+            else if (Type == ValueFieldType.ListBox)
             {
                 if (value is Array)
                 {
@@ -423,7 +520,7 @@ namespace Gurux.DLMS.UI
                     return;
                 }
             }
-            else if (Type == GXValueFieldType.CheckedListBox)
+            else if (Type == ValueFieldType.CheckedListBox)
             {
                 if (value is Enum)
                 {
@@ -433,11 +530,11 @@ namespace Gurux.DLMS.UI
                     {
                         checkedlistBox1.SetItemChecked(pos, false);
                     }
-
+                    int v2 = Convert.ToInt32(value);
                     foreach (var it in Enum.GetValues(value.GetType()))
                     {
-                        if (((int)it & (int)value) != 0 ||
-                                ((int)it == (int)value))
+                        int v = Convert.ToInt32(it);
+                        if ((v & v2) != 0 || (v == v2))
                         {
                             int pos = checkedlistBox1.Items.IndexOf(it);
                             if (pos != -1)
@@ -462,15 +559,15 @@ namespace Gurux.DLMS.UI
         {
             get
             {
-                if (Type == GXValueFieldType.TextBox)
+                if (Type == ValueFieldType.TextBox)
                 {
                     return this.textBox1.Text;
                 }
-                else if (Type == GXValueFieldType.CompoBox)
+                else if (Type == ValueFieldType.CompoBox)
                 {
                     return this.comboBox1.Text;
                 }
-                else if (Type == GXValueFieldType.ListBox)
+                else if (Type == ValueFieldType.ListBox)
                 {
                     return this.listBox1.Text;
                 }

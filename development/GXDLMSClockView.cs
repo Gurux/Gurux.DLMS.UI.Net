@@ -65,7 +65,20 @@ namespace Gurux.DLMS.UI
         public void OnValueChanged(int index, object value, bool user)
         {
             GXDLMSClock target = Target as GXDLMSClock;
-            if (index == 5)
+            if (index == 2)
+            {
+                //This is handled before.
+            }
+            else if (index == 3)
+            {
+                int v = (int)value;
+                //If time zone is not used.
+                TimeZoneCb.CheckedChanged -= new System.EventHandler(TimeZoneCb_CheckedChanged);
+                TimeZoneCb.Checked = v != -1;
+                TimeZoneCb.CheckedChanged += new System.EventHandler(TimeZoneCb_CheckedChanged);
+                TimeZoneTB.ReadOnly = v == -1;
+            }
+            else if (index == 5)
             {
                 BeginTB.Value = value;
             }
@@ -92,7 +105,15 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
-            if (index == 5)
+            if (index == 2)
+            {
+                UpdateTimeBtn.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 3)
+            {
+                CurrentTimeZoneBtn.Enabled = TimeZoneCb.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 5)
             {
                 BeginTB.Enabled = access > AccessMode.Read;
             }
@@ -120,12 +141,26 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(ActionType type, ValueEventArgs arg)
         {
-            arg.Value = DateTime.Now;
             DialogResult ret;
             if (arg.Index == 2)
             {
-                //Reset.
+                //Update current time
                 ret = MessageBox.Show(this, Properties.Resources.TimeSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
+                {
+                    (Target as GXDLMSClock).Time = DateTime.Now;
+                }
+                arg.Handled = ret != DialogResult.Yes;
+            }
+            else if (arg.Index == 3)
+            {
+                //Update current time zone.
+                ret = MessageBox.Show(this, Properties.Resources.TimeZoneSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
+                {
+                    (Target as GXDLMSClock).TimeZone = -(int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
+                    Target.UpdateDirty(3, (Target as GXDLMSClock).TimeZone);
+                }
                 arg.Handled = ret != DialogResult.Yes;
             }
         }
@@ -198,9 +233,18 @@ namespace Gurux.DLMS.UI
         private void EnabledCB_CheckedChanged(object sender, EventArgs e)
         {
             BeginTB.ReadOnly = EndTB.ReadOnly = DeviationTB.ReadOnly = !EnabledCB.Checked;
-            Target.UpdateDirty(8, BeginTB.ReadOnly);
+            bool check = EnabledCB.Checked;
+            (Target as GXDLMSClock).Enabled = check;
+            Target.UpdateDirty(8, check);
             errorProvider1.SetError(EnabledCB, Properties.Resources.ValueChangedTxt);
         }
 
+        private void TimeZoneCb_CheckedChanged(object sender, EventArgs e)
+        {
+            TimeZoneTB.ReadOnly = !TimeZoneCb.Checked;
+            CurrentTimeZoneBtn.Enabled = TimeZoneCb.Checked;
+            (Target as GXDLMSClock).TimeZone = -1;
+            Target.UpdateDirty(3, (Target as GXDLMSClock).TimeZone);
+        }
     }
 }

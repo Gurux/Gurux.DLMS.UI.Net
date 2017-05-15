@@ -120,7 +120,7 @@ namespace Gurux.DLMS.UI
             this.CaptureTimeTB.Name = "CaptureTimeTB";
             this.CaptureTimeTB.Size = new System.Drawing.Size(208, 20);
             this.CaptureTimeTB.TabIndex = 5;
-            this.CaptureTimeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CaptureTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // CaptureTimeLbl
             //
@@ -140,7 +140,7 @@ namespace Gurux.DLMS.UI
             this.NOPeriodTB.Name = "NOPeriodTB";
             this.NOPeriodTB.Size = new System.Drawing.Size(208, 20);
             this.NOPeriodTB.TabIndex = 8;
-            this.NOPeriodTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.NOPeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // NoPeriodLbl
             //
@@ -160,7 +160,7 @@ namespace Gurux.DLMS.UI
             this.PeriodTB.Name = "PeriodTB";
             this.PeriodTB.Size = new System.Drawing.Size(208, 20);
             this.PeriodTB.TabIndex = 7;
-            this.PeriodTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.PeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // PeriodLbl
             //
@@ -180,7 +180,7 @@ namespace Gurux.DLMS.UI
             this.LAValueTB.Name = "LAValueTB";
             this.LAValueTB.Size = new System.Drawing.Size(208, 20);
             this.LAValueTB.TabIndex = 1;
-            this.LAValueTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LAValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LAValueLbl
             //
@@ -200,7 +200,7 @@ namespace Gurux.DLMS.UI
             this.CurrentStartTimeTB.Name = "CurrentStartTimeTB";
             this.CurrentStartTimeTB.Size = new System.Drawing.Size(208, 20);
             this.CurrentStartTimeTB.TabIndex = 6;
-            this.CurrentStartTimeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CurrentStartTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // CurrentStartTimeLbl
             //
@@ -220,7 +220,7 @@ namespace Gurux.DLMS.UI
             this.StatusTB.Name = "StatusTB";
             this.StatusTB.Size = new System.Drawing.Size(208, 20);
             this.StatusTB.TabIndex = 4;
-            this.StatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // StatusLbl
             //
@@ -240,7 +240,7 @@ namespace Gurux.DLMS.UI
             this.UnitTB.Name = "UnitTB";
             this.UnitTB.Size = new System.Drawing.Size(208, 20);
             this.UnitTB.TabIndex = 3;
-            this.UnitTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.UnitTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // UnitLbl
             //
@@ -260,7 +260,7 @@ namespace Gurux.DLMS.UI
             this.ScalerTB.Name = "ScalerTB";
             this.ScalerTB.Size = new System.Drawing.Size(208, 20);
             this.ScalerTB.TabIndex = 2;
-            this.ScalerTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ScalerTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ScalerLbl
             //
@@ -280,7 +280,7 @@ namespace Gurux.DLMS.UI
             this.CAValueTB.Name = "CAValueTB";
             this.CAValueTB.Size = new System.Drawing.Size(208, 20);
             this.CAValueTB.TabIndex = 0;
-            this.CAValueTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CAValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // ValueLbl
             //
@@ -300,7 +300,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

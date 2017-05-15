@@ -63,7 +63,7 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.DescriptionLbl);
             this.groupBox1.Controls.Add(this.DescriptionTB);
@@ -94,13 +94,13 @@ namespace Gurux.DLMS.UI
             // 
             // DescriptionTB
             // 
-            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTB.Location = new System.Drawing.Point(103, 19);
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(208, 20);
-            this.DescriptionTB.TabIndex = 8;
+            this.DescriptionTB.TabIndex = 0;
             // 
             // ResetBtn
             // 
@@ -109,21 +109,21 @@ namespace Gurux.DLMS.UI
             this.ResetBtn.Location = new System.Drawing.Point(236, 151);
             this.ResetBtn.Name = "ResetBtn";
             this.ResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.ResetBtn.TabIndex = 7;
+            this.ResetBtn.TabIndex = 5;
             this.ResetBtn.Text = "Reset";
             this.ResetBtn.UseVisualStyleBackColor = true;
             // 
             // UnitTB
             // 
-            this.UnitTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.UnitTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UnitTB.Index = 0;
             this.UnitTB.Location = new System.Drawing.Point(103, 123);
             this.UnitTB.Name = "UnitTB";
             this.UnitTB.ReadOnly = true;
             this.UnitTB.Size = new System.Drawing.Size(208, 20);
-            this.UnitTB.TabIndex = 2;
-            this.UnitTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.UnitTB.TabIndex = 4;
+            this.UnitTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // UnitLbl
             // 
@@ -136,15 +136,15 @@ namespace Gurux.DLMS.UI
             // 
             // ScalerTB
             // 
-            this.ScalerTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ScalerTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ScalerTB.Index = 0;
             this.ScalerTB.Location = new System.Drawing.Point(103, 97);
             this.ScalerTB.Name = "ScalerTB";
             this.ScalerTB.ReadOnly = true;
             this.ScalerTB.Size = new System.Drawing.Size(208, 20);
-            this.ScalerTB.TabIndex = 1;
-            this.ScalerTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ScalerTB.TabIndex = 3;
+            this.ScalerTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // ScalerLbl
             // 
@@ -157,14 +157,14 @@ namespace Gurux.DLMS.UI
             // 
             // ValueTB
             // 
-            this.ValueTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ValueTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ValueTB.Index = 2;
             this.ValueTB.Location = new System.Drawing.Point(103, 71);
             this.ValueTB.Name = "ValueTB";
             this.ValueTB.Size = new System.Drawing.Size(208, 20);
-            this.ValueTB.TabIndex = 0;
-            this.ValueTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ValueTB.TabIndex = 2;
+            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // ValueLbl
             // 
@@ -177,7 +177,7 @@ namespace Gurux.DLMS.UI
             // 
             // LogicalNameTB
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
@@ -185,7 +185,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

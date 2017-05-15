@@ -125,7 +125,7 @@ namespace Gurux.DLMS.UI
             this.CommunicationSpeedTB.Name = "CommunicationSpeedTB";
             this.CommunicationSpeedTB.Size = new System.Drawing.Size(175, 20);
             this.CommunicationSpeedTB.TabIndex = 0;
-            this.CommunicationSpeedTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CommunicationSpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // CommunicationSpeedLbl
             //
@@ -145,7 +145,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(175, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

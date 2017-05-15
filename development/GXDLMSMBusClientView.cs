@@ -229,7 +229,7 @@ namespace Gurux.DLMS.UI
             this.EncryptionKeyStatusTB.ReadOnly = true;
             this.EncryptionKeyStatusTB.Size = new System.Drawing.Size(168, 20);
             this.EncryptionKeyStatusTB.TabIndex = 38;
-            this.EncryptionKeyStatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+            this.EncryptionKeyStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // EncryptionKeyStatusLbl
             // 
@@ -249,7 +249,7 @@ namespace Gurux.DLMS.UI
             this.ConfigurationTB.Name = "ConfigurationTB";
             this.ConfigurationTB.Size = new System.Drawing.Size(168, 20);
             this.ConfigurationTB.TabIndex = 35;
-            this.ConfigurationTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ConfigurationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // ConfigurationLbl
             // 
@@ -269,7 +269,7 @@ namespace Gurux.DLMS.UI
             this.AlarmTB.Name = "AlarmTB";
             this.AlarmTB.Size = new System.Drawing.Size(168, 20);
             this.AlarmTB.TabIndex = 33;
-            this.AlarmTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.AlarmTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // AlarmLbl
             // 
@@ -289,7 +289,7 @@ namespace Gurux.DLMS.UI
             this.StatusTB.Name = "StatusTB";
             this.StatusTB.Size = new System.Drawing.Size(168, 20);
             this.StatusTB.TabIndex = 32;
-            this.StatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // StatusLbl
             // 
@@ -309,7 +309,7 @@ namespace Gurux.DLMS.UI
             this.AccessNumberTB.Name = "AccessNumberTB";
             this.AccessNumberTB.Size = new System.Drawing.Size(168, 20);
             this.AccessNumberTB.TabIndex = 30;
-            this.AccessNumberTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.AccessNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // AccessNumberLbl
             // 
@@ -329,7 +329,7 @@ namespace Gurux.DLMS.UI
             this.DeviceTypeTB.Name = "DeviceTypeTB";
             this.DeviceTypeTB.Size = new System.Drawing.Size(168, 20);
             this.DeviceTypeTB.TabIndex = 28;
-            this.DeviceTypeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.DeviceTypeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // DeviceTypeLbl
             // 
@@ -349,7 +349,7 @@ namespace Gurux.DLMS.UI
             this.VersionTB.Name = "VersionTB";
             this.VersionTB.Size = new System.Drawing.Size(168, 20);
             this.VersionTB.TabIndex = 25;
-            this.VersionTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.VersionTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // VersionLbl
             // 
@@ -369,7 +369,7 @@ namespace Gurux.DLMS.UI
             this.ManufacturerIDTB.Name = "ManufacturerIDTB";
             this.ManufacturerIDTB.Size = new System.Drawing.Size(168, 20);
             this.ManufacturerIDTB.TabIndex = 23;
-            this.ManufacturerIDTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.ManufacturerIDTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // ManufacturerIDLbl
             // 
@@ -389,7 +389,7 @@ namespace Gurux.DLMS.UI
             this.IdentificationNumberTB.Name = "IdentificationNumberTB";
             this.IdentificationNumberTB.Size = new System.Drawing.Size(168, 20);
             this.IdentificationNumberTB.TabIndex = 22;
-            this.IdentificationNumberTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.IdentificationNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // IdentificationNumberLbl
             // 
@@ -409,7 +409,7 @@ namespace Gurux.DLMS.UI
             this.PrimaryAddressTB.Name = "PrimaryAddressTB";
             this.PrimaryAddressTB.Size = new System.Drawing.Size(168, 20);
             this.PrimaryAddressTB.TabIndex = 20;
-            this.PrimaryAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.PrimaryAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // PrimaryAddressLbl
             // 
@@ -429,7 +429,7 @@ namespace Gurux.DLMS.UI
             this.CapturePeriodTB.Name = "CapturePeriodTB";
             this.CapturePeriodTB.Size = new System.Drawing.Size(168, 20);
             this.CapturePeriodTB.TabIndex = 18;
-            this.CapturePeriodTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // CapturePeriodLbl
             // 
@@ -449,7 +449,7 @@ namespace Gurux.DLMS.UI
             this.CaptureDefinitionTB.Name = "CaptureDefinitionTB";
             this.CaptureDefinitionTB.Size = new System.Drawing.Size(168, 20);
             this.CaptureDefinitionTB.TabIndex = 3;
-            this.CaptureDefinitionTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.CaptureDefinitionTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // CaptureDefinitionLbl
             // 
@@ -469,7 +469,7 @@ namespace Gurux.DLMS.UI
             this.MBusPortReferenceTB.Name = "MBusPortReferenceTB";
             this.MBusPortReferenceTB.Size = new System.Drawing.Size(168, 20);
             this.MBusPortReferenceTB.TabIndex = 2;
-            this.MBusPortReferenceTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.MBusPortReferenceTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // MBusPortReferenceLbl
             // 
@@ -489,7 +489,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

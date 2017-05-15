@@ -40,28 +40,48 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.MinBeTB = new Gurux.DLMS.UI.GXValueField();
             this.MinBeLbl = new System.Windows.Forms.Label();
+            this.MaxCsmaBackoffsTB = new Gurux.DLMS.UI.GXValueField();
             this.MaxCsmaBackoffsLbl = new System.Windows.Forms.Label();
+            this.MaxBeTB = new Gurux.DLMS.UI.GXValueField();
             this.MaxBeLbl = new System.Windows.Forms.Label();
+            this.FccLegacyModeTB = new Gurux.DLMS.UI.GXValueField();
             this.FccLegacyModeLbl = new System.Windows.Forms.Label();
+            this.CenelecLegacyModeTB = new Gurux.DLMS.UI.GXValueField();
             this.CenelecLegacyModeLbl = new System.Windows.Forms.Label();
+            this.MinCwAttemptsTB = new Gurux.DLMS.UI.GXValueField();
             this.MinCwAttemptsLbl = new System.Windows.Forms.Label();
+            this.KTB = new Gurux.DLMS.UI.GXValueField();
             this.KLbl = new System.Windows.Forms.Label();
+            this.ATX = new Gurux.DLMS.UI.GXValueField();
             this.Albl = new System.Windows.Forms.Label();
+            this.BeaconRandomizationWindowLengthTB = new Gurux.DLMS.UI.GXValueField();
             this.BeaconRandomizationWindowLengthLbl = new System.Windows.Forms.Label();
+            this.CscmFairnessLimitTB = new Gurux.DLMS.UI.GXValueField();
             this.CscmFairnessLimitLbl = new System.Windows.Forms.Label();
+            this.HighPriorityWindowSizeTB = new Gurux.DLMS.UI.GXValueField();
             this.HighPriorityWindowSizeLbl = new System.Windows.Forms.Label();
+            this.NeighbourTableEntryTtlTB = new Gurux.DLMS.UI.GXValueField();
             this.NeighbourTableEntryTtlLbl = new System.Windows.Forms.Label();
+            this.MaxFrameRetriesTB = new Gurux.DLMS.UI.GXValueField();
             this.MaxFrameRetriesLbl = new System.Windows.Forms.Label();
+            this.TmrTtlTB = new Gurux.DLMS.UI.GXValueField();
             this.TmrTtlLbl = new System.Windows.Forms.Label();
+            this.ToneMaskTB = new Gurux.DLMS.UI.GXValueField();
             this.ToneMaskLbl = new System.Windows.Forms.Label();
+            this.FrameCounterTB = new Gurux.DLMS.UI.GXValueField();
             this.FrameCounterLbl = new System.Windows.Forms.Label();
+            this.PANIdTB = new Gurux.DLMS.UI.GXValueField();
             this.PANIdLbl = new System.Windows.Forms.Label();
+            this.RcCoordTB = new Gurux.DLMS.UI.GXValueField();
             this.RcCoordLbl = new System.Windows.Forms.Label();
+            this.ShortAddressTB = new Gurux.DLMS.UI.GXValueField();
             this.ShortAddressLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.KeyTable = new System.Windows.Forms.ListView();
@@ -78,8 +98,8 @@ namespace Gurux.DLMS.UI
             this.NeighbourTable = new System.Windows.Forms.ListView();
             this.AddressHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayloadModulationHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ToneMapHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ModulationHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ToneMapHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NeighbourTableMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,26 +107,6 @@ namespace Gurux.DLMS.UI
             this.NeighbourTableRemoveTbBtn = new System.Windows.Forms.Button();
             this.NeighbourTableAddBtn = new System.Windows.Forms.Button();
             this.NeighbourTableEditBtn = new System.Windows.Forms.Button();
-            this.MinBeTB = new Gurux.DLMS.UI.GXValueField();
-            this.MaxCsmaBackoffsTB = new Gurux.DLMS.UI.GXValueField();
-            this.MaxBeTB = new Gurux.DLMS.UI.GXValueField();
-            this.FccLegacyModeTB = new Gurux.DLMS.UI.GXValueField();
-            this.CenelecLegacyModeTB = new Gurux.DLMS.UI.GXValueField();
-            this.MinCwAttemptsTB = new Gurux.DLMS.UI.GXValueField();
-            this.KTB = new Gurux.DLMS.UI.GXValueField();
-            this.ATX = new Gurux.DLMS.UI.GXValueField();
-            this.BeaconRandomizationWindowLengthTB = new Gurux.DLMS.UI.GXValueField();
-            this.CscmFairnessLimitTB = new Gurux.DLMS.UI.GXValueField();
-            this.HighPriorityWindowSizeTB = new Gurux.DLMS.UI.GXValueField();
-            this.NeighbourTableEntryTtlTB = new Gurux.DLMS.UI.GXValueField();
-            this.MaxFrameRetriesTB = new Gurux.DLMS.UI.GXValueField();
-            this.TmrTtlTB = new Gurux.DLMS.UI.GXValueField();
-            this.ToneMaskTB = new Gurux.DLMS.UI.GXValueField();
-            this.FrameCounterTB = new Gurux.DLMS.UI.GXValueField();
-            this.PANIdTB = new Gurux.DLMS.UI.GXValueField();
-            this.RcCoordTB = new Gurux.DLMS.UI.GXValueField();
-            this.ShortAddressTB = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -119,7 +119,7 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.DescriptionLbl);
             this.groupBox1.Controls.Add(this.DescriptionTB);
@@ -143,13 +143,24 @@ namespace Gurux.DLMS.UI
             // 
             // DescriptionTB
             // 
-            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTB.Location = new System.Drawing.Point(103, 19);
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(367, 20);
             this.DescriptionTB.TabIndex = 4;
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.Size = new System.Drawing.Size(366, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -168,8 +179,8 @@ namespace Gurux.DLMS.UI
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -228,6 +239,18 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // MinBeTB
+            // 
+            this.MinBeTB.Index = 22;
+            this.MinBeTB.Location = new System.Drawing.Point(111, 241);
+            this.MinBeTB.Name = "MinBeTB";
+            this.MinBeTB.ReadOnly = true;
+            this.MinBeTB.Size = new System.Drawing.Size(104, 20);
+            this.MinBeTB.TabIndex = 58;
+            this.MinBeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MinBeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MinBeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // MinBeLbl
             // 
             this.MinBeLbl.AutoSize = true;
@@ -236,6 +259,18 @@ namespace Gurux.DLMS.UI
             this.MinBeLbl.Size = new System.Drawing.Size(72, 13);
             this.MinBeLbl.TabIndex = 59;
             this.MinBeLbl.Text = "Min  backoff: ";
+            // 
+            // MaxCsmaBackoffsTB
+            // 
+            this.MaxCsmaBackoffsTB.Index = 21;
+            this.MaxCsmaBackoffsTB.Location = new System.Drawing.Point(353, 218);
+            this.MaxCsmaBackoffsTB.Name = "MaxCsmaBackoffsTB";
+            this.MaxCsmaBackoffsTB.ReadOnly = true;
+            this.MaxCsmaBackoffsTB.Size = new System.Drawing.Size(104, 20);
+            this.MaxCsmaBackoffsTB.TabIndex = 56;
+            this.MaxCsmaBackoffsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MaxCsmaBackoffsTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MaxCsmaBackoffsTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // MaxCsmaBackoffsLbl
             // 
@@ -246,6 +281,18 @@ namespace Gurux.DLMS.UI
             this.MaxCsmaBackoffsLbl.TabIndex = 57;
             this.MaxCsmaBackoffsLbl.Text = "Max CSMA Backoffs";
             // 
+            // MaxBeTB
+            // 
+            this.MaxBeTB.Index = 20;
+            this.MaxBeTB.Location = new System.Drawing.Point(111, 215);
+            this.MaxBeTB.Name = "MaxBeTB";
+            this.MaxBeTB.ReadOnly = true;
+            this.MaxBeTB.Size = new System.Drawing.Size(104, 20);
+            this.MaxBeTB.TabIndex = 54;
+            this.MaxBeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MaxBeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MaxBeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // MaxBeLbl
             // 
             this.MaxBeLbl.AutoSize = true;
@@ -254,6 +301,18 @@ namespace Gurux.DLMS.UI
             this.MaxBeLbl.Size = new System.Drawing.Size(72, 13);
             this.MaxBeLbl.TabIndex = 55;
             this.MaxBeLbl.Text = "Max  backoff:";
+            // 
+            // FccLegacyModeTB
+            // 
+            this.FccLegacyModeTB.Index = 19;
+            this.FccLegacyModeTB.Location = new System.Drawing.Point(352, 192);
+            this.FccLegacyModeTB.Name = "FccLegacyModeTB";
+            this.FccLegacyModeTB.ReadOnly = true;
+            this.FccLegacyModeTB.Size = new System.Drawing.Size(104, 20);
+            this.FccLegacyModeTB.TabIndex = 52;
+            this.FccLegacyModeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.FccLegacyModeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.FccLegacyModeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // FccLegacyModeLbl
             // 
@@ -264,6 +323,18 @@ namespace Gurux.DLMS.UI
             this.FccLegacyModeLbl.TabIndex = 53;
             this.FccLegacyModeLbl.Text = "FCC Legacy Mode:";
             // 
+            // CenelecLegacyModeTB
+            // 
+            this.CenelecLegacyModeTB.Index = 18;
+            this.CenelecLegacyModeTB.Location = new System.Drawing.Point(110, 189);
+            this.CenelecLegacyModeTB.Name = "CenelecLegacyModeTB";
+            this.CenelecLegacyModeTB.ReadOnly = true;
+            this.CenelecLegacyModeTB.Size = new System.Drawing.Size(104, 20);
+            this.CenelecLegacyModeTB.TabIndex = 50;
+            this.CenelecLegacyModeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CenelecLegacyModeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.CenelecLegacyModeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // CenelecLegacyModeLbl
             // 
             this.CenelecLegacyModeLbl.AutoSize = true;
@@ -272,6 +343,18 @@ namespace Gurux.DLMS.UI
             this.CenelecLegacyModeLbl.Size = new System.Drawing.Size(87, 13);
             this.CenelecLegacyModeLbl.TabIndex = 51;
             this.CenelecLegacyModeLbl.Text = "Cenelec Legacy:";
+            // 
+            // MinCwAttemptsTB
+            // 
+            this.MinCwAttemptsTB.Index = 17;
+            this.MinCwAttemptsTB.Location = new System.Drawing.Point(353, 167);
+            this.MinCwAttemptsTB.Name = "MinCwAttemptsTB";
+            this.MinCwAttemptsTB.ReadOnly = true;
+            this.MinCwAttemptsTB.Size = new System.Drawing.Size(104, 20);
+            this.MinCwAttemptsTB.TabIndex = 48;
+            this.MinCwAttemptsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MinCwAttemptsTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MinCwAttemptsTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // MinCwAttemptsLbl
             // 
@@ -282,6 +365,18 @@ namespace Gurux.DLMS.UI
             this.MinCwAttemptsLbl.TabIndex = 49;
             this.MinCwAttemptsLbl.Text = "Min CW Attempts:";
             // 
+            // KTB
+            // 
+            this.KTB.Index = 16;
+            this.KTB.Location = new System.Drawing.Point(111, 164);
+            this.KTB.Name = "KTB";
+            this.KTB.ReadOnly = true;
+            this.KTB.Size = new System.Drawing.Size(104, 20);
+            this.KTB.TabIndex = 46;
+            this.KTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.KTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.KTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // KLbl
             // 
             this.KLbl.AutoSize = true;
@@ -290,6 +385,18 @@ namespace Gurux.DLMS.UI
             this.KLbl.Size = new System.Drawing.Size(17, 13);
             this.KLbl.TabIndex = 47;
             this.KLbl.Text = "K:";
+            // 
+            // ATX
+            // 
+            this.ATX.Index = 15;
+            this.ATX.Location = new System.Drawing.Point(353, 141);
+            this.ATX.Name = "ATX";
+            this.ATX.ReadOnly = true;
+            this.ATX.Size = new System.Drawing.Size(104, 20);
+            this.ATX.TabIndex = 44;
+            this.ATX.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ATX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ATX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // Albl
             // 
@@ -300,6 +407,18 @@ namespace Gurux.DLMS.UI
             this.Albl.TabIndex = 45;
             this.Albl.Text = "A:";
             // 
+            // BeaconRandomizationWindowLengthTB
+            // 
+            this.BeaconRandomizationWindowLengthTB.Index = 14;
+            this.BeaconRandomizationWindowLengthTB.Location = new System.Drawing.Point(111, 138);
+            this.BeaconRandomizationWindowLengthTB.Name = "BeaconRandomizationWindowLengthTB";
+            this.BeaconRandomizationWindowLengthTB.ReadOnly = true;
+            this.BeaconRandomizationWindowLengthTB.Size = new System.Drawing.Size(104, 20);
+            this.BeaconRandomizationWindowLengthTB.TabIndex = 42;
+            this.BeaconRandomizationWindowLengthTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.BeaconRandomizationWindowLengthTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.BeaconRandomizationWindowLengthTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // BeaconRandomizationWindowLengthLbl
             // 
             this.BeaconRandomizationWindowLengthLbl.AutoSize = true;
@@ -308,6 +427,18 @@ namespace Gurux.DLMS.UI
             this.BeaconRandomizationWindowLengthLbl.Size = new System.Drawing.Size(70, 13);
             this.BeaconRandomizationWindowLengthLbl.TabIndex = 43;
             this.BeaconRandomizationWindowLengthLbl.Text = "Beacon Rnd:";
+            // 
+            // CscmFairnessLimitTB
+            // 
+            this.CscmFairnessLimitTB.Index = 13;
+            this.CscmFairnessLimitTB.Location = new System.Drawing.Point(352, 115);
+            this.CscmFairnessLimitTB.Name = "CscmFairnessLimitTB";
+            this.CscmFairnessLimitTB.ReadOnly = true;
+            this.CscmFairnessLimitTB.Size = new System.Drawing.Size(104, 20);
+            this.CscmFairnessLimitTB.TabIndex = 40;
+            this.CscmFairnessLimitTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CscmFairnessLimitTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.CscmFairnessLimitTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // CscmFairnessLimitLbl
             // 
@@ -318,6 +449,18 @@ namespace Gurux.DLMS.UI
             this.CscmFairnessLimitLbl.TabIndex = 41;
             this.CscmFairnessLimitLbl.Text = "CSCM Fairness Limit:";
             // 
+            // HighPriorityWindowSizeTB
+            // 
+            this.HighPriorityWindowSizeTB.Index = 12;
+            this.HighPriorityWindowSizeTB.Location = new System.Drawing.Point(110, 112);
+            this.HighPriorityWindowSizeTB.Name = "HighPriorityWindowSizeTB";
+            this.HighPriorityWindowSizeTB.ReadOnly = true;
+            this.HighPriorityWindowSizeTB.Size = new System.Drawing.Size(104, 20);
+            this.HighPriorityWindowSizeTB.TabIndex = 38;
+            this.HighPriorityWindowSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.HighPriorityWindowSizeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.HighPriorityWindowSizeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // HighPriorityWindowSizeLbl
             // 
             this.HighPriorityWindowSizeLbl.AutoSize = true;
@@ -326,6 +469,18 @@ namespace Gurux.DLMS.UI
             this.HighPriorityWindowSizeLbl.Size = new System.Drawing.Size(87, 13);
             this.HighPriorityWindowSizeLbl.TabIndex = 39;
             this.HighPriorityWindowSizeLbl.Text = "HighPriority SIze:";
+            // 
+            // NeighbourTableEntryTtlTB
+            // 
+            this.NeighbourTableEntryTtlTB.Index = 10;
+            this.NeighbourTableEntryTtlTB.Location = new System.Drawing.Point(353, 87);
+            this.NeighbourTableEntryTtlTB.Name = "NeighbourTableEntryTtlTB";
+            this.NeighbourTableEntryTtlTB.ReadOnly = true;
+            this.NeighbourTableEntryTtlTB.Size = new System.Drawing.Size(104, 20);
+            this.NeighbourTableEntryTtlTB.TabIndex = 36;
+            this.NeighbourTableEntryTtlTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.NeighbourTableEntryTtlTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.NeighbourTableEntryTtlTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // NeighbourTableEntryTtlLbl
             // 
@@ -336,6 +491,18 @@ namespace Gurux.DLMS.UI
             this.NeighbourTableEntryTtlLbl.TabIndex = 37;
             this.NeighbourTableEntryTtlLbl.Text = "Neighbour table TTL:";
             // 
+            // MaxFrameRetriesTB
+            // 
+            this.MaxFrameRetriesTB.Index = 9;
+            this.MaxFrameRetriesTB.Location = new System.Drawing.Point(111, 84);
+            this.MaxFrameRetriesTB.Name = "MaxFrameRetriesTB";
+            this.MaxFrameRetriesTB.ReadOnly = true;
+            this.MaxFrameRetriesTB.Size = new System.Drawing.Size(104, 20);
+            this.MaxFrameRetriesTB.TabIndex = 34;
+            this.MaxFrameRetriesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MaxFrameRetriesTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MaxFrameRetriesTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // MaxFrameRetriesLbl
             // 
             this.MaxFrameRetriesLbl.AutoSize = true;
@@ -344,6 +511,18 @@ namespace Gurux.DLMS.UI
             this.MaxFrameRetriesLbl.Size = new System.Drawing.Size(98, 13);
             this.MaxFrameRetriesLbl.TabIndex = 35;
             this.MaxFrameRetriesLbl.Text = "Max Frame Retries:";
+            // 
+            // TmrTtlTB
+            // 
+            this.TmrTtlTB.Index = 8;
+            this.TmrTtlTB.Location = new System.Drawing.Point(353, 61);
+            this.TmrTtlTB.Name = "TmrTtlTB";
+            this.TmrTtlTB.ReadOnly = true;
+            this.TmrTtlTB.Size = new System.Drawing.Size(104, 20);
+            this.TmrTtlTB.TabIndex = 32;
+            this.TmrTtlTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TmrTtlTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.TmrTtlTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // TmrTtlLbl
             // 
@@ -354,6 +533,18 @@ namespace Gurux.DLMS.UI
             this.TmrTtlLbl.TabIndex = 33;
             this.TmrTtlLbl.Text = "Tone Map TTL:";
             // 
+            // ToneMaskTB
+            // 
+            this.ToneMaskTB.Index = 7;
+            this.ToneMaskTB.Location = new System.Drawing.Point(111, 58);
+            this.ToneMaskTB.Name = "ToneMaskTB";
+            this.ToneMaskTB.ReadOnly = true;
+            this.ToneMaskTB.Size = new System.Drawing.Size(104, 20);
+            this.ToneMaskTB.TabIndex = 30;
+            this.ToneMaskTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ToneMaskTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ToneMaskTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // ToneMaskLbl
             // 
             this.ToneMaskLbl.AutoSize = true;
@@ -362,6 +553,18 @@ namespace Gurux.DLMS.UI
             this.ToneMaskLbl.Size = new System.Drawing.Size(64, 13);
             this.ToneMaskLbl.TabIndex = 31;
             this.ToneMaskLbl.Text = "Tone Mask:";
+            // 
+            // FrameCounterTB
+            // 
+            this.FrameCounterTB.Index = 6;
+            this.FrameCounterTB.Location = new System.Drawing.Point(352, 35);
+            this.FrameCounterTB.Name = "FrameCounterTB";
+            this.FrameCounterTB.ReadOnly = true;
+            this.FrameCounterTB.Size = new System.Drawing.Size(104, 20);
+            this.FrameCounterTB.TabIndex = 28;
+            this.FrameCounterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.FrameCounterTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.FrameCounterTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // FrameCounterLbl
             // 
@@ -372,6 +575,18 @@ namespace Gurux.DLMS.UI
             this.FrameCounterLbl.TabIndex = 29;
             this.FrameCounterLbl.Text = "Frame Counter:";
             // 
+            // PANIdTB
+            // 
+            this.PANIdTB.Index = 4;
+            this.PANIdTB.Location = new System.Drawing.Point(110, 32);
+            this.PANIdTB.Name = "PANIdTB";
+            this.PANIdTB.ReadOnly = true;
+            this.PANIdTB.Size = new System.Drawing.Size(104, 20);
+            this.PANIdTB.TabIndex = 26;
+            this.PANIdTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PANIdTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.PANIdTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // PANIdLbl
             // 
             this.PANIdLbl.AutoSize = true;
@@ -381,6 +596,18 @@ namespace Gurux.DLMS.UI
             this.PANIdLbl.TabIndex = 27;
             this.PANIdLbl.Text = "PAN ID:";
             // 
+            // RcCoordTB
+            // 
+            this.RcCoordTB.Index = 3;
+            this.RcCoordTB.Location = new System.Drawing.Point(352, 9);
+            this.RcCoordTB.Name = "RcCoordTB";
+            this.RcCoordTB.ReadOnly = true;
+            this.RcCoordTB.Size = new System.Drawing.Size(104, 20);
+            this.RcCoordTB.TabIndex = 24;
+            this.RcCoordTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.RcCoordTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.RcCoordTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // RcCoordLbl
             // 
             this.RcCoordLbl.AutoSize = true;
@@ -389,6 +616,18 @@ namespace Gurux.DLMS.UI
             this.RcCoordLbl.Size = new System.Drawing.Size(104, 13);
             this.RcCoordLbl.TabIndex = 25;
             this.RcCoordLbl.Text = "Route cost to coord:";
+            // 
+            // ShortAddressTB
+            // 
+            this.ShortAddressTB.Index = 2;
+            this.ShortAddressTB.Location = new System.Drawing.Point(110, 6);
+            this.ShortAddressTB.Name = "ShortAddressTB";
+            this.ShortAddressTB.ReadOnly = true;
+            this.ShortAddressTB.Size = new System.Drawing.Size(104, 20);
+            this.ShortAddressTB.TabIndex = 22;
+            this.ShortAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ShortAddressTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ShortAddressTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // ShortAddressLbl
             // 
@@ -540,15 +779,15 @@ namespace Gurux.DLMS.UI
             this.PayloadModulationHeader.Text = "Enabled:";
             this.PayloadModulationHeader.Width = 120;
             // 
-            // ToneMapHeader
-            // 
-            this.ToneMapHeader.Text = "Tone Map:";
-            this.ToneMapHeader.Width = 97;
-            // 
             // ModulationHeader
             // 
             this.ModulationHeader.Text = "Modulation:";
             this.ModulationHeader.Width = 98;
+            // 
+            // ToneMapHeader
+            // 
+            this.ToneMapHeader.Text = "Tone Map:";
+            this.ToneMapHeader.Width = 97;
             // 
             // NeighbourTableMenu
             // 
@@ -609,245 +848,6 @@ namespace Gurux.DLMS.UI
             this.NeighbourTableEditBtn.Text = "Edit...";
             this.NeighbourTableEditBtn.UseVisualStyleBackColor = true;
             this.NeighbourTableEditBtn.Click += new System.EventHandler(this.NeighbourTableEditBtn_Click);
-            // 
-            // MinBeTB
-            // 
-            this.MinBeTB.Index = 22;
-            this.MinBeTB.Location = new System.Drawing.Point(111, 241);
-            this.MinBeTB.Name = "MinBeTB";
-            this.MinBeTB.ReadOnly = true;
-            this.MinBeTB.Size = new System.Drawing.Size(104, 20);
-            this.MinBeTB.TabIndex = 58;
-            this.MinBeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.MinBeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MinBeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MaxCsmaBackoffsTB
-            // 
-            this.MaxCsmaBackoffsTB.Index = 21;
-            this.MaxCsmaBackoffsTB.Location = new System.Drawing.Point(353, 218);
-            this.MaxCsmaBackoffsTB.Name = "MaxCsmaBackoffsTB";
-            this.MaxCsmaBackoffsTB.ReadOnly = true;
-            this.MaxCsmaBackoffsTB.Size = new System.Drawing.Size(104, 20);
-            this.MaxCsmaBackoffsTB.TabIndex = 56;
-            this.MaxCsmaBackoffsTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.MaxCsmaBackoffsTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MaxCsmaBackoffsTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MaxBeTB
-            // 
-            this.MaxBeTB.Index = 20;
-            this.MaxBeTB.Location = new System.Drawing.Point(111, 215);
-            this.MaxBeTB.Name = "MaxBeTB";
-            this.MaxBeTB.ReadOnly = true;
-            this.MaxBeTB.Size = new System.Drawing.Size(104, 20);
-            this.MaxBeTB.TabIndex = 54;
-            this.MaxBeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.MaxBeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MaxBeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // FccLegacyModeTB
-            // 
-            this.FccLegacyModeTB.Index = 19;
-            this.FccLegacyModeTB.Location = new System.Drawing.Point(352, 192);
-            this.FccLegacyModeTB.Name = "FccLegacyModeTB";
-            this.FccLegacyModeTB.ReadOnly = true;
-            this.FccLegacyModeTB.Size = new System.Drawing.Size(104, 20);
-            this.FccLegacyModeTB.TabIndex = 52;
-            this.FccLegacyModeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.FccLegacyModeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.FccLegacyModeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // CenelecLegacyModeTB
-            // 
-            this.CenelecLegacyModeTB.Index = 18;
-            this.CenelecLegacyModeTB.Location = new System.Drawing.Point(110, 189);
-            this.CenelecLegacyModeTB.Name = "CenelecLegacyModeTB";
-            this.CenelecLegacyModeTB.ReadOnly = true;
-            this.CenelecLegacyModeTB.Size = new System.Drawing.Size(104, 20);
-            this.CenelecLegacyModeTB.TabIndex = 50;
-            this.CenelecLegacyModeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.CenelecLegacyModeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.CenelecLegacyModeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MinCwAttemptsTB
-            // 
-            this.MinCwAttemptsTB.Index = 17;
-            this.MinCwAttemptsTB.Location = new System.Drawing.Point(353, 167);
-            this.MinCwAttemptsTB.Name = "MinCwAttemptsTB";
-            this.MinCwAttemptsTB.ReadOnly = true;
-            this.MinCwAttemptsTB.Size = new System.Drawing.Size(104, 20);
-            this.MinCwAttemptsTB.TabIndex = 48;
-            this.MinCwAttemptsTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.MinCwAttemptsTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MinCwAttemptsTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // KTB
-            // 
-            this.KTB.Index = 16;
-            this.KTB.Location = new System.Drawing.Point(111, 164);
-            this.KTB.Name = "KTB";
-            this.KTB.ReadOnly = true;
-            this.KTB.Size = new System.Drawing.Size(104, 20);
-            this.KTB.TabIndex = 46;
-            this.KTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.KTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.KTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // ATX
-            // 
-            this.ATX.Index = 15;
-            this.ATX.Location = new System.Drawing.Point(353, 141);
-            this.ATX.Name = "ATX";
-            this.ATX.ReadOnly = true;
-            this.ATX.Size = new System.Drawing.Size(104, 20);
-            this.ATX.TabIndex = 44;
-            this.ATX.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.ATX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ATX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // BeaconRandomizationWindowLengthTB
-            // 
-            this.BeaconRandomizationWindowLengthTB.Index = 14;
-            this.BeaconRandomizationWindowLengthTB.Location = new System.Drawing.Point(111, 138);
-            this.BeaconRandomizationWindowLengthTB.Name = "BeaconRandomizationWindowLengthTB";
-            this.BeaconRandomizationWindowLengthTB.ReadOnly = true;
-            this.BeaconRandomizationWindowLengthTB.Size = new System.Drawing.Size(104, 20);
-            this.BeaconRandomizationWindowLengthTB.TabIndex = 42;
-            this.BeaconRandomizationWindowLengthTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.BeaconRandomizationWindowLengthTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.BeaconRandomizationWindowLengthTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // CscmFairnessLimitTB
-            // 
-            this.CscmFairnessLimitTB.Index = 13;
-            this.CscmFairnessLimitTB.Location = new System.Drawing.Point(352, 115);
-            this.CscmFairnessLimitTB.Name = "CscmFairnessLimitTB";
-            this.CscmFairnessLimitTB.ReadOnly = true;
-            this.CscmFairnessLimitTB.Size = new System.Drawing.Size(104, 20);
-            this.CscmFairnessLimitTB.TabIndex = 40;
-            this.CscmFairnessLimitTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.CscmFairnessLimitTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.CscmFairnessLimitTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // HighPriorityWindowSizeTB
-            // 
-            this.HighPriorityWindowSizeTB.Index = 12;
-            this.HighPriorityWindowSizeTB.Location = new System.Drawing.Point(110, 112);
-            this.HighPriorityWindowSizeTB.Name = "HighPriorityWindowSizeTB";
-            this.HighPriorityWindowSizeTB.ReadOnly = true;
-            this.HighPriorityWindowSizeTB.Size = new System.Drawing.Size(104, 20);
-            this.HighPriorityWindowSizeTB.TabIndex = 38;
-            this.HighPriorityWindowSizeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.HighPriorityWindowSizeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.HighPriorityWindowSizeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // NeighbourTableEntryTtlTB
-            // 
-            this.NeighbourTableEntryTtlTB.Index = 10;
-            this.NeighbourTableEntryTtlTB.Location = new System.Drawing.Point(353, 87);
-            this.NeighbourTableEntryTtlTB.Name = "NeighbourTableEntryTtlTB";
-            this.NeighbourTableEntryTtlTB.ReadOnly = true;
-            this.NeighbourTableEntryTtlTB.Size = new System.Drawing.Size(104, 20);
-            this.NeighbourTableEntryTtlTB.TabIndex = 36;
-            this.NeighbourTableEntryTtlTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.NeighbourTableEntryTtlTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.NeighbourTableEntryTtlTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MaxFrameRetriesTB
-            // 
-            this.MaxFrameRetriesTB.Index = 9;
-            this.MaxFrameRetriesTB.Location = new System.Drawing.Point(111, 84);
-            this.MaxFrameRetriesTB.Name = "MaxFrameRetriesTB";
-            this.MaxFrameRetriesTB.ReadOnly = true;
-            this.MaxFrameRetriesTB.Size = new System.Drawing.Size(104, 20);
-            this.MaxFrameRetriesTB.TabIndex = 34;
-            this.MaxFrameRetriesTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.MaxFrameRetriesTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MaxFrameRetriesTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // TmrTtlTB
-            // 
-            this.TmrTtlTB.Index = 8;
-            this.TmrTtlTB.Location = new System.Drawing.Point(353, 61);
-            this.TmrTtlTB.Name = "TmrTtlTB";
-            this.TmrTtlTB.ReadOnly = true;
-            this.TmrTtlTB.Size = new System.Drawing.Size(104, 20);
-            this.TmrTtlTB.TabIndex = 32;
-            this.TmrTtlTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.TmrTtlTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.TmrTtlTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // ToneMaskTB
-            // 
-            this.ToneMaskTB.Index = 7;
-            this.ToneMaskTB.Location = new System.Drawing.Point(111, 58);
-            this.ToneMaskTB.Name = "ToneMaskTB";
-            this.ToneMaskTB.ReadOnly = true;
-            this.ToneMaskTB.Size = new System.Drawing.Size(104, 20);
-            this.ToneMaskTB.TabIndex = 30;
-            this.ToneMaskTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.ToneMaskTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ToneMaskTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // FrameCounterTB
-            // 
-            this.FrameCounterTB.Index = 6;
-            this.FrameCounterTB.Location = new System.Drawing.Point(352, 35);
-            this.FrameCounterTB.Name = "FrameCounterTB";
-            this.FrameCounterTB.ReadOnly = true;
-            this.FrameCounterTB.Size = new System.Drawing.Size(104, 20);
-            this.FrameCounterTB.TabIndex = 28;
-            this.FrameCounterTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.FrameCounterTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.FrameCounterTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // PANIdTB
-            // 
-            this.PANIdTB.Index = 4;
-            this.PANIdTB.Location = new System.Drawing.Point(110, 32);
-            this.PANIdTB.Name = "PANIdTB";
-            this.PANIdTB.ReadOnly = true;
-            this.PANIdTB.Size = new System.Drawing.Size(104, 20);
-            this.PANIdTB.TabIndex = 26;
-            this.PANIdTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.PANIdTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.PANIdTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // RcCoordTB
-            // 
-            this.RcCoordTB.Index = 3;
-            this.RcCoordTB.Location = new System.Drawing.Point(352, 9);
-            this.RcCoordTB.Name = "RcCoordTB";
-            this.RcCoordTB.ReadOnly = true;
-            this.RcCoordTB.Size = new System.Drawing.Size(104, 20);
-            this.RcCoordTB.TabIndex = 24;
-            this.RcCoordTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.RcCoordTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.RcCoordTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // ShortAddressTB
-            // 
-            this.ShortAddressTB.Index = 2;
-            this.ShortAddressTB.Location = new System.Drawing.Point(110, 6);
-            this.ShortAddressTB.Name = "ShortAddressTB";
-            this.ShortAddressTB.ReadOnly = true;
-            this.ShortAddressTB.Size = new System.Drawing.Size(104, 20);
-            this.ShortAddressTB.TabIndex = 22;
-            this.ShortAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
-            this.ShortAddressTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ShortAddressTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(366, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
             // 
             // GXDLMSG3PlcMacSetupView
             // 

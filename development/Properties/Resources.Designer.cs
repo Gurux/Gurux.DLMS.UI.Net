@@ -106,6 +106,33 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Index..
+        /// </summary>
+        internal static string InvalidIndex {
+            get {
+                return ResourceManager.GetString("InvalidIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid OBIS code.
+        /// </summary>
+        internal static string InvalidObisCode {
+            get {
+                return ResourceManager.GetString("InvalidObisCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid target..
+        /// </summary>
+        internal static string InvalidTarget {
+            get {
+                return ResourceManager.GetString("InvalidTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure that you want to capture current values?.
         /// </summary>
         internal static string ProfileGenericCaptureWarning {
@@ -201,6 +228,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string TimeSetWarning {
             get {
                 return ResourceManager.GetString("TimeSetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to set time zone of the PC to the meter?.
+        /// </summary>
+        internal static string TimeZoneSetWarning {
+            get {
+                return ResourceManager.GetString("TimeZoneSetWarning", resourceCulture);
             }
         }
         

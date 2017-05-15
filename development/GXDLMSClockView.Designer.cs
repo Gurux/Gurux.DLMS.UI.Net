@@ -52,6 +52,7 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSClockView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TimeZoneCb = new System.Windows.Forms.CheckBox();
             this.UpdateTimeBtn = new Gurux.DLMS.UI.GXButton();
             this.ClockBaseTB = new Gurux.DLMS.UI.GXValueField();
             this.ClockBaseLbl = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@ namespace Gurux.DLMS.UI
             this.BeginTB = new Gurux.DLMS.UI.GXValueField();
             this.BeginLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.CurrentTimeZoneBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -83,6 +85,8 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.CurrentTimeZoneBtn);
+            this.groupBox1.Controls.Add(this.TimeZoneCb);
             this.groupBox1.Controls.Add(this.UpdateTimeBtn);
             this.groupBox1.Controls.Add(this.ClockBaseTB);
             this.groupBox1.Controls.Add(this.ClockBaseLbl);
@@ -101,15 +105,25 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Clock Object";
             // 
+            // TimeZoneCb
+            // 
+            this.TimeZoneCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TimeZoneCb.Location = new System.Drawing.Point(215, 75);
+            this.TimeZoneCb.Name = "TimeZoneCb";
+            this.TimeZoneCb.Size = new System.Drawing.Size(37, 17);
+            this.TimeZoneCb.TabIndex = 3;
+            this.TimeZoneCb.UseVisualStyleBackColor = false;
+            this.TimeZoneCb.CheckedChanged += new System.EventHandler(this.TimeZoneCb_CheckedChanged);
+            // 
             // UpdateTimeBtn
             // 
             this.UpdateTimeBtn.Action = Gurux.DLMS.UI.ActionType.Write;
             this.UpdateTimeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdateTimeBtn.Index = 2;
-            this.UpdateTimeBtn.Location = new System.Drawing.Point(269, 45);
+            this.UpdateTimeBtn.Location = new System.Drawing.Point(244, 45);
             this.UpdateTimeBtn.Name = "UpdateTimeBtn";
-            this.UpdateTimeBtn.Size = new System.Drawing.Size(75, 23);
-            this.UpdateTimeBtn.TabIndex = 24;
+            this.UpdateTimeBtn.Size = new System.Drawing.Size(100, 23);
+            this.UpdateTimeBtn.TabIndex = 1;
             this.UpdateTimeBtn.Text = "Current time";
             this.UpdateTimeBtn.UseVisualStyleBackColor = true;
             // 
@@ -118,10 +132,11 @@ namespace Gurux.DLMS.UI
             this.ClockBaseTB.Index = 9;
             this.ClockBaseTB.Location = new System.Drawing.Point(102, 301);
             this.ClockBaseTB.Name = "ClockBaseTB";
+            this.ClockBaseTB.NotifyChanges = false;
             this.ClockBaseTB.ReadOnly = true;
             this.ClockBaseTB.Size = new System.Drawing.Size(66, 63);
-            this.ClockBaseTB.TabIndex = 7;
-            this.ClockBaseTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+            this.ClockBaseTB.TabIndex = 10;
+            this.ClockBaseTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // ClockBaseLbl
             // 
@@ -139,10 +154,11 @@ namespace Gurux.DLMS.UI
             this.StatusTB.Index = 4;
             this.StatusTB.Location = new System.Drawing.Point(102, 99);
             this.StatusTB.Name = "StatusTB";
+            this.StatusTB.NotifyChanges = false;
             this.StatusTB.ReadOnly = true;
             this.StatusTB.Size = new System.Drawing.Size(242, 110);
-            this.StatusTB.TabIndex = 2;
-            this.StatusTB.Type = Gurux.DLMS.UI.GXValueFieldType.CheckedListBox;
+            this.StatusTB.TabIndex = 5;
+            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.CheckedListBox;
             // 
             // StatusLbl
             // 
@@ -160,9 +176,10 @@ namespace Gurux.DLMS.UI
             this.TimeZoneTB.Index = 3;
             this.TimeZoneTB.Location = new System.Drawing.Point(102, 73);
             this.TimeZoneTB.Name = "TimeZoneTB";
-            this.TimeZoneTB.Size = new System.Drawing.Size(242, 20);
-            this.TimeZoneTB.TabIndex = 1;
-            this.TimeZoneTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.TimeZoneTB.NotifyChanges = true;
+            this.TimeZoneTB.Size = new System.Drawing.Size(107, 20);
+            this.TimeZoneTB.TabIndex = 2;
+            this.TimeZoneTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TimeZoneLbl
             // 
@@ -180,9 +197,10 @@ namespace Gurux.DLMS.UI
             this.TimeTB.Index = 2;
             this.TimeTB.Location = new System.Drawing.Point(102, 47);
             this.TimeTB.Name = "TimeTB";
-            this.TimeTB.Size = new System.Drawing.Size(149, 20);
+            this.TimeTB.NotifyChanges = true;
+            this.TimeTB.Size = new System.Drawing.Size(131, 20);
             this.TimeTB.TabIndex = 0;
-            this.TimeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.TimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TimeLbl
             // 
@@ -200,10 +218,11 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(242, 20);
             this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -238,9 +257,10 @@ namespace Gurux.DLMS.UI
             this.DeviationTB.Index = 7;
             this.DeviationTB.Location = new System.Drawing.Point(244, 16);
             this.DeviationTB.Name = "DeviationTB";
+            this.DeviationTB.NotifyChanges = false;
             this.DeviationTB.Size = new System.Drawing.Size(100, 20);
-            this.DeviationTB.TabIndex = 4;
-            this.DeviationTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.DeviationTB.TabIndex = 7;
+            this.DeviationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // DeviationLbl
             // 
@@ -256,9 +276,10 @@ namespace Gurux.DLMS.UI
             this.EndTB.Index = 6;
             this.EndTB.Location = new System.Drawing.Point(244, 45);
             this.EndTB.Name = "EndTB";
+            this.EndTB.NotifyChanges = false;
             this.EndTB.Size = new System.Drawing.Size(100, 20);
-            this.EndTB.TabIndex = 6;
-            this.EndTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.EndTB.TabIndex = 9;
+            this.EndTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // EnabledLbl
             // 
@@ -274,7 +295,7 @@ namespace Gurux.DLMS.UI
             this.EnabledCB.Location = new System.Drawing.Point(102, 19);
             this.EnabledCB.Name = "EnabledCB";
             this.EnabledCB.Size = new System.Drawing.Size(37, 17);
-            this.EnabledCB.TabIndex = 3;
+            this.EnabledCB.TabIndex = 6;
             this.EnabledCB.UseVisualStyleBackColor = false;
             this.EnabledCB.CheckedChanged += new System.EventHandler(this.EnabledCB_CheckedChanged);
             // 
@@ -292,9 +313,10 @@ namespace Gurux.DLMS.UI
             this.BeginTB.Index = 5;
             this.BeginTB.Location = new System.Drawing.Point(102, 45);
             this.BeginTB.Name = "BeginTB";
+            this.BeginTB.NotifyChanges = false;
             this.BeginTB.Size = new System.Drawing.Size(96, 20);
-            this.BeginTB.TabIndex = 5;
-            this.BeginTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+            this.BeginTB.TabIndex = 8;
+            this.BeginTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // BeginLbl
             // 
@@ -310,6 +332,18 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            // 
+            // CurrentTimeZoneBtn
+            // 
+            this.CurrentTimeZoneBtn.Action = Gurux.DLMS.UI.ActionType.Write;
+            this.CurrentTimeZoneBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrentTimeZoneBtn.Index = 3;
+            this.CurrentTimeZoneBtn.Location = new System.Drawing.Point(244, 70);
+            this.CurrentTimeZoneBtn.Name = "CurrentTimeZoneBtn";
+            this.CurrentTimeZoneBtn.Size = new System.Drawing.Size(100, 23);
+            this.CurrentTimeZoneBtn.TabIndex = 4;
+            this.CurrentTimeZoneBtn.Text = "Current time Zone";
+            this.CurrentTimeZoneBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSClockView
             // 
@@ -331,5 +365,7 @@ namespace Gurux.DLMS.UI
         private GXValueField DeviationTB;
         private Label DeviationLbl;
         private GXButton UpdateTimeBtn;
+        private CheckBox TimeZoneCb;
+        private GXButton CurrentTimeZoneBtn;
     }
 }

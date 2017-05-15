@@ -113,7 +113,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.Password5TB.Name = "Password5TB";
         this.Password5TB.Size = new System.Drawing.Size(208, 20);
         this.Password5TB.TabIndex = 8;
-        this.Password5TB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.Password5TB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // Password5Lbl
         //
@@ -133,7 +133,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.Password2TB.Name = "Password2TB";
         this.Password2TB.Size = new System.Drawing.Size(208, 20);
         this.Password2TB.TabIndex = 7;
-        this.Password2TB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.Password2TB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // Password2Lbl
         //
@@ -153,7 +153,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.Password1TB.Name = "Password1TB";
         this.Password1TB.Size = new System.Drawing.Size(208, 20);
         this.Password1TB.TabIndex = 6;
-        this.Password1TB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.Password1TB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // Password1Lbl
         //
@@ -173,7 +173,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.DeviceAddressTB.Name = "DeviceAddressTB";
         this.DeviceAddressTB.Size = new System.Drawing.Size(208, 20);
         this.DeviceAddressTB.TabIndex = 5;
-        this.DeviceAddressTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.DeviceAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // DeviceAddressLbl
         //
@@ -194,7 +194,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.ResponseTimeTB.ReadOnly = true;
         this.ResponseTimeTB.Size = new System.Drawing.Size(208, 20);
         this.ResponseTimeTB.TabIndex = 4;
-        this.ResponseTimeTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.ResponseTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // ResponseTimeLbl
         //
@@ -215,7 +215,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.MaximumBaudrateTB.ReadOnly = true;
         this.MaximumBaudrateTB.Size = new System.Drawing.Size(208, 20);
         this.MaximumBaudrateTB.TabIndex = 3;
-        this.MaximumBaudrateTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.MaximumBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // MaximumBaudrateLbl
         //
@@ -236,7 +236,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.DefaultBaudrateTB.ReadOnly = true;
         this.DefaultBaudrateTB.Size = new System.Drawing.Size(208, 20);
         this.DefaultBaudrateTB.TabIndex = 2;
-        this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.GXValueFieldType.CompoBox;
+        this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
         //
         // DefaultBaudrateLbl
         //
@@ -256,7 +256,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.DefaultModeTB.Name = "DefaultModeTB";
         this.DefaultModeTB.Size = new System.Drawing.Size(208, 20);
         this.DefaultModeTB.TabIndex = 1;
-        this.DefaultModeTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.DefaultModeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // DefaultModeLbl
         //
@@ -276,7 +276,7 @@ public partial class GXDLMSIECOpticalPortSetupView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.GXValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

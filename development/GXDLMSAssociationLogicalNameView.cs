@@ -68,14 +68,15 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 GXDLMSObjectCollection items = target.ObjectList;
-                CallingWindowLV.Items.Clear();
+                ObjectsView.Items.Clear();
                 if (items != null)
                 {
                     foreach (GXDLMSObject it in items)
                     {
-                        ListViewItem li = CallingWindowLV.Items.Add(it.ObjectType.ToString());
+                        ListViewItem li = ObjectsView.Items.Add(it.ObjectType.ToString());
                         li.SubItems.Add(it.Version.ToString()); //Version
                         li.SubItems.Add(it.LogicalName);
+                        li.Tag = it;
                         //access_rights: access_right
                         if (it is IGXDLMSBase)
                         {
@@ -131,7 +132,7 @@ namespace Gurux.DLMS.UI
                 //             xDLMS_context_info
                 ConformanceTB.Text = target.XDLMSContextInfo.Conformance.ToString();
                 MaxReceivePDUSizeTb.Text = target.XDLMSContextInfo.MaxReceivePduSize.ToString();
-                MaxSendPDUSizeTb.Text = target.XDLMSContextInfo.MaxSendPpuSize.ToString();
+                MaxSendPDUSizeTb.Text = target.XDLMSContextInfo.MaxSendPduSize.ToString();
                 DLMSVersionNumberTB.Text = target.XDLMSContextInfo.DlmsVersionNumber.ToString();
                 CypheringInfoTb.Text = GXDLMSTranslator.ToHex(target.XDLMSContextInfo.CypheringInfo);
             }
@@ -247,6 +248,94 @@ namespace Gurux.DLMS.UI
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Add object to association view.
+        /// </summary>
+        private void ObjectAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                GXDLMSObject it = new GXDLMSData();
+                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    it = dlg.GetTarget();
+                    ListViewItem li = ObjectsView.Items.Add(it.ObjectType.ToString());
+                    li.SubItems.Add(it.Version.ToString());
+                    li.SubItems.Add(it.LogicalName);
+                    li.SubItems.Add("");
+                    li.SubItems.Add("");
+                    li.Tag = it;
+                    target.ObjectList.Add(it);
+                }
+                errorProvider1.SetError(ObjectsView, "Value changed.");
+                Target.UpdateDirty(2, target.ObjectList);
+            }
+            catch (Exception ex)
+            {
+                DialogResult = DialogResult.None;
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit object in association view.
+        /// </summary>
+        private void ObjectEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ObjectsView.SelectedItems.Count == 1)
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    ListViewItem li = ObjectsView.SelectedItems[0];
+                    GXDLMSObject it = (GXDLMSObject)li.Tag;
+                    GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        it = dlg.GetTarget();
+                        li.SubItems[0].Text = it.ObjectType.ToString();
+                        li.SubItems[1].Text = it.Version.ToString();
+                        li.SubItems[1].Text = it.LogicalName;
+                        errorProvider1.SetError(ObjectsView, "Value changed.");
+                        Target.UpdateDirty(2, target.ObjectList);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove object from association view.
+        /// </summary>
+        private void ObjectRemoveBtn_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                GXDLMSObject item;
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                while (ObjectsView.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = ObjectsView.SelectedItems[0];
+                    item = (GXDLMSObject)li.Tag;
+                    ObjectsView.Items.Remove(ObjectsView.SelectedItems[0]);
+                    errorProvider1.SetError(ObjectsView, "Value changed.");
+                    Target.UpdateDirty(2, target.ObjectList);
+                    target.ObjectList.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -56,9 +56,12 @@ namespace Gurux.DLMS.UI
             action = a;
             targets = objects;
             InitializeComponent();
-            TypeCb.Items.Add(ScriptActionType.None);
             TypeCb.Items.Add(ScriptActionType.Write);
             TypeCb.Items.Add(ScriptActionType.Execute);
+            if (a.Type == ScriptActionType.None)
+            {
+                a.Type = ScriptActionType.Write;
+            }
             TypeCb.SelectedItem = a.Type;
             foreach (GXDLMSObject it in objects)
             {
