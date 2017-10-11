@@ -214,6 +214,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to update password to the meter?.
+        /// </summary>
+        internal static string SecretSetWarning {
+            get {
+                return ResourceManager.GetString("SecretSetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a temporary failure..
         /// </summary>
         internal static string TemporaryFailureTxt {

@@ -147,9 +147,9 @@ namespace Gurux.DLMS.UI
                 AuthenticationMechanismNameTb.Text = Convert.ToString(target.AuthenticationMechanismName.AuthenticationMechanismName);
                 AuthenticationMechanismIdTb.Text = Convert.ToString(target.AuthenticationMechanismName.MechanismId);
             }
-            else
+            else if (index == 7)
             {
-                //LLS secret.
+                //Secret.
                 if (IsAscii(target.Secret))
                 {
                     SecretAsciiCb.Checked = true;

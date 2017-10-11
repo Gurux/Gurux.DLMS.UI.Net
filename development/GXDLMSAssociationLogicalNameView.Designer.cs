@@ -32,7 +32,12 @@ namespace Gurux.DLMS.UI
             this.LogicalNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AttributeAccesssHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MethodAccessHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ObjectsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ModifyBtn = new System.Windows.Forms.Button();
             this.SecretTB = new System.Windows.Forms.TextBox();
             this.SecretAsciiCb = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -44,6 +49,7 @@ namespace Gurux.DLMS.UI
             this.ClientSAPLbl = new System.Windows.Forms.Label();
             this.SecretLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.CypheringInfoTb = new System.Windows.Forms.TextBox();
             this.CypheringInfoLbl = new System.Windows.Forms.Label();
@@ -85,24 +91,19 @@ namespace Gurux.DLMS.UI
             this.AuthenticationCountryLbl = new System.Windows.Forms.Label();
             this.AuthenticationJointISOCTTTb = new System.Windows.Forms.TextBox();
             this.AuthenticationJointISOCTTLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
-            this.ObjectsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.ObjectsMenu.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.ObjectsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -229,8 +230,39 @@ namespace Gurux.DLMS.UI
             this.MethodAccessHeader.Text = "Method Access:";
             this.MethodAccessHeader.Width = 97;
             // 
+            // ObjectsMenu
+            // 
+            this.ObjectsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.ObjectsMenu.Name = "contextMenuStrip1";
+            this.ObjectsMenu.Size = new System.Drawing.Size(118, 70);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.ObjectAddBtn_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.ObjectEditBtn_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.ObjectRemoveBtn_Click);
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ModifyBtn);
             this.tabPage2.Controls.Add(this.SecretTB);
             this.tabPage2.Controls.Add(this.SecretAsciiCb);
             this.tabPage2.Controls.Add(this.textBox1);
@@ -246,6 +278,15 @@ namespace Gurux.DLMS.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "General";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ModifyBtn
+            // 
+            this.ModifyBtn.Location = new System.Drawing.Point(363, 120);
+            this.ModifyBtn.Name = "ModifyBtn";
+            this.ModifyBtn.Size = new System.Drawing.Size(75, 23);
+            this.ModifyBtn.TabIndex = 29;
+            this.ModifyBtn.Text = "Modify...";
+            this.ModifyBtn.UseVisualStyleBackColor = true;
             // 
             // SecretTB
             // 
@@ -348,6 +389,18 @@ namespace Gurux.DLMS.UI
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Association Status:";
+            // 
+            // gxValueField1
+            // 
+            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gxValueField1.Index = 8;
+            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
+            this.gxValueField1.Name = "gxValueField1";
+            this.gxValueField1.NotifyChanges = false;
+            this.gxValueField1.Size = new System.Drawing.Size(243, 20);
+            this.gxValueField1.TabIndex = 20;
+            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // tabPage3
             // 
@@ -739,6 +792,18 @@ namespace Gurux.DLMS.UI
             this.AuthenticationJointISOCTTLbl.TabIndex = 43;
             this.AuthenticationJointISOCTTLbl.Text = "Joint ISO CTT:";
             // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -754,58 +819,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // gxValueField1
-            // 
-            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gxValueField1.Index = 8;
-            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
-            this.gxValueField1.Name = "gxValueField1";
-            this.gxValueField1.Size = new System.Drawing.Size(243, 20);
-            this.gxValueField1.TabIndex = 20;
-            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // ObjectsMenu
-            // 
-            this.ObjectsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.removeToolStripMenuItem});
-            this.ObjectsMenu.Name = "contextMenuStrip1";
-            this.ObjectsMenu.Size = new System.Drawing.Size(153, 92);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.ObjectAddBtn_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.ObjectEditBtn_Click);
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.ObjectRemoveBtn_Click);
-            // 
             // GXDLMSAssociationLogicalNameView
             // 
             this.ClientSize = new System.Drawing.Size(556, 348);
@@ -816,6 +829,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.ObjectsMenu.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -827,7 +841,6 @@ namespace Gurux.DLMS.UI
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.ObjectsMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -903,5 +916,6 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem removeToolStripMenuItem;
+        private Button ModifyBtn;
     }
 }

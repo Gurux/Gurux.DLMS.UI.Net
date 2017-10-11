@@ -67,9 +67,9 @@ namespace Gurux.DLMS.UI
         public void OnValueChanged(int index, object value, bool user)
         {
             GXDLMSAssociationShortName target = Target as GXDLMSAssociationShortName;
+            GXDLMSObjectCollection items = target.ObjectList;
             if (index == 2)
             {
-                GXDLMSObjectCollection items = target.ObjectList;
                 ObjectsView.Items.Clear();
                 if (items != null)
                 {
@@ -78,8 +78,34 @@ namespace Gurux.DLMS.UI
                     {
                         ListViewItem li = ObjectsView.Items.Add(Convert.ToString(it.ShortName, 16));
                         li.SubItems.AddRange(new string[] { it.ObjectType.ToString(), it.Version.ToString(),
-                                                        it.LogicalName, "", ""
-                                                      });
+                                                        it.LogicalName});
+                        //access_rights: access_right
+                        StringBuilder str = new StringBuilder();
+                        //Show attribute access.
+                        int cnt = (it as IGXDLMSBase).GetAttributeCount();
+                        for (int pos = 1; pos != cnt + 1; ++pos)
+                        {
+                            if (str != null)
+                            {
+                                str.Append(", ");
+                            }
+                            AccessMode mode = it.GetAccess(pos);
+                            str.Append(pos.ToString() + " = " + mode);
+                        }
+                        li.SubItems.Add(str.ToString());
+                        //Show method access.
+                        str.Length = 0;
+                        cnt = (it as IGXDLMSBase).GetMethodCount();
+                        for (int pos = 1; pos != cnt + 1; ++pos)
+                        {
+                            if (str != null)
+                            {
+                                str.Append(", ");
+                            }
+                            MethodAccessMode mode = it.GetMethodAccess(pos);
+                            str.Append(pos.ToString() + " = " + mode);
+                        }
+                        li.SubItems.Add(str.ToString());
                         if (it.ShortName != 0)
                         {
                             SNItems.Add(it.ShortName, li);
@@ -92,67 +118,82 @@ namespace Gurux.DLMS.UI
             if (index == 3)
             {
                 //access_rights: access_right
-                object[] access = (object[])target.AccessRightsList;
-                if (access != null)
+                foreach (GXDLMSObject it in items)
                 {
-                    foreach (object[] it in access)
+                    ListViewItem li = SNItems[it.ShortName];
+                    StringBuilder str = new StringBuilder();
+                    //Show attribute access.
+                    int cnt = (it as IGXDLMSBase).GetAttributeCount();
+                    for (int pos = 1; pos != cnt + 1; ++pos)
                     {
-                        int sn = (Convert.ToInt32(it[0]) & 0xFFFF);
-                        if (SNItems.ContainsKey(sn))
+                        if (str != null)
                         {
-                            ListViewItem li = SNItems[sn];
-                            List<string> modes = new List<string>();
-                            foreach (object[] attributeAccess in (object[])it[1])
-                            {
-                                uint id = Convert.ToUInt32(attributeAccess[0]);
-                                AccessMode mode = (AccessMode)Convert.ToInt32(attributeAccess[1]);
-                                modes.Add(id.ToString() + " = " + mode);
-                            }
-                            string str = null;
-                            //Show attribute access.
-                            foreach (string m in modes)
-                            {
-                                if (str != null)
-                                {
-                                    str += ", ";
-                                }
-                                str += m.ToString();
-                            }
-                            li.SubItems[4].Text = str;
-                            foreach (object[] attributeAccess in (object[])it[2])
-                            {
-                                uint id = Convert.ToUInt32(attributeAccess[0]);
-                                AccessMode mode = (AccessMode)Convert.ToInt32(attributeAccess[1]);
-                                modes.Add(id.ToString() + " = " + mode);
-                            }
-                            //Show Method access.
-                            str = null;
-                            foreach (string m in modes)
-                            {
-                                if (str != null)
-                                {
-                                    str += ", ";
-                                }
-                                str += m.ToString();
-                            }
-                            li.SubItems[5].Text = str;
+                            str.Append(", ");
                         }
+                        AccessMode mode = it.GetAccess(pos);
+                        str.Append(pos.ToString() + " = " + mode);
                     }
+                    li.SubItems[4].Text = str.ToString();
+                    //Show method access.
+                    str.Length = 0;
+                    cnt = (it as IGXDLMSBase).GetMethodCount();
+                    for (int pos = 1; pos != cnt + 1; ++pos)
+                    {
+                        if (str != null)
+                        {
+                            str.Append(", ");
+                        }
+                        MethodAccessMode mode = it.GetMethodAccess(pos);
+                        str.Append(pos.ToString() + " = " + mode);
+                    }
+                    li.SubItems[5].Text = str.ToString();
                 }
+
+            }
+            //security_setup_reference
+            else if (index == 4)
+            {
             }
         }
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
+
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
+            if (index == 7)
+            {
+                SecretTB.ReadOnly = mode == MethodAccessMode.NoAccess;
+                SecretAsciiCb.Enabled = !SecretTB.ReadOnly;
+            }
         }
 
         public void PreAction(ActionType type, ValueEventArgs arg)
         {
-
+            DialogResult ret;
+            //Update secret.
+            if (arg.Index == 5)
+            {
+                ret = MessageBox.Show(this, Properties.Resources.SecretSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
+                {
+                    if (SecretTB.Text.Length == 0)
+                    {
+                        throw new ArgumentException("Invalid password.");
+                    }
+                    if (SecretAsciiCb.Checked)
+                    {
+                        arg.Value = SecretTB.Text;
+                    }
+                    else
+                    {
+                        arg.Value = GXDLMSTranslator.HexToBytes(SecretTB.Text);
+                    }
+                }
+                arg.Handled = ret != DialogResult.Yes;
+            }
         }
 
         public void PostAction(ActionType type, ValueEventArgs arg)
@@ -265,6 +306,5 @@ namespace Gurux.DLMS.UI
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
