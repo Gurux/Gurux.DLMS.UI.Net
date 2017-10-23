@@ -78,6 +78,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.Value.AttributeIndex.ToString());
                     li.SubItems.Add(it.Value.DataIndex.ToString());
                     ObjectsLV.Items.Add(li);
+                    li.Tag = it;
                 }
             }
             else if (index == 3)
@@ -101,6 +102,7 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = new ListViewItem(it.Key.ToString());
                     li.SubItems.Add(it.Value.ToString());
                     CommunicationWindowLV.Items.Add(li);
+                    li.Tag = it;
                 }
             }
             else
@@ -197,11 +199,33 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
-        /// Add new Object.
+        /// Add new Object to push view.
         /// </summary>
         private void ObjectsAddBtn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                GXDLMSPushSetup target = Target as GXDLMSPushSetup;
+                KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = new KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>();
+                GXDLMSPushTargetDlg dlg = new GXDLMSPushTargetDlg(it, target.Parent as GXDLMSObjectCollection);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    it = dlg.Target;
+                    ListViewItem li = ObjectsLV.Items.Add(it.Key.ObjectType.ToString());
+                    li.SubItems.Add(it.Key.LogicalName);
+                    li.SubItems.Add(it.Value.AttributeIndex.ToString());
+                    li.SubItems.Add(it.Value.DataIndex.ToString());
+                    li.Tag = it;
+                    target.PushObjectList.Add(it);
+                }
+                errorProvider1.SetError(ObjectsLV, "Value changed.");
+                Target.UpdateDirty(2, target.PushObjectList);
+            }
+            catch (Exception ex)
+            {
+                DialogResult = DialogResult.None;
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -209,7 +233,34 @@ namespace Gurux.DLMS.UI
         /// </summary>
         private void ObjectsEditBtn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (ObjectsLV.SelectedItems.Count == 1)
+                {
+                    GXDLMSPushSetup target = Target as GXDLMSPushSetup;
+                    ListViewItem li = ObjectsLV.SelectedItems[0];
+                    KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = (KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
+                    GXDLMSPushTargetDlg dlg = new GXDLMSPushTargetDlg(it, target.Parent as GXDLMSObjectCollection);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        target.PushObjectList.Remove(it);
+                        it = dlg.Target;
+                        target.PushObjectList.Add(it);
+                        li.SubItems[0].Text = it.Key.ObjectType.ToString();
+                        li.SubItems[1].Text = it.Key.LogicalName;
+                        li.SubItems[2].Text = it.Value.AttributeIndex.ToString();
+                        li.SubItems[3].Text = it.Value.DataIndex.ToString();
+                        li.Tag = it;
+                        errorProvider1.SetError(ObjectsLV, "Value changed.");
+                        Target.UpdateDirty(2, target.PushObjectList);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -217,7 +268,24 @@ namespace Gurux.DLMS.UI
         /// </summary>
         private void ObjectsRemoveBtn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> item;
+                GXDLMSPushSetup target = Target as GXDLMSPushSetup;
+                while (ObjectsLV.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = ObjectsLV.SelectedItems[0];
+                    item = (KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
+                    ObjectsLV.Items.Remove(ObjectsLV.SelectedItems[0]);
+                    errorProvider1.SetError(ObjectsLV, "Value changed.");
+                    Target.UpdateDirty(2, target.PushObjectList);
+                    target.PushObjectList.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>

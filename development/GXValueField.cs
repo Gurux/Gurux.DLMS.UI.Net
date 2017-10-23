@@ -249,7 +249,18 @@ namespace Gurux.DLMS.UI
                     }
                 }
                 v.Value = value;
-                (Target as IGXDLMSBase).SetValue((Target.Parent.Parent as GXDLMSClient).Settings, v);
+                if (Target.Parent.Parent is GXDLMSClient)
+                {
+                    (Target as IGXDLMSBase).SetValue((Target.Parent.Parent as GXDLMSClient).Settings, v);
+                }
+                else if (Target.Parent.Parent is GXDLMSServer)
+                {
+                    (Target as IGXDLMSBase).SetValue((Target.Parent.Parent as GXDLMSServer).Settings, v);
+                }
+                else
+                {
+                    throw new ArgumentNullException("Client or server is not set.");
+                }
                 (this.ParentForm as IGXDLMSView).OnDirtyChange(Index, true);
                 Target.UpdateDirty(Index, value);
             }

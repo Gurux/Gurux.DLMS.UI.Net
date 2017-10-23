@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1710.1302, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1710.1302\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1710.2301, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1710.2301\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,6 +61,12 @@
     </Compile>
     <Compile Include="GXDLMSProfileGenericColumnDlg.designer.cs">
       <DependentUpon>GXDLMSProfileGenericColumnDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSPushTargetDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPushTargetDlg.designer.cs">
+      <DependentUpon>GXDLMSPushTargetDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXTextDlg.cs">
       <SubType>Form</SubType>
@@ -394,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSProfileGenericColumnDlg.resx">
       <DependentUpon>GXDLMSProfileGenericColumnDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPushTargetDlg.resx">
+      <DependentUpon>GXDLMSPushTargetDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXTextDlg.resx">
       <DependentUpon>GXTextDlg.cs</DependentUpon>

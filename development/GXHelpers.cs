@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Text;
 using Gurux.DLMS;
 using Gurux.DLMS.Enums;
+using Gurux.DLMS.Objects;
 
 namespace Gurux.DLMS.UI
 {
@@ -286,6 +287,15 @@ namespace Gurux.DLMS.UI
                     return true;
             }
             return false;
+        }
+
+        static public GXDLMSSettings GetSettings(GXDLMSObject target)
+        {
+            if (target.Parent.Parent is GXDLMSClient)
+            {
+                return (target.Parent.Parent as GXDLMSClient).Settings;
+            }
+            return (target.Parent.Parent as GXDLMSServer).Settings;
         }
     }
 }

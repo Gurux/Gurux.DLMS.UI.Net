@@ -123,7 +123,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Size = new System.Drawing.Size(505, 462);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Data Object";
+            this.groupBox1.Text = "Push Object";
             // 
             // tabControl1
             // 
@@ -241,6 +241,7 @@ namespace Gurux.DLMS.UI
             this.RepetitionDelayTB.Index = 7;
             this.RepetitionDelayTB.Location = new System.Drawing.Point(103, 166);
             this.RepetitionDelayTB.Name = "RepetitionDelayTB";
+            this.RepetitionDelayTB.NotifyChanges = false;
             this.RepetitionDelayTB.Size = new System.Drawing.Size(355, 20);
             this.RepetitionDelayTB.TabIndex = 22;
             this.RepetitionDelayTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -270,6 +271,7 @@ namespace Gurux.DLMS.UI
             this.RandomisationStartIntervalTB.Index = 5;
             this.RandomisationStartIntervalTB.Location = new System.Drawing.Point(103, 115);
             this.RandomisationStartIntervalTB.Name = "RandomisationStartIntervalTB";
+            this.RandomisationStartIntervalTB.NotifyChanges = false;
             this.RandomisationStartIntervalTB.Size = new System.Drawing.Size(355, 20);
             this.RandomisationStartIntervalTB.TabIndex = 18;
             this.RandomisationStartIntervalTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -281,6 +283,7 @@ namespace Gurux.DLMS.UI
             this.NumberOfRetriesTB.Index = 6;
             this.NumberOfRetriesTB.Location = new System.Drawing.Point(103, 141);
             this.NumberOfRetriesTB.Name = "NumberOfRetriesTB";
+            this.NumberOfRetriesTB.NotifyChanges = false;
             this.NumberOfRetriesTB.Size = new System.Drawing.Size(355, 20);
             this.NumberOfRetriesTB.TabIndex = 20;
             this.NumberOfRetriesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -557,6 +560,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(380, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
