@@ -115,7 +115,7 @@ public partial class GXDLMSHdlcSetupView
             this.groupBox3.Location = new System.Drawing.Point(0, 146);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(333, 74);
-            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Receive:";
             // 
@@ -148,7 +148,7 @@ public partial class GXDLMSHdlcSetupView
             this.groupBox2.Location = new System.Drawing.Point(0, 73);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(333, 80);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Transmit";
             // 
@@ -228,8 +228,9 @@ public partial class GXDLMSHdlcSetupView
             this.ReceiveMaxLengthTB.Index = 6;
             this.ReceiveMaxLengthTB.Location = new System.Drawing.Point(102, 45);
             this.ReceiveMaxLengthTB.Name = "ReceiveMaxLengthTB";
+            this.ReceiveMaxLengthTB.NotifyChanges = false;
             this.ReceiveMaxLengthTB.Size = new System.Drawing.Size(208, 20);
-            this.ReceiveMaxLengthTB.TabIndex = 13;
+            this.ReceiveMaxLengthTB.TabIndex = 7;
             this.ReceiveMaxLengthTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // ReceiveWindowSizeTB
@@ -239,8 +240,9 @@ public partial class GXDLMSHdlcSetupView
             this.ReceiveWindowSizeTB.Index = 4;
             this.ReceiveWindowSizeTB.Location = new System.Drawing.Point(102, 19);
             this.ReceiveWindowSizeTB.Name = "ReceiveWindowSizeTB";
+            this.ReceiveWindowSizeTB.NotifyChanges = false;
             this.ReceiveWindowSizeTB.Size = new System.Drawing.Size(208, 20);
-            this.ReceiveWindowSizeTB.TabIndex = 11;
+            this.ReceiveWindowSizeTB.TabIndex = 6;
             this.ReceiveWindowSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // DeviceAddressTB
@@ -250,8 +252,9 @@ public partial class GXDLMSHdlcSetupView
             this.DeviceAddressTB.Index = 9;
             this.DeviceAddressTB.Location = new System.Drawing.Point(102, 278);
             this.DeviceAddressTB.Name = "DeviceAddressTB";
+            this.DeviceAddressTB.NotifyChanges = false;
             this.DeviceAddressTB.Size = new System.Drawing.Size(208, 20);
-            this.DeviceAddressTB.TabIndex = 15;
+            this.DeviceAddressTB.TabIndex = 10;
             this.DeviceAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TransmitMaxLengthTB
@@ -261,8 +264,9 @@ public partial class GXDLMSHdlcSetupView
             this.TransmitMaxLengthTB.Index = 5;
             this.TransmitMaxLengthTB.Location = new System.Drawing.Point(102, 48);
             this.TransmitMaxLengthTB.Name = "TransmitMaxLengthTB";
+            this.TransmitMaxLengthTB.NotifyChanges = false;
             this.TransmitMaxLengthTB.Size = new System.Drawing.Size(208, 20);
-            this.TransmitMaxLengthTB.TabIndex = 11;
+            this.TransmitMaxLengthTB.TabIndex = 4;
             this.TransmitMaxLengthTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TransmitWindowSizeTB
@@ -272,8 +276,9 @@ public partial class GXDLMSHdlcSetupView
             this.TransmitWindowSizeTB.Index = 3;
             this.TransmitWindowSizeTB.Location = new System.Drawing.Point(102, 22);
             this.TransmitWindowSizeTB.Name = "TransmitWindowSizeTB";
+            this.TransmitWindowSizeTB.NotifyChanges = false;
             this.TransmitWindowSizeTB.Size = new System.Drawing.Size(208, 20);
-            this.TransmitWindowSizeTB.TabIndex = 9;
+            this.TransmitWindowSizeTB.TabIndex = 3;
             this.TransmitWindowSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // InactivityTimeoutTB
@@ -283,8 +288,9 @@ public partial class GXDLMSHdlcSetupView
             this.InactivityTimeoutTB.Index = 8;
             this.InactivityTimeoutTB.Location = new System.Drawing.Point(102, 252);
             this.InactivityTimeoutTB.Name = "InactivityTimeoutTB";
+            this.InactivityTimeoutTB.NotifyChanges = false;
             this.InactivityTimeoutTB.Size = new System.Drawing.Size(208, 20);
-            this.InactivityTimeoutTB.TabIndex = 13;
+            this.InactivityTimeoutTB.TabIndex = 9;
             this.InactivityTimeoutTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // InternalTimeOutLTB
@@ -294,8 +300,9 @@ public partial class GXDLMSHdlcSetupView
             this.InternalTimeOutLTB.Index = 7;
             this.InternalTimeOutLTB.Location = new System.Drawing.Point(102, 226);
             this.InternalTimeOutLTB.Name = "InternalTimeOutLTB";
+            this.InternalTimeOutLTB.NotifyChanges = false;
             this.InternalTimeOutLTB.Size = new System.Drawing.Size(208, 20);
-            this.InternalTimeOutLTB.TabIndex = 11;
+            this.InternalTimeOutLTB.TabIndex = 8;
             this.InternalTimeOutLTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // SpeedTB
@@ -305,9 +312,10 @@ public partial class GXDLMSHdlcSetupView
             this.SpeedTB.Index = 2;
             this.SpeedTB.Location = new System.Drawing.Point(102, 47);
             this.SpeedTB.Name = "SpeedTB";
+            this.SpeedTB.NotifyChanges = false;
             this.SpeedTB.ReadOnly = true;
             this.SpeedTB.Size = new System.Drawing.Size(208, 93);
-            this.SpeedTB.TabIndex = 0;
+            this.SpeedTB.TabIndex = 1;
             this.SpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // LogicalNameTB
@@ -317,8 +325,9 @@ public partial class GXDLMSHdlcSetupView
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
-            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.TabIndex = 0;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // GXDLMSHdlcSetupView

@@ -193,7 +193,7 @@ namespace Gurux.DLMS.UI
 
         private void DestinationTB_TextChanged(object sender, EventArgs e)
         {
-            (Target as GXDLMSPushSetup).Description = DestinationTB.Text;
+            (Target as GXDLMSPushSetup).Destination = DestinationTB.Text;
             errorProvider1.SetError((Control)sender, "Value changed.");
             Target.UpdateDirty(3, DestinationTB.Text);
         }

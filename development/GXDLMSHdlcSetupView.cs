@@ -115,10 +115,10 @@ namespace Gurux.DLMS.UI
                     errorProvider1.SetError(TransmitWindowSizeTB, Properties.Resources.ValueChangedTxt);
                     break;
                 case 4:
-                    errorProvider1.SetError(TransmitMaxLengthTB, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(ReceiveWindowSizeTB, Properties.Resources.ValueChangedTxt);
                     break;
                 case 5:
-                    errorProvider1.SetError(ReceiveWindowSizeTB, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(TransmitMaxLengthTB, Properties.Resources.ValueChangedTxt);
                     break;
                 case 6:
                     errorProvider1.SetError(ReceiveMaxLengthTB, Properties.Resources.ValueChangedTxt);

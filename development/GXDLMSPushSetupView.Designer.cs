@@ -110,7 +110,7 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.PushBtn);
@@ -127,8 +127,8 @@ namespace Gurux.DLMS.UI
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -158,7 +158,7 @@ namespace Gurux.DLMS.UI
             // 
             // GXSendDestinationAndMethodGB
             // 
-            this.GXSendDestinationAndMethodGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GXSendDestinationAndMethodGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GXSendDestinationAndMethodGB.Controls.Add(this.MessageCB);
             this.GXSendDestinationAndMethodGB.Controls.Add(this.ServiceCB);
@@ -175,7 +175,7 @@ namespace Gurux.DLMS.UI
             // 
             // MessageCB
             // 
-            this.MessageCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MessageCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MessageCB.FormattingEnabled = true;
@@ -187,7 +187,7 @@ namespace Gurux.DLMS.UI
             // 
             // ServiceCB
             // 
-            this.ServiceCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ServiceCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServiceCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServiceCB.FormattingEnabled = true;
@@ -217,7 +217,7 @@ namespace Gurux.DLMS.UI
             // 
             // DestinationTB
             // 
-            this.DestinationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DestinationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DestinationTB.Location = new System.Drawing.Point(97, 45);
             this.DestinationTB.Name = "DestinationTB";
@@ -236,7 +236,7 @@ namespace Gurux.DLMS.UI
             // 
             // RepetitionDelayTB
             // 
-            this.RepetitionDelayTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.RepetitionDelayTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RepetitionDelayTB.Index = 7;
             this.RepetitionDelayTB.Location = new System.Drawing.Point(103, 166);
@@ -266,7 +266,7 @@ namespace Gurux.DLMS.UI
             // 
             // RandomisationStartIntervalTB
             // 
-            this.RandomisationStartIntervalTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.RandomisationStartIntervalTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RandomisationStartIntervalTB.Index = 5;
             this.RandomisationStartIntervalTB.Location = new System.Drawing.Point(103, 115);
@@ -278,7 +278,7 @@ namespace Gurux.DLMS.UI
             // 
             // NumberOfRetriesTB
             // 
-            this.NumberOfRetriesTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.NumberOfRetriesTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberOfRetriesTB.Index = 6;
             this.NumberOfRetriesTB.Location = new System.Drawing.Point(103, 141);
@@ -335,8 +335,8 @@ namespace Gurux.DLMS.UI
             // 
             // ObjectsLV
             // 
-            this.ObjectsLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ObjectsLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ObjectsLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TypeHeader,
@@ -465,8 +465,8 @@ namespace Gurux.DLMS.UI
             // 
             // CommunicationWindowLV
             // 
-            this.CommunicationWindowLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CommunicationWindowLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CommunicationWindowLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.StartHeader,
@@ -545,7 +545,7 @@ namespace Gurux.DLMS.UI
             // 
             // DescriptionTB
             // 
-            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTB.Location = new System.Drawing.Point(103, 19);
             this.DescriptionTB.Name = "DescriptionTB";
@@ -555,7 +555,7 @@ namespace Gurux.DLMS.UI
             // 
             // LogicalNameTB
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
