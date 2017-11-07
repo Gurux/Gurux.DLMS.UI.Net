@@ -297,5 +297,21 @@ namespace Gurux.DLMS.UI
             }
             return (target.Parent.Parent as GXDLMSServer).Settings;
         }
+
+        public static bool IsAscii(byte[] value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            foreach (byte it in value)
+            {
+                if (it < 0x21 || it > 0x7E)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

@@ -150,7 +150,7 @@ namespace Gurux.DLMS.UI
             else if (index == 7)
             {
                 //Secret.
-                if (IsAscii(target.Secret))
+                if (GXHelpers.IsAscii(target.Secret))
                 {
                     SecretAsciiCb.Checked = true;
                     SecretTB.Text = ASCIIEncoding.ASCII.GetString(target.Secret);
@@ -208,21 +208,6 @@ namespace Gurux.DLMS.UI
 
         #endregion
 
-        public static bool IsAscii(byte[] value)
-        {
-            if (value == null)
-            {
-                return false;
-            }
-            foreach (byte it in value)
-            {
-                if (it < 0x21 || it > 0x7E)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
 
         private void SecretAsciiCb_CheckedChanged(object sender, EventArgs e)
         {
@@ -231,7 +216,7 @@ namespace Gurux.DLMS.UI
                 if (SecretAsciiCb.Checked)
                 {
                     byte[] data = GXDLMSTranslator.HexToBytes(SecretTB.Text);
-                    if (!IsAscii(data))
+                    if (!GXHelpers.IsAscii(data))
                     {
                         SecretAsciiCb.CheckedChanged -= SecretAsciiCb_CheckedChanged;
                         SecretAsciiCb.Checked = !SecretAsciiCb.Checked;
