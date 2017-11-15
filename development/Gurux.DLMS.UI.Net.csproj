@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gurux.DLMS.UI</RootNamespace>
     <AssemblyName>Gurux.DLMS.UI</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1710.3101, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Gurux.DLMS">
       <HintPath>packages\Gurux.DLMS.8.5.1710.3101\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
       <Private>True</Private>
     </Reference>
