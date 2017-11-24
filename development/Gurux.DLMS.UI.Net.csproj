@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS">
-      <HintPath>packages\Gurux.DLMS.8.5.1710.3101\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Gurux.DLMS, Version=8.5.1711.1701, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1711.1701\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,6 +46,30 @@
   <ItemGroup>
     <Compile Include="GXButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarActionDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarActionDlg.Designer.cs">
+      <DependentUpon>GXDLMSActivityCalendarActionDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarDayProfileDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarDayProfileDlg.Designer.cs">
+      <DependentUpon>GXDLMSActivityCalendarDayProfileDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarSeasonProfileDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarSeasonProfileDlg.Designer.cs">
+      <DependentUpon>GXDLMSActivityCalendarSeasonProfileDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarWeekProfileDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSActivityCalendarWeekProfileDlg.Designer.cs">
+      <DependentUpon>GXDLMSActivityCalendarWeekProfileDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSAssociationViewDlg.cs">
       <SubType>Form</SubType>
@@ -393,6 +416,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GXDLMSActivityCalendarActionDlg.resx">
+      <DependentUpon>GXDLMSActivityCalendarActionDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSActivityCalendarDayProfileDlg.resx">
+      <DependentUpon>GXDLMSActivityCalendarDayProfileDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSActivityCalendarSeasonProfileDlg.resx">
+      <DependentUpon>GXDLMSActivityCalendarSeasonProfileDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSActivityCalendarWeekProfileDlg.resx">
+      <DependentUpon>GXDLMSActivityCalendarWeekProfileDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSAssociationViewDlg.resx">
       <DependentUpon>GXDLMSAssociationViewDlg.cs</DependentUpon>
     </EmbeddedResource>

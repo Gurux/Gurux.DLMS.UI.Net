@@ -51,24 +51,24 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSImageTransferView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ImageActivateInfoTB = new Gurux.DLMS.UI.GXValueField();
             this.ImageActivateInfoLbl = new System.Windows.Forms.Label();
-            this.ImageTransferStatusCB = new Gurux.DLMS.UI.GXValueField();
             this.ImageTransferStatusLbl = new System.Windows.Forms.Label();
             this.ImageTransferEnabledCB = new System.Windows.Forms.CheckBox();
             this.ImageTransferEnabledLbl = new System.Windows.Forms.Label();
-            this.ImageFirstNotTransferredBlockNumberTB = new Gurux.DLMS.UI.GXValueField();
             this.ImageFirstNotTransferredBlockNumberLbl = new System.Windows.Forms.Label();
-            this.ImageTransferredBlocksStatusTB = new Gurux.DLMS.UI.GXValueField();
             this.ImageTransferredBlocksStatusLbl = new System.Windows.Forms.Label();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
-            this.ImageBlockSizeTB = new Gurux.DLMS.UI.GXValueField();
             this.ImageBlockSizeLbl = new System.Windows.Forms.Label();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.PushBtn = new Gurux.DLMS.UI.GXButton();
+            this.ImageActivateInfoTB = new Gurux.DLMS.UI.GXValueField();
+            this.ImageTransferStatusCB = new Gurux.DLMS.UI.GXValueField();
+            this.ImageFirstNotTransferredBlockNumberTB = new Gurux.DLMS.UI.GXValueField();
+            this.ImageTransferredBlocksStatusTB = new Gurux.DLMS.UI.GXValueField();
+            this.ImageBlockSizeTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -101,18 +101,6 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image Transfer Object";
             // 
-            // ImageActivateInfoTB
-            // 
-            this.ImageActivateInfoTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageActivateInfoTB.Index = 7;
-            this.ImageActivateInfoTB.Location = new System.Drawing.Point(103, 200);
-            this.ImageActivateInfoTB.Name = "ImageActivateInfoTB";
-            this.ImageActivateInfoTB.NotifyChanges = false;
-            this.ImageActivateInfoTB.Size = new System.Drawing.Size(191, 20);
-            this.ImageActivateInfoTB.TabIndex = 21;
-            this.ImageActivateInfoTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
             // ImageActivateInfoLbl
             // 
             this.ImageActivateInfoLbl.AutoSize = true;
@@ -121,19 +109,6 @@ namespace Gurux.DLMS.UI
             this.ImageActivateInfoLbl.Size = new System.Drawing.Size(59, 13);
             this.ImageActivateInfoLbl.TabIndex = 22;
             this.ImageActivateInfoLbl.Text = "First Block:";
-            // 
-            // ImageTransferStatusCB
-            // 
-            this.ImageTransferStatusCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageTransferStatusCB.Index = 6;
-            this.ImageTransferStatusCB.Location = new System.Drawing.Point(104, 171);
-            this.ImageTransferStatusCB.Name = "ImageTransferStatusCB";
-            this.ImageTransferStatusCB.NotifyChanges = false;
-            this.ImageTransferStatusCB.ReadOnly = true;
-            this.ImageTransferStatusCB.Size = new System.Drawing.Size(191, 59);
-            this.ImageTransferStatusCB.TabIndex = 19;
-            this.ImageTransferStatusCB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // ImageTransferStatusLbl
             // 
@@ -153,6 +128,7 @@ namespace Gurux.DLMS.UI
             this.ImageTransferEnabledCB.Size = new System.Drawing.Size(27, 17);
             this.ImageTransferEnabledCB.TabIndex = 17;
             this.ImageTransferEnabledCB.UseVisualStyleBackColor = false;
+            this.ImageTransferEnabledCB.CheckedChanged += new System.EventHandler(this.ImageTransferEnabledCB_CheckedChanged);
             // 
             // ImageTransferEnabledLbl
             // 
@@ -163,18 +139,6 @@ namespace Gurux.DLMS.UI
             this.ImageTransferEnabledLbl.TabIndex = 18;
             this.ImageTransferEnabledLbl.Text = "Enabled:";
             // 
-            // ImageFirstNotTransferredBlockNumberTB
-            // 
-            this.ImageFirstNotTransferredBlockNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageFirstNotTransferredBlockNumberTB.Index = 4;
-            this.ImageFirstNotTransferredBlockNumberTB.Location = new System.Drawing.Point(104, 123);
-            this.ImageFirstNotTransferredBlockNumberTB.Name = "ImageFirstNotTransferredBlockNumberTB";
-            this.ImageFirstNotTransferredBlockNumberTB.NotifyChanges = false;
-            this.ImageFirstNotTransferredBlockNumberTB.Size = new System.Drawing.Size(191, 20);
-            this.ImageFirstNotTransferredBlockNumberTB.TabIndex = 8;
-            this.ImageFirstNotTransferredBlockNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
             // ImageFirstNotTransferredBlockNumberLbl
             // 
             this.ImageFirstNotTransferredBlockNumberLbl.AutoSize = true;
@@ -183,18 +147,6 @@ namespace Gurux.DLMS.UI
             this.ImageFirstNotTransferredBlockNumberLbl.Size = new System.Drawing.Size(59, 13);
             this.ImageFirstNotTransferredBlockNumberLbl.TabIndex = 9;
             this.ImageFirstNotTransferredBlockNumberLbl.Text = "First Block:";
-            // 
-            // ImageTransferredBlocksStatusTB
-            // 
-            this.ImageTransferredBlocksStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageTransferredBlocksStatusTB.Index = 3;
-            this.ImageTransferredBlocksStatusTB.Location = new System.Drawing.Point(104, 97);
-            this.ImageTransferredBlocksStatusTB.Name = "ImageTransferredBlocksStatusTB";
-            this.ImageTransferredBlocksStatusTB.NotifyChanges = false;
-            this.ImageTransferredBlocksStatusTB.Size = new System.Drawing.Size(191, 20);
-            this.ImageTransferredBlocksStatusTB.TabIndex = 6;
-            this.ImageTransferredBlocksStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // ImageTransferredBlocksStatusLbl
             // 
@@ -224,20 +176,6 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Size = new System.Drawing.Size(192, 20);
             this.DescriptionTB.TabIndex = 4;
             // 
-            // ImageBlockSizeTB
-            // 
-            this.ImageBlockSizeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageBlockSizeTB.Index = 2;
-            this.ImageBlockSizeTB.Location = new System.Drawing.Point(104, 71);
-            this.ImageBlockSizeTB.Name = "ImageBlockSizeTB";
-            this.ImageBlockSizeTB.NotifyChanges = false;
-            this.ImageBlockSizeTB.Size = new System.Drawing.Size(191, 20);
-            this.ImageBlockSizeTB.TabIndex = 0;
-            this.ImageBlockSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            this.ImageBlockSizeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ImageBlockSizeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
             // ImageBlockSizeLbl
             // 
             this.ImageBlockSizeLbl.AutoSize = true;
@@ -246,18 +184,6 @@ namespace Gurux.DLMS.UI
             this.ImageBlockSizeLbl.Size = new System.Drawing.Size(92, 13);
             this.ImageBlockSizeLbl.TabIndex = 2;
             this.ImageBlockSizeLbl.Text = "Image Block Size:";
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(191, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -284,6 +210,81 @@ namespace Gurux.DLMS.UI
             this.PushBtn.TabIndex = 24;
             this.PushBtn.Text = "Update Firmaware...";
             this.PushBtn.UseVisualStyleBackColor = true;
+            // 
+            // ImageActivateInfoTB
+            // 
+            this.ImageActivateInfoTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageActivateInfoTB.Index = 7;
+            this.ImageActivateInfoTB.Location = new System.Drawing.Point(103, 200);
+            this.ImageActivateInfoTB.Name = "ImageActivateInfoTB";
+            this.ImageActivateInfoTB.NotifyChanges = false;
+            this.ImageActivateInfoTB.Size = new System.Drawing.Size(191, 20);
+            this.ImageActivateInfoTB.TabIndex = 21;
+            this.ImageActivateInfoTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // ImageTransferStatusCB
+            // 
+            this.ImageTransferStatusCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageTransferStatusCB.Index = 6;
+            this.ImageTransferStatusCB.Location = new System.Drawing.Point(104, 171);
+            this.ImageTransferStatusCB.Name = "ImageTransferStatusCB";
+            this.ImageTransferStatusCB.NotifyChanges = false;
+            this.ImageTransferStatusCB.ReadOnly = true;
+            this.ImageTransferStatusCB.Size = new System.Drawing.Size(191, 59);
+            this.ImageTransferStatusCB.TabIndex = 19;
+            this.ImageTransferStatusCB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            // 
+            // ImageFirstNotTransferredBlockNumberTB
+            // 
+            this.ImageFirstNotTransferredBlockNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageFirstNotTransferredBlockNumberTB.Index = 4;
+            this.ImageFirstNotTransferredBlockNumberTB.Location = new System.Drawing.Point(104, 123);
+            this.ImageFirstNotTransferredBlockNumberTB.Name = "ImageFirstNotTransferredBlockNumberTB";
+            this.ImageFirstNotTransferredBlockNumberTB.NotifyChanges = false;
+            this.ImageFirstNotTransferredBlockNumberTB.Size = new System.Drawing.Size(191, 20);
+            this.ImageFirstNotTransferredBlockNumberTB.TabIndex = 8;
+            this.ImageFirstNotTransferredBlockNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // ImageTransferredBlocksStatusTB
+            // 
+            this.ImageTransferredBlocksStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageTransferredBlocksStatusTB.Index = 3;
+            this.ImageTransferredBlocksStatusTB.Location = new System.Drawing.Point(104, 97);
+            this.ImageTransferredBlocksStatusTB.Name = "ImageTransferredBlocksStatusTB";
+            this.ImageTransferredBlocksStatusTB.NotifyChanges = false;
+            this.ImageTransferredBlocksStatusTB.Size = new System.Drawing.Size(191, 20);
+            this.ImageTransferredBlocksStatusTB.TabIndex = 6;
+            this.ImageTransferredBlocksStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // ImageBlockSizeTB
+            // 
+            this.ImageBlockSizeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageBlockSizeTB.Index = 2;
+            this.ImageBlockSizeTB.Location = new System.Drawing.Point(104, 71);
+            this.ImageBlockSizeTB.Name = "ImageBlockSizeTB";
+            this.ImageBlockSizeTB.NotifyChanges = false;
+            this.ImageBlockSizeTB.Size = new System.Drawing.Size(191, 20);
+            this.ImageBlockSizeTB.TabIndex = 0;
+            this.ImageBlockSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ImageBlockSizeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ImageBlockSizeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(191, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // GXDLMSImageTransferView
             // 

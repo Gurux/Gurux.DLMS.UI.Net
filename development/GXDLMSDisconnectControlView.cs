@@ -65,8 +65,10 @@ namespace Gurux.DLMS.UI
         {
             if (index == 2)
             {
+                OutputStateCB.CheckedChanged -= new System.EventHandler(OutputStateCB_CheckedChanged);
                 GXDLMSDisconnectControl target = Target as GXDLMSDisconnectControl;
                 this.OutputStateCB.Checked = target.OutputState;
+                OutputStateCB.CheckedChanged += new System.EventHandler(OutputStateCB_CheckedChanged);
             }
             else if (index != 0)
             {
@@ -133,6 +135,14 @@ namespace Gurux.DLMS.UI
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorProvider1.SetError((Control)sender, "Value changed.");
+        }
+
+        private void OutputStateCB_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = OutputStateCB.Checked;
+            (Target as GXDLMSDisconnectControl).OutputState = check;
+            Target.UpdateDirty(2, check);
+            errorProvider1.SetError(OutputStateCB, Properties.Resources.ValueChangedTxt);
         }
     }
 }

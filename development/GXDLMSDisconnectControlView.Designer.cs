@@ -114,6 +114,7 @@ namespace Gurux.DLMS.UI
             this.ControlModeCB.Index = 4;
             this.ControlModeCB.Location = new System.Drawing.Point(104, 118);
             this.ControlModeCB.Name = "ControlModeCB";
+            this.ControlModeCB.NotifyChanges = false;
             this.ControlModeCB.ReadOnly = true;
             this.ControlModeCB.Size = new System.Drawing.Size(217, 74);
             this.ControlModeCB.TabIndex = 4;
@@ -137,6 +138,7 @@ namespace Gurux.DLMS.UI
             this.OutputStateCB.Size = new System.Drawing.Size(27, 17);
             this.OutputStateCB.TabIndex = 2;
             this.OutputStateCB.UseVisualStyleBackColor = false;
+            this.OutputStateCB.CheckedChanged += new System.EventHandler(this.OutputStateCB_CheckedChanged);
             // 
             // OutputStateLbl
             // 
@@ -173,6 +175,7 @@ namespace Gurux.DLMS.UI
             this.ControlStateCB.Index = 3;
             this.ControlStateCB.Location = new System.Drawing.Point(103, 92);
             this.ControlStateCB.Name = "ControlStateCB";
+            this.ControlStateCB.NotifyChanges = false;
             this.ControlStateCB.ReadOnly = true;
             this.ControlStateCB.Size = new System.Drawing.Size(217, 74);
             this.ControlStateCB.TabIndex = 3;
@@ -196,6 +199,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(217, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;

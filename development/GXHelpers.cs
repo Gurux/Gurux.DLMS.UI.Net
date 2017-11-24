@@ -135,7 +135,7 @@ namespace Gurux.DLMS.UI
                 }
                 else
                 {
-                    data = ToHexString(data);
+                    data = GXDLMSTranslator.ToHex((byte[])data);
                 }
             }
             else if (data is Array)
@@ -167,28 +167,6 @@ namespace Gurux.DLMS.UI
                 retVal[++i] = Convert.ToByte(hexStr, isOctetString ? 10 : 16);
             }
             return retVal;
-        }
-
-        /// <summary>
-        /// Converts data to hex string.
-        /// </summary>
-        /// <param name="data">Data to convert.</param>
-        /// <returns>Hex string.</returns>
-        public static string ToHexString(object data)
-        {
-            string hex = string.Empty;
-            if (data is Array)
-            {
-                Array arr = (Array)data;
-                for (long pos = 0; pos != arr.Length; ++pos)
-                {
-                    long val = Convert.ToInt64(arr.GetValue(pos));
-                    hex += Convert.ToString(val, 16) + " ";
-                }
-                return hex.TrimEnd();
-            }
-            hex = Convert.ToString(Convert.ToInt64(data), 16);
-            return hex;
         }
 
         static string ArrayToString(object data)
@@ -312,6 +290,24 @@ namespace Gurux.DLMS.UI
                 }
             }
             return true;
+        }
+
+        public static string GetString(byte[] value)
+        {
+            string str;
+            if (value == null)
+            {
+                str = "";
+            }
+            if (IsAscii(value))
+            {
+                str = ASCIIEncoding.ASCII.GetString(value);
+            }
+            else
+            {
+                str = GXDLMSTranslator.ToHex(value);
+            }
+            return str;
         }
     }
 }

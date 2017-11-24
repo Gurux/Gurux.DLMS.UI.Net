@@ -66,7 +66,10 @@ namespace Gurux.DLMS.UI
             if (index == 5)
             {
                 GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
+                ImageTransferEnabledCB.CheckedChanged -= new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
                 this.ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
+                ImageTransferEnabledCB.CheckedChanged += new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
+
             }
             else if (index != 0)
             {
@@ -139,6 +142,13 @@ namespace Gurux.DLMS.UI
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorProvider1.SetError((Control)sender, "Value changed.");
+        }
+
+        private void ImageTransferEnabledCB_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = ImageTransferEnabledCB.Checked;
+            (Target as GXDLMSImageTransfer).ImageTransferEnabled = check;
+            Target.UpdateDirty(5, check);
         }
     }
 }
