@@ -166,12 +166,12 @@ namespace Gurux.DLMS.UI
 
         private void ValueTB_KeyUp(object sender, KeyEventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
         }
 
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Gurux.DLMS.UI
                     KeyTable.Items.Add(li);
                     GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                     target.KeyTable.Add(item);
-                    errorProvider1.SetError(KeyTable, "Value changed.");
+                    errorProvider1.SetError(KeyTable, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)
@@ -220,7 +220,7 @@ namespace Gurux.DLMS.UI
                         item.Value = dlg.key;
                         li.SubItems[0].Text = item.Key.ToString();
                         li.SubItems[1].Text = GXDLMSTranslator.ToHex(item.Value);
-                        errorProvider1.SetError(KeyTable, "Value changed.");
+                        errorProvider1.SetError(KeyTable, Properties.Resources.ValueChangedTxt);
                     }
                 }
             }
@@ -243,7 +243,7 @@ namespace Gurux.DLMS.UI
                     KeyTable.Items.Remove(KeyTable.SelectedItems[0]);
                     GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                     target.KeyTable.Remove(item);
-                    errorProvider1.SetError(KeyTable, "Value changed.");
+                    errorProvider1.SetError(KeyTable, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)
@@ -269,7 +269,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(item.ToneMap);
                     li.Tag = item;
                     NeighbourTable.Items.Add(li);
-                    errorProvider1.SetError(NeighbourTable, "Value changed.");
+                    errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)
@@ -295,7 +295,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[1].Text = item.Enabled.ToString();
                         li.SubItems[2].Text = item.Modulation.ToString();
                         li.SubItems[3].Text = item.ToneMap;
-                        errorProvider1.SetError(NeighbourTable, "Value changed.");
+                        errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                     }
                 }
             }
@@ -314,7 +314,7 @@ namespace Gurux.DLMS.UI
                 while (NeighbourTable.SelectedItems.Count != 0)
                 {
                     NeighbourTable.Items.Remove(NeighbourTable.SelectedItems[0]);
-                    errorProvider1.SetError(NeighbourTable, "Value changed.");
+                    errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)

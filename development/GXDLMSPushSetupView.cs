@@ -179,7 +179,7 @@ namespace Gurux.DLMS.UI
 
         private void ServiceCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
             (Target as GXDLMSPushSetup).Service = (ServiceType)ServiceCB.SelectedItem;
             Target.UpdateDirty(3, ServiceCB.SelectedItem);
         }
@@ -187,14 +187,14 @@ namespace Gurux.DLMS.UI
         private void MessageCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             (Target as GXDLMSPushSetup).Message = (MessageType)MessageCB.SelectedItem;
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
             Target.UpdateDirty(3, MessageCB.SelectedItem);
         }
 
         private void DestinationTB_TextChanged(object sender, EventArgs e)
         {
             (Target as GXDLMSPushSetup).Destination = DestinationTB.Text;
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
             Target.UpdateDirty(3, DestinationTB.Text);
         }
 
@@ -218,7 +218,7 @@ namespace Gurux.DLMS.UI
                     li.Tag = it;
                     target.PushObjectList.Add(it);
                 }
-                errorProvider1.SetError(ObjectsLV, "Value changed.");
+                errorProvider1.SetError(ObjectsLV, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(2, target.PushObjectList);
             }
             catch (Exception ex)
@@ -251,7 +251,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[2].Text = it.Value.AttributeIndex.ToString();
                         li.SubItems[3].Text = it.Value.DataIndex.ToString();
                         li.Tag = it;
-                        errorProvider1.SetError(ObjectsLV, "Value changed.");
+                        errorProvider1.SetError(ObjectsLV, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(2, target.PushObjectList);
                     }
                 }
@@ -277,7 +277,7 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = ObjectsLV.SelectedItems[0];
                     item = (KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
                     ObjectsLV.Items.Remove(ObjectsLV.SelectedItems[0]);
-                    errorProvider1.SetError(ObjectsLV, "Value changed.");
+                    errorProvider1.SetError(ObjectsLV, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.PushObjectList);
                     target.PushObjectList.Remove(item);
                 }
@@ -304,7 +304,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.Value.ToFormatString());
                     li.Tag = it;
                     target.CommunicationWindow.Add(it);
-                    errorProvider1.SetError(CommunicationWindowLV, "Value changed.");
+                    errorProvider1.SetError(CommunicationWindowLV, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(4, target.CommunicationWindow);
                 }
             }
@@ -331,7 +331,7 @@ namespace Gurux.DLMS.UI
                     {
                         li.SubItems[0].Text = it.Key.ToFormatString();
                         li.SubItems[1].Text = it.Value.ToFormatString();
-                        errorProvider1.SetError(CommunicationWindowLV, "Value changed.");
+                        errorProvider1.SetError(CommunicationWindowLV, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(4, target.CommunicationWindow);
                     }
                 }
@@ -355,7 +355,7 @@ namespace Gurux.DLMS.UI
                 {
                     KeyValuePair<GXDateTime, GXDateTime> item = (KeyValuePair<GXDateTime, GXDateTime>)CommunicationWindowLV.SelectedItems[0].Tag;
                     CommunicationWindowLV.Items.Remove(CommunicationWindowLV.SelectedItems[0]);
-                    errorProvider1.SetError(CommunicationWindowLV, "Value changed.");
+                    errorProvider1.SetError(CommunicationWindowLV, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(4, target.CommunicationWindow);
                     target.CommunicationWindow.Remove(item);
                 }

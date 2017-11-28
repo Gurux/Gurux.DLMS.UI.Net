@@ -172,8 +172,8 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.Value.ToFormatString());
                     li.Tag = it;
                     target.ListeningWindow.Add(it);
-                    errorProvider1.SetError(ListeningWindowLV, "Value changed.");
-                    Target.UpdateDirty(5, target.ListeningWindow);
+                    errorProvider1.SetError(ListeningWindowLV, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(3, target.ListeningWindow);
                 }
             }
             catch (Exception ex)
@@ -185,7 +185,6 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Edit calling window time.
         /// </summary>
-        /// 
         private void TimeEditBtn_Click(object sender, EventArgs e)
         {
             try
@@ -200,8 +199,8 @@ namespace Gurux.DLMS.UI
                     {
                         li.SubItems[0].Text = it.Key.ToFormatString();
                         li.SubItems[1].Text = it.Value.ToFormatString();
-                        errorProvider1.SetError(ListeningWindowLV, "Value changed.");
-                        Target.UpdateDirty(5, target.ListeningWindow);
+                        errorProvider1.SetError(ListeningWindowLV, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(3, target.ListeningWindow);
                     }
                 }
             }
@@ -224,8 +223,8 @@ namespace Gurux.DLMS.UI
                 {
                     KeyValuePair<GXDateTime, GXDateTime> item = (KeyValuePair<GXDateTime, GXDateTime>)ListeningWindowLV.SelectedItems[0].Tag;
                     ListeningWindowLV.Items.Remove(ListeningWindowLV.SelectedItems[0]);
-                    errorProvider1.SetError(ListeningWindowLV, "Value changed.");
-                    Target.UpdateDirty(5, target.ListeningWindow);
+                    errorProvider1.SetError(ListeningWindowLV, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(3, target.ListeningWindow);
                     target.ListeningWindow.Remove(item);
                 }
             }

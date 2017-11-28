@@ -120,6 +120,7 @@ namespace Gurux.DLMS.UI
             this.UnitTB.Index = 0;
             this.UnitTB.Location = new System.Drawing.Point(103, 123);
             this.UnitTB.Name = "UnitTB";
+            this.UnitTB.NotifyChanges = false;
             this.UnitTB.ReadOnly = true;
             this.UnitTB.Size = new System.Drawing.Size(208, 20);
             this.UnitTB.TabIndex = 4;
@@ -141,6 +142,7 @@ namespace Gurux.DLMS.UI
             this.ScalerTB.Index = 0;
             this.ScalerTB.Location = new System.Drawing.Point(103, 97);
             this.ScalerTB.Name = "ScalerTB";
+            this.ScalerTB.NotifyChanges = false;
             this.ScalerTB.ReadOnly = true;
             this.ScalerTB.Size = new System.Drawing.Size(208, 20);
             this.ScalerTB.TabIndex = 3;
@@ -162,6 +164,7 @@ namespace Gurux.DLMS.UI
             this.ValueTB.Index = 2;
             this.ValueTB.Location = new System.Drawing.Point(103, 71);
             this.ValueTB.Name = "ValueTB";
+            this.ValueTB.NotifyChanges = false;
             this.ValueTB.Size = new System.Drawing.Size(208, 20);
             this.ValueTB.TabIndex = 2;
             this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -182,6 +185,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;

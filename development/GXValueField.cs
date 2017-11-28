@@ -298,7 +298,7 @@ namespace Gurux.DLMS.UI
             try
             {
                 object value = null;
-                if (Items != null)
+                if (Items != null && Items.Count != 0)
                 {
                     foreach (GXObisValueItem it in Items)
                     {
