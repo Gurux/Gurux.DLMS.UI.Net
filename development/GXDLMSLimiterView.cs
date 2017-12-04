@@ -78,7 +78,7 @@ namespace Gurux.DLMS.UI
                 }
                 if (selected != -1)
                 {
-                    MonitoredValueTB.SelectedIndexChanged += new System.EventHandler(MonitoredValueTB_SelectedIndexChanged);
+                    MonitoredValueTB.SelectedIndexChanged -= new System.EventHandler(MonitoredValueTB_SelectedIndexChanged);
                     MonitoredValueTB.SelectedIndex = selected;
                     MonitoredValueTB.SelectedIndexChanged += new System.EventHandler(MonitoredValueTB_SelectedIndexChanged);
                 }
@@ -114,6 +114,26 @@ namespace Gurux.DLMS.UI
                     EmergencyProfileGroupIDsTB.Leave -= new System.EventHandler(EmergencyProfileGroupIDsTB_Leave);
                     EmergencyProfileGroupIDsTB.Text = string.Join(",", ((GXDLMSLimiter)Target).EmergencyProfileGroupIDs);
                     EmergencyProfileGroupIDsTB.Leave += new System.EventHandler(EmergencyProfileGroupIDsTB_Leave);
+                }
+            }
+            else if (index == 8)
+            {
+                IdTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.ID.ToString();
+                if (((GXDLMSLimiter)Target).EmergencyProfile.ActivationTime == null)
+                {
+                    ActivationTimeTb.Text = "";
+                }
+                else
+                {
+                    ActivationTimeTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.ActivationTime.ToFormatString();
+                }
+                DurationTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.Duration.ToString();
+            }
+            else if (index == 9)
+            {
+                if (((GXDLMSLimiter)Target).EmergencyProfileGroupIDs != null)
+                {
+                    EmergencyProfileGroupIDsTB.Text = string.Join(",", ((GXDLMSLimiter)Target).EmergencyProfileGroupIDs);
                 }
             }
             else if (index == 10)
@@ -165,6 +185,46 @@ namespace Gurux.DLMS.UI
                 ActionUnderThresholdIndexTB.Leave -= new System.EventHandler(ActionUnderThresholdIndexTB_Leave);
                 ActionUnderThresholdIndexTB.Text = (Target as GXDLMSLimiter).ActionUnderThreshold.ScriptSelector.ToString();
                 ActionUnderThresholdIndexTB.Leave += new System.EventHandler(ActionUnderThresholdIndexTB_Leave);
+            }
+            else if (index == 11)
+            {
+                ActionOverScript.Items.Clear();
+                int pos, selected = -1;
+                GXDLMSObjectCollection scripts = Target.Parent.GetObjects(ObjectType.ScriptTable);
+                foreach (GXDLMSObject it in scripts)
+                {
+                    pos = ActionOverScript.Items.Add(it);
+                    if (it.LogicalName == ((GXDLMSLimiter)Target).ActionOverThreshold.LogicalName)
+                    {
+                        selected = pos;
+                    }
+                }
+                if (selected != -1)
+                {
+                    this.ActionOverScript.SelectedIndexChanged -= new System.EventHandler(this.ActionOverScript_SelectedIndexChanged);
+                    ActionOverScript.SelectedIndex = selected;
+                    this.ActionOverScript.SelectedIndexChanged += new System.EventHandler(this.ActionOverScript_SelectedIndexChanged);
+                }
+
+                ActionOverThresholdIndexTB.Text = (Target as GXDLMSLimiter).ActionOverThreshold.ScriptSelector.ToString();
+
+                ActionUnderScript.Items.Clear();
+                selected = -1;
+                foreach (GXDLMSObject it in scripts)
+                {
+                    pos = ActionUnderScript.Items.Add(it);
+                    if (it.LogicalName == ((GXDLMSLimiter)Target).ActionUnderThreshold.LogicalName)
+                    {
+                        selected = pos;
+                    }
+                }
+                if (selected != -1)
+                {
+                    this.ActionUnderScript.SelectedIndexChanged -= new System.EventHandler(this.ActionUnderScript_SelectedIndexChanged);
+                    ActionUnderScript.SelectedIndex = selected;
+                    this.ActionUnderScript.SelectedIndexChanged += new System.EventHandler(this.ActionUnderScript_SelectedIndexChanged);
+                }
+                ActionUnderThresholdIndexTB.Text = (Target as GXDLMSLimiter).ActionUnderThreshold.ScriptSelector.ToString();
             }
             else
             {
@@ -412,7 +472,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -426,7 +486,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
