@@ -279,19 +279,19 @@ namespace Gurux.DLMS.UI
 
         private void ValueTB_KeyUp(object sender, KeyEventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
         }
 
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
         }
 
         private void DisableDefaultRoutingCB_CheckedChanged(object sender, EventArgs e)
         {
             GXDLMSG3Plc6LoWPan target = (GXDLMSG3Plc6LoWPan)Target;
             target.DisableDefaultRouting = DisableDefaultRoutingCB.Checked;
-            errorProvider1.SetError(DisableDefaultRoutingCB, "Value changed.");
+            errorProvider1.SetError(DisableDefaultRoutingCB, Properties.Resources.ValueChangedTxt);
         }
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(item.ValidTime.ToString());
                     li.Tag = item;
                     PrefixTable.Items.Add(li);
-                    errorProvider1.SetError(Routing, "Value changed.");
+                    errorProvider1.SetError(Routing, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)
@@ -344,7 +344,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[3].Text = item.HopCount.ToString();
                         li.SubItems[4].Text = item.WeakLinkCount.ToString();
                         li.SubItems[5].Text = item.ValidTime.ToString();
-                        errorProvider1.SetError(Routing, "Value changed.");
+                        errorProvider1.SetError(Routing, Properties.Resources.ValueChangedTxt);
                     }
                 }
             }
@@ -367,7 +367,7 @@ namespace Gurux.DLMS.UI
                     Routing.Items.Remove(Routing.SelectedItems[0]);
                     GXDLMSG3Plc6LoWPan target = Target as GXDLMSG3Plc6LoWPan;
                     target.RoutingTable.Remove(item);
-                    errorProvider1.SetError(Routing, "Value changed.");
+                    errorProvider1.SetError(Routing, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)

@@ -237,7 +237,7 @@ namespace Gurux.DLMS.UI
             try
             {
                 GXDLMSAssociationShortName target = Target as GXDLMSAssociationShortName;
-                errorProvider1.SetError(ObjectsView, "Value changed.");
+                errorProvider1.SetError(ObjectsView, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(2, target.ObjectList);
             }
             catch (Exception ex)
@@ -269,7 +269,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[2].Text = it.Version.ToString();
                         li.SubItems[3].Text = it.LogicalName;
                         li.Tag = it;
-                        errorProvider1.SetError(ObjectsView, "Value changed.");
+                        errorProvider1.SetError(ObjectsView, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(2, target.ObjectList);
                     }
                 }
@@ -296,7 +296,7 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = ObjectsView.SelectedItems[0];
                     item = (GXDLMSObject)li.Tag;
                     ObjectsView.Items.Remove(ObjectsView.SelectedItems[0]);
-                    errorProvider1.SetError(ObjectsView, "Value changed.");
+                    errorProvider1.SetError(ObjectsView, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.ObjectList);
                     target.ObjectList.Remove(item);
                 }

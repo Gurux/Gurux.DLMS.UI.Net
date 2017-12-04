@@ -150,11 +150,11 @@ namespace Gurux.DLMS.UI
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // groupBox1
-            //
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.CommSpeedTB);
             this.groupBox1.Controls.Add(this.CommSpeedLbl);
             this.groupBox1.Controls.Add(this.LogicalNameTB);
@@ -166,55 +166,58 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MBus Master Port Setup Object";
             this.groupBox1.UseCompatibleTextRendering = true;
-            //
+            // 
             // CommSpeedTB
-            //
-            this.CommSpeedTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                       | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.CommSpeedTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CommSpeedTB.Index = 2;
             this.CommSpeedTB.Location = new System.Drawing.Point(122, 47);
             this.CommSpeedTB.Name = "CommSpeedTB";
+            this.CommSpeedTB.NotifyChanges = false;
+            this.CommSpeedTB.ReadOnly = true;
             this.CommSpeedTB.Size = new System.Drawing.Size(168, 20);
             this.CommSpeedTB.TabIndex = 2;
-            this.CommSpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
+            this.CommSpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            // 
             // CommSpeedLbl
-            //
+            // 
             this.CommSpeedLbl.AutoSize = true;
             this.CommSpeedLbl.Location = new System.Drawing.Point(6, 50);
             this.CommSpeedLbl.Name = "CommSpeedLbl";
             this.CommSpeedLbl.Size = new System.Drawing.Size(73, 13);
             this.CommSpeedLbl.TabIndex = 2;
             this.CommSpeedLbl.Text = "Comm Speed:";
-            //
+            // 
             // LogicalNameTB
-            //
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                         | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(122, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
+            // 
             // LogicalNameLbl
-            //
+            // 
             this.LogicalNameLbl.AutoSize = true;
             this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
             this.LogicalNameLbl.Name = "LogicalNameLbl";
             this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
             this.LogicalNameLbl.TabIndex = 0;
             this.LogicalNameLbl.Text = "Logical Name:";
-            //
+            // 
             // errorProvider1
-            //
+            // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            //
+            // 
             // GXDLMSMBusMasterPortSetupView
-            //
+            // 
             this.ClientSize = new System.Drawing.Size(324, 126);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

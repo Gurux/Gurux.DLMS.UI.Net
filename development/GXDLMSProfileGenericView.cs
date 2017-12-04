@@ -496,7 +496,7 @@ namespace Gurux.DLMS.UI
                     li.Tag = it;
                     target.CaptureObjects.Add(it);
                 }
-                errorProvider1.SetError(CaptureObjectsLv, "Value changed.");
+                errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(3, target.CaptureObjects);
             }
             catch (Exception ex)
@@ -525,7 +525,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[0].Text = it.Key.ObjectType.ToString();
                         li.SubItems[1].Text = it.Key.LogicalName;
                         li.SubItems[2].Text = it.Value.AttributeIndex.ToString();
-                        errorProvider1.SetError(CaptureObjectsLv, "Value changed.");
+                        errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(3, target.CaptureObjects);
                     }
                 }
@@ -551,7 +551,7 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = CaptureObjectsLv.SelectedItems[0];
                     item = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
                     CaptureObjectsLv.Items.Remove(CaptureObjectsLv.SelectedItems[0]);
-                    errorProvider1.SetError(CaptureObjectsLv, "Value changed.");
+                    errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(3, target.CaptureObjects);
                     target.CaptureObjects.Remove(item);
                 }

@@ -150,7 +150,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.DayId.ToString());
                     li.Tag = it;
                     entries.Add(it);
-                    errorProvider1.SetError(SpecialDay, "Value changed.");
+                    errorProvider1.SetError(SpecialDay, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.Entries);
                 }
             }
@@ -179,7 +179,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[0].Text = it.Index.ToString();
                         li.SubItems[1].Text = it.Date.ToString();
                         li.SubItems[2].Text = it.DayId.ToString();
-                        errorProvider1.SetError(SpecialDay, "Value changed.");
+                        errorProvider1.SetError(SpecialDay, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(2, target.Entries);
                     }
                 }
@@ -203,7 +203,7 @@ namespace Gurux.DLMS.UI
                 {
                     GXDLMSSpecialDay item = (GXDLMSSpecialDay)SpecialDay.SelectedItems[0].Tag;
                     SpecialDay.Items.Remove(SpecialDay.SelectedItems[0]);
-                    errorProvider1.SetError(SpecialDay, "Value changed.");
+                    errorProvider1.SetError(SpecialDay, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.Entries);
                     entries.Remove(item);
                 }

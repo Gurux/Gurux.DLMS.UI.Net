@@ -155,7 +155,7 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = Time.Items.Add(it.ToFormatString());
                     li.Tag = it;
                     entries.Add(it);
-                    errorProvider1.SetError(Time, "Value changed.");
+                    errorProvider1.SetError(Time, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(4, target.ExecutionTime);
                     target.ExecutionTime = entries.ToArray();
                 }
@@ -188,7 +188,7 @@ namespace Gurux.DLMS.UI
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         li.SubItems[0].Text = it.ToFormatString();
-                        errorProvider1.SetError(Time, "Value changed.");
+                        errorProvider1.SetError(Time, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(4, target.ExecutionTime);
                         target.ExecutionTime = entries.ToArray();
                     }
@@ -218,7 +218,7 @@ namespace Gurux.DLMS.UI
                 {
                     GXDateTime item = (GXDateTime)Time.SelectedItems[0].Tag;
                     Time.Items.Remove(Time.SelectedItems[0]);
-                    errorProvider1.SetError(Time, "Value changed.");
+                    errorProvider1.SetError(Time, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(4, target.ExecutionTime);
                     entries.Remove(item);
                 }

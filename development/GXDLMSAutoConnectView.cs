@@ -151,7 +151,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.Value.ToFormatString());
                     li.Tag = it;
                     target.CallingWindow.Add(it);
-                    errorProvider1.SetError(CallingWindowLV, "Value changed.");
+                    errorProvider1.SetError(CallingWindowLV, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(5, target.CallingWindow);
                 }
             }
@@ -179,7 +179,7 @@ namespace Gurux.DLMS.UI
                     {
                         li.SubItems[0].Text = it.Key.ToFormatString();
                         li.SubItems[1].Text = it.Value.ToFormatString();
-                        errorProvider1.SetError(CallingWindowLV, "Value changed.");
+                        errorProvider1.SetError(CallingWindowLV, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(5, target.CallingWindow);
                     }
                 }
@@ -203,7 +203,7 @@ namespace Gurux.DLMS.UI
                 {
                     KeyValuePair<GXDateTime, GXDateTime> item = (KeyValuePair<GXDateTime, GXDateTime>)CallingWindowLV.SelectedItems[0].Tag;
                     CallingWindowLV.Items.Remove(CallingWindowLV.SelectedItems[0]);
-                    errorProvider1.SetError(CallingWindowLV, "Value changed.");
+                    errorProvider1.SetError(CallingWindowLV, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(5, target.CallingWindow);
                     target.CallingWindow.Remove(item);
                 }
@@ -233,7 +233,7 @@ namespace Gurux.DLMS.UI
                     string tmp = dlg.GetValue();
                     ListViewItem li = DestinationLv.Items.Add(tmp);
                     entries.Add(tmp);
-                    errorProvider1.SetError(DestinationLv, "Value changed.");
+                    errorProvider1.SetError(DestinationLv, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(6, target.Destinations);
                     target.Destinations = entries.ToArray();
                 }
@@ -269,7 +269,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[0].Text = tmp;
                         entries.RemoveAt(pos);
                         entries.Insert(pos, tmp);
-                        errorProvider1.SetError(DestinationLv, "Value changed.");
+                        errorProvider1.SetError(DestinationLv, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(6, target.Destinations);
                         target.Destinations = entries.ToArray();
                     }
@@ -298,7 +298,7 @@ namespace Gurux.DLMS.UI
                 {
                     string item = DestinationLv.SelectedItems[0].Text;
                     DestinationLv.Items.Remove(DestinationLv.SelectedItems[0]);
-                    errorProvider1.SetError(DestinationLv, "Value changed.");
+                    errorProvider1.SetError(DestinationLv, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(6, target.Destinations);
                     entries.Remove(item);
                 }

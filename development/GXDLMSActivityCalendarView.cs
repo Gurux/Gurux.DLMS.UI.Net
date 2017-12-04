@@ -293,7 +293,7 @@ namespace Gurux.DLMS.UI
                     target.SeasonProfilePassive = items.ToArray();
                 }
                 UpdateSeasonProfile(item, null, li);
-                errorProvider1.SetError(li, "Value changed.");
+                errorProvider1.SetError(li, Properties.Resources.ValueChangedTxt);
                 target.UpdateDirty(index, list);
             }
         }
@@ -305,7 +305,7 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 UpdateSeasonProfile(item, li, lv);
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(index, list);
             }
         }
@@ -333,7 +333,7 @@ namespace Gurux.DLMS.UI
                 ListViewItem li = lv.SelectedItems[0];
                 GXDLMSSeasonProfile item = (GXDLMSSeasonProfile)li.Tag;
                 li.Remove();
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 if (index == 3)
                 {
                     Target.UpdateDirty(index, target.SeasonProfileActive);
@@ -381,7 +381,7 @@ namespace Gurux.DLMS.UI
                     target.WeekProfileTablePassive = items.ToArray();
                 }
                 UpdateWeekProfile(item, null, li);
-                errorProvider1.SetError(li, "Value changed.");
+                errorProvider1.SetError(li, Properties.Resources.ValueChangedTxt);
                 target.UpdateDirty(index, list);
             }
         }
@@ -393,7 +393,7 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 UpdateWeekProfile(item, li, lv);
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(index, list);
             }
         }
@@ -421,7 +421,7 @@ namespace Gurux.DLMS.UI
                 ListViewItem li = lv.SelectedItems[0];
                 GXDLMSWeekProfile item = (GXDLMSWeekProfile)li.Tag;
                 li.Remove();
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 if (index == 3)
                 {
                     Target.UpdateDirty(index, target.WeekProfileTableActive);
@@ -459,7 +459,10 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 List<GXDLMSDayProfile> items = new List<GXDLMSDayProfile>();
-                items.AddRange(list);
+                if (list != null)
+                {
+                    items.AddRange(list);
+                }
                 items.Add(item);
                 if (index == 5)
                 {
@@ -470,7 +473,7 @@ namespace Gurux.DLMS.UI
                     target.DayProfileTablePassive = items.ToArray();
                 }
                 UpdateDayProfile(item, null, index);
-                errorProvider1.SetError(li, "Value changed.");
+                errorProvider1.SetError(li, Properties.Resources.ValueChangedTxt);
                 target.UpdateDirty(index, list);
             }
         }
@@ -482,7 +485,7 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 UpdateDayProfile(item, li, index);
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(index, list);
             }
         }
@@ -510,7 +513,7 @@ namespace Gurux.DLMS.UI
                 ListViewItem li = lv.SelectedItems[0];
                 GXDLMSDayProfile item = (GXDLMSDayProfile)li.Tag;
                 li.Remove();
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 if (index == 5)
                 {
                     Target.UpdateDirty(index, target.DayProfileTableActive);
@@ -551,7 +554,7 @@ namespace Gurux.DLMS.UI
                 {
                     PassiveDaysList_SelectedIndexChanged(null, null);
                 }
-                errorProvider1.SetError(li, "Value changed.");
+                errorProvider1.SetError(li, Properties.Resources.ValueChangedTxt);
                 c.UpdateDirty(index, target.DaySchedules);
             }
         }
@@ -570,7 +573,7 @@ namespace Gurux.DLMS.UI
                 {
                     PassiveDaysList_SelectedIndexChanged(null, null);
                 }
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(index, item);
             }
         }
@@ -585,7 +588,7 @@ namespace Gurux.DLMS.UI
                 ListViewItem li = lv.SelectedItems[0];
                 GXDLMSDayProfileAction item = (GXDLMSDayProfileAction)li.Tag;
                 li.Remove();
-                errorProvider1.SetError(lv, "Value changed.");
+                errorProvider1.SetError(lv, Properties.Resources.ValueChangedTxt);
                 Target.UpdateDirty(index, target.DaySchedules);
                 entries.Remove(item);
             }
@@ -819,10 +822,10 @@ namespace Gurux.DLMS.UI
 
         private void ActiveDaysList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ActiveActionList.Items.Clear();
             if (ActiveDaysList.SelectedItems.Count == 1)
             {
                 GXDLMSDayProfile it = (GXDLMSDayProfile)ActiveDaysList.SelectedItems[0].Tag;
-                ActiveActionList.Items.Clear();
                 if (it.DaySchedules != null)
                 {
                     ListViewItem li;
@@ -839,10 +842,10 @@ namespace Gurux.DLMS.UI
 
         private void PassiveDaysList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PassiveActionList.Items.Clear();
             if (PassiveDaysList.SelectedItems.Count == 1)
             {
                 GXDLMSDayProfile it = (GXDLMSDayProfile)PassiveDaysList.SelectedItems[0].Tag;
-                PassiveActionList.Items.Clear();
                 if (it.DaySchedules != null)
                 {
                     ListViewItem li;

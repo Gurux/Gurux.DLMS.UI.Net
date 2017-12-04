@@ -124,12 +124,12 @@ namespace Gurux.DLMS.UI
 
         private void ValueTB_KeyUp(object sender, KeyEventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
         }
 
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
-            errorProvider1.SetError((Control)sender, "Value changed.");
+            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
         }
     }
 }

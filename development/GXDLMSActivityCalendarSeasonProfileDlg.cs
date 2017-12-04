@@ -54,17 +54,20 @@ namespace Gurux.DLMS.UI
                 StartTb.Text = Target.Start.ToFormatString();
             }
             int pos, selected = -1;
-            foreach (GXDLMSWeekProfile it in weekProfiles)
+            if (weekProfiles != null)
             {
-                pos = WeekNameCb.Items.Add(GXHelpers.GetString(it.Name));
-                if (StructuralComparisons.StructuralEqualityComparer.Equals(Target.WeekName, it.Name))
+                foreach (GXDLMSWeekProfile it in weekProfiles)
                 {
-                    selected = pos;
+                    pos = WeekNameCb.Items.Add(GXHelpers.GetString(it.Name));
+                    if (StructuralComparisons.StructuralEqualityComparer.Equals(Target.WeekName, it.Name))
+                    {
+                        selected = pos;
+                    }
                 }
-            }
-            if (selected != -1)
-            {
-                WeekNameCb.SelectedIndex = selected;
+                if (selected != -1)
+                {
+                    WeekNameCb.SelectedIndex = selected;
+                }
             }
             OkBtn.Enabled = weekProfiles != null && weekProfiles.Length != 0;
         }
