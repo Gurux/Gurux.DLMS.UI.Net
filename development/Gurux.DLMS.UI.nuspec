@@ -12,12 +12,12 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Purpose of Gurux.DLMS.UI is help to create user interface for DLMS applications.</description>
         <summary>Purpose of Gurux.DLMS.UI is help to create user interface for DLMS applications.</summary>
-        <copyright>Copyright (c) 1998-2016 Gurux Ltd. All rights reserved.</copyright>
+        <copyright>Copyright (c) 1998-2017 Gurux Ltd. All rights reserved.</copyright>
         <language>en-US</language>
         <tags>DLMS COSEM UI</tags>
     </metadata>
     <files>
-        <file src="bin\Release\Gurux.DLMS.UI.dll" target="lib\portable-win+net35" />
-        <file src="bin\Release\Gurux.DLMS.UI.pdb" target="lib\portable-win+net35" />
+        <file src="bin\Release\Gurux.DLMS.UI.dll" target="lib\portable-win+net40" />
+        <file src="bin\Release\Gurux.DLMS.UI.pdb" target="lib\portable-win+net40" />
      </files>
 </package>
