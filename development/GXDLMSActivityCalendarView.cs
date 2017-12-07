@@ -83,7 +83,15 @@ namespace Gurux.DLMS.UI
                 li.SubItems[0].Text = str;
             }
             li.SubItems[1].Text = it.Start.ToFormatString();
-            li.SubItems[2].Text = GXDLMSTranslator.ToHex(it.WeekName);
+            if (GXHelpers.IsAscii(it.WeekName))
+            {
+                li.SubItems[2].Text = ASCIIEncoding.ASCII.GetString(it.WeekName);
+            }
+            else
+            {
+                li.SubItems[2].Text = GXDLMSTranslator.ToHex(it.WeekName);
+            }
+
         }
 
         private void UpdateWeekProfile(GXDLMSWeekProfile it, ListViewItem li, ListView list)
@@ -224,6 +232,30 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
+            if (index == 3)
+            {
+                SeasonProfileActiveRemoveBtn.Enabled = SeasonProfileActiveEditBtn.Enabled = SeasonProfileActiveAddBtn.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 4)
+            {
+                WeekProfileActiveRemoveBtn.Enabled = WeekProfileActiveEditBtn.Enabled = WeekProfileActiveAddBtn.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 5)
+            {
+                AddDayActiveBtn.Enabled = DayProfileActiveRemoveBtn.Enabled = DayProfileActiveEditBtn.Enabled = ActiveActionAddBtn.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 7)
+            {
+                SeasonProfilePassiveRemoveBtn.Enabled = SeasonProfilePassiveEditBtn.Enabled = SeasonProfilePassiveAddBtn.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 8)
+            {
+                WeekProfilePassiveRemoveBtn.Enabled = WeekProfilePassiveEditBtn.Enabled = WeekProfilePassiveAddBtn.Enabled = access > AccessMode.Read;
+            }
+            else if (index == 9)
+            {
+                AddDayPassiveBtn.Enabled = DayProfilePassiveRemoveBtn.Enabled = DayProfilePassiveEditBtn.Enabled = PassiveActionAddBtn.Enabled = access > AccessMode.Read;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
@@ -282,7 +314,10 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 List<GXDLMSSeasonProfile> items = new List<GXDLMSSeasonProfile>();
-                items.AddRange(list);
+                if (list != null)
+                {
+                    items.AddRange(list);
+                }
                 items.Add(item);
                 if (index == 3)
                 {
@@ -301,7 +336,7 @@ namespace Gurux.DLMS.UI
         private void EditSeasonProfile(GXDLMSActivityCalendar target, GXDLMSSeasonProfile[] list, int index, ListViewItem li, ListView lv)
         {
             GXDLMSSeasonProfile item = (GXDLMSSeasonProfile)li.Tag;
-            GXDLMSActivityCalendarSeasonProfileDlg dlg = new GXDLMSActivityCalendarSeasonProfileDlg(item, index == 4 ? target.WeekProfileTableActive : target.WeekProfileTablePassive);
+            GXDLMSActivityCalendarSeasonProfileDlg dlg = new GXDLMSActivityCalendarSeasonProfileDlg(item, index == 3 ? target.WeekProfileTableActive : target.WeekProfileTablePassive);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 UpdateSeasonProfile(item, li, lv);
@@ -370,9 +405,12 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 List<GXDLMSWeekProfile> items = new List<GXDLMSWeekProfile>();
-                items.AddRange(list);
+                if (list != null)
+                {
+                    items.AddRange(list);
+                }
                 items.Add(item);
-                if (index == 3)
+                if (index == 4)
                 {
                     target.WeekProfileTableActive = items.ToArray();
                 }
@@ -543,7 +581,10 @@ namespace Gurux.DLMS.UI
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 List<GXDLMSDayProfileAction> items = new List<GXDLMSDayProfileAction>();
-                items.AddRange(target.DaySchedules);
+                if (target.DaySchedules != null)
+                {
+                    items.AddRange(target.DaySchedules);
+                }
                 items.Add(item);
                 target.DaySchedules = items.ToArray();
                 if (index == 5)

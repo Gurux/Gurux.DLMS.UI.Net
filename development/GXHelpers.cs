@@ -284,7 +284,7 @@ namespace Gurux.DLMS.UI
             }
             foreach (byte it in value)
             {
-                if (it < 0x21 || it > 0x7E)
+                if (it < 0x20 || it > 0x7E)
                 {
                     return false;
                 }

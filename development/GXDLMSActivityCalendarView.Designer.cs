@@ -44,6 +44,8 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSActivityCalendarView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ActivatePassiveCalendarLbl = new System.Windows.Forms.Label();
+            this.ActivatePassiveCalendarTb = new Gurux.DLMS.UI.GXValueField();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ActiveTab = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -153,6 +155,8 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ActivatePassiveCalendarLbl);
+            this.groupBox1.Controls.Add(this.ActivatePassiveCalendarTb);
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.LogicalNameTB);
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
@@ -163,6 +167,26 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Activity Calendar Object";
             // 
+            // ActivatePassiveCalendarLbl
+            // 
+            this.ActivatePassiveCalendarLbl.AutoSize = true;
+            this.ActivatePassiveCalendarLbl.Location = new System.Drawing.Point(6, 51);
+            this.ActivatePassiveCalendarLbl.Name = "ActivatePassiveCalendarLbl";
+            this.ActivatePassiveCalendarLbl.Size = new System.Drawing.Size(132, 13);
+            this.ActivatePassiveCalendarLbl.TabIndex = 23;
+            this.ActivatePassiveCalendarLbl.Text = "Activate passive calendar:";
+            // 
+            // ActivatePassiveCalendarTb
+            // 
+            this.ActivatePassiveCalendarTb.Index = 10;
+            this.ActivatePassiveCalendarTb.Location = new System.Drawing.Point(144, 48);
+            this.ActivatePassiveCalendarTb.Name = "ActivatePassiveCalendarTb";
+            this.ActivatePassiveCalendarTb.NotifyChanges = false;
+            this.ActivatePassiveCalendarTb.ReadOnly = true;
+            this.ActivatePassiveCalendarTb.Size = new System.Drawing.Size(166, 20);
+            this.ActivatePassiveCalendarTb.TabIndex = 22;
+            this.ActivatePassiveCalendarTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -170,10 +194,10 @@ namespace Gurux.DLMS.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.ActiveTab);
             this.tabControl1.Controls.Add(this.PassiveTab);
-            this.tabControl1.Location = new System.Drawing.Point(6, 47);
+            this.tabControl1.Location = new System.Drawing.Point(6, 74);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(495, 558);
+            this.tabControl1.Size = new System.Drawing.Size(495, 531);
             this.tabControl1.TabIndex = 4;
             // 
             // ActiveTab
@@ -184,7 +208,7 @@ namespace Gurux.DLMS.UI
             this.ActiveTab.Location = new System.Drawing.Point(4, 22);
             this.ActiveTab.Name = "ActiveTab";
             this.ActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ActiveTab.Size = new System.Drawing.Size(487, 532);
+            this.ActiveTab.Size = new System.Drawing.Size(487, 505);
             this.ActiveTab.TabIndex = 0;
             this.ActiveTab.Text = "Active";
             this.ActiveTab.UseVisualStyleBackColor = true;
@@ -200,7 +224,7 @@ namespace Gurux.DLMS.UI
             this.tabControl2.Location = new System.Drawing.Point(11, 38);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(467, 491);
+            this.tabControl2.Size = new System.Drawing.Size(467, 464);
             this.tabControl2.TabIndex = 20;
             // 
             // SeasonProfileActiveTab
@@ -210,7 +234,7 @@ namespace Gurux.DLMS.UI
             this.SeasonProfileActiveTab.Location = new System.Drawing.Point(4, 22);
             this.SeasonProfileActiveTab.Name = "SeasonProfileActiveTab";
             this.SeasonProfileActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SeasonProfileActiveTab.Size = new System.Drawing.Size(459, 465);
+            this.SeasonProfileActiveTab.Size = new System.Drawing.Size(459, 438);
             this.SeasonProfileActiveTab.TabIndex = 0;
             this.SeasonProfileActiveTab.Text = "Season Profile";
             this.SeasonProfileActiveTab.UseVisualStyleBackColor = true;
@@ -229,7 +253,7 @@ namespace Gurux.DLMS.UI
             this.SeasonProfileActiveLV.HideSelection = false;
             this.SeasonProfileActiveLV.Location = new System.Drawing.Point(3, 3);
             this.SeasonProfileActiveLV.Name = "SeasonProfileActiveLV";
-            this.SeasonProfileActiveLV.Size = new System.Drawing.Size(433, 412);
+            this.SeasonProfileActiveLV.Size = new System.Drawing.Size(433, 385);
             this.SeasonProfileActiveLV.TabIndex = 17;
             this.SeasonProfileActiveLV.UseCompatibleStateImageBehavior = false;
             this.SeasonProfileActiveLV.View = System.Windows.Forms.View.Details;
@@ -256,7 +280,7 @@ namespace Gurux.DLMS.UI
             this.panel1.Controls.Add(this.SeasonProfileActiveEditBtn);
             this.panel1.Controls.Add(this.SeasonProfileActiveAddBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 415);
+            this.panel1.Location = new System.Drawing.Point(3, 388);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(453, 47);
             this.panel1.TabIndex = 0;
@@ -301,7 +325,7 @@ namespace Gurux.DLMS.UI
             this.WeekProfileActiveTab.Location = new System.Drawing.Point(4, 22);
             this.WeekProfileActiveTab.Name = "WeekProfileActiveTab";
             this.WeekProfileActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.WeekProfileActiveTab.Size = new System.Drawing.Size(459, 465);
+            this.WeekProfileActiveTab.Size = new System.Drawing.Size(459, 438);
             this.WeekProfileActiveTab.TabIndex = 1;
             this.WeekProfileActiveTab.Text = "Week Profile";
             this.WeekProfileActiveTab.UseVisualStyleBackColor = true;
@@ -325,7 +349,7 @@ namespace Gurux.DLMS.UI
             this.AWeekProfileLV.HideSelection = false;
             this.AWeekProfileLV.Location = new System.Drawing.Point(3, 3);
             this.AWeekProfileLV.Name = "AWeekProfileLV";
-            this.AWeekProfileLV.Size = new System.Drawing.Size(436, 412);
+            this.AWeekProfileLV.Size = new System.Drawing.Size(436, 385);
             this.AWeekProfileLV.TabIndex = 17;
             this.AWeekProfileLV.UseCompatibleStateImageBehavior = false;
             this.AWeekProfileLV.View = System.Windows.Forms.View.Details;
@@ -373,7 +397,7 @@ namespace Gurux.DLMS.UI
             this.panel2.Controls.Add(this.WeekProfileActiveEditBtn);
             this.panel2.Controls.Add(this.WeekProfileActiveAddBtn);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 415);
+            this.panel2.Location = new System.Drawing.Point(3, 388);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(453, 47);
             this.panel2.TabIndex = 1;
@@ -419,7 +443,7 @@ namespace Gurux.DLMS.UI
             this.DayProfileActiveTab.Controls.Add(this.panel3);
             this.DayProfileActiveTab.Location = new System.Drawing.Point(4, 22);
             this.DayProfileActiveTab.Name = "DayProfileActiveTab";
-            this.DayProfileActiveTab.Size = new System.Drawing.Size(459, 465);
+            this.DayProfileActiveTab.Size = new System.Drawing.Size(459, 438);
             this.DayProfileActiveTab.TabIndex = 2;
             this.DayProfileActiveTab.Text = "Day Profile";
             this.DayProfileActiveTab.UseVisualStyleBackColor = true;
@@ -438,7 +462,7 @@ namespace Gurux.DLMS.UI
             this.ActiveActionList.HideSelection = false;
             this.ActiveActionList.Location = new System.Drawing.Point(105, 0);
             this.ActiveActionList.Name = "ActiveActionList";
-            this.ActiveActionList.Size = new System.Drawing.Size(332, 418);
+            this.ActiveActionList.Size = new System.Drawing.Size(332, 391);
             this.ActiveActionList.TabIndex = 20;
             this.ActiveActionList.UseCompatibleStateImageBehavior = false;
             this.ActiveActionList.View = System.Windows.Forms.View.Details;
@@ -462,7 +486,7 @@ namespace Gurux.DLMS.UI
             // 
             this.splitter1.Location = new System.Drawing.Point(102, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 418);
+            this.splitter1.Size = new System.Drawing.Size(3, 391);
             this.splitter1.TabIndex = 19;
             this.splitter1.TabStop = false;
             // 
@@ -476,7 +500,7 @@ namespace Gurux.DLMS.UI
             this.ActiveDaysList.HideSelection = false;
             this.ActiveDaysList.Location = new System.Drawing.Point(0, 0);
             this.ActiveDaysList.Name = "ActiveDaysList";
-            this.ActiveDaysList.Size = new System.Drawing.Size(102, 418);
+            this.ActiveDaysList.Size = new System.Drawing.Size(102, 391);
             this.ActiveDaysList.TabIndex = 18;
             this.ActiveDaysList.UseCompatibleStateImageBehavior = false;
             this.ActiveDaysList.View = System.Windows.Forms.View.Details;
@@ -495,7 +519,7 @@ namespace Gurux.DLMS.UI
             this.panel3.Controls.Add(this.DayProfileActiveEditBtn);
             this.panel3.Controls.Add(this.ActiveActionAddBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 418);
+            this.panel3.Location = new System.Drawing.Point(0, 391);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(459, 47);
             this.panel3.TabIndex = 1;
@@ -572,7 +596,7 @@ namespace Gurux.DLMS.UI
             this.PassiveTab.Location = new System.Drawing.Point(4, 22);
             this.PassiveTab.Name = "PassiveTab";
             this.PassiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PassiveTab.Size = new System.Drawing.Size(487, 532);
+            this.PassiveTab.Size = new System.Drawing.Size(487, 505);
             this.PassiveTab.TabIndex = 1;
             this.PassiveTab.Text = "Passive";
             this.PassiveTab.UseVisualStyleBackColor = true;
@@ -588,7 +612,7 @@ namespace Gurux.DLMS.UI
             this.tabControl3.Location = new System.Drawing.Point(11, 38);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(470, 491);
+            this.tabControl3.Size = new System.Drawing.Size(470, 464);
             this.tabControl3.TabIndex = 28;
             // 
             // SeasonProfilePassiveTab
@@ -598,7 +622,7 @@ namespace Gurux.DLMS.UI
             this.SeasonProfilePassiveTab.Location = new System.Drawing.Point(4, 22);
             this.SeasonProfilePassiveTab.Name = "SeasonProfilePassiveTab";
             this.SeasonProfilePassiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SeasonProfilePassiveTab.Size = new System.Drawing.Size(462, 465);
+            this.SeasonProfilePassiveTab.Size = new System.Drawing.Size(462, 438);
             this.SeasonProfilePassiveTab.TabIndex = 0;
             this.SeasonProfilePassiveTab.Text = "Season Profile";
             this.SeasonProfilePassiveTab.UseVisualStyleBackColor = true;
@@ -617,7 +641,7 @@ namespace Gurux.DLMS.UI
             this.SeasonProfilePassiveLV.HideSelection = false;
             this.SeasonProfilePassiveLV.Location = new System.Drawing.Point(3, 3);
             this.SeasonProfilePassiveLV.Name = "SeasonProfilePassiveLV";
-            this.SeasonProfilePassiveLV.Size = new System.Drawing.Size(434, 412);
+            this.SeasonProfilePassiveLV.Size = new System.Drawing.Size(434, 385);
             this.SeasonProfilePassiveLV.TabIndex = 24;
             this.SeasonProfilePassiveLV.UseCompatibleStateImageBehavior = false;
             this.SeasonProfilePassiveLV.View = System.Windows.Forms.View.Details;
@@ -644,7 +668,7 @@ namespace Gurux.DLMS.UI
             this.panel4.Controls.Add(this.SeasonProfilePassiveEditBtn);
             this.panel4.Controls.Add(this.SeasonProfilePassiveAddBtn);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(3, 415);
+            this.panel4.Location = new System.Drawing.Point(3, 388);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(456, 47);
             this.panel4.TabIndex = 1;
@@ -689,7 +713,7 @@ namespace Gurux.DLMS.UI
             this.WeekProfilePassiveTab.Location = new System.Drawing.Point(4, 22);
             this.WeekProfilePassiveTab.Name = "WeekProfilePassiveTab";
             this.WeekProfilePassiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.WeekProfilePassiveTab.Size = new System.Drawing.Size(462, 465);
+            this.WeekProfilePassiveTab.Size = new System.Drawing.Size(462, 438);
             this.WeekProfilePassiveTab.TabIndex = 1;
             this.WeekProfilePassiveTab.Text = "Week Profile";
             this.WeekProfilePassiveTab.UseVisualStyleBackColor = true;
@@ -713,7 +737,7 @@ namespace Gurux.DLMS.UI
             this.PWeekProfileLV.HideSelection = false;
             this.PWeekProfileLV.Location = new System.Drawing.Point(3, 3);
             this.PWeekProfileLV.Name = "PWeekProfileLV";
-            this.PWeekProfileLV.Size = new System.Drawing.Size(434, 412);
+            this.PWeekProfileLV.Size = new System.Drawing.Size(434, 385);
             this.PWeekProfileLV.TabIndex = 25;
             this.PWeekProfileLV.UseCompatibleStateImageBehavior = false;
             this.PWeekProfileLV.View = System.Windows.Forms.View.Details;
@@ -761,7 +785,7 @@ namespace Gurux.DLMS.UI
             this.panel5.Controls.Add(this.WeekProfilePassiveEditBtn);
             this.panel5.Controls.Add(this.WeekProfilePassiveAddBtn);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 415);
+            this.panel5.Location = new System.Drawing.Point(3, 388);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(456, 47);
             this.panel5.TabIndex = 1;
@@ -806,7 +830,7 @@ namespace Gurux.DLMS.UI
             this.DayProfilePassiveTab.Controls.Add(this.panel6);
             this.DayProfilePassiveTab.Location = new System.Drawing.Point(4, 22);
             this.DayProfilePassiveTab.Name = "DayProfilePassiveTab";
-            this.DayProfilePassiveTab.Size = new System.Drawing.Size(462, 465);
+            this.DayProfilePassiveTab.Size = new System.Drawing.Size(462, 438);
             this.DayProfilePassiveTab.TabIndex = 2;
             this.DayProfilePassiveTab.Text = "Day Profile";
             this.DayProfilePassiveTab.UseVisualStyleBackColor = true;
@@ -825,7 +849,7 @@ namespace Gurux.DLMS.UI
             this.PassiveActionList.HideSelection = false;
             this.PassiveActionList.Location = new System.Drawing.Point(102, 0);
             this.PassiveActionList.Name = "PassiveActionList";
-            this.PassiveActionList.Size = new System.Drawing.Size(337, 418);
+            this.PassiveActionList.Size = new System.Drawing.Size(337, 391);
             this.PassiveActionList.TabIndex = 22;
             this.PassiveActionList.UseCompatibleStateImageBehavior = false;
             this.PassiveActionList.View = System.Windows.Forms.View.Details;
@@ -855,7 +879,7 @@ namespace Gurux.DLMS.UI
             this.PassiveDaysList.HideSelection = false;
             this.PassiveDaysList.Location = new System.Drawing.Point(0, 0);
             this.PassiveDaysList.Name = "PassiveDaysList";
-            this.PassiveDaysList.Size = new System.Drawing.Size(102, 418);
+            this.PassiveDaysList.Size = new System.Drawing.Size(102, 391);
             this.PassiveDaysList.TabIndex = 21;
             this.PassiveDaysList.UseCompatibleStateImageBehavior = false;
             this.PassiveDaysList.View = System.Windows.Forms.View.Details;
@@ -874,7 +898,7 @@ namespace Gurux.DLMS.UI
             this.panel6.Controls.Add(this.DayProfilePassiveRemoveBtn);
             this.panel6.Controls.Add(this.DayProfilePassiveEditBtn);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 418);
+            this.panel6.Location = new System.Drawing.Point(0, 391);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(462, 47);
             this.panel6.TabIndex = 1;
@@ -1075,5 +1099,7 @@ namespace Gurux.DLMS.UI
         private Button AddDayActiveBtn;
         private Button AddDayPassiveBtn;
         private Button PassiveActionAddBtn;
+        private Label ActivatePassiveCalendarLbl;
+        private GXValueField ActivatePassiveCalendarTb;
     }
 }

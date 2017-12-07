@@ -72,6 +72,11 @@ namespace Gurux.DLMS.UI
             else if (index == 3)
             {
                 int v = (int)value;
+                if (target.TimeZone == -32768)//0x8000
+                {
+                    v = -1;
+                    TimeZoneTB.Value = "";
+                }
                 //If time zone is not used.
                 TimeZoneCb.CheckedChanged -= new System.EventHandler(TimeZoneCb_CheckedChanged);
                 TimeZoneCb.Checked = v != -1;
@@ -243,7 +248,15 @@ namespace Gurux.DLMS.UI
         {
             TimeZoneTB.ReadOnly = !TimeZoneCb.Checked;
             CurrentTimeZoneBtn.Enabled = TimeZoneCb.Checked;
-            (Target as GXDLMSClock).TimeZone = -1;
+            if (!TimeZoneCb.Checked)
+            {
+                (Target as GXDLMSClock).TimeZone = 0x8000;
+            }
+            else
+            {
+                (Target as GXDLMSClock).TimeZone = -(int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
+                TimeZoneTB.Value = (Target as GXDLMSClock).TimeZone.ToString();
+            }
             Target.UpdateDirty(3, (Target as GXDLMSClock).TimeZone);
         }
     }

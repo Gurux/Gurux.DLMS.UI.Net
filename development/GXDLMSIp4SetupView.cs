@@ -66,7 +66,14 @@ namespace Gurux.DLMS.UI
             {
                 GXDLMSIp4Setup target = Target as GXDLMSIp4Setup;
                 UseDhcpCp.CheckedChanged -= new System.EventHandler(UseDHCCB_CheckedChanged);
-                this.UseDhcpCp.Checked = target.UseDHCP;
+                if (target.UseDHCP)
+                {
+                    UseDhcpCp.CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    UseDhcpCp.CheckState = CheckState.Unchecked;
+                }
                 UseDhcpCp.CheckedChanged += new System.EventHandler(UseDHCCB_CheckedChanged);
             }
             else if (index != 0)
@@ -79,7 +86,7 @@ namespace Gurux.DLMS.UI
         {
             if (index == 8)
             {
-                this.UseDhcpCp.Enabled = (access & AccessMode.Write) != 0;
+                UseDhcpCp.Enabled = (access & AccessMode.Write) != 0;
             }
             else
             {
