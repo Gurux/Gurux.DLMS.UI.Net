@@ -39,13 +39,14 @@
             this.FridayCb = new System.Windows.Forms.CheckBox();
             this.SaturdayCb = new System.Windows.Forms.CheckBox();
             this.SundayCb = new System.Windows.Forms.CheckBox();
+            this.AsciiBtn = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // CancelBtn
             // 
             this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(197, 207);
+            this.CancelBtn.Location = new System.Drawing.Point(259, 207);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 7;
@@ -56,7 +57,7 @@
             // 
             this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBtn.Location = new System.Drawing.Point(116, 207);
+            this.OkBtn.Location = new System.Drawing.Point(178, 207);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
             this.OkBtn.TabIndex = 6;
@@ -70,7 +71,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTb.Location = new System.Drawing.Point(91, 12);
             this.NameTb.Name = "NameTb";
-            this.NameTb.Size = new System.Drawing.Size(181, 20);
+            this.NameTb.Size = new System.Drawing.Size(162, 20);
             this.NameTb.TabIndex = 22;
             // 
             // NameLbl
@@ -152,13 +153,24 @@
             this.SundayCb.Text = "Sunday";
             this.SundayCb.UseVisualStyleBackColor = true;
             // 
+            // AsciiBtn
+            // 
+            this.AsciiBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AsciiBtn.Location = new System.Drawing.Point(266, 15);
+            this.AsciiBtn.Name = "AsciiBtn";
+            this.AsciiBtn.Size = new System.Drawing.Size(68, 17);
+            this.AsciiBtn.TabIndex = 31;
+            this.AsciiBtn.Text = "ASCII";
+            this.AsciiBtn.UseVisualStyleBackColor = false;
+            // 
             // GXDLMSActivityCalendarWeekProfileDlg
             // 
             this.AcceptButton = this.OkBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(284, 242);
+            this.ClientSize = new System.Drawing.Size(346, 242);
+            this.Controls.Add(this.AsciiBtn);
             this.Controls.Add(this.SundayCb);
             this.Controls.Add(this.SaturdayCb);
             this.Controls.Add(this.FridayCb);
@@ -195,5 +207,6 @@
         private System.Windows.Forms.CheckBox FridayCb;
         private System.Windows.Forms.CheckBox SaturdayCb;
         private System.Windows.Forms.CheckBox SundayCb;
+        private System.Windows.Forms.CheckBox AsciiBtn;
     }
 }

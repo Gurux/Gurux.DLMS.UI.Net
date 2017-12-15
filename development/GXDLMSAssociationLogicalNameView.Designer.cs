@@ -37,6 +37,7 @@ namespace Gurux.DLMS.UI
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.UpdatePwBtn = new Gurux.DLMS.UI.GXButton();
             this.ModifyBtn = new System.Windows.Forms.Button();
             this.SecretTB = new System.Windows.Forms.TextBox();
             this.SecretAsciiCb = new System.Windows.Forms.CheckBox();
@@ -262,6 +263,7 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.UpdatePwBtn);
             this.tabPage2.Controls.Add(this.ModifyBtn);
             this.tabPage2.Controls.Add(this.SecretTB);
             this.tabPage2.Controls.Add(this.SecretAsciiCb);
@@ -279,14 +281,28 @@ namespace Gurux.DLMS.UI
             this.tabPage2.Text = "General";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // UpdatePwBtn
+            // 
+            this.UpdatePwBtn.Action = Gurux.DLMS.UI.ActionType.Write;
+            this.UpdatePwBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdatePwBtn.Index = 7;
+            this.UpdatePwBtn.Location = new System.Drawing.Point(363, 69);
+            this.UpdatePwBtn.Name = "UpdatePwBtn";
+            this.UpdatePwBtn.Size = new System.Drawing.Size(75, 23);
+            this.UpdatePwBtn.TabIndex = 28;
+            this.UpdatePwBtn.Text = "Update";
+            this.UpdatePwBtn.UseVisualStyleBackColor = true;
+            // 
             // ModifyBtn
             // 
+            this.ModifyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ModifyBtn.Location = new System.Drawing.Point(363, 120);
             this.ModifyBtn.Name = "ModifyBtn";
             this.ModifyBtn.Size = new System.Drawing.Size(75, 23);
-            this.ModifyBtn.TabIndex = 29;
+            this.ModifyBtn.TabIndex = 31;
             this.ModifyBtn.Text = "Modify...";
             this.ModifyBtn.UseVisualStyleBackColor = true;
+            this.ModifyBtn.Click += new System.EventHandler(this.ModifyBtn_Click);
             // 
             // SecretTB
             // 
@@ -294,14 +310,14 @@ namespace Gurux.DLMS.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SecretTB.Location = new System.Drawing.Point(115, 67);
             this.SecretTB.Name = "SecretTB";
-            this.SecretTB.Size = new System.Drawing.Size(242, 20);
-            this.SecretTB.TabIndex = 28;
+            this.SecretTB.Size = new System.Drawing.Size(183, 20);
+            this.SecretTB.TabIndex = 26;
             // 
             // SecretAsciiCb
             // 
             this.SecretAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SecretAsciiCb.AutoSize = true;
-            this.SecretAsciiCb.Location = new System.Drawing.Point(371, 71);
+            this.SecretAsciiCb.Location = new System.Drawing.Point(304, 69);
             this.SecretAsciiCb.Name = "SecretAsciiCb";
             this.SecretAsciiCb.Size = new System.Drawing.Size(53, 17);
             this.SecretAsciiCb.TabIndex = 27;
@@ -316,7 +332,7 @@ namespace Gurux.DLMS.UI
             this.textBox1.Location = new System.Drawing.Point(115, 120);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(242, 20);
-            this.textBox1.TabIndex = 26;
+            this.textBox1.TabIndex = 30;
             // 
             // SecuritySetupReferenceLbl
             // 
@@ -398,8 +414,9 @@ namespace Gurux.DLMS.UI
             this.gxValueField1.Location = new System.Drawing.Point(114, 93);
             this.gxValueField1.Name = "gxValueField1";
             this.gxValueField1.NotifyChanges = false;
+            this.gxValueField1.ReadOnly = true;
             this.gxValueField1.Size = new System.Drawing.Size(243, 20);
-            this.gxValueField1.TabIndex = 20;
+            this.gxValueField1.TabIndex = 29;
             this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // tabPage3
@@ -917,5 +934,6 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem removeToolStripMenuItem;
         private Button ModifyBtn;
+        private GXButton UpdatePwBtn;
     }
 }

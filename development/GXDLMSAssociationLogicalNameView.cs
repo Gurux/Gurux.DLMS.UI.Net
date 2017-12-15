@@ -118,7 +118,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 4)
             {
-                //            Application context name.
+                // Application context name.
                 ApplicationJointISOCTTTb.Text = Convert.ToString(target.ApplicationContextName.JointIsoCtt);
                 ApplicationCountryTb.Text = Convert.ToString(target.ApplicationContextName.Country);
                 ApplicationCountryNameTb.Text = Convert.ToString(target.ApplicationContextName.CountryName);
@@ -129,7 +129,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 5)
             {
-                //             xDLMS_context_info
+                // xDLMS_context_info
                 ConformanceTB.Text = target.XDLMSContextInfo.Conformance.ToString();
                 MaxReceivePDUSizeTb.Text = target.XDLMSContextInfo.MaxReceivePduSize.ToString();
                 MaxSendPDUSizeTb.Text = target.XDLMSContextInfo.MaxSendPduSize.ToString();
@@ -158,12 +158,28 @@ namespace Gurux.DLMS.UI
                 else
                 {
                     SecretTB.Text = GXDLMSTranslator.ToHex(target.Secret);
-                }
+                }                
             }
         }
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
+            if (index == 7)
+            {
+                bool enabled = (access & AccessMode.Write) != 0;
+                UpdatePwBtn.Enabled = enabled;
+                SecretTB.ReadOnly = !enabled;
+                if (Target.GetMethodAccess(2) == MethodAccessMode.Access)
+                {
+                    UpdatePwBtn.Action = ActionType.Action;
+                    UpdatePwBtn.Index = 2;
+                }
+                else
+                {
+                    UpdatePwBtn.Action = ActionType.Write;
+                    UpdatePwBtn.Index = 7;
+                }
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
@@ -172,7 +188,40 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(ActionType type, ValueEventArgs arg)
         {
-
+            if ((type == ActionType.Action && arg.Index == 2) ||
+                (type == ActionType.Write && arg.Index == 7))
+            {
+                DialogResult ret;
+                //Update current time
+                ret = MessageBox.Show(this, Properties.Resources.SetPasswordWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
+                {
+                    byte[] value;
+                    if (SecretAsciiCb.Checked)
+                    {
+                        value = ASCIIEncoding.ASCII.GetBytes(SecretTB.Text);
+                    }
+                    else
+                    {
+                        value = GXDLMSTranslator.HexToBytes(SecretTB.Text);
+                    }
+                    if (type == ActionType.Write)
+                    {
+                        GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                        target.Secret = value;
+                    }
+                    else
+                    {
+                        arg.Value = value;
+                    }
+                }
+                arg.Handled = ret != DialogResult.Yes;
+            }
+            else if (type == ActionType.Write && arg.Index == 2)
+            {
+                //Skip write invoke.
+                arg.Handled = true;
+            }
         }
 
         public void PostAction(ActionType type, ValueEventArgs arg)
@@ -322,6 +371,11 @@ namespace Gurux.DLMS.UI
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ModifyBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

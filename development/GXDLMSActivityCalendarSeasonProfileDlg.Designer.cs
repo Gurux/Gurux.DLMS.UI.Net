@@ -36,6 +36,7 @@
             this.StartLbl = new System.Windows.Forms.Label();
             this.WeekNameLbl = new System.Windows.Forms.Label();
             this.WeekNameCb = new System.Windows.Forms.ComboBox();
+            this.AsciiBtn = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // CancelBtn
@@ -67,7 +68,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTb.Location = new System.Drawing.Point(91, 12);
             this.NameTb.Name = "NameTb";
-            this.NameTb.Size = new System.Drawing.Size(181, 20);
+            this.NameTb.Size = new System.Drawing.Size(100, 20);
             this.NameTb.TabIndex = 0;
             // 
             // NameLbl
@@ -115,8 +116,17 @@
             this.WeekNameCb.Location = new System.Drawing.Point(91, 64);
             this.WeekNameCb.Name = "WeekNameCb";
             this.WeekNameCb.Size = new System.Drawing.Size(181, 21);
-            this.WeekNameCb.Sorted = true;
             this.WeekNameCb.TabIndex = 34;
+            // 
+            // AsciiBtn
+            // 
+            this.AsciiBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AsciiBtn.Location = new System.Drawing.Point(204, 14);
+            this.AsciiBtn.Name = "AsciiBtn";
+            this.AsciiBtn.Size = new System.Drawing.Size(68, 17);
+            this.AsciiBtn.TabIndex = 35;
+            this.AsciiBtn.Text = "ASCII";
+            this.AsciiBtn.UseVisualStyleBackColor = false;
             // 
             // GXDLMSActivityCalendarSeasonProfileDlg
             // 
@@ -125,6 +135,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(284, 139);
+            this.Controls.Add(this.AsciiBtn);
             this.Controls.Add(this.WeekNameCb);
             this.Controls.Add(this.WeekNameLbl);
             this.Controls.Add(this.StartTb);
@@ -155,5 +166,6 @@
         private System.Windows.Forms.Label StartLbl;
         private System.Windows.Forms.Label WeekNameLbl;
         private System.Windows.Forms.ComboBox WeekNameCb;
+        private System.Windows.Forms.CheckBox AsciiBtn;
     }
 }

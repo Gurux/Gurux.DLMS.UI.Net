@@ -48,6 +48,7 @@ namespace Gurux.DLMS.UI
             InitializeComponent();
             Target = target;
             WeekProfile = weekProfiles;
+            AsciiBtn.Checked = GXHelpers.IsAscii(Target.Name);
             NameTb.Text = GXHelpers.GetString(Target.Name);
             if (Target.Start != DateTime.MinValue)
             {
@@ -58,8 +59,8 @@ namespace Gurux.DLMS.UI
             {
                 foreach (GXDLMSWeekProfile it in weekProfiles)
                 {
-                    pos = WeekNameCb.Items.Add(GXHelpers.GetString(it.Name));
-                    if (StructuralComparisons.StructuralEqualityComparer.Equals(Target.WeekName, it.Name))
+                    pos = WeekNameCb.Items.Add(it);
+                    if (selected == -1 && StructuralComparisons.StructuralEqualityComparer.Equals(Target.WeekName, it.Name))
                     {
                         selected = pos;
                     }
@@ -80,9 +81,20 @@ namespace Gurux.DLMS.UI
                 {
                     throw new Exception("Week profile is not selected.");
                 }
-                Target.Name = ASCIIEncoding.ASCII.GetBytes(NameTb.Text);
+                if (AsciiBtn.Checked)
+                {
+                    Target.Name = ASCIIEncoding.ASCII.GetBytes(NameTb.Text);
+                }
+                else
+                {
+                    Target.Name = GXDLMSTranslator.HexToBytes(NameTb.Text);
+                }
+                if (Target.Name.Length == 0)
+                {
+                    throw new Exception("Invalid name.");
+                }
                 Target.Start = new GXDateTime(StartTb.Text);
-                Target.WeekName = ASCIIEncoding.ASCII.GetBytes(WeekNameCb.Text);
+                Target.WeekName = (WeekNameCb.SelectedItem as GXDLMSWeekProfile).Name;
             }
             catch (Exception ex)
             {

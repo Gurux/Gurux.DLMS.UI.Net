@@ -223,6 +223,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to set new password?.
+        /// </summary>
+        internal static string SetPasswordWarning {
+            get {
+                return ResourceManager.GetString("SetPasswordWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a temporary failure..
         /// </summary>
         internal static string TemporaryFailureTxt {

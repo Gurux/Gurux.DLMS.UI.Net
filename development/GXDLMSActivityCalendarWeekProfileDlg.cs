@@ -45,6 +45,7 @@ namespace Gurux.DLMS.UI
         {
             InitializeComponent();
             Target = target;
+            AsciiBtn.Checked = GXHelpers.IsAscii(Target.Name);
             NameTb.Text = GXHelpers.GetString(Target.Name);
             MondayCb.Checked = Target.Monday != 0;
             TuesdayCb.Checked = Target.Tuesday != 0;
@@ -63,7 +64,18 @@ namespace Gurux.DLMS.UI
                 {
                     throw new Exception("Invalid name.");
                 }
-                Target.Name = ASCIIEncoding.ASCII.GetBytes(NameTb.Text);
+                if (AsciiBtn.Checked)
+                {
+                    Target.Name = ASCIIEncoding.ASCII.GetBytes(NameTb.Text);
+                }
+                else
+                {
+                    Target.Name = GXDLMSTranslator.HexToBytes(NameTb.Text);
+                }
+                if (Target.Name.Length == 0)
+                {
+                    throw new Exception("Invalid name.");
+                }
                 Target.Monday = MondayCb.Checked ? 1 : 0;
                 Target.Tuesday = TuesdayCb.Checked ? 1 : 0;
                 Target.Wednesday = WednesdayCb.Checked ? 1 : 0;

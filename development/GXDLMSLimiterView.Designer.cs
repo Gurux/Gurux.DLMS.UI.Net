@@ -290,7 +290,6 @@ namespace Gurux.DLMS.UI
             this.ActionUnderScript.Location = new System.Drawing.Point(127, 14);
             this.ActionUnderScript.Name = "ActionUnderScript";
             this.ActionUnderScript.Size = new System.Drawing.Size(152, 21);
-            this.ActionUnderScript.Sorted = true;
             this.ActionUnderScript.TabIndex = 18;
             this.ActionUnderScript.SelectedIndexChanged += new System.EventHandler(this.ActionUnderScript_SelectedIndexChanged);
             // 
@@ -344,7 +343,6 @@ namespace Gurux.DLMS.UI
             this.ActionOverScript.Location = new System.Drawing.Point(127, 19);
             this.ActionOverScript.Name = "ActionOverScript";
             this.ActionOverScript.Size = new System.Drawing.Size(152, 21);
-            this.ActionOverScript.Sorted = true;
             this.ActionOverScript.TabIndex = 16;
             this.ActionOverScript.SelectedIndexChanged += new System.EventHandler(this.ActionOverScript_SelectedIndexChanged);
             // 

@@ -115,7 +115,6 @@
             this.ScriptCb.Location = new System.Drawing.Point(79, 38);
             this.ScriptCb.Name = "ScriptCb";
             this.ScriptCb.Size = new System.Drawing.Size(193, 21);
-            this.ScriptCb.Sorted = true;
             this.ScriptCb.TabIndex = 1;
             // 
             // GXDLMSActivityCalendarActionDlg
