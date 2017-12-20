@@ -50,11 +50,10 @@ namespace Gurux.DLMS.UI
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.SecuritySetupCb = new System.Windows.Forms.ComboBox();
             this.UpdateTimeBtn = new Gurux.DLMS.UI.GXButton();
             this.SecretAsciiCb = new System.Windows.Forms.CheckBox();
-            this.ModifyBtn = new System.Windows.Forms.Button();
             this.SecretTB = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SecuritySetupReferenceLbl = new System.Windows.Forms.Label();
             this.SecretLbl = new System.Windows.Forms.Label();
             this.ObjectRemoveBtn = new System.Windows.Forms.Button();
@@ -73,8 +72,8 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.ObjectRemoveBtn);
@@ -91,8 +90,8 @@ namespace Gurux.DLMS.UI
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -194,11 +193,10 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.SecuritySetupCb);
             this.tabPage2.Controls.Add(this.UpdateTimeBtn);
             this.tabPage2.Controls.Add(this.SecretAsciiCb);
-            this.tabPage2.Controls.Add(this.ModifyBtn);
             this.tabPage2.Controls.Add(this.SecretTB);
-            this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.SecuritySetupReferenceLbl);
             this.tabPage2.Controls.Add(this.SecretLbl);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -208,6 +206,18 @@ namespace Gurux.DLMS.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "General";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // SecuritySetupCb
+            // 
+            this.SecuritySetupCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecuritySetupCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SecuritySetupCb.FormattingEnabled = true;
+            this.SecuritySetupCb.Location = new System.Drawing.Point(117, 35);
+            this.SecuritySetupCb.Name = "SecuritySetupCb";
+            this.SecuritySetupCb.Size = new System.Drawing.Size(141, 21);
+            this.SecuritySetupCb.TabIndex = 40;
+            this.SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
             // 
             // UpdateTimeBtn
             // 
@@ -231,33 +241,14 @@ namespace Gurux.DLMS.UI
             this.SecretAsciiCb.Text = "ASCII";
             this.SecretAsciiCb.UseVisualStyleBackColor = true;
             // 
-            // ModifyBtn
-            // 
-            this.ModifyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ModifyBtn.Location = new System.Drawing.Point(365, 32);
-            this.ModifyBtn.Name = "ModifyBtn";
-            this.ModifyBtn.Size = new System.Drawing.Size(75, 23);
-            this.ModifyBtn.TabIndex = 37;
-            this.ModifyBtn.Text = "Modify...";
-            this.ModifyBtn.UseVisualStyleBackColor = true;
-            // 
             // SecretTB
             // 
-            this.SecretTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SecretTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SecretTB.Location = new System.Drawing.Point(117, 6);
             this.SecretTB.Name = "SecretTB";
             this.SecretTB.Size = new System.Drawing.Size(141, 20);
             this.SecretTB.TabIndex = 36;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(117, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 20);
-            this.textBox1.TabIndex = 35;
             // 
             // SecuritySetupReferenceLbl
             // 
@@ -312,7 +303,7 @@ namespace Gurux.DLMS.UI
             // 
             // LogicalNameTB
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
@@ -375,11 +366,10 @@ namespace Gurux.DLMS.UI
         private ColumnHeader MethodAccessHeader;
         private TabPage tabPage2;
         private TextBox SecretTB;
-        private TextBox textBox1;
         private Label SecuritySetupReferenceLbl;
         private Label SecretLbl;
-        private Button ModifyBtn;
         private CheckBox SecretAsciiCb;
         private GXButton UpdateTimeBtn;
+        private ComboBox SecuritySetupCb;
     }
 }

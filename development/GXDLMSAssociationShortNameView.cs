@@ -153,6 +153,17 @@ namespace Gurux.DLMS.UI
             //security_setup_reference
             else if (index == 4)
             {
+                //security_setup_reference
+                foreach (GXDLMSSecuritySetup it in target.Parent.GetObjects(ObjectType.SecuritySetup))
+                {
+                    SecuritySetupCb.Items.Add(it);
+                    if (target.SecuritySetupReference == it.LogicalName)
+                    {
+                        SecuritySetupCb.SelectedIndexChanged -= new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                        SecuritySetupCb.SelectedItem = it;
+                        SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                    }
+                }
             }
         }
 
@@ -305,6 +316,12 @@ namespace Gurux.DLMS.UI
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void SecuritySetupCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(SecuritySetupCb, Properties.Resources.ValueChangedTxt);
+            Target.UpdateDirty(4, SecuritySetupCb.SelectedItem);
         }
     }
 }

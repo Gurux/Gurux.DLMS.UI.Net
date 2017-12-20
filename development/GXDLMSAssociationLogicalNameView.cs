@@ -158,7 +158,22 @@ namespace Gurux.DLMS.UI
                 else
                 {
                     SecretTB.Text = GXDLMSTranslator.ToHex(target.Secret);
-                }                
+                }
+            }
+            else if (index == 9)
+            {
+                SecuritySetupCb.Items.Clear();
+                //security_setup_reference
+                foreach (GXDLMSSecuritySetup it in target.Parent.GetObjects(ObjectType.SecuritySetup))
+                {
+                    SecuritySetupCb.Items.Add(it);
+                    if (target.SecuritySetupReference == it.LogicalName)
+                    {
+                        SecuritySetupCb.SelectedIndexChanged -= new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                        SecuritySetupCb.SelectedItem = it;
+                        SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                    }
+                }
             }
         }
 
@@ -179,6 +194,10 @@ namespace Gurux.DLMS.UI
                     UpdatePwBtn.Action = ActionType.Write;
                     UpdatePwBtn.Index = 7;
                 }
+            }
+            else if (index == 9)
+            {
+                SecuritySetupCb.Enabled = (access & AccessMode.Write) != 0;
             }
         }
 
@@ -376,6 +395,12 @@ namespace Gurux.DLMS.UI
         private void ModifyBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SecuritySetupCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(SecuritySetupCb, Properties.Resources.ValueChangedTxt);
+            Target.UpdateDirty(9, SecuritySetupCb.SelectedItem);
         }
     }
 }

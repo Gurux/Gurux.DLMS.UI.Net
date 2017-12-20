@@ -37,11 +37,9 @@ namespace Gurux.DLMS.UI
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.UpdatePwBtn = new Gurux.DLMS.UI.GXButton();
-            this.ModifyBtn = new System.Windows.Forms.Button();
+            this.SecuritySetupCb = new System.Windows.Forms.ComboBox();
             this.SecretTB = new System.Windows.Forms.TextBox();
             this.SecretAsciiCb = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SecuritySetupReferenceLbl = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ServerSAPTb = new System.Windows.Forms.TextBox();
@@ -50,7 +48,6 @@ namespace Gurux.DLMS.UI
             this.ClientSAPLbl = new System.Windows.Forms.Label();
             this.SecretLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.CypheringInfoTb = new System.Windows.Forms.TextBox();
             this.CypheringInfoLbl = new System.Windows.Forms.Label();
@@ -92,9 +89,11 @@ namespace Gurux.DLMS.UI
             this.AuthenticationCountryLbl = new System.Windows.Forms.Label();
             this.AuthenticationJointISOCTTTb = new System.Windows.Forms.TextBox();
             this.AuthenticationJointISOCTTLbl = new System.Windows.Forms.Label();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.UpdatePwBtn = new Gurux.DLMS.UI.GXButton();
+            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -263,15 +262,14 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.UpdatePwBtn);
-            this.tabPage2.Controls.Add(this.ModifyBtn);
+            this.tabPage2.Controls.Add(this.SecuritySetupCb);
             this.tabPage2.Controls.Add(this.SecretTB);
             this.tabPage2.Controls.Add(this.SecretAsciiCb);
-            this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.SecuritySetupReferenceLbl);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.SecretLbl);
             this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.UpdatePwBtn);
             this.tabPage2.Controls.Add(this.gxValueField1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -281,28 +279,17 @@ namespace Gurux.DLMS.UI
             this.tabPage2.Text = "General";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // UpdatePwBtn
+            // SecuritySetupCb
             // 
-            this.UpdatePwBtn.Action = Gurux.DLMS.UI.ActionType.Write;
-            this.UpdatePwBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdatePwBtn.Index = 7;
-            this.UpdatePwBtn.Location = new System.Drawing.Point(363, 69);
-            this.UpdatePwBtn.Name = "UpdatePwBtn";
-            this.UpdatePwBtn.Size = new System.Drawing.Size(75, 23);
-            this.UpdatePwBtn.TabIndex = 28;
-            this.UpdatePwBtn.Text = "Update";
-            this.UpdatePwBtn.UseVisualStyleBackColor = true;
-            // 
-            // ModifyBtn
-            // 
-            this.ModifyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ModifyBtn.Location = new System.Drawing.Point(363, 120);
-            this.ModifyBtn.Name = "ModifyBtn";
-            this.ModifyBtn.Size = new System.Drawing.Size(75, 23);
-            this.ModifyBtn.TabIndex = 31;
-            this.ModifyBtn.Text = "Modify...";
-            this.ModifyBtn.UseVisualStyleBackColor = true;
-            this.ModifyBtn.Click += new System.EventHandler(this.ModifyBtn_Click);
+            this.SecuritySetupCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecuritySetupCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SecuritySetupCb.FormattingEnabled = true;
+            this.SecuritySetupCb.Location = new System.Drawing.Point(114, 120);
+            this.SecuritySetupCb.Name = "SecuritySetupCb";
+            this.SecuritySetupCb.Size = new System.Drawing.Size(243, 21);
+            this.SecuritySetupCb.TabIndex = 35;
+            this.SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
             // 
             // SecretTB
             // 
@@ -324,15 +311,6 @@ namespace Gurux.DLMS.UI
             this.SecretAsciiCb.Text = "ASCII";
             this.SecretAsciiCb.UseVisualStyleBackColor = true;
             this.SecretAsciiCb.CheckedChanged += new System.EventHandler(this.SecretAsciiCb_CheckedChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(115, 120);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(242, 20);
-            this.textBox1.TabIndex = 30;
             // 
             // SecuritySetupReferenceLbl
             // 
@@ -405,19 +383,6 @@ namespace Gurux.DLMS.UI
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Association Status:";
-            // 
-            // gxValueField1
-            // 
-            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gxValueField1.Index = 8;
-            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
-            this.gxValueField1.Name = "gxValueField1";
-            this.gxValueField1.NotifyChanges = false;
-            this.gxValueField1.ReadOnly = true;
-            this.gxValueField1.Size = new System.Drawing.Size(243, 20);
-            this.gxValueField1.TabIndex = 29;
-            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // tabPage3
             // 
@@ -809,18 +774,6 @@ namespace Gurux.DLMS.UI
             this.AuthenticationJointISOCTTLbl.TabIndex = 43;
             this.AuthenticationJointISOCTTLbl.Text = "Joint ISO CTT:";
             // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -835,6 +788,43 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            // 
+            // UpdatePwBtn
+            // 
+            this.UpdatePwBtn.Action = Gurux.DLMS.UI.ActionType.Write;
+            this.UpdatePwBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdatePwBtn.Index = 7;
+            this.UpdatePwBtn.Location = new System.Drawing.Point(363, 69);
+            this.UpdatePwBtn.Name = "UpdatePwBtn";
+            this.UpdatePwBtn.Size = new System.Drawing.Size(75, 23);
+            this.UpdatePwBtn.TabIndex = 28;
+            this.UpdatePwBtn.Text = "Update";
+            this.UpdatePwBtn.UseVisualStyleBackColor = true;
+            // 
+            // gxValueField1
+            // 
+            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gxValueField1.Index = 8;
+            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
+            this.gxValueField1.Name = "gxValueField1";
+            this.gxValueField1.NotifyChanges = false;
+            this.gxValueField1.ReadOnly = true;
+            this.gxValueField1.Size = new System.Drawing.Size(243, 20);
+            this.gxValueField1.TabIndex = 29;
+            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // GXDLMSAssociationLogicalNameView
             // 
@@ -885,7 +875,6 @@ namespace Gurux.DLMS.UI
         private TabPage tabPage4;
         private TabPage tabPage5;
         private Label SecuritySetupReferenceLbl;
-        private TextBox textBox1;
         private TextBox ConformanceTB;
         private Label ConformanceLbl;
         private TextBox MaxSendPDUSizeTb;
@@ -933,7 +922,7 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem removeToolStripMenuItem;
-        private Button ModifyBtn;
         private GXButton UpdatePwBtn;
+        private ComboBox SecuritySetupCb;
     }
 }

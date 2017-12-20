@@ -48,8 +48,6 @@ namespace Gurux.DLMS.UI
         private GroupBox groupBox1;
         private Label MBusPortReferenceLbl;
         private GXValueField LogicalNameTB;
-        private GXValueField CaptureDefinitionTB;
-        private Label CaptureDefinitionLbl;
         private GXValueField MBusPortReferenceTB;
         private ErrorProvider errorProvider1;
         private System.ComponentModel.IContainer components;
@@ -75,6 +73,10 @@ namespace Gurux.DLMS.UI
         private Label AlarmLbl;
         private GXValueField StatusTB;
         private Label StatusLbl;
+        private GroupBox groupBox2;
+        private ListView CaptureDefinitionView;
+        private ColumnHeader DataInformationBlockCh;
+        private ColumnHeader ValueInformationBlockCh;
         private Label LogicalNameLbl;
         /// <summary>
         /// Constructor.
@@ -93,7 +95,23 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user)
         {
-            throw new IndexOutOfRangeException("attributeID");
+            if (index == 3)
+            {
+                GXDLMSMBusClient target = Target as GXDLMSMBusClient;
+                CaptureDefinitionView.Items.Clear();
+                if (target.CaptureDefinition != null)
+                {
+                    foreach (KeyValuePair<string, string> it in target.CaptureDefinition)
+                    {
+                        ListViewItem li = CaptureDefinitionView.Items.Add(it.Key);
+                        li.SubItems.Add(it.Value);
+                    }
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("attributeID");
+            }
         }
 
         public void OnAccessRightsChange(int attributeID, AccessMode access)
@@ -146,6 +164,10 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSMBusClientView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CaptureDefinitionView = new System.Windows.Forms.ListView();
+            this.DataInformationBlockCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ValueInformationBlockCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EncryptionKeyStatusTB = new Gurux.DLMS.UI.GXValueField();
             this.EncryptionKeyStatusLbl = new System.Windows.Forms.Label();
             this.ConfigurationTB = new Gurux.DLMS.UI.GXValueField();
@@ -168,21 +190,21 @@ namespace Gurux.DLMS.UI
             this.PrimaryAddressLbl = new System.Windows.Forms.Label();
             this.CapturePeriodTB = new Gurux.DLMS.UI.GXValueField();
             this.CapturePeriodLbl = new System.Windows.Forms.Label();
-            this.CaptureDefinitionTB = new Gurux.DLMS.UI.GXValueField();
-            this.CaptureDefinitionLbl = new System.Windows.Forms.Label();
             this.MBusPortReferenceTB = new Gurux.DLMS.UI.GXValueField();
             this.MBusPortReferenceLbl = new System.Windows.Forms.Label();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.EncryptionKeyStatusTB);
             this.groupBox1.Controls.Add(this.EncryptionKeyStatusLbl);
             this.groupBox1.Controls.Add(this.ConfigurationTB);
@@ -205,27 +227,66 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.PrimaryAddressLbl);
             this.groupBox1.Controls.Add(this.CapturePeriodTB);
             this.groupBox1.Controls.Add(this.CapturePeriodLbl);
-            this.groupBox1.Controls.Add(this.CaptureDefinitionTB);
-            this.groupBox1.Controls.Add(this.CaptureDefinitionLbl);
             this.groupBox1.Controls.Add(this.MBusPortReferenceTB);
             this.groupBox1.Controls.Add(this.MBusPortReferenceLbl);
             this.groupBox1.Controls.Add(this.LogicalNameTB);
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 398);
+            this.groupBox1.Size = new System.Drawing.Size(300, 498);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MBus Client Object";
             this.groupBox1.UseCompatibleTextRendering = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.CaptureDefinitionView);
+            this.groupBox2.Location = new System.Drawing.Point(9, 73);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(281, 125);
+            this.groupBox2.TabIndex = 41;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Capture Definition:";
+            // 
+            // CaptureDefinitionView
+            // 
+            this.CaptureDefinitionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CaptureDefinitionView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DataInformationBlockCh,
+            this.ValueInformationBlockCh});
+            this.CaptureDefinitionView.FullRowSelect = true;
+            this.CaptureDefinitionView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.CaptureDefinitionView.HideSelection = false;
+            this.CaptureDefinitionView.Location = new System.Drawing.Point(0, 19);
+            this.CaptureDefinitionView.Name = "CaptureDefinitionView";
+            this.CaptureDefinitionView.Size = new System.Drawing.Size(275, 72);
+            this.CaptureDefinitionView.TabIndex = 41;
+            this.CaptureDefinitionView.UseCompatibleStateImageBehavior = false;
+            this.CaptureDefinitionView.View = System.Windows.Forms.View.Details;
+            // 
+            // DataInformationBlockCh
+            // 
+            this.DataInformationBlockCh.Text = "Data Information";
+            this.DataInformationBlockCh.Width = 114;
+            // 
+            // ValueInformationBlockCh
+            // 
+            this.ValueInformationBlockCh.Text = "Value Information";
+            this.ValueInformationBlockCh.Width = 147;
+            // 
             // EncryptionKeyStatusTB
             // 
-            this.EncryptionKeyStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.EncryptionKeyStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EncryptionKeyStatusTB.Index = 14;
-            this.EncryptionKeyStatusTB.Location = new System.Drawing.Point(122, 361);
+            this.EncryptionKeyStatusTB.Location = new System.Drawing.Point(122, 466);
             this.EncryptionKeyStatusTB.Name = "EncryptionKeyStatusTB";
+            this.EncryptionKeyStatusTB.NotifyChanges = false;
             this.EncryptionKeyStatusTB.ReadOnly = true;
             this.EncryptionKeyStatusTB.Size = new System.Drawing.Size(168, 20);
             this.EncryptionKeyStatusTB.TabIndex = 38;
@@ -234,7 +295,7 @@ namespace Gurux.DLMS.UI
             // EncryptionKeyStatusLbl
             // 
             this.EncryptionKeyStatusLbl.AutoSize = true;
-            this.EncryptionKeyStatusLbl.Location = new System.Drawing.Point(3, 364);
+            this.EncryptionKeyStatusLbl.Location = new System.Drawing.Point(3, 469);
             this.EncryptionKeyStatusLbl.Name = "EncryptionKeyStatusLbl";
             this.EncryptionKeyStatusLbl.Size = new System.Drawing.Size(114, 13);
             this.EncryptionKeyStatusLbl.TabIndex = 37;
@@ -242,11 +303,12 @@ namespace Gurux.DLMS.UI
             // 
             // ConfigurationTB
             // 
-            this.ConfigurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ConfigurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfigurationTB.Index = 13;
-            this.ConfigurationTB.Location = new System.Drawing.Point(122, 335);
+            this.ConfigurationTB.Location = new System.Drawing.Point(122, 440);
             this.ConfigurationTB.Name = "ConfigurationTB";
+            this.ConfigurationTB.NotifyChanges = false;
             this.ConfigurationTB.Size = new System.Drawing.Size(168, 20);
             this.ConfigurationTB.TabIndex = 35;
             this.ConfigurationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -254,7 +316,7 @@ namespace Gurux.DLMS.UI
             // ConfigurationLbl
             // 
             this.ConfigurationLbl.AutoSize = true;
-            this.ConfigurationLbl.Location = new System.Drawing.Point(6, 338);
+            this.ConfigurationLbl.Location = new System.Drawing.Point(6, 443);
             this.ConfigurationLbl.Name = "ConfigurationLbl";
             this.ConfigurationLbl.Size = new System.Drawing.Size(72, 13);
             this.ConfigurationLbl.TabIndex = 36;
@@ -262,11 +324,12 @@ namespace Gurux.DLMS.UI
             // 
             // AlarmTB
             // 
-            this.AlarmTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.AlarmTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AlarmTB.Index = 12;
-            this.AlarmTB.Location = new System.Drawing.Point(122, 309);
+            this.AlarmTB.Location = new System.Drawing.Point(122, 414);
             this.AlarmTB.Name = "AlarmTB";
+            this.AlarmTB.NotifyChanges = false;
             this.AlarmTB.Size = new System.Drawing.Size(168, 20);
             this.AlarmTB.TabIndex = 33;
             this.AlarmTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -274,7 +337,7 @@ namespace Gurux.DLMS.UI
             // AlarmLbl
             // 
             this.AlarmLbl.AutoSize = true;
-            this.AlarmLbl.Location = new System.Drawing.Point(6, 312);
+            this.AlarmLbl.Location = new System.Drawing.Point(6, 417);
             this.AlarmLbl.Name = "AlarmLbl";
             this.AlarmLbl.Size = new System.Drawing.Size(36, 13);
             this.AlarmLbl.TabIndex = 34;
@@ -282,11 +345,12 @@ namespace Gurux.DLMS.UI
             // 
             // StatusTB
             // 
-            this.StatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.StatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StatusTB.Index = 11;
-            this.StatusTB.Location = new System.Drawing.Point(122, 283);
+            this.StatusTB.Location = new System.Drawing.Point(122, 388);
             this.StatusTB.Name = "StatusTB";
+            this.StatusTB.NotifyChanges = false;
             this.StatusTB.Size = new System.Drawing.Size(168, 20);
             this.StatusTB.TabIndex = 32;
             this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -294,7 +358,7 @@ namespace Gurux.DLMS.UI
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Location = new System.Drawing.Point(6, 286);
+            this.StatusLbl.Location = new System.Drawing.Point(6, 391);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(40, 13);
             this.StatusLbl.TabIndex = 31;
@@ -302,11 +366,12 @@ namespace Gurux.DLMS.UI
             // 
             // AccessNumberTB
             // 
-            this.AccessNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.AccessNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AccessNumberTB.Index = 10;
-            this.AccessNumberTB.Location = new System.Drawing.Point(122, 256);
+            this.AccessNumberTB.Location = new System.Drawing.Point(122, 361);
             this.AccessNumberTB.Name = "AccessNumberTB";
+            this.AccessNumberTB.NotifyChanges = false;
             this.AccessNumberTB.Size = new System.Drawing.Size(168, 20);
             this.AccessNumberTB.TabIndex = 30;
             this.AccessNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -314,7 +379,7 @@ namespace Gurux.DLMS.UI
             // AccessNumberLbl
             // 
             this.AccessNumberLbl.AutoSize = true;
-            this.AccessNumberLbl.Location = new System.Drawing.Point(3, 259);
+            this.AccessNumberLbl.Location = new System.Drawing.Point(3, 364);
             this.AccessNumberLbl.Name = "AccessNumberLbl";
             this.AccessNumberLbl.Size = new System.Drawing.Size(85, 13);
             this.AccessNumberLbl.TabIndex = 29;
@@ -322,11 +387,12 @@ namespace Gurux.DLMS.UI
             // 
             // DeviceTypeTB
             // 
-            this.DeviceTypeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DeviceTypeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DeviceTypeTB.Index = 9;
-            this.DeviceTypeTB.Location = new System.Drawing.Point(122, 230);
+            this.DeviceTypeTB.Location = new System.Drawing.Point(122, 335);
             this.DeviceTypeTB.Name = "DeviceTypeTB";
+            this.DeviceTypeTB.NotifyChanges = false;
             this.DeviceTypeTB.Size = new System.Drawing.Size(168, 20);
             this.DeviceTypeTB.TabIndex = 28;
             this.DeviceTypeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -334,7 +400,7 @@ namespace Gurux.DLMS.UI
             // DeviceTypeLbl
             // 
             this.DeviceTypeLbl.AutoSize = true;
-            this.DeviceTypeLbl.Location = new System.Drawing.Point(3, 233);
+            this.DeviceTypeLbl.Location = new System.Drawing.Point(3, 338);
             this.DeviceTypeLbl.Name = "DeviceTypeLbl";
             this.DeviceTypeLbl.Size = new System.Drawing.Size(71, 13);
             this.DeviceTypeLbl.TabIndex = 27;
@@ -342,11 +408,12 @@ namespace Gurux.DLMS.UI
             // 
             // VersionTB
             // 
-            this.VersionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.VersionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.VersionTB.Index = 8;
-            this.VersionTB.Location = new System.Drawing.Point(122, 204);
+            this.VersionTB.Location = new System.Drawing.Point(122, 309);
             this.VersionTB.Name = "VersionTB";
+            this.VersionTB.NotifyChanges = false;
             this.VersionTB.Size = new System.Drawing.Size(168, 20);
             this.VersionTB.TabIndex = 25;
             this.VersionTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -354,7 +421,7 @@ namespace Gurux.DLMS.UI
             // VersionLbl
             // 
             this.VersionLbl.AutoSize = true;
-            this.VersionLbl.Location = new System.Drawing.Point(6, 207);
+            this.VersionLbl.Location = new System.Drawing.Point(6, 312);
             this.VersionLbl.Name = "VersionLbl";
             this.VersionLbl.Size = new System.Drawing.Size(45, 13);
             this.VersionLbl.TabIndex = 26;
@@ -362,11 +429,12 @@ namespace Gurux.DLMS.UI
             // 
             // ManufacturerIDTB
             // 
-            this.ManufacturerIDTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ManufacturerIDTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ManufacturerIDTB.Index = 7;
-            this.ManufacturerIDTB.Location = new System.Drawing.Point(122, 178);
+            this.ManufacturerIDTB.Location = new System.Drawing.Point(122, 283);
             this.ManufacturerIDTB.Name = "ManufacturerIDTB";
+            this.ManufacturerIDTB.NotifyChanges = false;
             this.ManufacturerIDTB.Size = new System.Drawing.Size(168, 20);
             this.ManufacturerIDTB.TabIndex = 23;
             this.ManufacturerIDTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -374,7 +442,7 @@ namespace Gurux.DLMS.UI
             // ManufacturerIDLbl
             // 
             this.ManufacturerIDLbl.AutoSize = true;
-            this.ManufacturerIDLbl.Location = new System.Drawing.Point(6, 181);
+            this.ManufacturerIDLbl.Location = new System.Drawing.Point(6, 286);
             this.ManufacturerIDLbl.Name = "ManufacturerIDLbl";
             this.ManufacturerIDLbl.Size = new System.Drawing.Size(87, 13);
             this.ManufacturerIDLbl.TabIndex = 24;
@@ -382,11 +450,12 @@ namespace Gurux.DLMS.UI
             // 
             // IdentificationNumberTB
             // 
-            this.IdentificationNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.IdentificationNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IdentificationNumberTB.Index = 6;
-            this.IdentificationNumberTB.Location = new System.Drawing.Point(122, 152);
+            this.IdentificationNumberTB.Location = new System.Drawing.Point(122, 257);
             this.IdentificationNumberTB.Name = "IdentificationNumberTB";
+            this.IdentificationNumberTB.NotifyChanges = false;
             this.IdentificationNumberTB.Size = new System.Drawing.Size(168, 20);
             this.IdentificationNumberTB.TabIndex = 22;
             this.IdentificationNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -394,7 +463,7 @@ namespace Gurux.DLMS.UI
             // IdentificationNumberLbl
             // 
             this.IdentificationNumberLbl.AutoSize = true;
-            this.IdentificationNumberLbl.Location = new System.Drawing.Point(6, 155);
+            this.IdentificationNumberLbl.Location = new System.Drawing.Point(6, 260);
             this.IdentificationNumberLbl.Name = "IdentificationNumberLbl";
             this.IdentificationNumberLbl.Size = new System.Drawing.Size(110, 13);
             this.IdentificationNumberLbl.TabIndex = 21;
@@ -402,11 +471,12 @@ namespace Gurux.DLMS.UI
             // 
             // PrimaryAddressTB
             // 
-            this.PrimaryAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.PrimaryAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrimaryAddressTB.Index = 5;
-            this.PrimaryAddressTB.Location = new System.Drawing.Point(122, 125);
+            this.PrimaryAddressTB.Location = new System.Drawing.Point(122, 230);
             this.PrimaryAddressTB.Name = "PrimaryAddressTB";
+            this.PrimaryAddressTB.NotifyChanges = false;
             this.PrimaryAddressTB.Size = new System.Drawing.Size(168, 20);
             this.PrimaryAddressTB.TabIndex = 20;
             this.PrimaryAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -414,7 +484,7 @@ namespace Gurux.DLMS.UI
             // PrimaryAddressLbl
             // 
             this.PrimaryAddressLbl.AutoSize = true;
-            this.PrimaryAddressLbl.Location = new System.Drawing.Point(3, 128);
+            this.PrimaryAddressLbl.Location = new System.Drawing.Point(3, 233);
             this.PrimaryAddressLbl.Name = "PrimaryAddressLbl";
             this.PrimaryAddressLbl.Size = new System.Drawing.Size(85, 13);
             this.PrimaryAddressLbl.TabIndex = 19;
@@ -422,11 +492,12 @@ namespace Gurux.DLMS.UI
             // 
             // CapturePeriodTB
             // 
-            this.CapturePeriodTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CapturePeriodTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CapturePeriodTB.Index = 4;
-            this.CapturePeriodTB.Location = new System.Drawing.Point(122, 99);
+            this.CapturePeriodTB.Location = new System.Drawing.Point(122, 204);
             this.CapturePeriodTB.Name = "CapturePeriodTB";
+            this.CapturePeriodTB.NotifyChanges = false;
             this.CapturePeriodTB.Size = new System.Drawing.Size(168, 20);
             this.CapturePeriodTB.TabIndex = 18;
             this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -434,39 +505,20 @@ namespace Gurux.DLMS.UI
             // CapturePeriodLbl
             // 
             this.CapturePeriodLbl.AutoSize = true;
-            this.CapturePeriodLbl.Location = new System.Drawing.Point(3, 102);
+            this.CapturePeriodLbl.Location = new System.Drawing.Point(3, 207);
             this.CapturePeriodLbl.Name = "CapturePeriodLbl";
             this.CapturePeriodLbl.Size = new System.Drawing.Size(80, 13);
             this.CapturePeriodLbl.TabIndex = 17;
             this.CapturePeriodLbl.Text = "Capture Period:";
             // 
-            // CaptureDefinitionTB
-            // 
-            this.CaptureDefinitionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CaptureDefinitionTB.Index = 3;
-            this.CaptureDefinitionTB.Location = new System.Drawing.Point(122, 73);
-            this.CaptureDefinitionTB.Name = "CaptureDefinitionTB";
-            this.CaptureDefinitionTB.Size = new System.Drawing.Size(168, 20);
-            this.CaptureDefinitionTB.TabIndex = 3;
-            this.CaptureDefinitionTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // CaptureDefinitionLbl
-            // 
-            this.CaptureDefinitionLbl.AutoSize = true;
-            this.CaptureDefinitionLbl.Location = new System.Drawing.Point(6, 76);
-            this.CaptureDefinitionLbl.Name = "CaptureDefinitionLbl";
-            this.CaptureDefinitionLbl.Size = new System.Drawing.Size(94, 13);
-            this.CaptureDefinitionLbl.TabIndex = 4;
-            this.CaptureDefinitionLbl.Text = "Capture Definition:";
-            // 
             // MBusPortReferenceTB
             // 
-            this.MBusPortReferenceTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MBusPortReferenceTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MBusPortReferenceTB.Index = 2;
             this.MBusPortReferenceTB.Location = new System.Drawing.Point(122, 47);
             this.MBusPortReferenceTB.Name = "MBusPortReferenceTB";
+            this.MBusPortReferenceTB.NotifyChanges = false;
             this.MBusPortReferenceTB.Size = new System.Drawing.Size(168, 20);
             this.MBusPortReferenceTB.TabIndex = 2;
             this.MBusPortReferenceTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -482,11 +534,12 @@ namespace Gurux.DLMS.UI
             // 
             // LogicalNameTB
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(122, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -508,12 +561,13 @@ namespace Gurux.DLMS.UI
             // 
             // GXDLMSMBusClientView
             // 
-            this.ClientSize = new System.Drawing.Size(324, 429);
+            this.ClientSize = new System.Drawing.Size(324, 517);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSMBusClientView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
