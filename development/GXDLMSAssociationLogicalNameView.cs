@@ -184,16 +184,6 @@ namespace Gurux.DLMS.UI
                 bool enabled = (access & AccessMode.Write) != 0;
                 UpdatePwBtn.Enabled = enabled;
                 SecretTB.ReadOnly = !enabled;
-                if (Target.GetMethodAccess(2) == MethodAccessMode.Access)
-                {
-                    UpdatePwBtn.Action = ActionType.Action;
-                    UpdatePwBtn.Index = 2;
-                }
-                else
-                {
-                    UpdatePwBtn.Action = ActionType.Write;
-                    UpdatePwBtn.Index = 7;
-                }
             }
             else if (index == 9)
             {
@@ -205,10 +195,9 @@ namespace Gurux.DLMS.UI
         {
         }
 
-        public void PreAction(ActionType type, ValueEventArgs arg)
+        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
-            if ((type == ActionType.Action && arg.Index == 2) ||
-                (type == ActionType.Write && arg.Index == 7))
+            if (type == ActionType.Write && arg.Index == 7)
             {
                 DialogResult ret;
                 //Update current time
@@ -224,6 +213,15 @@ namespace Gurux.DLMS.UI
                     {
                         value = GXDLMSTranslator.HexToBytes(SecretTB.Text);
                     }
+                    if (Target.GetMethodAccess(2) == MethodAccessMode.Access)
+                    {
+                        type = ActionType.Action;
+                        arg.Index = 2;
+                    }
+                    else
+                    {
+                        arg.Index = 7;
+                    }
                     if (type == ActionType.Write)
                     {
                         GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
@@ -231,7 +229,11 @@ namespace Gurux.DLMS.UI
                     }
                     else
                     {
-                        arg.Value = value;
+                        GXByteBuffer bb = new GXByteBuffer();
+                        bb.SetUInt8((byte) DataType.OctetString);
+                        bb.SetUInt8((byte)value.Length);
+                        bb.Set(value);
+                        arg.Value = bb.Array();
                     }
                 }
                 arg.Handled = ret != DialogResult.Yes;
@@ -241,11 +243,12 @@ namespace Gurux.DLMS.UI
                 //Skip write invoke.
                 arg.Handled = true;
             }
+            return type;
         }
 
-        public void PostAction(ActionType type, ValueEventArgs arg)
+        public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
-
+            return ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

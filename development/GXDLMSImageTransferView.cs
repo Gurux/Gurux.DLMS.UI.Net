@@ -33,13 +33,12 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 using System.Reflection;
+using System.IO;
 
 namespace Gurux.DLMS.UI
 {
@@ -64,13 +63,26 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user)
         {
+            GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
             if (index == 5)
             {
-                GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
                 ImageTransferEnabledCB.CheckedChanged -= new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
-                this.ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
+                ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
                 ImageTransferEnabledCB.CheckedChanged += new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
-
+            }
+            else if (index == 7)
+            {
+                ImagesView.Items.Clear();
+                if (target.ImageActivateInfo != null)
+                {
+                    foreach (GXDLMSImageActivateInfo it in target.ImageActivateInfo)
+                    {
+                        ListViewItem li = ImagesView.Items.Add(it.Size.ToString());
+                        li.SubItems.Add(it.Identification);
+                        li.SubItems.Add(it.Signature);
+                        li.Tag = it;
+                    }
+                }
             }
             else if (index != 0)
             {
@@ -78,71 +90,103 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        string imageIdentifier;
+        byte[] image;
 
-        public void PreAction(ActionType type, ValueEventArgs arg)
+        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
-            MethodInfo clickMethodInfo = typeof(Button).GetMethod("OnClick", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (type == ActionType.Read && arg.Index == 5)
+            if (type == ActionType.Read)
             {
-                //Do nothing. 
-            }
-            else
-            {
-                if (type == ActionType.Action && arg.Index == -1)
+                if (arg.Index == 5)
                 {
-                    arg.Handled = true;
                     DescriptionList.Items.Clear();
-                    //Show file dlg and imageIdentifier.
-                    //Check is image transfer enabled.
-                    clickMethodInfo.Invoke(ImageTransferEnabledBtn, new object[] { EventArgs.Empty });
+                    GXImageDlg dlg = new GXImageDlg();
+                    if (dlg.ShowDialog(this) != DialogResult.OK)
+                    {
+                        return ActionType.None;
+                    }
+                    imageIdentifier = dlg.TextTb.Text;
+                    image = File.ReadAllBytes(dlg.FileNameTb.Text);
+                    DescriptionList.Items.Add("Updating image" + imageIdentifier);
                 }
-                if (type == ActionType.Action && arg.Index == 1)
+            }
+            else if (type == ActionType.Action)
+            {
+                if (arg.Index == 1)
                 {
-                    string imageIdentifier = "gurux";
                     //Initiate the Image transfer process.
-                    GXByteBuffer data = new GXByteBuffer();
-                    data.SetUInt8((byte)DataType.Structure);
-                    data.SetUInt8((byte)2);
-                    data.SetUInt8((byte)DataType.OctetString);
-                    data.SetUInt8((byte)imageIdentifier.Length);
-                    data.Set(ASCIIEncoding.ASCII.GetBytes(imageIdentifier));
-                    data.SetUInt8((byte)DataType.UInt32);
-                    data.SetUInt32(it.ImageSize);
-                    arg.Value = data.Array();
+                    arg.Value = it.ImageTransferInitiate(client, imageIdentifier, image.Length);
                 }
-                if (type == ActionType.Action && arg.Index == 2)
+                else if (arg.Index == 2)
                 {
                     //Start image block transfer.
+                    int imageBlockCount;
+                    arg.Value = it.ImageBlockTransfer(client, image, out imageBlockCount);
+                    DescriptionList.Items.Add("Sending " + imageBlockCount + " blocks.");
+                }
+                else if (arg.Index == 3)
+                {
+                    arg.Value = it.ImageVerify(client);
+                    DescriptionList.Items.Add("Verify image.");
+                }
+                else if (arg.Index == 4)
+                {
+                    arg.Value = it.ImageActivate(client);
+                    DescriptionList.Items.Add("Activating image.");
                 }
             }
+            return type;
         }
 
-        public void PostAction(ActionType type, ValueEventArgs arg)
+        public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
-            MethodInfo clickMethodInfo = typeof(Button).GetMethod("OnClick", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (type == ActionType.Read && arg.Index == 5)
+            if (type == ActionType.Read)
             {
-                if (!it.ImageTransferEnabled)
+                if (arg.Index == 5)
                 {
-                    MessageBox.Show(this, "Image transfer is not enabled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (!it.ImageTransferEnabled)
+                    {
+                        MessageBox.Show(this, "Image transfer is not enabled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return ActionType.None;
+                    }
+                    DescriptionList.Items.Add("Image transfer is enabled.");
+                    //Get ImageBlockSize. 
+                    arg.Index = 2;
                 }
-                DescriptionList.Items.Add("Image transfer is enabled.");
-                //Get ImageBlockSize. 
-                clickMethodInfo.Invoke(GetImageBlockSizeBtn, new object[] { EventArgs.Empty });
+                else if (arg.Index == 2)
+                {
+                    DescriptionList.Items.Add("Image block size:" + it.ImageBlockSize);
+                    //Invoke Initiates image transfer. 
+                    arg.Index = 1;
+                    type = ActionType.Action;
+                }
             }
-            if (type == ActionType.Read && arg.Index == 2)
+            else if (type == ActionType.Action)
             {
-                //Invoke Initiates image transfer. 
-                clickMethodInfo.Invoke(InitiatesImageTransferBtn, new object[] { EventArgs.Empty });
+                if (arg.Index == 1)
+                {
+                    DescriptionList.Items.Add("Image transfer initiated.");
+                    arg.Index = 2;
+                }
+                else if (arg.Index == 2)
+                {
+                    DescriptionList.Items.Add("Image transfered.");
+                    arg.Index = 3;
+                }
+                else if (arg.Index == 3)
+                {
+                    DescriptionList.Items.Add("Image verified.");
+                    arg.Index = 4;
+                }
+                else if (arg.Index == 4)
+                {
+                    DescriptionList.Items.Add("Image activated.");
+                    type = ActionType.None;
+                }
             }
-            if (type == ActionType.Action && arg.Index == 1)
-            {
-                //Start image block transfer.
-                clickMethodInfo.Invoke(TransfersImageBlocksBtn, new object[] { EventArgs.Empty });
-            }
+            return type;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider
@@ -186,15 +230,11 @@ namespace Gurux.DLMS.UI
         {
             if (index == 1)
             {
-               UpdateImageBtn.Enabled = mode != MethodAccessMode.NoAccess;
+                UpdateImageBtn.Enabled = mode != MethodAccessMode.NoAccess;
             }
-            UpdateImageBtn.Enabled = false;
         }
 
         #endregion
-
-
-
 
         private void ValueTB_KeyUp(object sender, KeyEventArgs e)
         {
@@ -211,6 +251,16 @@ namespace Gurux.DLMS.UI
             bool check = ImageTransferEnabledCB.Checked;
             (Target as GXDLMSImageTransfer).ImageTransferEnabled = check;
             Target.UpdateDirty(5, check);
-        }      
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateImageBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -79,6 +79,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image files (*.bin)|*.bin|All files (*.*)|*.*.
+        /// </summary>
+        internal static string ImageFilesTxt {
+            get {
+                return ResourceManager.GetString("ImageFilesTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a inconsistent Class or Object..
         /// </summary>
         internal static string InconsistentClassTxt {

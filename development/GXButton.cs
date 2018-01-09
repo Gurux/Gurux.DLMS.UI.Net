@@ -82,9 +82,13 @@ namespace Gurux.DLMS.UI
     public enum ActionType
     {
         /// <summary>
+        /// No actions are executed.
+        /// </summary>
+        None = 0,
+        /// <summary>
         /// Action is executed.
         /// </summary>
-        Action = 0,
+        Action,
         /// <summary>
         /// Read is executed.
         /// </summary>
@@ -92,6 +96,6 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Write is executed.
         /// </summary>
-        Write
+        Write        
     }
 }

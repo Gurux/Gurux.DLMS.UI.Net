@@ -84,14 +84,14 @@ namespace Gurux.DLMS.UI
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
-        public void PreAction(ActionType type, ValueEventArgs arg)
+        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
-
+            return type;
         }
 
-        public void PostAction(ActionType type, ValueEventArgs arg)
+        public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
-
+            return ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

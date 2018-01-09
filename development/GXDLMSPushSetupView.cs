@@ -111,14 +111,16 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void PreAction(ActionType type, ValueEventArgs arg)
+        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
             arg.Value = (sbyte)0;
+            return type;
         }
 
-        public void PostAction(ActionType type, ValueEventArgs arg)
+        public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
             MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

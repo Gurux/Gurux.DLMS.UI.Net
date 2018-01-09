@@ -144,7 +144,7 @@ namespace Gurux.DLMS.UI
 
         }
 
-        public void PreAction(ActionType type, ValueEventArgs arg)
+        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
             DialogResult ret;
             if (arg.Index == 2)
@@ -168,11 +168,12 @@ namespace Gurux.DLMS.UI
                 }
                 arg.Handled = ret != DialogResult.Yes;
             }
+            return type;
         }
 
-        public void PostAction(ActionType type, ValueEventArgs arg)
+        public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
-
+            return ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

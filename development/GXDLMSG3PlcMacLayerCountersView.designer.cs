@@ -65,7 +65,7 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.ResetBtn);
             this.groupBox1.Controls.Add(this.RxDataBroadcastCountTB);
@@ -113,6 +113,7 @@ namespace Gurux.DLMS.UI
             this.RxDataBroadcastCountTB.Index = 10;
             this.RxDataBroadcastCountTB.Location = new System.Drawing.Point(347, 178);
             this.RxDataBroadcastCountTB.Name = "RxDataBroadcastCountTB";
+            this.RxDataBroadcastCountTB.NotifyChanges = false;
             this.RxDataBroadcastCountTB.ReadOnly = true;
             this.RxDataBroadcastCountTB.Size = new System.Drawing.Size(104, 20);
             this.RxDataBroadcastCountTB.TabIndex = 20;
@@ -132,6 +133,7 @@ namespace Gurux.DLMS.UI
             this.TxDataBroadcastCountTB.Index = 9;
             this.TxDataBroadcastCountTB.Location = new System.Drawing.Point(347, 152);
             this.TxDataBroadcastCountTB.Name = "TxDataBroadcastCountTB";
+            this.TxDataBroadcastCountTB.NotifyChanges = false;
             this.TxDataBroadcastCountTB.ReadOnly = true;
             this.TxDataBroadcastCountTB.Size = new System.Drawing.Size(104, 20);
             this.TxDataBroadcastCountTB.TabIndex = 18;
@@ -151,6 +153,7 @@ namespace Gurux.DLMS.UI
             this.BadCrcCountTB.Index = 8;
             this.BadCrcCountTB.Location = new System.Drawing.Point(105, 149);
             this.BadCrcCountTB.Name = "BadCrcCountTB";
+            this.BadCrcCountTB.NotifyChanges = false;
             this.BadCrcCountTB.ReadOnly = true;
             this.BadCrcCountTB.Size = new System.Drawing.Size(104, 20);
             this.BadCrcCountTB.TabIndex = 16;
@@ -170,6 +173,7 @@ namespace Gurux.DLMS.UI
             this.CSMANoAckCountTB.Index = 7;
             this.CSMANoAckCountTB.Location = new System.Drawing.Point(347, 126);
             this.CSMANoAckCountTB.Name = "CSMANoAckCountTB";
+            this.CSMANoAckCountTB.NotifyChanges = false;
             this.CSMANoAckCountTB.ReadOnly = true;
             this.CSMANoAckCountTB.Size = new System.Drawing.Size(104, 20);
             this.CSMANoAckCountTB.TabIndex = 14;
@@ -189,6 +193,7 @@ namespace Gurux.DLMS.UI
             this.CSMAFailCountTB.Index = 6;
             this.CSMAFailCountTB.Location = new System.Drawing.Point(105, 123);
             this.CSMAFailCountTB.Name = "CSMAFailCountTB";
+            this.CSMAFailCountTB.NotifyChanges = false;
             this.CSMAFailCountTB.ReadOnly = true;
             this.CSMAFailCountTB.Size = new System.Drawing.Size(104, 20);
             this.CSMAFailCountTB.TabIndex = 12;
@@ -208,6 +213,7 @@ namespace Gurux.DLMS.UI
             this.RxCmdPacketCountTB.Index = 5;
             this.RxCmdPacketCountTB.Location = new System.Drawing.Point(346, 100);
             this.RxCmdPacketCountTB.Name = "RxCmdPacketCountTB";
+            this.RxCmdPacketCountTB.NotifyChanges = false;
             this.RxCmdPacketCountTB.ReadOnly = true;
             this.RxCmdPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.RxCmdPacketCountTB.TabIndex = 10;
@@ -227,6 +233,7 @@ namespace Gurux.DLMS.UI
             this.TxCmdPacketCountTB.Index = 4;
             this.TxCmdPacketCountTB.Location = new System.Drawing.Point(104, 97);
             this.TxCmdPacketCountTB.Name = "TxCmdPacketCountTB";
+            this.TxCmdPacketCountTB.NotifyChanges = false;
             this.TxCmdPacketCountTB.ReadOnly = true;
             this.TxCmdPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.TxCmdPacketCountTB.TabIndex = 8;
@@ -246,6 +253,7 @@ namespace Gurux.DLMS.UI
             this.RxDataPacketCountTB.Index = 3;
             this.RxDataPacketCountTB.Location = new System.Drawing.Point(346, 74);
             this.RxDataPacketCountTB.Name = "RxDataPacketCountTB";
+            this.RxDataPacketCountTB.NotifyChanges = false;
             this.RxDataPacketCountTB.ReadOnly = true;
             this.RxDataPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.RxDataPacketCountTB.TabIndex = 6;
@@ -271,7 +279,7 @@ namespace Gurux.DLMS.UI
             // 
             // DescriptionTB
             // 
-            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTB.Location = new System.Drawing.Point(103, 19);
             this.DescriptionTB.Name = "DescriptionTB";
@@ -284,6 +292,7 @@ namespace Gurux.DLMS.UI
             this.TxDataPacketCountTB.Index = 2;
             this.TxDataPacketCountTB.Location = new System.Drawing.Point(104, 71);
             this.TxDataPacketCountTB.Name = "TxDataPacketCountTB";
+            this.TxDataPacketCountTB.NotifyChanges = false;
             this.TxDataPacketCountTB.ReadOnly = true;
             this.TxDataPacketCountTB.Size = new System.Drawing.Size(104, 20);
             this.TxDataPacketCountTB.TabIndex = 0;
@@ -300,11 +309,12 @@ namespace Gurux.DLMS.UI
             // 
             // LogicalNameTB
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(347, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
