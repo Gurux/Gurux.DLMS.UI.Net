@@ -41,6 +41,14 @@ namespace Gurux.DLMS.UI
     public class GXButton : Button
     {
         /// <summary>
+        /// Constuctor
+        /// </summary>
+        public GXButton()
+        {
+            Action = ActionType.Action;
+        }
+
+        /// <summary>
         /// Action index.
         /// </summary>
         public int Index

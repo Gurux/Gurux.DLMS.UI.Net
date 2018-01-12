@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1801.901, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1801.901\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1801.1202, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1801.1202\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,6 +76,30 @@
     </Compile>
     <Compile Include="GXDLMSAssociationViewDlg.designer.cs">
       <DependentUpon>GXDLMSAssociationViewDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSTokenGatewayView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSTokenGatewayView.designer.cs">
+      <DependentUpon>GXDLMSTokenGatewayView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSChargeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSChargeView.designer.cs">
+      <DependentUpon>GXDLMSChargeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSCreditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSCreditView.designer.cs">
+      <DependentUpon>GXDLMSCreditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSAccountView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSAccountView.designer.cs">
+      <DependentUpon>GXDLMSAccountView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSIp6SetupView.cs">
       <SubType>Form</SubType>
@@ -442,6 +466,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSAssociationViewDlg.resx">
       <DependentUpon>GXDLMSAssociationViewDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSTokenGatewayView.resx">
+      <DependentUpon>GXDLMSTokenGatewayView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSChargeView.resx">
+      <DependentUpon>GXDLMSChargeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSCreditView.resx">
+      <DependentUpon>GXDLMSCreditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSAccountView.resx">
+      <DependentUpon>GXDLMSAccountView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIp6SetupView.resx">
       <DependentUpon>GXDLMSIp6SetupView.cs</DependentUpon>

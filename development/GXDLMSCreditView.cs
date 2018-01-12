@@ -4,11 +4,11 @@
 //
 //
 //
-// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSDisconnectControlView.cs $
+// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSCreditView.cs $
 //
-// Version:         $Revision: 5795 $,
-//                  $Date: 2012-10-02 13:22:54 +0300 (ti, 02 loka 2012) $
-//                  $Author: kurumi $
+// Version:         $Revision: 8933 $,
+//                  $Date: 2016-11-23 09:20:07 +0200 (ke, 23 marras 2016) $
+//                  $Author: gurux01 $
 //
 // Copyright (c) Gurux Ltd
 //
@@ -33,22 +33,20 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-    [GXDLMSViewAttribute(typeof(GXDLMSDisconnectControl))]
-    partial class GXDLMSDisconnectControlView : Form, IGXDLMSView
+    [GXDLMSViewAttribute(typeof(GXDLMSCredit))]
+    partial class GXDLMSCreditView : Form, IGXDLMSView
     {
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GXDLMSDisconnectControlView()
+        public GXDLMSCreditView()
         {
             InitializeComponent();
         }
@@ -63,28 +61,16 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user)
         {
-            if (index == 2)
-            {
-                OutputStateCB.CheckedChanged -= new System.EventHandler(OutputStateCB_CheckedChanged);
-                GXDLMSDisconnectControl target = Target as GXDLMSDisconnectControl;
-                this.OutputStateCB.Checked = target.OutputState;
-                OutputStateCB.CheckedChanged += new System.EventHandler(OutputStateCB_CheckedChanged);
-            }
-            else if (index != 0)
-            {
-                throw new IndexOutOfRangeException("index");
-            }
+            throw new IndexOutOfRangeException("index");
         }
 
         public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
-            arg.Value = (sbyte)0;
             return type;
         }
 
         public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
-            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return ActionType.None;
         }
 
@@ -112,7 +98,7 @@ namespace Gurux.DLMS.UI
         {
             if (Dirty && index == 2)
             {
-                errorProvider1.SetError(ControlStateCB, Properties.Resources.ValueChangedTxt);
+                errorProvider1.SetError(CurrentCreditAmountTb, Properties.Resources.ValueChangedTxt);
             }
             else
             {
@@ -122,12 +108,16 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
+            throw new IndexOutOfRangeException("index");
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
         #endregion
+
+
+
 
         private void ValueTB_KeyUp(object sender, KeyEventArgs e)
         {
@@ -137,14 +127,6 @@ namespace Gurux.DLMS.UI
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
-        }
-
-        private void OutputStateCB_CheckedChanged(object sender, EventArgs e)
-        {
-            bool check = OutputStateCB.Checked;
-            (Target as GXDLMSDisconnectControl).OutputState = check;
-            Target.UpdateDirty(2, check);
-            errorProvider1.SetError(OutputStateCB, Properties.Resources.ValueChangedTxt);
-        }       
+        }        
     }
 }

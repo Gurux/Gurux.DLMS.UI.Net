@@ -4,11 +4,11 @@
 //
 //
 //
-// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSDisconnectControlView.cs $
+// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSTokenGatewayView.cs $
 //
-// Version:         $Revision: 5795 $,
-//                  $Date: 2012-10-02 13:22:54 +0300 (ti, 02 loka 2012) $
-//                  $Author: kurumi $
+// Version:         $Revision: 8933 $,
+//                  $Date: 2016-11-23 09:20:07 +0200 (ke, 23 marras 2016) $
+//                  $Author: gurux01 $
 //
 // Copyright (c) Gurux Ltd
 //
@@ -42,13 +42,14 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
-    [GXDLMSViewAttribute(typeof(GXDLMSDisconnectControl))]
-    partial class GXDLMSDisconnectControlView : Form, IGXDLMSView
+    [GXDLMSViewAttribute(typeof(GXDLMSTokenGateway))]
+    partial class GXDLMSTokenGatewayView : Form, IGXDLMSView
     {
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GXDLMSDisconnectControlView()
+        public GXDLMSTokenGatewayView()
         {
             InitializeComponent();
         }
@@ -63,14 +64,17 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user)
         {
-            if (index == 2)
+            GXDLMSTokenGateway target = (GXDLMSTokenGateway)Target;
+            if (index == 4)
             {
-                OutputStateCB.CheckedChanged -= new System.EventHandler(OutputStateCB_CheckedChanged);
-                GXDLMSDisconnectControl target = Target as GXDLMSDisconnectControl;
-                this.OutputStateCB.Checked = target.OutputState;
-                OutputStateCB.CheckedChanged += new System.EventHandler(OutputStateCB_CheckedChanged);
+
             }
-            else if (index != 0)
+            else if (index == 6)
+            {
+                StatusCodeTb.Text = target.StatusCode.ToString();
+                DataValueTb.Text = target.DataValue;
+            }
+            else
             {
                 throw new IndexOutOfRangeException("index");
             }
@@ -78,13 +82,11 @@ namespace Gurux.DLMS.UI
 
         public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
-            arg.Value = (sbyte)0;
             return type;
         }
 
         public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
-            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return ActionType.None;
         }
 
@@ -112,7 +114,7 @@ namespace Gurux.DLMS.UI
         {
             if (Dirty && index == 2)
             {
-                errorProvider1.SetError(ControlStateCB, Properties.Resources.ValueChangedTxt);
+                errorProvider1.SetError(TokenTb, Properties.Resources.ValueChangedTxt);
             }
             else
             {
@@ -122,29 +124,23 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access)
         {
+            if (index == 4)
+            {
+                DescriptionsAdd.Enabled = DescriptionsEdit.Enabled = DescriptionsRemove.Enabled = (access & AccessMode.Read) != 0;
+            }
+            else if (index == 6)
+            {
+                StatusCodeTb.ReadOnly = DataValueTb.ReadOnly = (access & AccessMode.Read) == 0;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode)
         {
         }
-        #endregion
-
-        private void ValueTB_KeyUp(object sender, KeyEventArgs e)
-        {
-            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
-        }
-
-        private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
-        }
-
-        private void OutputStateCB_CheckedChanged(object sender, EventArgs e)
-        {
-            bool check = OutputStateCB.Checked;
-            (Target as GXDLMSDisconnectControl).OutputState = check;
-            Target.UpdateDirty(2, check);
-            errorProvider1.SetError(OutputStateCB, Properties.Resources.ValueChangedTxt);
-        }       
+        #endregion               
     }
 }
