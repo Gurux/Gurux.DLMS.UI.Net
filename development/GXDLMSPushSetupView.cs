@@ -66,7 +66,7 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user)
+        public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             if (index == 2)
             {
@@ -148,20 +148,21 @@ namespace Gurux.DLMS.UI
             errorProvider1.Clear();
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access)
+        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                ObjectsLV.Enabled = access != AccessMode.NoAccess;
+                ObjectsLV.Enabled = enabled;
             }
             else if (index == 3)
             {
-                MessageCB.Enabled = MessageCB.Enabled = access != AccessMode.NoAccess;
-                DestinationTB.ReadOnly = access == AccessMode.NoAccess;
+                MessageCB.Enabled = MessageCB.Enabled = enabled;
+                DestinationTB.ReadOnly = !enabled;
             }
             else if (index == 4)
             {
-                CommunicationWindowLV.Enabled = access != AccessMode.NoAccess;
+                CommunicationWindowLV.Enabled = enabled;
             }
             else
             {
@@ -169,11 +170,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
             if (index == 1)
             {
-                PushBtn.Enabled = mode == MethodAccessMode.Access;
+                PushBtn.Enabled = connected && mode == MethodAccessMode.Access;
             }
         }
 

@@ -70,7 +70,7 @@ namespace Gurux.DLMS.UI
         CheckedListBox = 4
     }
 
-    delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
+    delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value, bool connected);
 
 
     public partial class GXValueField : UserControl
@@ -321,11 +321,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void UpdateValueItems(GXDLMSObject target, int index, object value)
+        public void UpdateValueItems(GXDLMSObject target, int index, object value, bool connected)
         {
             if (InvokeRequired)
             {
-                this.BeginInvoke(new UpdateValueItemsEventHandler(UpdateValueItems), target, index, value);
+                this.BeginInvoke(new UpdateValueItemsEventHandler(UpdateValueItems), target, index, value, connected);
             }
             else
             {
@@ -388,7 +388,7 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                ReadOnly = (target.GetAccess(index) & AccessMode.Write) == 0;
+                ReadOnly = !connected || (target.GetAccess(index) & AccessMode.Write) == 0;
             }
         }
 

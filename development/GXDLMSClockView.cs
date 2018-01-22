@@ -62,7 +62,7 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user)
+        public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSClock target = Target as GXDLMSClock;
             if (index == 2)
@@ -108,40 +108,48 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access)
+        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected & (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                UpdateTimeBtn.Enabled = access > AccessMode.Read;
+                TimeTB.Enabled = enabled;
             }
             else if (index == 3)
             {
-                CurrentTimeZoneBtn.Enabled = TimeZoneCb.Enabled = access > AccessMode.Read;
+                TimeZoneTB.Enabled = TimeZoneCb.Enabled = enabled;
             }
             else if (index == 5)
             {
-                BeginTB.Enabled = access > AccessMode.Read;
+                BeginTB.Enabled = enabled;
             }
             else if (index == 6)
             {
-                EndTB.Enabled = access > AccessMode.Read;
+                EndTB.Enabled = enabled;
             }
             else if (index == 7)
             {
-                DeviationTB.Enabled = access > AccessMode.Read;
+                DeviationTB.Enabled = enabled;
             }
             else if (index == 8)
             {
-                EnabledCB.Enabled = access > AccessMode.Read;
+                EnabledCB.Enabled = enabled;
             }
             else
             {
                 throw new NotImplementedException();
             }
         }
-        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
-
+            if (index == 2)
+            {
+                UpdateTimeBtn.Enabled = mode > MethodAccessMode.NoAccess;
+            }
+            else if (index == 3)
+            {
+                CurrentTimeZoneBtn.Enabled = mode > MethodAccessMode.NoAccess;
+            }
         }
 
         public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)

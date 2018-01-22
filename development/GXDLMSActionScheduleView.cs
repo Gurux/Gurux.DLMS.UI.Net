@@ -60,7 +60,7 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user)
+        public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSActionSchedule schedule = Target as GXDLMSActionSchedule;
             if (index == 2)
@@ -89,11 +89,20 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access)
+        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
+            if (index == 2)
+            {
+                ScriptNameTB.ReadOnly = ScriptSelectorTB.ReadOnly = !enabled;
+            }
+            else if (index == 4)
+            {
+                Time.Enabled = enabled;
+            }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
 

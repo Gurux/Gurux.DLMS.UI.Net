@@ -35,6 +35,7 @@
             this.FileNameTb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.BrowseBtn = new System.Windows.Forms.Button();
+            this.InfoBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TextTb
@@ -86,6 +87,7 @@
             this.FileNameTb.Name = "FileNameTb";
             this.FileNameTb.Size = new System.Drawing.Size(134, 20);
             this.FileNameTb.TabIndex = 22;
+            this.FileNameTb.TextChanged += new System.EventHandler(this.FileNameTb_TextChanged);
             // 
             // label1
             // 
@@ -107,6 +109,18 @@
             this.BrowseBtn.UseVisualStyleBackColor = true;
             this.BrowseBtn.Click += new System.EventHandler(this.BrowseBtn_Click);
             // 
+            // InfoBtn
+            // 
+            this.InfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.InfoBtn.Enabled = false;
+            this.InfoBtn.Location = new System.Drawing.Point(12, 76);
+            this.InfoBtn.Name = "InfoBtn";
+            this.InfoBtn.Size = new System.Drawing.Size(75, 23);
+            this.InfoBtn.TabIndex = 24;
+            this.InfoBtn.Text = "Info...";
+            this.InfoBtn.UseVisualStyleBackColor = true;
+            this.InfoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
+            // 
             // GXImageDlg
             // 
             this.AcceptButton = this.OkBtn;
@@ -115,6 +129,7 @@
             this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(312, 111);
             this.ControlBox = false;
+            this.Controls.Add(this.InfoBtn);
             this.Controls.Add(this.BrowseBtn);
             this.Controls.Add(this.FileNameTb);
             this.Controls.Add(this.label1);
@@ -139,5 +154,6 @@
         private System.Windows.Forms.Button BrowseBtn;
         public System.Windows.Forms.TextBox TextTb;
         public System.Windows.Forms.TextBox FileNameTb;
+        private System.Windows.Forms.Button InfoBtn;
     }
 }

@@ -61,7 +61,7 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user)
+        public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
             if (index == 5)
@@ -107,7 +107,7 @@ namespace Gurux.DLMS.UI
                         return ActionType.None;
                     }
                     imageIdentifier = dlg.TextTb.Text;
-                    image = File.ReadAllBytes(dlg.FileNameTb.Text);
+                    image = dlg.Image;
                     DescriptionList.Items.Add("Updating image" + imageIdentifier);
                 }
             }
@@ -182,7 +182,8 @@ namespace Gurux.DLMS.UI
                 }
                 else if (arg.Index == 4)
                 {
-                    DescriptionList.Items.Add("Image activated.");
+                    DescriptionList.Items.Add(Properties.Resources.ImageActivatedTxt);
+                    MessageBox.Show(this, Properties.Resources.ImageActivatedTxt, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     type = ActionType.None;
                 }
             }
@@ -221,12 +222,23 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access)
+        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            //throw new IndexOutOfRangeException("index");
+            if (index == 5)
+            {
+                ImageTransferEnabledCB.Enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
+            }
+            else if (index == 7)
+            {
+                ImagesView.Enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
             if (index == 1)
             {

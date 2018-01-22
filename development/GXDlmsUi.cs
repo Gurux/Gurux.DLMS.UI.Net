@@ -49,7 +49,7 @@ namespace Gurux.DLMS.UI
         /// <param name="index">Attribute index.</param>
         /// <param name="value">Updated value.</param>
         /// <returns></returns>
-        private static GXValueField UpdateProperty(IGXDLMSView view, ControlCollection controls, int index, object value)
+        private static GXValueField UpdateProperty(IGXDLMSView view, ControlCollection controls, int index, object value, bool connected)
         {
             GXValueField item = null;
             foreach (Control it in controls)
@@ -60,7 +60,7 @@ namespace Gurux.DLMS.UI
                     if (obj.Index == index)
                     {
                         obj.Target = view.Target;
-                        obj.UpdateValueItems(view.Target, index, value);
+                        obj.UpdateValueItems(view.Target, index, value, connected);
                         obj.Value = value;
                         item = obj;
                     }
@@ -72,7 +72,7 @@ namespace Gurux.DLMS.UI
                 }
                 else if (it.Controls.Count != 0)
                 {
-                    item = UpdateProperty(view, it.Controls, index, value);
+                    item = UpdateProperty(view, it.Controls, index, value, connected);
                 }
                 if (item != null)
                 {
@@ -89,9 +89,9 @@ namespace Gurux.DLMS.UI
         /// <param name="index">Attribute index.</param>
         /// <param name="value">Updated value.</param>
         /// <returns></returns>
-        public static void UpdateProperty(IGXDLMSView view, int index, object value)
+        public static void UpdateProperty(IGXDLMSView view, int index, object value, bool connected)
         {
-            UpdateProperty(view, ((Form)view).Controls, index, value);
+            UpdateProperty(view, ((Form)view).Controls, index, value, connected);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Gurux.DLMS.UI
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="view"></param>
-        public static void UpdateProperties(IGXDLMSBase obj, IGXDLMSView view)
+        public static void UpdateProperties(IGXDLMSBase obj, IGXDLMSView view, bool connected)
         {
             if (obj == null)
             {
@@ -122,14 +122,14 @@ namespace Gurux.DLMS.UI
                 object value = null;
                 bool dirty = view.Target.GetDirty(it, out value);
                 value = view.Target.GetValues()[it - 1];
-                GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value);
+                GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value, connected);
                 if (item == null || item.NotifyChanges)
                 {
-                    view.OnAccessRightsChange(it, view.Target.GetAccess(it));
+                    view.OnAccessRightsChange(it, view.Target.GetAccess(it), connected);
                 }
                 if (item == null || item.NotifyChanges)
                 {
-                    view.OnValueChanged(it, value, false);
+                    view.OnValueChanged(it, value, false, connected);
                 }
             }
         }

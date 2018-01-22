@@ -61,7 +61,7 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user)
+        public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
             //object list.
@@ -177,11 +177,48 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access)
+        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            if (index == 7)
+            if (index == 2)
             {
-                bool enabled = (access & AccessMode.Write) != 0;
+            }
+            else if (index == 3)
+            {
+                ClientSAPTb.ReadOnly = ServerSAPTb.ReadOnly = (access & AccessMode.Write) == 0;
+            }
+            else if (index == 4)
+            {
+                // Application context name.
+                ApplicationJointISOCTTTb.ReadOnly = ApplicationCountryTb.ReadOnly =
+                ApplicationCountryNameTb.ReadOnly = ApplicationIdentifiedOrganizationTb.ReadOnly =
+                ApplicationDLMSUATb.ReadOnly = ApplicationContextTb.ReadOnly =
+                ApplicationContextIDTb.ReadOnly = (access & AccessMode.Write) == 0;
+            }
+            else if (index == 5)
+            {
+                // xDLMS_context_info
+                ConformanceTB.ReadOnly = MaxReceivePDUSizeTb.ReadOnly = MaxSendPDUSizeTb.ReadOnly =
+                    DLMSVersionNumberTB.ReadOnly = CypheringInfoTb.ReadOnly = (access & AccessMode.Write) == 0;
+            }
+            else if (index == 6)
+            {
+                // authentication_mechanism_name 
+                AuthenticationJointISOCTTTb.ReadOnly = AuthenticationCountryTb.ReadOnly = AuthenticationCountryNameTb.ReadOnly =
+                    AuthenticationIdentifiedorganizationTb.ReadOnly = AuthenticationDLMSUATb.ReadOnly =
+                    AuthenticationMechanismNameTb.ReadOnly = AuthenticationMechanismIdTb.ReadOnly = (access & AccessMode.Write) == 0;
+            }
+            else if (index == 7)
+            {
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                bool enabled = false;
+                if (target.AuthenticationMechanismName.MechanismId == Authentication.Low)
+                {
+                    enabled = (access & AccessMode.Write) != 0;
+                }
+                else if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
+                {
+                    enabled = Target.GetMethodAccess(2) == MethodAccessMode.Access;
+                }
                 UpdatePwBtn.Enabled = enabled;
                 SecretTB.ReadOnly = !enabled;
             }
@@ -191,7 +228,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode)
+        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
 
@@ -200,7 +237,7 @@ namespace Gurux.DLMS.UI
             if (type == ActionType.Write && arg.Index == 7)
             {
                 DialogResult ret;
-                //Update current time
+                //Update pw.
                 ret = MessageBox.Show(this, Properties.Resources.SetPasswordWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (ret == DialogResult.Yes)
                 {
@@ -213,7 +250,8 @@ namespace Gurux.DLMS.UI
                     {
                         value = GXDLMSTranslator.HexToBytes(SecretTB.Text);
                     }
-                    if (Target.GetMethodAccess(2) == MethodAccessMode.Access)
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
                     {
                         type = ActionType.Action;
                         arg.Index = 2;
@@ -224,13 +262,12 @@ namespace Gurux.DLMS.UI
                     }
                     if (type == ActionType.Write)
                     {
-                        GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
                         target.Secret = value;
                     }
                     else
                     {
                         GXByteBuffer bb = new GXByteBuffer();
-                        bb.SetUInt8((byte) DataType.OctetString);
+                        bb.SetUInt8((byte)DataType.OctetString);
                         bb.SetUInt8((byte)value.Length);
                         bb.Set(value);
                         arg.Value = bb.Array();

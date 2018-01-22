@@ -79,7 +79,16 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image files (*.bin)|*.bin|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to Image activated..
+        /// </summary>
+        internal static string ImageActivatedTxt {
+            get {
+                return ResourceManager.GetString("ImageActivatedTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*.
         /// </summary>
         internal static string ImageFilesTxt {
             get {

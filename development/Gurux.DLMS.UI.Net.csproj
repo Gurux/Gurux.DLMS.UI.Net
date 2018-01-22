@@ -128,6 +128,12 @@
     <Compile Include="GXImageDlg.Designer.cs">
       <DependentUpon>GXImageDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXImageInfoDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXImageInfoDlg.Designer.cs">
+      <DependentUpon>GXImageInfoDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXTextDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXImageDlg.resx">
       <DependentUpon>GXImageDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXImageInfoDlg.resx">
+      <DependentUpon>GXImageInfoDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXTextDlg.resx">
       <DependentUpon>GXTextDlg.cs</DependentUpon>

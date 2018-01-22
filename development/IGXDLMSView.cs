@@ -58,21 +58,24 @@ namespace Gurux.DLMS.UI
         /// <param name="index">Attribute index.</param>
         /// <param name="value">New value.</param>
         /// <param name="user">True, if user has updated the value.</param>
-        void OnValueChanged(int index, object value, bool user);
+        /// <param name="connected">Is connected to the meter.</param>
+        void OnValueChanged(int index, object value, bool user, bool connected);
 
         /// <summary>
         /// Called after access rights changed and if  Attribute ID is not set to GXValueField.
         /// </summary>
         /// <param name="index">Attribute index.</param>
         /// <param name="mode">Attribute access mode.</param>
-        void OnAccessRightsChange(int index, AccessMode mode);
+        /// <param name="connected">Is connected to the meter.</param>
+        void OnAccessRightsChange(int index, AccessMode mode, bool connected);
 
         /// <summary>
         /// Called after action access rights changed and if Attribute ID is not set to GXButton.
         /// </summary>
         /// <param name="index">Action index.</param>
         /// <param name="mode">Method access mode.</param>
-        void OnAccessRightsChange(int index, MethodAccessMode mode);
+        /// <param name="connected">Is connected to the meter.</param>
+        void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected);
 
         /// <summary>
         /// Called to update UI after value has change.

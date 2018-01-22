@@ -41,6 +41,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Gurux.DLMS.UI
 {
@@ -54,9 +55,10 @@ namespace Gurux.DLMS.UI
             InitializeComponent();
         }
 
-        public string GetValue()
+        public byte[] Image
         {
-            return TextTb.Text;
+            get;
+            private set;
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
@@ -71,6 +73,18 @@ namespace Gurux.DLMS.UI
                 {
                     throw new ArgumentOutOfRangeException("Invalid image.");
                 }
+                if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(File.ReadAllText(FileNameTb.Text));
+                    byte[] image = null;
+                    GetImage(doc.ChildNodes, ref image);
+                    Image = image;
+                }
+                else
+                {
+                    Image = File.ReadAllBytes(FileNameTb.Text);
+                }
             }
             catch (Exception ex)
             {
@@ -78,6 +92,63 @@ namespace Gurux.DLMS.UI
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Try to get identification from xml file.
+        /// </summary>
+        /// <param name="nodes">XML nodes.</param>
+        /// <returns>Found dentification.</returns>
+        private string GetIdentification(XmlNodeList nodes)
+        {
+            foreach (XmlNode it in nodes)
+            {
+                if (it.NodeType == XmlNodeType.Element && it.ChildNodes.Count == 1 && it.ChildNodes[0].NodeType == XmlNodeType.Text &&
+                    it.Name.Contains("Identification"))
+                {
+                    return it.InnerText;
+                }
+                else
+                {
+                    if (it.ChildNodes.Count != 0 && it.FirstChild.NodeType != XmlNodeType.Text)
+                    {
+                        string ret = GetIdentification(it.ChildNodes);
+                        if (ret != null)
+                        {
+                            return ret;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Try to get identification from xml file.
+        /// </summary>
+        /// <param name="nodes">XML nodes.</param>
+        /// <returns>Found dentification.</returns>
+        private void GetImage(XmlNodeList nodes, ref byte[] image)
+        {
+            foreach (XmlNode it in nodes)
+            {
+                if (it.NodeType == XmlNodeType.Element && it.ChildNodes.Count == 1 && it.ChildNodes[0].NodeType == XmlNodeType.Text)
+                {
+                    byte[] tmp = GXDLMSTranslator.HexToBytes(it.InnerText);
+                    if (image == null || tmp.Length > image.Length)
+                    {
+                        image = tmp;
+                    }
+                }
+                else
+                {
+                    if (it.ChildNodes.Count != 0 && it.FirstChild.NodeType != XmlNodeType.Text)
+                    {
+                        GetImage(it.ChildNodes, ref image);
+                    }
+                }
+            }
+        }
+
 
         /// <summary>
         /// Browse image.
@@ -98,13 +169,40 @@ namespace Gurux.DLMS.UI
                 }
                 if (TextTb.Text == "")
                 {
-                    TextTb.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
+                    if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(File.ReadAllText(FileNameTb.Text));
+                        TextTb.Text = GetIdentification(doc.ChildNodes);
+                    }
+                    else
+                    {
+                        TextTb.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void InfoBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXImageInfoDlg dlg = new GXImageInfoDlg(FileNameTb.Text);
+                dlg.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FileNameTb_TextChanged(object sender, EventArgs e)
+        {
+            InfoBtn.Enabled = FileNameTb.Text.Length != 0;
         }
     }
 }
