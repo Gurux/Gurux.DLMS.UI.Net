@@ -166,5 +166,20 @@ namespace Gurux.DLMS.UI
             }
             return found;
         }
+
+        /// <summary>
+        /// Show find dialog.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public static bool Find(IWin32Window owner, GXFindParameters p)
+        {
+            GXFindDlg dlg = new GXFindDlg(p);
+            if (dlg.ShowDialog(owner) == DialogResult.OK)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

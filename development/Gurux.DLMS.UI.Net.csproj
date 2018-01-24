@@ -122,6 +122,13 @@
     <Compile Include="GXDLMSPushTargetDlg.designer.cs">
       <DependentUpon>GXDLMSPushTargetDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXFindDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXFindDlg.Designer.cs">
+      <DependentUpon>GXFindDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXFindParameters.cs" />
     <Compile Include="GXImageDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -496,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSPushTargetDlg.resx">
       <DependentUpon>GXDLMSPushTargetDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXFindDlg.resx">
+      <DependentUpon>GXFindDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXImageDlg.resx">
       <DependentUpon>GXImageDlg.cs</DependentUpon>
