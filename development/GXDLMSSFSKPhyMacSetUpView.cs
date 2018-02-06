@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSSFSKPhyMacSetUp
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSSFSKPhyMacSetUp))]
     public partial class GXDLMSSFSKPhyMacSetUpView : Form, IGXDLMSView
     {

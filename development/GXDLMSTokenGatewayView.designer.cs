@@ -40,8 +40,8 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSTokenGatewayView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.StatusCodeTb = new System.Windows.Forms.ComboBox();
             this.DataValueTb = new System.Windows.Forms.TextBox();
-            this.StatusCodeTb = new System.Windows.Forms.TextBox();
             this.DataValueLbl = new System.Windows.Forms.Label();
             this.StatusCodeLbl = new System.Windows.Forms.Label();
             this.DeliveryMethodLbl = new System.Windows.Forms.Label();
@@ -69,9 +69,9 @@ namespace Gurux.DLMS.UI
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.StatusCodeTb);
             this.groupBox1.Controls.Add(this.DeliveryMethodCb);
             this.groupBox1.Controls.Add(this.DataValueTb);
-            this.groupBox1.Controls.Add(this.StatusCodeTb);
             this.groupBox1.Controls.Add(this.DataValueLbl);
             this.groupBox1.Controls.Add(this.StatusCodeLbl);
             this.groupBox1.Controls.Add(this.DeliveryMethodLbl);
@@ -95,6 +95,18 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Token Gateway Object";
             // 
+            // StatusCodeTb
+            // 
+            this.StatusCodeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusCodeTb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusCodeTb.FormattingEnabled = true;
+            this.StatusCodeTb.Location = new System.Drawing.Point(103, 315);
+            this.StatusCodeTb.Name = "StatusCodeTb";
+            this.StatusCodeTb.Size = new System.Drawing.Size(354, 21);
+            this.StatusCodeTb.TabIndex = 7;
+            this.StatusCodeTb.SelectedIndexChanged += new System.EventHandler(this.StatusCodeTb_SelectedIndexChanged);
+            // 
             // DataValueTb
             // 
             this.DataValueTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -102,16 +114,8 @@ namespace Gurux.DLMS.UI
             this.DataValueTb.Location = new System.Drawing.Point(103, 342);
             this.DataValueTb.Name = "DataValueTb";
             this.DataValueTb.Size = new System.Drawing.Size(353, 20);
-            this.DataValueTb.TabIndex = 84;
-            // 
-            // StatusCodeTb
-            // 
-            this.StatusCodeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusCodeTb.Location = new System.Drawing.Point(103, 316);
-            this.StatusCodeTb.Name = "StatusCodeTb";
-            this.StatusCodeTb.Size = new System.Drawing.Size(353, 20);
-            this.StatusCodeTb.TabIndex = 83;
+            this.DataValueTb.TabIndex = 8;
+            this.DataValueTb.Leave += new System.EventHandler(this.DataValueTb_Leave);
             // 
             // DataValueLbl
             // 
@@ -155,9 +159,10 @@ namespace Gurux.DLMS.UI
             this.DescriptionsRemove.Location = new System.Drawing.Point(381, 260);
             this.DescriptionsRemove.Name = "DescriptionsRemove";
             this.DescriptionsRemove.Size = new System.Drawing.Size(75, 23);
-            this.DescriptionsRemove.TabIndex = 27;
+            this.DescriptionsRemove.TabIndex = 5;
             this.DescriptionsRemove.Text = "Remove";
             this.DescriptionsRemove.UseVisualStyleBackColor = true;
+            this.DescriptionsRemove.Click += new System.EventHandler(this.DescriptionsRemove_Click);
             // 
             // DescriptionsEdit
             // 
@@ -165,9 +170,10 @@ namespace Gurux.DLMS.UI
             this.DescriptionsEdit.Location = new System.Drawing.Point(300, 260);
             this.DescriptionsEdit.Name = "DescriptionsEdit";
             this.DescriptionsEdit.Size = new System.Drawing.Size(75, 23);
-            this.DescriptionsEdit.TabIndex = 26;
+            this.DescriptionsEdit.TabIndex = 4;
             this.DescriptionsEdit.Text = "Edit...";
             this.DescriptionsEdit.UseVisualStyleBackColor = true;
+            this.DescriptionsEdit.Click += new System.EventHandler(this.DescriptionsEdit_Click);
             // 
             // DescriptionsAdd
             // 
@@ -175,9 +181,10 @@ namespace Gurux.DLMS.UI
             this.DescriptionsAdd.Location = new System.Drawing.Point(219, 260);
             this.DescriptionsAdd.Name = "DescriptionsAdd";
             this.DescriptionsAdd.Size = new System.Drawing.Size(75, 23);
-            this.DescriptionsAdd.TabIndex = 25;
+            this.DescriptionsAdd.TabIndex = 3;
             this.DescriptionsAdd.Text = "Add...";
             this.DescriptionsAdd.UseVisualStyleBackColor = true;
+            this.DescriptionsAdd.Click += new System.EventHandler(this.DescriptionsAdd_Click);
             // 
             // DescriptionsView
             // 
@@ -191,7 +198,7 @@ namespace Gurux.DLMS.UI
             this.DescriptionsView.Location = new System.Drawing.Point(103, 123);
             this.DescriptionsView.Name = "DescriptionsView";
             this.DescriptionsView.Size = new System.Drawing.Size(353, 131);
-            this.DescriptionsView.TabIndex = 24;
+            this.DescriptionsView.TabIndex = 2;
             this.DescriptionsView.UseCompatibleStateImageBehavior = false;
             this.DescriptionsView.View = System.Windows.Forms.View.Details;
             // 
@@ -226,7 +233,7 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(354, 20);
-            this.DescriptionTB.TabIndex = 1;
+            this.DescriptionTB.TabIndex = 9;
             // 
             // TokenLbl
             // 
@@ -262,7 +269,7 @@ namespace Gurux.DLMS.UI
             this.DeliveryMethodCb.NotifyChanges = false;
             this.DeliveryMethodCb.ReadOnly = true;
             this.DeliveryMethodCb.Size = new System.Drawing.Size(353, 20);
-            this.DeliveryMethodCb.TabIndex = 85;
+            this.DeliveryMethodCb.TabIndex = 6;
             this.DeliveryMethodCb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // TimeTb
@@ -274,7 +281,7 @@ namespace Gurux.DLMS.UI
             this.TimeTb.Name = "TimeTb";
             this.TimeTb.NotifyChanges = false;
             this.TimeTb.Size = new System.Drawing.Size(353, 20);
-            this.TimeTb.TabIndex = 6;
+            this.TimeTb.TabIndex = 1;
             this.TimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // TokenTb
@@ -298,7 +305,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(353, 20);
-            this.LogicalNameTB.TabIndex = 2;
+            this.LogicalNameTB.TabIndex = 10;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // GXDLMSTokenGatewayView
@@ -328,7 +335,7 @@ namespace Gurux.DLMS.UI
         private Label StatusCodeLbl;
         private Label DeliveryMethodLbl;
         private TextBox DataValueTb;
-        private TextBox StatusCodeTb;
         private GXValueField DeliveryMethodCb;
+        private ComboBox StatusCodeTb;
     }
 }

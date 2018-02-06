@@ -31,7 +31,6 @@ namespace Gurux.DLMS.UI
         private GXValueField LogicalNameTB;
         private GroupBox groupBox2;
         private Label ScriptNameLbl;
-        private TextBox ScriptNameTB;
         private Label ScriptTypeLbl;
         private Label ScriptSelectorLbl;
         private TextBox ScriptSelectorTB;
@@ -50,24 +49,24 @@ namespace Gurux.DLMS.UI
             this.TimeAddBtn = new System.Windows.Forms.Button();
             this.Time = new System.Windows.Forms.ListView();
             this.TimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ScriptTypeLbl = new System.Windows.Forms.Label();
-            this.ScriptSelectorLbl = new System.Windows.Forms.Label();
-            this.ScriptSelectorTB = new System.Windows.Forms.TextBox();
-            this.ScriptNameLbl = new System.Windows.Forms.Label();
-            this.ScriptNameTB = new System.Windows.Forms.TextBox();
-            this.LogicalNameLbl = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ScriptTypeTb = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ScriptTypeTb = new Gurux.DLMS.UI.GXValueField();
+            this.ScriptTypeLbl = new System.Windows.Forms.Label();
+            this.ScriptSelectorLbl = new System.Windows.Forms.Label();
+            this.ScriptSelectorTB = new System.Windows.Forms.TextBox();
+            this.ScriptNameLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameLbl = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ScriptNameTB = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -144,22 +143,65 @@ namespace Gurux.DLMS.UI
             this.TimeHeader.Text = "Time:";
             this.TimeHeader.Width = 339;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 70);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.TimeAddBtn_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.TimeEditBtn_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.TimeRemoveBtn_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ScriptNameTB);
             this.groupBox2.Controls.Add(this.ScriptTypeTb);
             this.groupBox2.Controls.Add(this.ScriptTypeLbl);
             this.groupBox2.Controls.Add(this.ScriptSelectorLbl);
             this.groupBox2.Controls.Add(this.ScriptSelectorTB);
             this.groupBox2.Controls.Add(this.ScriptNameLbl);
-            this.groupBox2.Controls.Add(this.ScriptNameTB);
             this.groupBox2.Location = new System.Drawing.Point(1, 58);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(387, 110);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Executed Script";
+            // 
+            // ScriptTypeTb
+            // 
+            this.ScriptTypeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScriptTypeTb.Index = 3;
+            this.ScriptTypeTb.Location = new System.Drawing.Point(101, 80);
+            this.ScriptTypeTb.Name = "ScriptTypeTb";
+            this.ScriptTypeTb.NotifyChanges = false;
+            this.ScriptTypeTb.ReadOnly = true;
+            this.ScriptTypeTb.Size = new System.Drawing.Size(263, 99);
+            this.ScriptTypeTb.TabIndex = 3;
+            this.ScriptTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // ScriptTypeLbl
             // 
@@ -187,6 +229,7 @@ namespace Gurux.DLMS.UI
             this.ScriptSelectorTB.Name = "ScriptSelectorTB";
             this.ScriptSelectorTB.Size = new System.Drawing.Size(261, 20);
             this.ScriptSelectorTB.TabIndex = 2;
+            this.ScriptSelectorTB.Leave += new System.EventHandler(this.ScriptSelectorTB_Leave);
             // 
             // ScriptNameLbl
             // 
@@ -197,14 +240,17 @@ namespace Gurux.DLMS.UI
             this.ScriptNameLbl.TabIndex = 1;
             this.ScriptNameLbl.Text = "Script Name:";
             // 
-            // ScriptNameTB
+            // LogicalNameTB
             // 
-            this.ScriptNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScriptNameTB.Location = new System.Drawing.Point(101, 28);
-            this.ScriptNameTB.Name = "ScriptNameTB";
-            this.ScriptNameTB.Size = new System.Drawing.Size(261, 20);
-            this.ScriptNameTB.TabIndex = 0;
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(263, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -221,58 +267,17 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // ScriptTypeTb
+            // ScriptNameTB
             // 
-            this.ScriptTypeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ScriptNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScriptTypeTb.Index = 3;
-            this.ScriptTypeTb.Location = new System.Drawing.Point(101, 80);
-            this.ScriptTypeTb.Name = "ScriptTypeTb";
-            this.ScriptTypeTb.ReadOnly = true;
-            this.ScriptTypeTb.Size = new System.Drawing.Size(263, 99);
-            this.ScriptTypeTb.TabIndex = 3;
-            this.ScriptTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(263, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.removeToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.TimeAddBtn_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.TimeEditBtn_Click);
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.TimeRemoveBtn_Click);
+            this.ScriptNameTB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ScriptNameTB.FormattingEnabled = true;
+            this.ScriptNameTB.Location = new System.Drawing.Point(101, 25);
+            this.ScriptNameTB.Name = "ScriptNameTB";
+            this.ScriptNameTB.Size = new System.Drawing.Size(261, 21);
+            this.ScriptNameTB.TabIndex = 78;
+            this.ScriptNameTB.SelectedIndexChanged += new System.EventHandler(this.ScriptNameTB_SelectedIndexChanged);
             // 
             // GXDLMSActionScheduleView
             // 
@@ -282,10 +287,10 @@ namespace Gurux.DLMS.UI
             this.Name = "GXDLMSActionScheduleView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -300,5 +305,6 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem removeToolStripMenuItem;
+        private ComboBox ScriptNameTB;
     }
 }

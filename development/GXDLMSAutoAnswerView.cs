@@ -47,6 +47,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSAutoAnswer
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSAutoAnswer))]
     public partial class GXDLMSAutoAnswerView : Form, IGXDLMSView
     {

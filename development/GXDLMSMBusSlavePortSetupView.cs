@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSMBusSlavePortSetup
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSMBusSlavePortSetup))]
     class GXDLMSMBusSlavePortSetupView : Form, IGXDLMSView
     {
@@ -148,25 +152,25 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSMBusSlavePortSetupView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BusAddressTB = new Gurux.DLMS.UI.GXValueField();
             this.BusAddressLbl = new System.Windows.Forms.Label();
+            this.AddressStateTB = new Gurux.DLMS.UI.GXValueField();
             this.AddressStateLbl = new System.Windows.Forms.Label();
+            this.AvailableBaudrateTB = new Gurux.DLMS.UI.GXValueField();
             this.AvailableBaudrateLbl = new System.Windows.Forms.Label();
+            this.DefaultBaudrateTB = new Gurux.DLMS.UI.GXValueField();
             this.DefaultBaudrateLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.BusAddressTB = new Gurux.DLMS.UI.GXValueField();
-            this.AddressStateTB = new Gurux.DLMS.UI.GXValueField();
-            this.AvailableBaudrateTB = new Gurux.DLMS.UI.GXValueField();
-            this.DefaultBaudrateTB = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // groupBox1
-            //
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.BusAddressTB);
             this.groupBox1.Controls.Add(this.BusAddressLbl);
             this.groupBox1.Controls.Add(this.AddressStateTB);
@@ -184,115 +188,122 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MBus Slave Port Setup Object";
             this.groupBox1.UseCompatibleTextRendering = true;
-            //
+            // 
+            // BusAddressTB
+            // 
+            this.BusAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BusAddressTB.Index = 5;
+            this.BusAddressTB.Location = new System.Drawing.Point(122, 125);
+            this.BusAddressTB.Name = "BusAddressTB";
+            this.BusAddressTB.NotifyChanges = false;
+            this.BusAddressTB.Size = new System.Drawing.Size(168, 20);
+            this.BusAddressTB.TabIndex = 20;
+            this.BusAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // BusAddressLbl
-            //
+            // 
             this.BusAddressLbl.AutoSize = true;
             this.BusAddressLbl.Location = new System.Drawing.Point(3, 128);
             this.BusAddressLbl.Name = "BusAddressLbl";
             this.BusAddressLbl.Size = new System.Drawing.Size(69, 13);
             this.BusAddressLbl.TabIndex = 19;
             this.BusAddressLbl.Text = "Bus Address:";
-            //
+            // 
+            // AddressStateTB
+            // 
+            this.AddressStateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddressStateTB.Index = 4;
+            this.AddressStateTB.Location = new System.Drawing.Point(122, 99);
+            this.AddressStateTB.Name = "AddressStateTB";
+            this.AddressStateTB.NotifyChanges = false;
+            this.AddressStateTB.Size = new System.Drawing.Size(168, 20);
+            this.AddressStateTB.TabIndex = 18;
+            this.AddressStateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // AddressStateLbl
-            //
+            // 
             this.AddressStateLbl.AutoSize = true;
             this.AddressStateLbl.Location = new System.Drawing.Point(3, 102);
             this.AddressStateLbl.Name = "AddressStateLbl";
             this.AddressStateLbl.Size = new System.Drawing.Size(76, 13);
             this.AddressStateLbl.TabIndex = 17;
             this.AddressStateLbl.Text = "Address State:";
-            //
+            // 
+            // AvailableBaudrateTB
+            // 
+            this.AvailableBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AvailableBaudrateTB.Index = 3;
+            this.AvailableBaudrateTB.Location = new System.Drawing.Point(122, 73);
+            this.AvailableBaudrateTB.Name = "AvailableBaudrateTB";
+            this.AvailableBaudrateTB.NotifyChanges = false;
+            this.AvailableBaudrateTB.ReadOnly = true;
+            this.AvailableBaudrateTB.Size = new System.Drawing.Size(168, 20);
+            this.AvailableBaudrateTB.TabIndex = 3;
+            this.AvailableBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            // 
             // AvailableBaudrateLbl
-            //
+            // 
             this.AvailableBaudrateLbl.AutoSize = true;
             this.AvailableBaudrateLbl.Location = new System.Drawing.Point(6, 76);
             this.AvailableBaudrateLbl.Name = "AvailableBaudrateLbl";
             this.AvailableBaudrateLbl.Size = new System.Drawing.Size(99, 13);
             this.AvailableBaudrateLbl.TabIndex = 4;
             this.AvailableBaudrateLbl.Text = "Available Baudrate:";
-            //
+            // 
+            // DefaultBaudrateTB
+            // 
+            this.DefaultBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefaultBaudrateTB.Index = 2;
+            this.DefaultBaudrateTB.Location = new System.Drawing.Point(122, 47);
+            this.DefaultBaudrateTB.Name = "DefaultBaudrateTB";
+            this.DefaultBaudrateTB.NotifyChanges = false;
+            this.DefaultBaudrateTB.ReadOnly = true;
+            this.DefaultBaudrateTB.Size = new System.Drawing.Size(168, 20);
+            this.DefaultBaudrateTB.TabIndex = 2;
+            this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            // 
             // DefaultBaudrateLbl
-            //
+            // 
             this.DefaultBaudrateLbl.AutoSize = true;
             this.DefaultBaudrateLbl.Location = new System.Drawing.Point(6, 50);
             this.DefaultBaudrateLbl.Name = "DefaultBaudrateLbl";
             this.DefaultBaudrateLbl.Size = new System.Drawing.Size(90, 13);
             this.DefaultBaudrateLbl.TabIndex = 2;
             this.DefaultBaudrateLbl.Text = "Default Baudrate:";
-            //
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(122, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // LogicalNameLbl
-            //
+            // 
             this.LogicalNameLbl.AutoSize = true;
             this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
             this.LogicalNameLbl.Name = "LogicalNameLbl";
             this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
             this.LogicalNameLbl.TabIndex = 0;
             this.LogicalNameLbl.Text = "Logical Name:";
-            //
+            // 
             // errorProvider1
-            //
+            // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            //
-            // BusAddressTB
-            //
-            this.BusAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.BusAddressTB.Index = 5;
-            this.BusAddressTB.Location = new System.Drawing.Point(122, 125);
-            this.BusAddressTB.Name = "BusAddressTB";
-            this.BusAddressTB.Size = new System.Drawing.Size(168, 20);
-            this.BusAddressTB.TabIndex = 20;
-            this.BusAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
-            // AddressStateTB
-            //
-            this.AddressStateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                          | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressStateTB.Index = 4;
-            this.AddressStateTB.Location = new System.Drawing.Point(122, 99);
-            this.AddressStateTB.Name = "AddressStateTB";
-            this.AddressStateTB.Size = new System.Drawing.Size(168, 20);
-            this.AddressStateTB.TabIndex = 18;
-            this.AddressStateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
-            // AvailableBaudrateTB
-            //
-            this.AvailableBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                               | System.Windows.Forms.AnchorStyles.Right)));
-            this.AvailableBaudrateTB.Index = 3;
-            this.AvailableBaudrateTB.Location = new System.Drawing.Point(122, 73);
-            this.AvailableBaudrateTB.Name = "AvailableBaudrateTB";
-            this.AvailableBaudrateTB.Size = new System.Drawing.Size(168, 20);
-            this.AvailableBaudrateTB.TabIndex = 3;
-            this.AvailableBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
-            // DefaultBaudrateTB
-            //
-            this.DefaultBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DefaultBaudrateTB.Index = 2;
-            this.DefaultBaudrateTB.Location = new System.Drawing.Point(122, 47);
-            this.DefaultBaudrateTB.Name = "DefaultBaudrateTB";
-            this.DefaultBaudrateTB.Size = new System.Drawing.Size(168, 20);
-            this.DefaultBaudrateTB.TabIndex = 2;
-            this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
-            // LogicalNameTB
-            //
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(122, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            //
+            // 
             // GXDLMSMBusSlavePortSetupView
-            //
+            // 
             this.ClientSize = new System.Drawing.Size(324, 179);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -1,14 +1,14 @@
-//
+﻿//
 // --------------------------------------------------------------------------
 //  Gurux Ltd
 //
 //
 //
-// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSIEC14908PhysicalSetupView.cs $
+// Filename:        $HeadURL:$
 //
-// Version:         $Revision: 8933 $,
-//                  $Date: 2016-11-23 09:20:07 +0200 (ke, 23 marras 2016) $
-//                  $Author: gurux01 $
+// Version:         $Revision: $,
+//                  $Date:  $
+//                  $Author: $
 //
 // Copyright (c) Gurux Ltd
 //
@@ -32,8 +32,13 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
@@ -44,18 +49,16 @@ namespace Gurux.DLMS.UI
 {
     /// <summary>
     /// Online help:
-    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSIEC14908PhysicalSetup
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSAutoAnswer
     /// </summary>
-    [GXDLMSViewAttribute(typeof(GXDLMSIEC14908PhysicalSetup))]
-    public partial class GXDLMSIEC14908PhysicalSetupView : Form, IGXDLMSView
+    [GXDLMSViewAttribute(typeof(GXDLMSGSMDiagnostic))]
+    public partial class GXDLMSGSMDiagnosticView : Form, IGXDLMSView
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public GXDLMSIEC14908PhysicalSetupView()
+        public GXDLMSGSMDiagnosticView()
         {
             InitializeComponent();
         }
+
         #region IGXDLMSView Members
 
         public GXDLMSObject Target
@@ -66,21 +69,45 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
+            GXDLMSGSMDiagnostic target = Target as GXDLMSGSMDiagnostic;
+            if (index == 6)
             {
-                throw new IndexOutOfRangeException("index");
+                CellIDTb.Text = target.CellInfo.CellId.ToString();
+                LocationIDTb.Text = target.CellInfo.LocationId.ToString();
+                SignalQualityTb.Text = target.CellInfo.SignalQuality.ToString();
+                BerTb.Text = target.CellInfo.Ber.ToString();
+            }
+            else if (index == 7)
+            {
+                AdjacentCellsLV.Items.Clear();
+                if (target.AdjacentCells != null)
+                {
+                    foreach (var it in target.AdjacentCells)
+                    {
+                        ListViewItem li = AdjacentCellsLV.Items.Add(it.CellId);
+                        li.SubItems.Add(it.SignalQuality.ToString());
+                        li.Tag = it;
+                    }
+                }
             }
         }
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-
-            throw new IndexOutOfRangeException("index");
+            bool enable = connected && (access & AccessMode.Write) != 0;
+            if (index == 6)
+            {
+                CellIDTb.ReadOnly = LocationIDTb.ReadOnly = SignalQualityTb.ReadOnly = BerTb.ReadOnly = !enable;
+            }
+            else if (index == 7)
+            {
+                AdjacentCellsLV.Enabled = enable;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
-
 
         public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
@@ -117,9 +144,5 @@ namespace Gurux.DLMS.UI
         }
 
         #endregion
-
-
-
-
     }
 }

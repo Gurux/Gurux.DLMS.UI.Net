@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSG3PlcMacLayerCounters
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSG3PlcMacLayerCounters))]
     partial class GXDLMSG3PlcMacLayerCountersView : Form, IGXDLMSView
     {

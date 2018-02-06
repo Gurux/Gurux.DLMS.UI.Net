@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSSecuritySetup
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSSecuritySetup))]
     partial class GXDLMSSecuritySetupView : Form, IGXDLMSView
     {

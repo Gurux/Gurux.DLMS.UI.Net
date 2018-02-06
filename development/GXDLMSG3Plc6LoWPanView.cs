@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSG3Plc6LoWPan
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSG3Plc6LoWPan))]
     partial class GXDLMSG3Plc6LoWPanView : Form, IGXDLMSView
     {

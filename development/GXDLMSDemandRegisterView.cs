@@ -33,15 +33,16 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using Gurux.DLMS;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSDemandRegisterView
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSDemandRegister))]
     partial class GXDLMSDemandRegisterView : Form, IGXDLMSView
     {
@@ -51,6 +52,10 @@ namespace Gurux.DLMS.UI
         public GXDLMSDemandRegisterView()
         {
             InitializeComponent();
+            foreach (var it in Enum.GetValues(typeof(Unit)))
+            {
+                UnitTB.Items.Add(it);
+            }
         }
         #region IGXDLMSView Members
 
@@ -64,8 +69,8 @@ namespace Gurux.DLMS.UI
         {
             if (index == 4)
             {
-                this.ScalerTB.Value = ((GXDLMSDemandRegister)Target).Scaler.ToString();
-                this.UnitTB.Value = ((GXDLMSDemandRegister)Target).Unit;
+                ScalerTB.Text = ((GXDLMSDemandRegister)Target).Scaler.ToString();
+                UnitTB.SelectedItem = ((GXDLMSDemandRegister)Target).Unit;
             }
             else
             {
@@ -75,23 +80,48 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 4)
             {
-                this.UnitTB.ReadOnly = this.ScalerTB.ReadOnly = true;
+                UnitTB.Enabled = enabled;
+                ScalerTB.ReadOnly = !enabled;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
             }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
+            throw new IndexOutOfRangeException("index");
         }
 
         public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
         {
+            arg.Value = (sbyte)0;
+            DialogResult ret;
+            if (arg.Index == 1)
+            {
+                //Reset.
+                ret = MessageBox.Show(this, Properties.Resources.RegisterResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                arg.Handled = ret != DialogResult.Yes;
+            }
             return type;
         }
 
         public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
+            if (arg.Index == 1)
+            {
+                //Read value after reset.
+                if (type == ActionType.Action)
+                {
+                    arg.Index = 2;
+                    return ActionType.Read;
+                }
+                MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             return ActionType.None;
         }
 
@@ -144,10 +174,56 @@ namespace Gurux.DLMS.UI
                     break;
             }
         }
+
         #endregion
 
+        /// <summary>
+        /// User has change the unit.
+        /// </summary>
+        private void UnitTB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSDemandRegister r = (GXDLMSDemandRegister)Target;
+                if (r.Unit != (Unit)UnitTB.SelectedItem)
+                {
+                    r.Unit = (Unit)UnitTB.SelectedItem;
+                    errorProvider1.SetError(UnitTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, r.Unit);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-
-
+        /// <summary>
+        /// User has change the scaler.
+        /// </summary>
+        private void ScalerTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                double v;
+                if (!double.TryParse(ScalerTB.Text, out v))
+                {
+                    throw new Exception("Invalid scaler value.");
+                }
+                GXDLMSDemandRegister r = (GXDLMSDemandRegister)Target;
+                if (r.Scaler != v)
+                {
+                    r.Scaler = v;
+                    errorProvider1.SetError(ScalerTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, r.Scaler);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

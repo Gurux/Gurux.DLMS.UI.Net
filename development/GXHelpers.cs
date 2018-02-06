@@ -240,6 +240,11 @@ namespace Gurux.DLMS.UI
                 }
                 return dt.ToString();
             }
+            if (data is GXDateTime)
+            {
+                GXDateTime dt = (GXDateTime)data;                
+                return dt.ToFormatString();
+            }
             if (data is byte[])
             {
                 return BitConverter.ToString((byte[])data).Replace("-", " ");

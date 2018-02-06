@@ -42,6 +42,10 @@ using System.IO;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSImageTransfer
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSImageTransfer))]
     public partial class GXDLMSImageTransferView : Form, IGXDLMSView
     {

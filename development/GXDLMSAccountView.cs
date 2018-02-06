@@ -33,15 +33,16 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSAccount
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSAccount))]
     partial class GXDLMSAccountView : Form, IGXDLMSView
     {
@@ -52,11 +53,18 @@ namespace Gurux.DLMS.UI
         public GXDLMSAccountView()
         {
             InitializeComponent();
-            PaymentModeCb.Items.Add(PaymentMode.Credit);
-            PaymentModeCb.Items.Add(PaymentMode.Prepayment);
-            AccountStatusCb.Items.Add(AccountStatus.NewInactiveAccount);
-            AccountStatusCb.Items.Add(AccountStatus.AccountActive);
-            AccountStatusCb.Items.Add(AccountStatus.AccountClosed);
+            foreach (var it in Enum.GetValues(typeof(AccountStatus)))
+            {
+                AccountStatusCb.Items.Add(it);
+            }
+            foreach (var it in Enum.GetValues(typeof(PaymentMode)))
+            {
+                PaymentModeCb.Items.Add(it);
+            }
+            foreach (var it in Enum.GetValues(typeof(Currency)))
+            {
+                CurrencyUnitTb.Items.Add(it);
+            }
         }
 
         #region IGXDLMSView Members
@@ -104,9 +112,9 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXCreditChargeConfiguration it in target.CreditChargeConfigurations)
                     {
-                        ListViewItem li = CreditChargeView.Items.Add(it.ChargeReference);
+                        ListViewItem li = CreditChargeView.Items.Add(it.CreditReference);
                         li.SubItems.Add(it.ChargeReference);
-                        li.SubItems.Add(it.CollectionConfiguration);
+                        li.SubItems.Add(it.CollectionConfiguration.ToString());
                         li.Tag = it;
                     }
                 }
@@ -128,8 +136,8 @@ namespace Gurux.DLMS.UI
             {
                 CurrencyNameTb.Text = target.Currency.Name;
                 CurrencyScaleTb.Text = target.Currency.Scale.ToString();
-                CurrencyUnitTb.Text = target.Currency.Unit.ToString();
-            }           
+                CurrencyUnitTb.SelectedItem = target.Currency.Unit;
+            }
             else
             {
                 throw new IndexOutOfRangeException("index");
@@ -181,29 +189,31 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                PaymentModeCb.Enabled = AccountStatusCb.Enabled = (access & AccessMode.Read) != 0;
+                PaymentModeCb.Enabled = AccountStatusCb.Enabled = enabled;
             }
             else if (index == 9)
             {
-                CreditReferenceAdd.Enabled = CreditReferenceEdit.Enabled = CreditReferenceRemove.Enabled = (access & AccessMode.Read) != 0;
+                CreditReferenceAdd.Enabled = CreditReferenceEdit.Enabled = CreditReferenceRemove.Enabled = enabled;
             }
             else if (index == 10)
             {
-                ChargeReferenceAdd.Enabled = ChargeReferenceEdit.Enabled = ChargeReferenceRemove.Enabled = (access & AccessMode.Read) != 0;
+                ChargeReferenceAdd.Enabled = ChargeReferenceEdit.Enabled = ChargeReferenceRemove.Enabled = enabled;
             }
             else if (index == 11)
             {
-                CreditChargeAdd.Enabled = CreditChargeEdit.Enabled = CreditChargeRemove.Enabled = (access & AccessMode.Read) != 0;
+                CreditChargeAdd.Enabled = CreditChargeEdit.Enabled = CreditChargeRemove.Enabled = enabled;
             }
             else if (index == 12)
             {
-                TokenGatewayAdd.Enabled = TokenGatewayEdit.Enabled = TokenGatewayRemove.Enabled = (access & AccessMode.Read) != 0;
+                TokenGatewayAdd.Enabled = TokenGatewayEdit.Enabled = TokenGatewayRemove.Enabled = enabled;
             }
             else if (index == 15)
             {
-                CurrencyNameTb.ReadOnly = CurrencyScaleTb.ReadOnly = CurrencyUnitTb.ReadOnly = (access & AccessMode.Read) == 0;
+                CurrencyNameTb.ReadOnly = CurrencyScaleTb.ReadOnly = !enabled;
+                CurrencyUnitTb.Enabled = enabled;
             }
             else
             {
@@ -224,6 +234,344 @@ namespace Gurux.DLMS.UI
         private void CurrentCreditInUseTb_Load(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Add credit reference.
+        /// </summary>
+        private void CreditReferenceAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                GXDLMSObjectCollection objects = target.Parent.GetObjects(ObjectType.Credit);
+                if (objects.Count == 0)
+                {
+                    throw new Exception("There are no Credit objects.");
+                }
+                GXDLMSTargetObjectDlg dlg = new GXDLMSTargetObjectDlg("Add credit reference", null, objects);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    string desc = dlg.Target.LogicalName;
+                    target.CreditReferences.Add(desc);
+                    ListViewItem li = CreditReferenceView.Items.Add(desc);
+                    errorProvider1.SetError(CreditReferenceView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(9, target.CreditReferences);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit credit reference.
+        /// </summary>
+        private void CreditReferenceEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CreditReferenceView.SelectedItems.Count == 1)
+                {
+                    GXDLMSAccount target = Target as GXDLMSAccount;
+                    GXDLMSObjectCollection objects = target.Parent.GetObjects(ObjectType.Credit);
+                    if (objects.Count == 0)
+                    {
+                        throw new Exception("There are no Credit objects.");
+                    }
+                    ListViewItem li = CreditReferenceView.SelectedItems[0];
+                    GXDLMSTargetObjectDlg dlg = new GXDLMSTargetObjectDlg("Edit credit reference", target.Parent.FindByLN(ObjectType.None, li.Text), objects);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        target.CreditReferences.Remove(li.Text);
+                        string desc = dlg.Target.LogicalName;
+                        li.SubItems[0].Text = desc;
+                        target.CreditReferences.Add(desc);
+                        errorProvider1.SetError(CreditReferenceView, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(9, target.CreditReferences);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove credit reference.
+        /// </summary>
+        private void CreditReferenceRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                while (CreditReferenceView.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = CreditReferenceView.SelectedItems[0];
+                    CreditReferenceView.Items.Remove(li);
+                    errorProvider1.SetError(CreditReferenceView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(9, target.CreditReferences);
+                    target.CreditReferences.Remove(li.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Add charge reference.
+        /// </summary>
+        private void ChargeReferenceAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                GXDLMSObjectCollection objects = target.Parent.GetObjects(ObjectType.Charge);
+                if (objects.Count == 0)
+                {
+                    throw new Exception("There are no Charge objects.");
+                }
+                GXDLMSTargetObjectDlg dlg = new GXDLMSTargetObjectDlg("Add new charge reference", null, objects);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    string desc = dlg.Target.LogicalName;
+                    target.ChargeReferences.Add(desc);
+                    ListViewItem li = ChargeReferenceView.Items.Add(desc);
+                    errorProvider1.SetError(ChargeReferenceView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(10, target.ChargeReferences);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit charge reference.
+        /// </summary>
+        private void ChargeReferenceEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ChargeReferenceView.SelectedItems.Count == 1)
+                {
+                    GXDLMSAccount target = Target as GXDLMSAccount;
+                    GXDLMSObjectCollection objects = target.Parent.GetObjects(ObjectType.Charge);
+                    if (objects.Count == 0)
+                    {
+                        throw new Exception("There are no Charge objects.");
+                    }
+                    ListViewItem li = ChargeReferenceView.SelectedItems[0];
+                    GXDLMSTargetObjectDlg dlg = new GXDLMSTargetObjectDlg("Edit charge reference", target.Parent.FindByLN(ObjectType.None, li.Text) as GXDLMSObject, objects);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        target.ChargeReferences.Remove(li.Text);
+                        string desc = dlg.Target.LogicalName;
+                        li.SubItems[0].Text = desc;
+                        target.ChargeReferences.Add(desc);
+                        errorProvider1.SetError(ChargeReferenceView, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(10, target.ChargeReferences);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove charge reference.
+        /// </summary>
+        private void ChargeReferenceRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                while (ChargeReferenceView.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = ChargeReferenceView.SelectedItems[0];
+                    ChargeReferenceView.Items.Remove(li);
+                    errorProvider1.SetError(ChargeReferenceView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(10, target.ChargeReferences);
+                    target.ChargeReferences.Remove(li.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Add credit charge reference.
+        /// </summary>
+        private void CreditChargeAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                GXCreditChargeConfiguration item = new GXCreditChargeConfiguration();
+                GXAccountCreditChargeDlg dlg = new GXAccountCreditChargeDlg(item, target.Parent);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    target.CreditChargeConfigurations.Add(item);
+                    ListViewItem li = CreditChargeView.Items.Add(item.ChargeReference);
+                    li.SubItems.Add(item.CreditReference);
+                    li.SubItems.Add(item.CollectionConfiguration.ToString());
+                    li.Tag = item;
+                    errorProvider1.SetError(CreditChargeView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(11, target.CreditChargeConfigurations);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Add credit charge reference.
+        /// </summary>
+        private void CreditChargeEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CreditChargeView.SelectedItems.Count == 1)
+                {
+                    GXDLMSAccount target = Target as GXDLMSAccount;
+                    ListViewItem li = CreditChargeView.SelectedItems[0];
+                    GXCreditChargeConfiguration item = li.Tag as GXCreditChargeConfiguration;
+                    GXAccountCreditChargeDlg dlg = new GXAccountCreditChargeDlg(item, target.Parent);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        li.SubItems[0].Text = item.ChargeReference;
+                        li.SubItems[1].Text = item.CreditReference;
+                        li.SubItems[2].Text = item.CollectionConfiguration.ToString();
+                        errorProvider1.SetError(CreditChargeView, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(11, target.CreditChargeConfigurations);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Add credit charge reference.
+        /// </summary>
+        private void CreditChargeRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                while (CreditChargeView.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = CreditChargeView.SelectedItems[0];
+                    GXCreditChargeConfiguration item = li.Tag as GXCreditChargeConfiguration;
+                    CreditChargeView.Items.Remove(li);
+                    errorProvider1.SetError(CreditChargeView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(11, target.CreditChargeConfigurations);
+                    target.CreditChargeConfigurations.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Add token gateway.
+        /// </summary>
+        private void TokenGatewayAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                GXTokenGatewayConfiguration item = new GXTokenGatewayConfiguration();
+                GXDLMSTokenGatewayConfigurationDlg dlg = new GXDLMSTokenGatewayConfigurationDlg(item, target.Parent);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    target.TokenGatewayConfigurations.Add(item);
+                    ListViewItem li = TokenGatewayView.Items.Add(item.CreditReference);
+                    li.SubItems.Add(item.TokenProportion.ToString());
+                    li.Tag = item;
+                    errorProvider1.SetError(TokenGatewayView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(12, target.CreditChargeConfigurations);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Edit token gateway.
+        /// </summary>
+        private void TokenGatewayEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TokenGatewayView.SelectedItems.Count == 1)
+                {
+                    GXDLMSAccount target = Target as GXDLMSAccount;
+                    ListViewItem li = TokenGatewayView.SelectedItems[0];
+                    GXTokenGatewayConfiguration item = li.Tag as GXTokenGatewayConfiguration;
+                    GXDLMSTokenGatewayConfigurationDlg dlg = new GXDLMSTokenGatewayConfigurationDlg(item, target.Parent);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        li.SubItems[0].Text = item.CreditReference;
+                        li.SubItems[1].Text = item.TokenProportion.ToString();
+                        errorProvider1.SetError(CreditChargeView, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(12, target.CreditChargeConfigurations);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Remove token gateway.
+        /// </summary>
+        private void TokenGatewayRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                while (TokenGatewayView.SelectedItems.Count != 0)
+                {
+                    ListViewItem li = TokenGatewayView.SelectedItems[0];
+                    GXTokenGatewayConfiguration item = li.Tag as GXTokenGatewayConfiguration;
+                    TokenGatewayView.Items.Remove(li);
+                    errorProvider1.SetError(TokenGatewayView, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(12, target.TokenGatewayConfigurations);
+                    target.TokenGatewayConfigurations.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

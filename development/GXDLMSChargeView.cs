@@ -33,15 +33,16 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSCharge
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSCharge))]
     partial class GXDLMSChargeView : Form, IGXDLMSView
     {

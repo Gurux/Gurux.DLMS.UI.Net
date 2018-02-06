@@ -39,6 +39,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSCredit
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSCredit))]
     partial class GXDLMSCreditView : Form, IGXDLMSView
     {

@@ -43,6 +43,10 @@ using Gurux.DLMS.Objects.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSPushSetup
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSPushSetup))]
     partial class GXDLMSPushSetupView : Form, IGXDLMSView
     {

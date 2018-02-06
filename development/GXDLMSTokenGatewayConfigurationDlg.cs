@@ -4,11 +4,11 @@
 //
 //
 //
-// Filename:        $HeadURL:  $
+// Filename:        $HeadURL$
 //
-// Version:         $Revision: $,
-//                  $Date: $
-//                  $Author: gurux01 $
+// Version:         $Revision$,
+//                  $Date$
+//                  $Author$
 //
 // Copyright (c) Gurux Ltd
 //
@@ -26,46 +26,62 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details.
 //
-// More information of Gurux DLMS/COSEM Director: http://www.gurux.org/GXDLMSDirector
+// More information of Gurux products: http://www.gurux.org
 //
 // This code is licensed under the GNU General Public License v2.
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Objects;
 using System;
 using System.Windows.Forms;
 
 namespace Gurux.DLMS.UI
 {
-    public partial class GXTextDlg : Form
+    public partial class GXDLMSTokenGatewayConfigurationDlg : Form
     {
+        public GXTokenGatewayConfiguration Target
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="caption">Window caption.</param>
-        /// <param name="label">Text label.</param>
-        /// <param name="value">Text Value.</param>
-        public GXTextDlg(string caption, string label, string value)
+        /// <param name="target">Selected objects.</param>
+        /// <param name="objects">List of COSEM objects.</param>
+        public GXDLMSTokenGatewayConfigurationDlg(GXTokenGatewayConfiguration target, GXDLMSObjectCollection objects)
         {
+            Target = target;
             InitializeComponent();
-            this.Text = caption;
-            TextLbl.Text = label;
-            TextTb.Text = value;
-        }
-
-        public string GetValue()
-        {
-            return TextTb.Text;
+            foreach (GXDLMSObject it in objects.GetObjects(Enums.ObjectType.Credit))
+            {
+                TargetCb.Items.Add(it);
+                if (it.LogicalName == target.CreditReference)
+                {
+                    TargetCb.SelectedItem = it;
+                }
+            }
+            ProportionTb.Text = target.TokenProportion.ToString();
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (TextTb.Text.Length == 0)
+                if (TargetCb.SelectedItem == null)
                 {
-                    throw new ArgumentOutOfRangeException(TextLbl.Text + " is invalid.");
+                    throw new Exception("Target is not selected.");
                 }
+                byte value;
+                if (!byte.TryParse(ProportionTb.Text, out value) || value < 0)
+                {
+                    throw new Exception("Invalid proportion.");
+                }
+                Target.TokenProportion = value;
+                Target.CreditReference = (TargetCb.SelectedItem as GXDLMSObject).LogicalName;
             }
             catch (Exception ex)
             {

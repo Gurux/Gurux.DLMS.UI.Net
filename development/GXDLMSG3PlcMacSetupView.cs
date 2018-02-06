@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSG3PlcMacSetup
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSG3PlcMacSetup))]
     partial class GXDLMSG3PlcMacSetupView : Form, IGXDLMSView
     {

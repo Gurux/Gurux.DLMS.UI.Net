@@ -4,11 +4,11 @@
 //
 //
 //
-// Filename:        $HeadURL:  $
+// Filename:        $HeadURL$
 //
-// Version:         $Revision: $,
-//                  $Date: $
-//                  $Author: gurux01 $
+// Version:         $Revision$,
+//                  $Date$
+//                  $Author$
 //
 // Copyright (c) Gurux Ltd
 //
@@ -26,46 +26,61 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details.
 //
-// More information of Gurux DLMS/COSEM Director: http://www.gurux.org/GXDLMSDirector
+// More information of Gurux products: http://www.gurux.org
 //
 // This code is licensed under the GNU General Public License v2.
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Objects;
 using System;
 using System.Windows.Forms;
 
 namespace Gurux.DLMS.UI
 {
-    public partial class GXTextDlg : Form
+    public partial class GXDLMSTargetObjectDlg : Form
     {
+        public GXDLMSObject Target
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="caption">Window caption.</param>
-        /// <param name="label">Text label.</param>
-        /// <param name="value">Text Value.</param>
-        public GXTextDlg(string caption, string label, string value)
+        /// <param name="target">Selected objects.</param>
+        /// <param name="objects">List of COSEM objects.</param>
+        public GXDLMSTargetObjectDlg(string caption, GXDLMSObject target, GXDLMSObjectCollection objects)
         {
+            Target = target;
             InitializeComponent();
-            this.Text = caption;
-            TextLbl.Text = label;
-            TextTb.Text = value;
-        }
-
-        public string GetValue()
-        {
-            return TextTb.Text;
+            Text = caption;
+            foreach (GXDLMSObject it in objects)
+            {
+                TargetCb.Items.Add(it);
+                if (it == target)
+                {
+                    TargetCb.SelectedItem = target;
+                }
+            }
+            IndexLbl.Visible = IndexTB.Visible = false;
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (TextTb.Text.Length == 0)
+                if (TargetCb.SelectedItem == null)
                 {
-                    throw new ArgumentOutOfRangeException(TextLbl.Text + " is invalid.");
+                    throw new Exception("Target is not selected.");
                 }
+                if (IndexTB.Visible && IndexTB.Text == "")
+                {
+                    throw new Exception("Invalid index.");
+                }
+                Target = TargetCb.SelectedItem as GXDLMSObject;
             }
             catch (Exception ex)
             {

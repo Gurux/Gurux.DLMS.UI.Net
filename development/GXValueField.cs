@@ -202,6 +202,7 @@ namespace Gurux.DLMS.UI
             if (dirty && Index != 0)
             {
                 ValueEventArgs v = new ValueEventArgs(Target, Index, 0, null);
+                v.User = true;
                 DataType dt = Target.GetUIDataType(Index);
                 if (dt != DataType.None && dt != DataType.Enum)
                 {
@@ -238,7 +239,7 @@ namespace Gurux.DLMS.UI
                 {
                     if (dt == DataType.OctetString)
                     {
-                        if (value is string)
+                        if (value is string && Target.GetUIDataType(Index) == DataType.OctetString)
                         {
                             value = GXDLMSTranslator.HexToBytes((string)value);
                         }

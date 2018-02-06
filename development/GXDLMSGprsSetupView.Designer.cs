@@ -391,7 +391,6 @@ namespace Gurux.DLMS.UI
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSGprsSetupView";
-            this.Load += new System.EventHandler(this.GXDLMSGprsSetupView_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);

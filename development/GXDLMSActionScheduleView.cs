@@ -40,6 +40,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSActionSchedule
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSActionSchedule))]
     partial class GXDLMSActionScheduleView : Form, IGXDLMSView
     {
@@ -65,13 +69,14 @@ namespace Gurux.DLMS.UI
             GXDLMSActionSchedule schedule = Target as GXDLMSActionSchedule;
             if (index == 2)
             {
-                if (schedule.Target != null)
+                ScriptNameTB.Items.Clear();
+                foreach (var it in schedule.Parent.GetObjects(ObjectType.ScriptTable))
                 {
-                    ScriptNameTB.Text = schedule.Target.LogicalName;
-                }
-                else
-                {
-                    ScriptNameTB.Text = schedule.ExecutedScriptLogicalName;
+                    ScriptNameTB.Items.Add(it);
+                    if (schedule.Target == it)
+                    {
+                        ScriptNameTB.SelectedItem = it;
+                    }
                 }
                 ScriptSelectorTB.Text = schedule.ExecutedScriptSelector.ToString();
             }
@@ -94,7 +99,8 @@ namespace Gurux.DLMS.UI
             bool enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
             if (index == 2)
             {
-                ScriptNameTB.ReadOnly = ScriptSelectorTB.ReadOnly = !enabled;
+                ScriptSelectorTB.ReadOnly = !enabled;
+                ScriptNameTB.Enabled = enabled;
             }
             else if (index == 4)
             {
@@ -232,6 +238,44 @@ namespace Gurux.DLMS.UI
                     entries.Remove(item);
                 }
                 target.ExecutionTime = entries.ToArray();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ScriptNameTB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((Target as GXDLMSActionSchedule).Target != ScriptNameTB.SelectedItem)
+                {
+                    (Target as GXDLMSActionSchedule).Target = ScriptNameTB.SelectedItem as GXDLMSScriptTable;
+                    Target.UpdateDirty(2, (Target as GXDLMSActionSchedule).Target);
+                    errorProvider1.SetError(ScriptNameTB, Properties.Resources.ValueChangedTxt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Update script selector.
+        /// </summary>
+        private void ScriptSelectorTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                UInt16 v;
+                if (UInt16.TryParse(ScriptSelectorTB.Text, out v) && (Target as GXDLMSActionSchedule).ExecutedScriptSelector != v)
+                {
+                    (Target as GXDLMSActionSchedule).ExecutedScriptSelector = v;
+                    Target.UpdateDirty(2, v);
+                    errorProvider1.SetError(ScriptSelectorTB, Properties.Resources.ValueChangedTxt);
+                }
             }
             catch (Exception ex)
             {

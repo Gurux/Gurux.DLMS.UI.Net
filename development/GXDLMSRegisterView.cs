@@ -39,6 +39,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSRegister
+    /// </summary>
     [GXDLMSViewAttribute(typeof(Gurux.DLMS.Objects.GXDLMSRegister))]
     partial class GXDLMSRegisterView : Form, IGXDLMSView
     {
@@ -48,6 +52,10 @@ namespace Gurux.DLMS.UI
         public GXDLMSRegisterView()
         {
             InitializeComponent();
+            foreach (var it in Enum.GetValues(typeof(Unit)))
+            {
+                UnitTB.Items.Add(it);
+            }
         }
         #region IGXDLMSView Members
 
@@ -61,8 +69,8 @@ namespace Gurux.DLMS.UI
         {
             if (index == 3)
             {
-                this.ScalerTB.Value = ((GXDLMSRegister)Target).Scaler.ToString();
-                this.UnitTB.Value = ((GXDLMSRegister)Target).Unit;
+                ScalerTB.Text = ((GXDLMSRegister)Target).Scaler.ToString();
+                UnitTB.SelectedItem = ((GXDLMSRegister)Target).Unit;
             }
             else
             {
@@ -72,18 +80,21 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 3)
             {
-                ScalerTB.ReadOnly = UnitTB.ReadOnly = !connected || (access & AccessMode.Write) == 0;
+                UnitTB.Enabled = enabled;
+                ScalerTB.ReadOnly = !enabled;
             }
             else
             {
-                throw new NotImplementedException();
+                throw new IndexOutOfRangeException("index");
             }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
+            throw new IndexOutOfRangeException("index");
         }
 
         public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
@@ -101,6 +112,12 @@ namespace Gurux.DLMS.UI
 
         public ActionType PostAction(ActionType type, ValueEventArgs arg)
         {
+            //Read value after reset.
+            if (type == ActionType.Action)
+            {
+                arg.Index = 2;
+                return ActionType.Read;
+            }
             MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return ActionType.None;
         }
@@ -140,8 +157,56 @@ namespace Gurux.DLMS.UI
 
 
 
+
         #endregion
 
+        /// <summary>
+        /// User has change the unit.
+        /// </summary>
+        private void UnitTB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSRegister r = (GXDLMSRegister)Target;
+                if (r.Unit != (Unit)UnitTB.SelectedItem)
+                {
+                    r.Unit = (Unit)UnitTB.SelectedItem;
+                    errorProvider1.SetError(UnitTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(3, r.Unit);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        /// <summary>
+        /// User has change the scaler.
+        /// </summary>
+        private void ScalerTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                double v;
+                if (!double.TryParse(ScalerTB.Text, out v))
+                {
+                    throw new Exception("Invalid scaler value.");
+                }
+                GXDLMSRegister r = (GXDLMSRegister)Target;
+                if (r.Scaler != v)
+                {
+                    r.Scaler = v;
+                    errorProvider1.SetError(ScalerTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(3, r.Scaler);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

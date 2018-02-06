@@ -39,6 +39,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSIp6Setup
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSIp6Setup))]
     public partial class GXDLMSIp6SetupView : Form, IGXDLMSView
     {

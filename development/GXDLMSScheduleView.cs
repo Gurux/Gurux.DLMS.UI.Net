@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSSchedule
+    /// </summary>
     [GXDLMSViewAttribute(typeof(Gurux.DLMS.Objects.GXDLMSSchedule))]
     partial class GXDLMSScheduleView : Form, IGXDLMSView
     {

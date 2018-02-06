@@ -330,9 +330,10 @@ namespace Gurux.DLMS.UI
             this.ChargeTypeTb.Location = new System.Drawing.Point(151, 97);
             this.ChargeTypeTb.Name = "ChargeTypeTb";
             this.ChargeTypeTb.NotifyChanges = false;
+            this.ChargeTypeTb.ReadOnly = true;
             this.ChargeTypeTb.Size = new System.Drawing.Size(190, 20);
             this.ChargeTypeTb.TabIndex = 3;
-            this.ChargeTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ChargeTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // ChargeTypeLbl
             // 

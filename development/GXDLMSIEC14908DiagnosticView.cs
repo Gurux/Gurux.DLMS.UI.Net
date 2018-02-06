@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSIEC14908Diagnostic
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSIEC14908Diagnostic))]
     public partial class GXDLMSIEC14908DiagnosticView : Form, IGXDLMSView
     {

@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSGprsSetup
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSGprsSetup))]
     partial class GXDLMSGprsSetupView : Form, IGXDLMSView
     {
@@ -137,14 +141,6 @@ namespace Gurux.DLMS.UI
         {
 
         }
-
-
-
-        #endregion
-
-        private void GXDLMSGprsSetupView_Load(object sender, EventArgs e)
-        {
-
-        }
+        #endregion     
     }
 }

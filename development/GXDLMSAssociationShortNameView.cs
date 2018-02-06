@@ -42,6 +42,10 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Online help:
+    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSAssociationShortName
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSAssociationShortName))]
     partial class GXDLMSAssociationShortNameView : Form, IGXDLMSView
     {
