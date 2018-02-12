@@ -44,6 +44,7 @@ using Gurux.DLMS;
 using Gurux.DLMS.Objects;
 using System.Reflection;
 using Gurux.DLMS.Enums;
+using System.Collections;
 
 namespace Gurux.DLMS.UI
 {
@@ -180,12 +181,27 @@ namespace Gurux.DLMS.UI
             }
             SetDirty(true, value);
         }
+        bool Compare(object original, object value)
+        {
+            if (original is byte[])
+            {
+                if (value is byte[])
+                {
+                    return ((IStructuralEquatable)original).Equals(value, StructuralComparisons.StructuralEqualityComparer);
+                }
+                if (value is string)
+                {
+                    return ((IStructuralEquatable)original).Equals(GXDLMSTranslator.HexToBytes((string)value), StructuralComparisons.StructuralEqualityComparer);
+                }                
+            }
+            return string.Compare(Convert.ToString(original), Convert.ToString(value)) == 0;
+        }
 
         void textBox1_LostFocus(object sender, EventArgs e)
         {
             try
             {
-                if (Target != null && string.Compare(Convert.ToString(Target.GetValues()[Index - 1]), textBox1.Text) != 0)
+                if (Target != null && !Compare(Target.GetValues()[Index - 1], textBox1.Text))
                 {
                     SetDirty(true, textBox1.Text);
                 }

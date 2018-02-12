@@ -90,8 +90,12 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
+            if (index == 2)
+            {
+                DayAddBtn.Enabled = DayRemoveBtn.Enabled = DayEditBtn.Enabled = enabled;
+            }
         }
-
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
