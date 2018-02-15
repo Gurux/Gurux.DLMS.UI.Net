@@ -73,8 +73,8 @@ namespace Gurux.DLMS.UI
             if (index == 6)
             {
                 CellIDTb.Text = target.CellInfo.CellId.ToString();
-                LocationIDTb.Text = target.CellInfo.LocationId.ToString();
-                SignalQualityTb.Text = target.CellInfo.SignalQuality.ToString();
+                LocationIDTb.Text = target.CellInfo.LocationId.ToString("X4");
+                SignalQualityTb.Text = target.CellInfo.SignalQuality.ToString("X4");
                 BerTb.Text = target.CellInfo.Ber.ToString();
             }
             else if (index == 7)
