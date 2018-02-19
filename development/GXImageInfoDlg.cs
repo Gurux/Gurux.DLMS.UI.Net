@@ -55,7 +55,7 @@ namespace Gurux.DLMS.UI
             if (string.Compare(Path.GetExtension(path), ".xml", true) == 0)
             {
                 XmlDocument doc = new XmlDocument();
-                doc.LoadXml(File.ReadAllText(path));
+                doc.Load(path);
                 GetNodes(doc.ChildNodes);
             }
             else

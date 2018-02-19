@@ -76,7 +76,7 @@ namespace Gurux.DLMS.UI
                 if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
                 {
                     XmlDocument doc = new XmlDocument();
-                    doc.LoadXml(File.ReadAllText(FileNameTb.Text));
+                    doc.Load(FileNameTb.Text);
                     byte[] image = null;
                     GetImage(doc.ChildNodes, ref image);
                     Image = image;
@@ -172,7 +172,7 @@ namespace Gurux.DLMS.UI
                     if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
                     {
                         XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(File.ReadAllText(FileNameTb.Text));
+                        doc.Load(FileNameTb.Text);
                         TextTb.Text = GetIdentification(doc.ChildNodes);
                     }
                     else
