@@ -192,7 +192,12 @@ namespace Gurux.DLMS.UI
                 if (value is string)
                 {
                     return ((IStructuralEquatable)original).Equals(GXDLMSTranslator.HexToBytes((string)value), StructuralComparisons.StructuralEqualityComparer);
-                }                
+                }
+            }
+            else if (original is object[] && value is string)
+            {
+                //If user try to change structure.
+                return string.Compare(GXHelpers.GetArrayAsString(original), Convert.ToString(value)) == 0;
             }
             return string.Compare(Convert.ToString(original), Convert.ToString(value)) == 0;
         }
@@ -263,6 +268,14 @@ namespace Gurux.DLMS.UI
                     else
                     {
                         value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
+                    }
+                }
+                else if (dt == DataType.Array && value is string)
+                {
+                    object val = Target.GetValues()[Index - 1];
+                    if (val is object[])
+                    {
+                        value = GXHelpers.ChangeStringToStructure((string)value, (object[])val);
                     }
                 }
                 v.Value = value;

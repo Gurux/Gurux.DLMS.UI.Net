@@ -23,19 +23,14 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ObjectRemoveBtn = new System.Windows.Forms.Button();
-            this.ObjectEditBtn = new System.Windows.Forms.Button();
-            this.ObjectAddBtn = new System.Windows.Forms.Button();
+            this.AddObjectBtn = new Gurux.DLMS.UI.GXButton();
+            this.RemoveObjectBtn = new Gurux.DLMS.UI.GXButton();
             this.ObjectsView = new System.Windows.Forms.ListView();
             this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VersionHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LogicalNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AttributeAccesssHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MethodAccessHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ObjectsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SecuritySetupCb = new System.Windows.Forms.ComboBox();
             this.SecretTB = new System.Windows.Forms.TextBox();
@@ -91,18 +86,24 @@ namespace Gurux.DLMS.UI
             this.AuthenticationCountryLbl = new System.Windows.Forms.Label();
             this.AuthenticationJointISOCTTTb = new System.Windows.Forms.TextBox();
             this.AuthenticationJointISOCTTLbl = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.AddUserBtn = new Gurux.DLMS.UI.GXButton();
+            this.RemoveUserBtn = new Gurux.DLMS.UI.GXButton();
+            this.UsersList = new System.Windows.Forms.ListView();
+            this.UserIdCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UserNameCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.ObjectsMenu.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,6 +132,7 @@ namespace Gurux.DLMS.UI
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(9, 47);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -139,9 +141,8 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.ObjectRemoveBtn);
-            this.tabPage1.Controls.Add(this.ObjectEditBtn);
-            this.tabPage1.Controls.Add(this.ObjectAddBtn);
+            this.tabPage1.Controls.Add(this.AddObjectBtn);
+            this.tabPage1.Controls.Add(this.RemoveObjectBtn);
             this.tabPage1.Controls.Add(this.ObjectsView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -151,38 +152,27 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "Objects";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // ObjectRemoveBtn
+            // AddObjectBtn
             // 
-            this.ObjectRemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObjectRemoveBtn.Location = new System.Drawing.Point(409, 219);
-            this.ObjectRemoveBtn.Name = "ObjectRemoveBtn";
-            this.ObjectRemoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.ObjectRemoveBtn.TabIndex = 20;
-            this.ObjectRemoveBtn.Text = "Remove";
-            this.ObjectRemoveBtn.UseVisualStyleBackColor = true;
-            this.ObjectRemoveBtn.Click += new System.EventHandler(this.ObjectRemoveBtn_Click);
+            this.AddObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddObjectBtn.Index = 3;
+            this.AddObjectBtn.Location = new System.Drawing.Point(329, 219);
+            this.AddObjectBtn.Name = "AddObjectBtn";
+            this.AddObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddObjectBtn.TabIndex = 22;
+            this.AddObjectBtn.Text = "Add";
+            this.AddObjectBtn.UseVisualStyleBackColor = true;
             // 
-            // ObjectEditBtn
+            // RemoveObjectBtn
             // 
-            this.ObjectEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObjectEditBtn.Location = new System.Drawing.Point(328, 219);
-            this.ObjectEditBtn.Name = "ObjectEditBtn";
-            this.ObjectEditBtn.Size = new System.Drawing.Size(75, 23);
-            this.ObjectEditBtn.TabIndex = 19;
-            this.ObjectEditBtn.Text = "Edit...";
-            this.ObjectEditBtn.UseVisualStyleBackColor = true;
-            this.ObjectEditBtn.Click += new System.EventHandler(this.ObjectEditBtn_Click);
-            // 
-            // ObjectAddBtn
-            // 
-            this.ObjectAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObjectAddBtn.Location = new System.Drawing.Point(247, 219);
-            this.ObjectAddBtn.Name = "ObjectAddBtn";
-            this.ObjectAddBtn.Size = new System.Drawing.Size(75, 23);
-            this.ObjectAddBtn.TabIndex = 18;
-            this.ObjectAddBtn.Text = "Add...";
-            this.ObjectAddBtn.UseVisualStyleBackColor = true;
-            this.ObjectAddBtn.Click += new System.EventHandler(this.ObjectAddBtn_Click);
+            this.RemoveObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveObjectBtn.Index = 4;
+            this.RemoveObjectBtn.Location = new System.Drawing.Point(410, 219);
+            this.RemoveObjectBtn.Name = "RemoveObjectBtn";
+            this.RemoveObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveObjectBtn.TabIndex = 21;
+            this.RemoveObjectBtn.Text = "Remove";
+            this.RemoveObjectBtn.UseVisualStyleBackColor = true;
             // 
             // ObjectsView
             // 
@@ -195,7 +185,6 @@ namespace Gurux.DLMS.UI
             this.LogicalNameHeader,
             this.AttributeAccesssHeader,
             this.MethodAccessHeader});
-            this.ObjectsView.ContextMenuStrip = this.ObjectsMenu;
             this.ObjectsView.FullRowSelect = true;
             this.ObjectsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ObjectsView.HideSelection = false;
@@ -229,36 +218,6 @@ namespace Gurux.DLMS.UI
             // 
             this.MethodAccessHeader.Text = "Method Access:";
             this.MethodAccessHeader.Width = 97;
-            // 
-            // ObjectsMenu
-            // 
-            this.ObjectsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.removeToolStripMenuItem});
-            this.ObjectsMenu.Name = "contextMenuStrip1";
-            this.ObjectsMenu.Size = new System.Drawing.Size(118, 70);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.ObjectAddBtn_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.ObjectEditBtn_Click);
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.ObjectRemoveBtn_Click);
             // 
             // tabPage2
             // 
@@ -799,6 +758,69 @@ namespace Gurux.DLMS.UI
             this.AuthenticationJointISOCTTLbl.TabIndex = 43;
             this.AuthenticationJointISOCTTLbl.Text = "Joint ISO CTT:";
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.AddUserBtn);
+            this.tabPage6.Controls.Add(this.RemoveUserBtn);
+            this.tabPage6.Controls.Add(this.UsersList);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(509, 245);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "User List";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // AddUserBtn
+            // 
+            this.AddUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddUserBtn.Index = 5;
+            this.AddUserBtn.Location = new System.Drawing.Point(326, 216);
+            this.AddUserBtn.Name = "AddUserBtn";
+            this.AddUserBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddUserBtn.TabIndex = 20;
+            this.AddUserBtn.Text = "Add";
+            this.AddUserBtn.UseVisualStyleBackColor = true;
+            // 
+            // RemoveUserBtn
+            // 
+            this.RemoveUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveUserBtn.Index = 6;
+            this.RemoveUserBtn.Location = new System.Drawing.Point(407, 216);
+            this.RemoveUserBtn.Name = "RemoveUserBtn";
+            this.RemoveUserBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveUserBtn.TabIndex = 16;
+            this.RemoveUserBtn.Text = "Remove";
+            this.RemoveUserBtn.UseVisualStyleBackColor = true;
+            // 
+            // UsersList
+            // 
+            this.UsersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UsersList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.UserIdCh,
+            this.UserNameCh});
+            this.UsersList.FullRowSelect = true;
+            this.UsersList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.UsersList.HideSelection = false;
+            this.UsersList.Location = new System.Drawing.Point(0, 0);
+            this.UsersList.Name = "UsersList";
+            this.UsersList.Size = new System.Drawing.Size(482, 210);
+            this.UsersList.TabIndex = 15;
+            this.UsersList.UseCompatibleStateImageBehavior = false;
+            this.UsersList.View = System.Windows.Forms.View.Details;
+            // 
+            // UserIdCh
+            // 
+            this.UserIdCh.Text = "ID:";
+            this.UserIdCh.Width = 47;
+            // 
+            // UserNameCh
+            // 
+            this.UserNameCh.Text = "Name";
+            this.UserNameCh.Width = 418;
+            // 
             // LogicalNameTB
             // 
             this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -836,7 +858,6 @@ namespace Gurux.DLMS.UI
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.ObjectsMenu.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -847,6 +868,7 @@ namespace Gurux.DLMS.UI
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -915,14 +937,15 @@ namespace Gurux.DLMS.UI
         private Label AuthenticationJointISOCTTLbl;
         private CheckBox SecretAsciiCb;
         private TextBox SecretTB;
-        private Button ObjectRemoveBtn;
-        private Button ObjectEditBtn;
-        private Button ObjectAddBtn;
-        private ContextMenuStrip ObjectsMenu;
-        private ToolStripMenuItem addToolStripMenuItem;
-        private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem removeToolStripMenuItem;
         private GXButton UpdatePwBtn;
         private ComboBox SecuritySetupCb;
+        private TabPage tabPage6;
+        private ListView UsersList;
+        private ColumnHeader UserIdCh;
+        private ColumnHeader UserNameCh;
+        private GXButton AddUserBtn;
+        private GXButton RemoveUserBtn;
+        private GXButton AddObjectBtn;
+        private GXButton RemoveObjectBtn;
     }
 }

@@ -73,8 +73,17 @@ namespace Gurux.DLMS.UI
         private void GetArrayAsString(StringBuilder sb, object value)
         {
             sb.Append("{");
+            bool first = true;
             foreach (object it in (object[])value)
             {
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    sb.Append(", ");
+                }
                 if (it is byte[])
                 {
                     sb.Append(Gurux.DLMS.GXDLMSTranslator.ToHex(it as byte[]));
@@ -87,7 +96,6 @@ namespace Gurux.DLMS.UI
                 {
                     sb.Append(Convert.ToString(it));
                 }
-                sb.Append(", ");
             }
             sb.Append("}");
         }
@@ -184,6 +192,11 @@ namespace Gurux.DLMS.UI
                         if (!string.IsNullOrEmpty(it.Key.Description))
                         {
                             str += Environment.NewLine + it.Key.Description;
+                        }
+                        //In Indian standard register scalers are saved to table.
+                        if (it.Key is GXDLMSRegister && it.Value.AttributeIndex == 3)
+                        {
+                            structures = true;
                         }
                         dc.Caption = str;
                         int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
