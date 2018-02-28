@@ -34,12 +34,6 @@
 
 using Gurux.DLMS.Objects;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Gurux.DLMS.UI
@@ -47,7 +41,7 @@ namespace Gurux.DLMS.UI
     public partial class GXDLMSSpecialDaysTableDlg : Form
     {
         GXDLMSSpecialDay Item;
-        public GXDLMSSpecialDaysTableDlg(GXDLMSSpecialDay item)
+        public GXDLMSSpecialDaysTableDlg(GXDLMSSpecialDay item, bool readOnly)
         {
             InitializeComponent();
             Item = item;
@@ -58,6 +52,11 @@ namespace Gurux.DLMS.UI
             }
             DateTb.Text = Item.Date.ToFormatString();
             DayIdTb.Text = Item.DayId.ToString();
+
+            if (readOnly)
+            {
+                IndexTb.ReadOnly = DateTb.ReadOnly = DayIdTb.ReadOnly = true;
+            }
         }
 
         private void OkBtn_Click(object sender, EventArgs e)

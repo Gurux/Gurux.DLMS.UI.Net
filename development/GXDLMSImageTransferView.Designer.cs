@@ -164,9 +164,8 @@ namespace Gurux.DLMS.UI
             // 
             // UpdateImageBtn
             // 
-            this.UpdateImageBtn.Action = Gurux.DLMS.UI.ActionType.Read;
             this.UpdateImageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateImageBtn.Index = 5;
+            this.UpdateImageBtn.Index = 1;
             this.UpdateImageBtn.Location = new System.Drawing.Point(320, 305);
             this.UpdateImageBtn.Name = "UpdateImageBtn";
             this.UpdateImageBtn.Size = new System.Drawing.Size(116, 23);

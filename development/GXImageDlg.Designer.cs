@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.InfoBtn = new System.Windows.Forms.Button();
+            this.AsciiCb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // TextTb
@@ -44,8 +45,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextTb.Location = new System.Drawing.Point(85, 9);
             this.TextTb.Name = "TextTb";
-            this.TextTb.Size = new System.Drawing.Size(215, 20);
-            this.TextTb.TabIndex = 20;
+            this.TextTb.Size = new System.Drawing.Size(134, 20);
+            this.TextTb.TabIndex = 0;
             // 
             // TextLbl
             // 
@@ -63,7 +64,7 @@
             this.CancelBtn.Location = new System.Drawing.Point(225, 76);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.CancelBtn.TabIndex = 18;
+            this.CancelBtn.TabIndex = 6;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             // 
@@ -74,7 +75,7 @@
             this.OkBtn.Location = new System.Drawing.Point(144, 76);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
-            this.OkBtn.TabIndex = 17;
+            this.OkBtn.TabIndex = 5;
             this.OkBtn.Text = "OK";
             this.OkBtn.UseVisualStyleBackColor = true;
             this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
@@ -86,7 +87,7 @@
             this.FileNameTb.Location = new System.Drawing.Point(85, 35);
             this.FileNameTb.Name = "FileNameTb";
             this.FileNameTb.Size = new System.Drawing.Size(134, 20);
-            this.FileNameTb.TabIndex = 22;
+            this.FileNameTb.TabIndex = 2;
             this.FileNameTb.TextChanged += new System.EventHandler(this.FileNameTb_TextChanged);
             // 
             // label1
@@ -104,7 +105,7 @@
             this.BrowseBtn.Location = new System.Drawing.Point(225, 35);
             this.BrowseBtn.Name = "BrowseBtn";
             this.BrowseBtn.Size = new System.Drawing.Size(75, 23);
-            this.BrowseBtn.TabIndex = 23;
+            this.BrowseBtn.TabIndex = 3;
             this.BrowseBtn.Text = "Browse...";
             this.BrowseBtn.UseVisualStyleBackColor = true;
             this.BrowseBtn.Click += new System.EventHandler(this.BrowseBtn_Click);
@@ -116,10 +117,22 @@
             this.InfoBtn.Location = new System.Drawing.Point(12, 76);
             this.InfoBtn.Name = "InfoBtn";
             this.InfoBtn.Size = new System.Drawing.Size(75, 23);
-            this.InfoBtn.TabIndex = 24;
+            this.InfoBtn.TabIndex = 4;
             this.InfoBtn.Text = "Info...";
             this.InfoBtn.UseVisualStyleBackColor = true;
             this.InfoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
+            // 
+            // AsciiCb
+            // 
+            this.AsciiCb.AutoSize = true;
+            this.AsciiCb.Checked = true;
+            this.AsciiCb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AsciiCb.Location = new System.Drawing.Point(225, 11);
+            this.AsciiCb.Name = "AsciiCb";
+            this.AsciiCb.Size = new System.Drawing.Size(53, 17);
+            this.AsciiCb.TabIndex = 1;
+            this.AsciiCb.Text = "ASCII";
+            this.AsciiCb.UseVisualStyleBackColor = true;
             // 
             // GXImageDlg
             // 
@@ -129,6 +142,7 @@
             this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(312, 111);
             this.ControlBox = false;
+            this.Controls.Add(this.AsciiCb);
             this.Controls.Add(this.InfoBtn);
             this.Controls.Add(this.BrowseBtn);
             this.Controls.Add(this.FileNameTb);
@@ -155,5 +169,6 @@
         public System.Windows.Forms.TextBox TextTb;
         public System.Windows.Forms.TextBox FileNameTb;
         private System.Windows.Forms.Button InfoBtn;
+        private System.Windows.Forms.CheckBox AsciiCb;
     }
 }

@@ -33,13 +33,7 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -61,17 +55,26 @@ namespace Gurux.DLMS.UI
             private set;
         }
 
+        public bool IsAscii
+        {
+            get
+            {
+                return AsciiCb.Checked;
+            }
+        }
+
+
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 if (TextTb.Text.Length == 0)
                 {
-                    throw new ArgumentOutOfRangeException("Image identification is invalid.");
+                    throw new Exception("Image identification is invalid.");
                 }
                 if (FileNameTb.Text.Length == 0 || !File.Exists(FileNameTb.Text))
                 {
-                    throw new ArgumentOutOfRangeException("Invalid image.");
+                    throw new Exception("Invalid image.");
                 }
                 if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
                 {

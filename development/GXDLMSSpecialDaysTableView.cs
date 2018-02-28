@@ -96,7 +96,7 @@ namespace Gurux.DLMS.UI
             if (arg.Index == 1)
             {
                 GXDLMSSpecialDay it = new GXDLMSSpecialDay();
-                GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it);
+                GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it, false);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
@@ -118,7 +118,7 @@ namespace Gurux.DLMS.UI
                 {
                     ListViewItem li = SpecialDay.SelectedItems[0];
                     GXDLMSSpecialDay it = (GXDLMSSpecialDay)li.Tag;
-                    GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it);
+                    GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it, true);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         arg.Value = target.Delete(client, it);
