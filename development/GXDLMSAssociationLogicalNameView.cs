@@ -264,7 +264,7 @@ namespace Gurux.DLMS.UI
         {
         }
 
-        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
+        public void PreAction(GXActionArgs arg)
         {
             //Add object to association view.
             if (arg.Index == 3)
@@ -282,7 +282,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add("");
                     li.Tag = it;
                     target.ObjectList.Add(it);
-                    arg.Value = target.AddObject(client, it);
+                    arg.Value = target.AddObject(arg.Client, it);
                 }
                 else
                 {
@@ -300,7 +300,7 @@ namespace Gurux.DLMS.UI
                     GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
-                        arg.Value = target.RemoveObject(client, it);
+                        arg.Value = target.RemoveObject(arg.Client, it);
                         li.Remove();
                     }
                     else
@@ -322,7 +322,7 @@ namespace Gurux.DLMS.UI
                 {
                     ListViewItem li = UsersList.Items.Add(dlg.UserId.ToString());
                     li.SubItems.Add(dlg.UserName);
-                    arg.Value = target.AddUser(client, dlg.UserId, dlg.UserName);
+                    arg.Value = target.AddUser(arg.Client, dlg.UserId, dlg.UserName);
                 }
                 else
                 {
@@ -339,7 +339,7 @@ namespace Gurux.DLMS.UI
                     GXUserDlg dlg = new GXUserDlg(byte.Parse(li.SubItems[0].Text), li.SubItems[1].Text, true);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
-                        arg.Value = target.RemoveUser(client, dlg.UserId, dlg.UserName);
+                        arg.Value = target.RemoveUser(arg.Client, dlg.UserId, dlg.UserName);
                         li.Remove();
                     }
                     else
@@ -352,7 +352,7 @@ namespace Gurux.DLMS.UI
                     arg.Handled = true;
                 }
             }
-            if (type == ActionType.Write && arg.Index == 7)
+            if (arg.Action == ActionType.Write && arg.Index == 7)
             {
                 DialogResult ret;
                 //Update pw.
@@ -371,14 +371,14 @@ namespace Gurux.DLMS.UI
                     GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
                     if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
                     {
-                        type = ActionType.Action;
+                        arg.Action = ActionType.Action;
                         arg.Index = 2;
                     }
                     else
                     {
                         arg.Index = 7;
                     }
-                    if (type == ActionType.Write)
+                    if (arg.Action == ActionType.Write)
                     {
                         target.Secret = value;
                     }
@@ -393,17 +393,16 @@ namespace Gurux.DLMS.UI
                 }
                 arg.Handled = ret != DialogResult.Yes;
             }
-            else if (type == ActionType.Write && arg.Index == 2)
+            else if (arg.Action == ActionType.Write && arg.Index == 2)
             {
                 //Skip write invoke.
                 arg.Handled = true;
             }
-            return type;
         }
 
-        public ActionType PostAction(ActionType type, ValueEventArgs arg)
+        public void PostAction(GXActionArgs arg)
         {
-            return ActionType.None;
+            arg.Action = ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

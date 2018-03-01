@@ -366,7 +366,7 @@ namespace Gurux.DLMS.UI
             this.gxValueField1.ReadOnly = true;
             this.gxValueField1.Size = new System.Drawing.Size(243, 20);
             this.gxValueField1.TabIndex = 29;
-            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.ListBox;
             // 
             // tabPage3
             // 

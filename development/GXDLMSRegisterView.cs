@@ -97,7 +97,7 @@ namespace Gurux.DLMS.UI
             throw new IndexOutOfRangeException("index");
         }
 
-        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
+        public void PreAction(GXActionArgs arg)
         {
             arg.Value = (sbyte)0;
             DialogResult ret;
@@ -107,19 +107,19 @@ namespace Gurux.DLMS.UI
                 ret = MessageBox.Show(this, Properties.Resources.RegisterResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 arg.Handled = ret != DialogResult.Yes;
             }
-            return type;
         }
 
-        public ActionType PostAction(ActionType type, ValueEventArgs arg)
+        public void PostAction(GXActionArgs arg)
         {
             //Read value after reset.
-            if (type == ActionType.Action)
+            if (arg.Action  == ActionType.Action)
             {
                 arg.Index = 2;
-                return ActionType.Read;
+                arg.Action = ActionType.Read;
+                return;
             }
             MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            return ActionType.None;
+            arg.Action = ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

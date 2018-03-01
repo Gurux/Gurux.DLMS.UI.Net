@@ -91,7 +91,7 @@ namespace Gurux.DLMS.UI
         /// <param name="type">Action type.</param>
         /// <param name="arg">Value event argument.</param>
         /// <returns>Next action type to execute.</returns>
-        ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg);
+        void PreAction(GXActionArgs arg);
 
         /// <summary>
         /// Called after action executed.
@@ -99,7 +99,7 @@ namespace Gurux.DLMS.UI
         /// <param name="type">Action type.</param>
         /// <param name="arg">Value event argument.</param>
         /// <returns>Next action type to execute.</returns>
-        ActionType PostAction(ActionType type, ValueEventArgs arg);
+        void PostAction(GXActionArgs arg);
 
         System.Windows.Forms.ErrorProvider ErrorProvider
         {

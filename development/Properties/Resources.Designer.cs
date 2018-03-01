@@ -88,7 +88,7 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to Image Files (bin, xml)|*.bin;*.xml|Binary files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*.
         /// </summary>
         internal static string ImageFilesTxt {
             get {

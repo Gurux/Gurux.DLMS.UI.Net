@@ -90,7 +90,7 @@ namespace Gurux.DLMS.UI
         {
         }
 
-        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
+        public void PreAction(GXActionArgs arg)
         {
             //Entries are handled using actions.
             if (arg.Index == 1)
@@ -104,7 +104,7 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.Date.ToString());
                     li.SubItems.Add(it.DayId.ToString());
                     li.Tag = it;
-                    arg.Value = target.Insert(client, it);
+                    arg.Value = target.Insert(arg.Client, it);
                 }
                 else
                 {
@@ -121,7 +121,7 @@ namespace Gurux.DLMS.UI
                     GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it, true);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
-                        arg.Value = target.Delete(client, it);
+                        arg.Value = target.Delete(arg.Client, it);
                         li.Remove();
                     }
                     else
@@ -134,12 +134,11 @@ namespace Gurux.DLMS.UI
                     arg.Handled = true;
                 }
             }
-            return type;
         }
 
-        public ActionType PostAction(ActionType type, ValueEventArgs arg)
+        public void PostAction(GXActionArgs arg)
         {
-            return ActionType.None;
+            arg.Action = ActionType.None;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

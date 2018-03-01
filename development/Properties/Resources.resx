@@ -127,7 +127,7 @@
     <value>Image activated.</value>
   </data>
   <data name="ImageFilesTxt" xml:space="preserve">
-    <value>Image files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
+    <value>Image Files (bin, xml)|*.bin;*.xml|Binary files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
   <data name="InconsistentClassTxt" xml:space="preserve">
     <value>Access Error : Device reports a inconsistent Class or Object.</value>

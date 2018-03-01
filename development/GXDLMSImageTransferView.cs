@@ -37,6 +37,7 @@ using System.Windows.Forms;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using System.Text;
+using System.IO;
 
 namespace Gurux.DLMS.UI
 {
@@ -95,61 +96,64 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public ActionType PreAction(GXDLMSClient client, ActionType type, ValueEventArgs arg)
+        public void PreAction(GXActionArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
-            if (type == ActionType.Action)
+            if (arg.Action == ActionType.Action)
             {
                 if (arg.Index == 1)
                 {
                     if (imageIdentifier == null)
                     {
+                        arg.Text = "Updating image...";
                         arg.Index = 5;
-                        return ActionType.Read;
+                        arg.Action = ActionType.Read;
+                        return;
                     }
                     //Initiate the Image transfer process.
-                    arg.Value = it.ImageTransferInitiate(client, imageIdentifier, image.Length);
+                    arg.Value = it.ImageTransferInitiate(arg.Client, imageIdentifier, image.Length);
                     imageIdentifier = null;
                 }
                 else if (arg.Index == 2)
                 {
                     //Start image block transfer.
                     int imageBlockCount;
-                    arg.Value = it.ImageBlockTransfer(client, image, out imageBlockCount);
+                    arg.Value = it.ImageBlockTransfer(arg.Client, image, out imageBlockCount);
                     DescriptionList.Items.Add("Sending " + imageBlockCount + " blocks.");
                 }
                 else if (arg.Index == 3)
                 {
-                    arg.Value = it.ImageVerify(client);
+                    arg.Value = it.ImageVerify(arg.Client);
                     DescriptionList.Items.Add("Verify image.");
                 }
                 else if (arg.Index == 4)
                 {
-                    arg.Value = it.ImageActivate(client);
+                    arg.Value = it.ImageActivate(arg.Client);
                     DescriptionList.Items.Add("Activating image.");
                 }
             }
-            return type;
         }
 
-        public ActionType PostAction(ActionType type, ValueEventArgs arg)
+        public void PostAction(GXActionArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
-            if (type == ActionType.Read)
+            if (arg.Action == ActionType.Read)
             {
                 if (arg.Index == 5)
                 {
                     if (!it.ImageTransferEnabled)
                     {
                         MessageBox.Show(this, "Image transfer is not enabled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return ActionType.None;
+                        arg.Action = ActionType.None;
+                        return;
                     }
                     DescriptionList.Items.Clear();
                     GXImageDlg dlg = new GXImageDlg();
                     if (dlg.ShowDialog(this) != DialogResult.OK)
                     {
                         imageIdentifier = null;
-                        return ActionType.None;
+                        arg.Action = ActionType.None;
+                        return;
                     }
                     if (dlg.IsAscii)
                     {
@@ -159,7 +163,8 @@ namespace Gurux.DLMS.UI
                     {
                         imageIdentifier = GXDLMSTranslator.HexToBytes(dlg.TextTb.Text);
                     }
-                    DescriptionList.Items.Add("Updating image" + dlg.TextTb.Text);
+                    arg.Text = "Updating image " + Path.GetFileNameWithoutExtension(dlg.TextTb.Text) + "..." ;
+                    DescriptionList.Items.Add("Updating image " + dlg.TextTb.Text);
                     image = dlg.Image;
                     DescriptionList.Items.Add("Image transfer is enabled.");
                     //Get ImageBlockSize. 
@@ -170,10 +175,10 @@ namespace Gurux.DLMS.UI
                     DescriptionList.Items.Add("Image block size:" + it.ImageBlockSize);
                     //Invoke Initiates image transfer. 
                     arg.Index = 1;
-                    type = ActionType.Action;
+                    arg.Action = ActionType.Action;
                 }
             }
-            else if (type == ActionType.Action)
+            else if (arg.Action == ActionType.Action)
             {
                 if (arg.Index == 1)
                 {
@@ -194,10 +199,9 @@ namespace Gurux.DLMS.UI
                 {
                     DescriptionList.Items.Add(Properties.Resources.ImageActivatedTxt);
                     MessageBox.Show(this, Properties.Resources.ImageActivatedTxt, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    type = ActionType.None;
+                    arg.Action = ActionType.None;
                 }
             }
-            return type;
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider
