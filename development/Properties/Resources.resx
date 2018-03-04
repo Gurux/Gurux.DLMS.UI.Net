@@ -120,14 +120,32 @@
   <data name="ActionImplemented" xml:space="preserve">
     <value>Action accomplish.</value>
   </data>
+  <data name="ActivationFailed" xml:space="preserve">
+    <value>Image activication FAILED.</value>
+  </data>
+  <data name="ActivationInitiated" xml:space="preserve">
+    <value>Waiting activation to finish.</value>
+  </data>
+  <data name="ActivationSuccessful" xml:space="preserve">
+    <value>Image activation succeeded.</value>
+  </data>
   <data name="HardwareFaultTxt" xml:space="preserve">
     <value>Access Error : Device reports a hardware fault.</value>
   </data>
   <data name="ImageActivatedTxt" xml:space="preserve">
     <value>Image activated.</value>
   </data>
+  <data name="ImageBlockSize" xml:space="preserve">
+    <value>Image block size is</value>
+  </data>
   <data name="ImageFilesTxt" xml:space="preserve">
     <value>Image Files (bin, xml)|*.bin;*.xml|Binary files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
+  </data>
+  <data name="ImageTransferDisabled" xml:space="preserve">
+    <value>Image transfer is not enabled.</value>
+  </data>
+  <data name="ImageTransferEnabled" xml:space="preserve">
+    <value>Image transfer is enabled.</value>
   </data>
   <data name="InconsistentClassTxt" xml:space="preserve">
     <value>Access Error : Device reports a inconsistent Class or Object.</value>
@@ -209,5 +227,11 @@
   </data>
   <data name="ValueChangedTxt" xml:space="preserve">
     <value>Value changed</value>
+  </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>Image verification FAILED.</value>
+  </data>
+  <data name="VerificationInitiated" xml:space="preserve">
+    <value>Waiting verification to finish.</value>
   </data>
 </root>

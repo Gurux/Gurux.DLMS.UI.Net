@@ -34,6 +34,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -47,6 +48,7 @@ namespace Gurux.DLMS.UI
         public GXImageDlg()
         {
             InitializeComponent();
+            FileNameTb.Text = Properties.Settings.Default.ImageFile;
         }
 
         public byte[] Image
@@ -88,6 +90,7 @@ namespace Gurux.DLMS.UI
                 {
                     Image = File.ReadAllBytes(FileNameTb.Text);
                 }
+                Properties.Settings.Default.ImageFile = FileNameTb.Text;
             }
             catch (Exception ex)
             {
@@ -101,20 +104,20 @@ namespace Gurux.DLMS.UI
         /// </summary>
         /// <param name="nodes">XML nodes.</param>
         /// <returns>Found dentification.</returns>
-        private string GetIdentification(XmlNodeList nodes)
+        public static byte[] GetIdentification(XmlNodeList nodes)
         {
             foreach (XmlNode it in nodes)
             {
                 if (it.NodeType == XmlNodeType.Element && it.ChildNodes.Count == 1 && it.ChildNodes[0].NodeType == XmlNodeType.Text &&
                     it.Name.Contains("Identification"))
                 {
-                    return it.InnerText;
+                    return GXDLMSTranslator.HexToBytes(it.InnerText);
                 }
                 else
                 {
                     if (it.ChildNodes.Count != 0 && it.FirstChild.NodeType != XmlNodeType.Text)
                     {
-                        string ret = GetIdentification(it.ChildNodes);
+                        byte[] ret = GetIdentification(it.ChildNodes);
                         if (ret != null)
                         {
                             return ret;
@@ -130,7 +133,7 @@ namespace Gurux.DLMS.UI
         /// </summary>
         /// <param name="nodes">XML nodes.</param>
         /// <returns>Found dentification.</returns>
-        private void GetImage(XmlNodeList nodes, ref byte[] image)
+        public static void GetImage(XmlNodeList nodes, ref byte[] image)
         {
             foreach (XmlNode it in nodes)
             {
@@ -162,7 +165,15 @@ namespace Gurux.DLMS.UI
             {
                 OpenFileDialog dlg = new OpenFileDialog();
                 dlg.Multiselect = false;
-                dlg.InitialDirectory = Directory.GetCurrentDirectory();
+                if (FileNameTb.Text != "")
+                {
+                    dlg.InitialDirectory = Path.GetDirectoryName(FileNameTb.Text);
+                    dlg.FileName = FileNameTb.Text;
+                }
+                else
+                {
+                    dlg.InitialDirectory = Directory.GetCurrentDirectory();
+                }
                 dlg.Filter = Properties.Resources.ImageFilesTxt;
                 dlg.DefaultExt = ".bin";
                 dlg.ValidateNames = true;
@@ -176,7 +187,15 @@ namespace Gurux.DLMS.UI
                     {
                         XmlDocument doc = new XmlDocument();
                         doc.Load(FileNameTb.Text);
-                        TextTb.Text = GetIdentification(doc.ChildNodes);
+                        byte[] arr = GetIdentification(doc.ChildNodes);
+                        if (GXByteBuffer.IsAsciiString(arr))
+                        {
+                            TextTb.Text = ASCIIEncoding.ASCII.GetString(arr);
+                        }
+                        else
+                        {
+                            TextTb.Text = GXDLMSTranslator.ToHex(arr);
+                        }
                     }
                     else
                     {

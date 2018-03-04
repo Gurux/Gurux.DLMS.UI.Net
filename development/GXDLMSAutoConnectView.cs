@@ -97,6 +97,15 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
+            if (index == 5)
+            {
+                TimeAddBtn.Enabled = TimeEditBtn.Enabled = TimeRemoveBtn.Enabled = enabled;
+            }
+            else if (index == 6)
+            {
+                DestinationAddBtn.Enabled = DestinationEditBtn.Enabled = DestinationRemoveBtn.Enabled = enabled;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)

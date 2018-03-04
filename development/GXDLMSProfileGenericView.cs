@@ -312,8 +312,9 @@ namespace Gurux.DLMS.UI
             }
             if (index == 3)
             {
+                GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
                 CaptureObjectsLv.Items.Clear();
-                foreach (var it in (Target as GXDLMSProfileGeneric).CaptureObjects)
+                foreach (var it in target.CaptureObjects)
                 {
                     ListViewItem li = CaptureObjectsLv.Items.Add(it.Key.ObjectType.ToString());
                     li.SubItems.Add(it.Key.LogicalName);
@@ -338,20 +339,20 @@ namespace Gurux.DLMS.UI
             if (arg.Index == 1)
             {
                 //Reset.
-                ret = MessageBox.Show(this, Properties.Resources.ProfileGenericResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.ProfileGenericResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 arg.Handled = ret != DialogResult.Yes;
             }
             else if (arg.Index == 2)
             {
                 //Capture.
-                ret = MessageBox.Show(this, Properties.Resources.ProfileGenericCaptureWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.ProfileGenericCaptureWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 arg.Handled = ret != DialogResult.Yes;
             }
         }
 
         public void PostAction(GXActionArgs arg)
         {
-            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             arg.Action = ActionType.None;
         }
 

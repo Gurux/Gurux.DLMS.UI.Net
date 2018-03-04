@@ -33,6 +33,7 @@ using System;
 using System.Text;
 using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects;
+using System.Windows.Forms;
 
 namespace Gurux.DLMS.UI
 {
@@ -240,7 +241,7 @@ namespace Gurux.DLMS.UI
             }
             if (data is GXDateTime)
             {
-                GXDateTime dt = (GXDateTime)data;                
+                GXDateTime dt = (GXDateTime)data;
                 return dt.ToFormatString();
             }
             if (data is byte[])
@@ -339,6 +340,35 @@ namespace Gurux.DLMS.UI
                 }
             }
             return str;
+        }
+
+        public class MessageBoxResult
+        {
+            public DialogResult Result
+            {
+                get;
+                set;
+            }
+        }
+
+        delegate void ShowMessageBoxEventHandler(MessageBoxResult ret, Form owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon);
+        static public void OnShowMessageBox(MessageBoxResult ret, Form owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            ret.Result = MessageBox.Show(owner, text, caption, buttons, icon);
+        }
+
+        static public DialogResult ShowMessageBox(Form owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            if (owner.InvokeRequired)
+            {
+                MessageBoxResult ret = new MessageBoxResult();
+                owner.BeginInvoke(new ShowMessageBoxEventHandler(OnShowMessageBox), ret, owner, text, caption, buttons, icon).AsyncWaitHandle.WaitOne();
+                return ret.Result;
+            }
+            else
+            {
+                return MessageBox.Show(owner, text, caption, buttons, icon);
+            }
         }
     }
 }

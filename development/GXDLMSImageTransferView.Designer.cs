@@ -40,7 +40,6 @@ namespace Gurux.DLMS.UI
         private Label ImageFirstNotTransferredBlockNumberLbl;
         private CheckBox ImageTransferEnabledCB;
         private Label ImageTransferEnabledLbl;
-        private GXValueField ImageTransferStatusCB;
         private Label ImageTransferStatusLbl;
         private Label ImageActivateInfoLbl;
         private Label LogicalNameLbl;
@@ -50,15 +49,21 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSImageTransferView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ImageTransferStatusTb = new System.Windows.Forms.TextBox();
+            this.DelayLbl = new System.Windows.Forms.Label();
+            this.DelayTb = new System.Windows.Forms.TextBox();
+            this.ManualBtn = new System.Windows.Forms.CheckBox();
+            this.ActivateImageBtn = new Gurux.DLMS.UI.GXButton();
+            this.VerifyImageBtn = new Gurux.DLMS.UI.GXButton();
             this.ImagesView = new System.Windows.Forms.ListView();
             this.SizeCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.IdentificationCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SignatureCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DescriptionList = new System.Windows.Forms.ListView();
+            this.TimeCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DescriptionCH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UpdateImageBtn = new Gurux.DLMS.UI.GXButton();
             this.ImageActivateInfoLbl = new System.Windows.Forms.Label();
-            this.ImageTransferStatusCB = new Gurux.DLMS.UI.GXValueField();
             this.ImageTransferStatusLbl = new System.Windows.Forms.Label();
             this.ImageTransferEnabledCB = new System.Windows.Forms.CheckBox();
             this.ImageTransferEnabledLbl = new System.Windows.Forms.Label();
@@ -79,13 +84,19 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ImageTransferStatusTb);
+            this.groupBox1.Controls.Add(this.DelayLbl);
+            this.groupBox1.Controls.Add(this.DelayTb);
+            this.groupBox1.Controls.Add(this.ManualBtn);
+            this.groupBox1.Controls.Add(this.ActivateImageBtn);
+            this.groupBox1.Controls.Add(this.VerifyImageBtn);
             this.groupBox1.Controls.Add(this.ImagesView);
             this.groupBox1.Controls.Add(this.DescriptionList);
             this.groupBox1.Controls.Add(this.UpdateImageBtn);
             this.groupBox1.Controls.Add(this.ImageActivateInfoLbl);
-            this.groupBox1.Controls.Add(this.ImageTransferStatusCB);
             this.groupBox1.Controls.Add(this.ImageTransferStatusLbl);
             this.groupBox1.Controls.Add(this.ImageTransferEnabledCB);
             this.groupBox1.Controls.Add(this.ImageTransferEnabledLbl);
@@ -105,7 +116,65 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image Transfer Object";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // ImageTransferStatusTb
+            // 
+            this.ImageTransferStatusTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageTransferStatusTb.Location = new System.Drawing.Point(103, 174);
+            this.ImageTransferStatusTb.Name = "ImageTransferStatusTb";
+            this.ImageTransferStatusTb.ReadOnly = true;
+            this.ImageTransferStatusTb.Size = new System.Drawing.Size(336, 20);
+            this.ImageTransferStatusTb.TabIndex = 29;
+            // 
+            // DelayLbl
+            // 
+            this.DelayLbl.AutoSize = true;
+            this.DelayLbl.Location = new System.Drawing.Point(32, 310);
+            this.DelayLbl.Name = "DelayLbl";
+            this.DelayLbl.Size = new System.Drawing.Size(34, 13);
+            this.DelayLbl.TabIndex = 28;
+            this.DelayLbl.Text = "Delay";
+            // 
+            // DelayTb
+            // 
+            this.DelayTb.Location = new System.Drawing.Point(104, 305);
+            this.DelayTb.Name = "DelayTb";
+            this.DelayTb.Size = new System.Drawing.Size(81, 20);
+            this.DelayTb.TabIndex = 27;
+            // 
+            // ManualBtn
+            // 
+            this.ManualBtn.AutoSize = true;
+            this.ManualBtn.Location = new System.Drawing.Point(10, 282);
+            this.ManualBtn.Name = "ManualBtn";
+            this.ManualBtn.Size = new System.Drawing.Size(61, 17);
+            this.ManualBtn.TabIndex = 26;
+            this.ManualBtn.Text = "Manual";
+            this.ManualBtn.UseVisualStyleBackColor = true;
+            this.ManualBtn.CheckedChanged += new System.EventHandler(this.ManualBtn_CheckedChanged);
+            // 
+            // ActivateImageBtn
+            // 
+            this.ActivateImageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ActivateImageBtn.Index = 4;
+            this.ActivateImageBtn.Location = new System.Drawing.Point(241, 305);
+            this.ActivateImageBtn.Name = "ActivateImageBtn";
+            this.ActivateImageBtn.Size = new System.Drawing.Size(61, 23);
+            this.ActivateImageBtn.TabIndex = 25;
+            this.ActivateImageBtn.Text = "Activate Image...";
+            this.ActivateImageBtn.UseVisualStyleBackColor = true;
+            // 
+            // VerifyImageBtn
+            // 
+            this.VerifyImageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.VerifyImageBtn.Index = 3;
+            this.VerifyImageBtn.Location = new System.Drawing.Point(308, 305);
+            this.VerifyImageBtn.Name = "VerifyImageBtn";
+            this.VerifyImageBtn.Size = new System.Drawing.Size(61, 23);
+            this.VerifyImageBtn.TabIndex = 24;
+            this.VerifyImageBtn.Text = "Verify Image...";
+            this.VerifyImageBtn.UseVisualStyleBackColor = true;
             // 
             // ImagesView
             // 
@@ -146,33 +215,38 @@ namespace Gurux.DLMS.UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TimeCh,
             this.DescriptionCH});
             this.DescriptionList.FullRowSelect = true;
             this.DescriptionList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.DescriptionList.HideSelection = false;
-            this.DescriptionList.Location = new System.Drawing.Point(9, 343);
+            this.DescriptionList.Location = new System.Drawing.Point(9, 334);
             this.DescriptionList.Name = "DescriptionList";
-            this.DescriptionList.Size = new System.Drawing.Size(426, 127);
+            this.DescriptionList.Size = new System.Drawing.Size(426, 136);
             this.DescriptionList.TabIndex = 9;
             this.DescriptionList.UseCompatibleStateImageBehavior = false;
             this.DescriptionList.View = System.Windows.Forms.View.Details;
             // 
+            // TimeCh
+            // 
+            this.TimeCh.Text = "Time";
+            this.TimeCh.Width = 91;
+            // 
             // DescriptionCH
             // 
             this.DescriptionCH.Text = "Description";
-            this.DescriptionCH.Width = 235;
+            this.DescriptionCH.Width = 216;
             // 
             // UpdateImageBtn
             // 
             this.UpdateImageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdateImageBtn.Index = 1;
-            this.UpdateImageBtn.Location = new System.Drawing.Point(320, 305);
+            this.UpdateImageBtn.Location = new System.Drawing.Point(375, 305);
             this.UpdateImageBtn.Name = "UpdateImageBtn";
-            this.UpdateImageBtn.Size = new System.Drawing.Size(116, 23);
+            this.UpdateImageBtn.Size = new System.Drawing.Size(61, 23);
             this.UpdateImageBtn.TabIndex = 8;
-            this.UpdateImageBtn.Text = "Update Firmaware...";
+            this.UpdateImageBtn.Text = "Update Image...";
             this.UpdateImageBtn.UseVisualStyleBackColor = true;
-            this.UpdateImageBtn.Click += new System.EventHandler(this.UpdateImageBtn_Click);
             // 
             // ImageActivateInfoLbl
             // 
@@ -182,20 +256,6 @@ namespace Gurux.DLMS.UI
             this.ImageActivateInfoLbl.Size = new System.Drawing.Size(44, 13);
             this.ImageActivateInfoLbl.TabIndex = 22;
             this.ImageActivateInfoLbl.Text = "Images:";
-            // 
-            // ImageTransferStatusCB
-            // 
-            this.ImageTransferStatusCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageTransferStatusCB.Enabled = false;
-            this.ImageTransferStatusCB.Index = 6;
-            this.ImageTransferStatusCB.Location = new System.Drawing.Point(104, 171);
-            this.ImageTransferStatusCB.Name = "ImageTransferStatusCB";
-            this.ImageTransferStatusCB.NotifyChanges = false;
-            this.ImageTransferStatusCB.ReadOnly = true;
-            this.ImageTransferStatusCB.Size = new System.Drawing.Size(336, 59);
-            this.ImageTransferStatusCB.TabIndex = 6;
-            this.ImageTransferStatusCB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // ImageTransferStatusLbl
             // 
@@ -357,5 +417,12 @@ namespace Gurux.DLMS.UI
         private ColumnHeader SizeCh;
         private ColumnHeader IdentificationCh;
         private ColumnHeader SignatureCh;
+        private ColumnHeader TimeCh;
+        private GXButton VerifyImageBtn;
+        private GXButton ActivateImageBtn;
+        private Label DelayLbl;
+        private TextBox DelayTb;
+        private CheckBox ManualBtn;
+        private TextBox ImageTransferStatusTb;
     }
 }

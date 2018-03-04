@@ -106,7 +106,6 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.SortObjectBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -182,14 +181,13 @@ namespace Gurux.DLMS.UI
             this.CapturePeriodTB.Location = new System.Drawing.Point(297, 144);
             this.CapturePeriodTB.Name = "CapturePeriodTB";
             this.CapturePeriodTB.NotifyChanges = false;
-            this.CapturePeriodTB.Size = new System.Drawing.Size(185, 20);
+            this.CapturePeriodTB.Size = new System.Drawing.Size(172, 20);
             this.CapturePeriodTB.TabIndex = 15;
             this.CapturePeriodTB.TabStop = false;
             this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.SortObjectBtn);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.SortObjectTB);
             this.groupBox3.Controls.Add(this.label4);
@@ -218,7 +216,7 @@ namespace Gurux.DLMS.UI
             this.SortObjectTB.Name = "SortObjectTB";
             this.SortObjectTB.NotifyChanges = false;
             this.SortObjectTB.ReadOnly = true;
-            this.SortObjectTB.Size = new System.Drawing.Size(104, 20);
+            this.SortObjectTB.Size = new System.Drawing.Size(172, 20);
             this.SortObjectTB.TabIndex = 15;
             this.SortObjectTB.TabStop = false;
             this.SortObjectTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -239,7 +237,7 @@ namespace Gurux.DLMS.UI
             this.SortModeTB.Name = "SortModeTB";
             this.SortModeTB.NotifyChanges = false;
             this.SortModeTB.ReadOnly = true;
-            this.SortModeTB.Size = new System.Drawing.Size(134, 20);
+            this.SortModeTB.Size = new System.Drawing.Size(116, 20);
             this.SortModeTB.TabIndex = 13;
             this.SortModeTB.TabStop = false;
             this.SortModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
@@ -581,7 +579,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Location = new System.Drawing.Point(94, 141);
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(140, 20);
+            this.LogicalNameTB.Size = new System.Drawing.Size(119, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.TabStop = false;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -600,15 +598,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // SortObjectBtn
-            // 
-            this.SortObjectBtn.Location = new System.Drawing.Point(404, 15);
-            this.SortObjectBtn.Name = "SortObjectBtn";
-            this.SortObjectBtn.Size = new System.Drawing.Size(75, 23);
-            this.SortObjectBtn.TabIndex = 18;
-            this.SortObjectBtn.Text = "Change...";
-            this.SortObjectBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSProfileGenericView
             // 
@@ -649,6 +638,5 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem removeToolStripMenuItem;
-        private Button SortObjectBtn;
     }
 }

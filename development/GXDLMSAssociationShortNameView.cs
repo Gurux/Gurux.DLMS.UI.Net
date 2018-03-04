@@ -191,7 +191,7 @@ namespace Gurux.DLMS.UI
             //Update secret.
             if (arg.Index == 5)
             {
-                ret = MessageBox.Show(this, Properties.Resources.SecretSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.SecretSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (ret == DialogResult.Yes)
                 {
                     if (SecretTB.Text.Length == 0)

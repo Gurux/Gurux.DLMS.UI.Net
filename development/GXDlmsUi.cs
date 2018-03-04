@@ -30,7 +30,9 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects;
+using System;
 using System.Windows.Forms;
 using static System.Windows.Forms.Control;
 
@@ -49,7 +51,7 @@ namespace Gurux.DLMS.UI
         /// <param name="index">Attribute index.</param>
         /// <param name="value">Updated value.</param>
         /// <returns></returns>
-        private static GXValueField UpdateProperty(IGXDLMSView view, ControlCollection controls, int index, object value, bool connected)
+        private static GXValueField UpdateProperty(IGXDLMSView view, ControlCollection controls, int index, object value)
         {
             GXValueField item = null;
             foreach (Control it in controls)
@@ -60,19 +62,18 @@ namespace Gurux.DLMS.UI
                     if (obj.Index == index)
                     {
                         obj.Target = view.Target;
-                        obj.UpdateValueItems(view.Target, index, value, connected);
+                        obj.UpdateValueItems(view.Target, index, value);
                         obj.Value = value;
                         item = obj;
                     }
                 }
                 else if (it is GXButton)
                 {
-                    GXButton obj = it as GXButton;
-                    obj.Enabled = false;
+                    //Do nothing.
                 }
                 else if (it.Controls.Count != 0)
                 {
-                    item = UpdateProperty(view, it.Controls, index, value, connected);
+                    item = UpdateProperty(view, it.Controls, index, value);
                 }
                 if (item != null)
                 {
@@ -82,27 +83,22 @@ namespace Gurux.DLMS.UI
             return item;
         }
 
-        /// <summary>
-        /// Update attribute value for the view.
-        /// </summary>
-        /// <param name="view">Updated view.</param>
-        /// <param name="index">Attribute index.</param>
-        /// <param name="value">Updated value.</param>
-        /// <returns></returns>
-        public static void UpdateProperty(IGXDLMSView view, int index, object value, bool connected)
-        {
-            UpdateProperty(view, ((Form)view).Controls, index, value, connected);
-        }
+        delegate void UpdatePropertyEventHandler(GXDLMSObject obj, int index, IGXDLMSView view, bool connected);
 
         /// <summary>
-        /// Update all values of given COSEM object.
+        /// Update selected values of given COSEM object.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="view"></param>
-        public static void UpdateProperties(IGXDLMSBase obj, IGXDLMSView view, bool connected)
+        public static void UpdateProperty(GXDLMSObject obj, int index, IGXDLMSView view, bool connected)
         {
             if (obj == null)
             {
+                return;
+            }
+            if ((view as Form).InvokeRequired)
+            {
+                (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected);
                 return;
             }
             GXDLMSObject tmp = view.Target;
@@ -117,19 +113,22 @@ namespace Gurux.DLMS.UI
                 }
             }
             //Update atribute values.
-            for (int it = 1; it != obj.GetAttributeCount() + 1; ++it)
+            for (int it = 1; it != (obj as IGXDLMSBase).GetAttributeCount() + 1; ++it)
             {
-                object value = null;
-                bool dirty = view.Target.GetDirty(it, out value);
-                value = view.Target.GetValues()[it - 1];
-                GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value, connected);
-                if (item == null || item.NotifyChanges)
+                if (index == 0 || it == index)
                 {
-                    view.OnAccessRightsChange(it, view.Target.GetAccess(it), connected);
-                }
-                if (item == null || item.NotifyChanges)
-                {
-                    view.OnValueChanged(it, value, false, connected);
+                    object value = null;
+                    bool dirty = view.Target.GetDirty(it, out value);
+                    value = view.Target.GetValues()[it - 1];
+                    GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value);
+                    if (item == null || item.NotifyChanges)
+                    {
+                        view.OnValueChanged(it, value, false, connected);
+                    }
+                    if (it == index)
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -167,6 +166,165 @@ namespace Gurux.DLMS.UI
             return found;
         }
 
+        delegate void UpdateAccessRightsEventHandler(IGXDLMSView view, object target, bool enabled);
+        delegate void AccessRightsChangeEventHandler(IGXDLMSView view, GXDLMSObject target, int index, int mode, bool connected, bool method);
+
+        private static void OnUpdateAccessRights(IGXDLMSView view, object target, bool enabled)
+        {
+            if ((view as Form).InvokeRequired)
+            {
+                (view as Form).BeginInvoke(new UpdateAccessRightsEventHandler(OnUpdateAccessRights), view, target, enabled);
+            }
+            else
+            {
+                if (target is GXValueField)
+                {
+                    (target as GXValueField).ReadOnly = !enabled;
+                }
+                else
+                {
+                    (target as GXButton).Enabled = enabled;
+                }
+            }
+        }
+
+        private static void OnAccessRightsChange(IGXDLMSView view, GXDLMSObject target, int index, int mode, bool connected, bool method)
+        {
+            if ((view as Form).InvokeRequired)
+            {
+                (view as Form).BeginInvoke(new AccessRightsChangeEventHandler(OnAccessRightsChange), view, target, index, mode, connected, method);
+            }
+            else
+            {
+                if (method)
+                {
+                    view.OnAccessRightsChange(index, (MethodAccessMode)mode, connected);
+                }
+                else
+                {
+                    view.OnAccessRightsChange(index, (AccessMode)mode, connected);
+                }
+            }
+        }
+
+        private static bool UpdateAccessRights(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, GXDLMSObject target, int index, bool method, bool connected)
+        {
+            foreach (Control it in controls)
+            {
+                if (it is GXValueField)
+                {
+                    GXValueField obj = it as GXValueField;
+                    if (obj.Index == index)
+                    {
+                        obj.Target = target;
+                        AccessMode am = target.GetAccess(index);
+                        OnUpdateAccessRights(view, obj, connected && ((am & AccessMode.Write) != 0));
+                        return !obj.NotifyChanges;
+                    }
+                }
+                else if (it is GXButton)
+                {
+                    GXButton btn = it as GXButton;
+                    btn.Target = target;
+                    if (method && btn.Index == index && btn.Action == ActionType.Action)
+                    {
+                        MethodAccessMode ma = target.GetMethodAccess(index);
+                        OnUpdateAccessRights(view, btn, connected && ma != MethodAccessMode.NoAccess);
+                        return true;
+                    }
+                    if (!method && btn.Index == index && (btn.Action == ActionType.Read || btn.Action == ActionType.Write))
+                    {
+                        AccessMode am = target.GetAccess(index);
+                        if (btn.Action == ActionType.Read)
+                        {
+                            OnUpdateAccessRights(view, btn, connected && ((am & AccessMode.Read) != 0));
+                        }
+                        else if (btn.Action == ActionType.Write)
+                        {
+                            OnUpdateAccessRights(view, btn, connected && ((am & AccessMode.Write) != 0));
+                        }
+                        return true;
+                    }
+                }
+                else if (it.Controls.Count != 0)
+                {
+                    bool ret = UpdateAccessRights(view, it.Controls, target, index, method, connected);
+                    //If object is updated.
+                    if (ret)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Called when new object is selected. This will update the access rights.
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="target"></param>
+        /// <param name="connected"></param>
+        public static void UpdateAccessRights(IGXDLMSView view, GXDLMSObject target, bool connected)
+        {
+            //Update attributes.
+            System.Windows.Forms.Control.ControlCollection controls = (view as Form).Controls;
+            for (int index = 1; index <= (target as IGXDLMSBase).GetAttributeCount(); ++index)
+            {
+                if (!UpdateAccessRights(view, controls, target, index, false, connected))
+                {
+                    OnAccessRightsChange(view, target, index, (int)target.GetAccess(index), connected, false);
+                }
+            }
+
+            //Update methods.
+            for (int index = 1; index <= (target as IGXDLMSBase).GetMethodCount(); ++index)
+            {
+                if (!UpdateAccessRights(view, controls, target, index, true, connected))
+                {
+                    OnAccessRightsChange(view, target, index, (int)target.GetMethodAccess(index), connected, false);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when new object is selected. This will update the access rights.
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="target"></param>
+        /// <param name="connected"></param>
+        public static void ObjectChanged(IGXDLMSView view, GXDLMSObject target, bool connected)
+        {
+            UpdateAccessRights(view, target, connected);
+
+            for (int index = 1; index <= (target as IGXDLMSBase).GetAttributeCount(); ++index)
+            {
+                UpdateProperty(target, index, view, connected);
+            }
+        }
+
+        private static void Init(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, EventHandler eventHandler)
+        {
+            foreach (Control it in controls)
+            {
+                if (it is GXButton)
+                {
+                    GXButton btn = it as GXButton;
+                    btn.View = view;
+                    btn.Click += eventHandler;
+                }
+                else if (it.Controls.Count != 0)
+                {
+                    Init(view, it.Controls, eventHandler);
+                }
+            }
+        }
+
+        public static void Init(IGXDLMSView view, EventHandler eventHandler)
+        {
+            Init(view, (view as Form).Controls, eventHandler);
+        }
+
         /// <summary>
         /// Show find dialog.
         /// </summary>
@@ -180,6 +338,14 @@ namespace Gurux.DLMS.UI
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Save settings to the registry.
+        /// </summary>
+        public static void Save()
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

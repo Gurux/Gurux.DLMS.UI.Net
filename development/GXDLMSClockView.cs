@@ -85,7 +85,7 @@ namespace Gurux.DLMS.UI
                 TimeZoneCb.CheckedChanged -= new System.EventHandler(TimeZoneCb_CheckedChanged);
                 TimeZoneCb.Checked = v != -1;
                 TimeZoneCb.CheckedChanged += new System.EventHandler(TimeZoneCb_CheckedChanged);
-                TimeZoneTB.ReadOnly = v == -1;
+                TimeZoneTB.ReadOnly = !connected || v == -1;
             }
             else if (index == 5)
             {
@@ -114,26 +114,27 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            bool enabled = connected & (access & AccessMode.Write) != 0;
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                TimeTB.Enabled = enabled;
+                TimeTB.ReadOnly = !enabled;
             }
             else if (index == 3)
             {
-                TimeZoneTB.Enabled = TimeZoneCb.Enabled = enabled;
+          //      TimeZoneTB.ReadOnly = !enabled;
+                TimeZoneCb.Enabled = enabled;
             }
             else if (index == 5)
             {
-                BeginTB.Enabled = enabled;
+                BeginTB.ReadOnly = !enabled;
             }
             else if (index == 6)
             {
-                EndTB.Enabled = enabled;
+                EndTB.ReadOnly = !enabled;
             }
             else if (index == 7)
             {
-                DeviationTB.Enabled = enabled;
+                DeviationTB.ReadOnly = !enabled;
             }
             else if (index == 8)
             {
@@ -162,7 +163,7 @@ namespace Gurux.DLMS.UI
             if (arg.Index == 2)
             {
                 //Update current time
-                ret = MessageBox.Show(this, Properties.Resources.TimeSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (ret == DialogResult.Yes)
                 {
                     (Target as GXDLMSClock).Time = DateTime.Now;
@@ -172,7 +173,7 @@ namespace Gurux.DLMS.UI
             else if (arg.Index == 3)
             {
                 //Update current time zone.
-                ret = MessageBox.Show(this, Properties.Resources.TimeZoneSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeZoneSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (ret == DialogResult.Yes)
                 {
                     (Target as GXDLMSClock).TimeZone = -(int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;

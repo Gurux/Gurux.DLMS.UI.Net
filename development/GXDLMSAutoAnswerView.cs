@@ -93,7 +93,6 @@ namespace Gurux.DLMS.UI
                 {
                     NumberOfCallsTB.Value = target.NumberOfCalls.ToString();
                 }
-
             }
             else if (index == 6)
             {
@@ -118,6 +117,19 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
+            if (index == 3)
+            {
+                TimeAddBtn.Enabled = TimeEditBtn.Enabled = TimeRemoveBtn.Enabled = enabled;
+            }
+            else if (index == 5)
+            {
+                NumberOfCallsTB.ReadOnly = !enabled;
+            }
+            else if (index == 6)
+            {
+                RingCountInWindowTB.ReadOnly = RingCountOutOfWindowTB.ReadOnly = !enabled;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)

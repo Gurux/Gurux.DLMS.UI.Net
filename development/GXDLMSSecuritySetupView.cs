@@ -74,12 +74,12 @@ namespace Gurux.DLMS.UI
                     if (target.Version == 0)
                     {
                         SecurityPolicyTB.Type = ValueFieldType.CompoBox;
-                        SuiteTB.Enabled = false;
+                        SuiteTB.ReadOnly = false;
                     }
                     else
                     {
                         SecurityPolicyTB.Type = ValueFieldType.CheckedListBox;
-                        SuiteTB.Enabled = true;
+                        SuiteTB.ReadOnly = true;
                     }
                 }
             }

@@ -40,19 +40,20 @@ namespace Gurux.DLMS.UI
 {
     public partial class GXDLMSSpecialDaysTableDlg : Form
     {
-        GXDLMSSpecialDay Item;
+        /// <summary>
+        /// Selected item.
+        /// </summary>
+        internal GXDLMSSpecialDay Item;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="readOnly"></param>
         public GXDLMSSpecialDaysTableDlg(GXDLMSSpecialDay item, bool readOnly)
         {
             InitializeComponent();
-            Item = item;
-            IndexTb.Text = Item.Index.ToString();
-            if (Item.Date == null)
-            {
-                Item.Date = new GXDate(DateTime.Now);
-            }
-            DateTb.Text = Item.Date.ToFormatString();
-            DayIdTb.Text = Item.DayId.ToString();
-
+            Item = item;      
             if (readOnly)
             {
                 IndexTb.ReadOnly = DateTb.ReadOnly = DayIdTb.ReadOnly = true;
@@ -71,6 +72,17 @@ namespace Gurux.DLMS.UI
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void GXDLMSSpecialDaysTableDlg_Load(object sender, EventArgs e)
+        {
+            IndexTb.Text = Item.Index.ToString();
+            if (Item.Date == null)
+            {
+                Item.Date = new GXDate(DateTime.Now);
+            }
+            DateTb.Text = Item.Date.ToFormatString();
+            DayIdTb.Text = Item.DayId.ToString();
         }
     }
 }

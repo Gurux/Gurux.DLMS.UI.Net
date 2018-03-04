@@ -356,7 +356,7 @@ namespace Gurux.DLMS.UI
             {
                 DialogResult ret;
                 //Update pw.
-                ret = MessageBox.Show(this, Properties.Resources.SetPasswordWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.SetPasswordWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (ret == DialogResult.Yes)
                 {
                     byte[] value;

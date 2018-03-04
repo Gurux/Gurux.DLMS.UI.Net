@@ -107,7 +107,7 @@ namespace Gurux.DLMS.UI
             if (arg.Index == 1)
             {
                 //Reset.
-                ret = MessageBox.Show(this, Properties.Resources.RegisterResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.RegisterResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 arg.Handled = ret != DialogResult.Yes;
             }
         }
@@ -121,7 +121,7 @@ namespace Gurux.DLMS.UI
                 arg.Action = ActionType.Read;
                 return;
             }
-            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             arg.Action = ActionType.None;
         }
 

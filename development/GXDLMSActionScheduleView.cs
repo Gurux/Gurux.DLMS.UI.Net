@@ -104,7 +104,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 4)
             {
-                Time.Enabled = enabled;
+                TimeAddBtn.Enabled = TimeEditBtn.Enabled = TimeRemoveBtn.Enabled = Time.Enabled = enabled;
             }
         }
 

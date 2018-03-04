@@ -1,4 +1,5 @@
 ﻿using Gurux.DLMS.Objects;
+using System;
 
 namespace Gurux.DLMS.UI
 {
@@ -46,6 +47,15 @@ namespace Gurux.DLMS.UI
         /// Is request handled.
         /// </summary>
         public bool Handled
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Occurred Exception.
+        /// </summary>
+        public Exception Exception
         {
             get;
             set;

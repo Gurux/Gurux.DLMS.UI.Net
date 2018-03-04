@@ -35,14 +35,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.ManufacturerSettings;
-using Gurux.DLMS;
 using Gurux.DLMS.Objects;
-using System.Reflection;
 using Gurux.DLMS.Enums;
 using System.Collections;
 
@@ -71,7 +68,7 @@ namespace Gurux.DLMS.UI
         CheckedListBox = 4
     }
 
-    delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value, bool connected);
+    delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
 
 
     public partial class GXValueField : UserControl
@@ -79,7 +76,7 @@ namespace Gurux.DLMS.UI
         bool dirty;
         ValueFieldType type;
         List<GXObisValueItem> Items;
-
+        ToolStripMenuItem undo, cut, copy, paste;
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -89,6 +86,112 @@ namespace Gurux.DLMS.UI
             Type = ValueFieldType.TextBox;
             comboBox1.Visible = false;
             dirty = false;
+            textBox1.KeyUp += TextBox1_KeyUp;
+            ContextMenuStrip menu = new ContextMenuStrip();
+            menu.Name = "menu";
+            undo = new ToolStripMenuItem();
+            undo.Name = "Undo";
+            undo.Text = "Undo";
+            undo.Click += Undo_Click;
+            cut = new ToolStripMenuItem();
+            cut.Name = "Cut";
+            cut.Text = "Cut";
+            cut.Click += Cut_Click;
+            copy = new ToolStripMenuItem();
+            copy.Name = "Copy";
+            copy.Text = "Copy";
+            copy.Click += Copy_Click;
+            paste = new ToolStripMenuItem();
+            paste.Name = "Paste";
+            paste.Text = "Paste";
+            paste.Click += Paste_Click;
+            menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                undo,
+                new ToolStripSeparator(){ Name = "separator"},
+                cut,
+                copy,
+                paste
+            });
+            menu.SuspendLayout();
+            menu.Opening += Menu_Opening;
+            textBox1.ContextMenuStrip = menu;
+        }
+
+        /// <summary>
+        /// Accept changes when user press enter.
+        /// </summary>
+        private void TextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox1_LostFocus(null, null);
+            }
+        }
+
+        private void Menu_Opening(object sender, CancelEventArgs e)
+        {
+            if (Type != ValueFieldType.TextBox)
+            {
+                cut.Enabled = false;
+                copy.Enabled = false;
+                paste.Enabled = false;
+            }
+            else
+            {
+                undo.Enabled = cut.Enabled = paste.Enabled = !textBox1.ReadOnly;
+            }
+        }
+
+        private void Undo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OnUpdateValue(Target.GetValues()[Index - 1]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Paste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox1.Text = Clipboard.GetText();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Copy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox1.Text != "")
+                {
+                    Clipboard.SetText(textBox1.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Cut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clipboard.SetText(textBox1.Text);
+                textBox1.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -267,7 +370,10 @@ namespace Gurux.DLMS.UI
                     }
                     else
                     {
-                        value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
+                        if (!(Target is GXDLMSRegister && Index == 2))
+                        {
+                            value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
+                        }
                     }
                 }
                 else if (dt == DataType.Array && value is string)
@@ -351,11 +457,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void UpdateValueItems(GXDLMSObject target, int index, object value, bool connected)
+        public void UpdateValueItems(GXDLMSObject target, int index, object value)
         {
             if (InvokeRequired)
             {
-                this.BeginInvoke(new UpdateValueItemsEventHandler(UpdateValueItems), target, index, value, connected);
+                this.BeginInvoke(new UpdateValueItemsEventHandler(UpdateValueItems), target, index, value);
             }
             else
             {
@@ -389,6 +495,13 @@ namespace Gurux.DLMS.UI
                             comboBox1.Items.Add(it);
                         }
                     }
+                    else if (value is IEnumerable)
+                    {
+                        foreach (var it in value as IEnumerable)
+                        {
+                            comboBox1.Items.Add(it);
+                        }
+                    }
                 }
                 else if (this.Type == ValueFieldType.ListBox)
                 {
@@ -396,6 +509,13 @@ namespace Gurux.DLMS.UI
                     if (value is Enum)
                     {
                         foreach (var it in Enum.GetValues(value.GetType()))
+                        {
+                            listBox1.Items.Add(it);
+                        }
+                    }
+                    else if (value is IEnumerable)
+                    {
+                        foreach (var it in value as IEnumerable)
                         {
                             listBox1.Items.Add(it);
                         }
@@ -418,7 +538,6 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                ReadOnly = !connected || (target.GetAccess(index) & AccessMode.Write) == 0;
             }
         }
 
@@ -513,6 +632,20 @@ namespace Gurux.DLMS.UI
                             }
                         }
                         else if (value is Enum)
+                        {
+                            comboBox1.SelectedIndexChanged -= new EventHandler(comboBox1_SelectedIndexChanged);
+                            comboBox1.SelectedItem = value;
+                            comboBox1.SelectedIndexChanged += new EventHandler(comboBox1_SelectedIndexChanged);
+                            return;
+                        }
+                        else if (value is IEnumerable)
+                        {
+                            comboBox1.SelectedIndexChanged -= new EventHandler(comboBox1_SelectedIndexChanged);
+                            comboBox1.SelectedItem = value;
+                            comboBox1.SelectedIndexChanged += new EventHandler(comboBox1_SelectedIndexChanged);
+                            return;
+                        }
+                        else
                         {
                             comboBox1.SelectedIndexChanged -= new EventHandler(comboBox1_SelectedIndexChanged);
                             comboBox1.SelectedItem = value;

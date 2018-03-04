@@ -236,29 +236,30 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 3)
             {
-                SeasonProfileActiveRemoveBtn.Enabled = SeasonProfileActiveEditBtn.Enabled = SeasonProfileActiveAddBtn.Enabled = access > AccessMode.Read;
+                SeasonProfileActiveRemoveBtn.Enabled = SeasonProfileActiveEditBtn.Enabled = SeasonProfileActiveAddBtn.Enabled = enabled;
             }
             else if (index == 4)
             {
-                WeekProfileActiveRemoveBtn.Enabled = WeekProfileActiveEditBtn.Enabled = WeekProfileActiveAddBtn.Enabled = access > AccessMode.Read;
+                WeekProfileActiveRemoveBtn.Enabled = WeekProfileActiveEditBtn.Enabled = WeekProfileActiveAddBtn.Enabled = enabled;
             }
             else if (index == 5)
             {
-                AddDayActiveBtn.Enabled = DayProfileActiveRemoveBtn.Enabled = DayProfileActiveEditBtn.Enabled = ActiveActionAddBtn.Enabled = access > AccessMode.Read;
+                AddDayActiveBtn.Enabled = DayProfileActiveRemoveBtn.Enabled = DayProfileActiveEditBtn.Enabled = ActiveActionAddBtn.Enabled = enabled;
             }
             else if (index == 7)
             {
-                SeasonProfilePassiveRemoveBtn.Enabled = SeasonProfilePassiveEditBtn.Enabled = SeasonProfilePassiveAddBtn.Enabled = access > AccessMode.Read;
+                SeasonProfilePassiveRemoveBtn.Enabled = SeasonProfilePassiveEditBtn.Enabled = SeasonProfilePassiveAddBtn.Enabled = enabled;
             }
             else if (index == 8)
             {
-                WeekProfilePassiveRemoveBtn.Enabled = WeekProfilePassiveEditBtn.Enabled = WeekProfilePassiveAddBtn.Enabled = access > AccessMode.Read;
+                WeekProfilePassiveRemoveBtn.Enabled = WeekProfilePassiveEditBtn.Enabled = WeekProfilePassiveAddBtn.Enabled = enabled;
             }
             else if (index == 9)
             {
-                AddDayPassiveBtn.Enabled = DayProfilePassiveRemoveBtn.Enabled = DayProfilePassiveEditBtn.Enabled = PassiveActionAddBtn.Enabled = access > AccessMode.Read;
+                AddDayPassiveBtn.Enabled = DayProfilePassiveRemoveBtn.Enabled = DayProfilePassiveEditBtn.Enabled = PassiveActionAddBtn.Enabled = enabled;
             }
         }
 

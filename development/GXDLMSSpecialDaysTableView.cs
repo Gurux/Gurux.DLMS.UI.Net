@@ -90,6 +90,57 @@ namespace Gurux.DLMS.UI
         {
         }
 
+        delegate void SpecialDaysDlgEventHandler(GXActionArgs arg, GXDLMSSpecialDaysTableDlg dlg, GXDLMSSpecialDay it);
+
+        void OnSpecialDaysDlg(GXActionArgs arg, GXDLMSSpecialDaysTableDlg dlg, GXDLMSSpecialDay it)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new SpecialDaysDlgEventHandler(OnSpecialDaysDlg), arg, dlg, it).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                bool remove = false;
+                ListViewItem li = null;
+                if (it == null)
+                {
+                    remove = true;
+                    GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
+                    if (SpecialDay.SelectedItems.Count != 1)
+                    {
+                        arg.Handled = true;
+                        return;
+                    }
+                    else
+                    {
+                         li = SpecialDay.SelectedItems[0];
+                        dlg.Item = it = (GXDLMSSpecialDay)li.Tag;                        
+                    }
+                }
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
+                    if (!remove)
+                    {
+                        li = SpecialDay.Items.Add(it.Index.ToString());
+                        li.SubItems.Add(it.Date.ToString());
+                        li.SubItems.Add(it.DayId.ToString());
+                        li.Tag = it;
+                        arg.Value = target.Insert(arg.Client, it);
+                    }
+                    else
+                    {
+                        arg.Value = target.Delete(arg.Client, it);
+                        li.Remove();
+                    }
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
             //Entries are handled using actions.
@@ -97,42 +148,12 @@ namespace Gurux.DLMS.UI
             {
                 GXDLMSSpecialDay it = new GXDLMSSpecialDay();
                 GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it, false);
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
-                    ListViewItem li = SpecialDay.Items.Add(it.Index.ToString());
-                    li.SubItems.Add(it.Date.ToString());
-                    li.SubItems.Add(it.DayId.ToString());
-                    li.Tag = it;
-                    arg.Value = target.Insert(arg.Client, it);
-                }
-                else
-                {
-                    arg.Handled = true;
-                }
+                OnSpecialDaysDlg(arg, dlg, it);
             }
             else if (arg.Index == 2)
             {
-                GXDLMSSpecialDaysTable target = Target as GXDLMSSpecialDaysTable;
-                if (SpecialDay.SelectedItems.Count == 1)
-                {
-                    ListViewItem li = SpecialDay.SelectedItems[0];
-                    GXDLMSSpecialDay it = (GXDLMSSpecialDay)li.Tag;
-                    GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(it, true);
-                    if (dlg.ShowDialog(this) == DialogResult.OK)
-                    {
-                        arg.Value = target.Delete(arg.Client, it);
-                        li.Remove();
-                    }
-                    else
-                    {
-                        arg.Handled = true;
-                    }
-                }
-                else
-                {
-                    arg.Handled = true;
-                }
+                GXDLMSSpecialDaysTableDlg dlg = new GXDLMSSpecialDaysTableDlg(null, true);
+                OnSpecialDaysDlg(arg, dlg, null);               
             }
         }
 

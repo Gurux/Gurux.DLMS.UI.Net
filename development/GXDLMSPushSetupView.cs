@@ -122,7 +122,7 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
-            MessageBox.Show(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             arg.Action = ActionType.None;
         }
 
@@ -156,7 +156,8 @@ namespace Gurux.DLMS.UI
             bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                ObjectsLV.Enabled = enabled;
+                ObjectsAddBtn.Enabled = ObjectsEditBtn.Enabled = 
+                    ObjectsRemoveBtn.Enabled = ObjectsLV.Enabled = enabled;                
             }
             else if (index == 3)
             {
@@ -165,7 +166,8 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 4)
             {
-                CommunicationWindowLV.Enabled = enabled;
+                CommunicationAdd.Enabled = CommunicationEdit.Enabled = 
+                    CommunicationRemove.Enabled = CommunicationWindowLV.Enabled = enabled;
             }
             else
             {

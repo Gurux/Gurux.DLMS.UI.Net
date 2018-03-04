@@ -92,13 +92,11 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                if ((access & AccessMode.Write) == 0)
-                {
-                    addToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
-                        AddBtn.Enabled = RemoveBtn.Enabled = false;
-                }
+                addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled =  removeToolStripMenuItem.Enabled =
+                    AddBtn.Enabled = EditBtn.Enabled =  RemoveBtn.Enabled = enabled;
             }
             else
             {

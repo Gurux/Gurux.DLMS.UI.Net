@@ -70,6 +70,33 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image activication FAILED..
+        /// </summary>
+        internal static string ActivationFailed {
+            get {
+                return ResourceManager.GetString("ActivationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting activation to finish..
+        /// </summary>
+        internal static string ActivationInitiated {
+            get {
+                return ResourceManager.GetString("ActivationInitiated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image activation succeeded..
+        /// </summary>
+        internal static string ActivationSuccessful {
+            get {
+                return ResourceManager.GetString("ActivationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a hardware fault..
         /// </summary>
         internal static string HardwareFaultTxt {
@@ -88,11 +115,38 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image block size is.
+        /// </summary>
+        internal static string ImageBlockSize {
+            get {
+                return ResourceManager.GetString("ImageBlockSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Files (bin, xml)|*.bin;*.xml|Binary files (*.bin)|*.bin|XML files (*.xml)|*.xml|All files (*.*)|*.*.
         /// </summary>
         internal static string ImageFilesTxt {
             get {
                 return ResourceManager.GetString("ImageFilesTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image transfer is not enabled..
+        /// </summary>
+        internal static string ImageTransferDisabled {
+            get {
+                return ResourceManager.GetString("ImageTransferDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image transfer is enabled..
+        /// </summary>
+        internal static string ImageTransferEnabled {
+            get {
+                return ResourceManager.GetString("ImageTransferEnabled", resourceCulture);
             }
         }
         
@@ -336,6 +390,24 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string ValueChangedTxt {
             get {
                 return ResourceManager.GetString("ValueChangedTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image verification FAILED..
+        /// </summary>
+        internal static string VerificationFailed {
+            get {
+                return ResourceManager.GetString("VerificationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting verification to finish..
+        /// </summary>
+        internal static string VerificationInitiated {
+            get {
+                return ResourceManager.GetString("VerificationInitiated", resourceCulture);
             }
         }
     }

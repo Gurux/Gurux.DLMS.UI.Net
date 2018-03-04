@@ -38,6 +38,9 @@ using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using System.Text;
 using System.IO;
+using System.Threading;
+using Gurux.DLMS.Objects.Enums;
+using System.Globalization;
 
 namespace Gurux.DLMS.UI
 {
@@ -57,6 +60,8 @@ namespace Gurux.DLMS.UI
         public GXDLMSImageTransferView()
         {
             InitializeComponent();
+            DelayTb.Text = new TimeSpan(Properties.Settings.Default.ImageDelay * 10000000).ToString(@"hh\:mm\:ss");
+            ManualBtn.Checked = Properties.Settings.Default.ImageManualUpdate;
         }
 
         #region IGXDLMSView Members
@@ -75,6 +80,11 @@ namespace Gurux.DLMS.UI
                 ImageTransferEnabledCB.CheckedChanged -= new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
                 ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
                 ImageTransferEnabledCB.CheckedChanged += new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
+            }
+            else if (index == 6)
+            {
+                ImageTransferStatusTb.Text = target.ImageTransferStatus.ToString();
+                ManualBtn_CheckedChanged(null, null);
             }
             else if (index == 7)
             {
@@ -96,6 +106,94 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        delegate void DescriptionEventHandler(string text);
+        delegate void ImageDialogEventHandler(GXImageDlg dlg, GXActionArgs arg);
+        delegate void ImageTransferStatusEventHandler(ImageTransferStatus status);
+        delegate int GetDelayEventHandler(GXActionArgs arg);
+
+
+        void OnDescription(string text)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new DescriptionEventHandler(OnDescription), text);
+            }
+            else
+            {
+                DescriptionList.Items.Add(DateTime.Now.ToShortTimeString()).SubItems.Add(text);
+            }
+        }
+
+        void OnImageTransferStatus(ImageTransferStatus status)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ImageTransferStatusEventHandler(OnImageTransferStatus), status);
+            }
+            else
+            {
+                ImageTransferStatusTb.Text = status.ToString();
+            }
+        }
+
+        int GetDelay(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new GetDelayEventHandler(GetDelay), arg).AsyncWaitHandle.WaitOne();
+                return (int)arg.Value;
+            }
+            else
+            {
+                try
+                {
+
+                    int value = (int)TimeSpan.Parse(DelayTb.Text).TotalMilliseconds;
+                    if (arg != null)
+                    {
+                        arg.Value = value;
+                    }
+                    return value;
+                }
+                catch (Exception ex)
+                {
+                    arg.Value = 0;
+                    arg.Exception = ex;
+                    return 0;
+                }
+            }
+        }
+
+        void OnImageDialog(GXImageDlg dlg, GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ImageDialogEventHandler(OnImageDialog), dlg, arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                DescriptionList.Items.Clear();
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                {
+                    imageIdentifier = null;
+                    arg.Action = ActionType.None;
+                    return;
+                }
+                if (dlg.IsAscii)
+                {
+                    imageIdentifier = ASCIIEncoding.ASCII.GetBytes(dlg.TextTb.Text);
+                }
+                else
+                {
+                    imageIdentifier = GXDLMSTranslator.HexToBytes(dlg.TextTb.Text);
+                }
+                arg.Text = "Updating image " + Path.GetFileNameWithoutExtension(dlg.FileNameTb.Text) + "...";
+                OnDescription("Updating image " + dlg.FileNameTb.Text);
+                image = dlg.Image;
+            }
+        }
+
+        bool updatingImage = false;
         public void PreAction(GXActionArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
@@ -103,33 +201,47 @@ namespace Gurux.DLMS.UI
             {
                 if (arg.Index == 1)
                 {
-                    if (imageIdentifier == null)
+                    if (!updatingImage)
                     {
-                        arg.Text = "Updating image...";
+                        //Check that delay is correct and save it.
+                        GetDelay(arg);
+                        if (arg.Exception != null)
+                        {
+                            return;
+                        }
+                        Properties.Settings.Default.ImageDelay = (int)arg.Value / 1000;
+                        GXImageDlg dlg = new GXImageDlg();
+                        OnImageDialog(dlg, arg);
+                        if (arg.Action == ActionType.None)
+                        {
+                            return;
+                        }
                         arg.Index = 5;
                         arg.Action = ActionType.Read;
+                        updatingImage = true;
                         return;
                     }
                     //Initiate the Image transfer process.
                     arg.Value = it.ImageTransferInitiate(arg.Client, imageIdentifier, image.Length);
                     imageIdentifier = null;
+                    updatingImage = false;
                 }
                 else if (arg.Index == 2)
                 {
                     //Start image block transfer.
                     int imageBlockCount;
                     arg.Value = it.ImageBlockTransfer(arg.Client, image, out imageBlockCount);
-                    DescriptionList.Items.Add("Sending " + imageBlockCount + " blocks.");
+                    OnDescription("Sending " + imageBlockCount + " blocks.");
                 }
                 else if (arg.Index == 3)
                 {
                     arg.Value = it.ImageVerify(arg.Client);
-                    DescriptionList.Items.Add("Verify image.");
+                    OnDescription("Verifying image.");
                 }
                 else if (arg.Index == 4)
                 {
                     arg.Value = it.ImageActivate(arg.Client);
-                    DescriptionList.Items.Add("Activating image.");
+                    OnDescription("Activating image.");
                 }
             }
         }
@@ -143,63 +255,120 @@ namespace Gurux.DLMS.UI
                 {
                     if (!it.ImageTransferEnabled)
                     {
-                        MessageBox.Show(this, "Image transfer is not enabled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        updatingImage = false;
+                        GXHelpers.ShowMessageBox(this, Properties.Resources.ImageTransferDisabled, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         arg.Action = ActionType.None;
                         return;
                     }
-                    DescriptionList.Items.Clear();
-                    GXImageDlg dlg = new GXImageDlg();
-                    if (dlg.ShowDialog(this) != DialogResult.OK)
-                    {
-                        imageIdentifier = null;
-                        arg.Action = ActionType.None;
-                        return;
-                    }
-                    if (dlg.IsAscii)
-                    {
-                        imageIdentifier = ASCIIEncoding.ASCII.GetBytes(dlg.TextTb.Text);
-                    }
-                    else
-                    {
-                        imageIdentifier = GXDLMSTranslator.HexToBytes(dlg.TextTb.Text);
-                    }
-                    arg.Text = "Updating image " + Path.GetFileNameWithoutExtension(dlg.TextTb.Text) + "..." ;
-                    DescriptionList.Items.Add("Updating image " + dlg.TextTb.Text);
-                    image = dlg.Image;
-                    DescriptionList.Items.Add("Image transfer is enabled.");
+                    OnDescription(Properties.Resources.ImageTransferEnabled);
                     //Get ImageBlockSize. 
                     arg.Index = 2;
                 }
                 else if (arg.Index == 2)
                 {
-                    DescriptionList.Items.Add("Image block size:" + it.ImageBlockSize);
+                    OnDescription(Properties.Resources.ImageBlockSize + it.ImageBlockSize);
                     //Invoke Initiates image transfer. 
                     arg.Index = 1;
                     arg.Action = ActionType.Action;
+                }
+                else if (arg.Index == 6)
+                {
+                    OnImageTransferStatus(it.ImageTransferStatus);
+                    GetDelay(arg);
+                    if (arg.Exception != null)
+                    {
+                        return;
+                    }
+                    int delay = (int)arg.Value;
+                    switch (it.ImageTransferStatus)
+                    {
+                        case ImageTransferStatus.NotInitiated:
+                            Thread.Sleep(delay);
+                            arg.Index = 6;
+                            break;
+                        case ImageTransferStatus.TransferInitiated:
+                            if (!Properties.Settings.Default.ImageManualUpdate)
+                            {
+                                arg.Index = 3;
+                                arg.Action = ActionType.Action;
+                            }
+                            else
+                            {
+                                arg.Action = ActionType.None;
+                                ManualBtn_CheckedChanged(null, null);
+                            }
+                            break;
+                        case ImageTransferStatus.VerificationInitiated:
+                            Thread.Sleep(delay);
+                            OnDescription(Properties.Resources.VerificationInitiated);
+                            arg.Text = Properties.Resources.VerificationInitiated;
+                            arg.Index = 6;
+                            break;
+                        case ImageTransferStatus.VerificationSuccessful:
+                            arg.Index = 4;
+                            arg.Action = ActionType.Action;
+                            break;
+                        case ImageTransferStatus.VerificationFailed:
+                            OnDescription(Properties.Resources.VerificationFailed);
+                            arg.Text = Properties.Resources.VerificationFailed;
+                            arg.Action = ActionType.None;
+                            break;
+                        case ImageTransferStatus.ActivationInitiated:
+                            Thread.Sleep(delay);
+                            OnDescription(Properties.Resources.ActivationInitiated);
+                            arg.Text = Properties.Resources.ActivationInitiated;
+                            break;
+                        case ImageTransferStatus.ActivationSuccessful:
+                            OnDescription(Properties.Resources.ActivationSuccessful);
+                            GXHelpers.ShowMessageBox(this, Properties.Resources.ImageActivatedTxt, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            arg.Action = ActionType.None;
+                            break;
+                        case ImageTransferStatus.ActivationFailed:
+                            OnDescription(Properties.Resources.ActivationFailed);
+                            arg.Text = Properties.Resources.ActivationFailed;
+                            arg.Action = ActionType.None;
+                            break;
+                    }
                 }
             }
             else if (arg.Action == ActionType.Action)
             {
                 if (arg.Index == 1)
                 {
-                    DescriptionList.Items.Add("Image transfer initiated.");
+                    OnDescription("Image transfer initiated.");
                     arg.Index = 2;
                 }
                 else if (arg.Index == 2)
                 {
-                    DescriptionList.Items.Add("Image transfered.");
-                    arg.Index = 3;
+                    OnDescription("Image transfered.");
+                    arg.Index = 6;
+                    arg.Action = ActionType.Read;
                 }
                 else if (arg.Index == 3)
                 {
-                    DescriptionList.Items.Add("Image verified.");
-                    arg.Index = 4;
+                    OnDescription("Image verifation started.");
+                    if (!Properties.Settings.Default.ImageManualUpdate)
+                    {
+                        arg.Index = 6;
+                        arg.Action = ActionType.Read;
+                    }
+                    else
+                    {
+                        arg.Action = ActionType.None;
+                    }
                 }
                 else if (arg.Index == 4)
                 {
-                    DescriptionList.Items.Add(Properties.Resources.ImageActivatedTxt);
-                    MessageBox.Show(this, Properties.Resources.ImageActivatedTxt, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    arg.Action = ActionType.None;
+                    if (!Properties.Settings.Default.ImageManualUpdate)
+                    {
+                        arg.Index = 6;
+                        arg.Action = ActionType.Read;
+                    }
+                    else
+                    {
+                        OnDescription(Properties.Resources.ImageActivatedTxt);
+                        arg.Action = ActionType.None;
+                    }
                 }
             }
         }
@@ -246,7 +415,7 @@ namespace Gurux.DLMS.UI
             {
                 ImagesView.Enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
             }
-            else
+            else if (index != 6)
             {
                 throw new IndexOutOfRangeException("index");
             }
@@ -256,7 +425,11 @@ namespace Gurux.DLMS.UI
         {
             if (index == 2)
             {
-                UpdateImageBtn.Enabled = UpdateImageBtn.Enabled && mode != MethodAccessMode.NoAccess;
+                ManualBtn.Enabled = DelayTb.Enabled = ActivateImageBtn.Enabled = VerifyImageBtn.Enabled = UpdateImageBtn.Enabled && connected && mode != MethodAccessMode.NoAccess;
+                if (ManualBtn.Enabled)
+                {
+                    ManualBtn_CheckedChanged(null, null);
+                }
             }
         }
 
@@ -277,16 +450,26 @@ namespace Gurux.DLMS.UI
             bool check = ImageTransferEnabledCB.Checked;
             (Target as GXDLMSImageTransfer).ImageTransferEnabled = check;
             Target.UpdateDirty(5, check);
+            errorProvider1.SetError(ImageTransferEnabledCB, Properties.Resources.ValueChangedTxt);
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        /// <summary>
+        /// Is image updated manually.
+        /// </summary>
+        private void ManualBtn_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void UpdateImageBtn_Click(object sender, EventArgs e)
-        {
-
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler(ManualBtn_CheckedChanged), sender, e);
+            }
+            else if (Target != null)
+            {
+                Properties.Settings.Default.ImageManualUpdate = ManualBtn.Checked;
+                GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
+                DelayTb.ReadOnly = Properties.Settings.Default.ImageManualUpdate;
+                VerifyImageBtn.Enabled = Properties.Settings.Default.ImageManualUpdate && (target.ImageTransferStatus == ImageTransferStatus.TransferInitiated || target.ImageTransferStatus == ImageTransferStatus.VerificationFailed);
+                ActivateImageBtn.Enabled = Properties.Settings.Default.ImageManualUpdate && target.ImageTransferStatus == ImageTransferStatus.VerificationSuccessful;
+            }
         }
     }
 }
