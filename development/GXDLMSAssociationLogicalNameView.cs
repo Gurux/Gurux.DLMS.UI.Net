@@ -264,93 +264,132 @@ namespace Gurux.DLMS.UI
         {
         }
 
+        delegate void ShowDialogEventHandler(GXDLMSObject it, GXActionArgs arg);
+
+        void OnShowDialog(GXDLMSObject it, GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowDialogEventHandler(OnShowDialog), it, arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    if (it == null)
+                    {
+                        if (ObjectsView.SelectedItems.Count == 1)
+                        {
+                            ListViewItem li = ObjectsView.SelectedItems[0];
+                            it = (GXDLMSObject)li.Tag;
+                            if (dlg.ShowDialog(this) == DialogResult.OK)
+                            {
+                                arg.Value = target.RemoveObject(arg.Client, it);
+                                li.Remove();
+                            }
+                            else
+                            {
+                                arg.Handled = true;
+                            }
+                        }
+                        else
+                        {
+                            arg.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        it = dlg.GetTarget();
+                        ListViewItem li = ObjectsView.Items.Add(it.ObjectType.ToString());
+                        li.SubItems.Add(it.Version.ToString());
+                        li.SubItems.Add(it.LogicalName);
+                        li.SubItems.Add("");
+                        li.SubItems.Add("");
+                        li.Tag = it;
+                        target.ObjectList.Add(it);
+                        arg.Value = target.AddObject(arg.Client, it);
+                    }
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+            }
+        }
+
+        delegate void ShowUserDialogEventHandler(bool addUser, GXActionArgs arg);
+
+        void OnShowDialog(bool addUser, GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowUserDialogEventHandler(OnShowDialog), addUser, arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                if (addUser)
+                {
+                    GXUserDlg dlg = new GXUserDlg((byte)target.UserList.Count, "", false);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        ListViewItem li = UsersList.Items.Add(dlg.UserId.ToString());
+                        li.SubItems.Add(dlg.UserName);
+                        arg.Value = target.AddUser(arg.Client, dlg.UserId, dlg.UserName);
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (UsersList.SelectedItems.Count == 1)
+                    {
+                        ListViewItem li = UsersList.SelectedItems[0];
+                        GXUserDlg dlg = new GXUserDlg(byte.Parse(li.SubItems[0].Text), li.SubItems[1].Text, true);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            arg.Value = target.RemoveUser(arg.Client, dlg.UserId, dlg.UserName);
+                            li.Remove();
+                        }
+                        else
+                        {
+                            arg.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
             //Add object to association view.
             if (arg.Index == 3)
             {
-                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
                 GXDLMSObject it = new GXDLMSData();
-                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    it = dlg.GetTarget();
-                    ListViewItem li = ObjectsView.Items.Add(it.ObjectType.ToString());
-                    li.SubItems.Add(it.Version.ToString());
-                    li.SubItems.Add(it.LogicalName);
-                    li.SubItems.Add("");
-                    li.SubItems.Add("");
-                    li.Tag = it;
-                    target.ObjectList.Add(it);
-                    arg.Value = target.AddObject(arg.Client, it);
-                }
-                else
-                {
-                    arg.Handled = true;
-                }
+                OnShowDialog(it, arg);
             }
             else if (arg.Index == 4)
             {
                 // Remove object from association view.
-                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                if (ObjectsView.SelectedItems.Count == 1)
-                {
-                    ListViewItem li = ObjectsView.SelectedItems[0];
-                    GXDLMSObject it = (GXDLMSObject)li.Tag;
-                    GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
-                    if (dlg.ShowDialog(this) == DialogResult.OK)
-                    {
-                        arg.Value = target.RemoveObject(arg.Client, it);
-                        li.Remove();
-                    }
-                    else
-                    {
-                        arg.Handled = true;
-                    }
-                }
-                else
-                {
-                    arg.Handled = true;
-                }
+                OnShowDialog(null, arg);
             }
             //Add user to user list.
             else if (arg.Index == 5)
             {
-                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                GXUserDlg dlg = new GXUserDlg(0, "", false);
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    ListViewItem li = UsersList.Items.Add(dlg.UserId.ToString());
-                    li.SubItems.Add(dlg.UserName);
-                    arg.Value = target.AddUser(arg.Client, dlg.UserId, dlg.UserName);
-                }
-                else
-                {
-                    arg.Handled = true;
-                }
+                OnShowDialog(true, arg);
             }
             else if (arg.Index == 6)
             {
                 // Remove user from user list.
-                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                if (UsersList.SelectedItems.Count == 1)
-                {
-                    ListViewItem li = UsersList.SelectedItems[0];
-                    GXUserDlg dlg = new GXUserDlg(byte.Parse(li.SubItems[0].Text), li.SubItems[1].Text, true);
-                    if (dlg.ShowDialog(this) == DialogResult.OK)
-                    {
-                        arg.Value = target.RemoveUser(arg.Client, dlg.UserId, dlg.UserName);
-                        li.Remove();
-                    }
-                    else
-                    {
-                        arg.Handled = true;
-                    }
-                }
-                else
-                {
-                    arg.Handled = true;
-                }
+                OnShowDialog(false, arg);
             }
             if (arg.Action == ActionType.Write && arg.Index == 7)
             {
@@ -402,6 +441,16 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
+            if (arg.Action == ActionType.Action && (arg.Index == 4 || arg.Index == 4))
+            {
+                arg.Action = ActionType.Read;
+                arg.Index = 2;
+            }
+            else if (arg.Action == ActionType.Action && (arg.Index == 5 || arg.Index == 6))
+            {
+                arg.Action = ActionType.Read;
+                arg.Index = 10;
+            }
             arg.Action = ActionType.None;
         }
 

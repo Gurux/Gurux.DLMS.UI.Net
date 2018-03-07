@@ -40,7 +40,6 @@ using System.Text;
 using System.IO;
 using System.Threading;
 using Gurux.DLMS.Objects.Enums;
-using System.Globalization;
 
 namespace Gurux.DLMS.UI
 {
@@ -94,8 +93,22 @@ namespace Gurux.DLMS.UI
                     foreach (GXDLMSImageActivateInfo it in target.ImageActivateInfo)
                     {
                         ListViewItem li = ImagesView.Items.Add(it.Size.ToString());
-                        li.SubItems.Add(it.Identification);
-                        li.SubItems.Add(it.Signature);
+                        if (GXByteBuffer.IsAsciiString(it.Identification))
+                        {
+                            li.SubItems.Add(ASCIIEncoding.ASCII.GetString(it.Identification));
+                        }
+                        else
+                        {
+                            li.SubItems.Add(GXDLMSTranslator.ToHex(it.Identification));
+                        }
+                        if (GXByteBuffer.IsAsciiString(it.Signature))
+                        {
+                            li.SubItems.Add(ASCIIEncoding.ASCII.GetString(it.Signature));
+                        }
+                        else
+                        {
+                            li.SubItems.Add(GXDLMSTranslator.ToHex(it.Signature));
+                        }
                         li.Tag = it;
                     }
                 }
@@ -120,7 +133,9 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                DescriptionList.Items.Add(DateTime.Now.ToShortTimeString()).SubItems.Add(text);
+                ListViewItem li = DescriptionList.Items.Add(DateTime.Now.ToShortTimeString());
+                li.SubItems.Add(text);
+                li.EnsureVisible();
             }
         }
 
@@ -280,6 +295,7 @@ namespace Gurux.DLMS.UI
                         return;
                     }
                     int delay = (int)arg.Value;
+                    arg.Value = null;
                     switch (it.ImageTransferStatus)
                     {
                         case ImageTransferStatus.NotInitiated:
@@ -346,7 +362,26 @@ namespace Gurux.DLMS.UI
                 }
                 else if (arg.Index == 3)
                 {
-                    OnDescription("Image verifation started.");
+                    if (arg.Exception is GXDLMSException)
+                    {
+                        //If meter is activating image.
+                        if ((arg.Exception as GXDLMSException).ErrorCode == (int)ErrorCode.TemporaryFailure)
+                        {
+                            if (!Properties.Settings.Default.ImageManualUpdate)
+                            {
+                                arg.Exception = null;
+                                GetDelay(arg);
+                                if (arg.Exception != null)
+                                {
+                                    return;
+                                }
+                                int delay = (int)arg.Value;
+                                Thread.Sleep(delay);
+                                arg.Value = null;
+                            }
+                            return;
+                        }
+                    }
                     if (!Properties.Settings.Default.ImageManualUpdate)
                     {
                         arg.Index = 6;
@@ -359,6 +394,26 @@ namespace Gurux.DLMS.UI
                 }
                 else if (arg.Index == 4)
                 {
+                    if (arg.Exception is GXDLMSException)
+                    {
+                        //If meter is activating image.
+                        if ((arg.Exception as GXDLMSException).ErrorCode == (int)ErrorCode.TemporaryFailure)
+                        {
+                            if (!Properties.Settings.Default.ImageManualUpdate)
+                            {
+                                arg.Exception = null;
+                                GetDelay(arg);
+                                if (arg.Exception != null)
+                                {
+                                    return;
+                                }
+                                int delay = (int)arg.Value;
+                                Thread.Sleep(delay);
+                                arg.Value = null;
+                            }
+                            return;
+                        }
+                    }
                     if (!Properties.Settings.Default.ImageManualUpdate)
                     {
                         arg.Index = 6;
