@@ -33,6 +33,7 @@
 using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using static System.Windows.Forms.Control;
 
@@ -43,6 +44,73 @@ namespace Gurux.DLMS.UI
     /// </summary>
     public class GXDlmsUi
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        private GXDlmsUi()
+        {
+
+        }
+
+        /// <summary>
+        /// Get available views.
+        /// </summary>
+        /// <param name="parent">Parent component where views are shown.</param>
+        /// <param name="eventHandler">Event what is called when user press button on the view.</param>
+        /// <returns>List of available views.</returns>
+        public static Dictionary<Type, List<IGXDLMSView>> GetViews(Control parent, EventHandler eventHandler)
+        {
+            Dictionary<Type, List<IGXDLMSView>> views = new Dictionary<Type, List<IGXDLMSView>>();
+            foreach (Type type in typeof(IGXDLMSView).Assembly.GetTypes())
+            {
+                GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])type.GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
+                if (!type.IsInterface && typeof(IGXDLMSView).IsAssignableFrom(type))
+                {
+                    IGXDLMSView view = Activator.CreateInstance(type) as IGXDLMSView;
+                    Form f = view as Form;
+                    f.TopLevel = false;
+                    f.TopMost = false;
+                    f.FormBorderStyle = FormBorderStyle.None;
+                    f.Dock = DockStyle.Fill;
+                    f.Width = parent.Width;
+                    f.Height = parent.Height;
+                    List<IGXDLMSView> list;
+                    if (views.ContainsKey(att[0].DLMSType))
+                    {
+                        list = views[att[0].DLMSType];
+                    }
+                    else
+                    {
+                        list = new List<IGXDLMSView>();
+                        views.Add(att[0].DLMSType, list);
+                    }
+                    list.Add(view);
+                    GXDlmsUi.Init(view, eventHandler);
+                }
+            }
+            return views;
+        }
+
+        /// <summary>
+        /// Get view for COSEM object.
+        /// </summary>
+        /// <param name="views">List of available views.</param>
+        /// <param name="target">Selected COSEM object.</param>
+        /// <returns>Assigned view.</returns>
+        public static IGXDLMSView GetView(Dictionary<Type, List<IGXDLMSView>> views, GXDLMSObject target)
+        {
+            List<IGXDLMSView> v = views[target.GetType()];
+            foreach (var it in v)
+            {
+                GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
+                if (att.Length == 1 && att[0].Version == target.Version)
+                {
+                    return it;
+                }
+            }
+            return v[0];
+        }
+
         /// <summary>
         /// Update attribute value for the view.
         /// </summary>
@@ -211,7 +279,7 @@ namespace Gurux.DLMS.UI
         {
             foreach (Control it in controls)
             {
-                if (it is GXValueField)
+                if (!method && it is GXValueField)
                 {
                     GXValueField obj = it as GXValueField;
                     if (obj.Index == index)
@@ -268,22 +336,32 @@ namespace Gurux.DLMS.UI
         public static void UpdateAccessRights(IGXDLMSView view, GXDLMSObject target, bool connected)
         {
             //Update attributes.
-            System.Windows.Forms.Control.ControlCollection controls = (view as Form).Controls;
+            List<int> attributeIndexes = new List<int>();
+            List<int> methodIndexes = new List<int>();
+            ControlCollection controls = (view as Form).Controls;
             for (int index = 1; index <= (target as IGXDLMSBase).GetAttributeCount(); ++index)
             {
                 if (!UpdateAccessRights(view, controls, target, index, false, connected))
                 {
-                    OnAccessRightsChange(view, target, index, (int)target.GetAccess(index), connected, false);
+                    attributeIndexes.Add(index);
                 }
             }
-
             //Update methods.
             for (int index = 1; index <= (target as IGXDLMSBase).GetMethodCount(); ++index)
             {
                 if (!UpdateAccessRights(view, controls, target, index, true, connected))
                 {
-                    OnAccessRightsChange(view, target, index, (int)target.GetMethodAccess(index), connected, false);
+                    methodIndexes.Add(index);
                 }
+            }
+            foreach (int index in attributeIndexes)
+            {
+                OnAccessRightsChange(view, target, index, (int)target.GetAccess(index), connected, false);
+            }
+            //Update methods.
+            foreach (int index in methodIndexes)
+            {
+                OnAccessRightsChange(view, target, index, (int)target.GetMethodAccess(index), connected, true);
             }
         }
 

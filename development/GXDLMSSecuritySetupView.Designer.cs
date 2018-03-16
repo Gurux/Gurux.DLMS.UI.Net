@@ -46,6 +46,8 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSSecuritySetupView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UpdateKeyBtn = new Gurux.DLMS.UI.GXButton();
+            this.ActivateSecurityBtn = new Gurux.DLMS.UI.GXButton();
             this.ServerSystemTitleTB = new Gurux.DLMS.UI.GXValueField();
             this.ServerSystemTitleLbl = new System.Windows.Forms.Label();
             this.ClientSystemTitleTB = new Gurux.DLMS.UI.GXValueField();
@@ -65,8 +67,11 @@ namespace Gurux.DLMS.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.UpdateKeyBtn);
+            this.groupBox1.Controls.Add(this.ActivateSecurityBtn);
             this.groupBox1.Controls.Add(this.ServerSystemTitleTB);
             this.groupBox1.Controls.Add(this.ServerSystemTitleLbl);
             this.groupBox1.Controls.Add(this.ClientSystemTitleTB);
@@ -86,6 +91,28 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Security Setup Object";
             // 
+            // UpdateKeyBtn
+            // 
+            this.UpdateKeyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateKeyBtn.Index = 2;
+            this.UpdateKeyBtn.Location = new System.Drawing.Point(249, 270);
+            this.UpdateKeyBtn.Name = "UpdateKeyBtn";
+            this.UpdateKeyBtn.Size = new System.Drawing.Size(103, 23);
+            this.UpdateKeyBtn.TabIndex = 5;
+            this.UpdateKeyBtn.Text = "Update Key...";
+            this.UpdateKeyBtn.UseVisualStyleBackColor = true;
+            // 
+            // ActivateSecurityBtn
+            // 
+            this.ActivateSecurityBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ActivateSecurityBtn.Index = 1;
+            this.ActivateSecurityBtn.Location = new System.Drawing.Point(277, 148);
+            this.ActivateSecurityBtn.Name = "ActivateSecurityBtn";
+            this.ActivateSecurityBtn.Size = new System.Drawing.Size(75, 23);
+            this.ActivateSecurityBtn.TabIndex = 6;
+            this.ActivateSecurityBtn.Text = "Activate Security";
+            this.ActivateSecurityBtn.UseVisualStyleBackColor = true;
+            // 
             // ServerSystemTitleTB
             // 
             this.ServerSystemTitleTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -93,6 +120,7 @@ namespace Gurux.DLMS.UI
             this.ServerSystemTitleTB.Index = 5;
             this.ServerSystemTitleTB.Location = new System.Drawing.Point(104, 124);
             this.ServerSystemTitleTB.Name = "ServerSystemTitleTB";
+            this.ServerSystemTitleTB.NotifyChanges = false;
             this.ServerSystemTitleTB.Size = new System.Drawing.Size(249, 20);
             this.ServerSystemTitleTB.TabIndex = 3;
             this.ServerSystemTitleTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -113,6 +141,7 @@ namespace Gurux.DLMS.UI
             this.ClientSystemTitleTB.Index = 4;
             this.ClientSystemTitleTB.Location = new System.Drawing.Point(104, 98);
             this.ClientSystemTitleTB.Name = "ClientSystemTitleTB";
+            this.ClientSystemTitleTB.NotifyChanges = false;
             this.ClientSystemTitleTB.Size = new System.Drawing.Size(249, 20);
             this.ClientSystemTitleTB.TabIndex = 2;
             this.ClientSystemTitleTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
@@ -133,9 +162,10 @@ namespace Gurux.DLMS.UI
             this.SuiteTB.Index = 3;
             this.SuiteTB.Location = new System.Drawing.Point(104, 72);
             this.SuiteTB.Name = "SuiteTB";
+            this.SuiteTB.NotifyChanges = false;
             this.SuiteTB.ReadOnly = true;
             this.SuiteTB.Size = new System.Drawing.Size(249, 72);
-            this.SuiteTB.TabIndex = 1;
+            this.SuiteTB.TabIndex = 0;
             this.SuiteTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // SuiteLbl
@@ -164,7 +194,7 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(250, 20);
-            this.DescriptionTB.TabIndex = 4;
+            this.DescriptionTB.TabIndex = 7;
             // 
             // SecurityPolicyTB
             // 
@@ -173,10 +203,11 @@ namespace Gurux.DLMS.UI
             this.SecurityPolicyTB.Index = 2;
             this.SecurityPolicyTB.Location = new System.Drawing.Point(104, 150);
             this.SecurityPolicyTB.Name = "SecurityPolicyTB";
+            this.SecurityPolicyTB.NotifyChanges = true;
             this.SecurityPolicyTB.ReadOnly = true;
-            this.SecurityPolicyTB.Size = new System.Drawing.Size(249, 133);
-            this.SecurityPolicyTB.TabIndex = 0;
-            this.SecurityPolicyTB.Type = Gurux.DLMS.UI.ValueFieldType.CheckedListBox;
+            this.SecurityPolicyTB.Size = new System.Drawing.Size(151, 21);
+            this.SecurityPolicyTB.TabIndex = 4;
+            this.SecurityPolicyTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             this.SecurityPolicyTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.SecurityPolicyTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -196,8 +227,9 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(249, 20);
-            this.LogicalNameTB.TabIndex = 5;
+            this.LogicalNameTB.TabIndex = 8;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
@@ -227,8 +259,10 @@ namespace Gurux.DLMS.UI
             this.ResumeLayout(false);
 
         }
+
         #endregion
 
-
+        private GXButton UpdateKeyBtn;
+        private GXButton ActivateSecurityBtn;
     }
 }

@@ -43,7 +43,13 @@ namespace Gurux.DLMS.UI
         public GXDLMSObject Target
         {
             get;
-            private set;
+            set;
+        }
+
+        public byte Index
+        {
+            get;
+            set;
         }
 
         /// <summary>
@@ -57,30 +63,92 @@ namespace Gurux.DLMS.UI
             Target = target;
             InitializeComponent();
             Text = caption;
-            foreach (GXDLMSObject it in objects)
+            if (objects == null)
             {
-                TargetCb.Items.Add(it);
-                if (it == target)
+                TargetCb.Enabled = false;
+                Target = target;
+            }
+            else
+            {
+                foreach (GXDLMSObject it in objects)
                 {
-                    TargetCb.SelectedItem = target;
+                    TargetCb.Items.Add(it);
+                    if (it == target)
+                    {
+                        TargetCb.SelectedItem = target;
+                    }
                 }
             }
             IndexLbl.Visible = IndexTB.Visible = false;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="caption">Window caption.</param>
+        /// <param name="target">Selected objects.</param>
+        /// <param name="index">Attribute index.</param>
+        /// <param name="objects">List of COSEM objects.</param>
+        public GXDLMSTargetObjectDlg(string caption, GXDLMSObject target, int index, GXDLMSObjectCollection objects)
+        {
+            Target = target;
+            InitializeComponent();
+            Text = caption;
+            if (objects == null)
+            {
+                TargetCb.Enabled = false;
+                Target = target;
+                IndexTB.Enabled = false;
+            }
+            else
+            {
+                foreach (GXDLMSObject it in objects)
+                {
+                    TargetCb.Items.Add(it);
+                    if (it == target)
+                    {
+                        TargetCb.SelectedItem = target;
+                    }
+                }
+                IndexTB.Text = index.ToString();
+            }
+        }
+
+        private void GXDLMSTargetObjectDlg_Load(object sender, EventArgs e)
+        {
+            if(!TargetCb.Enabled)
+            {
+                TargetCb.Items.Add(Target);
+                TargetCb.SelectedIndex = 0;
+                IndexTB.Text = Index.ToString();
+            }
+        }
+
+
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (TargetCb.SelectedItem == null)
+                if (TargetCb.Enabled)
                 {
-                    throw new Exception("Target is not selected.");
+                    if (TargetCb.SelectedItem == null)
+                    {
+                        throw new Exception("Target is not selected.");
+                    }
+                    Target = TargetCb.SelectedItem as GXDLMSObject;
                 }
-                if (IndexTB.Visible && IndexTB.Text == "")
+                if (IndexTB.Visible)
                 {
-                    throw new Exception("Invalid index.");
+                    if (IndexTB.Text == "")
+                    {
+                        throw new Exception("Invalid index.");
+                    }
+                    Index = byte.Parse(IndexTB.Text);
+                    if (Index == 0)
+                    {
+                        throw new Exception("Invalid index.");
+                    }
                 }
-                Target = TargetCb.SelectedItem as GXDLMSObject;
             }
             catch (Exception ex)
             {
@@ -88,5 +156,6 @@ namespace Gurux.DLMS.UI
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

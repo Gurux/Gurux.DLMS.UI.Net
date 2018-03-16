@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1803.701, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1803.701\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1803.1602, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1803.1602\lib\portable-win+net35\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,6 +53,30 @@
     </Compile>
     <Compile Include="GXAccountCreditChargeDlg.Designer.cs">
       <DependentUpon>GXAccountCreditChargeDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSTariffPlanView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSTariffPlanView.designer.cs">
+      <DependentUpon>GXDLMSTariffPlanView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSParameterMonitorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSParameterMonitorView.designer.cs">
+      <DependentUpon>GXDLMSParameterMonitorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSSecuritySetupView_v1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSSecuritySetupView_v1.designer.cs">
+      <DependentUpon>GXDLMSSecuritySetupView_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXSecuritySetupKeyDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXSecuritySetupKeyDlg.Designer.cs">
+      <DependentUpon>GXSecuritySetupKeyDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXUserDlg.cs">
       <SubType>Form</SubType>
@@ -503,6 +527,19 @@
   <ItemGroup>
     <EmbeddedResource Include="GXAccountCreditChargeDlg.resx">
       <DependentUpon>GXAccountCreditChargeDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSTariffPlanView.resx">
+      <DependentUpon>GXDLMSTariffPlanView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSParameterMonitorView.resx">
+      <DependentUpon>GXDLMSParameterMonitorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSSecuritySetupView_v1.resx">
+      <DependentUpon>GXDLMSSecuritySetupView_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXSecuritySetupKeyDlg.resx">
+      <DependentUpon>GXSecuritySetupKeyDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GXUserDlg.resx">
       <DependentUpon>GXUserDlg.cs</DependentUpon>

@@ -100,6 +100,21 @@ namespace Gurux.DLMS.UI
             sb.Append("}");
         }
 
+        object GetValue(object value)
+        {
+            if (value is byte[])
+            {
+                return GXDLMSTranslator.ToHex(value as byte[]);
+            }
+            else if (value is object[])
+            {
+                StringBuilder sb = new StringBuilder();
+                GetArrayAsString(sb, value);
+                return sb.ToString();
+            }
+            return value;
+        }
+
         void UpdateData(DataTable dt)
         {
             if (structures)
@@ -111,28 +126,31 @@ namespace Gurux.DLMS.UI
                     int index = 0;
                     foreach (var it in target.CaptureObjects)
                     {
-                        if (r[index] is object[])
+                        //If COSEM object is selected.
+                        //Only few meters are supporting this.
+                        if (it.Value.AttributeIndex == 0 && r[index] is object[])
                         {
-                            StringBuilder sb = new StringBuilder();
-                            GetArrayAsString(sb, r[index]);
-                            row.Add(sb.ToString());
+                            //Values must be update to the list because there might be Register Scaler
+                            //and it expects that scaler is read before value is updated.
+                            GXDLMSObject obj = GXDLMSClient.CreateObject(it.Key.ObjectType);
+                            byte i2 = 1;
+                            Dictionary<byte, object> list = new Dictionary<byte, object>();
+                            foreach (object v in (r[index] as object[]))
+                            {
+                                list.Add(i2, v);
+                                ++i2;
+                            }
+                            foreach (byte i in (obj as IGXDLMSBase).GetAttributeIndexToRead(true))
+                            {
+                                ValueEventArgs ve = new ValueEventArgs(obj, i, 0, null);
+                                ve.Value = list[i];
+                                (obj as IGXDLMSBase).SetValue(null, ve);
+                                row.Add(GetValue(obj.GetValues()[i - 1]));
+                            }
                         }
                         else
                         {
-                            if (r[index] is byte[])
-                            {
-                                row.Add(Gurux.DLMS.GXDLMSTranslator.ToHex(r[index] as byte[]));
-                            }
-                            else if (r[index] is object[])
-                            {
-                                StringBuilder sb = new StringBuilder();
-                                GetArrayAsString(sb, r[index]);
-                                row.Add(sb.ToString());
-                            }
-                            else
-                            {
-                                row.Add(r[index]);
-                            }
+                            row.Add(GetValue(r[index]));
                         }
                         ++index;
                     }

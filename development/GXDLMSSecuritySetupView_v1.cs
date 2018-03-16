@@ -4,7 +4,7 @@
 //
 //
 //
-// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSSecuritySetupView.cs $
+// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSSecuritySetupView_v1.cs $
 //
 // Version:         $Revision: 5795 $,
 //                  $Date: 2012-10-02 13:22:54 +0300 (ti, 02 loka 2012) $
@@ -45,13 +45,13 @@ namespace Gurux.DLMS.UI
     /// Online help:
     /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSSecuritySetup
     /// </summary>
-    [GXDLMSViewAttribute(typeof(GXDLMSSecuritySetup), 0)]
-    partial class GXDLMSSecuritySetupView : Form, IGXDLMSView
+    [GXDLMSViewAttribute(typeof(GXDLMSSecuritySetup), 1)]
+    partial class GXDLMSSecuritySetupView_v1 : Form, IGXDLMSView
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GXDLMSSecuritySetupView()
+        public GXDLMSSecuritySetupView_v1()
         {
             InitializeComponent();
         }
@@ -66,7 +66,25 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
-            if (index != 2)
+            if (index == 6)
+            {
+                GXDLMSSecuritySetup target = (GXDLMSSecuritySetup)Target;
+                CertificatesLv.Items.Clear();
+                if (target.Certificates != null)
+                {
+                    foreach (GXDLMSCertificateInfo it in target.Certificates)
+                    {
+                        ListViewItem li = CertificatesLv.Items.Add(it.Entity.ToString());
+                        li.SubItems.Add(it.Type.ToString());
+                        li.SubItems.Add(it.SerialNumber);
+                        li.SubItems.Add(it.Issuer);
+                        li.SubItems.Add(it.Subject);
+                        li.SubItems.Add(it.SubjectAltName);
+                        li.Tag = it;
+                    }
+                }
+            }
+            else if (index != 2)
             {
                 throw new IndexOutOfRangeException("index");
             }
@@ -173,7 +191,7 @@ namespace Gurux.DLMS.UI
             {
                 SecurityPolicyTB.ReadOnly = !connected || Target.GetMethodAccess(1) == MethodAccessMode.NoAccess;
             }
-            else
+            else if (index != 6)
             {
                 throw new IndexOutOfRangeException("index");
             }

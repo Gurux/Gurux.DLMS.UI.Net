@@ -33,8 +33,6 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Gurux.DLMS.UI
 {
@@ -43,12 +41,31 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Costructor.
         /// </summary>
+        /// <param name="dlmsType">COSEM object that this UI shown.</param>
         public GXDLMSViewAttribute(Type dlmsType)
         {
             DLMSType = dlmsType;
+            Version = 0;
+        }
+
+        /// <summary>
+        /// Costructor.
+        /// </summary>
+        /// <param name="dlmsType">COSEM object that this UI shown.</param>
+        /// <param name="version">DLMS version number.</param>
+        public GXDLMSViewAttribute(Type dlmsType, byte version)
+        {
+            DLMSType = dlmsType;
+            Version = version;
         }
 
         public Type DLMSType
+        {
+            get;
+            private set;
+        }
+
+        public byte Version
         {
             get;
             private set;

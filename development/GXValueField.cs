@@ -302,6 +302,11 @@ namespace Gurux.DLMS.UI
                 //If user try to change structure.
                 return string.Compare(GXHelpers.GetArrayAsString(original), Convert.ToString(value)) == 0;
             }
+            else if ((original is GXDateTime || original is GXDate || original is GXDate) && value is string)
+            {
+                //If user try to change structure.
+                return string.Compare((original as GXDateTime).ToFormatString(), Convert.ToString(value)) == 0;
+            }
             return string.Compare(Convert.ToString(original), Convert.ToString(value)) == 0;
         }
 
@@ -309,7 +314,7 @@ namespace Gurux.DLMS.UI
         {
             try
             {
-                if (Target != null && !Compare(Target.GetValues()[Index - 1], textBox1.Text))
+                if (!ReadOnly && Target != null && !Compare(Target.GetValues()[Index - 1], textBox1.Text))
                 {
                     SetDirty(true, textBox1.Text);
                 }
@@ -370,7 +375,8 @@ namespace Gurux.DLMS.UI
                     }
                     else
                     {
-                        if (!(Target is GXDLMSRegister && Index == 2))
+                        if (dt != DataType.Structure && dt != DataType.Array && dt != DataType.CompactArray
+                            && !(Target is GXDLMSRegister && Index == 2))
                         {
                             value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
                         }
@@ -526,11 +532,11 @@ namespace Gurux.DLMS.UI
                     checkedlistBox1.Items.Clear();
                     if (value is Enum)
                     {
+                        bool flags = value.GetType().GetCustomAttributes(typeof(FlagsAttribute), true).Length != 0;
                         foreach (var it in Enum.GetValues(value.GetType()))
                         {
-                            if (it is ClockStatus &&
-                                (((ClockStatus)it) == ClockStatus.Ok ||
-                                ((ClockStatus)it) == ClockStatus.Skip))
+                            if ((flags && Convert.ToInt32(it) == 0) ||
+                                (it is ClockStatus && ((ClockStatus)it) == ClockStatus.Skip))
                             {
                                 continue;
                             }
@@ -739,7 +745,7 @@ namespace Gurux.DLMS.UI
                 }
                 else if (Type == ValueFieldType.CompoBox)
                 {
-                    return this.comboBox1.Text;
+                    return this.comboBox1.SelectedItem;
                 }
                 else if (Type == ValueFieldType.ListBox)
                 {
@@ -751,7 +757,7 @@ namespace Gurux.DLMS.UI
             {
                 if (InvokeRequired)
                 {
-                    this.BeginInvoke(new UpdateValueEventHandler(OnUpdateValue), value);
+                    BeginInvoke(new UpdateValueEventHandler(OnUpdateValue), value);
                 }
                 else
                 {

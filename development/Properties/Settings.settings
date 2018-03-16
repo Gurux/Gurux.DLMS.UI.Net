@@ -11,5 +11,14 @@
     <Setting Name="ImageManualUpdate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SecurityKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D0D1D2D3D4D5D6D7D8D9DADBDCDDDEDF</Value>
+    </Setting>
+    <Setting Name="SecurityType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SecurityKek" Type="System.String" Scope="User">
+      <Value Profile="(Default)">47 75 72 75 78 30 30 30 47 75 72 75 78 31 32 33</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

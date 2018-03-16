@@ -211,7 +211,7 @@ namespace Gurux.DLMS.UI
             // 
             // AttributeAccesssHeader
             // 
-            this.AttributeAccesssHeader.Text = "Acctibute Access:";
+            this.AttributeAccesssHeader.Text = "Attribute Access:";
             this.AttributeAccesssHeader.Width = 106;
             // 
             // MethodAccessHeader

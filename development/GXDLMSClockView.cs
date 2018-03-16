@@ -118,11 +118,12 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 TimeTB.ReadOnly = !enabled;
+                UpdateTimeBtn.Enabled = enabled;
             }
             else if (index == 3)
             {
-          //      TimeZoneTB.ReadOnly = !enabled;
                 TimeZoneCb.Enabled = enabled;
+                CurrentTimeZoneBtn.Enabled = enabled;
             }
             else if (index == 5)
             {
@@ -147,14 +148,6 @@ namespace Gurux.DLMS.UI
         }
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
-            if (index == 2)
-            {
-                UpdateTimeBtn.Enabled = mode > MethodAccessMode.NoAccess;
-            }
-            else if (index == 3)
-            {
-                CurrentTimeZoneBtn.Enabled = mode > MethodAccessMode.NoAccess;
-            }
         }
 
         public void PreAction(GXActionArgs arg)
