@@ -20,5 +20,14 @@
     <Setting Name="SecurityKek" Type="System.String" Scope="User">
       <Value Profile="(Default)">47 75 72 75 78 30 30 30 47 75 72 75 78 31 32 33</Value>
     </Setting>
+    <Setting Name="ProfileGenericStartTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ProfileGenericEndTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UpdateSettings" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

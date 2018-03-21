@@ -40,6 +40,7 @@ using System.Data;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects.Enums;
+using System.Globalization;
 
 namespace Gurux.DLMS.UI
 {
@@ -64,6 +65,9 @@ namespace Gurux.DLMS.UI
         public GXDLMSProfileGenericView()
         {
             InitializeComponent();
+            ToPick.Format = StartPick.Format = DateTimePickerFormat.Custom;
+            ToPick.CustomFormat = StartPick.CustomFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern + " " +
+                CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
         }
 
         #region IGXDLMSView Members
@@ -229,14 +233,61 @@ namespace Gurux.DLMS.UI
             {
                 ProfileGenericView.DataSource = null;
             }
-
             //Set initial values...
             ReadFromRB.Enabled = ReadLastRB.Enabled = ReadEntryBtn.Enabled = target.CaptureObjects.Count != 0;
             ReadFromRB.Checked = ReadLastRB.Checked = ReadEntryBtn.Checked = false;
             StartEntry.Value = 0;
             EndEntry.Value = 1;
             ReadLastTB.Value = 0;
-            StartPick.Value = ToPick.Value = DateTime.Now;
+            DateTime tm;
+            if (DateTime.TryParse(Properties.Settings.Default.ProfileGenericStartTime, out tm))
+            {
+                if (tm != DateTime.MinValue)
+                {
+                    try
+                    {
+                        StartPick.Checked = true;
+                        StartPick.Value = tm;
+                    }
+                    catch (Exception)
+                    {
+                        //It's ok if this fails.
+                        StartPick.Checked = false;
+                    }
+                }
+                else
+                {
+                    StartPick.Checked = false;
+                }
+            }
+            else
+            {
+                StartPick.Value = DateTime.Now;
+            }
+            if (DateTime.TryParse(Properties.Settings.Default.ProfileGenericEndTime, out tm))
+            {
+                if (tm != DateTime.MaxValue)
+                {
+                    try
+                    {
+                        ToPick.Checked = true;
+                        ToPick.Value = tm;
+                    }
+                    catch (Exception)
+                    {
+                        //It's ok if this fails.
+                        ToPick.Checked = false;
+                    }
+                }
+                else
+                {
+                    ToPick.Checked = false;
+                }
+            }
+            else
+            {
+                ToPick.Value = DateTime.Now;
+            }
             if (!ReadFromRB.Enabled)
             {
                 return;
@@ -316,16 +367,8 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 DataTable dt = ProfileGenericView.DataSource as DataTable;
-                if (target.Buffer.Count < dt.Rows.Count)
-                {
-                    dt.Rows.Clear();
-                }
+                dt.Rows.Clear();
                 UpdateData(dt);
-                for (int pos = dt.Rows.Count; pos < target.Buffer.Count; ++pos)
-                {
-                    object[] row = target.Buffer[pos];
-                    dt.LoadDataRow(row, true);
-                }
                 ProfileGenericView.Refresh();
             }
             if (index == 3)
@@ -467,32 +510,25 @@ namespace Gurux.DLMS.UI
         {
             if (ReadFromRB.Checked)
             {
-                target.From = Convert.ToInt32(StartEntry.Value);
-                target.To = Convert.ToInt32(EndEntry.Value);
                 if (StartPick.Checked)
                 {
-                    target.From = StartPick.Value.Date;
+                    target.From = StartPick.Value;
                 }
                 else
                 {
                     target.From = DateTime.MinValue;
                 }
+                Properties.Settings.Default.ProfileGenericStartTime = target.From.ToString();
 
                 if (ToPick.Checked)
                 {
-                    if (target.CapturePeriod != 0)
-                    {
-                        target.To = ToPick.Value.Date.AddDays(1).AddSeconds(-target.CapturePeriod);
-                    }
-                    else
-                    {
-                        target.To = ToPick.Value.Date.AddDays(1).AddMinutes(-1);
-                    }
+                    target.To = ToPick.Value;
                 }
                 else
                 {
                     target.To = DateTime.MaxValue;
                 }
+                Properties.Settings.Default.ProfileGenericEndTime = target.To.ToString();
             }
         }
 
