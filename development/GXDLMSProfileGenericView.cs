@@ -292,19 +292,7 @@ namespace Gurux.DLMS.UI
             {
                 return;
             }
-            obj = target.CaptureObjects[0].Key;
-            //TODO: Hide other than all if meter is not supporting parameterized access.
-            /*
-            if (m_Target.Parent.)
-            {
-                ReadEntryBtn.Enabled = ReadFromRB.Enabled = ReadLastRB.Enabled = false;
-                m_Target.AccessSelector = AccessRange.All;
-            }
-            else
-            {
-                ReadEntryBtn.Enabled = ReadFromRB.Enabled = ReadLastRB.Enabled = true;
-            }
-            */
+            obj = target.CaptureObjects[0].Key;           
             if (target.AccessSelector == AccessRange.Entry)
             {
                 StartEntry.Value = Convert.ToInt32(target.From);
@@ -387,6 +375,12 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
+            if (index == 3)
+            {
+                addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled = 
+                    ColumnAddBtn.Enabled = ColumnEditBtn.Enabled = ColumnRemoveBtn.Enabled = enabled;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)

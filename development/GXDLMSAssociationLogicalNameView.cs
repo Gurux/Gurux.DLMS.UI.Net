@@ -274,35 +274,34 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true);
+                ListViewItem li = null;
+                bool remove = it == null;
+                if (remove)
+                {
+                    if (ObjectsView.SelectedItems.Count == 1)
+                    {
+                        li = ObjectsView.SelectedItems[0];
+                        it = (GXDLMSObject)li.Tag;
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                        return;
+                    }
+                }
+                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true, remove);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                    if (it == null)
+                    if (remove)
                     {
-                        if (ObjectsView.SelectedItems.Count == 1)
-                        {
-                            ListViewItem li = ObjectsView.SelectedItems[0];
-                            it = (GXDLMSObject)li.Tag;
-                            if (dlg.ShowDialog(this) == DialogResult.OK)
-                            {
-                                arg.Value = target.RemoveObject(arg.Client, it);
-                                li.Remove();
-                            }
-                            else
-                            {
-                                arg.Handled = true;
-                            }
-                        }
-                        else
-                        {
-                            arg.Handled = true;
-                        }
+                        arg.Value = target.RemoveObject(arg.Client, it);
+                        li.Remove();
                     }
                     else
                     {
                         it = dlg.GetTarget();
-                        ListViewItem li = ObjectsView.Items.Add(it.ObjectType.ToString());
+                        li = ObjectsView.Items.Add(it.ObjectType.ToString());
                         li.SubItems.Add(it.Version.ToString());
                         li.SubItems.Add(it.LogicalName);
                         li.SubItems.Add("");

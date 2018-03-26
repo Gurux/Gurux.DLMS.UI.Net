@@ -199,7 +199,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-        }
+        }     
 
         public static bool UpdateDirty(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, GXDLMSObject target, int index, bool dirty)
         {
@@ -424,6 +424,52 @@ namespace Gurux.DLMS.UI
         public static void Save()
         {
             Properties.Settings.Default.Save();
+        }
+
+        private static bool UpdateError(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, 
+            GXDLMSObject target, int index, Exception ex)
+        {
+            bool found = false;
+            foreach (Control it in controls)
+            {
+                if (it is GXValueField)
+                {
+                    GXValueField obj = it as GXValueField;
+                    if (obj.Index == index)
+                    {
+                        if (ex == null)
+                        {
+                            view.ErrorProvider.SetError(it, null);
+                        }
+                        else
+                        {
+                            view.ErrorProvider.SetError(it, ex.Message);
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+                else if (it.Controls.Count != 0)
+                {
+                    found = UpdateError(view, it.Controls, target, index, ex);
+                }
+                if (found)
+                {
+                    break;
+                }
+            }
+            return found;
+        }
+
+        /// <summary>
+        ///Update error.
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="target"></param>
+        /// <param name="connected"></param>
+        public static void UpdateError(IGXDLMSView view, GXDLMSObject target, int index, Exception ex)
+        {
+            UpdateError(view, (view as Form).Controls, target, index, ex);
         }
 
         /// <summary>

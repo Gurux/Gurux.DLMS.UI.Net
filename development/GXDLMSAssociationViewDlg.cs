@@ -55,7 +55,7 @@ namespace Gurux.DLMS.UI
             return Target;
         }
 
-        public GXDLMSAssociationViewDlg(GXDLMSObject target, bool LogicalNameReferencing)
+        public GXDLMSAssociationViewDlg(GXDLMSObject target, bool LogicalNameReferencing, bool remove)
         {
             Target = target;
             InitializeComponent();
@@ -77,6 +77,14 @@ namespace Gurux.DLMS.UI
                 ShortNameTb.Text = target.ShortName.ToString();
             }
             ObjectTypeCb.SelectedIndexChanged += new System.EventHandler(this.ObjectTypeCb_SelectedIndexChanged);
+
+            if (remove)
+            {
+                ShortNameTb.ReadOnly = true;
+                ObjectTypeCb.Enabled = LogicalNameTb.Enabled = ObjectTypeCb.Enabled = false;
+                VerifyBtn.Visible = false;
+                DescriptionTb.Text = target.Description;
+            }
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
