@@ -151,14 +151,14 @@ namespace Gurux.DLMS.UI
             return item;
         }
 
-        delegate void UpdatePropertyEventHandler(GXDLMSObject obj, int index, IGXDLMSView view, bool connected);
+        delegate void UpdatePropertyEventHandler(GXDLMSObject obj, int index, IGXDLMSView view, bool connected, bool user);
 
         /// <summary>
         /// Update selected values of given COSEM object.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="view"></param>
-        public static void UpdateProperty(GXDLMSObject obj, int index, IGXDLMSView view, bool connected)
+        public static void UpdateProperty(GXDLMSObject obj, int index, IGXDLMSView view, bool connected, bool user)
         {
             if (obj == null)
             {
@@ -166,7 +166,7 @@ namespace Gurux.DLMS.UI
             }
             if ((view as Form).InvokeRequired)
             {
-                (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected);
+                (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected, user);
                 return;
             }
             GXDLMSObject tmp = view.Target;
@@ -191,7 +191,7 @@ namespace Gurux.DLMS.UI
                     GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value);
                     if (item == null || item.NotifyChanges)
                     {
-                        view.OnValueChanged(it, value, false, connected);
+                        view.OnValueChanged(it, value, user, connected);
                     }
                     if (it == index)
                     {
@@ -377,7 +377,7 @@ namespace Gurux.DLMS.UI
 
             for (int index = 1; index <= (target as IGXDLMSBase).GetAttributeCount(); ++index)
             {
-                UpdateProperty(target, index, view, connected);
+                UpdateProperty(target, index, view, connected, true);
             }
         }
 

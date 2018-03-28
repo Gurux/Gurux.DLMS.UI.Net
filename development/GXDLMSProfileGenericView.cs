@@ -176,58 +176,63 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        void OnUpdateTarget(GXDLMSObject value)
+        private void UpdateCaptureObjects()
         {
-            target = (GXDLMSProfileGeneric)value;
-            structures = false;
-            GXDLMSObject obj;
             int index = 0;
-            if (target != null)
+            DataTable table = ProfileGenericView.DataSource as DataTable;
+            ProfileGenericView.DataSource = null;
+            ProfileGenericView.Columns.Clear();
+            DataTable dt = new DataTable();
+            foreach (var it in target.CaptureObjects)
             {
-                DataTable table = ProfileGenericView.DataSource as DataTable;
-                ProfileGenericView.DataSource = null;
-                ProfileGenericView.Columns.Clear();
-                DataTable dt = new DataTable();
-                foreach (var it in target.CaptureObjects)
+                string[] columns = ((IGXDLMSBase)it.Key).GetNames();
+                if (it.Value.AttributeIndex == 0)
                 {
-                    string[] columns = ((IGXDLMSBase)it.Key).GetNames();
-                    if (it.Value.AttributeIndex == 0)
-                    {
-                        structures = true;
-                        for (int a = 0; a != ((IGXDLMSBase)it.Key).GetAttributeCount(); ++a)
-                        {
-                            DataColumn dc = dt.Columns.Add(index.ToString());
-                            dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[a];
-                            int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
-                            ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
-                            ++index;
-                        }
-                    }
-                    else
+                    structures = true;
+                    for (int a = 0; a != ((IGXDLMSBase)it.Key).GetAttributeCount(); ++a)
                     {
                         DataColumn dc = dt.Columns.Add(index.ToString());
-                        string str = it.Key.LogicalName;
-                        if (it.Value.AttributeIndex < columns.Length)
-                        {
-                            str += Environment.NewLine + columns[it.Value.AttributeIndex - 1];
-                        }
-                        if (!string.IsNullOrEmpty(it.Key.Description))
-                        {
-                            str += Environment.NewLine + it.Key.Description;
-                        }
-                        //In Indian standard register scalers are saved to table.
-                        if (it.Key is GXDLMSRegister && it.Value.AttributeIndex == 3)
-                        {
-                            structures = true;
-                        }
-                        dc.Caption = str;
+                        dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[a];
                         int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
                         ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
                         ++index;
                     }
                 }
-                UpdateData(dt);
-                ProfileGenericView.DataSource = dt;
+                else
+                {
+                    DataColumn dc = dt.Columns.Add(index.ToString());
+                    string str = it.Key.LogicalName;
+                    if (it.Value.AttributeIndex < columns.Length)
+                    {
+                        str += Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                    }
+                    if (!string.IsNullOrEmpty(it.Key.Description))
+                    {
+                        str += Environment.NewLine + it.Key.Description;
+                    }
+                    //In Indian standard register scalers are saved to table.
+                    if (it.Key is GXDLMSRegister && it.Value.AttributeIndex == 3)
+                    {
+                        structures = true;
+                    }
+                    dc.Caption = str;
+                    int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                    ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
+                    ++index;
+                }
+            }
+            UpdateData(dt);
+            ProfileGenericView.DataSource = dt;
+        }
+
+        void OnUpdateTarget(GXDLMSObject value)
+        {
+            target = (GXDLMSProfileGeneric)value;
+            structures = false;
+            GXDLMSObject obj;
+            if (target != null)
+            {
+                UpdateCaptureObjects();
             }
             else
             {
@@ -354,6 +359,10 @@ namespace Gurux.DLMS.UI
         {
             if (index == 2)
             {
+                if (!user)
+                {
+                    UpdateCaptureObjects();
+                }
                 DataTable dt = ProfileGenericView.DataSource as DataTable;
                 dt.Rows.Clear();
                 UpdateData(dt);
@@ -588,11 +597,22 @@ namespace Gurux.DLMS.UI
                     GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
-                        it = dlg.GetTarget();
+                        //If user has change target object.
+                        if (it.Key != dlg.GetTarget().Key)
+                        {
+                            target.CaptureObjects.Remove(it);
+                            it = dlg.GetTarget();
+                            target.CaptureObjects.Add(it);
+                        }
+                        else
+                        {
+                            it = dlg.GetTarget();
+                        }
                         li.SubItems[0].Text = it.Key.ObjectType.ToString();
                         li.SubItems[1].Text = it.Key.LogicalName;
                         li.SubItems[2].Text = it.Value.AttributeIndex.ToString();
                         errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
+                        li.Tag = it;
                         Target.UpdateDirty(3, target.CaptureObjects);
                     }
                 }
