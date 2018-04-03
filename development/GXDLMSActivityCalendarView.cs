@@ -112,21 +112,21 @@ namespace Gurux.DLMS.UI
             if (li == null)
             {
                 li = list.Items.Add(str);
-                li.SubItems.AddRange(new string[] { (it.Monday != 0).ToString(), (it.Tuesday != 0).ToString(),
-                (it.Wednesday != 0).ToString(), (it.Thursday != 0).ToString(), (it.Friday != 0).ToString(),
-                    (it.Saturday != 0).ToString(), (it.Sunday != 0).ToString() });
+                li.SubItems.AddRange(new string[] { it.Monday.ToString(), it.Tuesday.ToString(),
+                it.Wednesday.ToString(),it.Thursday.ToString(), it.Friday.ToString(),
+                    it.Saturday.ToString(), it.Sunday.ToString() });
                 li.Tag = it;
             }
             else
             {
                 li.SubItems[0].Text = str;
-                li.SubItems[1].Text = (it.Monday != 0).ToString();
-                li.SubItems[2].Text = (it.Tuesday != 0).ToString();
-                li.SubItems[3].Text = (it.Wednesday != 0).ToString();
-                li.SubItems[4].Text = (it.Thursday != 0).ToString();
-                li.SubItems[5].Text = (it.Friday != 0).ToString();
-                li.SubItems[6].Text = (it.Saturday != 0).ToString();
-                li.SubItems[7].Text = (it.Sunday != 0).ToString();
+                li.SubItems[1].Text = it.Monday.ToString();
+                li.SubItems[2].Text = it.Tuesday.ToString();
+                li.SubItems[3].Text = it.Wednesday.ToString();
+                li.SubItems[4].Text = it.Thursday.ToString();
+                li.SubItems[5].Text = it.Friday .ToString();
+                li.SubItems[6].Text = it.Saturday.ToString();
+                li.SubItems[7].Text = it.Sunday.ToString();
             }
         }
 
@@ -397,15 +397,19 @@ namespace Gurux.DLMS.UI
         {
             GXDLMSWeekProfile item = new GXDLMSWeekProfile();
             GXDLMSWeekProfile[] list;
+            GXDLMSDayProfile[] days;
             if (index == 3)
             {
                 list = target.WeekProfileTableActive;
+                days = target.DayProfileTableActive;
             }
             else
             {
                 list = target.WeekProfileTablePassive;
+                days = target.DayProfileTablePassive;
             }
-            GXDLMSActivityCalendarWeekProfileDlg dlg = new GXDLMSActivityCalendarWeekProfileDlg(item);
+            
+            GXDLMSActivityCalendarWeekProfileDlg dlg = new GXDLMSActivityCalendarWeekProfileDlg(item, days);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 List<GXDLMSWeekProfile> items = new List<GXDLMSWeekProfile>();
@@ -431,7 +435,17 @@ namespace Gurux.DLMS.UI
         private void EditWeekProfile(GXDLMSActivityCalendar target, GXDLMSWeekProfile[] list, int index, ListViewItem li, ListView lv)
         {
             GXDLMSWeekProfile item = (GXDLMSWeekProfile)li.Tag;
-            GXDLMSActivityCalendarWeekProfileDlg dlg = new GXDLMSActivityCalendarWeekProfileDlg(item);
+            GXDLMSDayProfile[] days;
+            if (index == 3)
+            {
+                days = target.DayProfileTableActive;
+            }
+            else
+            {
+                days = target.DayProfileTablePassive;
+            }
+
+            GXDLMSActivityCalendarWeekProfileDlg dlg = new GXDLMSActivityCalendarWeekProfileDlg(item, days);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 UpdateWeekProfile(item, li, lv);

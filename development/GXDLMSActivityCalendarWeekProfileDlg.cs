@@ -32,6 +32,7 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Objects;
 using System;
 using System.Text;
 using System.Windows.Forms;
@@ -41,19 +42,84 @@ namespace Gurux.DLMS.UI
     public partial class GXDLMSActivityCalendarWeekProfileDlg : Form
     {
         GXDLMSWeekProfile Target;
-        public GXDLMSActivityCalendarWeekProfileDlg(GXDLMSWeekProfile target)
+        public GXDLMSActivityCalendarWeekProfileDlg(GXDLMSWeekProfile target, GXDLMSDayProfile[] days)
         {
             InitializeComponent();
             Target = target;
             AsciiBtn.Checked = GXHelpers.IsAscii(Target.Name);
             NameTb.Text = GXHelpers.GetString(Target.Name);
-            MondayCb.Checked = Target.Monday != 0;
-            TuesdayCb.Checked = Target.Tuesday != 0;
-            WednesdayCb.Checked = Target.Wednesday != 0;
-            ThursdayCb.Checked = Target.Thursday != 0;
-            FridayCb.Checked = Target.Friday != 0;
-            SaturdayCb.Checked = Target.Saturday != 0;
-            SundayCb.Checked = Target.Sunday != 0;
+            if (days == null || days.Length == 0)
+            {
+                MondayCb.Enabled = TuesdayCb.Enabled = WednesdayCb.Enabled = ThursdayCb.Enabled =
+                FridayCb.Enabled = SaturdayCb.Enabled = SundayCb.Enabled = OkBtn.Enabled = false;
+            }
+            else
+            {
+                MondayCb.Items.AddRange(days);
+                TuesdayCb.Items.AddRange(days);
+                WednesdayCb.Items.AddRange(days);
+                ThursdayCb.Items.AddRange(days);
+                FridayCb.Items.AddRange(days);
+                SaturdayCb.Items.AddRange(days);
+                SundayCb.Items.AddRange(days);
+
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Monday)
+                    {
+                        MondayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Tuesday)
+                    {
+                        TuesdayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Wednesday)
+                    {
+                        WednesdayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Thursday)
+                    {
+                        ThursdayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Friday)
+                    {
+                        FridayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Saturday)
+                    {
+                        SaturdayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+                foreach (GXDLMSDayProfile it in days)
+                {
+                    if (it.DayId == Target.Sunday)
+                    {
+                        SundayCb.SelectedItem = it;
+                        break;
+                    }
+                }
+            }
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
@@ -76,19 +142,24 @@ namespace Gurux.DLMS.UI
                 {
                     throw new Exception("Invalid name.");
                 }
-                Target.Monday = MondayCb.Checked ? 1 : 0;
-                Target.Tuesday = TuesdayCb.Checked ? 1 : 0;
-                Target.Wednesday = WednesdayCb.Checked ? 1 : 0;
-                Target.Thursday = ThursdayCb.Checked ? 1 : 0;
-                Target.Friday = FridayCb.Checked ? 1 : 0;
-                Target.Saturday = SaturdayCb.Checked ? 1 : 0;
-                Target.Sunday = SundayCb.Checked ? 1 : 0;
+                Target.Monday = ((GXDLMSDayProfile)MondayCb.SelectedItem).DayId;
+                Target.Tuesday = ((GXDLMSDayProfile)TuesdayCb.SelectedItem).DayId;
+                Target.Wednesday = ((GXDLMSDayProfile)WednesdayCb.SelectedItem).DayId;
+                Target.Thursday = ((GXDLMSDayProfile)ThursdayCb.SelectedItem).DayId;
+                Target.Friday = ((GXDLMSDayProfile)FridayCb.SelectedItem).DayId;
+                Target.Saturday = ((GXDLMSDayProfile)SaturdayCb.SelectedItem).DayId;
+                Target.Sunday = ((GXDLMSDayProfile)SundayCb.SelectedItem).DayId;
             }
             catch (Exception ex)
             {
                 DialogResult = DialogResult.None;
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void GXDLMSActivityCalendarWeekProfileDlg_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
