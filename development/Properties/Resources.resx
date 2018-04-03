@@ -192,6 +192,9 @@
   <data name="SaveChangesTxt" xml:space="preserve">
     <value>Do you want to save the changes?</value>
   </data>
+  <data name="ScriptTableExecute" xml:space="preserve">
+    <value>Are you sure that you want to execute selected script?</value>
+  </data>
   <data name="SecretSetWarning" xml:space="preserve">
     <value>Are you sure that you want to update password to the meter?</value>
   </data>

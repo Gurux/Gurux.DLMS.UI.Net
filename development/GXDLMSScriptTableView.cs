@@ -95,8 +95,8 @@ namespace Gurux.DLMS.UI
             bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled =  removeToolStripMenuItem.Enabled =
-                    AddBtn.Enabled = EditBtn.Enabled =  RemoveBtn.Enabled = enabled;
+                addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
+                    AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = enabled;
             }
             else
             {
@@ -109,8 +109,40 @@ namespace Gurux.DLMS.UI
         {
         }
 
+        delegate void ExecuteScriptEventHandler(GXActionArgs arg);
+
+        void OnExecuteScript(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ExecuteScriptEventHandler(OnExecuteScript), arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                if (ScriptsTree.SelectedNode != null)
+                {
+                    DialogResult ret = GXHelpers.ShowMessageBox(this, Properties.Resources.ScriptTableExecute, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
+                    {
+                        arg.Value = (Target as GXDLMSScriptTable).Execute(arg.Client, (GXDLMSScript)ScriptsTree.SelectedNode.Tag);
+                    }
+                    arg.Handled = ret != DialogResult.Yes;
+                }
+                else
+                {
+                    //Do nothing if script is not select.
+                    arg.Handled = true;
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
+            if (arg.Index == 1)
+            {
+                //Execute selected script.
+                OnExecuteScript(arg);
+            }
         }
 
         public void PostAction(GXActionArgs arg)
@@ -155,6 +187,7 @@ namespace Gurux.DLMS.UI
                 GXDLMSScriptDlg dlg = new GXDLMSScriptDlg(s, Target.Parent, !addToolStripMenuItem.Enabled);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
+                    GXDLMSScriptTable target = Target as GXDLMSScriptTable;
                     TreeNode node = ScriptsTree.Nodes.Add(s.Id.ToString());
                     node.Tag = s;
                     foreach (GXDLMSScriptAction a in s.Actions)
@@ -164,6 +197,9 @@ namespace Gurux.DLMS.UI
                             node.Nodes.Add(a.Target.ToString()).Tag = a;
                         }
                     }
+                    target.Scripts.Add(s);
+                    errorProvider1.SetError(ScriptsTree, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(2, target.Scripts);
                 }
             }
             catch (Exception ex)
@@ -194,7 +230,9 @@ namespace Gurux.DLMS.UI
                     GXDLMSScriptDlg dlg = new GXDLMSScriptDlg(s, Target.Parent, !addToolStripMenuItem.Enabled);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
-
+                        GXDLMSScriptTable st = Target as GXDLMSScriptTable;
+                        errorProvider1.SetError(ScriptsTree, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(2, st.Scripts);
                     }
                 }
             }
@@ -212,6 +250,7 @@ namespace Gurux.DLMS.UI
             {
                 if (ScriptsTree.SelectedNode != null)
                 {
+                    GXDLMSScriptTable st = Target as GXDLMSScriptTable;
                     object target = ScriptsTree.SelectedNode.Tag;
                     if (target is GXDLMSScript)
                     {
@@ -223,6 +262,8 @@ namespace Gurux.DLMS.UI
                         s.Actions.Remove(target as GXDLMSScriptAction);
                     }
                     ScriptsTree.SelectedNode.Remove();
+                    errorProvider1.SetError(ScriptsTree, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(2, st.Scripts);
                 }
             }
             catch (Exception ex)

@@ -286,6 +286,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to execute selected script?.
+        /// </summary>
+        internal static string ScriptTableExecute {
+            get {
+                return ResourceManager.GetString("ScriptTableExecute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure that you want to update password to the meter?.
         /// </summary>
         internal static string SecretSetWarning {

@@ -123,8 +123,49 @@ namespace Gurux.DLMS.UI
         {
         }
 
+        delegate void ShowDlgEventHandler(GXActionArgs arg, GXDLMSTargetObjectDlg dlg, GXDLMSObjectDefinition it);
+
+        void OnShowDlg(GXActionArgs arg, GXDLMSTargetObjectDlg dlg, GXDLMSObjectDefinition it)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowDlgEventHandler(OnShowDlg), arg, dlg, it).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSRegisterActivation target = (GXDLMSRegisterActivation)Target;
+                ListViewItem li = null;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    it.ObjectType = dlg.Target.ObjectType;
+                    it.LogicalName = dlg.Target.LogicalName;
+                    li = Assigments.Items.Add(it.ObjectType.ToString());
+                    li.SubItems.Add(it.LogicalName);
+                    li.Tag = it;
+                  //TODO:  arg.Value = target.AddRegister(arg.Client, dlg.Target);
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
+            if (arg.Action == ActionType.Action)
+            {
+                if (arg.Index == 1)
+                {
+                    GXDLMSObjectDefinition item = new GXDLMSObjectDefinition();
+                    GXDLMSTargetObjectDlg dlg = new GXDLMSTargetObjectDlg("Add new register", null, Target.Parent);
+                    OnShowDlg(arg, dlg, item);
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+            }
         }
 
         public void PostAction(GXActionArgs arg)
@@ -157,10 +198,6 @@ namespace Gurux.DLMS.UI
 
         }
 
-        #endregion
-
-
-
-
+        #endregion            
     }
 }

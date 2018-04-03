@@ -120,6 +120,7 @@ namespace Gurux.DLMS.UI
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     ShowAction(a, null);
+                    target.Actions.Add(a);
                 }
             }
             catch (Exception ex)
@@ -158,7 +159,21 @@ namespace Gurux.DLMS.UI
         {
             while (Actions.SelectedItems.Count != 0)
             {
-                Actions.Items.Remove(Actions.SelectedItems[0]);
+                ListViewItem li = Actions.SelectedItems[0];
+                target.Actions.Remove((GXDLMSScriptAction) li.Tag);
+                Actions.Items.Remove(li);
+            }
+        }
+
+        private void OkBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                target.Id = int.Parse(IdTb.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

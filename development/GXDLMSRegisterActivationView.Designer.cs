@@ -38,33 +38,30 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSRegisterActivationView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.DescriptionLbl = new System.Windows.Forms.Label();
-            this.DescriptionTB = new System.Windows.Forms.TextBox();
-            this.LogicalNameLbl = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.AssigmentAddBtn = new System.Windows.Forms.Button();
             this.Assigments = new System.Windows.Forms.ListView();
             this.ClassIDHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AssigmentRemoveBtn = new System.Windows.Forms.Button();
-            this.AssigmentEditBtn = new System.Windows.Forms.Button();
-            this.AssigmentAddBtn = new System.Windows.Forms.Button();
             this.LogicalNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MaskRemoveBtn = new System.Windows.Forms.Button();
-            this.MaskEditBtn = new System.Windows.Forms.Button();
-            this.MaskAddBtn = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.MaskRemoveBtn = new Gurux.DLMS.UI.GXButton();
+            this.MaskAddBtn = new Gurux.DLMS.UI.GXButton();
+            this.ActiveTb = new Gurux.DLMS.UI.GXValueField();
+            this.ActiveLbl = new System.Windows.Forms.Label();
             this.Masks = new System.Windows.Forms.ListView();
             this.MaskName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MaskIndexHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ActiveLbl = new System.Windows.Forms.Label();
-            this.ActiveTb = new Gurux.DLMS.UI.GXValueField();
+            this.DescriptionLbl = new System.Windows.Forms.Label();
+            this.DescriptionTB = new System.Windows.Forms.TextBox();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameLbl = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -84,40 +81,6 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Register Activation Object";
             // 
-            // DescriptionLbl
-            // 
-            this.DescriptionLbl.AutoSize = true;
-            this.DescriptionLbl.Location = new System.Drawing.Point(11, 22);
-            this.DescriptionLbl.Name = "DescriptionLbl";
-            this.DescriptionLbl.Size = new System.Drawing.Size(63, 13);
-            this.DescriptionLbl.TabIndex = 13;
-            this.DescriptionLbl.Text = "Description:";
-            // 
-            // DescriptionTB
-            // 
-            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionTB.Location = new System.Drawing.Point(107, 19);
-            this.DescriptionTB.Name = "DescriptionTB";
-            this.DescriptionTB.ReadOnly = true;
-            this.DescriptionTB.Size = new System.Drawing.Size(208, 20);
-            this.DescriptionTB.TabIndex = 12;
-            // 
-            // LogicalNameLbl
-            // 
-            this.LogicalNameLbl.AutoSize = true;
-            this.LogicalNameLbl.Location = new System.Drawing.Point(11, 48);
-            this.LogicalNameLbl.Name = "LogicalNameLbl";
-            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
-            this.LogicalNameLbl.TabIndex = 0;
-            this.LogicalNameLbl.Text = "Logical Name:";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -133,8 +96,6 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.AssigmentRemoveBtn);
-            this.tabPage1.Controls.Add(this.AssigmentEditBtn);
             this.tabPage1.Controls.Add(this.AssigmentAddBtn);
             this.tabPage1.Controls.Add(this.Assigments);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -145,21 +106,15 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "Assignments";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // AssigmentAddBtn
             // 
-            this.tabPage2.Controls.Add(this.ActiveTb);
-            this.tabPage2.Controls.Add(this.ActiveLbl);
-            this.tabPage2.Controls.Add(this.MaskRemoveBtn);
-            this.tabPage2.Controls.Add(this.MaskEditBtn);
-            this.tabPage2.Controls.Add(this.MaskAddBtn);
-            this.tabPage2.Controls.Add(this.Masks);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(313, 244);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Masks";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.AssigmentAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AssigmentAddBtn.Location = new System.Drawing.Point(232, 215);
+            this.AssigmentAddBtn.Name = "AssigmentAddBtn";
+            this.AssigmentAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.AssigmentAddBtn.TabIndex = 10;
+            this.AssigmentAddBtn.Text = "Add...";
+            this.AssigmentAddBtn.UseVisualStyleBackColor = true;
             // 
             // Assigments
             // 
@@ -183,70 +138,68 @@ namespace Gurux.DLMS.UI
             this.ClassIDHeader.Text = "Object Type";
             this.ClassIDHeader.Width = 78;
             // 
-            // AssigmentRemoveBtn
-            // 
-            this.AssigmentRemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AssigmentRemoveBtn.Location = new System.Drawing.Point(231, 215);
-            this.AssigmentRemoveBtn.Name = "AssigmentRemoveBtn";
-            this.AssigmentRemoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.AssigmentRemoveBtn.TabIndex = 12;
-            this.AssigmentRemoveBtn.Text = "Remove";
-            this.AssigmentRemoveBtn.UseVisualStyleBackColor = true;
-            // 
-            // AssigmentEditBtn
-            // 
-            this.AssigmentEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AssigmentEditBtn.Location = new System.Drawing.Point(150, 215);
-            this.AssigmentEditBtn.Name = "AssigmentEditBtn";
-            this.AssigmentEditBtn.Size = new System.Drawing.Size(75, 23);
-            this.AssigmentEditBtn.TabIndex = 11;
-            this.AssigmentEditBtn.Text = "Edit...";
-            this.AssigmentEditBtn.UseVisualStyleBackColor = true;
-            // 
-            // AssigmentAddBtn
-            // 
-            this.AssigmentAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AssigmentAddBtn.Location = new System.Drawing.Point(69, 215);
-            this.AssigmentAddBtn.Name = "AssigmentAddBtn";
-            this.AssigmentAddBtn.Size = new System.Drawing.Size(75, 23);
-            this.AssigmentAddBtn.TabIndex = 10;
-            this.AssigmentAddBtn.Text = "Add...";
-            this.AssigmentAddBtn.UseVisualStyleBackColor = true;
-            // 
             // LogicalNameHeader
             // 
             this.LogicalNameHeader.Text = "Logical Name";
             this.LogicalNameHeader.Width = 186;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.MaskRemoveBtn);
+            this.tabPage2.Controls.Add(this.MaskAddBtn);
+            this.tabPage2.Controls.Add(this.ActiveTb);
+            this.tabPage2.Controls.Add(this.ActiveLbl);
+            this.tabPage2.Controls.Add(this.Masks);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(313, 244);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Masks";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MaskRemoveBtn
             // 
             this.MaskRemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaskRemoveBtn.Location = new System.Drawing.Point(229, 218);
+            this.MaskRemoveBtn.Index = 2;
+            this.MaskRemoveBtn.Location = new System.Drawing.Point(230, 218);
             this.MaskRemoveBtn.Name = "MaskRemoveBtn";
             this.MaskRemoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.MaskRemoveBtn.TabIndex = 16;
+            this.MaskRemoveBtn.TabIndex = 23;
             this.MaskRemoveBtn.Text = "Remove";
             this.MaskRemoveBtn.UseVisualStyleBackColor = true;
-            // 
-            // MaskEditBtn
-            // 
-            this.MaskEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaskEditBtn.Location = new System.Drawing.Point(148, 218);
-            this.MaskEditBtn.Name = "MaskEditBtn";
-            this.MaskEditBtn.Size = new System.Drawing.Size(75, 23);
-            this.MaskEditBtn.TabIndex = 15;
-            this.MaskEditBtn.Text = "Edit...";
-            this.MaskEditBtn.UseVisualStyleBackColor = true;
             // 
             // MaskAddBtn
             // 
             this.MaskAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaskAddBtn.Location = new System.Drawing.Point(67, 218);
+            this.MaskAddBtn.Index = 1;
+            this.MaskAddBtn.Location = new System.Drawing.Point(149, 218);
             this.MaskAddBtn.Name = "MaskAddBtn";
             this.MaskAddBtn.Size = new System.Drawing.Size(75, 23);
-            this.MaskAddBtn.TabIndex = 14;
+            this.MaskAddBtn.TabIndex = 22;
             this.MaskAddBtn.Text = "Add...";
             this.MaskAddBtn.UseVisualStyleBackColor = true;
+            // 
+            // ActiveTb
+            // 
+            this.ActiveTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ActiveTb.Index = 4;
+            this.ActiveTb.Location = new System.Drawing.Point(97, 6);
+            this.ActiveTb.Name = "ActiveTb";
+            this.ActiveTb.NotifyChanges = false;
+            this.ActiveTb.Size = new System.Drawing.Size(149, 20);
+            this.ActiveTb.TabIndex = 17;
+            this.ActiveTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // ActiveLbl
+            // 
+            this.ActiveLbl.AutoSize = true;
+            this.ActiveLbl.Location = new System.Drawing.Point(1, 9);
+            this.ActiveLbl.Name = "ActiveLbl";
+            this.ActiveLbl.Size = new System.Drawing.Size(68, 13);
+            this.ActiveLbl.TabIndex = 18;
+            this.ActiveLbl.Text = "Active mask:";
             // 
             // Masks
             // 
@@ -275,25 +228,24 @@ namespace Gurux.DLMS.UI
             this.MaskIndexHeader.Text = "Indexes";
             this.MaskIndexHeader.Width = 186;
             // 
-            // ActiveLbl
+            // DescriptionLbl
             // 
-            this.ActiveLbl.AutoSize = true;
-            this.ActiveLbl.Location = new System.Drawing.Point(1, 9);
-            this.ActiveLbl.Name = "ActiveLbl";
-            this.ActiveLbl.Size = new System.Drawing.Size(68, 13);
-            this.ActiveLbl.TabIndex = 18;
-            this.ActiveLbl.Text = "Active mask:";
+            this.DescriptionLbl.AutoSize = true;
+            this.DescriptionLbl.Location = new System.Drawing.Point(11, 22);
+            this.DescriptionLbl.Name = "DescriptionLbl";
+            this.DescriptionLbl.Size = new System.Drawing.Size(63, 13);
+            this.DescriptionLbl.TabIndex = 13;
+            this.DescriptionLbl.Text = "Description:";
             // 
-            // ActiveTb
+            // DescriptionTB
             // 
-            this.ActiveTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActiveTb.Index = 4;
-            this.ActiveTb.Location = new System.Drawing.Point(97, 6);
-            this.ActiveTb.Name = "ActiveTb";
-            this.ActiveTb.Size = new System.Drawing.Size(149, 20);
-            this.ActiveTb.TabIndex = 17;
-            this.ActiveTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.DescriptionTB.Location = new System.Drawing.Point(107, 19);
+            this.DescriptionTB.Name = "DescriptionTB";
+            this.DescriptionTB.ReadOnly = true;
+            this.DescriptionTB.Size = new System.Drawing.Size(208, 20);
+            this.DescriptionTB.TabIndex = 12;
             // 
             // LogicalNameTB
             // 
@@ -302,9 +254,25 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(107, 45);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // LogicalNameLbl
+            // 
+            this.LogicalNameLbl.AutoSize = true;
+            this.LogicalNameLbl.Location = new System.Drawing.Point(11, 48);
+            this.LogicalNameLbl.Name = "LogicalNameLbl";
+            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
+            this.LogicalNameLbl.TabIndex = 0;
+            this.LogicalNameLbl.Text = "Logical Name:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
             // GXDLMSRegisterActivationView
             // 
@@ -314,11 +282,11 @@ namespace Gurux.DLMS.UI
             this.Name = "GXDLMSRegisterActivationView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -330,17 +298,14 @@ namespace Gurux.DLMS.UI
         private TabPage tabPage2;
         private ListView Assigments;
         private ColumnHeader ClassIDHeader;
-        private Button AssigmentRemoveBtn;
-        private Button AssigmentEditBtn;
         private Button AssigmentAddBtn;
         private ColumnHeader LogicalNameHeader;
-        private Button MaskRemoveBtn;
-        private Button MaskEditBtn;
-        private Button MaskAddBtn;
         private ListView Masks;
         private ColumnHeader MaskName;
         private ColumnHeader MaskIndexHeader;
         private GXValueField ActiveTb;
         private Label ActiveLbl;
+        private GXButton MaskRemoveBtn;
+        private GXButton MaskAddBtn;
     }
 }
