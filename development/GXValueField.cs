@@ -366,7 +366,19 @@ namespace Gurux.DLMS.UI
                 dt = Target.GetDataType(Index);
                 if (dt != DataType.None && dt != DataType.Enum && dt != DataType.Array)
                 {
-                    if (dt == DataType.OctetString)
+                    if (dt == DataType.DateTime && value is string)
+                    {
+                        value = new GXDateTime((string)value);
+                    }
+                    else if (dt == DataType.Date && value is string)
+                    {
+                        value = new GXDate((string)value);
+                    }
+                    else if (dt == DataType.Time && value is string)
+                    {
+                        value = new GXTime((string)value);
+                    }
+                    else if (dt == DataType.OctetString)
                     {
                         if (value is string && Target.GetUIDataType(Index) == DataType.OctetString)
                         {

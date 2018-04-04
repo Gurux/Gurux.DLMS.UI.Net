@@ -100,7 +100,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 354);
+            this.groupBox1.Size = new System.Drawing.Size(367, 406);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Clock Object";
@@ -142,7 +142,7 @@ namespace Gurux.DLMS.UI
             // ClockBaseTB
             // 
             this.ClockBaseTB.Index = 9;
-            this.ClockBaseTB.Location = new System.Drawing.Point(102, 301);
+            this.ClockBaseTB.Location = new System.Drawing.Point(102, 337);
             this.ClockBaseTB.Name = "ClockBaseTB";
             this.ClockBaseTB.NotifyChanges = false;
             this.ClockBaseTB.ReadOnly = true;
@@ -153,7 +153,7 @@ namespace Gurux.DLMS.UI
             // ClockBaseLbl
             // 
             this.ClockBaseLbl.AutoSize = true;
-            this.ClockBaseLbl.Location = new System.Drawing.Point(6, 304);
+            this.ClockBaseLbl.Location = new System.Drawing.Point(6, 340);
             this.ClockBaseLbl.Name = "ClockBaseLbl";
             this.ClockBaseLbl.Size = new System.Drawing.Size(64, 13);
             this.ClockBaseLbl.TabIndex = 22;
@@ -259,7 +259,7 @@ namespace Gurux.DLMS.UI
             this.groupBox2.Controls.Add(this.BeginLbl);
             this.groupBox2.Location = new System.Drawing.Point(12, 227);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(367, 78);
+            this.groupBox2.Size = new System.Drawing.Size(367, 116);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Daylight Savings";
@@ -286,10 +286,10 @@ namespace Gurux.DLMS.UI
             // EndTB
             // 
             this.EndTB.Index = 6;
-            this.EndTB.Location = new System.Drawing.Point(244, 45);
+            this.EndTB.Location = new System.Drawing.Point(102, 71);
             this.EndTB.Name = "EndTB";
             this.EndTB.NotifyChanges = false;
-            this.EndTB.Size = new System.Drawing.Size(100, 20);
+            this.EndTB.Size = new System.Drawing.Size(242, 20);
             this.EndTB.TabIndex = 11;
             this.EndTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
@@ -314,7 +314,7 @@ namespace Gurux.DLMS.UI
             // EndLbl
             // 
             this.EndLbl.AutoSize = true;
-            this.EndLbl.Location = new System.Drawing.Point(204, 45);
+            this.EndLbl.Location = new System.Drawing.Point(6, 74);
             this.EndLbl.Name = "EndLbl";
             this.EndLbl.Size = new System.Drawing.Size(29, 13);
             this.EndLbl.TabIndex = 18;
@@ -326,14 +326,14 @@ namespace Gurux.DLMS.UI
             this.BeginTB.Location = new System.Drawing.Point(102, 45);
             this.BeginTB.Name = "BeginTB";
             this.BeginTB.NotifyChanges = false;
-            this.BeginTB.Size = new System.Drawing.Size(96, 20);
+            this.BeginTB.Size = new System.Drawing.Size(242, 20);
             this.BeginTB.TabIndex = 10;
             this.BeginTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // BeginLbl
             // 
             this.BeginLbl.AutoSize = true;
-            this.BeginLbl.Location = new System.Drawing.Point(6, 45);
+            this.BeginLbl.Location = new System.Drawing.Point(6, 47);
             this.BeginLbl.Name = "BeginLbl";
             this.BeginLbl.Size = new System.Drawing.Size(37, 13);
             this.BeginLbl.TabIndex = 16;
@@ -347,7 +347,7 @@ namespace Gurux.DLMS.UI
             // 
             // GXDLMSClockView
             // 
-            this.ClientSize = new System.Drawing.Size(391, 383);
+            this.ClientSize = new System.Drawing.Size(391, 435);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "GXDLMSClockView";
