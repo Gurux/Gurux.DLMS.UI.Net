@@ -144,12 +144,17 @@ namespace Gurux.DLMS.UI
                                 list.Add(i2, v);
                                 ++i2;
                             }
+                            //Update values first. 
                             foreach (byte i in (obj as IGXDLMSBase).GetAttributeIndexToRead(true))
                             {
                                 ValueEventArgs ve = new ValueEventArgs(obj, i, 0, null);
                                 ve.Value = list[i];
                                 (obj as IGXDLMSBase).SetValue(null, ve);
-                                row.Add(GetValue(obj.GetValues()[i - 1]));
+                            }
+                            //Show values.
+                            for (byte i = 0; i != (obj as IGXDLMSBase).GetAttributeCount(); ++i)
+                            {
+                                row.Add(GetValue(obj.GetValues()[i]));
                             }
                         }
                         else
@@ -297,7 +302,7 @@ namespace Gurux.DLMS.UI
             {
                 return;
             }
-            obj = target.CaptureObjects[0].Key;           
+            obj = target.CaptureObjects[0].Key;
             if (target.AccessSelector == AccessRange.Entry)
             {
                 StartEntry.Value = Convert.ToInt32(target.From);
@@ -387,7 +392,7 @@ namespace Gurux.DLMS.UI
             bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 3)
             {
-                addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled = 
+                addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
                     ColumnAddBtn.Enabled = ColumnEditBtn.Enabled = ColumnRemoveBtn.Enabled = enabled;
             }
         }
