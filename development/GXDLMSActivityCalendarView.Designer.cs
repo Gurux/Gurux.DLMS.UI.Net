@@ -129,6 +129,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ActivatePassiveCalendarBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.ActiveTab.SuspendLayout();
@@ -590,6 +591,7 @@ namespace Gurux.DLMS.UI
             // 
             // PassiveTab
             // 
+            this.PassiveTab.Controls.Add(this.ActivatePassiveCalendarBtn);
             this.PassiveTab.Controls.Add(this.tabControl3);
             this.PassiveTab.Controls.Add(this.PCalendarNameLbl);
             this.PassiveTab.Controls.Add(this.PCalendarNameTB);
@@ -993,6 +995,17 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
+            // ActivatePassiveCalendarBtn
+            // 
+            this.ActivatePassiveCalendarBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ActivatePassiveCalendarBtn.Index = 1;
+            this.ActivatePassiveCalendarBtn.Location = new System.Drawing.Point(387, 15);
+            this.ActivatePassiveCalendarBtn.Name = "ActivatePassiveCalendarBtn";
+            this.ActivatePassiveCalendarBtn.Size = new System.Drawing.Size(84, 23);
+            this.ActivatePassiveCalendarBtn.TabIndex = 29;
+            this.ActivatePassiveCalendarBtn.Text = "Activate";
+            this.ActivatePassiveCalendarBtn.UseVisualStyleBackColor = true;
+            // 
             // GXDLMSActivityCalendarView
             // 
             this.ClientSize = new System.Drawing.Size(531, 635);
@@ -1101,5 +1114,6 @@ namespace Gurux.DLMS.UI
         private Button PassiveActionAddBtn;
         private Label ActivatePassiveCalendarLbl;
         private GXValueField ActivatePassiveCalendarTb;
+        private GXButton ActivatePassiveCalendarBtn;
     }
 }

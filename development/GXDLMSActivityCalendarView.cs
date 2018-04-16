@@ -124,7 +124,7 @@ namespace Gurux.DLMS.UI
                 li.SubItems[2].Text = it.Tuesday.ToString();
                 li.SubItems[3].Text = it.Wednesday.ToString();
                 li.SubItems[4].Text = it.Thursday.ToString();
-                li.SubItems[5].Text = it.Friday .ToString();
+                li.SubItems[5].Text = it.Friday.ToString();
                 li.SubItems[6].Text = it.Saturday.ToString();
                 li.SubItems[7].Text = it.Sunday.ToString();
             }
@@ -266,13 +266,22 @@ namespace Gurux.DLMS.UI
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
-                
+
         public void PreAction(GXActionArgs arg)
         {
+            if (GXHelpers.ShowMessageBox(this, Properties.Resources.ActivatePassiveCalendar, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                arg.Value = (sbyte)0;
+            }
+            else
+            {
+                arg.Action = ActionType.None;
+            }
         }
 
         public void PostAction(GXActionArgs arg)
         {
+            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             arg.Action = ActionType.None;
         }
 
@@ -408,7 +417,7 @@ namespace Gurux.DLMS.UI
                 list = target.WeekProfileTablePassive;
                 days = target.DayProfileTablePassive;
             }
-            
+
             GXDLMSActivityCalendarWeekProfileDlg dlg = new GXDLMSActivityCalendarWeekProfileDlg(item, days);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {

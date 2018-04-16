@@ -70,6 +70,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to activate passive calendar?.
+        /// </summary>
+        internal static string ActivatePassiveCalendar {
+            get {
+                return ResourceManager.GetString("ActivatePassiveCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image activication FAILED..
         /// </summary>
         internal static string ActivationFailed {

@@ -47,8 +47,13 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSAutoConnectView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ConnectBtn = new Gurux.DLMS.UI.GXButton();
             this.DestinationLv = new System.Windows.Forms.ListView();
             this.DestinationHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DestinationMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.DestinationRemoveBtn = new System.Windows.Forms.Button();
             this.DestinationEditBtn = new System.Windows.Forms.Button();
             this.DestinationAddBtn = new System.Windows.Forms.Button();
@@ -58,34 +63,31 @@ namespace Gurux.DLMS.UI
             this.CallingWindowLV = new System.Windows.Forms.ListView();
             this.StartTimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EndTimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.CallingWindowLbl = new System.Windows.Forms.Label();
-            this.RepetitionDelayLbl = new System.Windows.Forms.Label();
-            this.RepetitionsLbl = new System.Windows.Forms.Label();
-            this.CommunicationSpeedLbl = new System.Windows.Forms.Label();
-            this.LogicalNameLbl = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.TimeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DestinationMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CallingWindowLbl = new System.Windows.Forms.Label();
             this.RepetitionDelayTB = new Gurux.DLMS.UI.GXValueField();
+            this.RepetitionDelayLbl = new System.Windows.Forms.Label();
             this.RepetitionsTB = new Gurux.DLMS.UI.GXValueField();
+            this.RepetitionsLbl = new System.Windows.Forms.Label();
             this.ModeTB = new Gurux.DLMS.UI.GXValueField();
+            this.CommunicationSpeedLbl = new System.Windows.Forms.Label();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameLbl = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.TimeMenu.SuspendLayout();
             this.DestinationMenu.SuspendLayout();
+            this.TimeMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ConnectBtn);
             this.groupBox1.Controls.Add(this.DestinationLv);
             this.groupBox1.Controls.Add(this.DestinationRemoveBtn);
             this.groupBox1.Controls.Add(this.DestinationEditBtn);
@@ -111,6 +113,16 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Text = "Auto Connect Object";
             this.groupBox1.UseCompatibleTextRendering = true;
             // 
+            // ConnectBtn
+            // 
+            this.ConnectBtn.Index = 1;
+            this.ConnectBtn.Location = new System.Drawing.Point(14, 261);
+            this.ConnectBtn.Name = "ConnectBtn";
+            this.ConnectBtn.Size = new System.Drawing.Size(75, 23);
+            this.ConnectBtn.TabIndex = 24;
+            this.ConnectBtn.Text = "Connect";
+            this.ConnectBtn.UseVisualStyleBackColor = true;
+            // 
             // DestinationLv
             // 
             this.DestinationLv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -133,6 +145,36 @@ namespace Gurux.DLMS.UI
             // 
             this.DestinationHeader.Text = "Destination:";
             this.DestinationHeader.Width = 334;
+            // 
+            // DestinationMenu
+            // 
+            this.DestinationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.DestinationMenu.Name = "contextMenuStrip1";
+            this.DestinationMenu.Size = new System.Drawing.Size(118, 70);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem1.Text = "Add";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.DestinationAddBtn_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem2.Text = "Edit";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.DestinationEditBtn_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem3.Text = "Remove";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.DestinationRemoveBtn_Click);
             // 
             // DestinationRemoveBtn
             // 
@@ -229,57 +271,6 @@ namespace Gurux.DLMS.UI
             this.EndTimeHeader.Text = "End Time:";
             this.EndTimeHeader.Width = 185;
             // 
-            // CallingWindowLbl
-            // 
-            this.CallingWindowLbl.AutoSize = true;
-            this.CallingWindowLbl.Location = new System.Drawing.Point(6, 138);
-            this.CallingWindowLbl.Name = "CallingWindowLbl";
-            this.CallingWindowLbl.Size = new System.Drawing.Size(83, 13);
-            this.CallingWindowLbl.TabIndex = 7;
-            this.CallingWindowLbl.Text = "Calling Window:";
-            // 
-            // RepetitionDelayLbl
-            // 
-            this.RepetitionDelayLbl.AutoSize = true;
-            this.RepetitionDelayLbl.Location = new System.Drawing.Point(6, 102);
-            this.RepetitionDelayLbl.Name = "RepetitionDelayLbl";
-            this.RepetitionDelayLbl.Size = new System.Drawing.Size(88, 13);
-            this.RepetitionDelayLbl.TabIndex = 6;
-            this.RepetitionDelayLbl.Text = "Repetition Delay:";
-            // 
-            // RepetitionsLbl
-            // 
-            this.RepetitionsLbl.AutoSize = true;
-            this.RepetitionsLbl.Location = new System.Drawing.Point(6, 76);
-            this.RepetitionsLbl.Name = "RepetitionsLbl";
-            this.RepetitionsLbl.Size = new System.Drawing.Size(63, 13);
-            this.RepetitionsLbl.TabIndex = 4;
-            this.RepetitionsLbl.Text = "Repetitions:";
-            // 
-            // CommunicationSpeedLbl
-            // 
-            this.CommunicationSpeedLbl.AutoSize = true;
-            this.CommunicationSpeedLbl.Location = new System.Drawing.Point(6, 50);
-            this.CommunicationSpeedLbl.Name = "CommunicationSpeedLbl";
-            this.CommunicationSpeedLbl.Size = new System.Drawing.Size(37, 13);
-            this.CommunicationSpeedLbl.TabIndex = 2;
-            this.CommunicationSpeedLbl.Text = "Mode:";
-            // 
-            // LogicalNameLbl
-            // 
-            this.LogicalNameLbl.AutoSize = true;
-            this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
-            this.LogicalNameLbl.Name = "LogicalNameLbl";
-            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
-            this.LogicalNameLbl.TabIndex = 0;
-            this.LogicalNameLbl.Text = "Logical Name:";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
             // TimeMenu
             // 
             this.TimeMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -310,35 +301,14 @@ namespace Gurux.DLMS.UI
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.TimeRemoveBtn_Click);
             // 
-            // DestinationMenu
+            // CallingWindowLbl
             // 
-            this.DestinationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
-            this.DestinationMenu.Name = "contextMenuStrip1";
-            this.DestinationMenu.Size = new System.Drawing.Size(118, 70);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem1.Text = "Add";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.DestinationAddBtn_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem2.Text = "Edit";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.DestinationEditBtn_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem3.Text = "Remove";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.DestinationRemoveBtn_Click);
+            this.CallingWindowLbl.AutoSize = true;
+            this.CallingWindowLbl.Location = new System.Drawing.Point(6, 138);
+            this.CallingWindowLbl.Name = "CallingWindowLbl";
+            this.CallingWindowLbl.Size = new System.Drawing.Size(83, 13);
+            this.CallingWindowLbl.TabIndex = 7;
+            this.CallingWindowLbl.Text = "Calling Window:";
             // 
             // RepetitionDelayTB
             // 
@@ -347,10 +317,20 @@ namespace Gurux.DLMS.UI
             this.RepetitionDelayTB.Index = 4;
             this.RepetitionDelayTB.Location = new System.Drawing.Point(102, 99);
             this.RepetitionDelayTB.Name = "RepetitionDelayTB";
+            this.RepetitionDelayTB.NotifyChanges = false;
             this.RepetitionDelayTB.ReadOnly = true;
             this.RepetitionDelayTB.Size = new System.Drawing.Size(352, 20);
             this.RepetitionDelayTB.TabIndex = 5;
             this.RepetitionDelayTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // RepetitionDelayLbl
+            // 
+            this.RepetitionDelayLbl.AutoSize = true;
+            this.RepetitionDelayLbl.Location = new System.Drawing.Point(6, 102);
+            this.RepetitionDelayLbl.Name = "RepetitionDelayLbl";
+            this.RepetitionDelayLbl.Size = new System.Drawing.Size(88, 13);
+            this.RepetitionDelayLbl.TabIndex = 6;
+            this.RepetitionDelayLbl.Text = "Repetition Delay:";
             // 
             // RepetitionsTB
             // 
@@ -359,10 +339,20 @@ namespace Gurux.DLMS.UI
             this.RepetitionsTB.Index = 3;
             this.RepetitionsTB.Location = new System.Drawing.Point(102, 73);
             this.RepetitionsTB.Name = "RepetitionsTB";
+            this.RepetitionsTB.NotifyChanges = false;
             this.RepetitionsTB.ReadOnly = true;
             this.RepetitionsTB.Size = new System.Drawing.Size(352, 20);
             this.RepetitionsTB.TabIndex = 3;
             this.RepetitionsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // RepetitionsLbl
+            // 
+            this.RepetitionsLbl.AutoSize = true;
+            this.RepetitionsLbl.Location = new System.Drawing.Point(6, 76);
+            this.RepetitionsLbl.Name = "RepetitionsLbl";
+            this.RepetitionsLbl.Size = new System.Drawing.Size(63, 13);
+            this.RepetitionsLbl.TabIndex = 4;
+            this.RepetitionsLbl.Text = "Repetitions:";
             // 
             // ModeTB
             // 
@@ -371,10 +361,20 @@ namespace Gurux.DLMS.UI
             this.ModeTB.Index = 2;
             this.ModeTB.Location = new System.Drawing.Point(102, 47);
             this.ModeTB.Name = "ModeTB";
+            this.ModeTB.NotifyChanges = false;
             this.ModeTB.ReadOnly = true;
             this.ModeTB.Size = new System.Drawing.Size(352, 72);
             this.ModeTB.TabIndex = 0;
             this.ModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            // 
+            // CommunicationSpeedLbl
+            // 
+            this.CommunicationSpeedLbl.AutoSize = true;
+            this.CommunicationSpeedLbl.Location = new System.Drawing.Point(6, 50);
+            this.CommunicationSpeedLbl.Name = "CommunicationSpeedLbl";
+            this.CommunicationSpeedLbl.Size = new System.Drawing.Size(37, 13);
+            this.CommunicationSpeedLbl.TabIndex = 2;
+            this.CommunicationSpeedLbl.Text = "Mode:";
             // 
             // LogicalNameTB
             // 
@@ -383,10 +383,26 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Index = 1;
             this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(352, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // LogicalNameLbl
+            // 
+            this.LogicalNameLbl.AutoSize = true;
+            this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
+            this.LogicalNameLbl.Name = "LogicalNameLbl";
+            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
+            this.LogicalNameLbl.TabIndex = 0;
+            this.LogicalNameLbl.Text = "Logical Name:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
             // GXDLMSAutoConnectView
             // 
@@ -396,9 +412,9 @@ namespace Gurux.DLMS.UI
             this.Name = "GXDLMSAutoConnectView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.TimeMenu.ResumeLayout(false);
             this.DestinationMenu.ResumeLayout(false);
+            this.TimeMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,5 +437,6 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
+        private GXButton ConnectBtn;
     }
 }

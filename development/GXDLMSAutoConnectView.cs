@@ -114,10 +114,12 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(GXActionArgs arg)
         {
+            arg.Value = (sbyte)0;
         }
 
         public void PostAction(GXActionArgs arg)
         {
+            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             arg.Action = ActionType.None;
         }
 

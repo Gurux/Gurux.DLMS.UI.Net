@@ -120,6 +120,9 @@
   <data name="ActionImplemented" xml:space="preserve">
     <value>Action accomplish.</value>
   </data>
+  <data name="ActivatePassiveCalendar" xml:space="preserve">
+    <value>Are you sure that you want to activate passive calendar?</value>
+  </data>
   <data name="ActivationFailed" xml:space="preserve">
     <value>Image activication FAILED.</value>
   </data>

@@ -351,7 +351,7 @@ namespace Gurux.DLMS.UI
             {
                 if (InvokeRequired)
                 {
-                    BeginInvoke(new UpdateTargetEventHandler(OnUpdateTarget), value);
+                    Invoke(new UpdateTargetEventHandler(OnUpdateTarget), value);
                 }
                 else
                 {
@@ -369,8 +369,11 @@ namespace Gurux.DLMS.UI
                     UpdateCaptureObjects();
                 }
                 DataTable dt = ProfileGenericView.DataSource as DataTable;
-                dt.Rows.Clear();
-                UpdateData(dt);
+                if (dt != null)
+                {
+                    dt.Rows.Clear();
+                    UpdateData(dt);
+                }
                 ProfileGenericView.Refresh();
             }
             if (index == 3)
