@@ -311,7 +311,6 @@ namespace Gurux.DLMS.UI
                         {
                             OnUpdateAccessRights(view, btn, connected && ((am & AccessMode.Write) != 0));
                         }
-                        return true;
                     }
                 }
                 else if (it.Controls.Count != 0)

@@ -247,7 +247,7 @@ namespace Gurux.DLMS.UI
                 {
                     enabled = (access & AccessMode.Write) != 0;
                 }
-                else if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
+                else
                 {
                     enabled = Target.GetMethodAccess(2) == MethodAccessMode.Access;
                 }
@@ -407,14 +407,15 @@ namespace Gurux.DLMS.UI
                         value = GXDLMSTranslator.HexToBytes(SecretTB.Text);
                     }
                     GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                    if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
+                    if (target.AuthenticationMechanismName.MechanismId == Authentication.Low)
                     {
-                        arg.Action = ActionType.Action;
-                        arg.Index = 2;
+                        arg.Index = 7;
+                        arg.Action = ActionType.Write;
                     }
                     else
                     {
-                        arg.Index = 7;
+                        arg.Action = ActionType.Action;
+                        arg.Index = 2;
                     }
                     if (arg.Action == ActionType.Write)
                     {

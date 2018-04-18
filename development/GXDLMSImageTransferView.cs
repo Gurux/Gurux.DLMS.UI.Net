@@ -414,16 +414,8 @@ namespace Gurux.DLMS.UI
                             return;
                         }
                     }
-                    if (!Properties.Settings.Default.ImageManualUpdate)
-                    {
-                        arg.Index = 6;
-                        arg.Action = ActionType.Read;
-                    }
-                    else
-                    {
-                        OnDescription(Properties.Resources.ImageActivatedTxt);
-                        arg.Action = ActionType.None;
-                    }
+                    OnDescription(Properties.Resources.ImageActivatedTxt);
+                    arg.Action = ActionType.None;
                 }
             }
         }
