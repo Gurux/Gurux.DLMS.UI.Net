@@ -491,7 +491,7 @@ namespace Gurux.DLMS.UI
                 if (this.Type == ValueFieldType.TextBox)
                 {
                     this.Type = Items == null || Items.Count == 0 ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
-                    textBox1.Multiline = tmp.Type == DataType.Array;
+                    textBox1.Multiline = tmp != null && tmp.Type == DataType.Array;
                 }
                 else if (this.Type == ValueFieldType.CompoBox)
                 {
