@@ -314,34 +314,6 @@ namespace Gurux.DLMS.UI
             return str;
         }
 
-        /// <summary>
-        /// Convert string to structure. 
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="value"></param>
-        static public object ChangeStringToStructure(string str, object[] structure)
-        {
-            if (str.StartsWith("{") && str.EndsWith("}"))
-            {
-                string[] list = str.Substring(1, str.Length - 2).Split(new char[] { ',' });
-                if (list.Length == structure.Length)
-                {
-                    object[] values = new object[list.Length];
-                    for (int pos = 0; pos != list.Length; ++pos)
-                    {
-                        if (structure[pos] == null)
-                        {
-                            break;
-                        }
-                        DataType dt = GXDLMSConverter.GetDLMSDataType(structure[pos]);
-                        values[pos] = Convert.ChangeType(list[pos].Trim(), GXDLMSConverter.GetDataType(dt));
-                    }
-                    return values;
-                }
-            }
-            return str;
-        }
-
         public class MessageBoxResult
         {
             public DialogResult Result

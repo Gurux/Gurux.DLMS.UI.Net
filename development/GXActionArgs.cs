@@ -87,6 +87,17 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
-        
+
+        /// <summary>
+        /// Is meter rebooting.
+        /// </summary>
+        /// <remarks>
+        /// This is used when new image is updated.  
+        /// </remarks>
+        public bool Rebooting
+        {
+            get;
+            set;
+        }
     }
 }

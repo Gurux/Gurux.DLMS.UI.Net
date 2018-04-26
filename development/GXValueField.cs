@@ -396,11 +396,7 @@ namespace Gurux.DLMS.UI
                 }
                 else if (dt == DataType.Array && value is string)
                 {
-                    object val = Target.GetValues()[Index - 1];
-                    if (val is object[])
-                    {
-                        value = GXHelpers.ChangeStringToStructure((string)value, (object[])val);
-                    }
+                    value = GXDLMSTranslator.XmlToValue((string)value);
                 }
                 v.Value = value;
                 if (Target.Parent.Parent is GXDLMSClient)
@@ -495,6 +491,7 @@ namespace Gurux.DLMS.UI
                 if (this.Type == ValueFieldType.TextBox)
                 {
                     this.Type = Items == null || Items.Count == 0 ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
+                    textBox1.Multiline = tmp.Type == DataType.Array;
                 }
                 else if (this.Type == ValueFieldType.CompoBox)
                 {
@@ -614,7 +611,7 @@ namespace Gurux.DLMS.UI
             string str;
             if (value != null && value.GetType().IsArray)
             {
-                str = Convert.ToString(GXHelpers.ConvertFromDLMS(value, DataType.None, DataType.None, true));
+                str = GXDLMSTranslator.ValueToXml(value);
             }
             else
             {

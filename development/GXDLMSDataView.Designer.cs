@@ -42,18 +42,19 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
-            this.ValueTB = new Gurux.DLMS.UI.GXValueField();
             this.ValueLbl = new System.Windows.Forms.Label();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ValueTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.DescriptionLbl);
             this.groupBox1.Controls.Add(this.DescriptionTB);
@@ -63,7 +64,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 113);
+            this.groupBox1.Size = new System.Drawing.Size(296, 107);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data Object";
@@ -87,19 +88,6 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Size = new System.Drawing.Size(172, 20);
             this.DescriptionTB.TabIndex = 1;
             // 
-            // ValueTB
-            // 
-            this.ValueTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ValueTB.Index = 2;
-            this.ValueTB.Location = new System.Drawing.Point(104, 71);
-            this.ValueTB.Name = "ValueTB";
-            this.ValueTB.Size = new System.Drawing.Size(171, 20);
-            this.ValueTB.TabIndex = 0;
-            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            this.ValueTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ValueTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
             // ValueLbl
             // 
             this.ValueLbl.AutoSize = true;
@@ -108,17 +96,6 @@ namespace Gurux.DLMS.UI
             this.ValueLbl.Size = new System.Drawing.Size(37, 13);
             this.ValueLbl.TabIndex = 2;
             this.ValueLbl.Text = "Value:";
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
-            this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -135,9 +112,36 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
+            // ValueTB
+            // 
+            this.ValueTB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ValueTB.Index = 2;
+            this.ValueTB.Location = new System.Drawing.Point(104, 71);
+            this.ValueTB.Name = "ValueTB";
+            this.ValueTB.NotifyChanges = false;
+            this.ValueTB.Size = new System.Drawing.Size(171, 29);
+            this.ValueTB.TabIndex = 0;
+            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ValueTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ValueTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
+            this.LogicalNameTB.TabIndex = 2;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // GXDLMSDataView
             // 
-            this.ClientSize = new System.Drawing.Size(320, 141);
+            this.ClientSize = new System.Drawing.Size(320, 131);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSDataView";
