@@ -246,8 +246,8 @@ namespace Gurux.DLMS.UI
             //Set initial values...
             ReadFromRB.Enabled = ReadLastRB.Enabled = ReadEntryBtn.Enabled = target.CaptureObjects.Count != 0;
             ReadFromRB.Checked = ReadLastRB.Checked = ReadEntryBtn.Checked = false;
-            StartEntry.Value = 0;
-            EndEntry.Value = 1;
+            StartEntry.Value = Properties.Settings.Default.ProfileGenericIndex;
+            EndEntry.Value = Properties.Settings.Default.ProfileGenericCount;
             ReadLastTB.Value = 0;
             DateTime tm;
             if (DateTime.TryParse(Properties.Settings.Default.ProfileGenericStartTime, out tm))
@@ -549,6 +549,8 @@ namespace Gurux.DLMS.UI
             {
                 target.From = StartEntry.Value;
                 target.To = EndEntry.Value;
+                Properties.Settings.Default.ProfileGenericIndex = Convert.ToInt32(StartEntry.Value);
+                Properties.Settings.Default.ProfileGenericCount = Convert.ToInt32(EndEntry.Value);
             }
         }
 

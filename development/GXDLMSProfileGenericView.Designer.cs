@@ -63,10 +63,15 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSProfileGenericView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CaptureBtn = new Gurux.DLMS.UI.GXButton();
+            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.label5 = new System.Windows.Forms.Label();
+            this.CapturePeriodTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.SortObjectTB = new Gurux.DLMS.UI.GXValueField();
             this.label4 = new System.Windows.Forms.Label();
+            this.SortModeTB = new Gurux.DLMS.UI.GXValueField();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ProfileGenericView = new System.Windows.Forms.DataGridView();
@@ -95,17 +100,12 @@ namespace Gurux.DLMS.UI
             this.ReadFromRB = new System.Windows.Forms.RadioButton();
             this.ReadLastRB = new System.Windows.Forms.RadioButton();
             this.ReadEntryBtn = new System.Windows.Forms.RadioButton();
-            this.LogicalNameLbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.CaptureBtn = new Gurux.DLMS.UI.GXButton();
-            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
-            this.CapturePeriodTB = new Gurux.DLMS.UI.GXValueField();
-            this.SortObjectTB = new Gurux.DLMS.UI.GXValueField();
-            this.SortModeTB = new Gurux.DLMS.UI.GXValueField();
             this.EntriesTB = new Gurux.DLMS.UI.GXValueField();
             this.EntriesInUseTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -144,6 +144,28 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Profile Generic";
             // 
+            // CaptureBtn
+            // 
+            this.CaptureBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CaptureBtn.Index = 2;
+            this.CaptureBtn.Location = new System.Drawing.Point(497, 61);
+            this.CaptureBtn.Name = "CaptureBtn";
+            this.CaptureBtn.Size = new System.Drawing.Size(75, 23);
+            this.CaptureBtn.TabIndex = 17;
+            this.CaptureBtn.Text = "Capture";
+            this.CaptureBtn.UseVisualStyleBackColor = true;
+            // 
+            // ResetBtn
+            // 
+            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetBtn.Index = 1;
+            this.ResetBtn.Location = new System.Drawing.Point(497, 32);
+            this.ResetBtn.Name = "ResetBtn";
+            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.ResetBtn.TabIndex = 16;
+            this.ResetBtn.Text = "Reset";
+            this.ResetBtn.UseVisualStyleBackColor = true;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -152,6 +174,17 @@ namespace Gurux.DLMS.UI
             this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "Period:";
+            // 
+            // CapturePeriodTB
+            // 
+            this.CapturePeriodTB.Index = 4;
+            this.CapturePeriodTB.Location = new System.Drawing.Point(297, 144);
+            this.CapturePeriodTB.Name = "CapturePeriodTB";
+            this.CapturePeriodTB.NotifyChanges = false;
+            this.CapturePeriodTB.Size = new System.Drawing.Size(172, 20);
+            this.CapturePeriodTB.TabIndex = 15;
+            this.CapturePeriodTB.TabStop = false;
+            this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
             // groupBox3
             // 
@@ -175,6 +208,19 @@ namespace Gurux.DLMS.UI
             this.label3.TabIndex = 14;
             this.label3.Text = "Object:";
             // 
+            // SortObjectTB
+            // 
+            this.SortObjectTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.SortObjectTB.Index = 6;
+            this.SortObjectTB.Location = new System.Drawing.Point(294, 18);
+            this.SortObjectTB.Name = "SortObjectTB";
+            this.SortObjectTB.NotifyChanges = false;
+            this.SortObjectTB.ReadOnly = true;
+            this.SortObjectTB.Size = new System.Drawing.Size(172, 20);
+            this.SortObjectTB.TabIndex = 15;
+            this.SortObjectTB.TabStop = false;
+            this.SortObjectTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -183,6 +229,18 @@ namespace Gurux.DLMS.UI
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "Mode:";
+            // 
+            // SortModeTB
+            // 
+            this.SortModeTB.Index = 5;
+            this.SortModeTB.Location = new System.Drawing.Point(94, 18);
+            this.SortModeTB.Name = "SortModeTB";
+            this.SortModeTB.NotifyChanges = false;
+            this.SortModeTB.ReadOnly = true;
+            this.SortModeTB.Size = new System.Drawing.Size(116, 20);
+            this.SortModeTB.TabIndex = 13;
+            this.SortModeTB.TabStop = false;
+            this.SortModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             // 
             // tabControl1
             // 
@@ -399,6 +457,11 @@ namespace Gurux.DLMS.UI
             this.EndEntry.Name = "EndEntry";
             this.EndEntry.Size = new System.Drawing.Size(112, 20);
             this.EndEntry.TabIndex = 11;
+            this.EndEntry.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.EndEntry.ValueChanged += new System.EventHandler(this.StartEntry_ValueChanged);
             // 
             // StartEntry
@@ -409,9 +472,19 @@ namespace Gurux.DLMS.UI
             0,
             0,
             0});
+            this.StartEntry.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.StartEntry.Name = "StartEntry";
             this.StartEntry.Size = new System.Drawing.Size(86, 20);
             this.StartEntry.TabIndex = 10;
+            this.StartEntry.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.StartEntry.ValueChanged += new System.EventHandler(this.StartEntry_ValueChanged);
             // 
             // DaysLbl
@@ -484,88 +557,6 @@ namespace Gurux.DLMS.UI
             this.ReadEntryBtn.Text = "Read Entry:";
             this.ReadEntryBtn.CheckedChanged += new System.EventHandler(this.ReadEntryRB_CheckedChanged);
             // 
-            // LogicalNameLbl
-            // 
-            this.LogicalNameLbl.AutoSize = true;
-            this.LogicalNameLbl.Location = new System.Drawing.Point(10, 144);
-            this.LogicalNameLbl.Name = "LogicalNameLbl";
-            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
-            this.LogicalNameLbl.TabIndex = 0;
-            this.LogicalNameLbl.Text = "Logical Name:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 170);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Entries:";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // CaptureBtn
-            // 
-            this.CaptureBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CaptureBtn.Index = 2;
-            this.CaptureBtn.Location = new System.Drawing.Point(497, 61);
-            this.CaptureBtn.Name = "CaptureBtn";
-            this.CaptureBtn.Size = new System.Drawing.Size(75, 23);
-            this.CaptureBtn.TabIndex = 17;
-            this.CaptureBtn.Text = "Capture";
-            this.CaptureBtn.UseVisualStyleBackColor = true;
-            // 
-            // ResetBtn
-            // 
-            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetBtn.Index = 1;
-            this.ResetBtn.Location = new System.Drawing.Point(497, 32);
-            this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.ResetBtn.TabIndex = 16;
-            this.ResetBtn.Text = "Reset";
-            this.ResetBtn.UseVisualStyleBackColor = true;
-            // 
-            // CapturePeriodTB
-            // 
-            this.CapturePeriodTB.Index = 4;
-            this.CapturePeriodTB.Location = new System.Drawing.Point(297, 144);
-            this.CapturePeriodTB.Name = "CapturePeriodTB";
-            this.CapturePeriodTB.NotifyChanges = false;
-            this.CapturePeriodTB.Size = new System.Drawing.Size(172, 20);
-            this.CapturePeriodTB.TabIndex = 15;
-            this.CapturePeriodTB.TabStop = false;
-            this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // SortObjectTB
-            // 
-            this.SortObjectTB.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.SortObjectTB.Index = 6;
-            this.SortObjectTB.Location = new System.Drawing.Point(294, 18);
-            this.SortObjectTB.Name = "SortObjectTB";
-            this.SortObjectTB.NotifyChanges = false;
-            this.SortObjectTB.ReadOnly = true;
-            this.SortObjectTB.Size = new System.Drawing.Size(172, 20);
-            this.SortObjectTB.TabIndex = 15;
-            this.SortObjectTB.TabStop = false;
-            this.SortObjectTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // SortModeTB
-            // 
-            this.SortModeTB.Index = 5;
-            this.SortModeTB.Location = new System.Drawing.Point(94, 18);
-            this.SortModeTB.Name = "SortModeTB";
-            this.SortModeTB.NotifyChanges = false;
-            this.SortModeTB.ReadOnly = true;
-            this.SortModeTB.Size = new System.Drawing.Size(116, 20);
-            this.SortModeTB.TabIndex = 13;
-            this.SortModeTB.TabStop = false;
-            this.SortModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
-            // 
             // EntriesTB
             // 
             this.EntriesTB.Index = 8;
@@ -588,6 +579,15 @@ namespace Gurux.DLMS.UI
             this.EntriesInUseTB.TabStop = false;
             this.EntriesInUseTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
             // 
+            // LogicalNameLbl
+            // 
+            this.LogicalNameLbl.AutoSize = true;
+            this.LogicalNameLbl.Location = new System.Drawing.Point(10, 144);
+            this.LogicalNameLbl.Name = "LogicalNameLbl";
+            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
+            this.LogicalNameLbl.TabIndex = 0;
+            this.LogicalNameLbl.Text = "Logical Name:";
+            // 
             // LogicalNameTB
             // 
             this.LogicalNameTB.Index = 1;
@@ -598,6 +598,21 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.TabStop = false;
             this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Entries:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
             // GXDLMSProfileGenericView
             // 

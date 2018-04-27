@@ -130,5 +130,29 @@ namespace Gurux.DLMS.UI.Properties {
                 this["UpdateSettings"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ProfileGenericIndex {
+            get {
+                return ((int)(this["ProfileGenericIndex"]));
+            }
+            set {
+                this["ProfileGenericIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ProfileGenericCount {
+            get {
+                return ((int)(this["ProfileGenericCount"]));
+            }
+            set {
+                this["ProfileGenericCount"] = value;
+            }
+        }
     }
 }
