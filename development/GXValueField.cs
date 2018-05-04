@@ -609,7 +609,7 @@ namespace Gurux.DLMS.UI
         void OnUpdateValue(object value)
         {
             string str;
-            if (value != null && value.GetType().IsArray)
+            if (value != null && !(value is byte[]) && value.GetType().IsArray)
             {
                 str = GXDLMSTranslator.ValueToXml(value);
             }

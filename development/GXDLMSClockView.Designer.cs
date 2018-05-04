@@ -75,9 +75,15 @@ namespace Gurux.DLMS.UI
             this.BeginTB = new Gurux.DLMS.UI.GXValueField();
             this.BeginLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.AdjustToMinuteBtn = new Gurux.DLMS.UI.GXButton();
+            this.AdjustToPresetTimeBtn = new Gurux.DLMS.UI.GXButton();
+            this.AdjustToMeasuringPeriodBtn = new Gurux.DLMS.UI.GXButton();
+            this.AdjustToQuarterBtn = new Gurux.DLMS.UI.GXButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -100,7 +106,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 406);
+            this.groupBox1.Size = new System.Drawing.Size(367, 449);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Clock Object";
@@ -345,9 +351,67 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
+            // AdjustToMinuteBtn
+            // 
+            this.AdjustToMinuteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdjustToMinuteBtn.Index = 3;
+            this.AdjustToMinuteBtn.Location = new System.Drawing.Point(101, 45);
+            this.AdjustToMinuteBtn.Name = "AdjustToMinuteBtn";
+            this.AdjustToMinuteBtn.Size = new System.Drawing.Size(100, 23);
+            this.AdjustToMinuteBtn.TabIndex = 23;
+            this.AdjustToMinuteBtn.Text = "Minute";
+            this.AdjustToMinuteBtn.UseVisualStyleBackColor = true;
+            // 
+            // AdjustToPresetTimeBtn
+            // 
+            this.AdjustToPresetTimeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdjustToPresetTimeBtn.Index = 4;
+            this.AdjustToPresetTimeBtn.Location = new System.Drawing.Point(207, 45);
+            this.AdjustToPresetTimeBtn.Name = "AdjustToPresetTimeBtn";
+            this.AdjustToPresetTimeBtn.Size = new System.Drawing.Size(100, 23);
+            this.AdjustToPresetTimeBtn.TabIndex = 24;
+            this.AdjustToPresetTimeBtn.Text = "Preset time";
+            this.AdjustToPresetTimeBtn.UseVisualStyleBackColor = true;
+            // 
+            // AdjustToMeasuringPeriodBtn
+            // 
+            this.AdjustToMeasuringPeriodBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdjustToMeasuringPeriodBtn.Index = 2;
+            this.AdjustToMeasuringPeriodBtn.Location = new System.Drawing.Point(207, 16);
+            this.AdjustToMeasuringPeriodBtn.Name = "AdjustToMeasuringPeriodBtn";
+            this.AdjustToMeasuringPeriodBtn.Size = new System.Drawing.Size(100, 23);
+            this.AdjustToMeasuringPeriodBtn.TabIndex = 25;
+            this.AdjustToMeasuringPeriodBtn.Text = "Measuring period";
+            this.AdjustToMeasuringPeriodBtn.UseVisualStyleBackColor = true;
+            // 
+            // AdjustToQuarterBtn
+            // 
+            this.AdjustToQuarterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdjustToQuarterBtn.Index = 1;
+            this.AdjustToQuarterBtn.Location = new System.Drawing.Point(101, 16);
+            this.AdjustToQuarterBtn.Name = "AdjustToQuarterBtn";
+            this.AdjustToQuarterBtn.Size = new System.Drawing.Size(100, 23);
+            this.AdjustToQuarterBtn.TabIndex = 26;
+            this.AdjustToQuarterBtn.Text = "Quarter";
+            this.AdjustToQuarterBtn.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.AdjustToQuarterBtn);
+            this.groupBox3.Controls.Add(this.AdjustToPresetTimeBtn);
+            this.groupBox3.Controls.Add(this.AdjustToMeasuringPeriodBtn);
+            this.groupBox3.Controls.Add(this.AdjustToMinuteBtn);
+            this.groupBox3.Location = new System.Drawing.Point(11, 373);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(368, 76);
+            this.groupBox3.TabIndex = 27;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Adjust to";
+            // 
             // GXDLMSClockView
             // 
-            this.ClientSize = new System.Drawing.Size(391, 435);
+            this.ClientSize = new System.Drawing.Size(391, 478);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "GXDLMSClockView";
@@ -356,6 +420,7 @@ namespace Gurux.DLMS.UI
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -367,5 +432,10 @@ namespace Gurux.DLMS.UI
         private GXButton UpdateTimeBtn;
         private CheckBox TimeZoneCb;
         private GXButton CurrentTimeZoneBtn;
+        private GXButton AdjustToQuarterBtn;
+        private GXButton AdjustToMeasuringPeriodBtn;
+        private GXButton AdjustToPresetTimeBtn;
+        private GXButton AdjustToMinuteBtn;
+        private GroupBox groupBox3;
     }
 }

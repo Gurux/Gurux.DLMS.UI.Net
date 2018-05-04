@@ -33,11 +33,8 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
@@ -153,26 +150,33 @@ namespace Gurux.DLMS.UI
         public void PreAction(GXActionArgs arg)
         {
             DialogResult ret;
-            if (arg.Index == 2)
+            if (arg.Action == ActionType.Write)
             {
-                //Update current time
-                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                if (ret == DialogResult.Yes)
+                if (arg.Index == 2)
                 {
-                    (Target as GXDLMSClock).Time = DateTime.Now;
+                    //Update current time
+                    ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
+                    {
+                        (Target as GXDLMSClock).Time = DateTime.Now;
+                    }
+                    arg.Handled = ret != DialogResult.Yes;
                 }
-                arg.Handled = ret != DialogResult.Yes;
+                else if (arg.Index == 3)
+                {
+                    //Update current time zone.
+                    ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeZoneSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
+                    {
+                        (Target as GXDLMSClock).TimeZone = -(int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
+                        Target.UpdateDirty(3, (Target as GXDLMSClock).TimeZone);
+                    }
+                    arg.Handled = ret != DialogResult.Yes;
+                }
             }
-            else if (arg.Index == 3)
+            else if (arg.Action == ActionType.Action)
             {
-                //Update current time zone.
-                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeZoneSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                if (ret == DialogResult.Yes)
-                {
-                    (Target as GXDLMSClock).TimeZone = -(int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
-                    Target.UpdateDirty(3, (Target as GXDLMSClock).TimeZone);
-                }
-                arg.Handled = ret != DialogResult.Yes;
+                arg.Value = (sbyte)0;
             }
         }
 
