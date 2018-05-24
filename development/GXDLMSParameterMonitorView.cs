@@ -68,7 +68,7 @@ namespace Gurux.DLMS.UI
                 {
                     TargetTb.Text = target.ChangedParameter.Target.ToString();
                     IndexTb.Text = target.ChangedParameter.AttributeIndex.ToString();
-                    ValueTb.Text = Convert.ToString(GXHelpers.ConvertFromDLMS(target.ChangedParameter.Value, DataType.None, DataType.None, true));
+                    ValueTb.Text = Convert.ToString(GXHelpers.ConvertFromDLMS(target.ChangedParameter.Value, DataType.None, DataType.None, true, false));
                 }
                 else
                 {

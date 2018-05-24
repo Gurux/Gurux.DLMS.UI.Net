@@ -34,10 +34,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects.Enums;
 
@@ -157,7 +155,7 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 ObjectsAddBtn.Enabled = ObjectsEditBtn.Enabled = 
-                    ObjectsRemoveBtn.Enabled = ObjectsLV.Enabled = enabled;                
+                    ObjectsRemoveBtn.Enabled = ObjectsMenu.Enabled = enabled;                
             }
             else if (index == 3)
             {
@@ -167,7 +165,7 @@ namespace Gurux.DLMS.UI
             else if (index == 4)
             {
                 CommunicationAdd.Enabled = CommunicationEdit.Enabled = 
-                    CommunicationRemove.Enabled = CommunicationWindowLV.Enabled = enabled;
+                    CommunicationRemove.Enabled = CommunicationWindowMenu.Enabled = enabled;
             }
             else
             {
