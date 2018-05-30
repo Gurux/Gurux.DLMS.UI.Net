@@ -97,6 +97,7 @@ namespace Gurux.DLMS.UI
             {
                 addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
                     AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = enabled;
+                ScriptId.ReadOnly = !enabled;
             }
             else
             {
@@ -119,20 +120,12 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                if (ScriptsTree.SelectedNode != null)
+                DialogResult ret = GXHelpers.ShowMessageBox(this, Properties.Resources.ScriptTableExecute, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
                 {
-                    DialogResult ret = GXHelpers.ShowMessageBox(this, Properties.Resources.ScriptTableExecute, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    if (ret == DialogResult.Yes)
-                    {
-                        arg.Value = (Target as GXDLMSScriptTable).Execute(arg.Client, (GXDLMSScript)ScriptsTree.SelectedNode.Tag);
-                    }
-                    arg.Handled = ret != DialogResult.Yes;
+                    arg.Value = (Target as GXDLMSScriptTable).Execute(arg.Client, UInt16.Parse(ScriptId.Text));
                 }
-                else
-                {
-                    //Do nothing if script is not select.
-                    arg.Handled = true;
-                }
+                arg.Handled = ret != DialogResult.Yes;
             }
         }
 
@@ -147,6 +140,10 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 
@@ -276,6 +273,40 @@ namespace Gurux.DLMS.UI
         private void ScriptsTree_DoubleClick(object sender, EventArgs e)
         {
             EditBtn_Click(null, null);
+        }
+
+        /// <summary>
+        /// Update script ID after user selects new node.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScriptsTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                if (e.Node != null)
+                {
+                    GXDLMSScriptTable st = Target as GXDLMSScriptTable;
+                    object target = e.Node.Tag;
+                    if (target is GXDLMSScript)
+                    {
+                        ScriptId.Text = (target as GXDLMSScript).Id.ToString();
+                    }
+                    else if (target is GXDLMSScriptAction)
+                    {
+                        GXDLMSScript s = ScriptsTree.SelectedNode.Parent.Tag as GXDLMSScript;
+                        ScriptId.Text = s.Id.ToString();
+                    }
+                }
+                else
+                {
+                    ScriptId.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -37,6 +37,7 @@ public partial class GXDLMSScriptTableView
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSScriptTableView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UpdateTimeBtn = new Gurux.DLMS.UI.GXButton();
             this.RemoveBtn = new System.Windows.Forms.Button();
             this.EditBtn = new System.Windows.Forms.Button();
             this.AddBtn = new System.Windows.Forms.Button();
@@ -46,10 +47,11 @@ public partial class GXDLMSScriptTableView
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScriptsLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
-            this.UpdateTimeBtn = new Gurux.DLMS.UI.GXButton();
+            this.ScriptId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -59,6 +61,8 @@ public partial class GXDLMSScriptTableView
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.ScriptId);
             this.groupBox1.Controls.Add(this.UpdateTimeBtn);
             this.groupBox1.Controls.Add(this.RemoveBtn);
             this.groupBox1.Controls.Add(this.EditBtn);
@@ -69,15 +73,26 @@ public partial class GXDLMSScriptTableView
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 196);
+            this.groupBox1.Size = new System.Drawing.Size(474, 196);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Script Table Object";
             // 
+            // UpdateTimeBtn
+            // 
+            this.UpdateTimeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateTimeBtn.Index = 1;
+            this.UpdateTimeBtn.Location = new System.Drawing.Point(350, 21);
+            this.UpdateTimeBtn.Name = "UpdateTimeBtn";
+            this.UpdateTimeBtn.Size = new System.Drawing.Size(75, 23);
+            this.UpdateTimeBtn.TabIndex = 4;
+            this.UpdateTimeBtn.Text = "Execute";
+            this.UpdateTimeBtn.UseVisualStyleBackColor = true;
+            // 
             // RemoveBtn
             // 
             this.RemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveBtn.Location = new System.Drawing.Point(264, 167);
+            this.RemoveBtn.Location = new System.Drawing.Point(352, 167);
             this.RemoveBtn.Name = "RemoveBtn";
             this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
             this.RemoveBtn.TabIndex = 3;
@@ -88,7 +103,7 @@ public partial class GXDLMSScriptTableView
             // EditBtn
             // 
             this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditBtn.Location = new System.Drawing.Point(183, 167);
+            this.EditBtn.Location = new System.Drawing.Point(271, 167);
             this.EditBtn.Name = "EditBtn";
             this.EditBtn.Size = new System.Drawing.Size(75, 23);
             this.EditBtn.TabIndex = 2;
@@ -99,7 +114,7 @@ public partial class GXDLMSScriptTableView
             // AddBtn
             // 
             this.AddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddBtn.Location = new System.Drawing.Point(102, 167);
+            this.AddBtn.Location = new System.Drawing.Point(190, 167);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(75, 23);
             this.AddBtn.TabIndex = 1;
@@ -118,8 +133,9 @@ public partial class GXDLMSScriptTableView
             this.ScriptsTree.Indent = 15;
             this.ScriptsTree.Location = new System.Drawing.Point(102, 47);
             this.ScriptsTree.Name = "ScriptsTree";
-            this.ScriptsTree.Size = new System.Drawing.Size(237, 114);
+            this.ScriptsTree.Size = new System.Drawing.Size(325, 114);
             this.ScriptsTree.TabIndex = 0;
+            this.ScriptsTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ScriptsTree_AfterSelect);
             this.ScriptsTree.DoubleClick += new System.EventHandler(this.ScriptsTree_DoubleClick);
             // 
             // contextMenuStrip1
@@ -161,6 +177,18 @@ public partial class GXDLMSScriptTableView
             this.ScriptsLbl.TabIndex = 2;
             this.ScriptsLbl.Text = "Scripts:";
             // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(126, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -176,32 +204,27 @@ public partial class GXDLMSScriptTableView
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // LogicalNameTB
+            // ScriptId
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(154, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ScriptId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScriptId.Location = new System.Drawing.Point(283, 22);
+            this.ScriptId.Name = "ScriptId";
+            this.ScriptId.Size = new System.Drawing.Size(64, 20);
+            this.ScriptId.TabIndex = 5;
             // 
-            // UpdateTimeBtn
+            // label1
             // 
-            this.UpdateTimeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateTimeBtn.Index = 1;
-            this.UpdateTimeBtn.Location = new System.Drawing.Point(262, 21);
-            this.UpdateTimeBtn.Name = "UpdateTimeBtn";
-            this.UpdateTimeBtn.Size = new System.Drawing.Size(75, 23);
-            this.UpdateTimeBtn.TabIndex = 4;
-            this.UpdateTimeBtn.Text = "Execute";
-            this.UpdateTimeBtn.UseVisualStyleBackColor = true;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(231, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Script Id:";
             // 
             // GXDLMSScriptTableView
             // 
-            this.ClientSize = new System.Drawing.Size(410, 220);
+            this.ClientSize = new System.Drawing.Size(498, 220);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSScriptTableView";
@@ -224,5 +247,7 @@ public partial class GXDLMSScriptTableView
     private ToolStripMenuItem editToolStripMenuItem;
     private ToolStripMenuItem removeToolStripMenuItem;
         private GXButton UpdateTimeBtn;
+        private Label label1;
+        private TextBox ScriptId;
     }
 }

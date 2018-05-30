@@ -362,7 +362,6 @@ namespace Gurux.DLMS.UI
                         value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
                     }
                 }
-
                 dt = Target.GetDataType(Index);
                 if (dt != DataType.None && dt != DataType.Enum && dt != DataType.Array)
                 {
@@ -388,7 +387,8 @@ namespace Gurux.DLMS.UI
                     else
                     {
                         if (dt != DataType.Structure && dt != DataType.Array && dt != DataType.CompactArray
-                            && !(Target is GXDLMSRegister && Index == 2))
+                            && !(Target is GXDLMSRegister && Index == 2) &&
+                                            !(Target is GXDLMSIp4Setup) && !(Target is GXDLMSIp6Setup))
                         {
                             value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
                         }

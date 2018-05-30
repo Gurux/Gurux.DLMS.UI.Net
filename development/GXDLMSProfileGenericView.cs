@@ -176,6 +176,20 @@ namespace Gurux.DLMS.UI
                 for (int pos = dt.Rows.Count; pos < target.Buffer.Count; ++pos)
                 {
                     object[] row = target.Buffer[pos];
+                    if (row != null)
+                    {
+                        for (int col = 0; col != row.Length; ++col)
+                        {
+                            if (row[col] is byte[])
+                            {
+                                row[col] = GXDLMSTranslator.ToHex((byte[])row[col], true);
+                            }
+                            else if (row[col] is Object[])
+                            {
+                                row[col] = GXDLMSTranslator.ValueToXml(row[col]);
+                            }
+                        }
+                    }
                     dt.LoadDataRow(row, true);
                 }
             }

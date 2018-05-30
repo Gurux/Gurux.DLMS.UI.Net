@@ -40,6 +40,10 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSWirelessModeQchannelView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AddressMaskTb = new Gurux.DLMS.UI.GXValueField();
+            this.AddressMaskLbl = new System.Windows.Forms.Label();
+            this.DeviceAddressTb = new Gurux.DLMS.UI.GXValueField();
+            this.DeviceAddressLbl = new System.Windows.Forms.Label();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
             this.AddressStateTb = new Gurux.DLMS.UI.GXValueField();
@@ -47,10 +51,6 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.DeviceAddressTb = new Gurux.DLMS.UI.GXValueField();
-            this.DeviceAddressLbl = new System.Windows.Forms.Label();
-            this.AddressMaskTb = new Gurux.DLMS.UI.GXValueField();
-            this.AddressMaskLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +76,48 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wireless Mode Q channel";
+            // 
+            // AddressMaskTb
+            // 
+            this.AddressMaskTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddressMaskTb.Index = 4;
+            this.AddressMaskTb.Location = new System.Drawing.Point(104, 124);
+            this.AddressMaskTb.Name = "AddressMaskTb";
+            this.AddressMaskTb.NotifyChanges = false;
+            this.AddressMaskTb.Size = new System.Drawing.Size(171, 20);
+            this.AddressMaskTb.TabIndex = 9;
+            this.AddressMaskTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // AddressMaskLbl
+            // 
+            this.AddressMaskLbl.AutoSize = true;
+            this.AddressMaskLbl.Location = new System.Drawing.Point(8, 127);
+            this.AddressMaskLbl.Name = "AddressMaskLbl";
+            this.AddressMaskLbl.Size = new System.Drawing.Size(77, 13);
+            this.AddressMaskLbl.TabIndex = 8;
+            this.AddressMaskLbl.Text = "Address Mask:";
+            // 
+            // DeviceAddressTb
+            // 
+            this.DeviceAddressTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeviceAddressTb.Index = 3;
+            this.DeviceAddressTb.Location = new System.Drawing.Point(104, 98);
+            this.DeviceAddressTb.Name = "DeviceAddressTb";
+            this.DeviceAddressTb.NotifyChanges = false;
+            this.DeviceAddressTb.Size = new System.Drawing.Size(171, 20);
+            this.DeviceAddressTb.TabIndex = 7;
+            this.DeviceAddressTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            // 
+            // DeviceAddressLbl
+            // 
+            this.DeviceAddressLbl.AutoSize = true;
+            this.DeviceAddressLbl.Location = new System.Drawing.Point(8, 101);
+            this.DeviceAddressLbl.Name = "DeviceAddressLbl";
+            this.DeviceAddressLbl.Size = new System.Drawing.Size(85, 13);
+            this.DeviceAddressLbl.TabIndex = 6;
+            this.DeviceAddressLbl.Text = "Device Address:";
             // 
             // DescriptionLbl
             // 
@@ -105,9 +147,10 @@ namespace Gurux.DLMS.UI
             this.AddressStateTb.Location = new System.Drawing.Point(104, 71);
             this.AddressStateTb.Name = "AddressStateTb";
             this.AddressStateTb.NotifyChanges = false;
+            this.AddressStateTb.ReadOnly = true;
             this.AddressStateTb.Size = new System.Drawing.Size(171, 57);
             this.AddressStateTb.TabIndex = 0;
-            this.AddressStateTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AddressStateTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
             this.AddressStateTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.AddressStateTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -146,48 +189,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // DeviceAddressTb
-            // 
-            this.DeviceAddressTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeviceAddressTb.Index = 3;
-            this.DeviceAddressTb.Location = new System.Drawing.Point(104, 98);
-            this.DeviceAddressTb.Name = "DeviceAddressTb";
-            this.DeviceAddressTb.NotifyChanges = false;
-            this.DeviceAddressTb.Size = new System.Drawing.Size(171, 20);
-            this.DeviceAddressTb.TabIndex = 7;
-            this.DeviceAddressTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // DeviceAddressLbl
-            // 
-            this.DeviceAddressLbl.AutoSize = true;
-            this.DeviceAddressLbl.Location = new System.Drawing.Point(8, 101);
-            this.DeviceAddressLbl.Name = "DeviceAddressLbl";
-            this.DeviceAddressLbl.Size = new System.Drawing.Size(85, 13);
-            this.DeviceAddressLbl.TabIndex = 6;
-            this.DeviceAddressLbl.Text = "Device Address:";
-            // 
-            // AddressMaskTb
-            // 
-            this.AddressMaskTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressMaskTb.Index = 4;
-            this.AddressMaskTb.Location = new System.Drawing.Point(104, 124);
-            this.AddressMaskTb.Name = "AddressMaskTb";
-            this.AddressMaskTb.NotifyChanges = false;
-            this.AddressMaskTb.Size = new System.Drawing.Size(171, 20);
-            this.AddressMaskTb.TabIndex = 9;
-            this.AddressMaskTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
-            // 
-            // AddressMaskLbl
-            // 
-            this.AddressMaskLbl.AutoSize = true;
-            this.AddressMaskLbl.Location = new System.Drawing.Point(8, 127);
-            this.AddressMaskLbl.Name = "AddressMaskLbl";
-            this.AddressMaskLbl.Size = new System.Drawing.Size(77, 13);
-            this.AddressMaskLbl.TabIndex = 8;
-            this.AddressMaskLbl.Text = "Address Mask:";
             // 
             // GXDLMSWirelessModeQchannelView
             // 
