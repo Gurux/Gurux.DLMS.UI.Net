@@ -49,7 +49,7 @@ namespace Gurux.DLMS.UI
             {
                 if (arrayAsString && data != null && data.GetType().IsArray)
                 {
-                    data = GXHelpers.GetArrayAsString(data);
+                    data = GXDLMSTranslator.ValueToXml(data);
                 }
                 return data;
             }
@@ -188,45 +188,7 @@ namespace Gurux.DLMS.UI
                 }
             }
             return str;
-        }
-
-        static public string GetArrayAsString(object data)
-        {
-            if (data is byte[])
-            {
-                return GXDLMSTranslator.ToHex((byte[])data);
-            }
-            Array arr = (Array)data;
-            string str = null;
-            foreach (object it in arr)
-            {
-                if (str == null)
-                {
-                    str = "{";
-                }
-                else
-                {
-                    str += ", ";
-                }
-                if (it != null && it.GetType().IsArray)
-                {
-                    str += GetArrayAsString(it);
-                }
-                else
-                {
-                    str += Convert.ToString(it);
-                }
-            }
-            if (str == null)
-            {
-                str = "";
-            }
-            else
-            {
-                str += "}";
-            }
-            return str;
-        }
+        }       
 
         static public string ConvertDLMS2String(object data)
         {

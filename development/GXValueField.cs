@@ -300,7 +300,7 @@ namespace Gurux.DLMS.UI
             else if (original is object[] && value is string)
             {
                 //If user try to change structure.
-                return string.Compare(GXHelpers.GetArrayAsString(original), Convert.ToString(value)) == 0;
+                return string.Compare(GXDLMSTranslator.ValueToXml(original), Convert.ToString(value)) == 0;
             }
             else if ((original is GXDateTime || original is GXDate || original is GXDate) && value is string)
             {
