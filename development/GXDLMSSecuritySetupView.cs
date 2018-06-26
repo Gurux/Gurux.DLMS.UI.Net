@@ -131,7 +131,7 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                if (arg.Action == ActionType.Action && arg.Index == 2)
+                if (arg.Exception == null && arg.Action == ActionType.Action && arg.Index == 2)
                 {
                     GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
