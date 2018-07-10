@@ -71,6 +71,7 @@ namespace Gurux.DLMS.UI
             if (index == 5)
             {
                 GXDLMSPppSetup target = Target as GXDLMSPppSetup;
+                UserNameTB.TextChanged -= new System.EventHandler(this.UserNameTB_TextChanged);
                 if (target.UserName != null)
                 {
                     UserNameTB.Text = ASCIIEncoding.ASCII.GetString(target.UserName);
@@ -79,6 +80,9 @@ namespace Gurux.DLMS.UI
                 {
                     UserNameTB.Text = "";
                 }
+                UserNameTB.TextChanged += new System.EventHandler(this.UserNameTB_TextChanged);
+
+                PasswordTB.TextChanged -= new System.EventHandler(this.PasswordTB_TextChanged);
                 if (target.Password != null)
                 {
                     PasswordTB.Text = ASCIIEncoding.ASCII.GetString(target.Password);
@@ -87,6 +91,7 @@ namespace Gurux.DLMS.UI
                 {
                     PasswordTB.Text = "";
                 }
+                PasswordTB.TextChanged += new System.EventHandler(this.PasswordTB_TextChanged);
             }
             else
             {
@@ -153,5 +158,37 @@ namespace Gurux.DLMS.UI
 
         }
 
+        private void UserNameTB_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PasswordTB_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (Target as GXDLMSPppSetup).Password = ASCIIEncoding.ASCII.GetBytes(PasswordTB.Text);
+                Target.UpdateDirty(5, (Target as GXDLMSPppSetup).Password);
+                errorProvider1.SetError(PasswordTB, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UserNameTB_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (Target as GXDLMSPppSetup).UserName = ASCIIEncoding.ASCII.GetBytes(UserNameTB.Text);
+                Target.UpdateDirty(5, (Target as GXDLMSPppSetup).UserName);
+                errorProvider1.SetError(UserNameTB, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
