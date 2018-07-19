@@ -97,7 +97,6 @@ namespace Gurux.DLMS.UI
             {
                 addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
                     AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = enabled;
-                ScriptId.ReadOnly = !enabled;
             }
             else
             {
@@ -108,6 +107,8 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
+            bool enabled = connected && (mode & MethodAccessMode.Access) != 0;
+            ScriptId.ReadOnly = !enabled;
         }
 
         delegate void ExecuteScriptEventHandler(GXActionArgs arg);

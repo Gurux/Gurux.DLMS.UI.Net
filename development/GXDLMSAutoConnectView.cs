@@ -248,8 +248,8 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = DestinationLv.Items.Add(tmp);
                     entries.Add(tmp);
                     errorProvider1.SetError(DestinationLv, Properties.Resources.ValueChangedTxt);
-                    Target.UpdateDirty(6, target.Destinations);
                     target.Destinations = entries.ToArray();
+                    Target.UpdateDirty(6, target.Destinations);
                 }
             }
             catch (Exception ex)
