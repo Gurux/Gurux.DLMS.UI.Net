@@ -170,8 +170,8 @@ namespace Gurux.DLMS.UI
                     li.Tag = it;
                     entries.Add(it);
                     errorProvider1.SetError(Time, Properties.Resources.ValueChangedTxt);
-                    Target.UpdateDirty(4, target.ExecutionTime);
                     target.ExecutionTime = entries.ToArray();
+                    Target.UpdateDirty(4, target.ExecutionTime);
                 }
             }
             catch (Exception ex)
@@ -203,8 +203,8 @@ namespace Gurux.DLMS.UI
                     {
                         li.SubItems[0].Text = it.ToFormatString();
                         errorProvider1.SetError(Time, Properties.Resources.ValueChangedTxt);
-                        Target.UpdateDirty(4, target.ExecutionTime);
                         target.ExecutionTime = entries.ToArray();
+                        Target.UpdateDirty(4, target.ExecutionTime);
                     }
                 }
             }
