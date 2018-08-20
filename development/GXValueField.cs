@@ -42,9 +42,33 @@ using Gurux.DLMS.ManufacturerSettings;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using System.Collections;
+using System.IO;
+using System.Xml;
 
 namespace Gurux.DLMS.UI
 {
+    internal class LogicalName
+    {
+        readonly string logicalName;
+        public LogicalName(string value)
+        {
+            logicalName = value;
+        }
+        public static implicit operator string(LogicalName value)
+        {
+            return value.logicalName;
+        }
+        public static implicit operator LogicalName(string value)
+        {
+            return new LogicalName(value);
+        }
+
+        public override string ToString()
+        {
+            return logicalName;
+        }
+    }
+
     /// <summary>
     /// How value is shown.
     /// </summary>
@@ -57,15 +81,19 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Value is shown as compo box.
         /// </summary>
-        CompoBox = 2,
+        CompoBox,
         /// <summary>
         /// Value is shown as list box.
         /// </summary>
-        ListBox = 3,
+        ListBox,
         /// <summary>
         /// Value is shown as checked list box.
         /// </summary>
-        CheckedListBox = 4
+        CheckedListBox,
+        /// <summary>
+        /// Value is shown as XML format.
+        /// </summary>
+        Xml
     }
 
     delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
@@ -259,11 +287,16 @@ namespace Gurux.DLMS.UI
                 {
                     checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
                 }
+                else if (Type == ValueFieldType.Xml)
+                {
+                    dataGridView1.CellValueChanged -= OnCellValueChanged;
+                }
                 type = value;
                 textBox1.Visible = type == ValueFieldType.TextBox;
                 comboBox1.Visible = type == ValueFieldType.CompoBox;
                 listBox1.Visible = type == ValueFieldType.ListBox;
                 checkedlistBox1.Visible = type == ValueFieldType.CheckedListBox;
+                dataGridView1.Visible = type == ValueFieldType.Xml;
                 if (Type == ValueFieldType.CompoBox)
                 {
                     comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
@@ -272,6 +305,101 @@ namespace Gurux.DLMS.UI
                 {
                     checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
                 }
+                else if (Type == ValueFieldType.Xml)
+                {
+                    dataGridView1.CellValueChanged += OnCellValueChanged;
+                }
+            }
+        }
+
+        /// <summary>
+        /// User adds new row.
+        /// </summary>
+        private void DataGridView1_RowsAdded(object sender, System.Windows.Forms.DataGridViewRowsAddedEventArgs e)
+        {
+            if (dataGridView1.DataSource != null && dataGridView1.RowCount != 0)
+            {
+                OnCellValueChanged(null, new DataGridViewCellEventArgs(0, e.RowIndex));
+            }
+        }
+
+        /// <summary>
+        /// User removes selected rows from the data grid.
+        /// </summary>
+        private void DataGridView1_RowsRemoved(object sender, System.Windows.Forms.DataGridViewRowsRemovedEventArgs e)
+        {
+            if (dataGridView1.RowCount != 0)
+            {
+                OnCellValueChanged(null, new DataGridViewCellEventArgs(0, e.RowIndex));
+            }
+        }
+
+        private void DataGridView1_DataError(object sender, System.Windows.Forms.DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(this, e.Exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            e.Cancel = true;
+        }
+
+
+        /// <summary>
+        /// User modifies data grid cell.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)dataGridView1.DataSource;
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("<Array>");
+                //Add new rows.
+                foreach (DataGridViewRow r in dataGridView1.Rows)
+                {
+                    if (r.DataBoundItem != null)
+                    {
+                        DataRow row = ((DataRowView)r.DataBoundItem).Row;
+                        sb.AppendLine("<Structure>");
+                        int pos = 0;
+                        foreach (object it in row.ItemArray)
+                        {
+                            DataType type = dataTypes[pos];
+                            ++pos;
+                            sb.Append("<" + type);
+                            if (it is LogicalName)
+                            {
+                                sb.AppendLine(" Value=\"" + GXDLMSTranslator.ToHex(GXDLMSConverter.LogicalNameToBytes(it.ToString())) + "\" />");
+                            }
+                            if (it is byte[])
+                            {
+                                sb.AppendLine(" Value=\"" + GXDLMSTranslator.ToHex((byte[])it) + "\" />");
+                            }
+                            else
+                            {
+                                sb.AppendLine(" Value=\"" + it + "\" />");
+                            }
+                        }
+                        sb.AppendLine("</Structure>");
+                    }
+                    else if (dataGridView1.Rows.Count == 1)
+                    {
+                        return;
+                    }
+                }
+                sb.AppendLine("</Array>");
+                try
+                {
+                    SetDirty(true, sb.ToString());
+
+                }
+                catch (FormatException)
+                {
+                    //User has not set all the fields.
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -490,8 +618,17 @@ namespace Gurux.DLMS.UI
                 }
                 if (this.Type == ValueFieldType.TextBox)
                 {
-                    this.Type = Items == null || Items.Count == 0 ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
-                    textBox1.Multiline = tmp != null && tmp.Type == DataType.Array;
+                    //DataGridView
+                    GXDLMSAttributeSettings arr = target.Attributes.Find(index);
+                    if (arr != null && !string.IsNullOrEmpty(arr.Xml))
+                    {
+                        this.Type = ValueFieldType.Xml;
+                    }
+                    else
+                    {
+                        this.Type = Items == null || Items.Count == 0 ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
+                        textBox1.Multiline = tmp != null && tmp.Type == DataType.Array;
+                    }
                 }
                 else if (this.Type == ValueFieldType.CompoBox)
                 {
@@ -553,6 +690,15 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
+                else if (this.Type == ValueFieldType.Xml)
+                {
+                    GXDLMSAttributeSettings arr = target.Attributes.Find(index);
+                    if (arr == null || string.IsNullOrEmpty(arr.Xml))
+                    {
+                        this.Type = ValueFieldType.TextBox;
+                        UpdateValueItems(target, index, value);
+                    }
+                }
             }
         }
 
@@ -567,15 +713,19 @@ namespace Gurux.DLMS.UI
                 }
                 else if (Type == ValueFieldType.CompoBox)
                 {
-                    return this.comboBox1.Enabled;
+                    return !this.comboBox1.Enabled;
                 }
                 else if (Type == ValueFieldType.ListBox)
                 {
-                    return this.listBox1.Enabled;
+                    return !this.listBox1.Enabled;
                 }
                 else if (Type == ValueFieldType.CheckedListBox)
                 {
-                    return this.checkedlistBox1.Enabled;
+                    return !this.checkedlistBox1.Enabled;
+                }
+                else if (Type == ValueFieldType.Xml)
+                {
+                    return this.dataGridView1.ReadOnly;
                 }
                 throw new InvalidExpressionException("");
             }
@@ -597,6 +747,10 @@ namespace Gurux.DLMS.UI
                 {
                     this.checkedlistBox1.Enabled = !value;
                 }
+                else if (Type == ValueFieldType.Xml)
+                {
+                    this.dataGridView1.ReadOnly = value;
+                }
                 else
                 {
                     throw new InvalidExpressionException();
@@ -608,14 +762,17 @@ namespace Gurux.DLMS.UI
 
         void OnUpdateValue(object value)
         {
-            string str;
-            if (value != null && !(value is byte[]) && value.GetType().IsArray)
+            string str = "";
+            if (Type != ValueFieldType.Xml)
             {
-                str = GXDLMSTranslator.ValueToXml(value);
-            }
-            else
-            {
-                str = GXHelpers.ConvertDLMS2String(value);
+                if (value != null && !(value is byte[]) && value.GetType().IsArray)
+                {
+                    str = GXDLMSTranslator.ValueToXml(value);
+                }
+                else
+                {
+                    str = GXHelpers.ConvertDLMS2String(value);
+                }
             }
             if (Type == ValueFieldType.TextBox)
             {
@@ -736,10 +893,225 @@ namespace Gurux.DLMS.UI
                     return;
                 }
             }
+            else if (Type == ValueFieldType.Xml)
+            {
+                this.dataGridView1.RowsRemoved -= DataGridView1_RowsRemoved;
+                this.dataGridView1.Columns.Clear();
+                this.dataGridView1.RowsRemoved += DataGridView1_RowsRemoved;
+                this.dataGridView1.RowsAdded -= DataGridView1_RowsAdded;
+                string schema = Target.Attributes.Find(Index).Xml;
+                dataTypes.Clear();
+                if (schema != null)
+                {
+                    DataTable dt = new DataTable();
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(schema);
+                    XmlNodeList list = doc.ChildNodes;
+                    if (list.Count != 0)
+                    {
+                        if (list[0].Name == "Array")
+                        {
+                            list = list[0].ChildNodes;
+                        }
+                        //There is only one row.
+                        if (list[0].Name == "Structure")
+                        {
+                            list = list[0].ChildNodes;
+                        }
+                    }
+                    List<object> row = new List<object>();
+                    int index = 0;
+                    foreach (XmlNode it in list)
+                    {
+                        XmlNode name = it.Attributes.GetNamedItem("Name");
+                        if (name != null)
+                        {
+                            XmlNode uiType = it.Attributes.GetNamedItem("UIType");
+                            DataColumn dc = dt.Columns.Add(index.ToString());
+                            DataType t = (DataType)Enum.Parse(typeof(DataType), it.Name);
+                            dataTypes.Add(t);
+                            dc.DataType = GXDLMSConverter.GetDataType(t);
+                            dc.Caption = name.InnerText;
+                            if (uiType != null)
+                            {
+                                if (string.Compare(uiType.Value, "LogicalName", true) == 0)
+                                {
+                                    dc.DataType = typeof(LogicalName);
+                                    dataGridView1.Columns.Add(index.ToString(), dc.Caption);
+                                    dataGridView1.Columns[index].DataPropertyName = index.ToString();
+                                }
+                                else
+                                {
+                                    Type type = typeof(GXDLMSClient).Assembly.GetType(uiType.Value);
+                                    if (type == null)
+                                    {
+                                        throw new ArgumentOutOfRangeException("Invalid UI type:" + uiType.Value);
+                                    }
+                                    dc.DataType = type;
+                                    dataGridView1.Columns.Add(index.ToString(), dc.Caption);
+                                    dataGridView1.Columns[index].DataPropertyName = index.ToString();
+                                }
+                            }
+                            else
+                            {
+                                dataGridView1.Columns.Add(index.ToString(), dc.Caption);
+                                dataGridView1.Columns[index].DataPropertyName = index.ToString();
+                            }                           
+                            ++index;
+                        }
+                    }
+                    if (value != null)
+                    {
+                        value = GXDLMSTranslator.ValueToXml(value);
+                        doc.LoadXml((string)value);
+                        list = doc.ChildNodes;
+                        if (list.Count != 0)
+                        {
+                            if (list[0].Name == "Array")
+                            {
+                                foreach (XmlNode r in list[0].ChildNodes)
+                                {
+                                    if (r.Name == "Structure")
+                                    {
+                                        row = new List<object>();
+                                        index = 0;
+                                        foreach (XmlNode it in r.ChildNodes)
+                                        {
+                                            XmlNode v = it.Attributes.GetNamedItem("Value");
+                                            if (v != null)
+                                            {                                               
+                                                DataColumn dc = dt.Columns[index];
+                                                if (dc.DataType == typeof(byte[]))
+                                                {
+                                                    row.Add(GXDLMSTranslator.HexToBytes(v.InnerText));
+                                                }
+                                                else if (dc.DataType.IsEnum)
+                                                {
+                                                    row.Add(Enum.Parse(dc.DataType, v.InnerText));
+                                                }
+                                                else if (dc.DataType == typeof(LogicalName))
+                                                {
+                                                    row.Add(new LogicalName(GXDLMSConverter.ToLogicalName(GXDLMSTranslator.HexToBytes(v.InnerText))));
+                                                }
+                                                else
+                                                {
+                                                    row.Add(Convert.ChangeType(v.InnerText, dc.DataType));
+                                                }
+                                            }
+                                            else
+                                            {
+                                                row.Add(null);
+                                            }
+                                            ++index;
+                                        }
+                                        dt.LoadDataRow(row.ToArray(), true);
+                                    }
+                                }
+                            }
+                            //There is only one row.
+                            if (list[0].Name == "Structure")
+                            {
+                                row = new List<object>();
+                                index = 0;
+                                foreach (XmlNode it in list[0].ChildNodes)
+                                {
+                                    XmlNode v = it.Attributes.GetNamedItem("Value");
+                                    if (v != null)
+                                    {
+                                        DataColumn dc = dt.Columns[index];
+                                        if (dc.DataType == typeof(byte[]))
+                                        {
+                                            row.Add(GXDLMSTranslator.HexToBytes(v.InnerText));
+                                        }
+                                        else if (dc.DataType.IsEnum)
+                                        {
+                                            row.Add(Enum.Parse(dc.DataType, v.InnerText));
+                                        }
+                                        else if (dc.DataType == typeof(LogicalName))
+                                        {
+                                            row.Add(new LogicalName(GXDLMSConverter.ToLogicalName(GXDLMSTranslator.HexToBytes(v.InnerText))));
+                                        }
+                                        else
+                                        {
+                                            row.Add(Convert.ChangeType(v.InnerText, dc.DataType));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        row.Add(null);
+                                    }
+                                    ++index;
+                                }
+                                dt.LoadDataRow(row.ToArray(), true);
+                            }
+                        }
+                    }
+                    this.dataGridView1.DataSource = dt;
+                }
+                else
+                {
+                    this.dataGridView1.DataSource = null;
+                }
+                this.dataGridView1.RowsAdded += DataGridView1_RowsAdded;
+            }
             else
             {
                 throw new InvalidExpressionException();
             }
+        }
+
+
+        List<DataType> dataTypes = new List<DataType>();
+
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value is byte[])
+            {
+                e.Value = GXDLMSTranslator.ToHex((byte[])e.Value);
+                e.FormattingApplied = true;
+            }
+            else
+            {
+                e.FormattingApplied = false;
+            }
+        }
+
+        private void DataGridView1_CellParsing(object sender, System.Windows.Forms.DataGridViewCellParsingEventArgs e)
+        {
+            try
+            {
+                if (e.Value is string && e.DesiredType == typeof(byte[]))
+                {
+                    e.Value = GXDLMSTranslator.HexToBytes((string)e.Value);
+                    e.ParsingApplied = true;
+                }
+                else if (e.Value is string && e.DesiredType == typeof(LogicalName))
+                {
+                    string tmp = (string)e.Value;
+                    e.Value = new LogicalName(tmp);
+                    e.ParsingApplied = true;
+                    //Verify LN.
+                    GXDLMSConverter.LogicalNameToBytes(tmp);
+                }
+                else
+                {
+                    e.ParsingApplied = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        DataGridViewComboBoxColumn CreateUITypeColumn(Type type, string name, string caption)
+        {
+            DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+            combo.DataSource = Enum.GetValues(type);
+            combo.DataPropertyName = name;
+            combo.Name = caption;
+            combo.ValueType = type;
+            return combo;
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -757,6 +1129,10 @@ namespace Gurux.DLMS.UI
                     return this.comboBox1.SelectedItem;
                 }
                 else if (Type == ValueFieldType.ListBox)
+                {
+                    return this.listBox1.Text;
+                }
+                else if (Type == ValueFieldType.Xml)
                 {
                     return this.listBox1.Text;
                 }

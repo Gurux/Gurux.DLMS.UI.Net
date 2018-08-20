@@ -66,6 +66,8 @@ namespace Gurux.DLMS.UI
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.checkedlistBox1 = new System.Windows.Forms.CheckedListBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -84,7 +86,7 @@ namespace Gurux.DLMS.UI
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(194, 21);
-            this.comboBox1.TabIndex = 1;
+            this.comboBox1.TabIndex = 0;
             // 
             // listBox1
             // 
@@ -103,8 +105,23 @@ namespace Gurux.DLMS.UI
             this.checkedlistBox1.Location = new System.Drawing.Point(0, 0);
             this.checkedlistBox1.Name = "checkedlistBox1";
             this.checkedlistBox1.Size = new System.Drawing.Size(194, 22);
-            this.checkedlistBox1.TabIndex = 3;
+            this.checkedlistBox1.TabIndex = 0;
             this.checkedlistBox1.Visible = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(194, 22);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+            this.dataGridView1.CellParsing += DataGridView1_CellParsing;
+            this.dataGridView1.RowsRemoved += DataGridView1_RowsRemoved;
+            this.dataGridView1.RowsAdded += DataGridView1_RowsAdded;
+            dataGridView1.DataError += DataGridView1_DataError;
             // 
             // GXValueField
             // 
@@ -114,8 +131,10 @@ namespace Gurux.DLMS.UI
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.checkedlistBox1);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "GXValueField";
             this.Size = new System.Drawing.Size(194, 22);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +146,6 @@ namespace Gurux.DLMS.UI
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.CheckedListBox checkedlistBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

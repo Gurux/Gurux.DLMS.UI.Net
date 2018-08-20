@@ -41,6 +41,7 @@ using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects.Enums;
 using System.Globalization;
+using Gurux.DLMS.ManufacturerSettings;
 
 namespace Gurux.DLMS.UI
 {
@@ -188,11 +189,41 @@ namespace Gurux.DLMS.UI
                             {
                                 row[col] = GXDLMSTranslator.ValueToXml(row[col]);
                             }
+                            else
+                            {
+                                GXDLMSAttributeSettings att = target.CaptureObjects[col].Key.Attributes.Find(target.CaptureObjects[col].Value.AttributeIndex);
+                                if (att != null && att.Values != null)
+                                {
+                                    foreach(GXObisValueItem it in att.Values)
+                                    {
+                                        if (IsNumber(row[col]) && it.Value == Convert.ToInt32(row[col]))
+                                        {
+                                            row[col] = it.UIValue;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     dt.LoadDataRow(row, true);
                 }
             }
+        }
+
+        public static bool IsNumber(object value)
+        {
+            return value is sbyte
+                    || value is byte
+                    || value is short
+                    || value is ushort
+                    || value is int
+                    || value is uint
+                    || value is long
+                    || value is ulong
+                    || value is float
+                    || value is double
+                    || value is decimal;
         }
 
         private void UpdateCaptureObjects()

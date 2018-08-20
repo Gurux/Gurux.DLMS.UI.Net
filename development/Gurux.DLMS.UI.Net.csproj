@@ -31,12 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1808.1301, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1808.1301\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1808.2001, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1808.2001\lib\net40\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -517,9 +518,7 @@
     <Compile Include="GXDlmsUi.cs" />
     <Compile Include="GXDLMSViewAttribute.cs" />
     <Compile Include="GXHelpers.cs" />
-    <Compile Include="GXValueField.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="GXValueField.cs" />
     <Compile Include="GXValueField.designer.cs">
       <DependentUpon>GXValueField.cs</DependentUpon>
     </Compile>
