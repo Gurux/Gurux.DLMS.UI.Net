@@ -326,7 +326,7 @@ namespace Gurux.DLMS.UI
             this.PINCodeTB.NotifyChanges = false;
             this.PINCodeTB.Size = new System.Drawing.Size(171, 20);
             this.PINCodeTB.TabIndex = 3;
-            this.PINCodeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PINCodeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PINCodeLbl
             // 
@@ -347,7 +347,7 @@ namespace Gurux.DLMS.UI
             this.APNTB.NotifyChanges = false;
             this.APNTB.Size = new System.Drawing.Size(171, 20);
             this.APNTB.TabIndex = 2;
-            this.APNTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.APNTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // APNLbl
             // 
@@ -368,7 +368,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

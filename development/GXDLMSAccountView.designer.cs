@@ -739,7 +739,7 @@ namespace Gurux.DLMS.UI
             this.MaxProvisionPeriodTb.NotifyChanges = false;
             this.MaxProvisionPeriodTb.Size = new System.Drawing.Size(297, 20);
             this.MaxProvisionPeriodTb.TabIndex = 14;
-            this.MaxProvisionPeriodTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MaxProvisionPeriodTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // MaxProvisionTb
             // 
@@ -751,7 +751,7 @@ namespace Gurux.DLMS.UI
             this.MaxProvisionTb.NotifyChanges = false;
             this.MaxProvisionTb.Size = new System.Drawing.Size(297, 20);
             this.MaxProvisionTb.TabIndex = 13;
-            this.MaxProvisionTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MaxProvisionTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // NextCreditAvailableThresholdTb
             // 
@@ -763,7 +763,7 @@ namespace Gurux.DLMS.UI
             this.NextCreditAvailableThresholdTb.NotifyChanges = false;
             this.NextCreditAvailableThresholdTb.Size = new System.Drawing.Size(297, 20);
             this.NextCreditAvailableThresholdTb.TabIndex = 12;
-            this.NextCreditAvailableThresholdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.NextCreditAvailableThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LowCreditThresholdTb
             // 
@@ -775,7 +775,7 @@ namespace Gurux.DLMS.UI
             this.LowCreditThresholdTb.NotifyChanges = false;
             this.LowCreditThresholdTb.Size = new System.Drawing.Size(297, 20);
             this.LowCreditThresholdTb.TabIndex = 11;
-            this.LowCreditThresholdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LowCreditThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AccountClosureTimeTb
             // 
@@ -787,7 +787,7 @@ namespace Gurux.DLMS.UI
             this.AccountClosureTimeTb.NotifyChanges = false;
             this.AccountClosureTimeTb.Size = new System.Drawing.Size(297, 20);
             this.AccountClosureTimeTb.TabIndex = 7;
-            this.AccountClosureTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AccountClosureTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AccountActivationTimeTb
             // 
@@ -799,7 +799,7 @@ namespace Gurux.DLMS.UI
             this.AccountActivationTimeTb.NotifyChanges = false;
             this.AccountActivationTimeTb.Size = new System.Drawing.Size(297, 20);
             this.AccountActivationTimeTb.TabIndex = 6;
-            this.AccountActivationTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AccountActivationTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AggregatedDebtTb
             // 
@@ -811,7 +811,7 @@ namespace Gurux.DLMS.UI
             this.AggregatedDebtTb.NotifyChanges = false;
             this.AggregatedDebtTb.Size = new System.Drawing.Size(297, 20);
             this.AggregatedDebtTb.TabIndex = 5;
-            this.AggregatedDebtTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AggregatedDebtTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ClearanceThresholdTb
             // 
@@ -823,7 +823,7 @@ namespace Gurux.DLMS.UI
             this.ClearanceThresholdTb.NotifyChanges = false;
             this.ClearanceThresholdTb.Size = new System.Drawing.Size(297, 20);
             this.ClearanceThresholdTb.TabIndex = 4;
-            this.ClearanceThresholdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ClearanceThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AmountToClearTb
             // 
@@ -835,7 +835,7 @@ namespace Gurux.DLMS.UI
             this.AmountToClearTb.NotifyChanges = false;
             this.AmountToClearTb.Size = new System.Drawing.Size(297, 20);
             this.AmountToClearTb.TabIndex = 3;
-            this.AmountToClearTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AmountToClearTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AvailableCreditTb
             // 
@@ -847,7 +847,7 @@ namespace Gurux.DLMS.UI
             this.AvailableCreditTb.NotifyChanges = false;
             this.AvailableCreditTb.Size = new System.Drawing.Size(297, 20);
             this.AvailableCreditTb.TabIndex = 2;
-            this.AvailableCreditTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AvailableCreditTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CurrentCreditStatusTb
             // 
@@ -860,7 +860,7 @@ namespace Gurux.DLMS.UI
             this.CurrentCreditStatusTb.ReadOnly = true;
             this.CurrentCreditStatusTb.Size = new System.Drawing.Size(297, 129);
             this.CurrentCreditStatusTb.TabIndex = 1;
-            this.CurrentCreditStatusTb.Type = Gurux.DLMS.UI.ValueFieldType.CheckedListBox;
+            this.CurrentCreditStatusTb.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
             // 
             // CurrentCreditInUseTb
             // 
@@ -872,7 +872,7 @@ namespace Gurux.DLMS.UI
             this.CurrentCreditInUseTb.NotifyChanges = false;
             this.CurrentCreditInUseTb.Size = new System.Drawing.Size(297, 20);
             this.CurrentCreditInUseTb.TabIndex = 0;
-            this.CurrentCreditInUseTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CurrentCreditInUseTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             this.CurrentCreditInUseTb.Load += new System.EventHandler(this.CurrentCreditInUseTb_Load);
             // 
             // LogicalNameTB
@@ -885,7 +885,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(312, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSAccountView
             // 

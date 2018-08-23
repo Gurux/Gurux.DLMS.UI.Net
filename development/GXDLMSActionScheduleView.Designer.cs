@@ -201,7 +201,7 @@ namespace Gurux.DLMS.UI
             this.ScriptTypeTb.ReadOnly = true;
             this.ScriptTypeTb.Size = new System.Drawing.Size(263, 99);
             this.ScriptTypeTb.TabIndex = 3;
-            this.ScriptTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ScriptTypeTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // ScriptTypeLbl
             // 
@@ -250,7 +250,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(263, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

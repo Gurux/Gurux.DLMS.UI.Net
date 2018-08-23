@@ -122,7 +122,7 @@
             this.CaptureTimeTb.ReadOnly = true;
             this.CaptureTimeTb.Size = new System.Drawing.Size(238, 20);
             this.CaptureTimeTb.TabIndex = 3;
-            this.CaptureTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CaptureTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CaptureTimeLbl
             // 
@@ -144,7 +144,7 @@
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(238, 20);
             this.LogicalNameTB.TabIndex = 7;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

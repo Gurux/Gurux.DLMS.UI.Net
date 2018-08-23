@@ -390,6 +390,11 @@ namespace Gurux.DLMS.UI
                     btn.View = view;
                     btn.Click += eventHandler;
                 }
+                else if (it is GXValueField)
+                {
+                    GXValueField vf = it as GXValueField;
+                    vf.DefaultType = vf.Type;
+                }
                 else if (it.Controls.Count != 0)
                 {
                     Init(view, it.Controls, eventHandler);

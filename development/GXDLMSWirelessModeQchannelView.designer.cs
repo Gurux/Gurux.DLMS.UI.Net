@@ -87,7 +87,7 @@ namespace Gurux.DLMS.UI
             this.AddressMaskTb.NotifyChanges = false;
             this.AddressMaskTb.Size = new System.Drawing.Size(171, 20);
             this.AddressMaskTb.TabIndex = 9;
-            this.AddressMaskTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AddressMaskTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AddressMaskLbl
             // 
@@ -108,7 +108,7 @@ namespace Gurux.DLMS.UI
             this.DeviceAddressTb.NotifyChanges = false;
             this.DeviceAddressTb.Size = new System.Drawing.Size(171, 20);
             this.DeviceAddressTb.TabIndex = 7;
-            this.DeviceAddressTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.DeviceAddressTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // DeviceAddressLbl
             // 
@@ -150,7 +150,7 @@ namespace Gurux.DLMS.UI
             this.AddressStateTb.ReadOnly = true;
             this.AddressStateTb.Size = new System.Drawing.Size(171, 57);
             this.AddressStateTb.TabIndex = 0;
-            this.AddressStateTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.AddressStateTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             this.AddressStateTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.AddressStateTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -173,7 +173,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

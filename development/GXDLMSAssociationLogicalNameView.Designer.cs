@@ -366,7 +366,7 @@ namespace Gurux.DLMS.UI
             this.gxValueField1.ReadOnly = true;
             this.gxValueField1.Size = new System.Drawing.Size(243, 20);
             this.gxValueField1.TabIndex = 29;
-            this.gxValueField1.Type = Gurux.DLMS.UI.ValueFieldType.ListBox;
+            this.gxValueField1.Type = Gurux.DLMS.Enums.ValueFieldType.ListBox;
             // 
             // tabPage3
             // 
@@ -831,7 +831,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(420, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

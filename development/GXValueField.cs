@@ -42,7 +42,6 @@ using Gurux.DLMS.ManufacturerSettings;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using System.Collections;
-using System.IO;
 using System.Xml;
 
 namespace Gurux.DLMS.UI
@@ -67,37 +66,9 @@ namespace Gurux.DLMS.UI
         {
             return logicalName;
         }
-    }
-
-    /// <summary>
-    /// How value is shown.
-    /// </summary>
-    public enum ValueFieldType
-    {
-        /// <summary>
-        /// Value is shown as text box.
-        /// </summary>
-        TextBox = 1,
-        /// <summary>
-        /// Value is shown as compo box.
-        /// </summary>
-        CompoBox,
-        /// <summary>
-        /// Value is shown as list box.
-        /// </summary>
-        ListBox,
-        /// <summary>
-        /// Value is shown as checked list box.
-        /// </summary>
-        CheckedListBox,
-        /// <summary>
-        /// Value is shown as XML format.
-        /// </summary>
-        Xml
-    }
+    }   
 
     delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
-
 
     public partial class GXValueField : UserControl
     {
@@ -105,6 +76,15 @@ namespace Gurux.DLMS.UI
         ValueFieldType type;
         List<GXObisValueItem> Items;
         ToolStripMenuItem undo, cut, copy, paste;
+
+        /// <summary>
+        /// Default value field type.
+        /// </summary>
+        internal ValueFieldType DefaultType
+        {
+            get;set;
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -354,12 +334,16 @@ namespace Gurux.DLMS.UI
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("<Array>");
                 //Add new rows.
+                bool structure = dataGridView1.Columns.Count > 1;
                 foreach (DataGridViewRow r in dataGridView1.Rows)
                 {
                     if (r.DataBoundItem != null)
                     {
                         DataRow row = ((DataRowView)r.DataBoundItem).Row;
-                        sb.AppendLine("<Structure>");
+                        if (structure)
+                        {
+                            sb.AppendLine("<Structure>");
+                        }
                         int pos = 0;
                         foreach (object it in row.ItemArray)
                         {
@@ -379,7 +363,10 @@ namespace Gurux.DLMS.UI
                                 sb.AppendLine(" Value=\"" + it + "\" />");
                             }
                         }
-                        sb.AppendLine("</Structure>");
+                        if (structure)
+                        {
+                            sb.AppendLine("</Structure>");
+                        }
                     }
                     else if (dataGridView1.Rows.Count == 1)
                     {
@@ -616,11 +603,19 @@ namespace Gurux.DLMS.UI
                 {
                     Items = null;
                 }
-                if (this.Type == ValueFieldType.TextBox)
+                GXDLMSAttributeSettings att = target.Attributes.Find(index);
+                if (att != null)
+                {
+                    type = att.UIValueType;
+                }
+                else
+                {
+                    type = DefaultType;
+                }
+                if (type == ValueFieldType.TextBox)
                 {
                     //DataGridView
-                    GXDLMSAttributeSettings arr = target.Attributes.Find(index);
-                    if (arr != null && !string.IsNullOrEmpty(arr.Xml))
+                    if (att != null && !string.IsNullOrEmpty(att.Xml))
                     {
                         this.Type = ValueFieldType.Xml;
                     }
@@ -630,7 +625,7 @@ namespace Gurux.DLMS.UI
                         textBox1.Multiline = tmp != null && tmp.Type == DataType.Array;
                     }
                 }
-                else if (this.Type == ValueFieldType.CompoBox)
+                else if (type == ValueFieldType.CompoBox)
                 {
                     comboBox1.Items.Clear();
                     if (Items != null && Items.Count != 0)
@@ -655,7 +650,7 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if (this.Type == ValueFieldType.ListBox)
+                else if (type == ValueFieldType.ListBox)
                 {
                     listBox1.Items.Clear();
                     if (value is Enum)
@@ -673,7 +668,7 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if (this.Type == ValueFieldType.CheckedListBox)
+                else if (type == ValueFieldType.CheckedListBox)
                 {
                     checkedlistBox1.Items.Clear();
                     if (value is Enum)
@@ -690,10 +685,9 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if (this.Type == ValueFieldType.Xml)
+                else if (type == ValueFieldType.Xml)
                 {
-                    GXDLMSAttributeSettings arr = target.Attributes.Find(index);
-                    if (arr == null || string.IsNullOrEmpty(arr.Xml))
+                    if (att == null || string.IsNullOrEmpty(att.Xml))
                     {
                         this.Type = ValueFieldType.TextBox;
                         UpdateValueItems(target, index, value);
@@ -930,11 +924,21 @@ namespace Gurux.DLMS.UI
                             DataColumn dc = dt.Columns.Add(index.ToString());
                             DataType t = (DataType)Enum.Parse(typeof(DataType), it.Name);
                             dataTypes.Add(t);
+                            if (t == DataType.Enum)
+                            {
+                                t = DataType.UInt8;
+                            }
                             dc.DataType = GXDLMSConverter.GetDataType(t);
                             dc.Caption = name.InnerText;
                             if (uiType != null)
                             {
                                 if (string.Compare(uiType.Value, "LogicalName", true) == 0)
+                                {
+                                    dc.DataType = typeof(LogicalName);
+                                    dataGridView1.Columns.Add(index.ToString(), dc.Caption);
+                                    dataGridView1.Columns[index].DataPropertyName = index.ToString();
+                                }
+                                else if (string.Compare(uiType.Value, "Enum", true) == 0)
                                 {
                                     dc.DataType = typeof(LogicalName);
                                     dataGridView1.Columns.Add(index.ToString(), dc.Caption);

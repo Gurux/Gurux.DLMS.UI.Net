@@ -231,7 +231,7 @@ public partial class GXDLMSHdlcSetupView
             this.ReceiveMaxLengthTB.NotifyChanges = false;
             this.ReceiveMaxLengthTB.Size = new System.Drawing.Size(208, 20);
             this.ReceiveMaxLengthTB.TabIndex = 7;
-            this.ReceiveMaxLengthTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ReceiveMaxLengthTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ReceiveWindowSizeTB
             // 
@@ -243,7 +243,7 @@ public partial class GXDLMSHdlcSetupView
             this.ReceiveWindowSizeTB.NotifyChanges = false;
             this.ReceiveWindowSizeTB.Size = new System.Drawing.Size(208, 20);
             this.ReceiveWindowSizeTB.TabIndex = 6;
-            this.ReceiveWindowSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ReceiveWindowSizeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // DeviceAddressTB
             // 
@@ -255,7 +255,7 @@ public partial class GXDLMSHdlcSetupView
             this.DeviceAddressTB.NotifyChanges = false;
             this.DeviceAddressTB.Size = new System.Drawing.Size(208, 20);
             this.DeviceAddressTB.TabIndex = 10;
-            this.DeviceAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.DeviceAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TransmitMaxLengthTB
             // 
@@ -267,7 +267,7 @@ public partial class GXDLMSHdlcSetupView
             this.TransmitMaxLengthTB.NotifyChanges = false;
             this.TransmitMaxLengthTB.Size = new System.Drawing.Size(208, 20);
             this.TransmitMaxLengthTB.TabIndex = 4;
-            this.TransmitMaxLengthTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TransmitMaxLengthTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TransmitWindowSizeTB
             // 
@@ -279,7 +279,7 @@ public partial class GXDLMSHdlcSetupView
             this.TransmitWindowSizeTB.NotifyChanges = false;
             this.TransmitWindowSizeTB.Size = new System.Drawing.Size(208, 20);
             this.TransmitWindowSizeTB.TabIndex = 3;
-            this.TransmitWindowSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TransmitWindowSizeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // InactivityTimeoutTB
             // 
@@ -291,7 +291,7 @@ public partial class GXDLMSHdlcSetupView
             this.InactivityTimeoutTB.NotifyChanges = false;
             this.InactivityTimeoutTB.Size = new System.Drawing.Size(208, 20);
             this.InactivityTimeoutTB.TabIndex = 9;
-            this.InactivityTimeoutTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.InactivityTimeoutTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // InternalTimeOutLTB
             // 
@@ -303,7 +303,7 @@ public partial class GXDLMSHdlcSetupView
             this.InternalTimeOutLTB.NotifyChanges = false;
             this.InternalTimeOutLTB.Size = new System.Drawing.Size(208, 20);
             this.InternalTimeOutLTB.TabIndex = 8;
-            this.InternalTimeOutLTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.InternalTimeOutLTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // SpeedTB
             // 
@@ -316,7 +316,7 @@ public partial class GXDLMSHdlcSetupView
             this.SpeedTB.ReadOnly = true;
             this.SpeedTB.Size = new System.Drawing.Size(208, 93);
             this.SpeedTB.TabIndex = 1;
-            this.SpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.SpeedTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // LogicalNameTB
             // 
@@ -328,7 +328,7 @@ public partial class GXDLMSHdlcSetupView
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSHdlcSetupView
             // 

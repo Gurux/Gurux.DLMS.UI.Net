@@ -198,7 +198,7 @@ namespace Gurux.DLMS.UI
             this.BusAddressTB.NotifyChanges = false;
             this.BusAddressTB.Size = new System.Drawing.Size(168, 20);
             this.BusAddressTB.TabIndex = 20;
-            this.BusAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.BusAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // BusAddressLbl
             // 
@@ -219,7 +219,7 @@ namespace Gurux.DLMS.UI
             this.AddressStateTB.NotifyChanges = false;
             this.AddressStateTB.Size = new System.Drawing.Size(168, 20);
             this.AddressStateTB.TabIndex = 18;
-            this.AddressStateTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AddressStateTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AddressStateLbl
             // 
@@ -241,7 +241,7 @@ namespace Gurux.DLMS.UI
             this.AvailableBaudrateTB.ReadOnly = true;
             this.AvailableBaudrateTB.Size = new System.Drawing.Size(168, 20);
             this.AvailableBaudrateTB.TabIndex = 3;
-            this.AvailableBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.AvailableBaudrateTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // AvailableBaudrateLbl
             // 
@@ -263,7 +263,7 @@ namespace Gurux.DLMS.UI
             this.DefaultBaudrateTB.ReadOnly = true;
             this.DefaultBaudrateTB.Size = new System.Drawing.Size(168, 20);
             this.DefaultBaudrateTB.TabIndex = 2;
-            this.DefaultBaudrateTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.DefaultBaudrateTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // DefaultBaudrateLbl
             // 
@@ -284,7 +284,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

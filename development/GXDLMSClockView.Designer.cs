@@ -154,7 +154,7 @@ namespace Gurux.DLMS.UI
             this.ClockBaseTB.ReadOnly = true;
             this.ClockBaseTB.Size = new System.Drawing.Size(66, 63);
             this.ClockBaseTB.TabIndex = 12;
-            this.ClockBaseTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ClockBaseTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // ClockBaseLbl
             // 
@@ -176,7 +176,7 @@ namespace Gurux.DLMS.UI
             this.StatusTB.ReadOnly = true;
             this.StatusTB.Size = new System.Drawing.Size(242, 110);
             this.StatusTB.TabIndex = 6;
-            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.CheckedListBox;
+            this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
             // 
             // StatusLbl
             // 
@@ -197,7 +197,7 @@ namespace Gurux.DLMS.UI
             this.TimeZoneTB.NotifyChanges = true;
             this.TimeZoneTB.Size = new System.Drawing.Size(96, 20);
             this.TimeZoneTB.TabIndex = 3;
-            this.TimeZoneTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TimeZoneTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TimeZoneLbl
             // 
@@ -218,7 +218,7 @@ namespace Gurux.DLMS.UI
             this.TimeTB.NotifyChanges = true;
             this.TimeTB.Size = new System.Drawing.Size(131, 20);
             this.TimeTB.TabIndex = 1;
-            this.TimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TimeLbl
             // 
@@ -240,7 +240,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(242, 20);
             this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -278,7 +278,7 @@ namespace Gurux.DLMS.UI
             this.DeviationTB.NotifyChanges = false;
             this.DeviationTB.Size = new System.Drawing.Size(100, 20);
             this.DeviationTB.TabIndex = 9;
-            this.DeviationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.DeviationTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // DeviationLbl
             // 
@@ -297,7 +297,7 @@ namespace Gurux.DLMS.UI
             this.EndTB.NotifyChanges = false;
             this.EndTB.Size = new System.Drawing.Size(242, 20);
             this.EndTB.TabIndex = 11;
-            this.EndTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.EndTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // EnabledLbl
             // 
@@ -334,7 +334,7 @@ namespace Gurux.DLMS.UI
             this.BeginTB.NotifyChanges = false;
             this.BeginTB.Size = new System.Drawing.Size(242, 20);
             this.BeginTB.TabIndex = 10;
-            this.BeginTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.BeginTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // BeginLbl
             // 

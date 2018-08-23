@@ -275,7 +275,7 @@ namespace Gurux.DLMS.UI
             this.ServerSystemTitleTB.NotifyChanges = false;
             this.ServerSystemTitleTB.Size = new System.Drawing.Size(291, 20);
             this.ServerSystemTitleTB.TabIndex = 16;
-            this.ServerSystemTitleTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ServerSystemTitleTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ClientSystemTitleTB
             // 
@@ -287,7 +287,7 @@ namespace Gurux.DLMS.UI
             this.ClientSystemTitleTB.NotifyChanges = false;
             this.ClientSystemTitleTB.Size = new System.Drawing.Size(291, 20);
             this.ClientSystemTitleTB.TabIndex = 14;
-            this.ClientSystemTitleTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ClientSystemTitleTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // SuiteTB
             // 
@@ -300,7 +300,7 @@ namespace Gurux.DLMS.UI
             this.SuiteTB.ReadOnly = true;
             this.SuiteTB.Size = new System.Drawing.Size(291, 72);
             this.SuiteTB.TabIndex = 12;
-            this.SuiteTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.SuiteTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // SecurityPolicyTB
             // 
@@ -313,7 +313,7 @@ namespace Gurux.DLMS.UI
             this.SecurityPolicyTB.ReadOnly = true;
             this.SecurityPolicyTB.Size = new System.Drawing.Size(210, 114);
             this.SecurityPolicyTB.TabIndex = 17;
-            this.SecurityPolicyTB.Type = Gurux.DLMS.UI.ValueFieldType.CheckedListBox;
+            this.SecurityPolicyTB.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
             // 
             // LogicalNameTB
             // 
@@ -325,7 +325,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(291, 20);
             this.LogicalNameTB.TabIndex = 23;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSSecuritySetupView_v1
             // 

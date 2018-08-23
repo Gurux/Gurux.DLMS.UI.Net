@@ -144,7 +144,7 @@ namespace Gurux.DLMS.UI
             this.CaptureTimeTB.NotifyChanges = false;
             this.CaptureTimeTB.Size = new System.Drawing.Size(208, 20);
             this.CaptureTimeTB.TabIndex = 6;
-            this.CaptureTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CaptureTimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CaptureTimeLbl
             // 
@@ -165,7 +165,7 @@ namespace Gurux.DLMS.UI
             this.NOPeriodTB.NotifyChanges = false;
             this.NOPeriodTB.Size = new System.Drawing.Size(208, 20);
             this.NOPeriodTB.TabIndex = 9;
-            this.NOPeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.NOPeriodTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // NoPeriodLbl
             // 
@@ -186,7 +186,7 @@ namespace Gurux.DLMS.UI
             this.PeriodTB.NotifyChanges = false;
             this.PeriodTB.Size = new System.Drawing.Size(208, 20);
             this.PeriodTB.TabIndex = 8;
-            this.PeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PeriodTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PeriodLbl
             // 
@@ -207,7 +207,7 @@ namespace Gurux.DLMS.UI
             this.LAValueTB.NotifyChanges = false;
             this.LAValueTB.Size = new System.Drawing.Size(208, 20);
             this.LAValueTB.TabIndex = 2;
-            this.LAValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LAValueTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LAValueLbl
             // 
@@ -228,7 +228,7 @@ namespace Gurux.DLMS.UI
             this.CurrentStartTimeTB.NotifyChanges = false;
             this.CurrentStartTimeTB.Size = new System.Drawing.Size(208, 20);
             this.CurrentStartTimeTB.TabIndex = 7;
-            this.CurrentStartTimeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CurrentStartTimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CurrentStartTimeLbl
             // 
@@ -249,7 +249,7 @@ namespace Gurux.DLMS.UI
             this.StatusTB.NotifyChanges = false;
             this.StatusTB.Size = new System.Drawing.Size(208, 20);
             this.StatusTB.TabIndex = 5;
-            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // StatusLbl
             // 
@@ -288,7 +288,7 @@ namespace Gurux.DLMS.UI
             this.CAValueTB.NotifyChanges = false;
             this.CAValueTB.Size = new System.Drawing.Size(208, 20);
             this.CAValueTB.TabIndex = 1;
-            this.CAValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CAValueTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ValueLbl
             // 
@@ -309,7 +309,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

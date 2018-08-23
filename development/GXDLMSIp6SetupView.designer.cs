@@ -295,7 +295,7 @@ namespace Gurux.DLMS.UI
             this.AddressConfigModeCb.ReadOnly = true;
             this.AddressConfigModeCb.Size = new System.Drawing.Size(206, 20);
             this.AddressConfigModeCb.TabIndex = 2;
-            this.AddressConfigModeCb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.AddressConfigModeCb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // SecondaryDNSAddressTB
             // 
@@ -307,7 +307,7 @@ namespace Gurux.DLMS.UI
             this.SecondaryDNSAddressTB.NotifyChanges = false;
             this.SecondaryDNSAddressTB.Size = new System.Drawing.Size(206, 20);
             this.SecondaryDNSAddressTB.TabIndex = 7;
-            this.SecondaryDNSAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.SecondaryDNSAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PrimaryDNSAddressTB
             // 
@@ -319,7 +319,7 @@ namespace Gurux.DLMS.UI
             this.PrimaryDNSAddressTB.NotifyChanges = false;
             this.PrimaryDNSAddressTB.Size = new System.Drawing.Size(206, 20);
             this.PrimaryDNSAddressTB.TabIndex = 6;
-            this.PrimaryDNSAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PrimaryDNSAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TrafficClassLblTB
             // 
@@ -331,7 +331,7 @@ namespace Gurux.DLMS.UI
             this.TrafficClassLblTB.NotifyChanges = false;
             this.TrafficClassLblTB.Size = new System.Drawing.Size(206, 20);
             this.TrafficClassLblTB.TabIndex = 8;
-            this.TrafficClassLblTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TrafficClassLblTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GatewayAddressesTb
             // 
@@ -343,7 +343,7 @@ namespace Gurux.DLMS.UI
             this.GatewayAddressesTb.NotifyChanges = false;
             this.GatewayAddressesTb.Size = new System.Drawing.Size(206, 20);
             this.GatewayAddressesTb.TabIndex = 5;
-            this.GatewayAddressesTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.GatewayAddressesTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // MulticastIPAddressTB
             // 
@@ -355,7 +355,7 @@ namespace Gurux.DLMS.UI
             this.MulticastIPAddressTB.NotifyChanges = false;
             this.MulticastIPAddressTB.Size = new System.Drawing.Size(206, 20);
             this.MulticastIPAddressTB.TabIndex = 4;
-            this.MulticastIPAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MulticastIPAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // UnicastIPAddressesTb
             // 
@@ -367,7 +367,7 @@ namespace Gurux.DLMS.UI
             this.UnicastIPAddressesTb.NotifyChanges = false;
             this.UnicastIPAddressesTb.Size = new System.Drawing.Size(206, 20);
             this.UnicastIPAddressesTb.TabIndex = 3;
-            this.UnicastIPAddressesTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.UnicastIPAddressesTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // DataLinkLayerTB
             // 
@@ -379,7 +379,7 @@ namespace Gurux.DLMS.UI
             this.DataLinkLayerTB.NotifyChanges = false;
             this.DataLinkLayerTB.Size = new System.Drawing.Size(206, 20);
             this.DataLinkLayerTB.TabIndex = 1;
-            this.DataLinkLayerTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.DataLinkLayerTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameTB
             // 
@@ -391,7 +391,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
             this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSIp6SetupView
             // 

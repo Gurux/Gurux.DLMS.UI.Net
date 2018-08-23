@@ -123,7 +123,7 @@ namespace Gurux.DLMS.UI
             this.ServerSystemTitleTB.NotifyChanges = false;
             this.ServerSystemTitleTB.Size = new System.Drawing.Size(249, 20);
             this.ServerSystemTitleTB.TabIndex = 3;
-            this.ServerSystemTitleTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ServerSystemTitleTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ServerSystemTitleLbl
             // 
@@ -144,7 +144,7 @@ namespace Gurux.DLMS.UI
             this.ClientSystemTitleTB.NotifyChanges = false;
             this.ClientSystemTitleTB.Size = new System.Drawing.Size(249, 20);
             this.ClientSystemTitleTB.TabIndex = 2;
-            this.ClientSystemTitleTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ClientSystemTitleTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ClientSystemTitleLbl
             // 
@@ -166,7 +166,7 @@ namespace Gurux.DLMS.UI
             this.SuiteTB.ReadOnly = true;
             this.SuiteTB.Size = new System.Drawing.Size(249, 72);
             this.SuiteTB.TabIndex = 0;
-            this.SuiteTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.SuiteTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // SuiteLbl
             // 
@@ -207,7 +207,7 @@ namespace Gurux.DLMS.UI
             this.SecurityPolicyTB.ReadOnly = true;
             this.SecurityPolicyTB.Size = new System.Drawing.Size(151, 21);
             this.SecurityPolicyTB.TabIndex = 4;
-            this.SecurityPolicyTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.SecurityPolicyTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             this.SecurityPolicyTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.SecurityPolicyTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -230,7 +230,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(249, 20);
             this.LogicalNameTB.TabIndex = 8;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

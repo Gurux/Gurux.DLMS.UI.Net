@@ -294,7 +294,7 @@ namespace Gurux.DLMS.UI
             this.ImageFirstNotTransferredBlockNumberTB.NotifyChanges = false;
             this.ImageFirstNotTransferredBlockNumberTB.Size = new System.Drawing.Size(336, 20);
             this.ImageFirstNotTransferredBlockNumberTB.TabIndex = 4;
-            this.ImageFirstNotTransferredBlockNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ImageFirstNotTransferredBlockNumberTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ImageFirstNotTransferredBlockNumberLbl
             // 
@@ -315,7 +315,7 @@ namespace Gurux.DLMS.UI
             this.ImageTransferredBlocksStatusTB.NotifyChanges = false;
             this.ImageTransferredBlocksStatusTB.Size = new System.Drawing.Size(336, 20);
             this.ImageTransferredBlocksStatusTB.TabIndex = 3;
-            this.ImageTransferredBlocksStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ImageTransferredBlocksStatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ImageTransferredBlocksStatusLbl
             // 
@@ -355,7 +355,7 @@ namespace Gurux.DLMS.UI
             this.ImageBlockSizeTB.NotifyChanges = false;
             this.ImageBlockSizeTB.Size = new System.Drawing.Size(336, 20);
             this.ImageBlockSizeTB.TabIndex = 2;
-            this.ImageBlockSizeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ImageBlockSizeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             this.ImageBlockSizeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.ImageBlockSizeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -378,7 +378,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(336, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

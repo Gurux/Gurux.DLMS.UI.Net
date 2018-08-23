@@ -238,7 +238,7 @@ namespace Gurux.DLMS.UI
             this.PeriodTb.NotifyChanges = false;
             this.PeriodTb.Size = new System.Drawing.Size(218, 20);
             this.PeriodTb.TabIndex = 12;
-            this.PeriodTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PeriodTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CreditAvailableThresholdTb
             // 
@@ -250,7 +250,7 @@ namespace Gurux.DLMS.UI
             this.CreditAvailableThresholdTb.NotifyChanges = false;
             this.CreditAvailableThresholdTb.Size = new System.Drawing.Size(218, 20);
             this.CreditAvailableThresholdTb.TabIndex = 11;
-            this.CreditAvailableThresholdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CreditAvailableThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PresetCreditAmountTb
             // 
@@ -262,7 +262,7 @@ namespace Gurux.DLMS.UI
             this.PresetCreditAmountTb.NotifyChanges = false;
             this.PresetCreditAmountTb.Size = new System.Drawing.Size(218, 20);
             this.PresetCreditAmountTb.TabIndex = 10;
-            this.PresetCreditAmountTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PresetCreditAmountTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // StatusTb
             // 
@@ -274,7 +274,7 @@ namespace Gurux.DLMS.UI
             this.StatusTb.NotifyChanges = false;
             this.StatusTb.Size = new System.Drawing.Size(218, 20);
             this.StatusTb.TabIndex = 9;
-            this.StatusTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.StatusTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CreditConfigurationTb
             // 
@@ -287,7 +287,7 @@ namespace Gurux.DLMS.UI
             this.CreditConfigurationTb.ReadOnly = true;
             this.CreditConfigurationTb.Size = new System.Drawing.Size(218, 92);
             this.CreditConfigurationTb.TabIndex = 8;
-            this.CreditConfigurationTb.Type = Gurux.DLMS.UI.ValueFieldType.CheckedListBox;
+            this.CreditConfigurationTb.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
             // 
             // LimitTb
             // 
@@ -299,7 +299,7 @@ namespace Gurux.DLMS.UI
             this.LimitTb.NotifyChanges = false;
             this.LimitTb.Size = new System.Drawing.Size(218, 20);
             this.LimitTb.TabIndex = 7;
-            this.LimitTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LimitTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // WarningThresholdTb
             // 
@@ -311,7 +311,7 @@ namespace Gurux.DLMS.UI
             this.WarningThresholdTb.NotifyChanges = false;
             this.WarningThresholdTb.Size = new System.Drawing.Size(218, 20);
             this.WarningThresholdTb.TabIndex = 6;
-            this.WarningThresholdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.WarningThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PriorityTb
             // 
@@ -323,7 +323,7 @@ namespace Gurux.DLMS.UI
             this.PriorityTb.NotifyChanges = false;
             this.PriorityTb.Size = new System.Drawing.Size(218, 20);
             this.PriorityTb.TabIndex = 5;
-            this.PriorityTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PriorityTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TypeTb
             // 
@@ -336,7 +336,7 @@ namespace Gurux.DLMS.UI
             this.TypeTb.ReadOnly = true;
             this.TypeTb.Size = new System.Drawing.Size(218, 20);
             this.TypeTb.TabIndex = 4;
-            this.TypeTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.TypeTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // CurrentCreditAmountTb
             // 
@@ -348,7 +348,7 @@ namespace Gurux.DLMS.UI
             this.CurrentCreditAmountTb.NotifyChanges = false;
             this.CurrentCreditAmountTb.Size = new System.Drawing.Size(218, 20);
             this.CurrentCreditAmountTb.TabIndex = 3;
-            this.CurrentCreditAmountTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CurrentCreditAmountTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             this.CurrentCreditAmountTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.CurrentCreditAmountTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -362,7 +362,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(218, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSCreditView
             // 

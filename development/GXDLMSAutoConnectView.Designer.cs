@@ -321,7 +321,7 @@ namespace Gurux.DLMS.UI
             this.RepetitionDelayTB.ReadOnly = true;
             this.RepetitionDelayTB.Size = new System.Drawing.Size(352, 20);
             this.RepetitionDelayTB.TabIndex = 5;
-            this.RepetitionDelayTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.RepetitionDelayTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // RepetitionDelayLbl
             // 
@@ -343,7 +343,7 @@ namespace Gurux.DLMS.UI
             this.RepetitionsTB.ReadOnly = true;
             this.RepetitionsTB.Size = new System.Drawing.Size(352, 20);
             this.RepetitionsTB.TabIndex = 3;
-            this.RepetitionsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.RepetitionsTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // RepetitionsLbl
             // 
@@ -365,7 +365,7 @@ namespace Gurux.DLMS.UI
             this.ModeTB.ReadOnly = true;
             this.ModeTB.Size = new System.Drawing.Size(352, 72);
             this.ModeTB.TabIndex = 0;
-            this.ModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ModeTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // CommunicationSpeedLbl
             // 
@@ -387,7 +387,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(352, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

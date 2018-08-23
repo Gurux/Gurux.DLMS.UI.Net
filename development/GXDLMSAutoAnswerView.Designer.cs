@@ -280,7 +280,7 @@
             this.NumberOfCallsTB.ReadOnly = true;
             this.NumberOfCallsTB.Size = new System.Drawing.Size(238, 20);
             this.NumberOfCallsTB.TabIndex = 7;
-            this.NumberOfCallsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.NumberOfCallsTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // StatusTB
             // 
@@ -292,7 +292,7 @@
             this.StatusTB.ReadOnly = true;
             this.StatusTB.Size = new System.Drawing.Size(238, 20);
             this.StatusTB.TabIndex = 5;
-            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // ModeTB
             // 
@@ -304,7 +304,7 @@
             this.ModeTB.ReadOnly = true;
             this.ModeTB.Size = new System.Drawing.Size(238, 20);
             this.ModeTB.TabIndex = 3;
-            this.ModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ModeTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // LogicalNameTB
             // 
@@ -316,7 +316,7 @@
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(238, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSAutoAnswerView
             // 

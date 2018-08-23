@@ -118,7 +118,7 @@ namespace Gurux.DLMS.UI
             this.ControlModeCB.ReadOnly = true;
             this.ControlModeCB.Size = new System.Drawing.Size(217, 74);
             this.ControlModeCB.TabIndex = 4;
-            this.ControlModeCB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ControlModeCB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // ControlModeLbl
             // 
@@ -179,7 +179,7 @@ namespace Gurux.DLMS.UI
             this.ControlStateCB.ReadOnly = true;
             this.ControlStateCB.Size = new System.Drawing.Size(217, 74);
             this.ControlStateCB.TabIndex = 3;
-            this.ControlStateCB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ControlStateCB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             this.ControlStateCB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.ControlStateCB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -202,7 +202,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(217, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

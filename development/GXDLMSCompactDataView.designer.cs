@@ -186,7 +186,7 @@ namespace Gurux.DLMS.UI
             this.CaptureMethodTb.ReadOnly = true;
             this.CaptureMethodTb.Size = new System.Drawing.Size(171, 73);
             this.CaptureMethodTb.TabIndex = 13;
-            this.CaptureMethodTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.CaptureMethodTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // TemplateDescriptionTb
             // 
@@ -198,7 +198,7 @@ namespace Gurux.DLMS.UI
             this.TemplateDescriptionTb.NotifyChanges = false;
             this.TemplateDescriptionTb.Size = new System.Drawing.Size(171, 20);
             this.TemplateDescriptionTb.TabIndex = 11;
-            this.TemplateDescriptionTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TemplateDescriptionTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TemplateIdTb
             // 
@@ -210,7 +210,7 @@ namespace Gurux.DLMS.UI
             this.TemplateIdTb.NotifyChanges = false;
             this.TemplateIdTb.Size = new System.Drawing.Size(171, 20);
             this.TemplateIdTb.TabIndex = 9;
-            this.TemplateIdTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TemplateIdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // BufferTb
             // 
@@ -222,7 +222,7 @@ namespace Gurux.DLMS.UI
             this.BufferTb.NotifyChanges = false;
             this.BufferTb.Size = new System.Drawing.Size(171, 20);
             this.BufferTb.TabIndex = 7;
-            this.BufferTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.BufferTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameTB
             // 
@@ -234,7 +234,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSCompactDataView
             // 

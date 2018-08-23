@@ -244,7 +244,7 @@ namespace Gurux.DLMS.UI
             this.RepetitionDelayTB.NotifyChanges = false;
             this.RepetitionDelayTB.Size = new System.Drawing.Size(355, 20);
             this.RepetitionDelayTB.TabIndex = 22;
-            this.RepetitionDelayTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.RepetitionDelayTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // RandomisationStartIntervalLbl
             // 
@@ -274,7 +274,7 @@ namespace Gurux.DLMS.UI
             this.RandomisationStartIntervalTB.NotifyChanges = false;
             this.RandomisationStartIntervalTB.Size = new System.Drawing.Size(355, 20);
             this.RandomisationStartIntervalTB.TabIndex = 18;
-            this.RandomisationStartIntervalTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.RandomisationStartIntervalTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // NumberOfRetriesTB
             // 
@@ -286,7 +286,7 @@ namespace Gurux.DLMS.UI
             this.NumberOfRetriesTB.NotifyChanges = false;
             this.NumberOfRetriesTB.Size = new System.Drawing.Size(355, 20);
             this.NumberOfRetriesTB.TabIndex = 20;
-            this.NumberOfRetriesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.NumberOfRetriesTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // NumberOfRetriesLbl
             // 
@@ -563,7 +563,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(380, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

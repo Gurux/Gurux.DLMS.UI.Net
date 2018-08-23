@@ -1196,7 +1196,7 @@ namespace Gurux.DLMS.UI
             this.ActivationTimeTb.NotifyChanges = false;
             this.ActivationTimeTb.Size = new System.Drawing.Size(350, 20);
             this.ActivationTimeTb.TabIndex = 25;
-            this.ActivationTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ActivationTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CalendarNameTb
             // 
@@ -1208,7 +1208,7 @@ namespace Gurux.DLMS.UI
             this.CalendarNameTb.NotifyChanges = false;
             this.CalendarNameTb.Size = new System.Drawing.Size(350, 20);
             this.CalendarNameTb.TabIndex = 0;
-            this.CalendarNameTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CalendarNameTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             this.CalendarNameTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.CalendarNameTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -1222,7 +1222,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(350, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSTariffPlanView
             // 

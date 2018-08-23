@@ -123,7 +123,7 @@ namespace Gurux.DLMS.UI
             this.ValueTB.NotifyChanges = false;
             this.ValueTB.Size = new System.Drawing.Size(171, 29);
             this.ValueTB.TabIndex = 0;
-            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ValueTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             this.ValueTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.ValueTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
@@ -137,7 +137,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSDataView
             // 

@@ -127,7 +127,7 @@ namespace Gurux.DLMS.UI
             this.CommunicationSpeedTB.ReadOnly = true;
             this.CommunicationSpeedTB.Size = new System.Drawing.Size(175, 20);
             this.CommunicationSpeedTB.TabIndex = 0;
-            this.CommunicationSpeedTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.CommunicationSpeedTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // CommunicationSpeedLbl
             // 
@@ -148,7 +148,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(175, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

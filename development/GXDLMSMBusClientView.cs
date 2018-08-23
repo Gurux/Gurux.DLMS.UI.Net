@@ -293,7 +293,7 @@ namespace Gurux.DLMS.UI
             this.EncryptionKeyStatusTB.ReadOnly = true;
             this.EncryptionKeyStatusTB.Size = new System.Drawing.Size(168, 20);
             this.EncryptionKeyStatusTB.TabIndex = 38;
-            this.EncryptionKeyStatusTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.EncryptionKeyStatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // EncryptionKeyStatusLbl
             // 
@@ -314,7 +314,7 @@ namespace Gurux.DLMS.UI
             this.ConfigurationTB.NotifyChanges = false;
             this.ConfigurationTB.Size = new System.Drawing.Size(168, 20);
             this.ConfigurationTB.TabIndex = 35;
-            this.ConfigurationTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ConfigurationTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ConfigurationLbl
             // 
@@ -335,7 +335,7 @@ namespace Gurux.DLMS.UI
             this.AlarmTB.NotifyChanges = false;
             this.AlarmTB.Size = new System.Drawing.Size(168, 20);
             this.AlarmTB.TabIndex = 33;
-            this.AlarmTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AlarmTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AlarmLbl
             // 
@@ -356,7 +356,7 @@ namespace Gurux.DLMS.UI
             this.StatusTB.NotifyChanges = false;
             this.StatusTB.Size = new System.Drawing.Size(168, 20);
             this.StatusTB.TabIndex = 32;
-            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // StatusLbl
             // 
@@ -377,7 +377,7 @@ namespace Gurux.DLMS.UI
             this.AccessNumberTB.NotifyChanges = false;
             this.AccessNumberTB.Size = new System.Drawing.Size(168, 20);
             this.AccessNumberTB.TabIndex = 30;
-            this.AccessNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.AccessNumberTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AccessNumberLbl
             // 
@@ -398,7 +398,7 @@ namespace Gurux.DLMS.UI
             this.DeviceTypeTB.NotifyChanges = false;
             this.DeviceTypeTB.Size = new System.Drawing.Size(168, 20);
             this.DeviceTypeTB.TabIndex = 28;
-            this.DeviceTypeTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.DeviceTypeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // DeviceTypeLbl
             // 
@@ -419,7 +419,7 @@ namespace Gurux.DLMS.UI
             this.VersionTB.NotifyChanges = false;
             this.VersionTB.Size = new System.Drawing.Size(168, 20);
             this.VersionTB.TabIndex = 25;
-            this.VersionTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.VersionTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // VersionLbl
             // 
@@ -440,7 +440,7 @@ namespace Gurux.DLMS.UI
             this.ManufacturerIDTB.NotifyChanges = false;
             this.ManufacturerIDTB.Size = new System.Drawing.Size(168, 20);
             this.ManufacturerIDTB.TabIndex = 23;
-            this.ManufacturerIDTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ManufacturerIDTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ManufacturerIDLbl
             // 
@@ -461,7 +461,7 @@ namespace Gurux.DLMS.UI
             this.IdentificationNumberTB.NotifyChanges = false;
             this.IdentificationNumberTB.Size = new System.Drawing.Size(168, 20);
             this.IdentificationNumberTB.TabIndex = 22;
-            this.IdentificationNumberTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.IdentificationNumberTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // IdentificationNumberLbl
             // 
@@ -482,7 +482,7 @@ namespace Gurux.DLMS.UI
             this.PrimaryAddressTB.NotifyChanges = false;
             this.PrimaryAddressTB.Size = new System.Drawing.Size(168, 20);
             this.PrimaryAddressTB.TabIndex = 20;
-            this.PrimaryAddressTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PrimaryAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PrimaryAddressLbl
             // 
@@ -503,7 +503,7 @@ namespace Gurux.DLMS.UI
             this.CapturePeriodTB.NotifyChanges = false;
             this.CapturePeriodTB.Size = new System.Drawing.Size(168, 20);
             this.CapturePeriodTB.TabIndex = 18;
-            this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CapturePeriodTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CapturePeriodLbl
             // 
@@ -524,7 +524,7 @@ namespace Gurux.DLMS.UI
             this.MBusPortReferenceTB.NotifyChanges = false;
             this.MBusPortReferenceTB.Size = new System.Drawing.Size(168, 20);
             this.MBusPortReferenceTB.TabIndex = 2;
-            this.MBusPortReferenceTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.MBusPortReferenceTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // MBusPortReferenceLbl
             // 
@@ -545,7 +545,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(168, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

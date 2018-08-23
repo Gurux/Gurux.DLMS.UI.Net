@@ -122,7 +122,7 @@ namespace Gurux.DLMS.UI
             this.ProportionTb.NotifyChanges = false;
             this.ProportionTb.Size = new System.Drawing.Size(190, 20);
             this.ProportionTb.TabIndex = 13;
-            this.ProportionTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ProportionTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ProportionLbl
             // 
@@ -143,7 +143,7 @@ namespace Gurux.DLMS.UI
             this.TotalAmountRemainingTb.NotifyChanges = false;
             this.TotalAmountRemainingTb.Size = new System.Drawing.Size(190, 20);
             this.TotalAmountRemainingTb.TabIndex = 12;
-            this.TotalAmountRemainingTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TotalAmountRemainingTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TotalAmountRemainingLbl
             // 
@@ -164,7 +164,7 @@ namespace Gurux.DLMS.UI
             this.LastCollectionAmountTb.NotifyChanges = false;
             this.LastCollectionAmountTb.Size = new System.Drawing.Size(190, 20);
             this.LastCollectionAmountTb.TabIndex = 11;
-            this.LastCollectionAmountTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LastCollectionAmountTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LastCollectionAmountLbl
             // 
@@ -185,7 +185,7 @@ namespace Gurux.DLMS.UI
             this.LastCollectionTimeTb.NotifyChanges = false;
             this.LastCollectionTimeTb.Size = new System.Drawing.Size(190, 20);
             this.LastCollectionTimeTb.TabIndex = 10;
-            this.LastCollectionTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LastCollectionTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LastCollectionTimeLbl
             // 
@@ -206,7 +206,7 @@ namespace Gurux.DLMS.UI
             this.ChargeConfigurationTb.NotifyChanges = false;
             this.ChargeConfigurationTb.Size = new System.Drawing.Size(190, 20);
             this.ChargeConfigurationTb.TabIndex = 9;
-            this.ChargeConfigurationTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ChargeConfigurationTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ChargeConfigurationLbl
             // 
@@ -227,7 +227,7 @@ namespace Gurux.DLMS.UI
             this.PeriodTb.NotifyChanges = false;
             this.PeriodTb.Size = new System.Drawing.Size(190, 20);
             this.PeriodTb.TabIndex = 8;
-            this.PeriodTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PeriodTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PeriodLbl
             // 
@@ -248,7 +248,7 @@ namespace Gurux.DLMS.UI
             this.LimitTb.NotifyChanges = false;
             this.LimitTb.Size = new System.Drawing.Size(190, 20);
             this.LimitTb.TabIndex = 7;
-            this.LimitTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LimitTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // UnitChargeActivationTimeLbl
             // 
@@ -269,7 +269,7 @@ namespace Gurux.DLMS.UI
             this.UnitChargePassiveTb.NotifyChanges = false;
             this.UnitChargePassiveTb.Size = new System.Drawing.Size(190, 20);
             this.UnitChargePassiveTb.TabIndex = 6;
-            this.UnitChargePassiveTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.UnitChargePassiveTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // UnitChargePassiveLbl
             // 
@@ -290,7 +290,7 @@ namespace Gurux.DLMS.UI
             this.UnitChargeActiveTb.NotifyChanges = false;
             this.UnitChargeActiveTb.Size = new System.Drawing.Size(190, 20);
             this.UnitChargeActiveTb.TabIndex = 5;
-            this.UnitChargeActiveTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.UnitChargeActiveTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // UnitChargeActiveLbl
             // 
@@ -311,7 +311,7 @@ namespace Gurux.DLMS.UI
             this.PriorityTb.NotifyChanges = false;
             this.PriorityTb.Size = new System.Drawing.Size(190, 20);
             this.PriorityTb.TabIndex = 4;
-            this.PriorityTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PriorityTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // PriorityLbl
             // 
@@ -333,7 +333,7 @@ namespace Gurux.DLMS.UI
             this.ChargeTypeTb.ReadOnly = true;
             this.ChargeTypeTb.Size = new System.Drawing.Size(190, 20);
             this.ChargeTypeTb.TabIndex = 3;
-            this.ChargeTypeTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.ChargeTypeTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // ChargeTypeLbl
             // 
@@ -373,7 +373,7 @@ namespace Gurux.DLMS.UI
             this.TotalAmountPaidTb.NotifyChanges = false;
             this.TotalAmountPaidTb.Size = new System.Drawing.Size(190, 20);
             this.TotalAmountPaidTb.TabIndex = 2;
-            this.TotalAmountPaidTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TotalAmountPaidTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TotalAmountPaidLbl
             // 
@@ -394,7 +394,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(190, 20);
             this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

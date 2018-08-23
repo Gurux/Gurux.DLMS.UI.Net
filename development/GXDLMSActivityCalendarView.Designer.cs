@@ -186,7 +186,7 @@ namespace Gurux.DLMS.UI
             this.ActivatePassiveCalendarTb.ReadOnly = true;
             this.ActivatePassiveCalendarTb.Size = new System.Drawing.Size(166, 20);
             this.ActivatePassiveCalendarTb.TabIndex = 22;
-            this.ActivatePassiveCalendarTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ActivatePassiveCalendarTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // tabControl1
             // 
@@ -578,7 +578,7 @@ namespace Gurux.DLMS.UI
             this.ACalendarNameTB.ReadOnly = true;
             this.ACalendarNameTB.Size = new System.Drawing.Size(208, 20);
             this.ACalendarNameTB.TabIndex = 12;
-            this.ACalendarNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ACalendarNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ACalendarNameLbl
             // 
@@ -967,7 +967,7 @@ namespace Gurux.DLMS.UI
             this.PCalendarNameTB.ReadOnly = true;
             this.PCalendarNameTB.Size = new System.Drawing.Size(208, 20);
             this.PCalendarNameTB.TabIndex = 20;
-            this.PCalendarNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PCalendarNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameTB
             // 
@@ -978,7 +978,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

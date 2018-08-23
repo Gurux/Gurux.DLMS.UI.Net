@@ -102,7 +102,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             //
             // LogicalNameLbl
             //

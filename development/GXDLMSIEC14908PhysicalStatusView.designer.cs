@@ -115,7 +115,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.MessagesValidatedTB.Name = "MessagesValidatedTB";
         this.MessagesValidatedTB.Size = new System.Drawing.Size(206, 20);
         this.MessagesValidatedTB.TabIndex = 19;
-        this.MessagesValidatedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.MessagesValidatedTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // MessagesValidatedLbl
         //
@@ -135,7 +135,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.MessagesReceivedTB.Name = "MessagesReceivedTB";
         this.MessagesReceivedTB.Size = new System.Drawing.Size(206, 20);
         this.MessagesReceivedTB.TabIndex = 15;
-        this.MessagesReceivedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.MessagesReceivedTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // MessagesReceivedLbl
         //
@@ -155,7 +155,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.Layer3ReceivedTB.Name = "Layer3ReceivedTB";
         this.Layer3ReceivedTB.Size = new System.Drawing.Size(206, 20);
         this.Layer3ReceivedTB.TabIndex = 14;
-        this.Layer3ReceivedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.Layer3ReceivedTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // Layer3ReceivedLbl
         //
@@ -175,7 +175,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.Layer2ReceivedTB.Name = "Layer2ReceivedTB";
         this.Layer2ReceivedTB.Size = new System.Drawing.Size(206, 20);
         this.Layer2ReceivedTB.TabIndex = 12;
-        this.Layer2ReceivedTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.Layer2ReceivedTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // Layer2ReceivedLbl
         //
@@ -195,7 +195,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.MissedMessagesTB.Name = "MissedMessagesTB";
         this.MissedMessagesTB.Size = new System.Drawing.Size(206, 20);
         this.MissedMessagesTB.TabIndex = 11;
-        this.MissedMessagesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.MissedMessagesTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // MissedMessagesLbl
         //
@@ -215,7 +215,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.LostMessagesTB.Name = "LostMessagesTB";
         this.LostMessagesTB.Size = new System.Drawing.Size(206, 20);
         this.LostMessagesTB.TabIndex = 9;
-        this.LostMessagesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.LostMessagesTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // LostMessagesLbl
         //
@@ -235,7 +235,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.ReceiveFullTB.Name = "ReceiveFullTB";
         this.ReceiveFullTB.Size = new System.Drawing.Size(206, 20);
         this.ReceiveFullTB.TabIndex = 4;
-        this.ReceiveFullTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.ReceiveFullTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // ReceiveFullLbl
         //
@@ -255,7 +255,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.TransmitRetriesTB.Name = "TransmitRetriesTB";
         this.TransmitRetriesTB.Size = new System.Drawing.Size(206, 20);
         this.TransmitRetriesTB.TabIndex = 3;
-        this.TransmitRetriesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.TransmitRetriesTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // TransmitRetriesLbl
         //
@@ -275,7 +275,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.TransmitFailureTB.Name = "TransmitFailureTB";
         this.TransmitFailureTB.Size = new System.Drawing.Size(206, 20);
         this.TransmitFailureTB.TabIndex = 2;
-        this.TransmitFailureTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.TransmitFailureTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // TransmitFailureLbl
         //
@@ -295,7 +295,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.TransmissionErrorsTB.Name = "TransmissionErrorsTB";
         this.TransmissionErrorsTB.Size = new System.Drawing.Size(206, 20);
         this.TransmissionErrorsTB.TabIndex = 1;
-        this.TransmissionErrorsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.TransmissionErrorsTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // TransmissionErrorsLbl
         //
@@ -315,7 +315,7 @@ public partial class GXDLMSIEC14908PhysicalStatusView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

@@ -136,7 +136,7 @@ namespace Gurux.DLMS.UI
             this.IPCPOptionsTB.NotifyChanges = false;
             this.IPCPOptionsTB.Size = new System.Drawing.Size(171, 20);
             this.IPCPOptionsTB.TabIndex = 7;
-            this.IPCPOptionsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.IPCPOptionsTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // IPCPOptionsLbl
             // 
@@ -157,7 +157,7 @@ namespace Gurux.DLMS.UI
             this.LCPOptionsTB.NotifyChanges = false;
             this.LCPOptionsTB.Size = new System.Drawing.Size(171, 20);
             this.LCPOptionsTB.TabIndex = 5;
-            this.LCPOptionsTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LCPOptionsTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LCPOptionsLbl
             // 
@@ -178,7 +178,7 @@ namespace Gurux.DLMS.UI
             this.PHYReferenceTB.NotifyChanges = false;
             this.PHYReferenceTB.Size = new System.Drawing.Size(171, 20);
             this.PHYReferenceTB.TabIndex = 3;
-            this.PHYReferenceTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.PHYReferenceTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             this.PHYReferenceTB.Load += new System.EventHandler(this.DataLinkLayerTB_Load);
             // 
             // PHYReferenceLbl
@@ -200,7 +200,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(171, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

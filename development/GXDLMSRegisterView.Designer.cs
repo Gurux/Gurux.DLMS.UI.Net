@@ -186,7 +186,7 @@ namespace Gurux.DLMS.UI
             this.ValueTB.NotifyChanges = false;
             this.ValueTB.Size = new System.Drawing.Size(208, 20);
             this.ValueTB.TabIndex = 2;
-            this.ValueTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ValueTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameTB
             // 
@@ -199,7 +199,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSRegisterView
             // 

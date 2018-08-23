@@ -73,7 +73,7 @@ public partial class GXDLMSIEC14908PhysicalSetupView
         this.PLCInactivityTimeoutTB.Name = "PLCInactivityTimeoutTB";
         this.PLCInactivityTimeoutTB.Size = new System.Drawing.Size(206, 20);
         this.PLCInactivityTimeoutTB.TabIndex = 1;
-        this.PLCInactivityTimeoutTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.PLCInactivityTimeoutTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // PLCInactivityTimeoutLbl
         //
@@ -93,7 +93,7 @@ public partial class GXDLMSIEC14908PhysicalSetupView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

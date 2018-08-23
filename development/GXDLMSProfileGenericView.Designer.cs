@@ -184,7 +184,7 @@ namespace Gurux.DLMS.UI
             this.CapturePeriodTB.Size = new System.Drawing.Size(172, 20);
             this.CapturePeriodTB.TabIndex = 15;
             this.CapturePeriodTB.TabStop = false;
-            this.CapturePeriodTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CapturePeriodTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // groupBox3
             // 
@@ -219,7 +219,7 @@ namespace Gurux.DLMS.UI
             this.SortObjectTB.Size = new System.Drawing.Size(172, 20);
             this.SortObjectTB.TabIndex = 15;
             this.SortObjectTB.TabStop = false;
-            this.SortObjectTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.SortObjectTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // label4
             // 
@@ -240,7 +240,7 @@ namespace Gurux.DLMS.UI
             this.SortModeTB.Size = new System.Drawing.Size(116, 20);
             this.SortModeTB.TabIndex = 13;
             this.SortModeTB.TabStop = false;
-            this.SortModeTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.SortModeTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // tabControl1
             // 
@@ -566,7 +566,7 @@ namespace Gurux.DLMS.UI
             this.EntriesTB.Size = new System.Drawing.Size(57, 20);
             this.EntriesTB.TabIndex = 7;
             this.EntriesTB.TabStop = false;
-            this.EntriesTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.EntriesTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // EntriesInUseTB
             // 
@@ -577,7 +577,7 @@ namespace Gurux.DLMS.UI
             this.EntriesInUseTB.Size = new System.Drawing.Size(66, 20);
             this.EntriesInUseTB.TabIndex = 5;
             this.EntriesInUseTB.TabStop = false;
-            this.EntriesInUseTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.EntriesInUseTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -597,7 +597,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Size = new System.Drawing.Size(119, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.TabStop = false;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // label1
             // 

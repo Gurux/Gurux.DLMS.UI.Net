@@ -105,7 +105,7 @@
             this.CaptureTimeTb.ReadOnly = true;
             this.CaptureTimeTb.Size = new System.Drawing.Size(238, 20);
             this.CaptureTimeTb.TabIndex = 19;
-            this.CaptureTimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.CaptureTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // CaptureTimeLbl
             // 
@@ -222,7 +222,7 @@
             this.PSStatusTb.ReadOnly = true;
             this.PSStatusTb.Size = new System.Drawing.Size(238, 20);
             this.PSStatusTb.TabIndex = 16;
-            this.PSStatusTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.PSStatusTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // PSStatusLbl
             // 
@@ -244,7 +244,7 @@
             this.OperatorTb.ReadOnly = true;
             this.OperatorTb.Size = new System.Drawing.Size(238, 20);
             this.OperatorTb.TabIndex = 7;
-            this.OperatorTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.OperatorTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // OperatorLbl
             // 
@@ -330,7 +330,7 @@
             this.StatusTB.ReadOnly = true;
             this.StatusTB.Size = new System.Drawing.Size(238, 20);
             this.StatusTB.TabIndex = 5;
-            this.StatusTB.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // StatusLbl
             // 
@@ -352,7 +352,7 @@
             this.CSAttachmentTb.ReadOnly = true;
             this.CSAttachmentTb.Size = new System.Drawing.Size(238, 20);
             this.CSAttachmentTb.TabIndex = 3;
-            this.CSAttachmentTb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.CSAttachmentTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // CSAttachmentLbl
             // 
@@ -374,7 +374,7 @@
             this.LogicalNameTB.ReadOnly = true;
             this.LogicalNameTB.Size = new System.Drawing.Size(238, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

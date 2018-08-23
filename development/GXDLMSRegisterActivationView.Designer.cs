@@ -190,7 +190,7 @@ namespace Gurux.DLMS.UI
             this.ActiveTb.NotifyChanges = false;
             this.ActiveTb.Size = new System.Drawing.Size(149, 20);
             this.ActiveTb.TabIndex = 17;
-            this.ActiveTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.ActiveTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ActiveLbl
             // 
@@ -257,7 +257,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
             this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 

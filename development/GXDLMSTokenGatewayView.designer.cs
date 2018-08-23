@@ -270,7 +270,7 @@ namespace Gurux.DLMS.UI
             this.DeliveryMethodCb.ReadOnly = true;
             this.DeliveryMethodCb.Size = new System.Drawing.Size(353, 20);
             this.DeliveryMethodCb.TabIndex = 6;
-            this.DeliveryMethodCb.Type = Gurux.DLMS.UI.ValueFieldType.CompoBox;
+            this.DeliveryMethodCb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // TimeTb
             // 
@@ -282,7 +282,7 @@ namespace Gurux.DLMS.UI
             this.TimeTb.NotifyChanges = false;
             this.TimeTb.Size = new System.Drawing.Size(353, 20);
             this.TimeTb.TabIndex = 1;
-            this.TimeTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // TokenTb
             // 
@@ -294,7 +294,7 @@ namespace Gurux.DLMS.UI
             this.TokenTb.NotifyChanges = false;
             this.TokenTb.Size = new System.Drawing.Size(353, 20);
             this.TokenTb.TabIndex = 0;
-            this.TokenTb.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.TokenTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameTB
             // 
@@ -306,7 +306,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.NotifyChanges = false;
             this.LogicalNameTB.Size = new System.Drawing.Size(353, 20);
             this.LogicalNameTB.TabIndex = 10;
-            this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSTokenGatewayView
             // 

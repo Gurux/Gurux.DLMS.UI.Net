@@ -127,7 +127,7 @@ public partial class GXDLMSSFSKActiveInitiatorView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //

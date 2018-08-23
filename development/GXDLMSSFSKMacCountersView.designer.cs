@@ -99,7 +99,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.CrcNOkFramesCounterTB.Name = "CrcNOkFramesCounterTB";
         this.CrcNOkFramesCounterTB.Size = new System.Drawing.Size(206, 20);
         this.CrcNOkFramesCounterTB.TabIndex = 10;
-        this.CrcNOkFramesCounterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.CrcNOkFramesCounterTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // CrcNOkFramesCounterLbl
         //
@@ -119,7 +119,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.CrcOkFramesCounterTB.Name = "CrcOkFramesCounterTB";
         this.CrcOkFramesCounterTB.Size = new System.Drawing.Size(206, 20);
         this.CrcOkFramesCounterTB.TabIndex = 9;
-        this.CrcOkFramesCounterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.CrcOkFramesCounterTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // CrcOkFramesCounterLbl
         //
@@ -139,7 +139,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.TransmissionsCounterTB.Name = "TransmissionsCounterTB";
         this.TransmissionsCounterTB.Size = new System.Drawing.Size(206, 20);
         this.TransmissionsCounterTB.TabIndex = 4;
-        this.TransmissionsCounterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.TransmissionsCounterTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // TransmissionsCounterLbl
         //
@@ -159,7 +159,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.RepetitionsCounterTB.Name = "RepetitionsCounterTB";
         this.RepetitionsCounterTB.Size = new System.Drawing.Size(206, 20);
         this.RepetitionsCounterTB.TabIndex = 3;
-        this.RepetitionsCounterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.RepetitionsCounterTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // RepetitionsCounterLbl
         //
@@ -179,7 +179,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.BroadcastFramesCounterTB.Name = "BroadcastFramesCounterTB";
         this.BroadcastFramesCounterTB.Size = new System.Drawing.Size(206, 20);
         this.BroadcastFramesCounterTB.TabIndex = 2;
-        this.BroadcastFramesCounterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.BroadcastFramesCounterTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         this.BroadcastFramesCounterTB.Load += new System.EventHandler(this.BroadcastFramesCounterTB_Load);
         //
         // BroadcastFramesCounterLbl
@@ -200,7 +200,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.SynchronizationRegisterTB.Name = "SynchronizationRegisterTB";
         this.SynchronizationRegisterTB.Size = new System.Drawing.Size(206, 20);
         this.SynchronizationRegisterTB.TabIndex = 1;
-        this.SynchronizationRegisterTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.SynchronizationRegisterTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // SynchronizationRegisterLbl
         //
@@ -220,7 +220,7 @@ public partial class GXDLMSSFSKMacCountersView
         this.LogicalNameTB.Name = "LogicalNameTB";
         this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
         this.LogicalNameTB.TabIndex = 0;
-        this.LogicalNameTB.Type = Gurux.DLMS.UI.ValueFieldType.TextBox;
+        this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
         //
         // LogicalNameLbl
         //
