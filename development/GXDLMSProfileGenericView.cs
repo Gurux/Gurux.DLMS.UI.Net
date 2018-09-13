@@ -194,12 +194,43 @@ namespace Gurux.DLMS.UI
                                 GXDLMSAttributeSettings att = target.CaptureObjects[col].Key.Attributes.Find(target.CaptureObjects[col].Value.AttributeIndex);
                                 if (att != null && att.Values != null)
                                 {
-                                    foreach(GXObisValueItem it in att.Values)
+                                    if (att.Type == DataType.BitString && row[col] is string)
                                     {
-                                        if (IsNumber(row[col]) && it.Value == Convert.ToInt32(row[col]))
+                                        string str = (string)row[col];
+                                        if (str.Length != 0 && (str[0] == '0' || str[0] == '1'))
                                         {
-                                            row[col] = it.UIValue;
-                                            break;
+                                            List<char> list = new List<char>(((string)(string)row[col]).ToCharArray());
+                                            list.Reverse();
+                                            StringBuilder sb = new StringBuilder();
+                                            pos = 0;
+                                            foreach (char it in list)
+                                            {
+                                                if (it == '1')
+                                                {
+                                                    if (sb.Length != 0)
+                                                    {
+                                                        sb.Append(',');
+                                                    }
+                                                    sb.Append(att.Values[att.Values.Count - 1 - pos].UIValue);
+                                                }
+                                                ++pos;
+                                                if (pos == att.Values.Count)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            row[col] = sb.ToString();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (GXObisValueItem it in att.Values)
+                                        {
+                                            if (IsNumber(row[col]) && it.Value == Convert.ToInt32(row[col]))
+                                            {
+                                                row[col] = it.UIValue;
+                                                break;
+                                            }
                                         }
                                     }
                                 }

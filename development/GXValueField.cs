@@ -66,7 +66,7 @@ namespace Gurux.DLMS.UI
         {
             return logicalName;
         }
-    }   
+    }
 
     delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
 
@@ -82,7 +82,7 @@ namespace Gurux.DLMS.UI
         /// </summary>
         internal ValueFieldType DefaultType
         {
-            get;set;
+            get; set;
         }
 
         /// <summary>
@@ -393,9 +393,16 @@ namespace Gurux.DLMS.UI
         private void CheckedlistBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             int value = 0;
-            foreach (var it in checkedlistBox1.Items)
+            foreach (object it in checkedlistBox1.Items)
             {
-                value |= Convert.ToInt32(it);
+                if (it is GXObisValueItem)
+                {
+                    value |= 1 << Convert.ToInt32(((GXObisValueItem)it).Value);
+                }
+                else
+                {
+                    value |= Convert.ToInt32(it);
+                }
             }
             SetDirty(true, value);
         }
@@ -606,11 +613,11 @@ namespace Gurux.DLMS.UI
                 GXDLMSAttributeSettings att = target.Attributes.Find(index);
                 if (att != null)
                 {
-                    type = att.UIValueType;
+                    Type = att.UIValueType;
                 }
                 else
                 {
-                    type = DefaultType;
+                    Type = DefaultType;
                 }
                 if (type == ValueFieldType.TextBox)
                 {
@@ -621,11 +628,11 @@ namespace Gurux.DLMS.UI
                     }
                     else
                     {
-                        this.Type = Items == null || Items.Count == 0 ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
+                        this.Type = (Items == null || (att != null && att.Type == DataType.BitString) || Items.Count == 0) ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
                         textBox1.Multiline = tmp != null && tmp.Type == DataType.Array;
                     }
                 }
-                else if (type == ValueFieldType.CompoBox)
+                if (type == ValueFieldType.CompoBox)
                 {
                     comboBox1.Items.Clear();
                     if (Items != null && Items.Count != 0)
@@ -862,7 +869,46 @@ namespace Gurux.DLMS.UI
             }
             else if (Type == ValueFieldType.CheckedListBox)
             {
-                if (value is Enum)
+                checkedlistBox1.Items.Clear();
+                if (Items != null && Items.Count != 0)
+                {
+                    foreach (GXObisValueItem it in Items)
+                    {
+                        checkedlistBox1.Items.Add(it);
+                    }
+                }
+                if (value is string)
+                {
+                    int pos;
+                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                    //Uncheck all items.
+                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    {
+                        checkedlistBox1.SetItemChecked(pos, false);
+                    }
+                    int cnt = checkedlistBox1.Items.Count;
+                    if (((string)value).Length < cnt)
+                    {
+                        cnt = ((string)value).Length;
+                    }
+                    List<char> list = new List<char>(((string)value).ToCharArray());
+                    list.Reverse();
+                    pos = 0;
+                    foreach (char it in list)
+                    {
+                        if (it == '1')
+                        {
+                            checkedlistBox1.SetItemChecked(checkedlistBox1.Items.Count - pos - 1, true);
+                        }
+                        ++pos;
+                        if (pos == checkedlistBox1.Items.Count)
+                        {
+                            break;
+                        }
+                    }
+                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                }
+                else if (value is Enum)
                 {
                     checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
                     //Uncheck all items.
@@ -960,7 +1006,7 @@ namespace Gurux.DLMS.UI
                             {
                                 dataGridView1.Columns.Add(index.ToString(), dc.Caption);
                                 dataGridView1.Columns[index].DataPropertyName = index.ToString();
-                            }                           
+                            }
                             ++index;
                         }
                     }
@@ -983,7 +1029,7 @@ namespace Gurux.DLMS.UI
                                         {
                                             XmlNode v = it.Attributes.GetNamedItem("Value");
                                             if (v != null)
-                                            {                                               
+                                            {
                                                 DataColumn dc = dt.Columns[index];
                                                 if (dc.DataType == typeof(byte[]))
                                                 {
