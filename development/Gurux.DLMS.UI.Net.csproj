@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1809.1301, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1809.1301\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1809.2601, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1809.2601\lib\net40\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -90,6 +90,12 @@
     </Compile>
     <Compile Include="GXSecuritySetupKeyDlg.Designer.cs">
       <DependentUpon>GXSecuritySetupKeyDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXSapDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXSapDlg.Designer.cs">
+      <DependentUpon>GXSapDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXUserDlg.cs">
       <SubType>Form</SubType>
@@ -557,6 +563,9 @@
     <EmbeddedResource Include="GXSecuritySetupKeyDlg.resx">
       <DependentUpon>GXSecuritySetupKeyDlg.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXSapDlg.resx">
+      <DependentUpon>GXSapDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXUserDlg.resx">
       <DependentUpon>GXUserDlg.cs</DependentUpon>

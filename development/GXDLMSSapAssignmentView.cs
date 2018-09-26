@@ -70,12 +70,12 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 GXDLMSSapAssignment target = Target as GXDLMSSapAssignment;
-                CallingWindowLV.Items.Clear();
+                SapAssignmentView.Items.Clear();
                 if (target.SapAssignmentList != null)
                 {
                     foreach (var it in target.SapAssignmentList)
                     {
-                        ListViewItem li = CallingWindowLV.Items.Add(Convert.ToString(it.Key, 16));
+                        ListViewItem li = SapAssignmentView.Items.Add(Convert.ToString(it.Key, 16));
                         li.SubItems.Add(it.Value);
                     }
                 }
@@ -88,8 +88,68 @@ namespace Gurux.DLMS.UI
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
+
+        delegate void ShowUserDialogEventHandler(bool addUser, GXActionArgs arg);
+
+        void OnShowDialog(bool addUser, GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowUserDialogEventHandler(OnShowDialog), addUser, arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSSapAssignment target = Target as GXDLMSSapAssignment;
+                if (addUser)
+                {
+                    GXSapDlg dlg = new GXSapDlg(0, "", false);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        ListViewItem li = SapAssignmentView.Items.Add(dlg.SapId.ToString());
+                        li.SubItems.Add(dlg.LogicalDeviceName);
+                        arg.Value = target.AddSap(arg.Client, dlg.SapId, dlg.LogicalDeviceName);
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (SapAssignmentView.SelectedItems.Count == 1)
+                    {
+                        ListViewItem li = SapAssignmentView.SelectedItems[0];
+                        GXSapDlg dlg = new GXSapDlg(UInt16.Parse(li.SubItems[0].Text), li.SubItems[1].Text, true);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            arg.Value = target.RemoveSap(arg.Client, dlg.LogicalDeviceName);
+                            li.Remove();
+                        }
+                        else
+                        {
+                            arg.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
+            //Add object to SAP assignment.
+            if (arg.Index == 1)
+            {
+                OnShowDialog(true, arg);
+            }
+            else if (arg.Index == 2)
+            {
+                // Remove object from SAP assignment.
+                OnShowDialog(false, arg);
+            }
         }
 
         public void PostAction(GXActionArgs arg)
