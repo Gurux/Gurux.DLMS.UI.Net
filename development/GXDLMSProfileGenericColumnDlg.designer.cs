@@ -34,13 +34,15 @@
             this.TargetCb = new System.Windows.Forms.ComboBox();
             this.IndexLbl = new System.Windows.Forms.Label();
             this.IndexTB = new System.Windows.Forms.TextBox();
+            this.DataIndexTb = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // OkBtn
             // 
             this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBtn.Location = new System.Drawing.Point(109, 78);
+            this.OkBtn.Location = new System.Drawing.Point(109, 145);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
             this.OkBtn.TabIndex = 0;
@@ -52,7 +54,7 @@
             // 
             this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(190, 78);
+            this.CancelBtn.Location = new System.Drawing.Point(190, 145);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 1;
@@ -70,12 +72,12 @@
             // 
             // TargetCb
             // 
-            this.TargetCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TargetCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TargetCb.FormattingEnabled = true;
-            this.TargetCb.Location = new System.Drawing.Point(63, 12);
+            this.TargetCb.Location = new System.Drawing.Point(80, 12);
             this.TargetCb.Name = "TargetCb";
-            this.TargetCb.Size = new System.Drawing.Size(202, 21);
+            this.TargetCb.Size = new System.Drawing.Size(185, 21);
             this.TargetCb.TabIndex = 6;
             // 
             // IndexLbl
@@ -89,10 +91,26 @@
             // 
             // IndexTB
             // 
-            this.IndexTB.Location = new System.Drawing.Point(63, 39);
+            this.IndexTB.Location = new System.Drawing.Point(80, 39);
             this.IndexTB.Name = "IndexTB";
-            this.IndexTB.Size = new System.Drawing.Size(202, 20);
+            this.IndexTB.Size = new System.Drawing.Size(185, 20);
             this.IndexTB.TabIndex = 8;
+            // 
+            // DataIndexTb
+            // 
+            this.DataIndexTb.Location = new System.Drawing.Point(80, 65);
+            this.DataIndexTb.Name = "DataIndexTb";
+            this.DataIndexTb.Size = new System.Drawing.Size(185, 20);
+            this.DataIndexTb.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Data Index:";
             // 
             // GXDLMSProfileGenericColumnDlg
             // 
@@ -100,8 +118,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(277, 113);
+            this.ClientSize = new System.Drawing.Size(277, 180);
             this.ControlBox = false;
+            this.Controls.Add(this.DataIndexTb);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.IndexTB);
             this.Controls.Add(this.IndexLbl);
             this.Controls.Add(this.TargetCb);
@@ -125,5 +145,7 @@
         private System.Windows.Forms.ComboBox TargetCb;
         private System.Windows.Forms.Label IndexLbl;
         private System.Windows.Forms.TextBox IndexTB;
+        private System.Windows.Forms.TextBox DataIndexTb;
+        private System.Windows.Forms.Label label1;
     }
 }

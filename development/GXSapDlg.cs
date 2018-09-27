@@ -64,7 +64,13 @@ namespace Gurux.DLMS.UI
             InitializeComponent();
             if (SapId != 0)
             {
+                Text = "Remove SAP assigment";
+                NameTb.ReadOnly = IdTb.ReadOnly = true;
                 IdTb.Text = SapId.ToString();
+            }
+            else
+            {
+                Text = "Add new SAP assigment";
             }
             NameTb.Text = LogicalDeviceName;
             IdTb.ReadOnly = NameTb.ReadOnly = remove;

@@ -79,10 +79,12 @@ namespace Gurux.DLMS.UI
             if (Target.Value != null)
             {
                 IndexTB.Text = target.Value.AttributeIndex.ToString();
+                DataIndexTb.Text = target.Value.DataIndex.ToString();
             }
             else
             {
                 IndexTB.Text = "2";
+                DataIndexTb.Text = "0";
             }
         }
 
@@ -104,6 +106,7 @@ namespace Gurux.DLMS.UI
                     Target.Value = new GXDLMSCaptureObject();
                 }
                 Target.Value.AttributeIndex = int.Parse(IndexTB.Text);
+                Target.Value.DataIndex = int.Parse(DataIndexTb.Text);
             }
             catch (Exception ex)
             {

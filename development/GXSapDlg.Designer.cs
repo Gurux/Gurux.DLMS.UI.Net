@@ -112,7 +112,7 @@
             this.Name = "GXSapDlg";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "User";
+            this.Text = "SAP assigment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

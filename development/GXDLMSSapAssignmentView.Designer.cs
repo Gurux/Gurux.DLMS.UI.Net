@@ -39,14 +39,14 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSSapAssignmentView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AddObjectBtn = new Gurux.DLMS.UI.GXButton();
+            this.RemoveObjectBtn = new Gurux.DLMS.UI.GXButton();
             this.SapAssignmentView = new System.Windows.Forms.ListView();
             this.SapAddressHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LogicalDeviceNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.AddObjectBtn = new Gurux.DLMS.UI.GXButton();
-            this.RemoveObjectBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +67,28 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SAP Assignment Object";
+            // 
+            // AddObjectBtn
+            // 
+            this.AddObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddObjectBtn.Index = 1;
+            this.AddObjectBtn.Location = new System.Drawing.Point(117, 194);
+            this.AddObjectBtn.Name = "AddObjectBtn";
+            this.AddObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddObjectBtn.TabIndex = 24;
+            this.AddObjectBtn.Text = "Add";
+            this.AddObjectBtn.UseVisualStyleBackColor = true;
+            // 
+            // RemoveObjectBtn
+            // 
+            this.RemoveObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveObjectBtn.Index = 2;
+            this.RemoveObjectBtn.Location = new System.Drawing.Point(198, 194);
+            this.RemoveObjectBtn.Name = "RemoveObjectBtn";
+            this.RemoveObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveObjectBtn.TabIndex = 23;
+            this.RemoveObjectBtn.Text = "Remove";
+            this.RemoveObjectBtn.UseVisualStyleBackColor = true;
             // 
             // SapAssignmentView
             // 
@@ -122,28 +144,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // AddObjectBtn
-            // 
-            this.AddObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddObjectBtn.Index = 3;
-            this.AddObjectBtn.Location = new System.Drawing.Point(117, 194);
-            this.AddObjectBtn.Name = "AddObjectBtn";
-            this.AddObjectBtn.Size = new System.Drawing.Size(75, 23);
-            this.AddObjectBtn.TabIndex = 24;
-            this.AddObjectBtn.Text = "Add";
-            this.AddObjectBtn.UseVisualStyleBackColor = true;
-            // 
-            // RemoveObjectBtn
-            // 
-            this.RemoveObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveObjectBtn.Index = 4;
-            this.RemoveObjectBtn.Location = new System.Drawing.Point(198, 194);
-            this.RemoveObjectBtn.Name = "RemoveObjectBtn";
-            this.RemoveObjectBtn.Size = new System.Drawing.Size(75, 23);
-            this.RemoveObjectBtn.TabIndex = 23;
-            this.RemoveObjectBtn.Text = "Remove";
-            this.RemoveObjectBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSSapAssignmentView
             // 
