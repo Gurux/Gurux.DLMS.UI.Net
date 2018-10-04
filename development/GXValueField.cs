@@ -891,14 +891,12 @@ namespace Gurux.DLMS.UI
                     {
                         cnt = ((string)value).Length;
                     }
-                    List<char> list = new List<char>(((string)value).ToCharArray());
-                    list.Reverse();
                     pos = 0;
-                    foreach (char it in list)
+                    foreach (char it in (string)value)
                     {
                         if (it == '1')
                         {
-                            checkedlistBox1.SetItemChecked(checkedlistBox1.Items.Count - pos - 1, true);
+                            checkedlistBox1.SetItemChecked(pos, true);
                         }
                         ++pos;
                         if (pos == checkedlistBox1.Items.Count)

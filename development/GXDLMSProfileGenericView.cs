@@ -199,11 +199,9 @@ namespace Gurux.DLMS.UI
                                         string str = (string)row[col];
                                         if (str.Length != 0 && (str[0] == '0' || str[0] == '1'))
                                         {
-                                            List<char> list = new List<char>(((string)(string)row[col]).ToCharArray());
-                                            list.Reverse();
                                             StringBuilder sb = new StringBuilder();
                                             pos = 0;
-                                            foreach (char it in list)
+                                            foreach (char it in str)
                                             {
                                                 if (it == '1')
                                                 {
@@ -211,7 +209,7 @@ namespace Gurux.DLMS.UI
                                                     {
                                                         sb.Append(',');
                                                     }
-                                                    sb.Append(att.Values[att.Values.Count - 1 - pos].UIValue);
+                                                    sb.Append(att.Values[pos].UIValue);
                                                 }
                                                 ++pos;
                                                 if (pos == att.Values.Count)
