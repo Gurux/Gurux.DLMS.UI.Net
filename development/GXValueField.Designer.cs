@@ -65,7 +65,9 @@ namespace Gurux.DLMS.UI
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.bitPanel = new System.Windows.Forms.Panel();
             this.checkedlistBox1 = new System.Windows.Forms.CheckedListBox();
+            this.bitString = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -98,6 +100,23 @@ namespace Gurux.DLMS.UI
             this.listBox1.TabIndex = 0;
             this.listBox1.Visible = false;
             // 
+            // bitPanel
+            // 
+            this.bitPanel.Location = new System.Drawing.Point(0, 0);
+            this.bitPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bitPanel.Name = "bitPanel";
+            this.bitPanel.Size = new System.Drawing.Size(194, 20);
+            this.bitPanel.TabIndex = 3;
+
+            // 
+            // bitstring
+            // 
+            this.bitString.Location = new System.Drawing.Point(0, 0);
+            this.bitString.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bitString.Name = "bitstring";
+            this.bitString.Size = new System.Drawing.Size(194, 20);
+            this.bitString.TabIndex = 3;
+            // 
             // checkedlistBox1
             // 
             this.checkedlistBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,6 +141,9 @@ namespace Gurux.DLMS.UI
             this.dataGridView1.RowsRemoved += DataGridView1_RowsRemoved;
             this.dataGridView1.RowsAdded += DataGridView1_RowsAdded;
             dataGridView1.DataError += DataGridView1_DataError;
+
+            this.bitPanel.Controls.Add(this.checkedlistBox1);
+            this.bitPanel.Controls.Add(this.bitString);
             // 
             // GXValueField
             // 
@@ -130,7 +152,7 @@ namespace Gurux.DLMS.UI
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.checkedlistBox1);
+            this.Controls.Add(this.bitPanel);
             this.Controls.Add(this.dataGridView1);
             this.Name = "GXValueField";
             this.Size = new System.Drawing.Size(194, 22);
@@ -145,6 +167,8 @@ namespace Gurux.DLMS.UI
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Panel bitPanel;
+        private System.Windows.Forms.Label bitString;
         private System.Windows.Forms.CheckedListBox checkedlistBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

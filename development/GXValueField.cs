@@ -275,7 +275,7 @@ namespace Gurux.DLMS.UI
                 textBox1.Visible = type == ValueFieldType.TextBox;
                 comboBox1.Visible = type == ValueFieldType.CompoBox;
                 listBox1.Visible = type == ValueFieldType.ListBox;
-                checkedlistBox1.Visible = type == ValueFieldType.CheckedListBox;
+                bitPanel.Visible = checkedlistBox1.Visible = type == ValueFieldType.CheckedListBox;
                 dataGridView1.Visible = type == ValueFieldType.Xml;
                 if (Type == ValueFieldType.CompoBox)
                 {
@@ -877,8 +877,10 @@ namespace Gurux.DLMS.UI
                         checkedlistBox1.Items.Add(it);
                     }
                 }
+                bitString.Text = "";
                 if (value is string)
                 {
+                    bitString.Text = (string) value;
                     int pos;
                     checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
                     //Uncheck all items.
