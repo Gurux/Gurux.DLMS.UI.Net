@@ -74,7 +74,11 @@ namespace Gurux.DLMS.UI
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
-            if (index == 5)
+            if (index == 3)
+            {
+                ImageTransferredBlocksStatusTB.Text = (string) value;
+            }
+            else if (index == 5)
             {
                 ImageTransferEnabledCB.CheckedChanged -= new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
                 ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
@@ -465,7 +469,11 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            if (index == 5)
+            if (index == 3)
+            {
+                ImageTransferredBlocksStatusTB.ReadOnly = !(connected && (Target.GetAccess(index) & AccessMode.Write) != 0);
+            }
+            else if (index == 5)
             {
                 ImageTransferEnabledCB.Enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
             }
