@@ -200,7 +200,7 @@ namespace Gurux.DLMS.UI
                                         if (str.Length != 0 && (str[0] == '0' || str[0] == '1'))
                                         {
                                             StringBuilder sb = new StringBuilder();
-                                            pos = 0;
+                                            int pos2 = 0;
                                             foreach (char it in str)
                                             {
                                                 if (it == '1')
@@ -209,10 +209,10 @@ namespace Gurux.DLMS.UI
                                                     {
                                                         sb.Append(',');
                                                     }
-                                                    sb.Append(att.Values[pos].UIValue);
+                                                    sb.Append(att.Values[pos2].UIValue);
                                                 }
-                                                ++pos;
-                                                if (pos == att.Values.Count)
+                                                ++pos2;
+                                                if (pos2 == att.Values.Count)
                                                 {
                                                     break;
                                                 }
@@ -234,8 +234,8 @@ namespace Gurux.DLMS.UI
                                 }
                             }
                         }
+                        dt.LoadDataRow(row, true);
                     }
-                    dt.LoadDataRow(row, true);
                 }
             }
         }
