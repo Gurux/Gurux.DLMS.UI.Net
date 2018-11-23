@@ -72,9 +72,9 @@ namespace Gurux.DLMS.UI
             GXDLMSGSMDiagnostic target = Target as GXDLMSGSMDiagnostic;
             if (index == 6)
             {
-                CellIDTb.Text = target.CellInfo.CellId.ToString();
+                CellIDTb.Text = target.CellInfo.CellId.ToString(target.Version == 0 ? "X4" : "X8");
                 LocationIDTb.Text = target.CellInfo.LocationId.ToString("X4");
-                SignalQualityTb.Text = target.CellInfo.SignalQuality.ToString("X4");
+                SignalQualityTb.Text = target.CellInfo.SignalQuality.ToString();
                 BerTb.Text = target.CellInfo.Ber.ToString();
             }
             else if (index == 7)
@@ -84,7 +84,7 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (var it in target.AdjacentCells)
                     {
-                        ListViewItem li = AdjacentCellsLV.Items.Add(it.CellId);
+                        ListViewItem li = AdjacentCellsLV.Items.Add(it.CellId.ToString(target.Version == 0 ? "X4" : "X8"));
                         li.SubItems.Add(it.SignalQuality.ToString());
                         li.Tag = it;
                     }
