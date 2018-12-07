@@ -878,9 +878,10 @@ namespace Gurux.DLMS.UI
                     }
                 }
                 bitString.Text = "";
-                if (value is string)
+                if (value is GXBitString)
                 {
-                    bitString.Text = (string) value;
+                    value = value.ToString();
+                    bitString.Text = (string)value;
                     int pos;
                     checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
                     //Uncheck all items.
