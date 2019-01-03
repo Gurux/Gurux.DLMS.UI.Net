@@ -509,7 +509,6 @@ namespace Gurux.DLMS.UI
             this.ToPick.Checked = false;
             this.ToPick.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ToPick.Location = new System.Drawing.Point(292, 69);
-            this.ToPick.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.ToPick.Name = "ToPick";
             this.ToPick.ShowCheckBox = true;
             this.ToPick.Size = new System.Drawing.Size(172, 20);
@@ -521,7 +520,6 @@ namespace Gurux.DLMS.UI
             this.StartPick.Checked = false;
             this.StartPick.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.StartPick.Location = new System.Drawing.Point(94, 69);
-            this.StartPick.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.StartPick.Name = "StartPick";
             this.StartPick.ShowCheckBox = true;
             this.StartPick.Size = new System.Drawing.Size(163, 20);
