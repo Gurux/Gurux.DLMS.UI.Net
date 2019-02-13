@@ -146,6 +146,7 @@ namespace Gurux.DLMS.UI
                 GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             arg.Action = ActionType.None;
+            arg.Rebooting = arg.Target.LogicalName == "0.0.10.0.0.255";
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider

@@ -32,6 +32,7 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Enums;
 using System;
 
 namespace Gurux.DLMS.UI
@@ -46,6 +47,7 @@ namespace Gurux.DLMS.UI
         {
             DLMSType = dlmsType;
             Version = 0;
+            Standard = Standard.DLMS;
         }
 
         /// <summary>
@@ -57,6 +59,22 @@ namespace Gurux.DLMS.UI
         {
             DLMSType = dlmsType;
             Version = version;
+            Standard = Standard.DLMS;
+        }
+
+        /// <summary>
+        /// Costructor.
+        /// </summary>
+        /// <param name="dlmsType">COSEM object that this UI shown.</param>
+        /// <param name="version">DLMS version number.</param>
+        /// <param name="ln">Logical name.</param>
+        /// <param name="standard">Used standard.</param>
+        public GXDLMSViewAttribute(Type dlmsType, byte version, string ln, Standard standard)
+        {
+            DLMSType = dlmsType;
+            Version = version;
+            LogicalName = ln;
+            Standard = standard;
         }
 
         public Type DLMSType
@@ -66,6 +84,18 @@ namespace Gurux.DLMS.UI
         }
 
         public byte Version
+        {
+            get;
+            private set;
+        }
+
+        public string LogicalName
+        {
+            get;
+            private set;
+        }
+
+        public Standard Standard
         {
             get;
             private set;

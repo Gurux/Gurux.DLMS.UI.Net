@@ -397,7 +397,14 @@ namespace Gurux.DLMS.UI
             {
                 if (it is GXObisValueItem)
                 {
-                    value |= 1 << Convert.ToInt32(((GXObisValueItem)it).Value);
+                    if ((it as GXObisValueItem).MaskSize != 0)
+                    {
+                        value |= Convert.ToInt32(((GXObisValueItem)it).Value);
+                    }
+                    else
+                    {
+                        value |= 1 << Convert.ToInt32(((GXObisValueItem)it).Value);
+                    }
                 }
                 else
                 {
@@ -611,13 +618,20 @@ namespace Gurux.DLMS.UI
                     Items = null;
                 }
                 GXDLMSAttributeSettings att = target.Attributes.Find(index);
-                if (att != null)
+                if (att.UIValueType == ValueFieldType.TextBox && Items != null && Items.Count != 0)
                 {
-                    Type = att.UIValueType;
+                    Type = ValueFieldType.CheckedListBox;
                 }
                 else
                 {
-                    Type = DefaultType;
+                    if (att != null)
+                    {
+                        Type = att.UIValueType;
+                    }
+                    else
+                    {
+                        Type = DefaultType;
+                    }
                 }
                 if (type == ValueFieldType.TextBox)
                 {
@@ -933,6 +947,58 @@ namespace Gurux.DLMS.UI
                     checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
                     return;
                 }
+                else if (IsNumeric(value))
+                {
+                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                    //Uncheck all items.
+                    int pos = 0;
+                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    {
+                        checkedlistBox1.SetItemChecked(pos, false);
+                    }
+                    bool c;
+                    long v2 = Convert.ToInt64(value);
+                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    {
+                        GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
+                        c = ((v2 & it.Value) == it.Value);
+                        checkedlistBox1.SetItemChecked(pos, c);
+                    }
+                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                    return;
+                }
+                else if (value is byte[])
+                {
+                    GXByteBuffer bb = new GXByteBuffer();
+                    bb.SetUInt8((byte)(8 * (value as byte[]).Length));
+                    bb.Set(value as byte[]);
+                    GXBitString bs = (GXBitString)GXDLMSClient.ChangeType(bb, DataType.BitString, false);
+                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                    //Uncheck all items.
+                    int pos = 0;
+                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    {
+                        checkedlistBox1.SetItemChecked(pos, false);
+                    }
+                    bool c;
+                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    {
+                        GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
+                        if (it.MaskSize != 0)
+                        {
+                            string tmp = bs.Value.Substring(it.Shift, it.MaskSize);
+                            GXBitString bb2 = new GXBitString(tmp);
+                            c = Convert.ToInt32(bb2) == it.Value;
+                        }
+                        else
+                        {
+                            c = bs.Value[it.Value] == '1';
+                        }
+                        checkedlistBox1.SetItemChecked(pos, c);
+                    }
+                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                    return;
+                }
             }
             else if (Type == ValueFieldType.Xml)
             {
@@ -1111,6 +1177,24 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        private static bool IsNumeric(object value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            Type tp = value.GetType();
+            if (tp == typeof(Int16) ||
+                tp == typeof(Int32) ||
+                tp == typeof(Int64) ||
+                tp == typeof(sbyte) ||
+                tp == typeof(UInt16) ||
+                tp == typeof(UInt32) ||
+                tp == typeof(UInt64) ||
+                tp == typeof(byte))
+                return true;
+            return false;
+        }
 
         List<DataType> dataTypes = new List<DataType>();
 

@@ -112,6 +112,36 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
+        /// Get view for COSEM object.
+        /// </summary>
+        /// <param name="views">List of available views.</param>
+        /// <param name="target">Selected COSEM object.</param>
+        /// <param name="standard">Used standard.</param>
+        /// <returns>Assigned view.</returns>
+        public static IGXDLMSView GetView(Dictionary<Type, List<IGXDLMSView>> views, GXDLMSObject target, Standard standard)
+        {
+            List<IGXDLMSView> v = views[target.GetType()];
+            foreach (var it in v)
+            {
+                GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
+                if (att.Length == 1 && att[0].Version == target.Version && att[0].Standard == standard && att[0].LogicalName == target.LogicalName)
+                {
+                    return it;
+                }
+            }
+            //Find default UI.
+            foreach (var it in v)
+            {
+                GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
+                if (att.Length == 1 && att[0].Version == target.Version && att[0].Standard == Standard.DLMS && att[0].LogicalName == null)
+                {
+                    return it;
+                }
+            }
+            return v[0];
+        }
+
+        /// <summary>
         /// Update attribute value for the view.
         /// </summary>
         /// <param name="view">Updated view.</param>
@@ -199,7 +229,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-        }     
+        }
 
         public static bool UpdateDirty(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, GXDLMSObject target, int index, bool dirty)
         {
@@ -430,7 +460,7 @@ namespace Gurux.DLMS.UI
             Properties.Settings.Default.Save();
         }
 
-        private static bool UpdateError(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, 
+        private static bool UpdateError(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls,
             GXDLMSObject target, int index, Exception ex)
         {
             bool found = false;
