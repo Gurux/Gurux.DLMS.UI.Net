@@ -618,7 +618,7 @@ namespace Gurux.DLMS.UI
                     Items = null;
                 }
                 GXDLMSAttributeSettings att = target.Attributes.Find(index);
-                if (att.UIValueType == ValueFieldType.TextBox && Items != null && Items.Count != 0)
+                if ((att != null && att.UIValueType == ValueFieldType.TextBox) && Items != null && Items.Count != 0)
                 {
                     Type = ValueFieldType.CheckedListBox;
                 }
