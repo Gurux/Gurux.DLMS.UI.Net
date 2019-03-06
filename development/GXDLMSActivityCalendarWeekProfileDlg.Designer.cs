@@ -53,7 +53,7 @@
             // 
             this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(259, 258);
+            this.CancelBtn.Location = new System.Drawing.Point(335, 258);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 10;
@@ -64,7 +64,7 @@
             // 
             this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBtn.Location = new System.Drawing.Point(178, 258);
+            this.OkBtn.Location = new System.Drawing.Point(254, 258);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
             this.OkBtn.TabIndex = 9;
@@ -78,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTb.Location = new System.Drawing.Point(91, 12);
             this.NameTb.Name = "NameTb";
-            this.NameTb.Size = new System.Drawing.Size(162, 20);
+            this.NameTb.Size = new System.Drawing.Size(238, 20);
             this.NameTb.TabIndex = 0;
             // 
             // NameLbl
@@ -93,7 +93,7 @@
             // AsciiBtn
             // 
             this.AsciiBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AsciiBtn.Location = new System.Drawing.Point(266, 15);
+            this.AsciiBtn.Location = new System.Drawing.Point(342, 15);
             this.AsciiBtn.Name = "AsciiBtn";
             this.AsciiBtn.Size = new System.Drawing.Size(68, 17);
             this.AsciiBtn.TabIndex = 1;
@@ -171,7 +171,7 @@
             this.MondayCb.FormattingEnabled = true;
             this.MondayCb.Location = new System.Drawing.Point(91, 39);
             this.MondayCb.Name = "MondayCb";
-            this.MondayCb.Size = new System.Drawing.Size(160, 21);
+            this.MondayCb.Size = new System.Drawing.Size(236, 21);
             this.MondayCb.TabIndex = 39;
             // 
             // TuesdayCb
@@ -182,7 +182,7 @@
             this.TuesdayCb.FormattingEnabled = true;
             this.TuesdayCb.Location = new System.Drawing.Point(91, 66);
             this.TuesdayCb.Name = "TuesdayCb";
-            this.TuesdayCb.Size = new System.Drawing.Size(160, 21);
+            this.TuesdayCb.Size = new System.Drawing.Size(236, 21);
             this.TuesdayCb.TabIndex = 40;
             // 
             // WednesdayCb
@@ -193,7 +193,7 @@
             this.WednesdayCb.FormattingEnabled = true;
             this.WednesdayCb.Location = new System.Drawing.Point(91, 93);
             this.WednesdayCb.Name = "WednesdayCb";
-            this.WednesdayCb.Size = new System.Drawing.Size(160, 21);
+            this.WednesdayCb.Size = new System.Drawing.Size(236, 21);
             this.WednesdayCb.TabIndex = 41;
             // 
             // ThursdayCb
@@ -204,7 +204,7 @@
             this.ThursdayCb.FormattingEnabled = true;
             this.ThursdayCb.Location = new System.Drawing.Point(91, 120);
             this.ThursdayCb.Name = "ThursdayCb";
-            this.ThursdayCb.Size = new System.Drawing.Size(160, 21);
+            this.ThursdayCb.Size = new System.Drawing.Size(236, 21);
             this.ThursdayCb.TabIndex = 42;
             // 
             // FridayCb
@@ -215,7 +215,7 @@
             this.FridayCb.FormattingEnabled = true;
             this.FridayCb.Location = new System.Drawing.Point(91, 147);
             this.FridayCb.Name = "FridayCb";
-            this.FridayCb.Size = new System.Drawing.Size(160, 21);
+            this.FridayCb.Size = new System.Drawing.Size(236, 21);
             this.FridayCb.TabIndex = 43;
             // 
             // SaturdayCb
@@ -226,7 +226,7 @@
             this.SaturdayCb.FormattingEnabled = true;
             this.SaturdayCb.Location = new System.Drawing.Point(91, 174);
             this.SaturdayCb.Name = "SaturdayCb";
-            this.SaturdayCb.Size = new System.Drawing.Size(160, 21);
+            this.SaturdayCb.Size = new System.Drawing.Size(236, 21);
             this.SaturdayCb.TabIndex = 44;
             // 
             // SundayCb
@@ -237,7 +237,7 @@
             this.SundayCb.FormattingEnabled = true;
             this.SundayCb.Location = new System.Drawing.Point(91, 201);
             this.SundayCb.Name = "SundayCb";
-            this.SundayCb.Size = new System.Drawing.Size(160, 21);
+            this.SundayCb.Size = new System.Drawing.Size(236, 21);
             this.SundayCb.TabIndex = 45;
             // 
             // GXDLMSActivityCalendarWeekProfileDlg
@@ -246,7 +246,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(346, 293);
+            this.ClientSize = new System.Drawing.Size(422, 293);
             this.Controls.Add(this.SundayCb);
             this.Controls.Add(this.SaturdayCb);
             this.Controls.Add(this.FridayCb);
