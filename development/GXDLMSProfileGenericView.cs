@@ -53,11 +53,11 @@ namespace Gurux.DLMS.UI
     partial class GXDLMSProfileGenericView : Form, IGXDLMSView
     {
         /// <summary>
-        /// Are there structures in data. Acaris is using this.
+        /// Are there structures in data.
         /// </summary>
         bool structures = false;
         /// <summary>
-        /// Target profile genric object.
+        /// Target profile generic object.
         /// </summary>
         GXDLMSProfileGeneric target;
         /// <summary>
@@ -145,7 +145,7 @@ namespace Gurux.DLMS.UI
                                 list.Add(i2, v);
                                 ++i2;
                             }
-                            //Update values first. 
+                            //Update values first.
                             foreach (byte i in (obj as IGXDLMSBase).GetAttributeIndexToRead(true))
                             {
                                 ValueEventArgs ve = new ValueEventArgs(obj, i, 0, null);
