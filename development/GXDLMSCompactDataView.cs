@@ -213,7 +213,14 @@ namespace Gurux.DLMS.UI
                         {
                             if (row[col] is byte[])
                             {
-                                row[col] = GXDLMSTranslator.ToHex((byte[])row[col], true);
+                                if (pos <target.CaptureObjects.Count && target.CaptureObjects[col].Key.GetUIDataType(target.CaptureObjects[col].Value.AttributeIndex) == DataType.DateTime)
+                                {
+                                    row[col] = GXDLMSClient.ChangeType(row[col] as byte[], DataType.DateTime);
+                                }
+                                else
+                                {
+                                    row[col] = GXDLMSTranslator.ToHex((byte[])row[col], true);
+                                }
                             }
                             else if (row[col] is Object[])
                             {
