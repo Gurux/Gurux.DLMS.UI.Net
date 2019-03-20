@@ -157,7 +157,6 @@ namespace Gurux.DLMS.UI
             this.MonitoredValueTB.Location = new System.Drawing.Point(126, 16);
             this.MonitoredValueTB.Name = "MonitoredValueTB";
             this.MonitoredValueTB.Size = new System.Drawing.Size(154, 21);
-            this.MonitoredValueTB.Sorted = true;
             this.MonitoredValueTB.TabIndex = 2;
             this.MonitoredValueTB.SelectedIndexChanged += new System.EventHandler(this.MonitoredValueTB_SelectedIndexChanged);
             // 
