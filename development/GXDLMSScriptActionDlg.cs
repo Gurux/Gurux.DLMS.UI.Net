@@ -32,15 +32,10 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Objects.Enums;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Gurux.DLMS.UI
@@ -56,6 +51,10 @@ namespace Gurux.DLMS.UI
             action = a;
             targets = objects;
             InitializeComponent();
+            foreach (object it in Enum.GetValues(typeof(DataType)))
+            {
+                ParameterTypeTb.Items.Add(it);
+            }
             TypeCb.Items.Add(ScriptActionType.Write);
             TypeCb.Items.Add(ScriptActionType.Execute);
             if (a.Type == ScriptActionType.None)
@@ -69,6 +68,8 @@ namespace Gurux.DLMS.UI
             }
             TargetCb.SelectedItem = a.Target;
             IndexTB.Text = action.Index.ToString();
+            ParameterTb.Text = Convert.ToString(action.Parameter);
+            ParameterTypeTb.SelectedItem = action.ParameterDataType;
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
@@ -87,10 +88,13 @@ namespace Gurux.DLMS.UI
                 action.Type = (ScriptActionType)TypeCb.SelectedItem;
                 action.Target = TargetCb.SelectedItem as GXDLMSObject;
                 action.Index = int.Parse(IndexTB.Text);
+                action.ParameterDataType = (DataType) ParameterTypeTb.SelectedItem;
+                action.Parameter = GXDLMSConverter.ChangeType(ParameterTb.Text, action.ParameterDataType, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.None;
             }
         }
     }

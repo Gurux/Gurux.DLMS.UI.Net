@@ -684,9 +684,10 @@ namespace Gurux.DLMS.UI
                         //If user has change target object.
                         if (it.Key != dlg.GetTarget().Key)
                         {
-                            target.CaptureObjects.Remove(it);
+                            int pos = target.CaptureObjects.IndexOf(it);
+                            target.CaptureObjects.RemoveAt(pos);
                             it = dlg.GetTarget();
-                            target.CaptureObjects.Add(it);
+                            target.CaptureObjects.Insert(pos, it);
                         }
                         else
                         {

@@ -142,13 +142,20 @@ namespace Gurux.DLMS.UI
                 {
                     throw new Exception("Invalid name.");
                 }
-                Target.Monday = ((GXDLMSDayProfile)MondayCb.SelectedItem).DayId;
-                Target.Tuesday = ((GXDLMSDayProfile)TuesdayCb.SelectedItem).DayId;
-                Target.Wednesday = ((GXDLMSDayProfile)WednesdayCb.SelectedItem).DayId;
-                Target.Thursday = ((GXDLMSDayProfile)ThursdayCb.SelectedItem).DayId;
-                Target.Friday = ((GXDLMSDayProfile)FridayCb.SelectedItem).DayId;
-                Target.Saturday = ((GXDLMSDayProfile)SaturdayCb.SelectedItem).DayId;
-                Target.Sunday = ((GXDLMSDayProfile)SundayCb.SelectedItem).DayId;
+                try
+                {
+                    Target.Monday = ((GXDLMSDayProfile)MondayCb.SelectedItem).DayId;
+                    Target.Tuesday = ((GXDLMSDayProfile)TuesdayCb.SelectedItem).DayId;
+                    Target.Wednesday = ((GXDLMSDayProfile)WednesdayCb.SelectedItem).DayId;
+                    Target.Thursday = ((GXDLMSDayProfile)ThursdayCb.SelectedItem).DayId;
+                    Target.Friday = ((GXDLMSDayProfile)FridayCb.SelectedItem).DayId;
+                    Target.Saturday = ((GXDLMSDayProfile)SaturdayCb.SelectedItem).DayId;
+                    Target.Sunday = ((GXDLMSDayProfile)SundayCb.SelectedItem).DayId;
+                }
+                catch (System.NullReferenceException)
+                {
+                    throw new Exception("Invalid day profile.");
+                }
             }
             catch (Exception ex)
             {

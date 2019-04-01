@@ -36,6 +36,10 @@
             this.TargetCb = new System.Windows.Forms.ComboBox();
             this.IndexLbl = new System.Windows.Forms.Label();
             this.IndexTB = new System.Windows.Forms.TextBox();
+            this.ParameterTb = new System.Windows.Forms.TextBox();
+            this.ParameterLbl = new System.Windows.Forms.Label();
+            this.ParameterTypeTb = new System.Windows.Forms.ComboBox();
+            this.ParameterTypeLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // OkBtn
@@ -85,9 +89,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TypeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TypeCb.FormattingEnabled = true;
-            this.TypeCb.Location = new System.Drawing.Point(63, 27);
+            this.TypeCb.Location = new System.Drawing.Point(70, 27);
             this.TypeCb.Name = "TypeCb";
-            this.TypeCb.Size = new System.Drawing.Size(202, 21);
+            this.TypeCb.Size = new System.Drawing.Size(195, 21);
             this.TypeCb.TabIndex = 5;
             // 
             // TargetCb
@@ -95,9 +99,9 @@
             this.TargetCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TargetCb.FormattingEnabled = true;
-            this.TargetCb.Location = new System.Drawing.Point(63, 54);
+            this.TargetCb.Location = new System.Drawing.Point(70, 54);
             this.TargetCb.Name = "TargetCb";
-            this.TargetCb.Size = new System.Drawing.Size(202, 21);
+            this.TargetCb.Size = new System.Drawing.Size(195, 21);
             this.TargetCb.TabIndex = 6;
             // 
             // IndexLbl
@@ -111,10 +115,45 @@
             // 
             // IndexTB
             // 
-            this.IndexTB.Location = new System.Drawing.Point(63, 81);
+            this.IndexTB.Location = new System.Drawing.Point(70, 81);
             this.IndexTB.Name = "IndexTB";
-            this.IndexTB.Size = new System.Drawing.Size(202, 20);
+            this.IndexTB.Size = new System.Drawing.Size(195, 20);
             this.IndexTB.TabIndex = 8;
+            // 
+            // ParameterTb
+            // 
+            this.ParameterTb.Location = new System.Drawing.Point(70, 107);
+            this.ParameterTb.Name = "ParameterTb";
+            this.ParameterTb.Size = new System.Drawing.Size(195, 20);
+            this.ParameterTb.TabIndex = 10;
+            // 
+            // ParameterLbl
+            // 
+            this.ParameterLbl.AutoSize = true;
+            this.ParameterLbl.Location = new System.Drawing.Point(12, 107);
+            this.ParameterLbl.Name = "ParameterLbl";
+            this.ParameterLbl.Size = new System.Drawing.Size(58, 13);
+            this.ParameterLbl.TabIndex = 9;
+            this.ParameterLbl.Text = "Parameter:";
+            // 
+            // ParameterTypeTb
+            // 
+            this.ParameterTypeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParameterTypeTb.FormattingEnabled = true;
+            this.ParameterTypeTb.Location = new System.Drawing.Point(70, 133);
+            this.ParameterTypeTb.Name = "ParameterTypeTb";
+            this.ParameterTypeTb.Size = new System.Drawing.Size(195, 21);
+            this.ParameterTypeTb.TabIndex = 12;
+            // 
+            // ParameterTypeLbl
+            // 
+            this.ParameterTypeLbl.AutoSize = true;
+            this.ParameterTypeLbl.Location = new System.Drawing.Point(12, 133);
+            this.ParameterTypeLbl.Name = "ParameterTypeLbl";
+            this.ParameterTypeLbl.Size = new System.Drawing.Size(34, 13);
+            this.ParameterTypeLbl.TabIndex = 11;
+            this.ParameterTypeLbl.Text = "Type:";
             // 
             // GXDLMSScriptActionDlg
             // 
@@ -124,6 +163,10 @@
             this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(277, 207);
             this.ControlBox = false;
+            this.Controls.Add(this.ParameterTypeTb);
+            this.Controls.Add(this.ParameterTypeLbl);
+            this.Controls.Add(this.ParameterTb);
+            this.Controls.Add(this.ParameterLbl);
             this.Controls.Add(this.IndexTB);
             this.Controls.Add(this.IndexLbl);
             this.Controls.Add(this.TargetCb);
@@ -151,5 +194,9 @@
         private System.Windows.Forms.ComboBox TargetCb;
         private System.Windows.Forms.Label IndexLbl;
         private System.Windows.Forms.TextBox IndexTB;
+        private System.Windows.Forms.TextBox ParameterTb;
+        private System.Windows.Forms.Label ParameterLbl;
+        private System.Windows.Forms.ComboBox ParameterTypeTb;
+        private System.Windows.Forms.Label ParameterTypeLbl;
     }
 }
