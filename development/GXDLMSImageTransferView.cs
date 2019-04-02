@@ -212,7 +212,9 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        int statusReadCount = 0;
         bool updatingImage = false;
+        bool transformingImage = false;
         public void PreAction(GXActionArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
@@ -237,6 +239,7 @@ namespace Gurux.DLMS.UI
                         }
                         arg.Index = 5;
                         arg.Action = ActionType.Read;
+                        transformingImage = false;
                         updatingImage = true;
                         return;
                     }
@@ -244,6 +247,7 @@ namespace Gurux.DLMS.UI
                     arg.Value = it.ImageTransferInitiate(arg.Client, imageIdentifier, image.Length);
                     imageIdentifier = null;
                     updatingImage = false;
+                    statusReadCount = 0;
                 }
                 else if (arg.Index == 2)
                 {
@@ -280,13 +284,13 @@ namespace Gurux.DLMS.UI
                         return;
                     }
                     OnDescription(Properties.Resources.ImageTransferEnabled);
-                    //Get ImageBlockSize. 
+                    //Get ImageBlockSize.
                     arg.Index = 2;
                 }
                 else if (arg.Index == 2)
                 {
                     OnDescription(Properties.Resources.ImageBlockSize + it.ImageBlockSize);
-                    //Invoke Initiates image transfer. 
+                    //Invoke Initiates image transfer.
                     arg.Index = 1;
                     arg.Action = ActionType.Action;
                 }
@@ -303,19 +307,36 @@ namespace Gurux.DLMS.UI
                     switch (it.ImageTransferStatus)
                     {
                         case ImageTransferStatus.NotInitiated:
+                            if (++statusReadCount > 10)
+                            {
+                                OnDescription("Failed to read Image transfer status after image transfer initiate.");
+                                GXHelpers.ShowMessageBox(this, "Failed to read Image transfer status after image transfer initiate.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                arg.Action = ActionType.None;
+                                updatingImage = false;
+                                return;
+                            }
                             Thread.Sleep(delay);
                             arg.Index = 6;
                             break;
                         case ImageTransferStatus.TransferInitiated:
-                            if (!Properties.Settings.Default.ImageManualUpdate)
+                            if (!transformingImage)
                             {
-                                arg.Index = 3;
                                 arg.Action = ActionType.Action;
+                                arg.Index = 2;
+                                transformingImage = true;
                             }
                             else
                             {
-                                arg.Action = ActionType.None;
-                                ManualBtn_CheckedChanged(null, null);
+                                if (!Properties.Settings.Default.ImageManualUpdate)
+                                {
+                                    arg.Index = 3;
+                                    arg.Action = ActionType.Action;
+                                }
+                                else
+                                {
+                                    arg.Action = ActionType.None;
+                                    ManualBtn_CheckedChanged(null, null);
+                                }
                             }
                             break;
                         case ImageTransferStatus.VerificationInitiated:
@@ -356,7 +377,8 @@ namespace Gurux.DLMS.UI
                 if (arg.Index == 1)
                 {
                     OnDescription("Image transfer initiated.");
-                    arg.Index = 2;
+                    arg.Action = ActionType.Read;
+                    arg.Index = 6;
                 }
                 else if (arg.Index == 2)
                 {
@@ -418,19 +440,9 @@ namespace Gurux.DLMS.UI
                             return;
                         }
                     }
-                    /*
-                    if (!Properties.Settings.Default.ImageManualUpdate)
-                    {
-                        arg.Index = 6;
-                        arg.Action = ActionType.Read;
-                    }
-                    else
-                    */
-                    {
-                        OnDescription(Properties.Resources.ImageActivatedTxt);
-                        arg.Action = ActionType.None;
-                        arg.Rebooting = true;
-                    }
+                    OnDescription(Properties.Resources.ImageActivatedTxt);
+                    arg.Action = ActionType.None;
+                    arg.Rebooting = true;
                 }
             }
         }

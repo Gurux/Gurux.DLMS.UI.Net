@@ -140,6 +140,7 @@
             // 
             this.ParameterTypeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParameterTypeTb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ParameterTypeTb.FormattingEnabled = true;
             this.ParameterTypeTb.Location = new System.Drawing.Point(70, 133);
             this.ParameterTypeTb.Name = "ParameterTypeTb";

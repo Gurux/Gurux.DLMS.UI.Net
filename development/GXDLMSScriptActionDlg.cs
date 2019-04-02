@@ -51,9 +51,12 @@ namespace Gurux.DLMS.UI
             action = a;
             targets = objects;
             InitializeComponent();
-            foreach (object it in Enum.GetValues(typeof(DataType)))
+            foreach (DataType it in Enum.GetValues(typeof(DataType)))
             {
-                ParameterTypeTb.Items.Add(it);
+                if (it != DataType.None && it != DataType.Array && it != DataType.Structure)
+                {
+                    ParameterTypeTb.Items.Add(it);
+                }
             }
             TypeCb.Items.Add(ScriptActionType.Write);
             TypeCb.Items.Add(ScriptActionType.Execute);
