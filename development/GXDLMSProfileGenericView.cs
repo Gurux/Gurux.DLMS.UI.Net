@@ -498,7 +498,10 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
-            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 
@@ -646,7 +649,7 @@ namespace Gurux.DLMS.UI
             {
                 GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
                 GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = new GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>();
-                GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
+                GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection, null);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     it = dlg.GetTarget();
@@ -678,7 +681,7 @@ namespace Gurux.DLMS.UI
                     GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
                     ListViewItem li = CaptureObjectsLv.SelectedItems[0];
                     GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
-                    GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
+                    GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection, null);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         //If user has change target object.

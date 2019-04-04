@@ -78,23 +78,23 @@ namespace Gurux.DLMS.UI
             this.ActionOverThresholdLbl = new System.Windows.Forms.Label();
             this.ActionOverThresholdIndexTB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.EmergencyProfileActiveCB = new System.Windows.Forms.CheckBox();
             this.EmergencyProfileGroupIDsLbl = new System.Windows.Forms.Label();
-            this.MinUnderThresholdDurationTB = new Gurux.DLMS.UI.GXValueField();
             this.MinUnderThresholdDurationLbl = new System.Windows.Forms.Label();
-            this.MinOverThresholdDurationTB = new Gurux.DLMS.UI.GXValueField();
             this.MinOverThresholdDurationLbl = new System.Windows.Forms.Label();
-            this.ThresholdEmergencyTB = new Gurux.DLMS.UI.GXValueField();
             this.ThresholdEmergencyLbl = new System.Windows.Forms.Label();
-            this.ThresholdNormalTB = new Gurux.DLMS.UI.GXValueField();
             this.ThresholdNormalLbl = new System.Windows.Forms.Label();
-            this.ThresholdActiveTB = new Gurux.DLMS.UI.GXValueField();
             this.ThresholdActiveLbl = new System.Windows.Forms.Label();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.MinUnderThresholdDurationTB = new Gurux.DLMS.UI.GXValueField();
+            this.MinOverThresholdDurationTB = new Gurux.DLMS.UI.GXValueField();
+            this.ThresholdEmergencyTB = new Gurux.DLMS.UI.GXValueField();
+            this.ThresholdNormalTB = new Gurux.DLMS.UI.GXValueField();
+            this.ThresholdActiveTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             this.MonitoredGB.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -130,7 +130,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.DescriptionTB);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(446, 470);
+            this.groupBox1.Size = new System.Drawing.Size(515, 470);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Limiter Object";
@@ -143,7 +143,7 @@ namespace Gurux.DLMS.UI
             this.MonitoredGB.Controls.Add(this.MonitoredValueLbl);
             this.MonitoredGB.Location = new System.Drawing.Point(12, 73);
             this.MonitoredGB.Name = "MonitoredGB";
-            this.MonitoredGB.Size = new System.Drawing.Size(413, 45);
+            this.MonitoredGB.Size = new System.Drawing.Size(482, 45);
             this.MonitoredGB.TabIndex = 2;
             this.MonitoredGB.TabStop = false;
             this.MonitoredGB.Text = "Monitored:";
@@ -154,9 +154,9 @@ namespace Gurux.DLMS.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MonitoredValueTB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MonitoredValueTB.FormattingEnabled = true;
-            this.MonitoredValueTB.Location = new System.Drawing.Point(126, 16);
+            this.MonitoredValueTB.Location = new System.Drawing.Point(115, 16);
             this.MonitoredValueTB.Name = "MonitoredValueTB";
-            this.MonitoredValueTB.Size = new System.Drawing.Size(154, 21);
+            this.MonitoredValueTB.Size = new System.Drawing.Size(295, 21);
             this.MonitoredValueTB.TabIndex = 2;
             this.MonitoredValueTB.SelectedIndexChanged += new System.EventHandler(this.MonitoredValueTB_SelectedIndexChanged);
             // 
@@ -164,9 +164,9 @@ namespace Gurux.DLMS.UI
             // 
             this.MonitoredIndexTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MonitoredIndexTB.Location = new System.Drawing.Point(359, 19);
+            this.MonitoredIndexTB.Location = new System.Drawing.Point(416, 17);
             this.MonitoredIndexTB.Name = "MonitoredIndexTB";
-            this.MonitoredIndexTB.Size = new System.Drawing.Size(35, 20);
+            this.MonitoredIndexTB.Size = new System.Drawing.Size(60, 20);
             this.MonitoredIndexTB.TabIndex = 3;
             this.MonitoredIndexTB.Leave += new System.EventHandler(this.MonitoredIndexTB_Leave);
             // 
@@ -194,7 +194,7 @@ namespace Gurux.DLMS.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EmergencyProfileGroupIDsTB.Location = new System.Drawing.Point(126, 304);
             this.EmergencyProfileGroupIDsTB.Name = "EmergencyProfileGroupIDsTB";
-            this.EmergencyProfileGroupIDsTB.Size = new System.Drawing.Size(298, 20);
+            this.EmergencyProfileGroupIDsTB.Size = new System.Drawing.Size(367, 20);
             this.EmergencyProfileGroupIDsTB.TabIndex = 14;
             // 
             // groupBox4
@@ -207,7 +207,7 @@ namespace Gurux.DLMS.UI
             this.groupBox4.Controls.Add(this.DurationLbl);
             this.groupBox4.Location = new System.Drawing.Point(12, 253);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(412, 49);
+            this.groupBox4.Size = new System.Drawing.Size(476, 49);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Emergency profile:";
@@ -215,16 +215,16 @@ namespace Gurux.DLMS.UI
             // ActivationTimeTb
             // 
             this.ActivationTimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActivationTimeTb.Location = new System.Drawing.Point(190, 19);
+            this.ActivationTimeTb.Location = new System.Drawing.Point(221, 19);
             this.ActivationTimeTb.Name = "ActivationTimeTb";
-            this.ActivationTimeTb.Size = new System.Drawing.Size(89, 20);
+            this.ActivationTimeTb.Size = new System.Drawing.Size(134, 20);
             this.ActivationTimeTb.TabIndex = 12;
             this.ActivationTimeTb.Leave += new System.EventHandler(this.ActivationTimeTb_Leave);
             // 
             // ActivationTimeLbl
             // 
             this.ActivationTimeLbl.AutoSize = true;
-            this.ActivationTimeLbl.Location = new System.Drawing.Point(101, 22);
+            this.ActivationTimeLbl.Location = new System.Drawing.Point(115, 22);
             this.ActivationTimeLbl.Name = "ActivationTimeLbl";
             this.ActivationTimeLbl.Size = new System.Drawing.Size(83, 13);
             this.ActivationTimeLbl.TabIndex = 32;
@@ -233,7 +233,7 @@ namespace Gurux.DLMS.UI
             // IdTb
             // 
             this.IdTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdTb.Location = new System.Drawing.Point(39, 19);
+            this.IdTb.Location = new System.Drawing.Point(43, 19);
             this.IdTb.Name = "IdTb";
             this.IdTb.Size = new System.Drawing.Size(46, 20);
             this.IdTb.TabIndex = 11;
@@ -251,7 +251,7 @@ namespace Gurux.DLMS.UI
             // DurationTb
             // 
             this.DurationTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DurationTb.Location = new System.Drawing.Point(347, 19);
+            this.DurationTb.Location = new System.Drawing.Point(411, 19);
             this.DurationTb.Name = "DurationTb";
             this.DurationTb.Size = new System.Drawing.Size(46, 20);
             this.DurationTb.TabIndex = 13;
@@ -261,7 +261,7 @@ namespace Gurux.DLMS.UI
             // 
             this.DurationLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DurationLbl.AutoSize = true;
-            this.DurationLbl.Location = new System.Drawing.Point(297, 22);
+            this.DurationLbl.Location = new System.Drawing.Point(361, 22);
             this.DurationLbl.Name = "DurationLbl";
             this.DurationLbl.Size = new System.Drawing.Size(50, 13);
             this.DurationLbl.TabIndex = 9;
@@ -275,7 +275,7 @@ namespace Gurux.DLMS.UI
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(12, 410);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(412, 49);
+            this.groupBox3.Size = new System.Drawing.Size(476, 49);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Action Under";
@@ -288,7 +288,7 @@ namespace Gurux.DLMS.UI
             this.ActionUnderScript.FormattingEnabled = true;
             this.ActionUnderScript.Location = new System.Drawing.Point(127, 14);
             this.ActionUnderScript.Name = "ActionUnderScript";
-            this.ActionUnderScript.Size = new System.Drawing.Size(152, 21);
+            this.ActionUnderScript.Size = new System.Drawing.Size(216, 21);
             this.ActionUnderScript.TabIndex = 18;
             this.ActionUnderScript.SelectedIndexChanged += new System.EventHandler(this.ActionUnderScript_SelectedIndexChanged);
             // 
@@ -304,7 +304,7 @@ namespace Gurux.DLMS.UI
             // ActionUnderThresholdIndexTB
             // 
             this.ActionUnderThresholdIndexTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActionUnderThresholdIndexTB.Location = new System.Drawing.Point(347, 19);
+            this.ActionUnderThresholdIndexTB.Location = new System.Drawing.Point(411, 19);
             this.ActionUnderThresholdIndexTB.Name = "ActionUnderThresholdIndexTB";
             this.ActionUnderThresholdIndexTB.Size = new System.Drawing.Size(46, 20);
             this.ActionUnderThresholdIndexTB.TabIndex = 19;
@@ -314,7 +314,7 @@ namespace Gurux.DLMS.UI
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(297, 22);
+            this.label3.Location = new System.Drawing.Point(361, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 9;
@@ -328,7 +328,7 @@ namespace Gurux.DLMS.UI
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(12, 354);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(412, 50);
+            this.groupBox2.Size = new System.Drawing.Size(476, 50);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Action Over";
@@ -341,7 +341,7 @@ namespace Gurux.DLMS.UI
             this.ActionOverScript.FormattingEnabled = true;
             this.ActionOverScript.Location = new System.Drawing.Point(127, 19);
             this.ActionOverScript.Name = "ActionOverScript";
-            this.ActionOverScript.Size = new System.Drawing.Size(152, 21);
+            this.ActionOverScript.Size = new System.Drawing.Size(216, 21);
             this.ActionOverScript.TabIndex = 16;
             this.ActionOverScript.SelectedIndexChanged += new System.EventHandler(this.ActionOverScript_SelectedIndexChanged);
             // 
@@ -357,7 +357,7 @@ namespace Gurux.DLMS.UI
             // ActionOverThresholdIndexTB
             // 
             this.ActionOverThresholdIndexTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActionOverThresholdIndexTB.Location = new System.Drawing.Point(347, 22);
+            this.ActionOverThresholdIndexTB.Location = new System.Drawing.Point(411, 22);
             this.ActionOverThresholdIndexTB.Name = "ActionOverThresholdIndexTB";
             this.ActionOverThresholdIndexTB.Size = new System.Drawing.Size(46, 20);
             this.ActionOverThresholdIndexTB.TabIndex = 17;
@@ -367,23 +367,11 @@ namespace Gurux.DLMS.UI
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(297, 22);
+            this.label1.Location = new System.Drawing.Point(361, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Selector:";
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(127, 19);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(298, 20);
-            this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -414,18 +402,6 @@ namespace Gurux.DLMS.UI
             this.EmergencyProfileGroupIDsLbl.TabIndex = 26;
             this.EmergencyProfileGroupIDsLbl.Text = "Group IDs:";
             // 
-            // MinUnderThresholdDurationTB
-            // 
-            this.MinUnderThresholdDurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MinUnderThresholdDurationTB.Index = 7;
-            this.MinUnderThresholdDurationTB.Location = new System.Drawing.Point(127, 227);
-            this.MinUnderThresholdDurationTB.Name = "MinUnderThresholdDurationTB";
-            this.MinUnderThresholdDurationTB.NotifyChanges = false;
-            this.MinUnderThresholdDurationTB.Size = new System.Drawing.Size(298, 20);
-            this.MinUnderThresholdDurationTB.TabIndex = 9;
-            this.MinUnderThresholdDurationTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
             // MinUnderThresholdDurationLbl
             // 
             this.MinUnderThresholdDurationLbl.AutoSize = true;
@@ -434,18 +410,6 @@ namespace Gurux.DLMS.UI
             this.MinUnderThresholdDurationLbl.Size = new System.Drawing.Size(77, 13);
             this.MinUnderThresholdDurationLbl.TabIndex = 22;
             this.MinUnderThresholdDurationLbl.Text = "Minimal Under:";
-            // 
-            // MinOverThresholdDurationTB
-            // 
-            this.MinOverThresholdDurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MinOverThresholdDurationTB.Index = 6;
-            this.MinOverThresholdDurationTB.Location = new System.Drawing.Point(127, 201);
-            this.MinOverThresholdDurationTB.Name = "MinOverThresholdDurationTB";
-            this.MinOverThresholdDurationTB.NotifyChanges = false;
-            this.MinOverThresholdDurationTB.Size = new System.Drawing.Size(298, 20);
-            this.MinOverThresholdDurationTB.TabIndex = 8;
-            this.MinOverThresholdDurationTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // MinOverThresholdDurationLbl
             // 
@@ -456,18 +420,6 @@ namespace Gurux.DLMS.UI
             this.MinOverThresholdDurationLbl.TabIndex = 20;
             this.MinOverThresholdDurationLbl.Text = "Minimal Over:";
             // 
-            // ThresholdEmergencyTB
-            // 
-            this.ThresholdEmergencyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ThresholdEmergencyTB.Index = 5;
-            this.ThresholdEmergencyTB.Location = new System.Drawing.Point(126, 175);
-            this.ThresholdEmergencyTB.Name = "ThresholdEmergencyTB";
-            this.ThresholdEmergencyTB.NotifyChanges = false;
-            this.ThresholdEmergencyTB.Size = new System.Drawing.Size(298, 20);
-            this.ThresholdEmergencyTB.TabIndex = 7;
-            this.ThresholdEmergencyTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
             // ThresholdEmergencyLbl
             // 
             this.ThresholdEmergencyLbl.AutoSize = true;
@@ -477,18 +429,6 @@ namespace Gurux.DLMS.UI
             this.ThresholdEmergencyLbl.TabIndex = 18;
             this.ThresholdEmergencyLbl.Text = "Threshold Emergency:";
             // 
-            // ThresholdNormalTB
-            // 
-            this.ThresholdNormalTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ThresholdNormalTB.Index = 4;
-            this.ThresholdNormalTB.Location = new System.Drawing.Point(126, 150);
-            this.ThresholdNormalTB.Name = "ThresholdNormalTB";
-            this.ThresholdNormalTB.NotifyChanges = false;
-            this.ThresholdNormalTB.Size = new System.Drawing.Size(298, 20);
-            this.ThresholdNormalTB.TabIndex = 6;
-            this.ThresholdNormalTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
             // ThresholdNormalLbl
             // 
             this.ThresholdNormalLbl.AutoSize = true;
@@ -497,18 +437,6 @@ namespace Gurux.DLMS.UI
             this.ThresholdNormalLbl.Size = new System.Drawing.Size(93, 13);
             this.ThresholdNormalLbl.TabIndex = 16;
             this.ThresholdNormalLbl.Text = "Threshold Normal:";
-            // 
-            // ThresholdActiveTB
-            // 
-            this.ThresholdActiveTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ThresholdActiveTB.Index = 3;
-            this.ThresholdActiveTB.Location = new System.Drawing.Point(126, 124);
-            this.ThresholdActiveTB.Name = "ThresholdActiveTB";
-            this.ThresholdActiveTB.NotifyChanges = false;
-            this.ThresholdActiveTB.Size = new System.Drawing.Size(298, 20);
-            this.ThresholdActiveTB.TabIndex = 5;
-            this.ThresholdActiveTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ThresholdActiveLbl
             // 
@@ -535,7 +463,7 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Location = new System.Drawing.Point(126, 47);
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
-            this.DescriptionTB.Size = new System.Drawing.Size(299, 20);
+            this.DescriptionTB.Size = new System.Drawing.Size(368, 20);
             this.DescriptionTB.TabIndex = 1;
             // 
             // errorProvider1
@@ -544,9 +472,81 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(127, 19);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(367, 20);
+            this.LogicalNameTB.TabIndex = 0;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // MinUnderThresholdDurationTB
+            // 
+            this.MinUnderThresholdDurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinUnderThresholdDurationTB.Index = 7;
+            this.MinUnderThresholdDurationTB.Location = new System.Drawing.Point(127, 227);
+            this.MinUnderThresholdDurationTB.Name = "MinUnderThresholdDurationTB";
+            this.MinUnderThresholdDurationTB.NotifyChanges = false;
+            this.MinUnderThresholdDurationTB.Size = new System.Drawing.Size(367, 20);
+            this.MinUnderThresholdDurationTB.TabIndex = 9;
+            this.MinUnderThresholdDurationTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // MinOverThresholdDurationTB
+            // 
+            this.MinOverThresholdDurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinOverThresholdDurationTB.Index = 6;
+            this.MinOverThresholdDurationTB.Location = new System.Drawing.Point(127, 201);
+            this.MinOverThresholdDurationTB.Name = "MinOverThresholdDurationTB";
+            this.MinOverThresholdDurationTB.NotifyChanges = false;
+            this.MinOverThresholdDurationTB.Size = new System.Drawing.Size(367, 20);
+            this.MinOverThresholdDurationTB.TabIndex = 8;
+            this.MinOverThresholdDurationTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // ThresholdEmergencyTB
+            // 
+            this.ThresholdEmergencyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ThresholdEmergencyTB.Index = 5;
+            this.ThresholdEmergencyTB.Location = new System.Drawing.Point(126, 175);
+            this.ThresholdEmergencyTB.Name = "ThresholdEmergencyTB";
+            this.ThresholdEmergencyTB.NotifyChanges = false;
+            this.ThresholdEmergencyTB.Size = new System.Drawing.Size(367, 20);
+            this.ThresholdEmergencyTB.TabIndex = 7;
+            this.ThresholdEmergencyTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // ThresholdNormalTB
+            // 
+            this.ThresholdNormalTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ThresholdNormalTB.Index = 4;
+            this.ThresholdNormalTB.Location = new System.Drawing.Point(126, 150);
+            this.ThresholdNormalTB.Name = "ThresholdNormalTB";
+            this.ThresholdNormalTB.NotifyChanges = false;
+            this.ThresholdNormalTB.Size = new System.Drawing.Size(367, 20);
+            this.ThresholdNormalTB.TabIndex = 6;
+            this.ThresholdNormalTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // ThresholdActiveTB
+            // 
+            this.ThresholdActiveTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ThresholdActiveTB.Index = 3;
+            this.ThresholdActiveTB.Location = new System.Drawing.Point(126, 124);
+            this.ThresholdActiveTB.Name = "ThresholdActiveTB";
+            this.ThresholdActiveTB.NotifyChanges = false;
+            this.ThresholdActiveTB.Size = new System.Drawing.Size(367, 20);
+            this.ThresholdActiveTB.TabIndex = 5;
+            this.ThresholdActiveTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // GXDLMSLimiterView
             // 
-            this.ClientSize = new System.Drawing.Size(449, 493);
+            this.ClientSize = new System.Drawing.Size(518, 493);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSLimiterView";

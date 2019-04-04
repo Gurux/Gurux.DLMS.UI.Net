@@ -151,8 +151,7 @@ namespace Gurux.DLMS.UI
             this.ClockBaseTB.Location = new System.Drawing.Point(102, 337);
             this.ClockBaseTB.Name = "ClockBaseTB";
             this.ClockBaseTB.NotifyChanges = false;
-            this.ClockBaseTB.ReadOnly = true;
-            this.ClockBaseTB.Size = new System.Drawing.Size(66, 63);
+            this.ClockBaseTB.Size = new System.Drawing.Size(98, 63);
             this.ClockBaseTB.TabIndex = 12;
             this.ClockBaseTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
@@ -170,11 +169,10 @@ namespace Gurux.DLMS.UI
             this.StatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StatusTB.Index = 4;
-            this.StatusTB.Location = new System.Drawing.Point(102, 99);
+            this.StatusTB.Location = new System.Drawing.Point(102, 98);
             this.StatusTB.Name = "StatusTB";
             this.StatusTB.NotifyChanges = false;
-            this.StatusTB.ReadOnly = true;
-            this.StatusTB.Size = new System.Drawing.Size(242, 110);
+            this.StatusTB.Size = new System.Drawing.Size(242, 111);
             this.StatusTB.TabIndex = 6;
             this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
             // 

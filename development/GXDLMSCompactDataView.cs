@@ -176,7 +176,7 @@ namespace Gurux.DLMS.UI
                                 ++i2;
                             }
                             //Update values first.
-                            foreach (byte i in (obj as IGXDLMSBase).GetAttributeIndexToRead(true))
+                            for (byte i = 0; i != (obj as IGXDLMSBase).GetAttributeCount(); ++i)
                             {
                                 ValueEventArgs ve = new ValueEventArgs(obj, i, 0, null);
                                 ve.Value = list[i];
@@ -206,14 +206,14 @@ namespace Gurux.DLMS.UI
             {
                 for (int pos = dt.Rows.Count; pos < rows.Length; ++pos)
                 {
-                    object[] row = (object[]) rows[pos];
+                    object[] row = (object[])rows[pos];
                     if (row != null)
                     {
                         for (int col = 0; col != row.Length; ++col)
                         {
                             if (row[col] is byte[])
                             {
-                                if (pos <target.CaptureObjects.Count && target.CaptureObjects[col].Key.GetUIDataType(target.CaptureObjects[col].Value.AttributeIndex) == DataType.DateTime)
+                                if (pos < target.CaptureObjects.Count && target.CaptureObjects[col].Key.GetUIDataType(target.CaptureObjects[col].Value.AttributeIndex) == DataType.DateTime)
                                 {
                                     row[col] = GXDLMSClient.ChangeType(row[col] as byte[], DataType.DateTime);
                                 }
@@ -226,7 +226,7 @@ namespace Gurux.DLMS.UI
                             {
                                 row[col] = GXDLMSTranslator.ValueToXml(row[col]);
                             }
-                            else
+                            else if (col < target.CaptureObjects.Count)
                             {
                                 GXDLMSAttributeSettings att = target.CaptureObjects[col].Key.Attributes.Find(target.CaptureObjects[col].Value.AttributeIndex);
                                 if (att != null && att.Values != null)
@@ -271,7 +271,10 @@ namespace Gurux.DLMS.UI
                                 }
                             }
                         }
-                        dt.LoadDataRow(row, true);
+                        if (dt.Columns.Count != 0)
+                        {
+                            dt.LoadDataRow(row, true);
+                        }
                     }
                 }
             }
@@ -372,12 +375,31 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 5)
             {
-                DataType[] types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
+                object[] types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
                 StringBuilder sb = new StringBuilder();
-                foreach (DataType it in types)
+                foreach (object it in types)
                 {
-                    sb.Append(it.ToString());
-                    sb.Append(", ");
+                    if (it is DataType)
+                    {
+                        sb.Append(it.ToString());
+                        sb.Append(", ");
+                    }
+                    else
+                    {
+                        sb.Append("[");
+                        bool empty = true;
+                        foreach (object it2 in (IEnumerable<object>)it)
+                        {
+                            empty = false;
+                            sb.Append(it2.ToString());
+                            sb.Append(", ");
+                        }
+                        if (!empty)
+                        {
+                            sb.Length -= 2;
+                        }
+                        sb.Append("], ");
+                    }
                 }
                 if (sb.Length != 0)
                 {
@@ -411,7 +433,10 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
-            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 
@@ -483,7 +508,7 @@ namespace Gurux.DLMS.UI
             {
                 GXDLMSCompactData target = Target as GXDLMSCompactData;
                 GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = new GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>();
-                GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
+                GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection, "Compact data capture object");
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     it = dlg.GetTarget();
@@ -515,7 +540,7 @@ namespace Gurux.DLMS.UI
                     GXDLMSCompactData target = Target as GXDLMSCompactData;
                     ListViewItem li = CaptureObjectsLv.SelectedItems[0];
                     GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
-                    GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection);
+                    GXDLMSProfileGenericColumnDlg dlg = new GXDLMSProfileGenericColumnDlg(it, target.Parent as GXDLMSObjectCollection, "Compact data capture object");
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         //If user has change target object.
@@ -562,6 +587,66 @@ namespace Gurux.DLMS.UI
                     errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(3, target.CaptureObjects);
                     target.CaptureObjects.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BufferTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSCompactData target = Target as GXDLMSCompactData;
+                byte[] tmp = GXDLMSTranslator.HexToBytes(BufferTb.Text);
+                if (GXDLMSTranslator.ToHex(tmp) != GXDLMSTranslator.ToHex(target.Buffer))
+                {
+                    target.Buffer = tmp;
+                    Target.UpdateDirty(2, target.Buffer);
+                    errorProvider1.SetError(BufferTb, Properties.Resources.ValueChangedTxt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TemplateDescriptionTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                DataType v;
+                GXByteBuffer bb = new GXByteBuffer();
+                GXDLMSCompactData target = Target as GXDLMSCompactData;
+                bb.SetUInt8(2);
+                bb.SetUInt8(0);
+                foreach (string it in TemplateDescriptionTb.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (!Enum.TryParse<DataType>(it, out v))
+                    {
+                        bb.Clear();
+                        break;
+                    }
+                    bb.SetUInt8((byte)v);
+                }
+                byte[] tmp;
+                if (bb.Size != 0)
+                {
+                    bb.SetUInt8(1, (byte)(bb.Size - 2));
+                    tmp = bb.Array();
+                }
+                else
+                {
+                    tmp = GXDLMSTranslator.HexToBytes(TemplateDescriptionTb.Text);
+                }
+                if (GXDLMSTranslator.ToHex(tmp) != GXDLMSTranslator.ToHex(target.TemplateDescription))
+                {
+                    target.TemplateDescription = tmp;
+                    Target.UpdateDirty(5, target.TemplateDescription);
+                    errorProvider1.SetError(TemplateDescriptionTb, Properties.Resources.ValueChangedTxt);
                 }
             }
             catch (Exception ex)

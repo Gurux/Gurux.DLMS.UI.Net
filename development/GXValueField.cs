@@ -624,7 +624,7 @@ namespace Gurux.DLMS.UI
                 }
                 else
                 {
-                    if (att != null)
+                    if (att != null && DefaultType == ValueFieldType.TextBox)
                     {
                         Type = att.UIValueType;
                     }
@@ -692,19 +692,6 @@ namespace Gurux.DLMS.UI
                 else if (type == ValueFieldType.CheckedListBox)
                 {
                     checkedlistBox1.Items.Clear();
-                    if (value is Enum)
-                    {
-                        bool flags = value.GetType().GetCustomAttributes(typeof(FlagsAttribute), true).Length != 0;
-                        foreach (var it in Enum.GetValues(value.GetType()))
-                        {
-                            if ((flags && Convert.ToInt32(it) == 0) ||
-                                (it is ClockStatus && ((ClockStatus)it) == ClockStatus.Skip))
-                            {
-                                continue;
-                            }
-                            checkedlistBox1.Items.Add(it);
-                        }
-                    }
                 }
                 else if (type == ValueFieldType.Xml)
                 {
@@ -884,120 +871,138 @@ namespace Gurux.DLMS.UI
             else if (Type == ValueFieldType.CheckedListBox)
             {
                 checkedlistBox1.Items.Clear();
-                if (Items != null && Items.Count != 0)
+                if (value is Enum)
                 {
-                    foreach (GXObisValueItem it in Items)
+                    bitString.Visible = false;
+                    bool flags = value.GetType().GetCustomAttributes(typeof(FlagsAttribute), true).Length != 0;
+                    foreach (var it in Enum.GetValues(value.GetType()))
                     {
+                        if ((flags && Convert.ToInt32(it) == 0) ||
+                            (it is ClockStatus && ((ClockStatus)it) == ClockStatus.Skip))
+                        {
+                            continue;
+                        }
                         checkedlistBox1.Items.Add(it);
                     }
                 }
-                bitString.Text = "";
-                if (value is GXBitString)
+                else
                 {
-                    value = value.ToString();
-                    bitString.Text = (string)value;
-                    int pos;
-                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
-                    //Uncheck all items.
-                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    bitString.Visible = true;
+                    if (Items != null && Items.Count != 0)
                     {
-                        checkedlistBox1.SetItemChecked(pos, false);
-                    }
-                    int cnt = checkedlistBox1.Items.Count;
-                    if (((string)value).Length < cnt)
-                    {
-                        cnt = ((string)value).Length;
-                    }
-                    pos = 0;
-                    foreach (char it in (string)value)
-                    {
-                        if (it == '1')
+                        foreach (GXObisValueItem it in Items)
                         {
-                            checkedlistBox1.SetItemChecked(pos, true);
-                        }
-                        ++pos;
-                        if (pos == checkedlistBox1.Items.Count)
-                        {
-                            break;
+                            checkedlistBox1.Items.Add(it);
                         }
                     }
-                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                }
-                else if (value is Enum)
-                {
-                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
-                    //Uncheck all items.
-                    for (int pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    bitString.Text = "";
+                    if (value is GXBitString)
                     {
-                        checkedlistBox1.SetItemChecked(pos, false);
-                    }
-                    int v2 = Convert.ToInt32(value);
-                    foreach (var it in Enum.GetValues(value.GetType()))
-                    {
-                        int v = Convert.ToInt32(it);
-                        if ((v & v2) != 0 || (v == v2))
+                        value = value.ToString();
+                        bitString.Text = (string)value;
+                        int pos;
+                        checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                        //Uncheck all items.
+                        for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
                         {
-                            int pos = checkedlistBox1.Items.IndexOf(it);
-                            if (pos != -1)
+                            checkedlistBox1.SetItemChecked(pos, false);
+                        }
+                        int cnt = checkedlistBox1.Items.Count;
+                        if (((string)value).Length < cnt)
+                        {
+                            cnt = ((string)value).Length;
+                        }
+                        pos = 0;
+                        foreach (char it in (string)value)
+                        {
+                            if (it == '1')
                             {
                                 checkedlistBox1.SetItemChecked(pos, true);
                             }
+                            ++pos;
+                            if (pos == checkedlistBox1.Items.Count)
+                            {
+                                break;
+                            }
                         }
+                        checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
                     }
-                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                    return;
-                }
-                else if (IsNumeric(value))
-                {
-                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
-                    //Uncheck all items.
-                    int pos = 0;
-                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                    else if (value is Enum)
                     {
-                        checkedlistBox1.SetItemChecked(pos, false);
-                    }
-                    bool c;
-                    long v2 = Convert.ToInt64(value);
-                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
-                    {
-                        GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
-                        c = ((v2 & it.Value) == it.Value);
-                        checkedlistBox1.SetItemChecked(pos, c);
-                    }
-                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                    return;
-                }
-                else if (value is byte[])
-                {
-                    GXByteBuffer bb = new GXByteBuffer();
-                    bb.SetUInt8((byte)(8 * (value as byte[]).Length));
-                    bb.Set(value as byte[]);
-                    GXBitString bs = (GXBitString)GXDLMSClient.ChangeType(bb, DataType.BitString, false);
-                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
-                    //Uncheck all items.
-                    int pos = 0;
-                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
-                    {
-                        checkedlistBox1.SetItemChecked(pos, false);
-                    }
-                    bool c;
-                    for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
-                    {
-                        GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
-                        if (it.MaskSize != 0)
+                        checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                        //Uncheck all items.
+                        for (int pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
                         {
-                            string tmp = bs.Value.Substring(it.Shift, it.MaskSize);
-                            GXBitString bb2 = new GXBitString(tmp);
-                            c = Convert.ToInt32(bb2) == it.Value;
+                            checkedlistBox1.SetItemChecked(pos, false);
                         }
-                        else
+                        int v2 = Convert.ToInt32(value);
+                        foreach (var it in Enum.GetValues(value.GetType()))
                         {
-                            c = bs.Value[it.Value] == '1';
+                            int v = Convert.ToInt32(it);
+                            if ((v & v2) != 0 || (v == v2))
+                            {
+                                int pos = checkedlistBox1.Items.IndexOf(it);
+                                if (pos != -1)
+                                {
+                                    checkedlistBox1.SetItemChecked(pos, true);
+                                }
+                            }
                         }
-                        checkedlistBox1.SetItemChecked(pos, c);
+                        checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                        return;
                     }
-                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                    return;
+                    else if (IsNumeric(value))
+                    {
+                        checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                        //Uncheck all items.
+                        int pos = 0;
+                        for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                        {
+                            checkedlistBox1.SetItemChecked(pos, false);
+                        }
+                        bool c;
+                        long v2 = Convert.ToInt64(value);
+                        for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                        {
+                            GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
+                            c = ((v2 & it.Value) == it.Value);
+                            checkedlistBox1.SetItemChecked(pos, c);
+                        }
+                        checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                        return;
+                    }
+                    else if (value is byte[])
+                    {
+                        GXByteBuffer bb = new GXByteBuffer();
+                        bb.SetUInt8((byte)(8 * (value as byte[]).Length));
+                        bb.Set(value as byte[]);
+                        GXBitString bs = (GXBitString)GXDLMSClient.ChangeType(bb, DataType.BitString, false);
+                        checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                        //Uncheck all items.
+                        int pos = 0;
+                        for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                        {
+                            checkedlistBox1.SetItemChecked(pos, false);
+                        }
+                        bool c;
+                        for (pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
+                        {
+                            GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
+                            if (it.MaskSize != 0)
+                            {
+                                string tmp = bs.Value.Substring(it.Shift, it.MaskSize);
+                                GXBitString bb2 = new GXBitString(tmp);
+                                c = Convert.ToInt32(bb2) == it.Value;
+                            }
+                            else
+                            {
+                                c = bs.Value[it.Value] == '1';
+                            }
+                            checkedlistBox1.SetItemChecked(pos, c);
+                        }
+                        checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                        return;
+                    }
                 }
             }
             else if (Type == ValueFieldType.Xml)

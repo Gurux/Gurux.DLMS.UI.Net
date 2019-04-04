@@ -119,7 +119,10 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
-            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 
@@ -178,7 +181,7 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Edit calling window time.
         /// </summary>
-        /// 
+        ///
         private void TimeEditBtn_Click(object sender, EventArgs e)
         {
             try

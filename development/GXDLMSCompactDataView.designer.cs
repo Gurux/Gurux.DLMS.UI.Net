@@ -38,6 +38,7 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSCompactDataView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BufferTb = new System.Windows.Forms.TextBox();
             this.TemplateDescriptionTb = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -67,7 +68,6 @@ namespace Gurux.DLMS.UI
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BufferTb = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -104,6 +104,16 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compact Data";
             // 
+            // BufferTb
+            // 
+            this.BufferTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BufferTb.Location = new System.Drawing.Point(118, 71);
+            this.BufferTb.Name = "BufferTb";
+            this.BufferTb.Size = new System.Drawing.Size(324, 20);
+            this.BufferTb.TabIndex = 3;
+            this.BufferTb.Leave += new System.EventHandler(this.BufferTb_Leave);
+            // 
             // TemplateDescriptionTb
             // 
             this.TemplateDescriptionTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -112,6 +122,7 @@ namespace Gurux.DLMS.UI
             this.TemplateDescriptionTb.Name = "TemplateDescriptionTb";
             this.TemplateDescriptionTb.Size = new System.Drawing.Size(324, 20);
             this.TemplateDescriptionTb.TabIndex = 5;
+            this.TemplateDescriptionTb.Leave += new System.EventHandler(this.TemplateDescriptionTb_Leave);
             // 
             // tabControl1
             // 
@@ -217,6 +228,7 @@ namespace Gurux.DLMS.UI
             this.CaptureObjectsLv.TabIndex = 25;
             this.CaptureObjectsLv.UseCompatibleStateImageBehavior = false;
             this.CaptureObjectsLv.View = System.Windows.Forms.View.Details;
+            this.CaptureObjectsLv.DoubleClick += new System.EventHandler(this.ColumnEditBtn_Click);
             // 
             // ObjectTypeHeader
             // 
@@ -387,15 +399,6 @@ namespace Gurux.DLMS.UI
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
-            // 
-            // BufferTb
-            // 
-            this.BufferTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BufferTb.Location = new System.Drawing.Point(118, 71);
-            this.BufferTb.Name = "BufferTb";
-            this.BufferTb.Size = new System.Drawing.Size(324, 20);
-            this.BufferTb.TabIndex = 3;
             // 
             // GXDLMSCompactDataView
             // 

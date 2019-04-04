@@ -42,7 +42,7 @@
             // 
             this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBtn.Location = new System.Drawing.Point(109, 145);
+            this.OkBtn.Location = new System.Drawing.Point(225, 93);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
             this.OkBtn.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(190, 145);
+            this.CancelBtn.Location = new System.Drawing.Point(306, 93);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.TargetCb.FormattingEnabled = true;
             this.TargetCb.Location = new System.Drawing.Point(80, 12);
             this.TargetCb.Name = "TargetCb";
-            this.TargetCb.Size = new System.Drawing.Size(185, 21);
+            this.TargetCb.Size = new System.Drawing.Size(301, 21);
             this.TargetCb.TabIndex = 6;
             // 
             // IndexLbl
@@ -93,20 +93,20 @@
             // 
             this.IndexTB.Location = new System.Drawing.Point(80, 39);
             this.IndexTB.Name = "IndexTB";
-            this.IndexTB.Size = new System.Drawing.Size(185, 20);
+            this.IndexTB.Size = new System.Drawing.Size(89, 20);
             this.IndexTB.TabIndex = 8;
             // 
             // DataIndexTb
             // 
-            this.DataIndexTb.Location = new System.Drawing.Point(80, 65);
+            this.DataIndexTb.Location = new System.Drawing.Point(292, 39);
             this.DataIndexTb.Name = "DataIndexTb";
-            this.DataIndexTb.Size = new System.Drawing.Size(185, 20);
+            this.DataIndexTb.Size = new System.Drawing.Size(89, 20);
             this.DataIndexTb.TabIndex = 10;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 66);
+            this.label1.Location = new System.Drawing.Point(224, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 9;
@@ -118,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(277, 180);
+            this.ClientSize = new System.Drawing.Size(393, 128);
             this.ControlBox = false;
             this.Controls.Add(this.DataIndexTb);
             this.Controls.Add(this.label1);

@@ -120,7 +120,10 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
-            GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 
@@ -154,8 +157,8 @@ namespace Gurux.DLMS.UI
             bool enabled = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
-                ObjectsAddBtn.Enabled = ObjectsEditBtn.Enabled = 
-                    ObjectsRemoveBtn.Enabled = ObjectsMenu.Enabled = enabled;                
+                ObjectsAddBtn.Enabled = ObjectsEditBtn.Enabled =
+                    ObjectsRemoveBtn.Enabled = ObjectsMenu.Enabled = enabled;
             }
             else if (index == 3)
             {
@@ -164,7 +167,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 4)
             {
-                CommunicationAdd.Enabled = CommunicationEdit.Enabled = 
+                CommunicationAdd.Enabled = CommunicationEdit.Enabled =
                     CommunicationRemove.Enabled = CommunicationWindowMenu.Enabled = enabled;
             }
             else
@@ -181,7 +184,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        #endregion        
+        #endregion
 
         private void ServiceCB_SelectedIndexChanged(object sender, EventArgs e)
         {

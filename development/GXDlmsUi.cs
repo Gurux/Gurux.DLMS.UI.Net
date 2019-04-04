@@ -196,7 +196,14 @@ namespace Gurux.DLMS.UI
             }
             if ((view as Form).InvokeRequired)
             {
-                (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected, user);
+                try
+                {
+                    (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected, user);
+                }
+                catch(Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(view as Form, ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
                 return;
             }
             GXDLMSObject tmp = view.Target;
