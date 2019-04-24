@@ -277,7 +277,14 @@ namespace Gurux.DLMS.UI
                         }
                         if (dt.Columns.Count != 0)
                         {
-                            dt.LoadDataRow(row, true);
+                            try
+                            {
+                                dt.LoadDataRow(row, true);
+                            }
+                            catch(Exception)
+                            {
+                                //It's OK if this fails.
+                            }
                         }
                     }
                 }
@@ -301,11 +308,13 @@ namespace Gurux.DLMS.UI
 
         private void UpdateCaptureObjects()
         {
-            int index = 0;
+            object[] types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
+            int pos, index = 0;
             DataTable table = ProfileGenericView.DataSource as DataTable;
             ProfileGenericView.DataSource = null;
             ProfileGenericView.Columns.Clear();
             DataTable dt = new DataTable();
+            DataColumn dc;
             foreach (var it in target.CaptureObjects)
             {
                 string[] columns = ((IGXDLMSBase)it.Key).GetNames();
@@ -314,38 +323,81 @@ namespace Gurux.DLMS.UI
                     structures = true;
                     for (int a = 0; a != ((IGXDLMSBase)it.Key).GetAttributeCount(); ++a)
                     {
-                        DataColumn dc = dt.Columns.Add(index.ToString());
+                        dc = dt.Columns.Add(index.ToString());
                         dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[a];
-                        int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                        pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
                         ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
                         ++index;
                     }
                 }
                 else
                 {
-                    DataColumn dc = dt.Columns.Add(index.ToString());
-                    string str = it.Key.LogicalName;
-                    if (it.Value.AttributeIndex < columns.Length)
+                    if (it.Value.DataIndex == 0 && types != null && index < types.Length)
                     {
-                        str += Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                        if (types[index] is IEnumerable<object>)
+                        {
+                            AddColumns(it.Key, dt, (IEnumerable<object>)types[index], columns, it.Value.AttributeIndex);
+                        }
+                        else
+                        {
+                            dc = dt.Columns.Add(index.ToString());
+                            dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                            pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                            ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
+                        }
                     }
-                    if (!string.IsNullOrEmpty(it.Key.Description))
+                    else
                     {
-                        str += Environment.NewLine + it.Key.Description;
+                        dc = dt.Columns.Add(index.ToString());
+                        string str = it.Key.LogicalName;
+                        if (it.Value.AttributeIndex < columns.Length)
+                        {
+                            str += Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                        }
+                        if (!string.IsNullOrEmpty(it.Key.Description))
+                        {
+                            str += Environment.NewLine + it.Key.Description;
+                        }
+                        //In Indian standard register scalers are saved to table.
+                        if (it.Key is GXDLMSRegister && it.Value.AttributeIndex == 3)
+                        {
+                            structures = true;
+                        }
+                        dc.Caption = str;
+                        pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                        ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
                     }
-                    //In Indian standard register scalers are saved to table.
-                    if (it.Key is GXDLMSRegister && it.Value.AttributeIndex == 3)
-                    {
-                        structures = true;
-                    }
-                    dc.Caption = str;
-                    int pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
-                    ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
                     ++index;
                 }
             }
             UpdateData(dt);
             ProfileGenericView.DataSource = dt;
+        }
+
+        private void AddColumns(GXDLMSObject obj, DataTable dt, IEnumerable<object> types, string[] columns, int index)
+        {
+            bool empty = true;
+            int a = ProfileGenericView.Columns.Count;
+            DataColumn dc;
+            foreach (object it in types)
+            {
+                if (it is IEnumerable<object>)
+                {
+                    empty = false;
+                    dc = dt.Columns.Add(a.ToString());
+                    dc.Caption = obj.LogicalName + Environment.NewLine + columns[index - 1];
+                    int pos = ProfileGenericView.Columns.Add(a.ToString(), dc.Caption);
+                    ProfileGenericView.Columns[pos].DataPropertyName = a.ToString();
+                    ++a;
+                }
+            }
+            if (empty)
+            {
+                dc = dt.Columns.Add(a.ToString());
+                dc.Caption = obj.LogicalName + Environment.NewLine + columns[index - 1];
+                int pos = ProfileGenericView.Columns.Add(a.ToString(), dc.Caption);
+                ProfileGenericView.Columns[pos].DataPropertyName = a.ToString();
+            }
         }
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
@@ -522,9 +574,9 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(it.Value.AttributeIndex.ToString());
                     li.Tag = it;
                     target.CaptureObjects.Add(it);
+                    errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(3, target.CaptureObjects);
                 }
-                errorProvider1.SetError(CaptureObjectsLv, Properties.Resources.ValueChangedTxt);
-                Target.UpdateDirty(3, target.CaptureObjects);
             }
             catch (Exception ex)
             {

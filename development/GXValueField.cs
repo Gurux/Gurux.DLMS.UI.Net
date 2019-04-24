@@ -874,7 +874,9 @@ namespace Gurux.DLMS.UI
                 if (value is Enum)
                 {
                     bitString.Visible = false;
+                    checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
                     bool flags = value.GetType().GetCustomAttributes(typeof(FlagsAttribute), true).Length != 0;
+                    int v2 = Convert.ToInt32(value);
                     foreach (var it in Enum.GetValues(value.GetType()))
                     {
                         if ((flags && Convert.ToInt32(it) == 0) ||
@@ -882,8 +884,15 @@ namespace Gurux.DLMS.UI
                         {
                             continue;
                         }
-                        checkedlistBox1.Items.Add(it);
+                        int v = Convert.ToInt32(it);
+                        int pos = checkedlistBox1.Items.Add(it);
+                        if ((v & v2) != 0 || (v == v2))
+                        {
+                            checkedlistBox1.SetItemChecked(pos, true);
+                        }
                     }
+                    checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                    return;
                 }
                 else
                 {
@@ -926,31 +935,7 @@ namespace Gurux.DLMS.UI
                             }
                         }
                         checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                    }
-                    else if (value is Enum)
-                    {
-                        checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
-                        //Uncheck all items.
-                        for (int pos = 0; pos != checkedlistBox1.Items.Count; ++pos)
-                        {
-                            checkedlistBox1.SetItemChecked(pos, false);
-                        }
-                        int v2 = Convert.ToInt32(value);
-                        foreach (var it in Enum.GetValues(value.GetType()))
-                        {
-                            int v = Convert.ToInt32(it);
-                            if ((v & v2) != 0 || (v == v2))
-                            {
-                                int pos = checkedlistBox1.Items.IndexOf(it);
-                                if (pos != -1)
-                                {
-                                    checkedlistBox1.SetItemChecked(pos, true);
-                                }
-                            }
-                        }
-                        checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                        return;
-                    }
+                    }                    
                     else if (IsNumeric(value))
                     {
                         checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;

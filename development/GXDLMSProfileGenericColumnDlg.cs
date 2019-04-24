@@ -59,10 +59,6 @@ namespace Gurux.DLMS.UI
         public GXDLMSProfileGenericColumnDlg(
             GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> target, GXDLMSObjectCollection list, string title)
         {
-            if (title != null)
-            {
-                this.Text = title;
-            }
             Target = target;
             AllObjects = new GXDLMSObjectCollection();
             AllObjects.AddRange(list);
@@ -72,6 +68,10 @@ namespace Gurux.DLMS.UI
                 AllObjects.Remove(it);
             }
             InitializeComponent();
+            if (title != null)
+            {
+                this.Text = title;
+            }
             foreach (GXDLMSObject it in AllObjects)
             {
                 TargetCb.Items.Add(it);
