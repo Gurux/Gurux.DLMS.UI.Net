@@ -26,7 +26,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details.
 //
-// More information of Gurux DLMS/COSEM Director: http://www.gurux.org/GXDLMSDirector
+// More information of Gurux DLMS/COSEM Director: https://www.gurux.org/GXDLMSDirector
 //
 // This code is licensed under the GNU General Public License v2.
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
@@ -45,7 +45,7 @@ namespace Gurux.DLMS.UI
 {
     /// <summary>
     /// Online help:
-    /// http://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSCompactData
+    /// https://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSCompactData
     /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSCompactData))]
     partial class GXDLMSCompactDataView : Form, IGXDLMSView
@@ -226,6 +226,10 @@ namespace Gurux.DLMS.UI
                             {
                                 row[col] = GXDLMSTranslator.ValueToXml(row[col]);
                             }
+                            else if (row[col] is List<Object>)
+                            {
+                                row[col] = GXDLMSTranslator.ValueToXml(row[col]);
+                            }
                             else if (col < target.CaptureObjects.Count)
                             {
                                 GXDLMSAttributeSettings att = target.CaptureObjects[col].Key.Attributes.Find(target.CaptureObjects[col].Value.AttributeIndex);
@@ -377,40 +381,41 @@ namespace Gurux.DLMS.UI
             {
                 object[] types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
                 StringBuilder sb = new StringBuilder();
-                foreach (object it in types)
-                {
-                    if (it is DataType)
-                    {
-                        sb.Append(it.ToString());
-                        sb.Append(", ");
-                    }
-                    else
-                    {
-                        sb.Append("[");
-                        bool empty = true;
-                        foreach (object it2 in (IEnumerable<object>)it)
-                        {
-                            empty = false;
-                            sb.Append(it2.ToString());
-                            sb.Append(", ");
-                        }
-                        if (!empty)
-                        {
-                            sb.Length -= 2;
-                        }
-                        sb.Append("], ");
-                    }
-                }
-                if (sb.Length != 0)
-                {
-                    sb.Length -= 2;
-                }
+                AppendDataType(sb, types);
                 TemplateDescriptionTb.Text = sb.ToString();
             }
             else
             {
                 throw new IndexOutOfRangeException("index");
             }
+        }
+
+        private static bool AppendDataType(StringBuilder sb, IEnumerable<object> types)
+        {
+            bool empty = true;
+            foreach (object it in types)
+            {
+                empty = false;
+                if (it is DataType)
+                {
+                    sb.Append(it.ToString());
+                    sb.Append(", ");
+                }
+                else
+                {
+                    sb.Append("[");
+                    if (!AppendDataType(sb, (IEnumerable<object>)it))
+                    {
+                        sb.Length -= 2;
+                    }
+                    sb.Append("], ");
+                }
+            }
+            if (!empty)
+            {
+                sb.Length -= 2;
+            }
+            return !empty;
         }
 
         public void PreAction(GXActionArgs arg)
