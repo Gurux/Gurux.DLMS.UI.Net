@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=8.5.1904.2403, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.8.5.1904.2403\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=8.5.1905.1304, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.8.5.1905.1304\lib\net40\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="GXDLMSCompactDataView.designer.cs">
       <DependentUpon>GXDLMSCompactDataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSUtilityTablesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSUtilityTablesView.designer.cs">
+      <DependentUpon>GXDLMSUtilityTablesView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXRegisterMonitorTargetDlg.cs">
       <SubType>Form</SubType>
@@ -559,6 +565,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSCompactDataView.resx">
       <DependentUpon>GXDLMSCompactDataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSUtilityTablesView.resx">
+      <DependentUpon>GXDLMSUtilityTablesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXRegisterMonitorTargetDlg.resx">
       <DependentUpon>GXRegisterMonitorTargetDlg.cs</DependentUpon>
