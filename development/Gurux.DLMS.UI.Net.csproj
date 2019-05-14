@@ -826,12 +826,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Gurux.DLMS.Net\Development\Gurux.DLMS.Net.csproj">
-      <Project>{8f3a8247-6814-40c7-b32a-0548e673e38b}</Project>
-      <Name>Gurux.DLMS.Net</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
