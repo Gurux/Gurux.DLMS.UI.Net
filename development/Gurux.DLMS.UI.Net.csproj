@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\GXDLMSUnixTimeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom\GXDLMSUnixTimeView.Designer.cs">
+      <DependentUpon>GXDLMSUnixTimeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXActionArgs.cs" />
     <Compile Include="GXButton.cs">
       <SubType>Component</SubType>
@@ -560,6 +566,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Custom\GXDLMSUnixTimeView.resx">
+      <DependentUpon>GXDLMSUnixTimeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXAccountCreditChargeDlg.resx">
       <DependentUpon>GXAccountCreditChargeDlg.cs</DependentUpon>
     </EmbeddedResource>
