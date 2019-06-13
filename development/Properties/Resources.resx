@@ -132,6 +132,9 @@
   <data name="ActivationSuccessful" xml:space="preserve">
     <value>Image activation succeeded.</value>
   </data>
+  <data name="BlackListWarning" xml:space="preserve">
+    <value>Are you sure that you want to add selected items to the black list?</value>
+  </data>
   <data name="HardwareFaultTxt" xml:space="preserve">
     <value>Access Error : Device reports a hardware fault.</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="ProfileGenericCaptureWarning" xml:space="preserve">
     <value>Are you sure that you want to capture current values?</value>
+  </data>
+  <data name="ProfileGenericDeviceAmountWarning" xml:space="preserve">
+    <value>Select only one meter.</value>
   </data>
   <data name="ProfileGenericResetWarning" xml:space="preserve">
     <value>Are you sure that you want to reset historical data?</value>
@@ -239,5 +245,8 @@
   </data>
   <data name="VerificationInitiated" xml:space="preserve">
     <value>Waiting verification to finish.</value>
+  </data>
+  <data name="WhiteListWarning" xml:space="preserve">
+    <value>Are you sure that you want to add selected items to the white list?</value>
   </data>
 </root>

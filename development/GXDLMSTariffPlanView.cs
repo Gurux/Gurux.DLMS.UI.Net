@@ -616,30 +616,6 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        private void WsHiStartHourTb_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //Mikko
-                //                (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals.StartHour = byte.Parse(WsHiStartHourTb.Text);
-                //              Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.WinterSeason);
-                //            errorProvider1.SetError(WsHiStartHourTb, Properties.Resources.ValueChangedTxt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void WsHiStartHourTb_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                WsHiStartHourTb_Leave(null, null);
-            }
-        }
-
         private void WsWdIntervalTariffCb_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -842,23 +818,6 @@ namespace Gurux.DLMS.UI
                 MessageBox.Show(this, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void WsHiUseIntervalCb_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //Mikko
-                //                (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals.UseInterval = WsHiUseIntervalCb.Checked;
-                //              Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.WinterSeason);
-                //            errorProvider1.SetError(WsHiUseIntervalCb, Properties.Resources.ValueChangedTxt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void WsSiIntervalEnabled_CheckedChanged(object sender, EventArgs e)

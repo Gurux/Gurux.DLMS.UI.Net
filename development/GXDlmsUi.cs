@@ -52,6 +52,35 @@ namespace Gurux.DLMS.UI
 
         }
 
+        static private bool Contains<T>(T[] arr, T value)
+        {
+            if (arr == null)
+            {
+                return value == null;
+            }
+            foreach (T it in arr)
+            {
+                if (it.Equals(value))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static private bool Equals<T>(T[] arr, T value)
+        {
+            if (arr == null)
+            {
+                return value == null;
+            }
+            if (value == null)
+            {
+                return arr.Length == 0 || (arr.Length == 1 && arr[0] == null);
+            }
+            return arr.Length == 1 && arr[0].Equals(value);
+        }
+
         /// <summary>
         /// Get available views.
         /// </summary>
@@ -103,7 +132,7 @@ namespace Gurux.DLMS.UI
             foreach (var it in v)
             {
                 GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
-                if (att.Length == 1 && att[0].Version == target.Version)
+                if (att.Length == 1 && Contains<byte>(att[0].Versions, (byte)target.Version))
                 {
                     return it;
                 }
@@ -124,7 +153,18 @@ namespace Gurux.DLMS.UI
             foreach (var it in v)
             {
                 GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
-                if (att.Length == 1 && att[0].Version == target.Version && att[0].Standard == standard && att[0].LogicalName == target.LogicalName)
+                if (att.Length == 1 && Contains<byte>(att[0].Versions, (byte)target.Version)
+                    && Contains<Standard>(att[0].Standards, standard)
+                    && Contains<string>(att[0].LogicalNames, target.LogicalName))
+                {
+                    return it;
+                }
+            }
+            foreach (var it in v)
+            {
+                GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
+                if (att.Length == 1 && Contains<byte>(att[0].Versions, (byte)target.Version) &&
+                    Equals<Standard>(att[0].Standards, Standard.DLMS) && Contains<string>(att[0].LogicalNames, target.LogicalName))
                 {
                     return it;
                 }
@@ -133,7 +173,9 @@ namespace Gurux.DLMS.UI
             foreach (var it in v)
             {
                 GXDLMSViewAttribute[] att = (GXDLMSViewAttribute[])it.GetType().GetCustomAttributes(typeof(GXDLMSViewAttribute), true);
-                if (att.Length == 1 && att[0].Version == target.Version && att[0].Standard == Standard.DLMS && att[0].LogicalName == null)
+                if (att.Length == 1 && Contains<byte>(att[0].Versions, (byte)target.Version) &&
+                    Equals<Standard>(att[0].Standards, Standard.DLMS) &&
+                    Equals<string>(att[0].LogicalNames, null))
                 {
                     return it;
                 }
@@ -200,7 +242,7 @@ namespace Gurux.DLMS.UI
                 {
                     (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected, user);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show(view as Form, ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
@@ -331,6 +373,12 @@ namespace Gurux.DLMS.UI
                 {
                     GXButton btn = it as GXButton;
                     btn.Target = target;
+                    //Update custom buttons.
+                    if (method && index == 0 && btn.Index < 1)
+                    {
+                        OnUpdateAccessRights(view, btn, connected);
+                        continue;
+                    }
                     if (method && btn.Index == index && btn.Action == ActionType.Action)
                     {
                         MethodAccessMode ma = target.GetMethodAccess(index);
@@ -383,11 +431,14 @@ namespace Gurux.DLMS.UI
                 }
             }
             //Update methods.
-            for (int index = 1; index <= (target as IGXDLMSBase).GetMethodCount(); ++index)
+            for (int index = 0; index <= (target as IGXDLMSBase).GetMethodCount(); ++index)
             {
                 if (!UpdateAccessRights(view, controls, target, index, true, connected))
                 {
-                    methodIndexes.Add(index);
+                    if (index != 0)
+                    {
+                        methodIndexes.Add(index);
+                    }
                 }
             }
             foreach (int index in attributeIndexes)

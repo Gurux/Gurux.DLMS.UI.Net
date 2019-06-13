@@ -22,7 +22,7 @@ namespace Gurux.DLMS.UI
         public GXDLMSObject Target
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
-        
+
         /// <summary>
         /// Client.
         /// </summary>
@@ -92,7 +92,7 @@ namespace Gurux.DLMS.UI
         /// Is meter rebooting.
         /// </summary>
         /// <remarks>
-        /// This is used when new image is updated.  
+        /// This is used when new image is updated.
         /// </remarks>
         public bool Rebooting
         {

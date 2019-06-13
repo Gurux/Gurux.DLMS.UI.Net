@@ -19,7 +19,7 @@ namespace Gurux.DLMS.UI.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -102,6 +102,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string ActivationSuccessful {
             get {
                 return ResourceManager.GetString("ActivationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to add selected items to the black list?.
+        /// </summary>
+        internal static string BlackListWarning {
+            get {
+                return ResourceManager.GetString("BlackListWarning", resourceCulture);
             }
         }
         
@@ -219,6 +228,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string ProfileGenericCaptureWarning {
             get {
                 return ResourceManager.GetString("ProfileGenericCaptureWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select only one meter..
+        /// </summary>
+        internal static string ProfileGenericDeviceAmountWarning {
+            get {
+                return ResourceManager.GetString("ProfileGenericDeviceAmountWarning", resourceCulture);
             }
         }
         
@@ -426,6 +444,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string VerificationInitiated {
             get {
                 return ResourceManager.GetString("VerificationInitiated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to add selected items to the white list?.
+        /// </summary>
+        internal static string WhiteListWarning {
+            get {
+                return ResourceManager.GetString("WhiteListWarning", resourceCulture);
             }
         }
     }

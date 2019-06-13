@@ -46,8 +46,8 @@ namespace Gurux.DLMS.UI
         public GXDLMSViewAttribute(Type dlmsType)
         {
             DLMSType = dlmsType;
-            Version = 0;
-            Standard = Standard.DLMS;
+            Versions = new byte[] { 0};
+            Standards = new Standard[] { Standard.DLMS };
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace Gurux.DLMS.UI
         public GXDLMSViewAttribute(Type dlmsType, byte version)
         {
             DLMSType = dlmsType;
-            Version = version;
-            Standard = Standard.DLMS;
+            Versions = new byte[] { version };
+            Standards = new Standard[] { Standard.DLMS };
         }
 
         /// <summary>
@@ -72,9 +72,24 @@ namespace Gurux.DLMS.UI
         public GXDLMSViewAttribute(Type dlmsType, byte version, string ln, Standard standard)
         {
             DLMSType = dlmsType;
-            Version = version;
-            LogicalName = ln;
-            Standard = standard;
+            Versions = new byte[] { version };
+            LogicalNames = new string[] { ln };
+            Standards = new Standard[] { standard };
+        }
+
+        /// <summary>
+        /// Costructor.
+        /// </summary>
+        /// <param name="dlmsType">COSEM object that this UI shown.</param>
+        /// <param name="versions">DLMS version numbers.</param>
+        /// <param name="logicalNames">Logical names.</param>
+        /// <param name="standards">Used standards.</param>
+        public GXDLMSViewAttribute(Type dlmsType, byte[] versions, string[] logicalNames, Standard[] standards)
+        {
+            DLMSType = dlmsType;
+            Versions = versions;
+            LogicalNames = logicalNames;
+            Standards = standards;
         }
 
         public Type DLMSType
@@ -83,19 +98,40 @@ namespace Gurux.DLMS.UI
             private set;
         }
 
+        [Obsolete("Use Versions.")]
         public byte Version
         {
             get;
             private set;
         }
 
+        public byte[] Versions
+        {
+            get;
+            private set;
+        }
+
+        [Obsolete("Use LogicalNames.")]
         public string LogicalName
         {
             get;
             private set;
         }
 
+        public string[] LogicalNames
+        {
+            get;
+            private set;
+        }
+
+        [Obsolete("Use Standards.")]
         public Standard Standard
+        {
+            get;
+            private set;
+        }
+
+        public Standard[] Standards
         {
             get;
             private set;
