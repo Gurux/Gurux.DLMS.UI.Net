@@ -70,23 +70,17 @@ namespace Gurux.DLMS.UI
             GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
             if (index == 3)
             {
-                if (target.InitialisationStrings == null)
+                InitialisationView.Items.Clear();
+                if (target.InitialisationStrings != null)
                 {
-                    this.InitialisationTB.Text = "";
-                }
-                else
-                {
-                    StringBuilder sb = new StringBuilder();
-                    foreach (var it in target.InitialisationStrings)
+                    foreach (GXDLMSModemInitialisation it in target.InitialisationStrings)
                     {
-                        sb.Append(it.Request);
-                        sb.Append(" ");
-                        sb.Append(it.Response);
-                        sb.Append(" ");
-                        sb.Append(it.Delay.ToString());
-                        sb.Append(Environment.NewLine);
+                        ListViewItem li = new ListViewItem(it.Request);
+                        li.SubItems.Add(it.Response);
+                        li.SubItems.Add(it.Delay.ToString());
+                        li.Tag = it;
+                        InitialisationView.Items.Add(li);
                     }
-                    this.InitialisationTB.Text = sb.ToString();
                 }
             }
             else if (index == 4)
@@ -113,10 +107,24 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool enabled = connected && (access & AccessMode.Write) != 0;
+            if (index == 3)
+            {
+                InitialisationView.Enabled = AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = enabled;
+            }
+            else if (index == 4)
+            {
+                ModemProfileTB.Enabled = enabled;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
+            throw new IndexOutOfRangeException("index");
         }
 
 
@@ -153,10 +161,24 @@ namespace Gurux.DLMS.UI
 
         }
 
+
+
+
         #endregion
 
-
-
-
+        private void ModemProfileTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
+                target.ModemProfile = this.ModemProfileTB.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                Target.UpdateDirty(2, target.ModemProfile);
+                errorProvider1.SetError(ModemProfileTB, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

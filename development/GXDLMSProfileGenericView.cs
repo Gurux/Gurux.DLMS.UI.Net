@@ -79,7 +79,13 @@ namespace Gurux.DLMS.UI
         {
             sb.Append("{");
             bool first = true;
-            foreach (object it in (object[])value)
+            if (value is object[])
+            {
+                List<object> tmp = new List<object>();
+                tmp.AddRange((object[])value);
+                value = tmp;
+            }
+            foreach (object it in (List<object>)value)
             {
                 if (first)
                 {
@@ -97,6 +103,10 @@ namespace Gurux.DLMS.UI
                 {
                     GetArrayAsString(sb, it);
                 }
+                else if (it is List<object>)
+                {
+                    GetArrayAsString(sb, it);
+                }
                 else
                 {
                     sb.Append(Convert.ToString(it));
@@ -111,7 +121,7 @@ namespace Gurux.DLMS.UI
             {
                 return GXDLMSTranslator.ToHex(value as byte[]);
             }
-            else if (value is object[])
+            else if (value is List<object>)
             {
                 StringBuilder sb = new StringBuilder();
                 GetArrayAsString(sb, value);

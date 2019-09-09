@@ -34,6 +34,7 @@ using System.Text;
 using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Gurux.DLMS.UI
 {
@@ -47,7 +48,7 @@ namespace Gurux.DLMS.UI
             }
             if (type == DataType.None)
             {
-                if (arrayAsString && data != null && data.GetType().IsArray)
+                if (arrayAsString && data != null && (data is List<object> || data.GetType().IsArray))
                 {
                     data = GXDLMSTranslator.ValueToXml(data);
                 }

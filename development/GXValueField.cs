@@ -426,7 +426,7 @@ namespace Gurux.DLMS.UI
                     return ((IStructuralEquatable)original).Equals(GXDLMSTranslator.HexToBytes((string)value), StructuralComparisons.StructuralEqualityComparer);
                 }
             }
-            else if (original is object[] && value is string)
+            else if ((original is object[] || original is List<object>) && value is string)
             {
                 //If user try to change structure.
                 return string.Compare(GXDLMSTranslator.ValueToXml(original), Convert.ToString(value)) == 0;
@@ -492,7 +492,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
                 dt = Target.GetDataType(Index);
-                if (dt != DataType.None && dt != DataType.Enum && dt != DataType.Array)
+                if (dt != DataType.None && dt != DataType.Enum && dt != DataType.Array && dt != DataType.Structure)
                 {
                     if (dt == DataType.DateTime && value is string)
                     {
@@ -523,7 +523,7 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if (dt == DataType.Array && value is string)
+                else if ((dt == DataType.Array || dt == DataType.Structure) && value is string)
                 {
                     value = GXDLMSTranslator.XmlToValue((string)value);
                 }
@@ -626,7 +626,10 @@ namespace Gurux.DLMS.UI
                 {
                     if (att != null && DefaultType == ValueFieldType.TextBox)
                     {
-                        Type = att.UIValueType;
+                        if (Type != att.UIValueType)
+                        {
+                            Type = att.UIValueType;
+                        }
                     }
                     else
                     {
@@ -767,7 +770,7 @@ namespace Gurux.DLMS.UI
             string str = "";
             if (Type != ValueFieldType.Xml)
             {
-                if (value != null && !(value is byte[]) && value.GetType().IsArray)
+                if (value != null && !(value is byte[]) && (value is List<object> || value.GetType().IsArray))
                 {
                     str = GXDLMSTranslator.ValueToXml(value);
                 }
@@ -935,7 +938,7 @@ namespace Gurux.DLMS.UI
                             }
                         }
                         checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
-                    }                    
+                    }
                     else if (IsNumeric(value))
                     {
                         checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;

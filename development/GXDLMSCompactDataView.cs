@@ -151,11 +151,16 @@ namespace Gurux.DLMS.UI
 
         void UpdateData(DataTable dt)
         {
-            object[] rows = GXDLMSCompactData.GetData(target.TemplateDescription, target.Buffer);
+            Standard standard = Standard.DLMS;
+            if (target.Parent.Parent is GXDLMSClient)
+            {
+                standard = ((GXDLMSClient)target.Parent.Parent).Standard;
+            }
+            List<List<object>> rows = GXDLMSCompactData.GetData(target.TemplateDescription, target.Buffer, standard == Standard.Italy);
             if (structures)
             {
                 List<object[]> data = new List<object[]>();
-                foreach (object[] r in rows)
+                foreach (List<object> r in rows)
                 {
                     List<object> row = new List<object>();
                     int index = 0;
@@ -163,7 +168,7 @@ namespace Gurux.DLMS.UI
                     {
                         //If COSEM object is selected.
                         //Only few meters are supporting this.
-                        if (it.Value.AttributeIndex == 0 && r[index] is object[])
+                        if (it.Value.AttributeIndex == 0 && r[index] is List<object>)
                         {
                             //Values must be update to the list because there might be Register Scaler
                             //and it expects that scaler is read before value is updated.
@@ -204,12 +209,12 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                for (int pos = dt.Rows.Count; pos < rows.Length; ++pos)
+                for (int pos = dt.Rows.Count; pos < rows.Count; ++pos)
                 {
-                    object[] row = (object[])rows[pos];
+                    List<object> row = (List<object>)rows[pos];
                     if (row != null)
                     {
-                        for (int col = 0; col != row.Length; ++col)
+                        for (int col = 0; col != row.Count; ++col)
                         {
                             if (row[col] is byte[])
                             {
@@ -279,9 +284,9 @@ namespace Gurux.DLMS.UI
                         {
                             try
                             {
-                                dt.LoadDataRow(row, true);
+                                dt.LoadDataRow(row.ToArray(), true);
                             }
-                            catch(Exception)
+                            catch (Exception)
                             {
                                 //It's OK if this fails.
                             }
