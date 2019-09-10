@@ -770,7 +770,7 @@ namespace Gurux.DLMS.UI
             string str = "";
             if (Type != ValueFieldType.Xml)
             {
-                if (value != null && !(value is byte[]) && (value is List<object> || value.GetType().IsArray))
+                if (value != null && !(value is byte[]) && value.GetType().IsArray)
                 {
                     str = GXDLMSTranslator.ValueToXml(value);
                 }
