@@ -646,7 +646,7 @@ namespace Gurux.DLMS.UI
                     else
                     {
                         this.Type = (Items == null || (att != null && att.Type == DataType.BitString) || Items.Count == 0) ? ValueFieldType.TextBox : ValueFieldType.CompoBox;
-                        textBox1.Multiline = tmp != null && tmp.Type == DataType.Array;
+                        textBox1.Multiline = tmp != null && (tmp.Type == DataType.Array || tmp.Type == DataType.Structure);
                     }
                 }
                 if (type == ValueFieldType.CompoBox)
@@ -770,7 +770,7 @@ namespace Gurux.DLMS.UI
             string str = "";
             if (Type != ValueFieldType.Xml)
             {
-                if (value != null && !(value is byte[]) && value.GetType().IsArray)
+                if (value is GXArray || value is GXStructure)
                 {
                     str = GXDLMSTranslator.ValueToXml(value);
                 }
