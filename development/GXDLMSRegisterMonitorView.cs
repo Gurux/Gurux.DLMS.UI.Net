@@ -279,8 +279,8 @@ namespace Gurux.DLMS.UI
                         errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
                         Target.UpdateDirty(2, target.Thresholds);
                         Target.UpdateDirty(4, target.Actions);
-                        GXDLMSActionSet it = target.Actions[target.Actions.Length - 1];
-                        li.SubItems[0].Text = Convert.ToString(target.Thresholds[target.Thresholds.Length - 1]);
+                        GXDLMSActionSet it = target.Actions[index];
+                        li.SubItems[0].Text = Convert.ToString(target.Thresholds[index]);
                         li.SubItems[1].Text = it.ActionUp.LogicalName;
                         li.SubItems[2].Text = it.ActionUp.ScriptSelector.ToString();
                         li.SubItems[3].Text = it.ActionDown.LogicalName;
