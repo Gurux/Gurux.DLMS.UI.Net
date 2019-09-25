@@ -486,6 +486,13 @@ namespace Gurux.DLMS.UI
                             value = new GXTime((string)value);
                         }
                     }
+                    else if (dt == DataType.OctetString)
+                    {
+                        if (value is string)
+                        {
+                            value = GXDLMSTranslator.HexToBytes((string)value);
+                        }
+                    }
                     else
                     {
                         value = Convert.ChangeType(value, GXDLMSConverter.GetDataType(dt));
@@ -508,7 +515,8 @@ namespace Gurux.DLMS.UI
                     }
                     else if (dt == DataType.OctetString)
                     {
-                        if (value is string && Target.GetUIDataType(Index) == DataType.OctetString)
+                        DataType ui = Target.GetUIDataType(Index);
+                        if (value is string && (ui == DataType.OctetString) || ui == DataType.None)
                         {
                             value = GXDLMSTranslator.HexToBytes((string)value);
                         }
