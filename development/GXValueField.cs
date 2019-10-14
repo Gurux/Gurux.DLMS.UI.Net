@@ -523,7 +523,8 @@ namespace Gurux.DLMS.UI
                     }
                     else
                     {
-                        if (dt != DataType.Structure && dt != DataType.Array && dt != DataType.CompactArray
+                        if (dt != DataType.Structure && dt != DataType.Array && dt != DataType.CompactArray &&
+                            dt != DataType.DateTime && dt != DataType.Date && dt != DataType.Time
                             && !(Target is GXDLMSRegister && Index == 2) &&
                                             !(Target is GXDLMSIp4Setup) && !(Target is GXDLMSIp6Setup))
                         {

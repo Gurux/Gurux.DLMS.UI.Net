@@ -156,7 +156,7 @@ namespace Gurux.DLMS.UI
             {
                 standard = ((GXDLMSClient)target.Parent.Parent).Standard;
             }
-            List<List<object>> rows = GXDLMSCompactData.GetData(target.TemplateDescription, target.Buffer, standard == Standard.Italy);
+            List<object> rows = GXDLMSCompactData.GetData(target.TemplateDescription, target.Buffer, standard == Standard.Italy);
             if (structures)
             {
                 List<object[]> data = new List<object[]>();
@@ -313,7 +313,7 @@ namespace Gurux.DLMS.UI
 
         private void UpdateCaptureObjects()
         {
-            object[] types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
+            List<object> types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
             int pos, index = 0;
             DataTable table = ProfileGenericView.DataSource as DataTable;
             ProfileGenericView.DataSource = null;
@@ -337,19 +337,12 @@ namespace Gurux.DLMS.UI
                 }
                 else
                 {
-                    if (it.Value.DataIndex == 0 && types != null && index < types.Length)
+                    if (it.Value.DataIndex == 0 && types != null && index < types.Count)
                     {
-                        if (types[index] is IEnumerable<object>)
-                        {
-                            AddColumns(it.Key, dt, (IEnumerable<object>)types[index], columns, it.Value.AttributeIndex);
-                        }
-                        else
-                        {
-                            dc = dt.Columns.Add(index.ToString());
-                            dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[it.Value.AttributeIndex - 1];
-                            pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
-                            ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
-                        }
+                        dc = dt.Columns.Add(index.ToString());
+                        dc.Caption = it.Key.LogicalName + Environment.NewLine + columns[it.Value.AttributeIndex - 1];
+                        pos = ProfileGenericView.Columns.Add(index.ToString(), dc.Caption);
+                        ProfileGenericView.Columns[pos].DataPropertyName = index.ToString();
                     }
                     else
                     {
@@ -377,32 +370,6 @@ namespace Gurux.DLMS.UI
             }
             UpdateData(dt);
             ProfileGenericView.DataSource = dt;
-        }
-
-        private void AddColumns(GXDLMSObject obj, DataTable dt, IEnumerable<object> types, string[] columns, int index)
-        {
-            bool empty = true;
-            int a = ProfileGenericView.Columns.Count;
-            DataColumn dc;
-            foreach (object it in types)
-            {
-                if (it is IEnumerable<object>)
-                {
-                    empty = false;
-                    dc = dt.Columns.Add(a.ToString());
-                    dc.Caption = obj.LogicalName + Environment.NewLine + columns[index - 1];
-                    int pos = ProfileGenericView.Columns.Add(a.ToString(), dc.Caption);
-                    ProfileGenericView.Columns[pos].DataPropertyName = a.ToString();
-                    ++a;
-                }
-            }
-            if (empty)
-            {
-                dc = dt.Columns.Add(a.ToString());
-                dc.Caption = obj.LogicalName + Environment.NewLine + columns[index - 1];
-                int pos = ProfileGenericView.Columns.Add(a.ToString(), dc.Caption);
-                ProfileGenericView.Columns[pos].DataPropertyName = a.ToString();
-            }
         }
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
@@ -436,7 +403,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 5)
             {
-                object[] types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
+                List<object> types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
                 StringBuilder sb = new StringBuilder();
                 AppendDataType(sb, types);
                 TemplateDescriptionTb.Text = sb.ToString();

@@ -291,7 +291,7 @@ namespace Gurux.DLMS.UI
                 {
                     DataColumn dc = dt.Columns.Add(index.ToString());
                     string str = it.Key.LogicalName;
-                    if (it.Value.AttributeIndex < columns.Length)
+                    if (it.Value.AttributeIndex < columns.Length && it.Value.AttributeIndex > 0)
                     {
                         str += Environment.NewLine + columns[it.Value.AttributeIndex - 1];
                     }
