@@ -42,7 +42,7 @@ namespace Gurux.DLMS.UI
     /// <summary>
     /// Online help:
     /// https://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSTokenGateway
-    /// </summary>   
+    /// </summary>
     [GXDLMSViewAttribute(typeof(GXDLMSTokenGateway))]
     partial class GXDLMSTokenGatewayView : Form, IGXDLMSView
     {
@@ -89,12 +89,48 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        delegate void ShowDialogEventHandler(GXActionArgs arg);
+
+        void OnShowDialog(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowDialogEventHandler(OnShowDialog), arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXTextDlg dlg = new GXTextDlg("Transfer token", "Token", "", typeof(byte[]));
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    GXByteBuffer bb = new GXByteBuffer();
+                    bb.SetUInt8((byte)DataType.OctetString);
+                    byte[] str = GXDLMSTranslator.HexToBytes(dlg.GetValue());
+                    bb.SetUInt8((byte)str.Length);
+                    bb.Set(str);
+                    arg.Value = bb.Array();
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
+            if (arg.Action == ActionType.Action && arg.Index == 1)
+            {
+                OnShowDialog(arg);
+            }
         }
 
         public void PostAction(GXActionArgs arg)
         {
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 

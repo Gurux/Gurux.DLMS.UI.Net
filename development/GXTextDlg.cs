@@ -39,6 +39,7 @@ namespace Gurux.DLMS.UI
 {
     public partial class GXTextDlg : Form
     {
+        Type type = null;
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -53,6 +54,22 @@ namespace Gurux.DLMS.UI
             TextTb.Text = value;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="caption">Window caption.</param>
+        /// <param name="label">Text label.</param>
+        /// <param name="value">Text Value.</param>
+        /// <param name="type">Data type.</param>
+        public GXTextDlg(string caption, string label, string value, Type type)
+        {
+            InitializeComponent();
+            this.Text = caption;
+            TextLbl.Text = label;
+            TextTb.Text = value;
+            this.type = type;
+        }
+
         public string GetValue()
         {
             return TextTb.Text;
@@ -65,6 +82,17 @@ namespace Gurux.DLMS.UI
                 if (TextTb.Text.Length == 0)
                 {
                     throw new ArgumentOutOfRangeException(TextLbl.Text + " is invalid.");
+                }
+                if (type != null)
+                {
+                    if (type == typeof(byte[]))
+                    {
+                        GXDLMSTranslator.HexToBytes(TextTb.Text);
+                    }
+                    else
+                    {
+                        Convert.ChangeType(TextTb.Text, type);
+                    }
                 }
             }
             catch (Exception ex)

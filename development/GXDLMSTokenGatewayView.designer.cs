@@ -41,6 +41,7 @@ namespace Gurux.DLMS.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSTokenGatewayView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.StatusCodeTb = new System.Windows.Forms.ComboBox();
+            this.DeliveryMethodCb = new Gurux.DLMS.UI.GXValueField();
             this.DataValueTb = new System.Windows.Forms.TextBox();
             this.DataValueLbl = new System.Windows.Forms.Label();
             this.StatusCodeLbl = new System.Windows.Forms.Label();
@@ -51,16 +52,16 @@ namespace Gurux.DLMS.UI
             this.DescriptionsAdd = new System.Windows.Forms.Button();
             this.DescriptionsView = new System.Windows.Forms.ListView();
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TimeTb = new Gurux.DLMS.UI.GXValueField();
             this.TimeLbl = new System.Windows.Forms.Label();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
+            this.TokenTb = new Gurux.DLMS.UI.GXValueField();
             this.TokenLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.DeliveryMethodCb = new Gurux.DLMS.UI.GXValueField();
-            this.TimeTb = new Gurux.DLMS.UI.GXValueField();
-            this.TokenTb = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.TransferTokenBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +70,7 @@ namespace Gurux.DLMS.UI
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.TransferTokenBtn);
             this.groupBox1.Controls.Add(this.StatusCodeTb);
             this.groupBox1.Controls.Add(this.DeliveryMethodCb);
             this.groupBox1.Controls.Add(this.DataValueTb);
@@ -90,7 +92,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(478, 378);
+            this.groupBox1.Size = new System.Drawing.Size(478, 404);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Token Gateway Object";
@@ -106,6 +108,18 @@ namespace Gurux.DLMS.UI
             this.StatusCodeTb.Size = new System.Drawing.Size(354, 21);
             this.StatusCodeTb.TabIndex = 7;
             this.StatusCodeTb.SelectedIndexChanged += new System.EventHandler(this.StatusCodeTb_SelectedIndexChanged);
+            // 
+            // DeliveryMethodCb
+            // 
+            this.DeliveryMethodCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeliveryMethodCb.Index = 5;
+            this.DeliveryMethodCb.Location = new System.Drawing.Point(104, 290);
+            this.DeliveryMethodCb.Name = "DeliveryMethodCb";
+            this.DeliveryMethodCb.NotifyChanges = false;
+            this.DeliveryMethodCb.Size = new System.Drawing.Size(353, 20);
+            this.DeliveryMethodCb.TabIndex = 6;
+            this.DeliveryMethodCb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // DataValueTb
             // 
@@ -207,6 +221,18 @@ namespace Gurux.DLMS.UI
             this.NameHeader.Text = "Name";
             this.NameHeader.Width = 315;
             // 
+            // TimeTb
+            // 
+            this.TimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TimeTb.Index = 3;
+            this.TimeTb.Location = new System.Drawing.Point(104, 97);
+            this.TimeTb.Name = "TimeTb";
+            this.TimeTb.NotifyChanges = false;
+            this.TimeTb.Size = new System.Drawing.Size(353, 20);
+            this.TimeTb.TabIndex = 1;
+            this.TimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // TimeLbl
             // 
             this.TimeLbl.AutoSize = true;
@@ -235,6 +261,18 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Size = new System.Drawing.Size(354, 20);
             this.DescriptionTB.TabIndex = 9;
             // 
+            // TokenTb
+            // 
+            this.TokenTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TokenTb.Index = 2;
+            this.TokenTb.Location = new System.Drawing.Point(104, 71);
+            this.TokenTb.Name = "TokenTb";
+            this.TokenTb.NotifyChanges = false;
+            this.TokenTb.Size = new System.Drawing.Size(353, 20);
+            this.TokenTb.TabIndex = 0;
+            this.TokenTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // TokenLbl
             // 
             this.TokenLbl.AutoSize = true;
@@ -243,6 +281,18 @@ namespace Gurux.DLMS.UI
             this.TokenLbl.Size = new System.Drawing.Size(41, 13);
             this.TokenLbl.TabIndex = 2;
             this.TokenLbl.Text = "Token:";
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(353, 20);
+            this.LogicalNameTB.TabIndex = 10;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -259,58 +309,20 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // DeliveryMethodCb
+            // TransferTokenBtn
             // 
-            this.DeliveryMethodCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeliveryMethodCb.Index = 5;
-            this.DeliveryMethodCb.Location = new System.Drawing.Point(104, 290);
-            this.DeliveryMethodCb.Name = "DeliveryMethodCb";
-            this.DeliveryMethodCb.NotifyChanges = false;
-            this.DeliveryMethodCb.ReadOnly = true;
-            this.DeliveryMethodCb.Size = new System.Drawing.Size(353, 20);
-            this.DeliveryMethodCb.TabIndex = 6;
-            this.DeliveryMethodCb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
-            // 
-            // TimeTb
-            // 
-            this.TimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeTb.Index = 3;
-            this.TimeTb.Location = new System.Drawing.Point(104, 97);
-            this.TimeTb.Name = "TimeTb";
-            this.TimeTb.NotifyChanges = false;
-            this.TimeTb.Size = new System.Drawing.Size(353, 20);
-            this.TimeTb.TabIndex = 1;
-            this.TimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // TokenTb
-            // 
-            this.TokenTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TokenTb.Index = 2;
-            this.TokenTb.Location = new System.Drawing.Point(104, 71);
-            this.TokenTb.Name = "TokenTb";
-            this.TokenTb.NotifyChanges = false;
-            this.TokenTb.Size = new System.Drawing.Size(353, 20);
-            this.TokenTb.TabIndex = 0;
-            this.TokenTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(353, 20);
-            this.LogicalNameTB.TabIndex = 10;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.TransferTokenBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TransferTokenBtn.Index = 1;
+            this.TransferTokenBtn.Location = new System.Drawing.Point(341, 368);
+            this.TransferTokenBtn.Name = "TransferTokenBtn";
+            this.TransferTokenBtn.Size = new System.Drawing.Size(116, 23);
+            this.TransferTokenBtn.TabIndex = 6;
+            this.TransferTokenBtn.Text = "Transfer token...";
+            this.TransferTokenBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSTokenGatewayView
             // 
-            this.ClientSize = new System.Drawing.Size(502, 406);
+            this.ClientSize = new System.Drawing.Size(502, 435);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSTokenGatewayView";
@@ -337,5 +349,6 @@ namespace Gurux.DLMS.UI
         private TextBox DataValueTb;
         private GXValueField DeliveryMethodCb;
         private ComboBox StatusCodeTb;
+        private GXButton TransferTokenBtn;
     }
 }
