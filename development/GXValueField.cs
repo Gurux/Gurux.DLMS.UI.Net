@@ -547,7 +547,7 @@ namespace Gurux.DLMS.UI
                 }
                 else
                 {
-                    throw new ArgumentNullException("Client or server is not set.");
+                    (Target as IGXDLMSBase).SetValue(new GXDLMSSettings(), v);
                 }
                 (this.ParentForm as IGXDLMSView).OnDirtyChange(Index, true);
                 Target.UpdateDirty(Index, value);
