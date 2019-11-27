@@ -79,13 +79,7 @@ namespace Gurux.DLMS.UI
         {
             sb.Append("{");
             bool first = true;
-            if (value is object[])
-            {
-                List<object> tmp = new List<object>();
-                tmp.AddRange((object[])value);
-                value = tmp;
-            }
-            foreach (object it in (List<object>)value)
+            foreach (object it in (IEnumerable<object>)value)
             {
                 if (first)
                 {
@@ -121,7 +115,8 @@ namespace Gurux.DLMS.UI
             {
                 return GXDLMSTranslator.ToHex(value as byte[]);
             }
-            else if (value is List<object>)
+            else if (value is List<object> ||
+                value is object[])
             {
                 StringBuilder sb = new StringBuilder();
                 GetArrayAsString(sb, value);
@@ -132,6 +127,10 @@ namespace Gurux.DLMS.UI
 
         void UpdateData(DataTable dt)
         {
+            if (target.CaptureObjects.Count == 0)
+            {
+                return;
+            }
             if (structures)
             {
                 List<object[]> data = new List<object[]>();
@@ -143,14 +142,14 @@ namespace Gurux.DLMS.UI
                     {
                         //If COSEM object is selected.
                         //Only few meters are supporting this.
-                        if (it.Value.AttributeIndex == 0 && r[index] is object[])
+                        if (it.Value.AttributeIndex == 0 && r[index] is List<object>)
                         {
                             //Values must be update to the list because there might be Register Scaler
                             //and it expects that scaler is read before value is updated.
                             GXDLMSObject obj = GXDLMSClient.CreateObject(it.Key.ObjectType);
                             byte i2 = 1;
                             Dictionary<byte, object> list = new Dictionary<byte, object>();
-                            foreach (object v in (r[index] as object[]))
+                            foreach (object v in (r[index] as List<object>))
                             {
                                 list.Add(i2, v);
                                 ++i2;
@@ -310,7 +309,10 @@ namespace Gurux.DLMS.UI
                     ++index;
                 }
             }
-            UpdateData(dt);
+            if (target.CaptureObjects.Count != 0)
+            {
+                UpdateData(dt);
+            }
             ProfileGenericView.DataSource = dt;
         }
 
