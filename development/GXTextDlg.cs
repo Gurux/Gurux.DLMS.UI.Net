@@ -33,6 +33,7 @@
 //---------------------------------------------------------------------------
 
 using System;
+using System.Net;
 using System.Windows.Forms;
 
 namespace Gurux.DLMS.UI
@@ -88,6 +89,10 @@ namespace Gurux.DLMS.UI
                     if (type == typeof(byte[]))
                     {
                         GXDLMSTranslator.HexToBytes(TextTb.Text);
+                    }
+                    else if (type == typeof(IPAddress))
+                    {
+                        IPAddress.Parse(TextTb.Text);
                     }
                     else
                     {

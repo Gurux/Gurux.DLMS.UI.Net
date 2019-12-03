@@ -38,9 +38,9 @@
             // 
             this.TextTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextTb.Location = new System.Drawing.Point(70, 12);
+            this.TextTb.Location = new System.Drawing.Point(12, 32);
             this.TextTb.Name = "TextTb";
-            this.TextTb.Size = new System.Drawing.Size(230, 20);
+            this.TextTb.Size = new System.Drawing.Size(287, 20);
             this.TextTb.TabIndex = 20;
             // 
             // TextLbl
