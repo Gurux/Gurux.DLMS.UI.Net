@@ -693,7 +693,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -714,7 +714,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -731,7 +731,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Parent, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -744,7 +744,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -762,7 +762,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -776,7 +776,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Parent, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -797,7 +797,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -818,7 +818,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -835,7 +835,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Parent, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -851,7 +851,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -871,7 +871,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -887,7 +887,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Parent, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -943,7 +943,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -964,7 +964,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -995,7 +995,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1026,7 +1026,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1043,7 +1043,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1064,7 +1064,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1095,7 +1095,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1126,7 +1126,7 @@ namespace Gurux.DLMS.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error",
+                MessageBox.Show(Parent, ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
