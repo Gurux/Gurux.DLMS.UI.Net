@@ -93,11 +93,10 @@ namespace Gurux.DLMS.UI
                 {
                     sb.Append(Gurux.DLMS.GXDLMSTranslator.ToHex(it as byte[]));
                 }
-                else if (it is object[])
-                {
-                    GetArrayAsString(sb, it);
-                }
-                else if (it is List<object>)
+                else if (it is object[] ||
+                    it is List<object> ||
+                    it is GXStructure ||
+                    it is GXArray)
                 {
                     GetArrayAsString(sb, it);
                 }
@@ -116,7 +115,9 @@ namespace Gurux.DLMS.UI
                 return GXDLMSTranslator.ToHex(value as byte[]);
             }
             else if (value is List<object> ||
-                value is object[])
+                    value is object[] ||
+                    value is GXStructure ||
+                    value is GXArray)
             {
                 StringBuilder sb = new StringBuilder();
                 GetArrayAsString(sb, value);
@@ -197,6 +198,23 @@ namespace Gurux.DLMS.UI
                             else if (row[col] is Object[])
                             {
                                 row[col] = GXDLMSTranslator.ValueToXml(row[col]);
+                            }
+                            else if (row[col] is GXStructure || row[col] is GXArray)
+                            {
+                                if (target.CaptureObjects[col].Key is GXDLMSRegister && target.CaptureObjects[col].Value.AttributeIndex == 2)
+                                {
+                                    GXDLMSRegister obj = new GXDLMSRegister();
+                                    ValueEventArgs ve = new ValueEventArgs(obj, target.CaptureObjects[col].Value.AttributeIndex, 0, null);
+                                    ve.Value = row[col];
+                                    (obj as IGXDLMSBase).SetValue(null, ve);
+                                    row[col] = "{" + obj.Scaler + ", " + obj.Unit + "}";
+                                }
+                                else
+                                {
+                                    StringBuilder sb = new StringBuilder();
+                                    GetArrayAsString(sb, row[col]);
+                                    row[col] = sb.ToString();
+                                }
                             }
                             else
                             {

@@ -909,11 +909,13 @@ namespace Gurux.DLMS.UI
                 else
                 {
                     bitString.Visible = true;
+                    //List of bit intexes.
+                    Dictionary<int, int> bitIndexes = new Dictionary<int, int>();
                     if (Items != null && Items.Count != 0)
                     {
                         foreach (GXObisValueItem it in Items)
                         {
-                            checkedlistBox1.Items.Add(it);
+                            bitIndexes.Add(it.Value, checkedlistBox1.Items.Add(it));
                         }
                     }
                     bitString.Text = "";
@@ -938,13 +940,12 @@ namespace Gurux.DLMS.UI
                         {
                             if (it == '1')
                             {
-                                checkedlistBox1.SetItemChecked(pos, true);
+                                if (bitIndexes.ContainsKey(pos))
+                                {
+                                    checkedlistBox1.SetItemChecked(bitIndexes[pos], true);
+                                }
                             }
                             ++pos;
-                            if (pos == checkedlistBox1.Items.Count)
-                            {
-                                break;
-                            }
                         }
                         checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
                     }
