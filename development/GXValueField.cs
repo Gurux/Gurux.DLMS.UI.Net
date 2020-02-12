@@ -949,6 +949,16 @@ namespace Gurux.DLMS.UI
                         }
                         checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
                     }
+                    else if (value is GXEnum)
+                    {
+                        byte val = Convert.ToByte(value);
+                        if (bitIndexes.ContainsKey(val))
+                        {
+                            checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
+                            checkedlistBox1.SetItemChecked(bitIndexes[val], true);
+                            checkedlistBox1.ItemCheck += CheckedlistBox1_ItemCheck;
+                        }
+                    }
                     else if (IsNumeric(value))
                     {
                         checkedlistBox1.ItemCheck -= CheckedlistBox1_ItemCheck;
