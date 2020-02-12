@@ -67,6 +67,12 @@
     <Compile Include="GXDLMSCompactDataView.designer.cs">
       <DependentUpon>GXDLMSCompactDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXDLMSIECOpticalPortSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSIECOpticalPortSetupView.Designer.cs">
+      <DependentUpon>GXDLMSIECOpticalPortSetupView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXDLMSRegisterActivationDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,11 +377,11 @@
     <Compile Include="GXDLMSIEC14908PhysicalSetupView.designer.cs">
       <DependentUpon>GXDLMSIEC14908PhysicalSetupView.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXDLMSIECOpticalPortSetupView.cs">
+    <Compile Include="GXDLMSIECLocalPortSetupView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GXDLMSIECOpticalPortSetupView.designer.cs">
-      <DependentUpon>GXDLMSIECOpticalPortSetupView.cs</DependentUpon>
+    <Compile Include="GXDLMSIECLocalPortSetupView.designer.cs">
+      <DependentUpon>GXDLMSIECLocalPortSetupView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSImageTransferView.cs">
       <SubType>Form</SubType>
@@ -581,6 +587,9 @@
     <EmbeddedResource Include="GXDLMSCompactDataView.resx">
       <DependentUpon>GXDLMSCompactDataView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSIECOpticalPortSetupView.resx">
+      <DependentUpon>GXDLMSIECOpticalPortSetupView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSRegisterActivationDlg.resx">
       <DependentUpon>GXDLMSRegisterActivationDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -735,8 +744,8 @@
     <EmbeddedResource Include="GXDLMSIEC14908PhysicalSetupView.resx">
       <DependentUpon>GXDLMSIEC14908PhysicalSetupView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GXDLMSIECOpticalPortSetupView.resx">
-      <DependentUpon>GXDLMSIECOpticalPortSetupView.cs</DependentUpon>
+    <EmbeddedResource Include="GXDLMSIECLocalPortSetupView.resx">
+      <DependentUpon>GXDLMSIECLocalPortSetupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSImageTransferView.resx">
       <DependentUpon>GXDLMSImageTransferView.cs</DependentUpon>
