@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2003.601, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2003.601\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2004.801, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.9.0.2004.801\lib\net40\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +67,48 @@
     <Compile Include="GXDLMSCompactDataView.designer.cs">
       <DependentUpon>GXDLMSCompactDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.designer.cs">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcApplicationsIdentificationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcApplicationsIdentificationView.designer.cs">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcApplicationsIdentificationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacCountersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacCountersView.designer.cs">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacCountersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacFunctionalParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacFunctionalParametersView.designer.cs">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacFunctionalParametersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcMacSetupView.designer.cs">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacSetupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcPhysicalLayerCountersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSPrimeNbOfdmPlcPhysicalLayerCountersView.designer.cs">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcPhysicalLayerCountersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSLlcSscsSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSLlcSscsSetupView.designer.cs">
+      <DependentUpon>GXDLMSLlcSscsSetupView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXDLMSIECOpticalPortSetupView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +120,12 @@
     </Compile>
     <Compile Include="GXDLMSRegisterActivationDlg.designer.cs">
       <DependentUpon>GXDLMSRegisterActivationDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMScheduleDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMScheduleDlg.designer.cs">
+      <DependentUpon>GXDLMScheduleDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSUtilityTablesView.cs">
       <SubType>Form</SubType>
@@ -587,11 +635,35 @@
     <EmbeddedResource Include="GXDLMSCompactDataView.resx">
       <DependentUpon>GXDLMSCompactDataView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.resx">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcApplicationsIdentificationView.resx">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcApplicationsIdentificationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcMacCountersView.resx">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacCountersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcMacFunctionalParametersView.resx">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacFunctionalParametersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcMacSetupView.resx">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcMacSetupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcPhysicalLayerCountersView.resx">
+      <DependentUpon>GXDLMSPrimeNbOfdmPlcPhysicalLayerCountersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSLlcSscsSetupView.resx">
+      <DependentUpon>GXDLMSLlcSscsSetupView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIECOpticalPortSetupView.resx">
       <DependentUpon>GXDLMSIECOpticalPortSetupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSRegisterActivationDlg.resx">
       <DependentUpon>GXDLMSRegisterActivationDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMScheduleDlg.resx">
+      <DependentUpon>GXDLMScheduleDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSUtilityTablesView.resx">
       <DependentUpon>GXDLMSUtilityTablesView.cs</DependentUpon>

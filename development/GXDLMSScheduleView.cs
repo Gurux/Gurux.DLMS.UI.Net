@@ -67,23 +67,149 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
+            if (index != 2)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
+            EntriesView.Items.Clear();
+            GXDLMSSchedule target = (GXDLMSSchedule)Target;
+            foreach (GXScheduleEntry item in target.Entries)
+            {
+                AddEntry(item);
+            }
+        }
+
+        private void AddEntry(GXScheduleEntry item)
+        {
+            string ln;
+            if (item.Script == null)
+            {
+                ln = "";
+            }
+            else
+            {
+                ln = item.Script.LogicalName;
+            }
+            ListViewItem li = EntriesView.Items.Add(item.Index.ToString());
+            li.SubItems.AddRange(new string[] {
+                    item.Enable.ToString(),
+                    ln,
+                    item.ScriptSelector.ToString() ,
+                    item.SwitchTime.ToString() ,
+                    item.ValidityWindow.ToString(),
+                    item.ExecWeekdays.ToString() ,
+                    item.ExecSpecDays.ToString() ,
+                    item.BeginDate.ToString() ,
+                    item.EndDate.ToString()});
+            li.Tag = item;
         }
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            throw new NotImplementedException();
+            if (index != 2)
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
 
+        delegate void ShowScheduleDialogEventHandler(GXActionArgs arg);
+
+        void OnShowDialog(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowScheduleDialogEventHandler(OnShowDialog), arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSSchedule target = (GXDLMSSchedule)Target;
+                if (arg.Index == 1)
+                {
+                    //Enable/Disable...
+                    if (EntriesView.SelectedItems.Count == 1)
+                    {
+                        GXScheduleEntry it = (GXScheduleEntry)EntriesView.SelectedItems[0].Tag;
+                        GXDLMScheduleDlg dlg = new GXDLMScheduleDlg(it, target.Parent, 1);
+                        if (dlg.ShowDialog(this.Parent) == DialogResult.OK)
+                        {
+                            if (it.Enable)
+                            {
+                                arg.Value = target.Enable(arg.Client, it);
+                            }
+                            else
+                            {
+                                arg.Value = target.Disable(arg.Client, it);
+                            }
+                            EntriesView.SelectedItems[0].SubItems[1].Text = it.Enable.ToString();
+                        }
+                        else
+                        {
+                            arg.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else if (arg.Index == 2)
+                {
+                    //Add
+                    GXScheduleEntry it = new GXScheduleEntry();
+                    GXDLMScheduleDlg dlg = new GXDLMScheduleDlg(it, target.Parent, 2);
+                    if (dlg.ShowDialog(this.Parent) == DialogResult.OK)
+                    {
+                        arg.Value = target.Insert(arg.Client, it);
+                        AddEntry(it);
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else if (arg.Index == 3)
+                {
+                    //Delete
+                    if (EntriesView.SelectedItems.Count == 1)
+                    {
+                        GXScheduleEntry it = (GXScheduleEntry)EntriesView.SelectedItems[0].Tag;
+                        GXDLMScheduleDlg dlg = new GXDLMScheduleDlg(it, target.Parent, 3);
+                        if (dlg.ShowDialog(this.Parent) == DialogResult.OK)
+                        {
+                            arg.Value = target.Delete(arg.Client, it);
+                            EntriesView.SelectedItems[0].Remove();
+                        }
+                        else
+                        {
+                            arg.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
+            if (arg.Action == ActionType.Action)
+            {
+                OnShowDialog(arg);
+            }
         }
 
         public void PostAction(GXActionArgs arg)
         {
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 

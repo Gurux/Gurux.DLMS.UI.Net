@@ -140,7 +140,7 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                throw new NotImplementedException();
+                throw new IndexOutOfRangeException("index");
             }
         }
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
