@@ -61,6 +61,33 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to activate the account?.
+        /// </summary>
+        internal static string AccountActivateWarning {
+            get {
+                return ResourceManager.GetString("AccountActivateWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to close the account?.
+        /// </summary>
+        internal static string AccountCloseWarning {
+            get {
+                return ResourceManager.GetString("AccountCloseWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to reset the account?.
+        /// </summary>
+        internal static string AccountResetWarning {
+            get {
+                return ResourceManager.GetString("AccountResetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action accomplish..
         /// </summary>
         internal static string ActionImplemented {

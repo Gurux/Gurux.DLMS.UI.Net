@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountActivateWarning" xml:space="preserve">
+    <value>Are you sure that you want to activate the account?</value>
+  </data>
+  <data name="AccountCloseWarning" xml:space="preserve">
+    <value>Are you sure that you want to close the account?</value>
+  </data>
+  <data name="AccountResetWarning" xml:space="preserve">
+    <value>Are you sure that you want to reset the account?</value>
+  </data>
   <data name="ActionImplemented" xml:space="preserve">
     <value>Action accomplish.</value>
   </data>

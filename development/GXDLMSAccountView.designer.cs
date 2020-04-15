@@ -45,20 +45,32 @@ namespace Gurux.DLMS.UI
             this.PaymentModeCb = new System.Windows.Forms.ComboBox();
             this.CurrencyScaleTb = new System.Windows.Forms.TextBox();
             this.CurrencyNameTb = new System.Windows.Forms.TextBox();
+            this.MaxProvisionPeriodTb = new Gurux.DLMS.UI.GXValueField();
             this.MaxProvisionPeriodLbl = new System.Windows.Forms.Label();
+            this.MaxProvisionTb = new Gurux.DLMS.UI.GXValueField();
             this.MaxProvisionLbl = new System.Windows.Forms.Label();
+            this.NextCreditAvailableThresholdTb = new Gurux.DLMS.UI.GXValueField();
             this.NextCreditAvailableThresholdLbl = new System.Windows.Forms.Label();
+            this.LowCreditThresholdTb = new Gurux.DLMS.UI.GXValueField();
             this.LowCreditThresholdLbl = new System.Windows.Forms.Label();
             this.CurrencyUnitLbl = new System.Windows.Forms.Label();
             this.CurrencyScaleLbl = new System.Windows.Forms.Label();
             this.CurrencyNameLbl = new System.Windows.Forms.Label();
+            this.AccountClosureTimeTb = new Gurux.DLMS.UI.GXValueField();
             this.AccountClosureTimeLbl = new System.Windows.Forms.Label();
+            this.AccountActivationTimeTb = new Gurux.DLMS.UI.GXValueField();
             this.AccountActivationTimeLbl = new System.Windows.Forms.Label();
+            this.AggregatedDebtTb = new Gurux.DLMS.UI.GXValueField();
             this.AggregatedDebtLbl = new System.Windows.Forms.Label();
+            this.ClearanceThresholdTb = new Gurux.DLMS.UI.GXValueField();
             this.ClearanceThresholdLbl = new System.Windows.Forms.Label();
+            this.AmountToClearTb = new Gurux.DLMS.UI.GXValueField();
             this.AmountToClearLbl = new System.Windows.Forms.Label();
+            this.AvailableCreditTb = new Gurux.DLMS.UI.GXValueField();
             this.AvailableCreditLbl = new System.Windows.Forms.Label();
+            this.CurrentCreditStatusTb = new Gurux.DLMS.UI.GXValueField();
             this.CurrentCreditStatusLbl = new System.Windows.Forms.Label();
+            this.CurrentCreditInUseTb = new Gurux.DLMS.UI.GXValueField();
             this.CurrentCreditInUseLbl = new System.Windows.Forms.Label();
             this.AccountStatusLbl = new System.Windows.Forms.Label();
             this.PaymentModeLbl = new System.Windows.Forms.Label();
@@ -91,21 +103,12 @@ namespace Gurux.DLMS.UI
             this.TokenProportionCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.MaxProvisionPeriodTb = new Gurux.DLMS.UI.GXValueField();
-            this.MaxProvisionTb = new Gurux.DLMS.UI.GXValueField();
-            this.NextCreditAvailableThresholdTb = new Gurux.DLMS.UI.GXValueField();
-            this.LowCreditThresholdTb = new Gurux.DLMS.UI.GXValueField();
-            this.AccountClosureTimeTb = new Gurux.DLMS.UI.GXValueField();
-            this.AccountActivationTimeTb = new Gurux.DLMS.UI.GXValueField();
-            this.AggregatedDebtTb = new Gurux.DLMS.UI.GXValueField();
-            this.ClearanceThresholdTb = new Gurux.DLMS.UI.GXValueField();
-            this.AmountToClearTb = new Gurux.DLMS.UI.GXValueField();
-            this.AvailableCreditTb = new Gurux.DLMS.UI.GXValueField();
-            this.CurrentCreditStatusTb = new Gurux.DLMS.UI.GXValueField();
-            this.CurrentCreditInUseTb = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.ActivateBtn = new Gurux.DLMS.UI.GXButton();
+            this.CloseBtn = new Gurux.DLMS.UI.GXButton();
+            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.GeneralTab.SuspendLayout();
@@ -150,6 +153,9 @@ namespace Gurux.DLMS.UI
             // 
             // GeneralTab
             // 
+            this.GeneralTab.Controls.Add(this.ResetBtn);
+            this.GeneralTab.Controls.Add(this.ActivateBtn);
+            this.GeneralTab.Controls.Add(this.CloseBtn);
             this.GeneralTab.Controls.Add(this.CurrencyUnitTb);
             this.GeneralTab.Controls.Add(this.AccountStatusCb);
             this.GeneralTab.Controls.Add(this.PaymentModeCb);
@@ -246,6 +252,18 @@ namespace Gurux.DLMS.UI
             this.CurrencyNameTb.Size = new System.Drawing.Size(298, 20);
             this.CurrencyNameTb.TabIndex = 8;
             // 
+            // MaxProvisionPeriodTb
+            // 
+            this.MaxProvisionPeriodTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaxProvisionPeriodTb.Index = 19;
+            this.MaxProvisionPeriodTb.Location = new System.Drawing.Point(167, 531);
+            this.MaxProvisionPeriodTb.Name = "MaxProvisionPeriodTb";
+            this.MaxProvisionPeriodTb.NotifyChanges = false;
+            this.MaxProvisionPeriodTb.Size = new System.Drawing.Size(297, 20);
+            this.MaxProvisionPeriodTb.TabIndex = 14;
+            this.MaxProvisionPeriodTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // MaxProvisionPeriodLbl
             // 
             this.MaxProvisionPeriodLbl.AutoSize = true;
@@ -254,6 +272,18 @@ namespace Gurux.DLMS.UI
             this.MaxProvisionPeriodLbl.Size = new System.Drawing.Size(109, 13);
             this.MaxProvisionPeriodLbl.TabIndex = 70;
             this.MaxProvisionPeriodLbl.Text = "Max Provision Period:";
+            // 
+            // MaxProvisionTb
+            // 
+            this.MaxProvisionTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaxProvisionTb.Index = 18;
+            this.MaxProvisionTb.Location = new System.Drawing.Point(167, 505);
+            this.MaxProvisionTb.Name = "MaxProvisionTb";
+            this.MaxProvisionTb.NotifyChanges = false;
+            this.MaxProvisionTb.Size = new System.Drawing.Size(297, 20);
+            this.MaxProvisionTb.TabIndex = 13;
+            this.MaxProvisionTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // MaxProvisionLbl
             // 
@@ -264,6 +294,18 @@ namespace Gurux.DLMS.UI
             this.MaxProvisionLbl.TabIndex = 68;
             this.MaxProvisionLbl.Text = "Max Provision:";
             // 
+            // NextCreditAvailableThresholdTb
+            // 
+            this.NextCreditAvailableThresholdTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NextCreditAvailableThresholdTb.Index = 17;
+            this.NextCreditAvailableThresholdTb.Location = new System.Drawing.Point(167, 479);
+            this.NextCreditAvailableThresholdTb.Name = "NextCreditAvailableThresholdTb";
+            this.NextCreditAvailableThresholdTb.NotifyChanges = false;
+            this.NextCreditAvailableThresholdTb.Size = new System.Drawing.Size(297, 20);
+            this.NextCreditAvailableThresholdTb.TabIndex = 12;
+            this.NextCreditAvailableThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // NextCreditAvailableThresholdLbl
             // 
             this.NextCreditAvailableThresholdLbl.AutoSize = true;
@@ -272,6 +314,18 @@ namespace Gurux.DLMS.UI
             this.NextCreditAvailableThresholdLbl.Size = new System.Drawing.Size(158, 13);
             this.NextCreditAvailableThresholdLbl.TabIndex = 66;
             this.NextCreditAvailableThresholdLbl.Text = "Next Credit Available Threshold:";
+            // 
+            // LowCreditThresholdTb
+            // 
+            this.LowCreditThresholdTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LowCreditThresholdTb.Index = 16;
+            this.LowCreditThresholdTb.Location = new System.Drawing.Point(167, 453);
+            this.LowCreditThresholdTb.Name = "LowCreditThresholdTb";
+            this.LowCreditThresholdTb.NotifyChanges = false;
+            this.LowCreditThresholdTb.Size = new System.Drawing.Size(297, 20);
+            this.LowCreditThresholdTb.TabIndex = 11;
+            this.LowCreditThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LowCreditThresholdLbl
             // 
@@ -309,6 +363,18 @@ namespace Gurux.DLMS.UI
             this.CurrencyNameLbl.TabIndex = 58;
             this.CurrencyNameLbl.Text = "Currency Name:";
             // 
+            // AccountClosureTimeTb
+            // 
+            this.AccountClosureTimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AccountClosureTimeTb.Index = 14;
+            this.AccountClosureTimeTb.Location = new System.Drawing.Point(167, 349);
+            this.AccountClosureTimeTb.Name = "AccountClosureTimeTb";
+            this.AccountClosureTimeTb.NotifyChanges = false;
+            this.AccountClosureTimeTb.Size = new System.Drawing.Size(297, 20);
+            this.AccountClosureTimeTb.TabIndex = 7;
+            this.AccountClosureTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // AccountClosureTimeLbl
             // 
             this.AccountClosureTimeLbl.AutoSize = true;
@@ -317,6 +383,18 @@ namespace Gurux.DLMS.UI
             this.AccountClosureTimeLbl.Size = new System.Drawing.Size(114, 13);
             this.AccountClosureTimeLbl.TabIndex = 57;
             this.AccountClosureTimeLbl.Text = "Account Closure Time:";
+            // 
+            // AccountActivationTimeTb
+            // 
+            this.AccountActivationTimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AccountActivationTimeTb.Index = 13;
+            this.AccountActivationTimeTb.Location = new System.Drawing.Point(167, 323);
+            this.AccountActivationTimeTb.Name = "AccountActivationTimeTb";
+            this.AccountActivationTimeTb.NotifyChanges = false;
+            this.AccountActivationTimeTb.Size = new System.Drawing.Size(297, 20);
+            this.AccountActivationTimeTb.TabIndex = 6;
+            this.AccountActivationTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AccountActivationTimeLbl
             // 
@@ -327,6 +405,18 @@ namespace Gurux.DLMS.UI
             this.AccountActivationTimeLbl.TabIndex = 55;
             this.AccountActivationTimeLbl.Text = "Account Activation Time:";
             // 
+            // AggregatedDebtTb
+            // 
+            this.AggregatedDebtTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AggregatedDebtTb.Index = 8;
+            this.AggregatedDebtTb.Location = new System.Drawing.Point(167, 297);
+            this.AggregatedDebtTb.Name = "AggregatedDebtTb";
+            this.AggregatedDebtTb.NotifyChanges = false;
+            this.AggregatedDebtTb.Size = new System.Drawing.Size(297, 20);
+            this.AggregatedDebtTb.TabIndex = 5;
+            this.AggregatedDebtTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // AggregatedDebtLbl
             // 
             this.AggregatedDebtLbl.AutoSize = true;
@@ -335,6 +425,18 @@ namespace Gurux.DLMS.UI
             this.AggregatedDebtLbl.Size = new System.Drawing.Size(91, 13);
             this.AggregatedDebtLbl.TabIndex = 53;
             this.AggregatedDebtLbl.Text = "Aggregated Debt:";
+            // 
+            // ClearanceThresholdTb
+            // 
+            this.ClearanceThresholdTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClearanceThresholdTb.Index = 7;
+            this.ClearanceThresholdTb.Location = new System.Drawing.Point(167, 271);
+            this.ClearanceThresholdTb.Name = "ClearanceThresholdTb";
+            this.ClearanceThresholdTb.NotifyChanges = false;
+            this.ClearanceThresholdTb.Size = new System.Drawing.Size(297, 20);
+            this.ClearanceThresholdTb.TabIndex = 4;
+            this.ClearanceThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // ClearanceThresholdLbl
             // 
@@ -345,6 +447,18 @@ namespace Gurux.DLMS.UI
             this.ClearanceThresholdLbl.TabIndex = 51;
             this.ClearanceThresholdLbl.Text = "Clearance Threshold:";
             // 
+            // AmountToClearTb
+            // 
+            this.AmountToClearTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AmountToClearTb.Index = 6;
+            this.AmountToClearTb.Location = new System.Drawing.Point(167, 245);
+            this.AmountToClearTb.Name = "AmountToClearTb";
+            this.AmountToClearTb.NotifyChanges = false;
+            this.AmountToClearTb.Size = new System.Drawing.Size(297, 20);
+            this.AmountToClearTb.TabIndex = 3;
+            this.AmountToClearTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // AmountToClearLbl
             // 
             this.AmountToClearLbl.AutoSize = true;
@@ -353,6 +467,18 @@ namespace Gurux.DLMS.UI
             this.AmountToClearLbl.Size = new System.Drawing.Size(89, 13);
             this.AmountToClearLbl.TabIndex = 49;
             this.AmountToClearLbl.Text = "Amount To Clear:";
+            // 
+            // AvailableCreditTb
+            // 
+            this.AvailableCreditTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AvailableCreditTb.Index = 5;
+            this.AvailableCreditTb.Location = new System.Drawing.Point(167, 219);
+            this.AvailableCreditTb.Name = "AvailableCreditTb";
+            this.AvailableCreditTb.NotifyChanges = false;
+            this.AvailableCreditTb.Size = new System.Drawing.Size(297, 20);
+            this.AvailableCreditTb.TabIndex = 2;
+            this.AvailableCreditTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // AvailableCreditLbl
             // 
@@ -363,6 +489,18 @@ namespace Gurux.DLMS.UI
             this.AvailableCreditLbl.TabIndex = 47;
             this.AvailableCreditLbl.Text = "Available Credit:";
             // 
+            // CurrentCreditStatusTb
+            // 
+            this.CurrentCreditStatusTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrentCreditStatusTb.Index = 4;
+            this.CurrentCreditStatusTb.Location = new System.Drawing.Point(168, 84);
+            this.CurrentCreditStatusTb.Name = "CurrentCreditStatusTb";
+            this.CurrentCreditStatusTb.NotifyChanges = false;
+            this.CurrentCreditStatusTb.Size = new System.Drawing.Size(297, 129);
+            this.CurrentCreditStatusTb.TabIndex = 1;
+            this.CurrentCreditStatusTb.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
+            // 
             // CurrentCreditStatusLbl
             // 
             this.CurrentCreditStatusLbl.AutoSize = true;
@@ -371,6 +509,19 @@ namespace Gurux.DLMS.UI
             this.CurrentCreditStatusLbl.Size = new System.Drawing.Size(107, 13);
             this.CurrentCreditStatusLbl.TabIndex = 45;
             this.CurrentCreditStatusLbl.Text = "Current Credit Status:";
+            // 
+            // CurrentCreditInUseTb
+            // 
+            this.CurrentCreditInUseTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrentCreditInUseTb.Index = 3;
+            this.CurrentCreditInUseTb.Location = new System.Drawing.Point(168, 58);
+            this.CurrentCreditInUseTb.Name = "CurrentCreditInUseTb";
+            this.CurrentCreditInUseTb.NotifyChanges = false;
+            this.CurrentCreditInUseTb.Size = new System.Drawing.Size(297, 20);
+            this.CurrentCreditInUseTb.TabIndex = 0;
+            this.CurrentCreditInUseTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.CurrentCreditInUseTb.Load += new System.EventHandler(this.CurrentCreditInUseTb_Load);
             // 
             // CurrentCreditInUseLbl
             // 
@@ -408,7 +559,7 @@ namespace Gurux.DLMS.UI
             this.CreditReferenceTab.Location = new System.Drawing.Point(4, 22);
             this.CreditReferenceTab.Name = "CreditReferenceTab";
             this.CreditReferenceTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CreditReferenceTab.Size = new System.Drawing.Size(371, 461);
+            this.CreditReferenceTab.Size = new System.Drawing.Size(476, 601);
             this.CreditReferenceTab.TabIndex = 1;
             this.CreditReferenceTab.Text = "Credit reference";
             this.CreditReferenceTab.UseVisualStyleBackColor = true;
@@ -416,7 +567,7 @@ namespace Gurux.DLMS.UI
             // CreditReferenceRemove
             // 
             this.CreditReferenceRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreditReferenceRemove.Location = new System.Drawing.Point(290, 416);
+            this.CreditReferenceRemove.Location = new System.Drawing.Point(395, 556);
             this.CreditReferenceRemove.Name = "CreditReferenceRemove";
             this.CreditReferenceRemove.Size = new System.Drawing.Size(75, 23);
             this.CreditReferenceRemove.TabIndex = 23;
@@ -427,7 +578,7 @@ namespace Gurux.DLMS.UI
             // CreditReferenceEdit
             // 
             this.CreditReferenceEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreditReferenceEdit.Location = new System.Drawing.Point(209, 416);
+            this.CreditReferenceEdit.Location = new System.Drawing.Point(314, 556);
             this.CreditReferenceEdit.Name = "CreditReferenceEdit";
             this.CreditReferenceEdit.Size = new System.Drawing.Size(75, 23);
             this.CreditReferenceEdit.TabIndex = 22;
@@ -438,7 +589,7 @@ namespace Gurux.DLMS.UI
             // CreditReferenceAdd
             // 
             this.CreditReferenceAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreditReferenceAdd.Location = new System.Drawing.Point(128, 416);
+            this.CreditReferenceAdd.Location = new System.Drawing.Point(233, 556);
             this.CreditReferenceAdd.Name = "CreditReferenceAdd";
             this.CreditReferenceAdd.Size = new System.Drawing.Size(75, 23);
             this.CreditReferenceAdd.TabIndex = 21;
@@ -458,7 +609,7 @@ namespace Gurux.DLMS.UI
             this.CreditReferenceView.HideSelection = false;
             this.CreditReferenceView.Location = new System.Drawing.Point(6, 6);
             this.CreditReferenceView.Name = "CreditReferenceView";
-            this.CreditReferenceView.Size = new System.Drawing.Size(359, 404);
+            this.CreditReferenceView.Size = new System.Drawing.Size(464, 544);
             this.CreditReferenceView.TabIndex = 18;
             this.CreditReferenceView.UseCompatibleStateImageBehavior = false;
             this.CreditReferenceView.View = System.Windows.Forms.View.Details;
@@ -478,7 +629,7 @@ namespace Gurux.DLMS.UI
             this.ChargeReferenceTab.Location = new System.Drawing.Point(4, 22);
             this.ChargeReferenceTab.Name = "ChargeReferenceTab";
             this.ChargeReferenceTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ChargeReferenceTab.Size = new System.Drawing.Size(371, 461);
+            this.ChargeReferenceTab.Size = new System.Drawing.Size(476, 601);
             this.ChargeReferenceTab.TabIndex = 2;
             this.ChargeReferenceTab.Text = "Charge Reference";
             this.ChargeReferenceTab.UseVisualStyleBackColor = true;
@@ -486,7 +637,7 @@ namespace Gurux.DLMS.UI
             // ChargeReferenceRemove
             // 
             this.ChargeReferenceRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChargeReferenceRemove.Location = new System.Drawing.Point(290, 416);
+            this.ChargeReferenceRemove.Location = new System.Drawing.Point(395, 556);
             this.ChargeReferenceRemove.Name = "ChargeReferenceRemove";
             this.ChargeReferenceRemove.Size = new System.Drawing.Size(75, 23);
             this.ChargeReferenceRemove.TabIndex = 27;
@@ -497,7 +648,7 @@ namespace Gurux.DLMS.UI
             // ChargeReferenceEdit
             // 
             this.ChargeReferenceEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChargeReferenceEdit.Location = new System.Drawing.Point(209, 416);
+            this.ChargeReferenceEdit.Location = new System.Drawing.Point(314, 556);
             this.ChargeReferenceEdit.Name = "ChargeReferenceEdit";
             this.ChargeReferenceEdit.Size = new System.Drawing.Size(75, 23);
             this.ChargeReferenceEdit.TabIndex = 26;
@@ -508,7 +659,7 @@ namespace Gurux.DLMS.UI
             // ChargeReferenceAdd
             // 
             this.ChargeReferenceAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChargeReferenceAdd.Location = new System.Drawing.Point(128, 416);
+            this.ChargeReferenceAdd.Location = new System.Drawing.Point(233, 556);
             this.ChargeReferenceAdd.Name = "ChargeReferenceAdd";
             this.ChargeReferenceAdd.Size = new System.Drawing.Size(75, 23);
             this.ChargeReferenceAdd.TabIndex = 25;
@@ -528,7 +679,7 @@ namespace Gurux.DLMS.UI
             this.ChargeReferenceView.HideSelection = false;
             this.ChargeReferenceView.Location = new System.Drawing.Point(6, 6);
             this.ChargeReferenceView.Name = "ChargeReferenceView";
-            this.ChargeReferenceView.Size = new System.Drawing.Size(359, 404);
+            this.ChargeReferenceView.Size = new System.Drawing.Size(464, 544);
             this.ChargeReferenceView.TabIndex = 24;
             this.ChargeReferenceView.UseCompatibleStateImageBehavior = false;
             this.ChargeReferenceView.View = System.Windows.Forms.View.Details;
@@ -547,7 +698,7 @@ namespace Gurux.DLMS.UI
             this.CreditChargeTab.Controls.Add(this.CreditChargeView);
             this.CreditChargeTab.Location = new System.Drawing.Point(4, 22);
             this.CreditChargeTab.Name = "CreditChargeTab";
-            this.CreditChargeTab.Size = new System.Drawing.Size(371, 461);
+            this.CreditChargeTab.Size = new System.Drawing.Size(476, 601);
             this.CreditChargeTab.TabIndex = 3;
             this.CreditChargeTab.Text = "Credit Charge";
             this.CreditChargeTab.UseVisualStyleBackColor = true;
@@ -555,7 +706,7 @@ namespace Gurux.DLMS.UI
             // CreditChargeRemove
             // 
             this.CreditChargeRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreditChargeRemove.Location = new System.Drawing.Point(287, 413);
+            this.CreditChargeRemove.Location = new System.Drawing.Point(392, 553);
             this.CreditChargeRemove.Name = "CreditChargeRemove";
             this.CreditChargeRemove.Size = new System.Drawing.Size(75, 23);
             this.CreditChargeRemove.TabIndex = 27;
@@ -566,7 +717,7 @@ namespace Gurux.DLMS.UI
             // CreditChargeEdit
             // 
             this.CreditChargeEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreditChargeEdit.Location = new System.Drawing.Point(206, 413);
+            this.CreditChargeEdit.Location = new System.Drawing.Point(311, 553);
             this.CreditChargeEdit.Name = "CreditChargeEdit";
             this.CreditChargeEdit.Size = new System.Drawing.Size(75, 23);
             this.CreditChargeEdit.TabIndex = 26;
@@ -577,7 +728,7 @@ namespace Gurux.DLMS.UI
             // CreditChargeAdd
             // 
             this.CreditChargeAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreditChargeAdd.Location = new System.Drawing.Point(125, 413);
+            this.CreditChargeAdd.Location = new System.Drawing.Point(230, 553);
             this.CreditChargeAdd.Name = "CreditChargeAdd";
             this.CreditChargeAdd.Size = new System.Drawing.Size(75, 23);
             this.CreditChargeAdd.TabIndex = 25;
@@ -599,7 +750,7 @@ namespace Gurux.DLMS.UI
             this.CreditChargeView.HideSelection = false;
             this.CreditChargeView.Location = new System.Drawing.Point(3, 3);
             this.CreditChargeView.Name = "CreditChargeView";
-            this.CreditChargeView.Size = new System.Drawing.Size(359, 404);
+            this.CreditChargeView.Size = new System.Drawing.Size(464, 544);
             this.CreditChargeView.TabIndex = 24;
             this.CreditChargeView.UseCompatibleStateImageBehavior = false;
             this.CreditChargeView.View = System.Windows.Forms.View.Details;
@@ -714,6 +865,18 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Size = new System.Drawing.Size(313, 20);
             this.DescriptionTB.TabIndex = 1;
             // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(167, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(312, 20);
+            this.LogicalNameTB.TabIndex = 2;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -729,163 +892,38 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // MaxProvisionPeriodTb
+            // ActivateBtn
             // 
-            this.MaxProvisionPeriodTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaxProvisionPeriodTb.Index = 19;
-            this.MaxProvisionPeriodTb.Location = new System.Drawing.Point(167, 531);
-            this.MaxProvisionPeriodTb.Name = "MaxProvisionPeriodTb";
-            this.MaxProvisionPeriodTb.NotifyChanges = false;
-            this.MaxProvisionPeriodTb.Size = new System.Drawing.Size(297, 20);
-            this.MaxProvisionPeriodTb.TabIndex = 14;
-            this.MaxProvisionPeriodTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.ActivateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ActivateBtn.Index = 1;
+            this.ActivateBtn.Location = new System.Drawing.Point(227, 557);
+            this.ActivateBtn.Name = "ActivateBtn";
+            this.ActivateBtn.Size = new System.Drawing.Size(75, 23);
+            this.ActivateBtn.TabIndex = 72;
+            this.ActivateBtn.Text = "Activate";
+            this.ActivateBtn.UseVisualStyleBackColor = true;
             // 
-            // MaxProvisionTb
+            // CloseBtn
             // 
-            this.MaxProvisionTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaxProvisionTb.Index = 18;
-            this.MaxProvisionTb.Location = new System.Drawing.Point(167, 505);
-            this.MaxProvisionTb.Name = "MaxProvisionTb";
-            this.MaxProvisionTb.NotifyChanges = false;
-            this.MaxProvisionTb.Size = new System.Drawing.Size(297, 20);
-            this.MaxProvisionTb.TabIndex = 13;
-            this.MaxProvisionTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBtn.Index = 2;
+            this.CloseBtn.Location = new System.Drawing.Point(308, 557);
+            this.CloseBtn.Name = "CloseBtn";
+            this.CloseBtn.Size = new System.Drawing.Size(75, 23);
+            this.CloseBtn.TabIndex = 71;
+            this.CloseBtn.Text = "Close";
+            this.CloseBtn.UseVisualStyleBackColor = true;
             // 
-            // NextCreditAvailableThresholdTb
+            // ResetBtn
             // 
-            this.NextCreditAvailableThresholdTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NextCreditAvailableThresholdTb.Index = 17;
-            this.NextCreditAvailableThresholdTb.Location = new System.Drawing.Point(167, 479);
-            this.NextCreditAvailableThresholdTb.Name = "NextCreditAvailableThresholdTb";
-            this.NextCreditAvailableThresholdTb.NotifyChanges = false;
-            this.NextCreditAvailableThresholdTb.Size = new System.Drawing.Size(297, 20);
-            this.NextCreditAvailableThresholdTb.TabIndex = 12;
-            this.NextCreditAvailableThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // LowCreditThresholdTb
-            // 
-            this.LowCreditThresholdTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LowCreditThresholdTb.Index = 16;
-            this.LowCreditThresholdTb.Location = new System.Drawing.Point(167, 453);
-            this.LowCreditThresholdTb.Name = "LowCreditThresholdTb";
-            this.LowCreditThresholdTb.NotifyChanges = false;
-            this.LowCreditThresholdTb.Size = new System.Drawing.Size(297, 20);
-            this.LowCreditThresholdTb.TabIndex = 11;
-            this.LowCreditThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // AccountClosureTimeTb
-            // 
-            this.AccountClosureTimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AccountClosureTimeTb.Index = 14;
-            this.AccountClosureTimeTb.Location = new System.Drawing.Point(167, 349);
-            this.AccountClosureTimeTb.Name = "AccountClosureTimeTb";
-            this.AccountClosureTimeTb.NotifyChanges = false;
-            this.AccountClosureTimeTb.Size = new System.Drawing.Size(297, 20);
-            this.AccountClosureTimeTb.TabIndex = 7;
-            this.AccountClosureTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // AccountActivationTimeTb
-            // 
-            this.AccountActivationTimeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AccountActivationTimeTb.Index = 13;
-            this.AccountActivationTimeTb.Location = new System.Drawing.Point(167, 323);
-            this.AccountActivationTimeTb.Name = "AccountActivationTimeTb";
-            this.AccountActivationTimeTb.NotifyChanges = false;
-            this.AccountActivationTimeTb.Size = new System.Drawing.Size(297, 20);
-            this.AccountActivationTimeTb.TabIndex = 6;
-            this.AccountActivationTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // AggregatedDebtTb
-            // 
-            this.AggregatedDebtTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AggregatedDebtTb.Index = 8;
-            this.AggregatedDebtTb.Location = new System.Drawing.Point(167, 297);
-            this.AggregatedDebtTb.Name = "AggregatedDebtTb";
-            this.AggregatedDebtTb.NotifyChanges = false;
-            this.AggregatedDebtTb.Size = new System.Drawing.Size(297, 20);
-            this.AggregatedDebtTb.TabIndex = 5;
-            this.AggregatedDebtTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // ClearanceThresholdTb
-            // 
-            this.ClearanceThresholdTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearanceThresholdTb.Index = 7;
-            this.ClearanceThresholdTb.Location = new System.Drawing.Point(167, 271);
-            this.ClearanceThresholdTb.Name = "ClearanceThresholdTb";
-            this.ClearanceThresholdTb.NotifyChanges = false;
-            this.ClearanceThresholdTb.Size = new System.Drawing.Size(297, 20);
-            this.ClearanceThresholdTb.TabIndex = 4;
-            this.ClearanceThresholdTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // AmountToClearTb
-            // 
-            this.AmountToClearTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AmountToClearTb.Index = 6;
-            this.AmountToClearTb.Location = new System.Drawing.Point(167, 245);
-            this.AmountToClearTb.Name = "AmountToClearTb";
-            this.AmountToClearTb.NotifyChanges = false;
-            this.AmountToClearTb.Size = new System.Drawing.Size(297, 20);
-            this.AmountToClearTb.TabIndex = 3;
-            this.AmountToClearTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // AvailableCreditTb
-            // 
-            this.AvailableCreditTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AvailableCreditTb.Index = 5;
-            this.AvailableCreditTb.Location = new System.Drawing.Point(167, 219);
-            this.AvailableCreditTb.Name = "AvailableCreditTb";
-            this.AvailableCreditTb.NotifyChanges = false;
-            this.AvailableCreditTb.Size = new System.Drawing.Size(297, 20);
-            this.AvailableCreditTb.TabIndex = 2;
-            this.AvailableCreditTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // CurrentCreditStatusTb
-            // 
-            this.CurrentCreditStatusTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CurrentCreditStatusTb.Index = 4;
-            this.CurrentCreditStatusTb.Location = new System.Drawing.Point(168, 84);
-            this.CurrentCreditStatusTb.Name = "CurrentCreditStatusTb";
-            this.CurrentCreditStatusTb.NotifyChanges = false;
-            this.CurrentCreditStatusTb.ReadOnly = true;
-            this.CurrentCreditStatusTb.Size = new System.Drawing.Size(297, 129);
-            this.CurrentCreditStatusTb.TabIndex = 1;
-            this.CurrentCreditStatusTb.Type = Gurux.DLMS.Enums.ValueFieldType.CheckedListBox;
-            // 
-            // CurrentCreditInUseTb
-            // 
-            this.CurrentCreditInUseTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CurrentCreditInUseTb.Index = 3;
-            this.CurrentCreditInUseTb.Location = new System.Drawing.Point(168, 58);
-            this.CurrentCreditInUseTb.Name = "CurrentCreditInUseTb";
-            this.CurrentCreditInUseTb.NotifyChanges = false;
-            this.CurrentCreditInUseTb.Size = new System.Drawing.Size(297, 20);
-            this.CurrentCreditInUseTb.TabIndex = 0;
-            this.CurrentCreditInUseTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.CurrentCreditInUseTb.Load += new System.EventHandler(this.CurrentCreditInUseTb_Load);
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(167, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(312, 20);
-            this.LogicalNameTB.TabIndex = 2;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetBtn.Index = 3;
+            this.ResetBtn.Location = new System.Drawing.Point(389, 557);
+            this.ResetBtn.Name = "ResetBtn";
+            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.ResetBtn.TabIndex = 73;
+            this.ResetBtn.Text = "Reset";
+            this.ResetBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSAccountView
             // 
@@ -972,5 +1010,8 @@ namespace Gurux.DLMS.UI
         private ComboBox PaymentModeCb;
         private ComboBox CurrencyUnitTb;
         private ListView ChargeReferenceView;
+        private GXButton ResetBtn;
+        private GXButton ActivateBtn;
+        private GXButton CloseBtn;
     }
 }
