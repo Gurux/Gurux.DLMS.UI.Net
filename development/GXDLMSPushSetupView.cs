@@ -101,8 +101,8 @@ namespace Gurux.DLMS.UI
                 CommunicationWindowLV.Items.Clear();
                 foreach (KeyValuePair<GXDateTime, GXDateTime> it in ((GXDLMSPushSetup)Target).CommunicationWindow)
                 {
-                    ListViewItem li = new ListViewItem(it.Key.ToString());
-                    li.SubItems.Add(it.Value.ToString());
+                    ListViewItem li = new ListViewItem(it.Key.ToFormatString());
+                    li.SubItems.Add(it.Value.ToFormatString());
                     CommunicationWindowLV.Items.Add(li);
                     li.Tag = it;
                 }
