@@ -76,13 +76,30 @@ namespace Gurux.DLMS.UI
                 try
                 {
                     MonitoredValueCb.Items.Clear();
-                    foreach (GXDLMSObject it in target.Parent.GetObjects(ObjectType.Register))
+                    if (target.Parent != null)
                     {
+                        foreach (GXDLMSObject it in target.Parent.GetObjects(ObjectType.Register))
+                        {
+                            MonitoredValueCb.Items.Add(it);
+                        }
+                    }
+                    else if (target.MonitoredValue != null && target.MonitoredValue.ObjectType != ObjectType.None)
+                    {
+                        GXDLMSRegister it = new GXDLMSRegister(target.MonitoredValue.LogicalName);
                         MonitoredValueCb.Items.Add(it);
                     }
-                    if (target.MonitoredValue != null)
+                    if (target.MonitoredValue != null && target.MonitoredValue.ObjectType != ObjectType.None)
                     {
-                        MonitoredValueCb.SelectedItem = target.Parent.FindByLN(target.MonitoredValue.ObjectType, target.MonitoredValue.LogicalName);
+                        if (target.Parent != null)
+                        {
+                            MonitoredValueCb.SelectedItem = target.Parent.FindByLN(target.MonitoredValue.ObjectType, target.MonitoredValue.LogicalName);
+                        }
+                        else
+                        {
+                            GXDLMSObject it = GXDLMSClient.CreateObject(target.MonitoredValue.ObjectType);
+                            it.LogicalName = target.MonitoredValue.LogicalName;
+                            MonitoredValueCb.SelectedItem = it;
+                        }
                         AttributeIndexTB.Text = target.MonitoredValue.AttributeIndex.ToString();
                     }
                     else
@@ -187,7 +204,23 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    //Threadsholds are saved to actions list.
+                    errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(MonitoredValueCb, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(AttributeIndexTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
 
         #endregion
@@ -313,7 +346,7 @@ namespace Gurux.DLMS.UI
                     actions.AddRange(target.Actions);
                 }
                 List<ListViewItem> list = new List<ListViewItem>();
-                foreach(ListViewItem it in ActionsLV.SelectedItems)
+                foreach (ListViewItem it in ActionsLV.SelectedItems)
                 {
                     list.Add(it);
                 }

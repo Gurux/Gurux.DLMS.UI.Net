@@ -117,7 +117,7 @@ namespace Gurux.DLMS.UI
             // 
             // RemoveAddressBtb
             // 
-            this.RemoveAddressBtb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveAddressBtb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RemoveAddressBtb.Index = 2;
             this.RemoveAddressBtb.Location = new System.Drawing.Point(447, 155);
             this.RemoveAddressBtb.Name = "RemoveAddressBtb";
@@ -128,7 +128,7 @@ namespace Gurux.DLMS.UI
             // 
             // AddAddressBtn
             // 
-            this.AddAddressBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddAddressBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AddAddressBtn.Index = 1;
             this.AddAddressBtn.Location = new System.Drawing.Point(447, 126);
             this.AddAddressBtn.Name = "AddAddressBtn";
@@ -254,7 +254,7 @@ namespace Gurux.DLMS.UI
             this.groupBox2.Controls.Add(this.DiscoverySetupView);
             this.groupBox2.Location = new System.Drawing.Point(9, 310);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(519, 199);
+            this.groupBox2.Size = new System.Drawing.Size(531, 199);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Neighbor Discovery Setup";
@@ -262,7 +262,7 @@ namespace Gurux.DLMS.UI
             // RemoveBtn
             // 
             this.RemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveBtn.Location = new System.Drawing.Point(438, 170);
+            this.RemoveBtn.Location = new System.Drawing.Point(450, 170);
             this.RemoveBtn.Name = "RemoveBtn";
             this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
             this.RemoveBtn.TabIndex = 23;
@@ -272,7 +272,7 @@ namespace Gurux.DLMS.UI
             // EditBtn
             // 
             this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditBtn.Location = new System.Drawing.Point(357, 170);
+            this.EditBtn.Location = new System.Drawing.Point(369, 170);
             this.EditBtn.Name = "EditBtn";
             this.EditBtn.Size = new System.Drawing.Size(75, 23);
             this.EditBtn.TabIndex = 22;
@@ -282,7 +282,7 @@ namespace Gurux.DLMS.UI
             // AddBtn
             // 
             this.AddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddBtn.Location = new System.Drawing.Point(276, 170);
+            this.AddBtn.Location = new System.Drawing.Point(288, 170);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(75, 23);
             this.AddBtn.TabIndex = 21;
@@ -303,7 +303,7 @@ namespace Gurux.DLMS.UI
             this.DiscoverySetupView.HideSelection = false;
             this.DiscoverySetupView.Location = new System.Drawing.Point(6, 19);
             this.DiscoverySetupView.Name = "DiscoverySetupView";
-            this.DiscoverySetupView.Size = new System.Drawing.Size(507, 145);
+            this.DiscoverySetupView.Size = new System.Drawing.Size(495, 145);
             this.DiscoverySetupView.TabIndex = 18;
             this.DiscoverySetupView.UseCompatibleStateImageBehavior = false;
             this.DiscoverySetupView.View = System.Windows.Forms.View.Details;
@@ -331,7 +331,7 @@ namespace Gurux.DLMS.UI
             this.AddressConfigModeCb.Location = new System.Drawing.Point(136, 73);
             this.AddressConfigModeCb.Name = "AddressConfigModeCb";
             this.AddressConfigModeCb.NotifyChanges = false;
-            this.AddressConfigModeCb.Size = new System.Drawing.Size(386, 20);
+            this.AddressConfigModeCb.Size = new System.Drawing.Size(374, 20);
             this.AddressConfigModeCb.TabIndex = 2;
             this.AddressConfigModeCb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
@@ -352,7 +352,7 @@ namespace Gurux.DLMS.UI
             this.SecondaryDNSAddressTB.Location = new System.Drawing.Point(136, 257);
             this.SecondaryDNSAddressTB.Name = "SecondaryDNSAddressTB";
             this.SecondaryDNSAddressTB.NotifyChanges = false;
-            this.SecondaryDNSAddressTB.Size = new System.Drawing.Size(386, 20);
+            this.SecondaryDNSAddressTB.Size = new System.Drawing.Size(374, 20);
             this.SecondaryDNSAddressTB.TabIndex = 7;
             this.SecondaryDNSAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -373,7 +373,7 @@ namespace Gurux.DLMS.UI
             this.PrimaryDNSAddressTB.Location = new System.Drawing.Point(136, 231);
             this.PrimaryDNSAddressTB.Name = "PrimaryDNSAddressTB";
             this.PrimaryDNSAddressTB.NotifyChanges = false;
-            this.PrimaryDNSAddressTB.Size = new System.Drawing.Size(386, 20);
+            this.PrimaryDNSAddressTB.Size = new System.Drawing.Size(374, 20);
             this.PrimaryDNSAddressTB.TabIndex = 6;
             this.PrimaryDNSAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -394,7 +394,7 @@ namespace Gurux.DLMS.UI
             this.TrafficClassLblTB.Location = new System.Drawing.Point(136, 283);
             this.TrafficClassLblTB.Name = "TrafficClassLblTB";
             this.TrafficClassLblTB.NotifyChanges = false;
-            this.TrafficClassLblTB.Size = new System.Drawing.Size(386, 20);
+            this.TrafficClassLblTB.Size = new System.Drawing.Size(374, 20);
             this.TrafficClassLblTB.TabIndex = 8;
             this.TrafficClassLblTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -415,7 +415,7 @@ namespace Gurux.DLMS.UI
             this.DataLinkLayerTB.Location = new System.Drawing.Point(136, 47);
             this.DataLinkLayerTB.Name = "DataLinkLayerTB";
             this.DataLinkLayerTB.NotifyChanges = false;
-            this.DataLinkLayerTB.Size = new System.Drawing.Size(386, 20);
+            this.DataLinkLayerTB.Size = new System.Drawing.Size(374, 20);
             this.DataLinkLayerTB.TabIndex = 1;
             this.DataLinkLayerTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -436,7 +436,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Location = new System.Drawing.Point(136, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(386, 20);
+            this.LogicalNameTB.Size = new System.Drawing.Size(374, 20);
             this.LogicalNameTB.TabIndex = 0;
             this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 

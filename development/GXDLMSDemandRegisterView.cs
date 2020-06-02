@@ -157,6 +157,10 @@ namespace Gurux.DLMS.UI
                 case 3:
                     errorProvider1.SetError(LAValueTB, Properties.Resources.ValueChangedTxt);
                     break;
+                case 4:
+                    errorProvider1.SetError(UnitTB, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(ScalerTB, Properties.Resources.ValueChangedTxt);
+                    break;
                 case 5:
                     errorProvider1.SetError(StatusTB, Properties.Resources.ValueChangedTxt);
                     break;

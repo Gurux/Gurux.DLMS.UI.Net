@@ -31,6 +31,8 @@
             this.FindTb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CancelBtn = new System.Windows.Forms.Button();
+            this.LogicalNameRb = new System.Windows.Forms.RadioButton();
+            this.AnyTextRb = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // FindBtn
@@ -73,13 +75,39 @@
             this.CancelBtn.Text = "&Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             // 
+            // LogicalNameRb
+            // 
+            this.LogicalNameRb.AutoSize = true;
+            this.LogicalNameRb.Checked = true;
+            this.LogicalNameRb.Location = new System.Drawing.Point(74, 35);
+            this.LogicalNameRb.Name = "LogicalNameRb";
+            this.LogicalNameRb.Size = new System.Drawing.Size(90, 17);
+            this.LogicalNameRb.TabIndex = 29;
+            this.LogicalNameRb.TabStop = true;
+            this.LogicalNameRb.Text = "Logical Name";
+            this.LogicalNameRb.UseVisualStyleBackColor = true;
+            this.LogicalNameRb.CheckedChanged += new System.EventHandler(this.LogicalNameRb_CheckedChanged);
+            // 
+            // AnyTextRb
+            // 
+            this.AnyTextRb.AutoSize = true;
+            this.AnyTextRb.Location = new System.Drawing.Point(74, 56);
+            this.AnyTextRb.Name = "AnyTextRb";
+            this.AnyTextRb.Size = new System.Drawing.Size(67, 17);
+            this.AnyTextRb.TabIndex = 30;
+            this.AnyTextRb.Text = "Any Text";
+            this.AnyTextRb.UseVisualStyleBackColor = true;
+            this.AnyTextRb.CheckedChanged += new System.EventHandler(this.AnyTextRb_CheckedChanged);
+            // 
             // GXFindDlg
             // 
             this.AcceptButton = this.FindBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(338, 68);
+            this.ClientSize = new System.Drawing.Size(338, 93);
+            this.Controls.Add(this.AnyTextRb);
+            this.Controls.Add(this.LogicalNameRb);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FindTb);
@@ -104,5 +132,7 @@
         private System.Windows.Forms.TextBox FindTb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.RadioButton LogicalNameRb;
+        private System.Windows.Forms.RadioButton AnyTextRb;
     }
 }

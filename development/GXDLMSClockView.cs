@@ -168,7 +168,7 @@ namespace Gurux.DLMS.UI
                     ret = GXHelpers.ShowMessageBox(this, Properties.Resources.TimeZoneSetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (ret == DialogResult.Yes)
                     {
-                        if (arg.Client.UtcTimeZone)
+                        if (arg.Client.UseUtc2NormalTime)
                         {
                             (Target as GXDLMSClock).TimeZone = (int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
                         }

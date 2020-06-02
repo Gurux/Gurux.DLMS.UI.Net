@@ -469,13 +469,29 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-            if (Dirty && index == 2)
+            switch (index)
             {
-                errorProvider1.SetError(ImageBlockSizeTB, Properties.Resources.ValueChangedTxt);
-            }
-            else
-            {
-                errorProvider1.Clear();
+                case 2:
+                    errorProvider1.SetError(ImageBlockSizeTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(ImageTransferredBlocksStatusTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(ImageFirstNotTransferredBlockNumberTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 5:
+                    errorProvider1.SetError(ImageTransferEnabledCB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 6:
+                    errorProvider1.SetError(ImageTransferStatusTb, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 7:
+                    errorProvider1.SetError(ImagesView, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
             }
         }
 

@@ -309,7 +309,39 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(ACalendarNameTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(SeasonProfileActiveLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(AWeekProfileLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 5:
+                    errorProvider1.SetError(ActiveDaysList, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 6:
+                    errorProvider1.SetError(PCalendarNameTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 7:
+                    errorProvider1.SetError(SeasonProfilePassiveLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 8:
+                    errorProvider1.SetError(PWeekProfileLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 9:
+                    errorProvider1.SetError(PassiveDaysList, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 10:
+                    errorProvider1.SetError(ActivatePassiveCalendarTb, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
 
         #endregion

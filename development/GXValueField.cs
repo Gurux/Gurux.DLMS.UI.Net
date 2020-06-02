@@ -537,11 +537,11 @@ namespace Gurux.DLMS.UI
                     value = GXDLMSTranslator.XmlToValue((string)value);
                 }
                 v.Value = value;
-                if (Target.Parent.Parent is GXDLMSClient)
+                if (Target.Parent != null && Target.Parent.Parent is GXDLMSClient)
                 {
                     (Target as IGXDLMSBase).SetValue((Target.Parent.Parent as GXDLMSClient).Settings, v);
                 }
-                else if (Target.Parent.Parent is GXDLMSServer)
+                else if (Target.Parent != null && Target.Parent.Parent is GXDLMSServer)
                 {
                     (Target as IGXDLMSBase).SetValue((Target.Parent.Parent as GXDLMSServer).Settings, v);
                 }

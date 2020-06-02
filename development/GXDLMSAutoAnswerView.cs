@@ -166,7 +166,28 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(ModeTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(ListeningWindowLV, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(StatusTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 5:
+                    errorProvider1.SetError(NumberOfCallsTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 6:
+                    errorProvider1.SetError(RingCountInWindowTB, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(RingCountOutOfWindowTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
 
         #endregion

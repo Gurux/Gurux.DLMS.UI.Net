@@ -158,11 +158,22 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(CommunicationSpeedTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(InitialisationView, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(ModemProfileTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
-
-
-
 
         #endregion
 

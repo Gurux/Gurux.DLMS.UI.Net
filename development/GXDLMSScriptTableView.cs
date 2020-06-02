@@ -170,7 +170,15 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(ScriptsTree, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
 
         #endregion

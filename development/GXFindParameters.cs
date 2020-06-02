@@ -42,5 +42,14 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
+
+        /// <summary>
+        /// Text to search for.
+        /// </summary>
+        public string Text
+        {
+            get;
+            set;
+        }
     }
 }

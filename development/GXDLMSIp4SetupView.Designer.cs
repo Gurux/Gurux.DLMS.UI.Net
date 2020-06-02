@@ -131,7 +131,7 @@ namespace Gurux.DLMS.UI
             this.SecondaryDNSAddressTB.Location = new System.Drawing.Point(136, 255);
             this.SecondaryDNSAddressTB.Name = "SecondaryDNSAddressTB";
             this.SecondaryDNSAddressTB.NotifyChanges = false;
-            this.SecondaryDNSAddressTB.Size = new System.Drawing.Size(206, 20);
+            this.SecondaryDNSAddressTB.Size = new System.Drawing.Size(186, 20);
             this.SecondaryDNSAddressTB.TabIndex = 9;
             this.SecondaryDNSAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -152,7 +152,7 @@ namespace Gurux.DLMS.UI
             this.PrimaryDNSAddressTB.Location = new System.Drawing.Point(136, 229);
             this.PrimaryDNSAddressTB.Name = "PrimaryDNSAddressTB";
             this.PrimaryDNSAddressTB.NotifyChanges = false;
-            this.PrimaryDNSAddressTB.Size = new System.Drawing.Size(206, 20);
+            this.PrimaryDNSAddressTB.Size = new System.Drawing.Size(186, 20);
             this.PrimaryDNSAddressTB.TabIndex = 8;
             this.PrimaryDNSAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -182,7 +182,7 @@ namespace Gurux.DLMS.UI
             this.GatewayIPAddressTB.Location = new System.Drawing.Point(136, 177);
             this.GatewayIPAddressTB.Name = "GatewayIPAddressTB";
             this.GatewayIPAddressTB.NotifyChanges = false;
-            this.GatewayIPAddressTB.Size = new System.Drawing.Size(206, 20);
+            this.GatewayIPAddressTB.Size = new System.Drawing.Size(186, 20);
             this.GatewayIPAddressTB.TabIndex = 6;
             this.GatewayIPAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -203,7 +203,7 @@ namespace Gurux.DLMS.UI
             this.SubnetMaskTB.Location = new System.Drawing.Point(136, 151);
             this.SubnetMaskTB.Name = "SubnetMaskTB";
             this.SubnetMaskTB.NotifyChanges = false;
-            this.SubnetMaskTB.Size = new System.Drawing.Size(206, 20);
+            this.SubnetMaskTB.Size = new System.Drawing.Size(186, 20);
             this.SubnetMaskTB.TabIndex = 5;
             this.SubnetMaskTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -224,7 +224,7 @@ namespace Gurux.DLMS.UI
             this.IPOptionsTB.Location = new System.Drawing.Point(136, 125);
             this.IPOptionsTB.Name = "IPOptionsTB";
             this.IPOptionsTB.NotifyChanges = false;
-            this.IPOptionsTB.Size = new System.Drawing.Size(206, 20);
+            this.IPOptionsTB.Size = new System.Drawing.Size(186, 20);
             this.IPOptionsTB.TabIndex = 4;
             this.IPOptionsTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -245,7 +245,7 @@ namespace Gurux.DLMS.UI
             this.MulticastIPAddressTB.Location = new System.Drawing.Point(136, 99);
             this.MulticastIPAddressTB.Name = "MulticastIPAddressTB";
             this.MulticastIPAddressTB.NotifyChanges = false;
-            this.MulticastIPAddressTB.Size = new System.Drawing.Size(206, 20);
+            this.MulticastIPAddressTB.Size = new System.Drawing.Size(186, 20);
             this.MulticastIPAddressTB.TabIndex = 3;
             this.MulticastIPAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -266,7 +266,7 @@ namespace Gurux.DLMS.UI
             this.IPAddressTB.Location = new System.Drawing.Point(136, 73);
             this.IPAddressTB.Name = "IPAddressTB";
             this.IPAddressTB.NotifyChanges = false;
-            this.IPAddressTB.Size = new System.Drawing.Size(206, 20);
+            this.IPAddressTB.Size = new System.Drawing.Size(186, 20);
             this.IPAddressTB.TabIndex = 2;
             this.IPAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -287,7 +287,7 @@ namespace Gurux.DLMS.UI
             this.DataLinkLayerTB.Location = new System.Drawing.Point(136, 47);
             this.DataLinkLayerTB.Name = "DataLinkLayerTB";
             this.DataLinkLayerTB.NotifyChanges = false;
-            this.DataLinkLayerTB.Size = new System.Drawing.Size(206, 20);
+            this.DataLinkLayerTB.Size = new System.Drawing.Size(186, 20);
             this.DataLinkLayerTB.TabIndex = 1;
             this.DataLinkLayerTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
@@ -308,7 +308,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Location = new System.Drawing.Point(136, 21);
             this.LogicalNameTB.Name = "LogicalNameTB";
             this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(206, 20);
+            this.LogicalNameTB.Size = new System.Drawing.Size(186, 20);
             this.LogicalNameTB.TabIndex = 0;
             this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 

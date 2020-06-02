@@ -33,6 +33,7 @@
 //---------------------------------------------------------------------------
 
 using Gurux.DLMS.Objects;
+using Gurux.DLMS.Objects.Enums;
 using System;
 using System.Windows.Forms;
 

@@ -36,6 +36,8 @@ namespace Gurux.DLMS.UI
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSG3PlcMacLayerCountersView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.RxDataBroadcastCountTB = new Gurux.DLMS.UI.GXValueField();
@@ -60,7 +62,9 @@ namespace Gurux.DLMS.UI
             this.TxDataPacketCountLbl = new System.Windows.Forms.Label();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -328,6 +332,12 @@ namespace Gurux.DLMS.UI
             this.LogicalNameLbl.TabIndex = 0;
             this.LogicalNameLbl.Text = "Logical Name:";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            // 
             // GXDLMSG3PlcMacLayerCountersView
             // 
             this.ClientSize = new System.Drawing.Size(496, 325);
@@ -336,6 +346,7 @@ namespace Gurux.DLMS.UI
             this.Name = "GXDLMSG3PlcMacLayerCountersView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,5 +370,6 @@ namespace Gurux.DLMS.UI
         private GXValueField CSMAFailCountTB;
         private Label CSMAFailCountLbl;
         private GXButton ResetBtn;
+        private ErrorProvider errorProvider1;
     }
 }

@@ -112,7 +112,7 @@ namespace Gurux.DLMS.UI
         public void PostAction(GXActionArgs arg)
         {
             //Read value after reset.
-            if (arg.Action  == ActionType.Action)
+            if (arg.Action == ActionType.Action)
             {
                 arg.Index = 2;
                 arg.Action = ActionType.Read;
@@ -147,19 +147,20 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-            if (index == 2)
+            if (index == 2 && Dirty)
             {
                 errorProvider1.SetError(ValueTB, Properties.Resources.ValueChangedTxt);
+            }
+            else if (index == 3 && Dirty)
+            {
+                errorProvider1.SetError(ScalerTB, Properties.Resources.ValueChangedTxt);
+                errorProvider1.SetError(UnitTB, Properties.Resources.ValueChangedTxt);
             }
             else
             {
                 errorProvider1.Clear();
             }
         }
-
-
-
-
 
         #endregion
 

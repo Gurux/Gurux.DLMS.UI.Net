@@ -72,12 +72,15 @@ namespace Gurux.DLMS.UI
             {
                 MonitoredValueTB.Items.Clear();
                 int pos, selected = -1;
-                foreach (object it in Target.Parent)
+                if (Target.Parent != null)
                 {
-                    pos = MonitoredValueTB.Items.Add(it);
-                    if (it == ((GXDLMSLimiter)Target).MonitoredValue)
+                    foreach (object it in Target.Parent)
                     {
-                        selected = pos;
+                        pos = MonitoredValueTB.Items.Add(it);
+                        if (it == ((GXDLMSLimiter)Target).MonitoredValue)
+                        {
+                            selected = pos;
+                        }
                     }
                 }
                 if (selected != -1)
@@ -150,14 +153,25 @@ namespace Gurux.DLMS.UI
             {
                 ActionOverScript.Items.Clear();
                 int pos, selected = -1;
-                GXDLMSObjectCollection scripts = Target.Parent.GetObjects(ObjectType.ScriptTable);
-                foreach (GXDLMSObject it in scripts)
+                GXDLMSObjectCollection scripts = null;
+                if (Target.Parent != null)
                 {
-                    pos = ActionOverScript.Items.Add(it);
-                    if (it.LogicalName == ((GXDLMSLimiter)Target).ActionOverThreshold.LogicalName)
+                    scripts = Target.Parent.GetObjects(ObjectType.ScriptTable);
+                }
+                if (scripts != null)
+                {
+                    foreach (GXDLMSObject it in scripts)
                     {
-                        selected = pos;
+                        pos = ActionOverScript.Items.Add(it);
+                        if (it.LogicalName == ((GXDLMSLimiter)Target).ActionOverThreshold.LogicalName)
+                        {
+                            selected = pos;
+                        }
                     }
+                }
+                else if (Target != null)
+                {
+                    selected = ActionOverScript.Items.Add(new GXDLMSScriptTable(((GXDLMSLimiter)Target).ActionOverThreshold.LogicalName));
                 }
                 if (selected != -1)
                 {
@@ -172,13 +186,20 @@ namespace Gurux.DLMS.UI
 
                 ActionUnderScript.Items.Clear();
                 selected = -1;
-                foreach (GXDLMSObject it in scripts)
+                if (scripts != null)
                 {
-                    pos = ActionUnderScript.Items.Add(it);
-                    if (it.LogicalName == ((GXDLMSLimiter)Target).ActionUnderThreshold.LogicalName)
+                    foreach (GXDLMSObject it in scripts)
                     {
-                        selected = pos;
+                        pos = ActionUnderScript.Items.Add(it);
+                        if (it.LogicalName == ((GXDLMSLimiter)Target).ActionUnderThreshold.LogicalName)
+                        {
+                            selected = pos;
+                        }
                     }
+                }
+                else if (Target != null)
+                {
+                    selected = ActionUnderScript.Items.Add(new GXDLMSScriptTable(((GXDLMSLimiter)Target).ActionUnderThreshold.LogicalName));
                 }
                 if (selected != -1)
                 {

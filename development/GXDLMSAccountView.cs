@@ -36,6 +36,7 @@ using System;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
+using Gurux.DLMS.Objects.Enums;
 
 namespace Gurux.DLMS.UI
 {

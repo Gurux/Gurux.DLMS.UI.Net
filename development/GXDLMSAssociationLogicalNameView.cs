@@ -141,7 +141,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 6)
             {
-                // authentication_mechanism_name 
+                // authentication_mechanism_name
                 AuthenticationJointISOCTTTb.Text = Convert.ToString(target.AuthenticationMechanismName.JointIsoCtt);
                 AuthenticationCountryTb.Text = Convert.ToString(target.AuthenticationMechanismName.Country);
                 AuthenticationCountryNameTb.Text = Convert.ToString(target.AuthenticationMechanismName.CountryName);
@@ -167,15 +167,26 @@ namespace Gurux.DLMS.UI
             {
                 SecuritySetupCb.Items.Clear();
                 //security_setup_reference
-                foreach (GXDLMSSecuritySetup it in target.Parent.GetObjects(ObjectType.SecuritySetup))
+                if (target.Parent != null)
                 {
-                    SecuritySetupCb.Items.Add(it);
-                    if (target.SecuritySetupReference == it.LogicalName)
+                    foreach (GXDLMSSecuritySetup it in target.Parent.GetObjects(ObjectType.SecuritySetup))
                     {
-                        SecuritySetupCb.SelectedIndexChanged -= new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
-                        SecuritySetupCb.SelectedItem = it;
-                        SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                        SecuritySetupCb.Items.Add(it);
+                        if (target.SecuritySetupReference == it.LogicalName)
+                        {
+                            SecuritySetupCb.SelectedIndexChanged -= new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                            SecuritySetupCb.SelectedItem = it;
+                            SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                        }
                     }
+                }
+                else
+                {
+                    GXDLMSSecuritySetup it = new GXDLMSSecuritySetup(target.SecuritySetupReference);
+                    SecuritySetupCb.Items.Add(it);
+                    SecuritySetupCb.SelectedIndexChanged -= new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+                    SecuritySetupCb.SelectedItem = it;
+                    SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
                 }
             }
             //user list.
@@ -234,7 +245,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 6)
             {
-                // authentication_mechanism_name 
+                // authentication_mechanism_name
                 AuthenticationJointISOCTTTb.ReadOnly = AuthenticationCountryTb.ReadOnly = AuthenticationCountryNameTb.ReadOnly =
                     AuthenticationIdentifiedorganizationTb.ReadOnly = AuthenticationDLMSUATb.ReadOnly =
                     AuthenticationMechanismNameTb.ReadOnly = AuthenticationMechanismIdTb.ReadOnly = (access & AccessMode.Write) == 0;

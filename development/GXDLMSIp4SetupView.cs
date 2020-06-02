@@ -133,11 +133,40 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(DataLinkLayerTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(IPAddressTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(MulticastIPAddressTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 5:
+                    errorProvider1.SetError(IPOptionsTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 6:
+                    errorProvider1.SetError(SubnetMaskTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 7:
+                    errorProvider1.SetError(GatewayIPAddressTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 8:
+                    errorProvider1.SetError(UseDhcpCp, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 9:
+                    errorProvider1.SetError(PrimaryDNSAddressTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 10:
+                    errorProvider1.SetError(SecondaryDNSAddressTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
-
-
-
 
         #endregion
 

@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
+using System.Runtime.Remoting.Messaging;
 
 namespace Gurux.DLMS.UI
 {
@@ -70,13 +71,21 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 ScriptNameTB.Items.Clear();
-                foreach (var it in schedule.Parent.GetObjects(ObjectType.ScriptTable))
+                if (schedule.Parent != null)
                 {
-                    ScriptNameTB.Items.Add(it);
-                    if (schedule.Target == it)
+                    foreach (var it in schedule.Parent.GetObjects(ObjectType.ScriptTable))
                     {
-                        ScriptNameTB.SelectedItem = it;
+                        ScriptNameTB.Items.Add(it);
+                        if (schedule.Target == it)
+                        {
+                            ScriptNameTB.SelectedItem = it;
+                        }
                     }
+                }
+                else if (schedule.Target != null)
+                {
+                    ScriptNameTB.Items.Add(schedule.Target);
+                    ScriptNameTB.SelectedItem = schedule.Target;
                 }
                 ScriptSelectorTB.Text = schedule.ExecutedScriptSelector.ToString();
             }
@@ -142,7 +151,22 @@ namespace Gurux.DLMS.UI
 
         public void OnDirtyChange(int index, bool Dirty)
         {
-
+            switch (index)
+            {
+                case 2:
+                    errorProvider1.SetError(ScriptNameTB, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(ScriptSelectorTB, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 3:
+                    errorProvider1.SetError(ScriptTypeTb, Properties.Resources.ValueChangedTxt);
+                    break;
+                case 4:
+                    errorProvider1.SetError(Time, Properties.Resources.ValueChangedTxt);
+                    break;
+                default:
+                    errorProvider1.Clear();
+                    break;
+            }
         }
 
 

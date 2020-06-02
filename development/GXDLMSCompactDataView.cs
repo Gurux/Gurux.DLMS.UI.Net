@@ -152,7 +152,7 @@ namespace Gurux.DLMS.UI
         void UpdateData(DataTable dt)
         {
             Standard standard = Standard.DLMS;
-            if (target.Parent.Parent is GXDLMSClient)
+            if (target.Parent != null && target.Parent.Parent is GXDLMSClient)
             {
                 standard = ((GXDLMSClient)target.Parent.Parent).Standard;
             }
