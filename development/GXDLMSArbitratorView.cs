@@ -144,10 +144,28 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(GXActionArgs arg)
         {
+            arg.Value = (sbyte)0;
+            DialogResult ret;
+            if (arg.Index == 1)
+            {
+                //Request Action.
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.AccountActivateWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                arg.Handled = ret != DialogResult.Yes;
+            }
+            else if (arg.Index == 1)
+            {
+                //Reset.
+                ret = GXHelpers.ShowMessageBox(this, Properties.Resources.RegisterResetWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                arg.Handled = ret != DialogResult.Yes;
+            }
         }
 
         public void PostAction(GXActionArgs arg)
         {
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             arg.Action = ActionType.None;
         }
 
