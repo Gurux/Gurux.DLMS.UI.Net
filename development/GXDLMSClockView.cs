@@ -63,6 +63,20 @@ namespace Gurux.DLMS.UI
             set;
         }
 
+        private void UpdateTimeZone(GXDLMSClock target, bool connected, int value)
+        {
+            if (target.TimeZone == -32768)//0x8000
+            {
+                value = -1;
+                TimeZoneTB.Value = "";
+            }
+            //If time zone is not used.
+            TimeZoneCb.CheckedChanged -= new System.EventHandler(TimeZoneCb_CheckedChanged);
+            TimeZoneCb.Checked = value != -1;
+            TimeZoneCb.CheckedChanged += new System.EventHandler(TimeZoneCb_CheckedChanged);
+            TimeZoneTB.ReadOnly = !connected || value == -1;
+        }
+
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSClock target = Target as GXDLMSClock;
@@ -72,17 +86,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 3)
             {
-                int v = (int)value;
-                if (target.TimeZone == -32768)//0x8000
-                {
-                    v = -1;
-                    TimeZoneTB.Value = "";
-                }
-                //If time zone is not used.
-                TimeZoneCb.CheckedChanged -= new System.EventHandler(TimeZoneCb_CheckedChanged);
-                TimeZoneCb.Checked = v != -1;
-                TimeZoneCb.CheckedChanged += new System.EventHandler(TimeZoneCb_CheckedChanged);
-                TimeZoneTB.ReadOnly = !connected || v == -1;
+                UpdateTimeZone(target, connected, (int)value);
             }
             else if (index == 5)
             {
@@ -119,8 +123,13 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 3)
             {
+                GXDLMSClock target = Target as GXDLMSClock;
                 TimeZoneCb.Enabled = enabled;
                 CurrentTimeZoneBtn.Enabled = enabled;
+                if (enabled)
+                {
+                    UpdateTimeZone(target, connected, target.TimeZone);
+                }
             }
             else if (index == 5)
             {
@@ -237,6 +246,7 @@ namespace Gurux.DLMS.UI
                     errorProvider1.SetError(EnabledCB, Properties.Resources.ValueChangedTxt);
                     break;
                 case 9:
+                    ErrorProvider.SetIconAlignment(ClockBaseTB, ErrorIconAlignment.TopRight);
                     errorProvider1.SetError(ClockBaseTB, Properties.Resources.ValueChangedTxt);
                     break;
                 default:

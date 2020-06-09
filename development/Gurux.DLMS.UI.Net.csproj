@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2006.201, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2006.201\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2006.901, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.9.0.2006.901\lib\net40\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
