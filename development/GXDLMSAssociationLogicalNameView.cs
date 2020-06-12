@@ -257,10 +257,16 @@ namespace Gurux.DLMS.UI
                 if (target.AuthenticationMechanismName.MechanismId == Authentication.Low)
                 {
                     enabled = (access & AccessMode.Write) != 0;
+                    SecretLbl.Text = "Low Secret:";
+                }
+                else if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
+                {
+                    enabled = Target.GetMethodAccess(2) == MethodAccessMode.Access;
+                    SecretLbl.Text = "High Secret:";
                 }
                 else
                 {
-                    enabled = Target.GetMethodAccess(2) == MethodAccessMode.Access;
+                    SecretLbl.Text = "Secret:";
                 }
                 UpdatePwBtn.Enabled = enabled;
                 SecretTB.ReadOnly = !enabled;
