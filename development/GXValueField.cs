@@ -521,6 +521,10 @@ namespace Gurux.DLMS.UI
                             value = GXDLMSTranslator.HexToBytes((string)value);
                         }
                     }
+                    else if (dt == DataType.BitString)
+                    {
+                        value = new GXBitString((string)value);
+                    }
                     else
                     {
                         if (dt != DataType.Structure && dt != DataType.Array && dt != DataType.CompactArray &&
