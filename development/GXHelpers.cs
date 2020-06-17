@@ -216,6 +216,10 @@ namespace Gurux.DLMS.UI
             if (data is GXDateTime)
             {
                 GXDateTime dt = (GXDateTime)data;
+                if (GXDlmsUi.UseMeterTimeZone)
+                {
+                    return dt.ToFormatMeterString();
+                }
                 return dt.ToFormatString();
             }
             if (data is byte[])

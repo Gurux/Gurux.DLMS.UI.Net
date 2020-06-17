@@ -52,6 +52,15 @@ namespace Gurux.DLMS.UI
 
         }
 
+        /// <summary>
+        /// Date-Time values are shown using meter's time zone and it's not localized to use PC time.
+        /// </summary>
+        static public bool UseMeterTimeZone
+        {
+            get;
+            set;
+        }
+
         static private bool Contains<T>(T[] arr, T value)
         {
             if (arr == null)
