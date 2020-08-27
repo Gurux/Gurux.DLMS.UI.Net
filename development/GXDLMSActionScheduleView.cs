@@ -96,6 +96,7 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXDateTime it in schedule.ExecutionTime)
                     {
+                        //Execution time doesn't have deviation. For that reason meter time is not shown.
                         ListViewItem li = Time.Items.Add(it.ToFormatString());
                         li.Tag = it;
                     }

@@ -95,7 +95,7 @@ namespace Gurux.DLMS.UI
         {
             if (arg.Index == 1)
             {
-                arg.Value = new GXEnum((byte)SecurityPolicyTB.Value);
+                arg.Value = new GXEnum(Convert.ToByte(SecurityPolicyTB.Value));
             }
             else if (arg.Index == 2)
             {

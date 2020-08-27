@@ -150,6 +150,10 @@ namespace Gurux.DLMS.UI
             {
                 //Request Action.
                 ret = GXHelpers.ShowMessageBox(this, Properties.Resources.AccountActivateWarning, "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
+                {
+
+                }
                 arg.Handled = ret != DialogResult.Yes;
             }
             else if (arg.Index == 1)

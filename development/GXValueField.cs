@@ -1288,6 +1288,15 @@ namespace Gurux.DLMS.UI
                 {
                     return this.listBox1.Text;
                 }
+                else if (Type == ValueFieldType.CheckedListBox)
+                {
+                    int value = 0;
+                    foreach(var it in checkedlistBox1.CheckedItems)
+                    {
+                        value |= Convert.ToInt32(it);
+                    }
+                    return value;
+                }
                 throw new InvalidExpressionException();
             }
             set

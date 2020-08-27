@@ -101,8 +101,17 @@ namespace Gurux.DLMS.UI
                 CommunicationWindowLV.Items.Clear();
                 foreach (KeyValuePair<GXDateTime, GXDateTime> it in ((GXDLMSPushSetup)Target).CommunicationWindow)
                 {
-                    ListViewItem li = new ListViewItem(it.Key.ToFormatString());
-                    li.SubItems.Add(it.Value.ToFormatString());
+                    ListViewItem li;
+                    if (GXDlmsUi.UseMeterTimeZone)
+                    {
+                        li = new ListViewItem(it.Key.ToFormatMeterString());
+                        li.SubItems.Add(it.Value.ToFormatMeterString());
+                    }
+                    else
+                    {
+                        li = new ListViewItem(it.Key.ToFormatString());
+                        li.SubItems.Add(it.Value.ToFormatString());
+                    }
                     CommunicationWindowLV.Items.Add(li);
                     li.Tag = it;
                 }

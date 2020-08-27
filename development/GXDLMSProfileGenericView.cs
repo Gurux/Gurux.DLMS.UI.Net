@@ -191,7 +191,18 @@ namespace Gurux.DLMS.UI
                     {
                         for (int col = 0; col != row.Length; ++col)
                         {
-                            if (row[col] is byte[])
+                            if (row[col] is GXDateTime)
+                            {
+                                if (GXDlmsUi.UseMeterTimeZone)
+                                {
+                                    row[col] = (row[col] as GXDateTime).ToFormatMeterString();
+                                }
+                                else
+                                {
+                                    row[col] = (row[col] as GXDateTime).ToFormatString();
+                                }
+                            }
+                            else if (row[col] is byte[])
                             {
                                 row[col] = GXDLMSTranslator.ToHex((byte[])row[col], true);
                             }
