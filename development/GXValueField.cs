@@ -332,7 +332,10 @@ namespace Gurux.DLMS.UI
             {
                 DataTable dt = (DataTable)dataGridView1.DataSource;
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("<Array>");
+                if (dataGridView1.AllowUserToAddRows)
+                {
+                    sb.AppendLine("<Array>");
+                }
                 //Add new rows.
                 bool structure = dataGridView1.Columns.Count > 1;
                 foreach (DataGridViewRow r in dataGridView1.Rows)
@@ -354,7 +357,11 @@ namespace Gurux.DLMS.UI
                             {
                                 sb.AppendLine(" Value=\"" + GXDLMSTranslator.ToHex(GXDLMSConverter.LogicalNameToBytes(it.ToString())) + "\" />");
                             }
-                            if (it is byte[])
+                            else if (it is GXDateTime dt2)
+                            {
+                                sb.AppendLine(" Value=\"" + dt2.ToHex(true, GXDlmsUi.UseMeterTimeZone) + "\" />");
+                            }
+                            else if (it is byte[])
                             {
                                 sb.AppendLine(" Value=\"" + GXDLMSTranslator.ToHex((byte[])it) + "\" />");
                             }
@@ -373,11 +380,13 @@ namespace Gurux.DLMS.UI
                         return;
                     }
                 }
-                sb.AppendLine("</Array>");
+                if (dataGridView1.AllowUserToAddRows)
+                {
+                    sb.AppendLine("</Array>");
+                }
                 try
                 {
                     SetDirty(true, sb.ToString());
-
                 }
                 catch (FormatException)
                 {
@@ -1068,6 +1077,12 @@ namespace Gurux.DLMS.UI
                                     dataGridView1.Columns.Add(index.ToString(), dc.Caption);
                                     dataGridView1.Columns[index].DataPropertyName = index.ToString();
                                 }
+                                else if (string.Compare(uiType.Value, "Gurux.DLMS.GXDateTime", true) == 0)
+                                {
+                                    dc.DataType = typeof(GXDateTime);
+                                    dataGridView1.Columns.Add(index.ToString(), dc.Caption);
+                                    dataGridView1.Columns[index].DataPropertyName = index.ToString();
+                                }
                                 else if (string.Compare(uiType.Value, "Enum", true) == 0)
                                 {
                                     dc.DataType = typeof(LogicalName);
@@ -1165,6 +1180,11 @@ namespace Gurux.DLMS.UI
                                         {
                                             row.Add(new LogicalName(GXDLMSConverter.ToLogicalName(GXDLMSTranslator.HexToBytes(v.InnerText))));
                                         }
+                                        else if (dc.DataType == typeof(GXDateTime))
+                                        {
+                                            GXDateTime dt2 = (GXDateTime)GXDLMSClient.ChangeType(GXDLMSTranslator.HexToBytes(v.InnerText), DataType.DateTime, false);
+                                            row.Add(dt2);
+                                        }
                                         else
                                         {
                                             row.Add(Convert.ChangeType(v.InnerText, dc.DataType));
@@ -1177,6 +1197,7 @@ namespace Gurux.DLMS.UI
                                     ++index;
                                 }
                                 dt.LoadDataRow(row.ToArray(), true);
+                                dataGridView1.AllowUserToAddRows = false;
                             }
                         }
                     }
