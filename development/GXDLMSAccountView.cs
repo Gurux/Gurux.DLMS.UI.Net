@@ -81,8 +81,18 @@ namespace Gurux.DLMS.UI
             GXDLMSAccount target = Target as GXDLMSAccount;
             if (index == 2)
             {
-                PaymentModeCb.SelectedItem = target.PaymentMode;
-                AccountStatusCb.SelectedItem = target.AccountStatus;
+                try
+                {
+                    PaymentModeCb.SelectedIndexChanged -= new System.EventHandler(AccountStatusCb_SelectedIndexChanged);
+                    AccountStatusCb.SelectedIndexChanged -= new System.EventHandler(AccountStatusCb_SelectedIndexChanged);
+                    PaymentModeCb.SelectedItem = target.PaymentMode;
+                    AccountStatusCb.SelectedItem = target.AccountStatus;
+                }
+                finally
+                {
+                    PaymentModeCb.SelectedIndexChanged += new System.EventHandler(AccountStatusCb_SelectedIndexChanged);
+                    AccountStatusCb.SelectedIndexChanged += new System.EventHandler(AccountStatusCb_SelectedIndexChanged);
+                }
             }
             else if (index == 9)
             {
@@ -249,11 +259,6 @@ namespace Gurux.DLMS.UI
         {
         }
         #endregion
-
-        private void SecuritySetupCb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void CurrentCreditInUseTb_Load(object sender, EventArgs e)
         {
@@ -590,6 +595,28 @@ namespace Gurux.DLMS.UI
                     errorProvider1.SetError(TokenGatewayView, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(12, target.TokenGatewayConfigurations);
                     target.TokenGatewayConfigurations.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AccountStatusCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAccount target = Target as GXDLMSAccount;
+                if (sender == AccountStatusCb)
+                {
+                    errorProvider1.SetError(AccountStatusCb, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(2, target.AccountStatus);
+                }
+                else
+                {
+                    errorProvider1.SetError(PaymentModeCb, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(2, target.PaymentMode);
                 }
             }
             catch (Exception ex)

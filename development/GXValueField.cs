@@ -725,6 +725,7 @@ namespace Gurux.DLMS.UI
                         this.Type = ValueFieldType.TextBox;
                         UpdateValueItems(target, index, value);
                     }
+                    dataGridView1.ReadOnly = att != null && (att.Access & AccessMode.Write) == 0;
                 }
             }
         }
@@ -1312,7 +1313,7 @@ namespace Gurux.DLMS.UI
                 else if (Type == ValueFieldType.CheckedListBox)
                 {
                     int value = 0;
-                    foreach(var it in checkedlistBox1.CheckedItems)
+                    foreach (var it in checkedlistBox1.CheckedItems)
                     {
                         value |= Convert.ToInt32(it);
                     }

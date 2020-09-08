@@ -40,6 +40,9 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.GeneralTab = new System.Windows.Forms.TabPage();
+            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
+            this.ActivateBtn = new Gurux.DLMS.UI.GXButton();
+            this.CloseBtn = new Gurux.DLMS.UI.GXButton();
             this.CurrencyUnitTb = new System.Windows.Forms.ComboBox();
             this.AccountStatusCb = new System.Windows.Forms.ComboBox();
             this.PaymentModeCb = new System.Windows.Forms.ComboBox();
@@ -106,9 +109,6 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ActivateBtn = new Gurux.DLMS.UI.GXButton();
-            this.CloseBtn = new Gurux.DLMS.UI.GXButton();
-            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.GeneralTab.SuspendLayout();
@@ -198,6 +198,39 @@ namespace Gurux.DLMS.UI
             this.GeneralTab.Text = "General";
             this.GeneralTab.UseVisualStyleBackColor = true;
             // 
+            // ResetBtn
+            // 
+            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetBtn.Index = 3;
+            this.ResetBtn.Location = new System.Drawing.Point(389, 557);
+            this.ResetBtn.Name = "ResetBtn";
+            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.ResetBtn.TabIndex = 73;
+            this.ResetBtn.Text = "Reset";
+            this.ResetBtn.UseVisualStyleBackColor = true;
+            // 
+            // ActivateBtn
+            // 
+            this.ActivateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ActivateBtn.Index = 1;
+            this.ActivateBtn.Location = new System.Drawing.Point(227, 557);
+            this.ActivateBtn.Name = "ActivateBtn";
+            this.ActivateBtn.Size = new System.Drawing.Size(75, 23);
+            this.ActivateBtn.TabIndex = 72;
+            this.ActivateBtn.Text = "Activate";
+            this.ActivateBtn.UseVisualStyleBackColor = true;
+            // 
+            // CloseBtn
+            // 
+            this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBtn.Index = 2;
+            this.CloseBtn.Location = new System.Drawing.Point(308, 557);
+            this.CloseBtn.Name = "CloseBtn";
+            this.CloseBtn.Size = new System.Drawing.Size(75, 23);
+            this.CloseBtn.TabIndex = 71;
+            this.CloseBtn.Text = "Close";
+            this.CloseBtn.UseVisualStyleBackColor = true;
+            // 
             // CurrencyUnitTb
             // 
             this.CurrencyUnitTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -219,6 +252,7 @@ namespace Gurux.DLMS.UI
             this.AccountStatusCb.Name = "AccountStatusCb";
             this.AccountStatusCb.Size = new System.Drawing.Size(297, 21);
             this.AccountStatusCb.TabIndex = 16;
+            this.AccountStatusCb.SelectedIndexChanged += new System.EventHandler(this.AccountStatusCb_SelectedIndexChanged);
             // 
             // PaymentModeCb
             // 
@@ -230,7 +264,7 @@ namespace Gurux.DLMS.UI
             this.PaymentModeCb.Name = "PaymentModeCb";
             this.PaymentModeCb.Size = new System.Drawing.Size(297, 21);
             this.PaymentModeCb.TabIndex = 15;
-            this.PaymentModeCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
+            this.PaymentModeCb.SelectedIndexChanged += new System.EventHandler(this.AccountStatusCb_SelectedIndexChanged);
             // 
             // CurrencyScaleTb
             // 
@@ -891,39 +925,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // ActivateBtn
-            // 
-            this.ActivateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActivateBtn.Index = 1;
-            this.ActivateBtn.Location = new System.Drawing.Point(227, 557);
-            this.ActivateBtn.Name = "ActivateBtn";
-            this.ActivateBtn.Size = new System.Drawing.Size(75, 23);
-            this.ActivateBtn.TabIndex = 72;
-            this.ActivateBtn.Text = "Activate";
-            this.ActivateBtn.UseVisualStyleBackColor = true;
-            // 
-            // CloseBtn
-            // 
-            this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseBtn.Index = 2;
-            this.CloseBtn.Location = new System.Drawing.Point(308, 557);
-            this.CloseBtn.Name = "CloseBtn";
-            this.CloseBtn.Size = new System.Drawing.Size(75, 23);
-            this.CloseBtn.TabIndex = 71;
-            this.CloseBtn.Text = "Close";
-            this.CloseBtn.UseVisualStyleBackColor = true;
-            // 
-            // ResetBtn
-            // 
-            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetBtn.Index = 3;
-            this.ResetBtn.Location = new System.Drawing.Point(389, 557);
-            this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.ResetBtn.TabIndex = 73;
-            this.ResetBtn.Text = "Reset";
-            this.ResetBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSAccountView
             // 
