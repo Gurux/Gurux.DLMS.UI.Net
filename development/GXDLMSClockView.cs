@@ -156,6 +156,63 @@ namespace Gurux.DLMS.UI
         {
         }
 
+        delegate void ShowDlgEventHandler(GXActionArgs arg);
+
+        void OnShowDlg(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowDlgEventHandler(OnShowDlg), arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
+                if (arg.Index == 5)
+                {
+                    GXClockPresetTimeDlg dlg = new GXClockPresetTimeDlg();
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        GXByteBuffer bb = new GXByteBuffer();
+                        bb.SetUInt8((byte) DataType.Structure);
+                        bb.SetUInt8(4);
+                        //Add data type and length.
+                        bb.SetUInt8((byte)DataType.OctetString);
+                        bb.SetUInt8(12);
+                        bb.Set(GXDLMSTranslator.HexToBytes(dlg.PresetTime.ToHex(false, GXDlmsUi.UseMeterTimeZone)));
+                        //Add data type and length.
+                        bb.SetUInt8((byte)DataType.OctetString);
+                        bb.SetUInt8(12);
+                        bb.Set(GXDLMSTranslator.HexToBytes(dlg.IntervalStart.ToHex(false, GXDlmsUi.UseMeterTimeZone)));
+                        //Add data type and length.
+                        bb.SetUInt8((byte)DataType.OctetString);
+                        bb.SetUInt8(12);
+                        bb.Set(GXDLMSTranslator.HexToBytes(dlg.IntervalEnd.ToHex(false, GXDlmsUi.UseMeterTimeZone)));
+                        arg.Value = bb.Array();
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else if (arg.Index == 6)
+                {
+                    GXTextDlg dlg = new GXTextDlg("Shift Time", "Shift Time (s):", "", typeof(Int16));
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        arg.Value = Int16.Parse(dlg.GetValue());
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
             DialogResult ret;
@@ -192,7 +249,14 @@ namespace Gurux.DLMS.UI
             }
             else if (arg.Action == ActionType.Action)
             {
-                arg.Value = (sbyte)0;
+                if (arg.Index == 5 || arg.Index == 6)
+                {
+                    OnShowDlg(arg);
+                }
+                else
+                {
+                    arg.Value = (sbyte)0;
+                }
             }
         }
 

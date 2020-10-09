@@ -610,11 +610,13 @@ namespace Gurux.DLMS.UI
                 GXDLMSAccount target = Target as GXDLMSAccount;
                 if (sender == AccountStatusCb)
                 {
+                    target.AccountStatus = (AccountStatus) AccountStatusCb.SelectedItem;
                     errorProvider1.SetError(AccountStatusCb, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.AccountStatus);
                 }
                 else
                 {
+                    target.PaymentMode = (PaymentMode)PaymentModeCb.SelectedItem;
                     errorProvider1.SetError(PaymentModeCb, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.PaymentMode);
                 }

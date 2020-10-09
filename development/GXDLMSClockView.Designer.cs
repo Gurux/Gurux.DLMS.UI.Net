@@ -52,6 +52,8 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSClockView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ShiftTimeBtn = new Gurux.DLMS.UI.GXButton();
+            this.PresetAdjustingTimeBtn = new Gurux.DLMS.UI.GXButton();
             this.CurrentTimeZoneBtn = new Gurux.DLMS.UI.GXButton();
             this.TimeZoneCb = new System.Windows.Forms.CheckBox();
             this.UpdateTimeBtn = new Gurux.DLMS.UI.GXButton();
@@ -91,6 +93,8 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ShiftTimeBtn);
+            this.groupBox1.Controls.Add(this.PresetAdjustingTimeBtn);
             this.groupBox1.Controls.Add(this.CurrentTimeZoneBtn);
             this.groupBox1.Controls.Add(this.TimeZoneCb);
             this.groupBox1.Controls.Add(this.UpdateTimeBtn);
@@ -106,10 +110,30 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 449);
+            this.groupBox1.Size = new System.Drawing.Size(367, 488);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Clock Object";
+            // 
+            // ShiftTimeBtn
+            // 
+            this.ShiftTimeBtn.Index = 6;
+            this.ShiftTimeBtn.Location = new System.Drawing.Point(208, 443);
+            this.ShiftTimeBtn.Name = "ShiftTimeBtn";
+            this.ShiftTimeBtn.Size = new System.Drawing.Size(100, 23);
+            this.ShiftTimeBtn.TabIndex = 25;
+            this.ShiftTimeBtn.Text = "Shift Time...";
+            this.ShiftTimeBtn.UseVisualStyleBackColor = true;
+            // 
+            // PresetAdjustingTimeBtn
+            // 
+            this.PresetAdjustingTimeBtn.Index = 5;
+            this.PresetAdjustingTimeBtn.Location = new System.Drawing.Point(102, 443);
+            this.PresetAdjustingTimeBtn.Name = "PresetAdjustingTimeBtn";
+            this.PresetAdjustingTimeBtn.Size = new System.Drawing.Size(100, 23);
+            this.PresetAdjustingTimeBtn.TabIndex = 24;
+            this.PresetAdjustingTimeBtn.Text = "Preset Adjusting Time...";
+            this.PresetAdjustingTimeBtn.UseVisualStyleBackColor = true;
             // 
             // CurrentTimeZoneBtn
             // 
@@ -408,7 +432,7 @@ namespace Gurux.DLMS.UI
             // 
             // GXDLMSClockView
             // 
-            this.ClientSize = new System.Drawing.Size(391, 478);
+            this.ClientSize = new System.Drawing.Size(391, 517);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -435,5 +459,7 @@ namespace Gurux.DLMS.UI
         private GXButton AdjustToPresetTimeBtn;
         private GXButton AdjustToMinuteBtn;
         private GroupBox groupBox3;
+        private GXButton ShiftTimeBtn;
+        private GXButton PresetAdjustingTimeBtn;
     }
 }

@@ -68,8 +68,66 @@ namespace Gurux.DLMS.UI
             throw new IndexOutOfRangeException("index");
         }
 
+        delegate void ShowDlgEventHandler(GXActionArgs arg);
+
+        void OnShowDlg(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new ShowDlgEventHandler(OnShowDlg), arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
+                if (arg.Index == 1)
+                {
+                    GXTextDlg dlg = new GXTextDlg("Update Amount", "Amount:", "", typeof(Int32));
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        arg.Value = Int32.Parse(dlg.GetValue());
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else if (arg.Index == 2)
+                {
+                    GXTextDlg dlg = new GXTextDlg("Set Amount", "Amount:", "", typeof(Int32));
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        arg.Value = Int32.Parse(dlg.GetValue());
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else if (arg.Index == 3)
+                {
+                    GXTextDlg dlg = new GXTextDlg("Invoke Credit", "Value:", "", typeof(sbyte));
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        arg.Value = sbyte.Parse(dlg.GetValue());
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                    }
+                }
+                else
+                {
+                    arg.Handled = true;
+                }
+            }
+        }
+
         public void PreAction(GXActionArgs arg)
         {
+            if (arg.Action == ActionType.Action)
+            {
+                OnShowDlg(arg);
+            }
         }
 
         public void PostAction(GXActionArgs arg)
@@ -130,6 +188,6 @@ namespace Gurux.DLMS.UI
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
-        }        
+        }
     }
 }

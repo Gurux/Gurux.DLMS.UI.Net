@@ -43,6 +43,7 @@ using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using System.Collections;
 using System.Xml;
+using System.Linq;
 
 namespace Gurux.DLMS.UI
 {
@@ -1183,8 +1184,43 @@ namespace Gurux.DLMS.UI
                                         }
                                         else if (dc.DataType == typeof(GXDateTime))
                                         {
-                                            GXDateTime dt2 = (GXDateTime)GXDLMSClient.ChangeType(GXDLMSTranslator.HexToBytes(v.InnerText), DataType.DateTime, false);
+                                            GXDateTime dt2;
+                                            if (it.Name == "OctetString")
+                                            {
+                                                dt2 = (GXDateTime)GXDLMSClient.ChangeType(GXDLMSTranslator.HexToBytes(v.InnerText), DataType.DateTime, false);
+                                            }
+                                            else if (it.Name == "UInt32")
+                                            {
+                                                dt2 = GXDateTime.FromUnixTime(Convert.ToUInt32(v.InnerText));
+                                            }
+                                            else
+                                            {
+                                                throw new ArgumentOutOfRangeException("Failed to convert value to GXDateTime. Invalid data type: " + it.Name);
+                                            }
                                             row.Add(dt2);
+                                        }
+                                        else if (dc.DataType == typeof(GXBitString))
+                                        {
+                                            GXBitString bs;
+                                            if (it.Name == "BitString")
+                                            {
+                                                bs = new GXBitString(v.InnerText);
+                                            }
+                                            else
+                                            {
+                                                UInt32 val = Convert.ToUInt32(v.InnerText);
+                                                int bits = 8;
+                                                if (val > 0xFFFF)
+                                                {
+                                                    bits = 32;
+                                                }
+                                                else if (val > 0xFF)
+                                                {
+                                                    bits = 16;
+                                                }
+                                                bs = new GXBitString(new string(GXBitString.ToBitString(val, bits).Reverse().ToArray()));
+                                            }
+                                            row.Add(bs);
                                         }
                                         else
                                         {

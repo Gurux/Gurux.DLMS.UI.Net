@@ -36,6 +36,7 @@ using System;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
+using System.Collections.Generic;
 
 namespace Gurux.DLMS.UI
 {
@@ -65,7 +66,70 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
-            throw new IndexOutOfRangeException("index");
+            GXDLMSCharge target = (GXDLMSCharge)Target;
+            if (index == 5)
+            {
+                ActiveCommodityScaleTb.Text = target.UnitChargeActive.ChargePerUnitScaling.CommodityScale.ToString();
+                ActivePriceScaleTb.Text = target.UnitChargeActive.ChargePerUnitScaling.PriceScale.ToString();
+
+                ActiveTargetCb.Items.Clear();
+                int selected = -1;
+                foreach (GXDLMSObject it in Target.Parent.GetObjects(ObjectType.Credit))
+                {
+                    int pos = ActiveTargetCb.Items.Add(it);
+                    if (it == target.UnitChargeActive.Commodity.Target)
+                    {
+                        selected = pos;
+                    }
+                }
+                ActiveTargetCb.SelectedIndex = selected;
+                ActiveIndexTB.Text = target.UnitChargeActive.Commodity.Index.ToString();
+                ActiveChargePerUnits.Items.Clear();
+                if (target.UnitChargeActive.ChargeTables != null)
+                {
+                    foreach (GXChargeTable it in target.UnitChargeActive.ChargeTables)
+                    {
+                        ListViewItem li = new ListViewItem(it.Index.ToString());
+                        li.SubItems.Add(it.ChargePerUnit.ToString());
+                        li.Tag = it;
+                        ActiveChargePerUnits.Items.Add(li);
+                    }
+                }
+            }
+            else if (index == 6)
+            {
+                PassiveCommodityScaleTb.Text = target.UnitChargePassive.ChargePerUnitScaling.CommodityScale.ToString();
+                PassivePriceScaleTb.Text = target.UnitChargePassive.ChargePerUnitScaling.PriceScale.ToString();
+
+                PassiveTargetCb.Items.Clear();
+                int selected = -1;
+                foreach (GXDLMSObject it in Target.Parent.GetObjects(ObjectType.Credit))
+                {
+                    int pos = PassiveTargetCb.Items.Add(it);
+                    if (it == target.UnitChargePassive.Commodity.Target)
+                    {
+                        selected = pos;
+                    }
+                }
+                PassiveTargetCb.SelectedIndex = selected;
+                PassiveIndexTB.Text = target.UnitChargePassive.Commodity.Index.ToString();
+
+                PassiveChargePerUnits.Items.Clear();
+                if (target.UnitChargePassive.ChargeTables != null)
+                {
+                    foreach (GXChargeTable it in target.UnitChargePassive.ChargeTables)
+                    {
+                        ListViewItem li = new ListViewItem(it.Index.ToString());
+                        li.SubItems.Add(it.ChargePerUnit.ToString());
+                        li.Tag = it;
+                        PassiveChargePerUnits.Items.Add(li);
+                    }
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void PreAction(GXActionArgs arg)
@@ -111,12 +175,239 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            throw new IndexOutOfRangeException("index");
+            bool enabled = connected && (access & AccessMode.Write) != 0;
+            if (index == 5)
+            {
+                ActiveTargetCb.Enabled = enabled;
+                ActiveCommodityScaleTb.ReadOnly = ActivePriceScaleTb.ReadOnly = ActiveIndexTB.ReadOnly = !enabled;
+            }
+            else if (index == 6)
+            {
+                PassiveTargetCb.Enabled = enabled;
+                PassiveCommodityScaleTb.ReadOnly = PassivePriceScaleTb.ReadOnly = PassiveIndexTB.ReadOnly = !enabled;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("index");
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
         }
         #endregion
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSCharge target = Target as GXDLMSCharge;
+                GXChargeTableDlg dlg = new GXChargeTableDlg(null, 0, false);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<GXChargeTable> list = new List<GXChargeTable>();
+                    if (target.UnitChargePassive.ChargeTables != null)
+                    {
+                        list.AddRange(target.UnitChargePassive.ChargeTables);
+                    }
+                    GXChargeTable t = new GXChargeTable();
+                    t.Index = GXDLMSTranslator.ToHex(dlg.Index);
+                    t.ChargePerUnit = dlg.ChargePerUnit;
+                    ListViewItem li = new ListViewItem(t.Index);
+                    li.Tag = t;
+                    li.SubItems.Add(t.ChargePerUnit.ToString());
+                    list.Add(t);
+                    target.UnitChargePassive.ChargeTables = list.ToArray();
+                    PassiveChargePerUnits.Items.Add(li);
+                    errorProvider1.SetError(PassiveChargePerUnits, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(6, target.UnitChargePassive.ChargeTables);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PassiveChargePerUnits.SelectedItems.Count == 1)
+                {
+                    ListViewItem li = PassiveChargePerUnits.SelectedItems[0];
+                    byte[] index = GXDLMSTranslator.HexToBytes(li.SubItems[0].Text);
+                    Int16 chargePerUnit = Int16.Parse(li.SubItems[1].Text);
+                    GXDLMSCharge target = Target as GXDLMSCharge;
+                    GXChargeTableDlg dlg = new GXChargeTableDlg(index, chargePerUnit, false);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        GXChargeTable t = (GXChargeTable)li.Tag;
+                        t.Index = GXDLMSTranslator.ToHex(dlg.Index);
+                        t.ChargePerUnit = dlg.ChargePerUnit;
+                        li.SubItems[0].Text = t.Index;
+                        li.SubItems[1].Text = dlg.ChargePerUnit.ToString();
+                        errorProvider1.SetError(PassiveChargePerUnits, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(6, target.UnitChargePassive.ChargeTables);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PassiveChargePerUnits.SelectedItems.Count != 0)
+                {
+                    GXDLMSCharge target = Target as GXDLMSCharge;
+                    List<GXChargeTable> list = new List<GXChargeTable>();
+                    if (target.UnitChargePassive.ChargeTables != null)
+                    {
+                        list.AddRange(target.UnitChargePassive.ChargeTables);
+                    }
+                    while (PassiveChargePerUnits.SelectedItems.Count != 0)
+                    {
+                        ListViewItem li = PassiveChargePerUnits.SelectedItems[0];
+                        GXChargeTable item = (GXChargeTable)li.Tag;
+                        list.Remove(item);
+                        PassiveChargePerUnits.Items.Remove(li);
+                        errorProvider1.SetError(PassiveChargePerUnits, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(6, target.UnitChargePassive.ChargeTables);
+                    }
+                    target.UnitChargePassive.ChargeTables = list.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActiveCommodityScaleTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                sbyte v = sbyte.Parse(ActiveCommodityScaleTb.Text);
+                (Target as GXDLMSCharge).UnitChargeActive.ChargePerUnitScaling.CommodityScale = v;
+                Target.UpdateDirty(5, v);
+                errorProvider1.SetError(ActiveCommodityScaleTb, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActivePriceScaleTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                sbyte v = sbyte.Parse(ActivePriceScaleTb.Text);
+                (Target as GXDLMSCharge).UnitChargeActive.ChargePerUnitScaling.PriceScale = v;
+                Target.UpdateDirty(5, v);
+                errorProvider1.SetError(ActivePriceScaleTb, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActiveTargetCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (Target as GXDLMSCharge).UnitChargeActive.Commodity.Target = (GXDLMSObject) ActiveTargetCb.SelectedItem;
+                Target.UpdateDirty(5, ActiveTargetCb.SelectedItem);
+                errorProvider1.SetError(ActiveTargetCb, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActiveIndexTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                sbyte v = sbyte.Parse(ActiveIndexTB.Text);
+                (Target as GXDLMSCharge).UnitChargeActive.Commodity.Index = v;
+                Target.UpdateDirty(5, v);
+                errorProvider1.SetError(ActiveIndexTB, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void PassiveCommodityScaleTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                sbyte v = sbyte.Parse(PassiveCommodityScaleTb.Text);
+                (Target as GXDLMSCharge).UnitChargePassive.ChargePerUnitScaling.CommodityScale = v;
+                Target.UpdateDirty(6, v);
+                errorProvider1.SetError(PassiveCommodityScaleTb, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PassivePriceScaleTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                sbyte v = sbyte.Parse(PassivePriceScaleTb.Text);
+                (Target as GXDLMSCharge).UnitChargePassive.ChargePerUnitScaling.PriceScale = v;
+                Target.UpdateDirty(6, v);
+                errorProvider1.SetError(PassivePriceScaleTb, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PassiveTargetCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (Target as GXDLMSCharge).UnitChargePassive.Commodity.Target = (GXDLMSObject)PassiveTargetCb.SelectedItem;
+                Target.UpdateDirty(5, PassiveTargetCb.SelectedItem);
+                errorProvider1.SetError(PassiveTargetCb, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void PassiveIndexTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                sbyte v = sbyte.Parse(PassiveIndexTB.Text);
+                (Target as GXDLMSCharge).UnitChargePassive.Commodity.Index = v;
+                Target.UpdateDirty(6, v);
+                errorProvider1.SetError(PassiveIndexTB, Properties.Resources.ValueChangedTxt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
