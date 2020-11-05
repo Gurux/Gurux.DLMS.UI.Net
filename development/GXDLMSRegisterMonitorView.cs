@@ -78,7 +78,8 @@ namespace Gurux.DLMS.UI
                     MonitoredValueCb.Items.Clear();
                     if (target.Parent != null)
                     {
-                        foreach (GXDLMSObject it in target.Parent.GetObjects(ObjectType.Register))
+                        foreach (GXDLMSObject it in target.Parent.GetObjects(
+                            new ObjectType[] { ObjectType.Data, ObjectType.Register, ObjectType.ExtendedRegister, ObjectType.DemandRegister }))
                         {
                             MonitoredValueCb.Items.Add(it);
                         }
