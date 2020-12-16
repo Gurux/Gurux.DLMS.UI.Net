@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2011.904, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2011.904\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2012.1601, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.9.0.2012.1601\lib\net40\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,11 +61,15 @@
     <Compile Include="GXAccountCreditChargeDlg.Designer.cs">
       <DependentUpon>GXAccountCreditChargeDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXChargeTableDlg.cs" />
+    <Compile Include="GXChargeTableDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GXChargeTableDlg.Designer.cs">
       <DependentUpon>GXChargeTableDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXClockPresetTimeDlg.cs" />
+    <Compile Include="GXClockPresetTimeDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GXClockPresetTimeDlg.Designer.cs">
       <DependentUpon>GXClockPresetTimeDlg.cs</DependentUpon>
     </Compile>
@@ -80,6 +84,12 @@
     </Compile>
     <Compile Include="GXDLMSArbitratorView.designer.cs">
       <DependentUpon>GXDLMSArbitratorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSIecTwistedPairSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSIecTwistedPairSetupView.designer.cs">
+      <DependentUpon>GXDLMSIecTwistedPairSetupView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs">
       <SubType>Form</SubType>
@@ -657,6 +667,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSArbitratorView.resx">
       <DependentUpon>GXDLMSArbitratorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSIecTwistedPairSetupView.resx">
+      <DependentUpon>GXDLMSIecTwistedPairSetupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.resx">
       <DependentUpon>GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs</DependentUpon>

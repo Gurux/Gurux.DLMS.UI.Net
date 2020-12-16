@@ -59,7 +59,7 @@ namespace Gurux.DLMS.UI
             {
                 foreach (GXDLMSWeekProfile it in weekProfiles)
                 {
-                    pos = WeekNameCb.Items.Add(it);
+                    pos = WeekNameCb.Items.Add(ASCIIEncoding.ASCII.GetString(it.Name));
                     if (selected == -1 && StructuralComparisons.StructuralEqualityComparer.Equals(Target.WeekName, it.Name))
                     {
                         selected = pos;
@@ -94,7 +94,7 @@ namespace Gurux.DLMS.UI
                     throw new Exception("Invalid name.");
                 }
                 Target.Start = new GXDateTime(StartTb.Text);
-                Target.WeekName = (WeekNameCb.SelectedItem as GXDLMSWeekProfile).Name;
+                Target.WeekName = ASCIIEncoding.ASCII.GetBytes((string)WeekNameCb.SelectedItem);
             }
             catch (Exception ex)
             {
