@@ -90,6 +90,22 @@ namespace Gurux.DLMS.UI
                 SystemTitleAsciiCb.CheckedChanged += SystemTitleAsciiCb_CheckedChanged;
                 NameTb.Text = GXDLMSTranslator.ToHex(maskName);
             }
+            if (indexArray != null)
+            {
+                bool empty = true;
+                foreach(byte it in indexArray)
+                {
+                    if (empty)
+                    {
+                        empty = false;
+                    }
+                    else
+                    {
+                        IndexTB.AppendText(", ");
+                    }
+                    IndexTB.AppendText(it.ToString());
+                }
+            }
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
@@ -101,7 +117,7 @@ namespace Gurux.DLMS.UI
                 {
                     throw new Exception("Invalid mask name.");
                 }
-                string[] values = IndexTB.Text.Split(new char[] { ' ', ';', '.', ',' });
+                string[] values = IndexTB.Text.Split(new char[] { ' ', ';', '.', ',' }, StringSplitOptions.RemoveEmptyEntries);
                 List<byte> arr = new List<byte>();
                 foreach (string it in values)
                 {
