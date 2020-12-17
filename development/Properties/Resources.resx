@@ -144,6 +144,9 @@
   <data name="BlackListWarning" xml:space="preserve">
     <value>Are you sure that you want to add selected items to the black list?</value>
   </data>
+  <data name="GeneralResetWarning" xml:space="preserve">
+    <value>Are you sure that you want to reset the selected object?</value>
+  </data>
   <data name="HardwareFaultTxt" xml:space="preserve">
     <value>Access Error : Device reports a hardware fault.</value>
   </data>

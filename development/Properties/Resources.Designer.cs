@@ -142,6 +142,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to reset the selected object?.
+        /// </summary>
+        internal static string GeneralResetWarning {
+            get {
+                return ResourceManager.GetString("GeneralResetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Error : Device reports a hardware fault..
         /// </summary>
         internal static string HardwareFaultTxt {
