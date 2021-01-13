@@ -80,6 +80,9 @@ namespace Gurux.DLMS.UI
         private GroupBox groupBox2;
         private ListView CaptureDefinitionView;
         private ColumnHeader DataInformationBlockCh;
+        private GXButton button1;
+        private GXButton gxButton1;
+        private TextBox EncryptionKeyTB;
         private ColumnHeader ValueInformationBlockCh;
         private Label LogicalNameLbl;
         /// <summary>
@@ -128,10 +131,63 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(GXActionArgs arg)
         {
+            switch (arg.Index)
+            {
+                case 2:
+                    DialogResult ret;
+
+                    arg.Value = (sbyte)0;
+
+                    // deinstall.
+                    ret = GXHelpers.ShowMessageBox(this, "De-install mbus Client?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    arg.Handled = ret != DialogResult.Yes;
+                    break;
+
+                case 7:
+                    string strKey = EncryptionKeyTB.Text;
+                    bool isValidInput = true;
+
+                    foreach (byte ch in strKey)
+                    {
+                        isValidInput = (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
+                        if (!isValidInput)
+                            break;
+                    }
+
+                    if (strKey.Length == 32 && isValidInput)
+                    {
+                        GXByteBuffer data = new GXByteBuffer();
+                        data.SetUInt8((byte)DataType.OctetString);
+                        data.SetUInt8(16);
+                        data.Add(GXDLMSTranslator.HexToBytes(EncryptionKeyTB.Text));
+
+                        arg.Value = data.Array();
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid key format, should be 32 hex chars");
+
+                        arg.Action = ActionType.None;
+                    }
+                    break;
+            }
+
         }
 
         public void PostAction(GXActionArgs arg)
         {
+            if (arg.Action == ActionType.Action && arg.Index == 7)
+            {
+                arg.Index = 14;
+                arg.Action = ActionType.Read;
+                return;
+            }
+
+            if (arg.Exception == null)
+            {
+                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             arg.Action = ActionType.None;
         }
 
@@ -198,6 +254,9 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.EncryptionKeyTB = new System.Windows.Forms.TextBox();
+            this.gxButton1 = new Gurux.DLMS.UI.GXButton();
+            this.button1 = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -207,6 +266,9 @@ namespace Gurux.DLMS.UI
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.EncryptionKeyTB);
+            this.groupBox1.Controls.Add(this.gxButton1);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.EncryptionKeyStatusTB);
             this.groupBox1.Controls.Add(this.EncryptionKeyStatusLbl);
@@ -236,7 +298,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 498);
+            this.groupBox1.Size = new System.Drawing.Size(300, 631);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MBus Client Object";
@@ -282,6 +344,158 @@ namespace Gurux.DLMS.UI
             this.ValueInformationBlockCh.Text = "Value Information";
             this.ValueInformationBlockCh.Width = 147;
             // 
+            // EncryptionKeyStatusLbl
+            // 
+            this.EncryptionKeyStatusLbl.AutoSize = true;
+            this.EncryptionKeyStatusLbl.Location = new System.Drawing.Point(3, 469);
+            this.EncryptionKeyStatusLbl.Name = "EncryptionKeyStatusLbl";
+            this.EncryptionKeyStatusLbl.Size = new System.Drawing.Size(151, 17);
+            this.EncryptionKeyStatusLbl.TabIndex = 37;
+            this.EncryptionKeyStatusLbl.Text = "Encryption Key Status:";
+            // 
+            // ConfigurationLbl
+            // 
+            this.ConfigurationLbl.AutoSize = true;
+            this.ConfigurationLbl.Location = new System.Drawing.Point(6, 443);
+            this.ConfigurationLbl.Name = "ConfigurationLbl";
+            this.ConfigurationLbl.Size = new System.Drawing.Size(96, 17);
+            this.ConfigurationLbl.TabIndex = 36;
+            this.ConfigurationLbl.Text = "Configuration:";
+            // 
+            // AlarmLbl
+            // 
+            this.AlarmLbl.AutoSize = true;
+            this.AlarmLbl.Location = new System.Drawing.Point(6, 417);
+            this.AlarmLbl.Name = "AlarmLbl";
+            this.AlarmLbl.Size = new System.Drawing.Size(48, 17);
+            this.AlarmLbl.TabIndex = 34;
+            this.AlarmLbl.Text = "Alarm:";
+            // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Location = new System.Drawing.Point(6, 391);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(52, 17);
+            this.StatusLbl.TabIndex = 31;
+            this.StatusLbl.Text = "Status:";
+            // 
+            // AccessNumberLbl
+            // 
+            this.AccessNumberLbl.AutoSize = true;
+            this.AccessNumberLbl.Location = new System.Drawing.Point(3, 364);
+            this.AccessNumberLbl.Name = "AccessNumberLbl";
+            this.AccessNumberLbl.Size = new System.Drawing.Size(111, 17);
+            this.AccessNumberLbl.TabIndex = 29;
+            this.AccessNumberLbl.Text = "Access Number:";
+            // 
+            // DeviceTypeLbl
+            // 
+            this.DeviceTypeLbl.AutoSize = true;
+            this.DeviceTypeLbl.Location = new System.Drawing.Point(3, 338);
+            this.DeviceTypeLbl.Name = "DeviceTypeLbl";
+            this.DeviceTypeLbl.Size = new System.Drawing.Size(91, 17);
+            this.DeviceTypeLbl.TabIndex = 27;
+            this.DeviceTypeLbl.Text = "Device Type:";
+            // 
+            // VersionLbl
+            // 
+            this.VersionLbl.AutoSize = true;
+            this.VersionLbl.Location = new System.Drawing.Point(6, 312);
+            this.VersionLbl.Name = "VersionLbl";
+            this.VersionLbl.Size = new System.Drawing.Size(60, 17);
+            this.VersionLbl.TabIndex = 26;
+            this.VersionLbl.Text = "Version:";
+            // 
+            // ManufacturerIDLbl
+            // 
+            this.ManufacturerIDLbl.AutoSize = true;
+            this.ManufacturerIDLbl.Location = new System.Drawing.Point(6, 286);
+            this.ManufacturerIDLbl.Name = "ManufacturerIDLbl";
+            this.ManufacturerIDLbl.Size = new System.Drawing.Size(113, 17);
+            this.ManufacturerIDLbl.TabIndex = 24;
+            this.ManufacturerIDLbl.Text = "Manufacturer ID:";
+            // 
+            // IdentificationNumberLbl
+            // 
+            this.IdentificationNumberLbl.AutoSize = true;
+            this.IdentificationNumberLbl.Location = new System.Drawing.Point(6, 260);
+            this.IdentificationNumberLbl.Name = "IdentificationNumberLbl";
+            this.IdentificationNumberLbl.Size = new System.Drawing.Size(145, 17);
+            this.IdentificationNumberLbl.TabIndex = 21;
+            this.IdentificationNumberLbl.Text = "Identification Number:";
+            // 
+            // PrimaryAddressLbl
+            // 
+            this.PrimaryAddressLbl.AutoSize = true;
+            this.PrimaryAddressLbl.Location = new System.Drawing.Point(3, 233);
+            this.PrimaryAddressLbl.Name = "PrimaryAddressLbl";
+            this.PrimaryAddressLbl.Size = new System.Drawing.Size(116, 17);
+            this.PrimaryAddressLbl.TabIndex = 19;
+            this.PrimaryAddressLbl.Text = "Primary Address:";
+            // 
+            // CapturePeriodLbl
+            // 
+            this.CapturePeriodLbl.AutoSize = true;
+            this.CapturePeriodLbl.Location = new System.Drawing.Point(3, 207);
+            this.CapturePeriodLbl.Name = "CapturePeriodLbl";
+            this.CapturePeriodLbl.Size = new System.Drawing.Size(107, 17);
+            this.CapturePeriodLbl.TabIndex = 17;
+            this.CapturePeriodLbl.Text = "Capture Period:";
+            // 
+            // MBusPortReferenceLbl
+            // 
+            this.MBusPortReferenceLbl.AutoSize = true;
+            this.MBusPortReferenceLbl.Location = new System.Drawing.Point(6, 50);
+            this.MBusPortReferenceLbl.Name = "MBusPortReferenceLbl";
+            this.MBusPortReferenceLbl.Size = new System.Drawing.Size(147, 17);
+            this.MBusPortReferenceLbl.TabIndex = 2;
+            this.MBusPortReferenceLbl.Text = "MBus Port Reference:";
+            // 
+            // LogicalNameLbl
+            // 
+            this.LogicalNameLbl.AutoSize = true;
+            this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
+            this.LogicalNameLbl.Name = "LogicalNameLbl";
+            this.LogicalNameLbl.Size = new System.Drawing.Size(98, 17);
+            this.LogicalNameLbl.TabIndex = 0;
+            this.LogicalNameLbl.Text = "Logical Name:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            // 
+            // EncryptionKeyTB
+            // 
+            this.EncryptionKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EncryptionKeyTB.Location = new System.Drawing.Point(153, 558);
+            this.EncryptionKeyTB.Name = "EncryptionKeyTB";
+            this.EncryptionKeyTB.Size = new System.Drawing.Size(137, 22);
+            this.EncryptionKeyTB.TabIndex = 44;
+            // 
+            // gxButton1
+            // 
+            this.gxButton1.Index = 7;
+            this.gxButton1.Location = new System.Drawing.Point(0, 557);
+            this.gxButton1.Name = "gxButton1";
+            this.gxButton1.Size = new System.Drawing.Size(148, 23);
+            this.gxButton1.TabIndex = 43;
+            this.gxButton1.Text = "Set encryption key";
+            this.gxButton1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Index = 2;
+            this.button1.Location = new System.Drawing.Point(0, 516);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 23);
+            this.button1.TabIndex = 42;
+            this.button1.Text = "Slave de-install";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // EncryptionKeyStatusTB
             // 
             this.EncryptionKeyStatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -290,7 +504,6 @@ namespace Gurux.DLMS.UI
             this.EncryptionKeyStatusTB.Location = new System.Drawing.Point(122, 466);
             this.EncryptionKeyStatusTB.Name = "EncryptionKeyStatusTB";
             this.EncryptionKeyStatusTB.NotifyChanges = false;
-            this.EncryptionKeyStatusTB.ReadOnly = true;
             this.EncryptionKeyStatusTB.Size = new System.Drawing.Size(168, 20);
             this.EncryptionKeyStatusTB.TabIndex = 38;
             this.EncryptionKeyStatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
@@ -575,6 +788,9 @@ namespace Gurux.DLMS.UI
             this.ResumeLayout(false);
 
         }
+        private void gxButton1_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
