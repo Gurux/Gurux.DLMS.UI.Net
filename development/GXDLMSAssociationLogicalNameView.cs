@@ -250,27 +250,6 @@ namespace Gurux.DLMS.UI
                     AuthenticationIdentifiedorganizationTb.ReadOnly = AuthenticationDLMSUATb.ReadOnly =
                     AuthenticationMechanismNameTb.ReadOnly = AuthenticationMechanismIdTb.ReadOnly = (access & AccessMode.Write) == 0;
             }
-            else if (index == 7)
-            {
-                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                bool enabled = false;
-                if (target.AuthenticationMechanismName.MechanismId == Authentication.Low)
-                {
-                    enabled = (access & AccessMode.Write) != 0;
-                    SecretLbl.Text = "Low Secret:";
-                }
-                else if (target.AuthenticationMechanismName.MechanismId == Authentication.High)
-                {
-                    enabled = Target.GetMethodAccess(2) == MethodAccessMode.Access;
-                    SecretLbl.Text = "High Secret:";
-                }
-                else
-                {
-                    SecretLbl.Text = "Secret:";
-                }
-                UpdatePwBtn.Enabled = enabled;
-                SecretTB.ReadOnly = !enabled;
-            }
             else if (index == 9)
             {
                 SecuritySetupCb.Enabled = (access & AccessMode.Write) != 0;
@@ -407,7 +386,8 @@ namespace Gurux.DLMS.UI
                 // Remove user from user list.
                 OnShowDialog(false, arg);
             }
-            if (arg.Action == ActionType.Write && arg.Index == 7)
+            if ((arg.Action == ActionType.Write && arg.Index == 7) ||
+                arg.Action == ActionType.Action && arg.Index == 2)
             {
                 DialogResult ret;
                 //Update pw.
@@ -424,16 +404,6 @@ namespace Gurux.DLMS.UI
                         value = GXDLMSTranslator.HexToBytes(SecretTB.Text);
                     }
                     GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                    if (target.AuthenticationMechanismName.MechanismId == Authentication.Low)
-                    {
-                        arg.Index = 7;
-                        arg.Action = ActionType.Write;
-                    }
-                    else
-                    {
-                        arg.Action = ActionType.Action;
-                        arg.Index = 2;
-                    }
                     if (arg.Action == ActionType.Write)
                     {
                         target.Secret = value;

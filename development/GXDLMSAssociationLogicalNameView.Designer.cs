@@ -32,6 +32,7 @@ namespace Gurux.DLMS.UI
             this.AttributeAccesssHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MethodAccessHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.UpdateHighPwBtn = new Gurux.DLMS.UI.GXButton();
             this.SecuritySetupCb = new System.Windows.Forms.ComboBox();
             this.SecretTB = new System.Windows.Forms.TextBox();
             this.SecretAsciiCb = new System.Windows.Forms.CheckBox();
@@ -221,6 +222,7 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.UpdateHighPwBtn);
             this.tabPage2.Controls.Add(this.SecuritySetupCb);
             this.tabPage2.Controls.Add(this.SecretTB);
             this.tabPage2.Controls.Add(this.SecretAsciiCb);
@@ -238,13 +240,23 @@ namespace Gurux.DLMS.UI
             this.tabPage2.Text = "General";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // UpdateHighPwBtn
+            // 
+            this.UpdateHighPwBtn.Index = 2;
+            this.UpdateHighPwBtn.Location = new System.Drawing.Point(260, 119);
+            this.UpdateHighPwBtn.Name = "UpdateHighPwBtn";
+            this.UpdateHighPwBtn.Size = new System.Drawing.Size(141, 23);
+            this.UpdateHighPwBtn.TabIndex = 36;
+            this.UpdateHighPwBtn.Text = "Update High password";
+            this.UpdateHighPwBtn.UseVisualStyleBackColor = true;
+            // 
             // SecuritySetupCb
             // 
             this.SecuritySetupCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SecuritySetupCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SecuritySetupCb.FormattingEnabled = true;
-            this.SecuritySetupCb.Location = new System.Drawing.Point(114, 120);
+            this.SecuritySetupCb.Location = new System.Drawing.Point(114, 148);
             this.SecuritySetupCb.Name = "SecuritySetupCb";
             this.SecuritySetupCb.Size = new System.Drawing.Size(243, 21);
             this.SecuritySetupCb.TabIndex = 35;
@@ -274,7 +286,7 @@ namespace Gurux.DLMS.UI
             // SecuritySetupReferenceLbl
             // 
             this.SecuritySetupReferenceLbl.AutoSize = true;
-            this.SecuritySetupReferenceLbl.Location = new System.Drawing.Point(8, 123);
+            this.SecuritySetupReferenceLbl.Location = new System.Drawing.Point(8, 151);
             this.SecuritySetupReferenceLbl.Name = "SecuritySetupReferenceLbl";
             this.SecuritySetupReferenceLbl.Size = new System.Drawing.Size(77, 13);
             this.SecuritySetupReferenceLbl.TabIndex = 24;
@@ -346,13 +358,12 @@ namespace Gurux.DLMS.UI
             // UpdatePwBtn
             // 
             this.UpdatePwBtn.Action = Gurux.DLMS.UI.ActionType.Write;
-            this.UpdatePwBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdatePwBtn.Index = 7;
-            this.UpdatePwBtn.Location = new System.Drawing.Point(363, 69);
+            this.UpdatePwBtn.Location = new System.Drawing.Point(114, 119);
             this.UpdatePwBtn.Name = "UpdatePwBtn";
-            this.UpdatePwBtn.Size = new System.Drawing.Size(75, 23);
+            this.UpdatePwBtn.Size = new System.Drawing.Size(140, 23);
             this.UpdatePwBtn.TabIndex = 28;
-            this.UpdatePwBtn.Text = "Update";
+            this.UpdatePwBtn.Text = "Update Low password";
             this.UpdatePwBtn.UseVisualStyleBackColor = true;
             // 
             // gxValueField1
@@ -363,7 +374,6 @@ namespace Gurux.DLMS.UI
             this.gxValueField1.Location = new System.Drawing.Point(114, 93);
             this.gxValueField1.Name = "gxValueField1";
             this.gxValueField1.NotifyChanges = false;
-            this.gxValueField1.ReadOnly = true;
             this.gxValueField1.Size = new System.Drawing.Size(243, 20);
             this.gxValueField1.TabIndex = 29;
             this.gxValueField1.Type = Gurux.DLMS.Enums.ValueFieldType.ListBox;
@@ -947,5 +957,6 @@ namespace Gurux.DLMS.UI
         private GXButton RemoveUserBtn;
         private GXButton AddObjectBtn;
         private GXButton RemoveObjectBtn;
+        private GXButton UpdateHighPwBtn;
     }
 }

@@ -144,6 +144,12 @@
   <data name="BlackListWarning" xml:space="preserve">
     <value>Are you sure that you want to add selected items to the black list?</value>
   </data>
+  <data name="CertificateFilterTxt" xml:space="preserve">
+    <value>Certificate Files (*.csr)|*.csr|All files (*.*)|*.*</value>
+  </data>
+  <data name="CertificateRemove" xml:space="preserve">
+    <value>Are you sure that you want to remove selected certificate(s)?</value>
+  </data>
   <data name="GeneralResetWarning" xml:space="preserve">
     <value>Are you sure that you want to reset the selected object?</value>
   </data>
@@ -182,6 +188,12 @@
   </data>
   <data name="InvalidTarget" xml:space="preserve">
     <value>Invalid target.</value>
+  </data>
+  <data name="PemFilterTxt" xml:space="preserve">
+    <value>Pem files (*.pem)|*.pem|All files (*.*)|*.*</value>
+  </data>
+  <data name="PrivateKeyRemove" xml:space="preserve">
+    <value>Are you sure that you want to remove selected private key(s)?</value>
   </data>
   <data name="ProfileGenericCaptureWarning" xml:space="preserve">
     <value>Are you sure that you want to capture current values?</value>

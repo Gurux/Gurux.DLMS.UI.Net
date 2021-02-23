@@ -32,73 +32,54 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.Objects.Enums;
 using System;
-using System.Net;
 using System.Windows.Forms;
 
-namespace Gurux.DLMS.UI
+namespace Gurux.DLMS.UI.Ecdsa
 {
-    public partial class GXTextDlg : Form
+    public partial class GXCertificateSigningRequestDlg : Form
     {
-        Type type = null;
-
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="caption">Window caption.</param>
-        /// <param name="label">Text label.</param>
-        /// <param name="value">Text Value.</param>
-        public GXTextDlg(string caption, string label, string value)
+        public GXCertificateSigningRequestDlg(byte[] value)
         {
             InitializeComponent();
-            this.Text = caption;
-            TextLbl.Text = label;
-            TextTb.Text = value;
+            SystemTitleTb.Text = GXDLMSTranslator.ToHex(value);
+        }
+
+        public byte[] SystemTitle
+        {
+            get;
+            private set;
         }
 
         /// <summary>
-        /// Constructor.
+        /// Selected certificate type.
         /// </summary>
-        /// <param name="caption">Window caption.</param>
-        /// <param name="label">Text label.</param>
-        /// <param name="value">Text Value.</param>
-        /// <param name="type">Data type.</param>
-        public GXTextDlg(string caption, string label, string value, Type type)
+        public CertificateType CertificateType
         {
-            InitializeComponent();
-            this.Text = caption;
-            TextLbl.Text = label;
-            TextTb.Text = value;
-            this.type = type;
-        }
-
-        public string GetValue()
-        {
-            return TextTb.Text;
+            get;
+            private set;
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (TextTb.Text.Length == 0)
+                SystemTitle = GXDLMSTranslator.HexToBytes(SystemTitleTb.Text);
+                if (SystemTitle.Length != 8)
                 {
-                    throw new ArgumentOutOfRangeException(TextLbl.Text + " is invalid.");
+                    throw new ArgumentOutOfRangeException("Invalid system title.");
                 }
-                if (type != null)
+                if (DigitalSignatureCb.Checked)
                 {
-                    if (type == typeof(byte[]))
-                    {
-                        GXDLMSTranslator.HexToBytes(TextTb.Text);
-                    }
-                    else if (type == typeof(IPAddress))
-                    {
-                        IPAddress.Parse(TextTb.Text);
-                    }
-                    else
-                    {
-                        Convert.ChangeType(TextTb.Text, type);
-                    }
+                    CertificateType = CertificateType.DigitalSignature;
+                }
+                else
+                {
+                    CertificateType = CertificateType.KeyAgreement;
                 }
             }
             catch (Exception ex)

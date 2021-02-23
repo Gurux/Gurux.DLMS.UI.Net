@@ -49,7 +49,7 @@ namespace Gurux.DLMS.UI
         /// </summary>
         private GXDlmsUi()
         {
-
+            GeneratorAddress = "https://certificates.gurux.fi/api/CertificateGenerator";
         }
 
         /// <summary>
@@ -60,6 +60,16 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        static public string GeneratorAddress
+        {
+            get;
+            set;
+        }
+
 
         static private bool Contains<T>(T[] arr, T value)
         {

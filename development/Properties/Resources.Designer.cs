@@ -142,6 +142,24 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Certificate Files (*.csr)|*.csr|All files (*.*)|*.*.
+        /// </summary>
+        internal static string CertificateFilterTxt {
+            get {
+                return ResourceManager.GetString("CertificateFilterTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to remove selected certificate(s)?.
+        /// </summary>
+        internal static string CertificateRemove {
+            get {
+                return ResourceManager.GetString("CertificateRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure that you want to reset the selected object?.
         /// </summary>
         internal static string GeneralResetWarning {
@@ -255,6 +273,24 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string InvalidTarget {
             get {
                 return ResourceManager.GetString("InvalidTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pem files (*.pem)|*.pem|All files (*.*)|*.*.
+        /// </summary>
+        internal static string PemFilterTxt {
+            get {
+                return ResourceManager.GetString("PemFilterTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to remove selected private key(s)?.
+        /// </summary>
+        internal static string PrivateKeyRemove {
+            get {
+                return ResourceManager.GetString("PrivateKeyRemove", resourceCulture);
             }
         }
         

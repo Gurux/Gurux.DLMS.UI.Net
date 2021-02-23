@@ -33,11 +33,8 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
 using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
@@ -317,7 +314,8 @@ namespace Gurux.DLMS.UI
                     li.SubItems.Add(item.WeakLinkCount.ToString());
                     li.SubItems.Add(item.ValidTime.ToString());
                     li.Tag = item;
-                    PrefixTable.Items.Add(li);
+                    Routing.Items.Add(li);
+                    Target.UpdateDirty(8, target.RoutingTable);
                     errorProvider1.SetError(Routing, Properties.Resources.ValueChangedTxt);
                 }
             }
@@ -336,6 +334,7 @@ namespace Gurux.DLMS.UI
             {
                 if (Routing.SelectedItems.Count != 0)
                 {
+                    GXDLMSG3Plc6LoWPan target = (GXDLMSG3Plc6LoWPan)Target;
                     ListViewItem li = Routing.SelectedItems[0];
                     GXDLMSRoutingTable item = (GXDLMSRoutingTable)li.Tag;
                     GXDLMSRoutingTableDlg dlg = new GXDLMSRoutingTableDlg(item);
@@ -348,6 +347,7 @@ namespace Gurux.DLMS.UI
                         li.SubItems[4].Text = item.WeakLinkCount.ToString();
                         li.SubItems[5].Text = item.ValidTime.ToString();
                         errorProvider1.SetError(Routing, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(8, target.RoutingTable);
                     }
                 }
             }
@@ -370,6 +370,7 @@ namespace Gurux.DLMS.UI
                     Routing.Items.Remove(Routing.SelectedItems[0]);
                     GXDLMSG3Plc6LoWPan target = Target as GXDLMSG3Plc6LoWPan;
                     target.RoutingTable.Remove(item);
+                    Target.UpdateDirty(8, target.RoutingTable);
                     errorProvider1.SetError(Routing, Properties.Resources.ValueChangedTxt);
                 }
             }

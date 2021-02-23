@@ -196,6 +196,7 @@ namespace Gurux.DLMS.UI
                     KeyTable.Items.Add(li);
                     GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                     target.KeyTable.Add(item);
+                    Target.UpdateDirty(5, target.KeyTable);
                     errorProvider1.SetError(KeyTable, Properties.Resources.ValueChangedTxt);
                 }
             }
@@ -214,6 +215,7 @@ namespace Gurux.DLMS.UI
             {
                 if (KeyTable.SelectedItems.Count != 0)
                 {
+                    GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                     ListViewItem li = KeyTable.SelectedItems[0];
                     GXKeyValuePair<byte, byte[]> item = (GXKeyValuePair<byte, byte[]>)li.Tag;
                     GXDLMSKeyTableDlg dlg = new GXDLMSKeyTableDlg(item);
@@ -223,6 +225,7 @@ namespace Gurux.DLMS.UI
                         item.Value = dlg.key;
                         li.SubItems[0].Text = item.Key.ToString();
                         li.SubItems[1].Text = GXDLMSTranslator.ToHex(item.Value);
+                        Target.UpdateDirty(5, target.KeyTable);
                         errorProvider1.SetError(KeyTable, Properties.Resources.ValueChangedTxt);
                     }
                 }
@@ -240,12 +243,13 @@ namespace Gurux.DLMS.UI
         {
             try
             {
+                GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                 while (KeyTable.SelectedItems.Count != 0)
                 {
                     GXKeyValuePair<byte, byte[]> item = (GXKeyValuePair<byte, byte[]>)KeyTable.SelectedItems[0].Tag;
                     KeyTable.Items.Remove(KeyTable.SelectedItems[0]);
-                    GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                     target.KeyTable.Remove(item);
+                    Target.UpdateDirty(5, target.KeyTable);
                     errorProvider1.SetError(KeyTable, Properties.Resources.ValueChangedTxt);
                 }
             }
@@ -266,12 +270,20 @@ namespace Gurux.DLMS.UI
                 GXDLMSNeighbourTableDlg dlg = new GXDLMSNeighbourTableDlg(item);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
+                    GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
+                    List<GXDLMSNeighbourTable> list = new List<GXDLMSNeighbourTable>();
+                    if (target.NeighbourTable != null)
+                    {
+                        list.AddRange(target.NeighbourTable);
+                    }
                     ListViewItem li = new ListViewItem(item.ShortAddress.ToString());
                     li.SubItems.Add(item.Enabled.ToString());
                     li.SubItems.Add(item.Modulation.ToString());
                     li.SubItems.Add(item.ToneMap);
                     li.Tag = item;
                     NeighbourTable.Items.Add(li);
+                    target.NeighbourTable = list.ToArray();
+                    Target.UpdateDirty(11, target.NeighbourTable);
                     errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                 }
             }
@@ -294,10 +306,12 @@ namespace Gurux.DLMS.UI
                     GXDLMSNeighbourTableDlg dlg = new GXDLMSNeighbourTableDlg(item);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
+                        GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                         li.SubItems[0].Text = item.ShortAddress.ToString();
                         li.SubItems[1].Text = item.Enabled.ToString();
                         li.SubItems[2].Text = item.Modulation.ToString();
                         li.SubItems[3].Text = item.ToneMap;
+                        Target.UpdateDirty(11, target.NeighbourTable);
                         errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                     }
                 }
@@ -314,11 +328,20 @@ namespace Gurux.DLMS.UI
         {
             try
             {
+                GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
+                List<GXDLMSNeighbourTable> list = new List<GXDLMSNeighbourTable>();
+                if (target.NeighbourTable != null)
+                {
+                    list.AddRange(target.NeighbourTable);
+                }
                 while (NeighbourTable.SelectedItems.Count != 0)
                 {
+                    list.Remove((GXDLMSNeighbourTable) NeighbourTable.SelectedItems[0].Tag);
                     NeighbourTable.Items.Remove(NeighbourTable.SelectedItems[0]);
                     errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                 }
+                target.NeighbourTable = list.ToArray();
+                Target.UpdateDirty(11, target.NeighbourTable);
             }
             catch (Exception ex)
             {

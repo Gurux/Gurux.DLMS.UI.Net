@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gurux.DLMS.UI</RootNamespace>
     <AssemblyName>Gurux.DLMS.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,15 +30,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2012.1601, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2012.1601\lib\net40\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2102.2301, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.9.0.2102.2301\lib\net46\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,6 +54,13 @@
     <Compile Include="Custom\GXDLMSUnixTimeView.Designer.cs">
       <DependentUpon>GXDLMSUnixTimeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ecdsa\GXDeviceCipheringSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXDeviceCipheringSettings.Designer.cs">
+      <DependentUpon>GXDeviceCipheringSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecdsa\IGXUpdater.cs" />
     <Compile Include="GXActionArgs.cs" />
     <Compile Include="GXButton.cs">
       <SubType>Component</SubType>
@@ -61,11 +71,29 @@
     <Compile Include="GXAccountCreditChargeDlg.Designer.cs">
       <DependentUpon>GXAccountCreditChargeDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ecdsa\GXCertificateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXCertificateForm.Designer.cs">
+      <DependentUpon>GXCertificateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecdsa\GXCertifigateGenerationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXCertifigateGenerationForm.Designer.cs">
+      <DependentUpon>GXCertifigateGenerationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXChargeTableDlg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GXChargeTableDlg.Designer.cs">
       <DependentUpon>GXChargeTableDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecdsa\GXCipheringSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXCipheringSettings.Designer.cs">
+      <DependentUpon>GXCipheringSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="GXClockPresetTimeDlg.cs">
       <SubType>Form</SubType>
@@ -157,11 +185,41 @@
     <Compile Include="GXDLMSUtilityTablesView.designer.cs">
       <DependentUpon>GXDLMSUtilityTablesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ecdsa\GXEcdsaKeysDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXEcdsaKeysDlg.Designer.cs">
+      <DependentUpon>GXEcdsaKeysDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecdsa\GXKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXKeyForm.Designer.cs">
+      <DependentUpon>GXKeyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecdsa\GXPrivateKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXPrivateKeyForm.Designer.cs">
+      <DependentUpon>GXPrivateKeyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GXRegisterMonitorTargetDlg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GXRegisterMonitorTargetDlg.Designer.cs">
       <DependentUpon>GXRegisterMonitorTargetDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecdsa\GXCertificateSigningRequestDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecdsa\GXCertificateSigningRequestDlg.Designer.cs">
+      <DependentUpon>GXCertificateSigningRequestDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXCertificateType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXCertificateType.Designer.cs">
+      <DependentUpon>GXCertificateType.cs</DependentUpon>
     </Compile>
     <Compile Include="SaudiArabia\GXDLMSMeterReadingParameterView.cs">
       <SubType>Form</SubType>
@@ -653,11 +711,23 @@
     <EmbeddedResource Include="Custom\GXDLMSUnixTimeView.resx">
       <DependentUpon>GXDLMSUnixTimeView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXDeviceCipheringSettings.resx">
+      <DependentUpon>GXDeviceCipheringSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXAccountCreditChargeDlg.resx">
       <DependentUpon>GXAccountCreditChargeDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXCertificateForm.resx">
+      <DependentUpon>GXCertificateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXCertifigateGenerationForm.resx">
+      <DependentUpon>GXCertifigateGenerationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXChargeTableDlg.resx">
       <DependentUpon>GXChargeTableDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXCipheringSettings.resx">
+      <DependentUpon>GXCipheringSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXClockPresetTimeDlg.resx">
       <DependentUpon>GXClockPresetTimeDlg.cs</DependentUpon>
@@ -704,8 +774,23 @@
     <EmbeddedResource Include="GXDLMSUtilityTablesView.resx">
       <DependentUpon>GXDLMSUtilityTablesView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXEcdsaKeysDlg.resx">
+      <DependentUpon>GXEcdsaKeysDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXKeyForm.resx">
+      <DependentUpon>GXKeyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXPrivateKeyForm.resx">
+      <DependentUpon>GXPrivateKeyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXRegisterMonitorTargetDlg.resx">
       <DependentUpon>GXRegisterMonitorTargetDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecdsa\GXCertificateSigningRequestDlg.resx">
+      <DependentUpon>GXCertificateSigningRequestDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXCertificateType.resx">
+      <DependentUpon>GXCertificateType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaudiArabia\GXDLMSMeterReadingParameterView.resx">
       <DependentUpon>GXDLMSMeterReadingParameterView.cs</DependentUpon>
