@@ -141,14 +141,23 @@
   <data name="ActivationSuccessful" xml:space="preserve">
     <value>Image activation succeeded.</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address:</value>
+  </data>
   <data name="BlackListWarning" xml:space="preserve">
     <value>Are you sure that you want to add selected items to the black list?</value>
+  </data>
+  <data name="CaptureWarning" xml:space="preserve">
+    <value>Are you sure that you want to capture the value?</value>
   </data>
   <data name="CertificateFilterTxt" xml:space="preserve">
     <value>Certificate Files (*.csr)|*.csr|All files (*.*)|*.*</value>
   </data>
   <data name="CertificateRemove" xml:space="preserve">
     <value>Are you sure that you want to remove selected certificate(s)?</value>
+  </data>
+  <data name="DeInstallMBusClient" xml:space="preserve">
+    <value>De-install M-Bus slave device.</value>
   </data>
   <data name="GeneralResetWarning" xml:space="preserve">
     <value>Are you sure that you want to reset the selected object?</value>
@@ -176,6 +185,9 @@
   </data>
   <data name="InstallManufacturersOnlineTxt" xml:space="preserve">
     <value>Device Manufacturer settings are not present. Do you want to install them online from Gurux Web?</value>
+  </data>
+  <data name="InstallMBusClient" xml:space="preserve">
+    <value>Install M-Bus slave device.</value>
   </data>
   <data name="InvalidASCII" xml:space="preserve">
     <value>Invalid ASCII characters.</value>
@@ -219,6 +231,9 @@
   <data name="RemoveObjectConfirmation" xml:space="preserve">
     <value>Are you sure that you want to remove selected object?</value>
   </data>
+  <data name="ResetAlarm" xml:space="preserve">
+    <value>Are you sure that you want to reset alarm?</value>
+  </data>
   <data name="RestartTxt" xml:space="preserve">
     <value>The application must be restarted to apply the changes.</value>
   </data>
@@ -233,6 +248,9 @@
   </data>
   <data name="SetPasswordWarning" xml:space="preserve">
     <value>Are you sure that you want to set new password?</value>
+  </data>
+  <data name="SynchronizeClock" xml:space="preserve">
+    <value>Are you sure that you want to synchronize the clock?</value>
   </data>
   <data name="TemporaryFailureTxt" xml:space="preserve">
     <value>Access Error : Device reports a temporary failure.</value>

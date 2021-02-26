@@ -133,11 +133,29 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address:.
+        /// </summary>
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure that you want to add selected items to the black list?.
         /// </summary>
         internal static string BlackListWarning {
             get {
                 return ResourceManager.GetString("BlackListWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to capture the value?.
+        /// </summary>
+        internal static string CaptureWarning {
+            get {
+                return ResourceManager.GetString("CaptureWarning", resourceCulture);
             }
         }
         
@@ -156,6 +174,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string CertificateRemove {
             get {
                 return ResourceManager.GetString("CertificateRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to De-install M-Bus slave device..
+        /// </summary>
+        internal static string DeInstallMBusClient {
+            get {
+                return ResourceManager.GetString("DeInstallMBusClient", resourceCulture);
             }
         }
         
@@ -237,6 +264,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string InstallManufacturersOnlineTxt {
             get {
                 return ResourceManager.GetString("InstallManufacturersOnlineTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install M-Bus slave device..
+        /// </summary>
+        internal static string InstallMBusClient {
+            get {
+                return ResourceManager.GetString("InstallMBusClient", resourceCulture);
             }
         }
         
@@ -367,6 +403,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to reset alarm?.
+        /// </summary>
+        internal static string ResetAlarm {
+            get {
+                return ResourceManager.GetString("ResetAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The application must be restarted to apply the changes..
         /// </summary>
         internal static string RestartTxt {
@@ -408,6 +453,15 @@ namespace Gurux.DLMS.UI.Properties {
         internal static string SetPasswordWarning {
             get {
                 return ResourceManager.GetString("SetPasswordWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to synchronize the clock?.
+        /// </summary>
+        internal static string SynchronizeClock {
+            get {
+                return ResourceManager.GetString("SynchronizeClock", resourceCulture);
             }
         }
         
