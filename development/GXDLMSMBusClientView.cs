@@ -287,6 +287,7 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSMBusClientView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SendBtn = new Gurux.DLMS.UI.GXButton();
             this.CaptureBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.TransferKeyBtn = new Gurux.DLMS.UI.GXButton();
@@ -327,7 +328,6 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.SendBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -379,6 +379,16 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MBus Client Object";
             this.groupBox1.UseCompatibleTextRendering = true;
+            // 
+            // SendBtn
+            // 
+            this.SendBtn.Index = 6;
+            this.SendBtn.Location = new System.Drawing.Point(372, 442);
+            this.SendBtn.Name = "SendBtn";
+            this.SendBtn.Size = new System.Drawing.Size(94, 23);
+            this.SendBtn.TabIndex = 16;
+            this.SendBtn.Text = "Send...";
+            this.SendBtn.UseVisualStyleBackColor = true;
             // 
             // CaptureBtn
             // 
@@ -535,8 +545,6 @@ namespace Gurux.DLMS.UI
             // 
             // ConfigurationTB
             // 
-            this.ConfigurationTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfigurationTB.Index = 13;
             this.ConfigurationTB.Location = new System.Drawing.Point(357, 334);
             this.ConfigurationTB.Name = "ConfigurationTB";
@@ -556,8 +564,6 @@ namespace Gurux.DLMS.UI
             // 
             // AlarmTB
             // 
-            this.AlarmTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.AlarmTB.Index = 12;
             this.AlarmTB.Location = new System.Drawing.Point(122, 334);
             this.AlarmTB.Name = "AlarmTB";
@@ -577,8 +583,6 @@ namespace Gurux.DLMS.UI
             // 
             // StatusTB
             // 
-            this.StatusTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.StatusTB.Index = 11;
             this.StatusTB.Location = new System.Drawing.Point(357, 308);
             this.StatusTB.Name = "StatusTB";
@@ -598,8 +602,6 @@ namespace Gurux.DLMS.UI
             // 
             // AccessNumberTB
             // 
-            this.AccessNumberTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.AccessNumberTB.Index = 10;
             this.AccessNumberTB.Location = new System.Drawing.Point(122, 308);
             this.AccessNumberTB.Name = "AccessNumberTB";
@@ -619,8 +621,6 @@ namespace Gurux.DLMS.UI
             // 
             // DeviceTypeTB
             // 
-            this.DeviceTypeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.DeviceTypeTB.Index = 9;
             this.DeviceTypeTB.Location = new System.Drawing.Point(357, 283);
             this.DeviceTypeTB.Name = "DeviceTypeTB";
@@ -640,8 +640,6 @@ namespace Gurux.DLMS.UI
             // 
             // VersionTB
             // 
-            this.VersionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.VersionTB.Index = 8;
             this.VersionTB.Location = new System.Drawing.Point(122, 283);
             this.VersionTB.Name = "VersionTB";
@@ -786,16 +784,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // SendBtn
-            // 
-            this.SendBtn.Index = 6;
-            this.SendBtn.Location = new System.Drawing.Point(372, 442);
-            this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(94, 23);
-            this.SendBtn.TabIndex = 16;
-            this.SendBtn.Text = "Send...";
-            this.SendBtn.UseVisualStyleBackColor = true;
             // 
             // GXDLMSMBusClientView
             // 
