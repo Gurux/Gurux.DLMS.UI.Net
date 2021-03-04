@@ -31,6 +31,8 @@
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CipheringTab = new System.Windows.Forms.TabPage();
+            this.SecuritySuiteCb = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SecurityCB = new System.Windows.Forms.ComboBox();
             this.SecurityLbl = new System.Windows.Forms.Label();
             this.CipheringPanel = new System.Windows.Forms.Panel();
@@ -56,7 +58,10 @@
             this.BlockCipherKeyLbl = new System.Windows.Forms.Label();
             this.CipheringV1Tab = new System.Windows.Forms.TabPage();
             this.Cipheringv1 = new System.Windows.Forms.Panel();
+            this.AuthenticationKeyAsciiCb = new System.Windows.Forms.CheckBox();
             this.KeyAgreementSchemeCb = new System.Windows.Forms.ComboBox();
+            this.AuthenticationKeyTB = new System.Windows.Forms.TextBox();
+            this.AuthenticationKeyLbl = new System.Windows.Forms.Label();
             this.SchemeLbl = new System.Windows.Forms.Label();
             this.ClientCertificateBtn = new System.Windows.Forms.Button();
             this.SystemTitleAsciiCb = new System.Windows.Forms.CheckBox();
@@ -80,11 +85,6 @@
             this.ClientAgreementKeysCb = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.SecuritySuiteCb = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.AuthenticationKeyAsciiCb = new System.Windows.Forms.CheckBox();
-            this.AuthenticationKeyTB = new System.Windows.Forms.TextBox();
-            this.AuthenticationKeyLbl = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.CipheringTab.SuspendLayout();
             this.CipheringV0Tab.SuspendLayout();
@@ -124,6 +124,25 @@
             this.CipheringTab.TabIndex = 2;
             this.CipheringTab.Text = "Ciphering";
             this.CipheringTab.UseVisualStyleBackColor = true;
+            // 
+            // SecuritySuiteCb
+            // 
+            this.SecuritySuiteCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SecuritySuiteCb.FormattingEnabled = true;
+            this.SecuritySuiteCb.Location = new System.Drawing.Point(93, 4);
+            this.SecuritySuiteCb.Name = "SecuritySuiteCb";
+            this.SecuritySuiteCb.Size = new System.Drawing.Size(118, 21);
+            this.SecuritySuiteCb.TabIndex = 91;
+            this.SecuritySuiteCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySuiteCb_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 92;
+            this.label1.Text = "Security Suite:";
             // 
             // SecurityCB
             // 
@@ -253,6 +272,7 @@
             this.UsePreEstablishedApplicationAssociations.TabIndex = 99;
             this.UsePreEstablishedApplicationAssociations.Text = "Pre-established Application Associations ";
             this.UsePreEstablishedApplicationAssociations.UseVisualStyleBackColor = true;
+            this.UsePreEstablishedApplicationAssociations.CheckedChanged += new System.EventHandler(this.UsePreEstablishedApplicationAssociations_CheckedChanged);
             // 
             // ChallengeTB
             // 
@@ -399,6 +419,17 @@
             this.Cipheringv1.Size = new System.Drawing.Size(440, 297);
             this.Cipheringv1.TabIndex = 82;
             // 
+            // AuthenticationKeyAsciiCb
+            // 
+            this.AuthenticationKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AuthenticationKeyAsciiCb.AutoSize = true;
+            this.AuthenticationKeyAsciiCb.Location = new System.Drawing.Point(345, 85);
+            this.AuthenticationKeyAsciiCb.Name = "AuthenticationKeyAsciiCb";
+            this.AuthenticationKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
+            this.AuthenticationKeyAsciiCb.TabIndex = 87;
+            this.AuthenticationKeyAsciiCb.Text = "ASCII";
+            this.AuthenticationKeyAsciiCb.UseVisualStyleBackColor = true;
+            // 
             // KeyAgreementSchemeCb
             // 
             this.KeyAgreementSchemeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -406,6 +437,24 @@
             this.KeyAgreementSchemeCb.Name = "KeyAgreementSchemeCb";
             this.KeyAgreementSchemeCb.Size = new System.Drawing.Size(172, 21);
             this.KeyAgreementSchemeCb.TabIndex = 0;
+            // 
+            // AuthenticationKeyTB
+            // 
+            this.AuthenticationKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AuthenticationKeyTB.Location = new System.Drawing.Point(108, 82);
+            this.AuthenticationKeyTB.Name = "AuthenticationKeyTB";
+            this.AuthenticationKeyTB.Size = new System.Drawing.Size(230, 20);
+            this.AuthenticationKeyTB.TabIndex = 86;
+            // 
+            // AuthenticationKeyLbl
+            // 
+            this.AuthenticationKeyLbl.AutoSize = true;
+            this.AuthenticationKeyLbl.Location = new System.Drawing.Point(3, 85);
+            this.AuthenticationKeyLbl.Name = "AuthenticationKeyLbl";
+            this.AuthenticationKeyLbl.Size = new System.Drawing.Size(99, 13);
+            this.AuthenticationKeyLbl.TabIndex = 88;
+            this.AuthenticationKeyLbl.Text = "Authentication Key:";
             // 
             // SchemeLbl
             // 
@@ -662,54 +711,6 @@
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 86;
             this.label3.Text = "Signing:";
-            // 
-            // SecuritySuiteCb
-            // 
-            this.SecuritySuiteCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SecuritySuiteCb.FormattingEnabled = true;
-            this.SecuritySuiteCb.Location = new System.Drawing.Point(93, 4);
-            this.SecuritySuiteCb.Name = "SecuritySuiteCb";
-            this.SecuritySuiteCb.Size = new System.Drawing.Size(118, 21);
-            this.SecuritySuiteCb.TabIndex = 91;
-            this.SecuritySuiteCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySuiteCb_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 92;
-            this.label1.Text = "Security Suite:";
-            // 
-            // AuthenticationKeyAsciiCb
-            // 
-            this.AuthenticationKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKeyAsciiCb.AutoSize = true;
-            this.AuthenticationKeyAsciiCb.Location = new System.Drawing.Point(345, 85);
-            this.AuthenticationKeyAsciiCb.Name = "AuthenticationKeyAsciiCb";
-            this.AuthenticationKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
-            this.AuthenticationKeyAsciiCb.TabIndex = 87;
-            this.AuthenticationKeyAsciiCb.Text = "ASCII";
-            this.AuthenticationKeyAsciiCb.UseVisualStyleBackColor = true;
-            // 
-            // AuthenticationKeyTB
-            // 
-            this.AuthenticationKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKeyTB.Location = new System.Drawing.Point(108, 82);
-            this.AuthenticationKeyTB.Name = "AuthenticationKeyTB";
-            this.AuthenticationKeyTB.Size = new System.Drawing.Size(230, 20);
-            this.AuthenticationKeyTB.TabIndex = 86;
-            // 
-            // AuthenticationKeyLbl
-            // 
-            this.AuthenticationKeyLbl.AutoSize = true;
-            this.AuthenticationKeyLbl.Location = new System.Drawing.Point(3, 85);
-            this.AuthenticationKeyLbl.Name = "AuthenticationKeyLbl";
-            this.AuthenticationKeyLbl.Size = new System.Drawing.Size(99, 13);
-            this.AuthenticationKeyLbl.TabIndex = 88;
-            this.AuthenticationKeyLbl.Text = "Authentication Key:";
             // 
             // GXDeviceCipheringSettings
             // 

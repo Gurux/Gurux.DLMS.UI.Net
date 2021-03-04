@@ -760,10 +760,19 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             if (_checkSystemTitle)
             {
+                string st;
+                if (SystemTitleAsciiCb.Checked)
+                {
+                    st = GXDLMSTranslator.ToHex(ASCIIEncoding.ASCII.GetBytes(SystemTitleTB.Text), false);
+                }
+                else
+                {
+                    st = SystemTitleTB.Text.Replace(" ", "");
+                }
                 if ((ClientSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> cv) && cv.Value != null)
                 {
-                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(cv.Value.Subject));
-                    if (SystemTitleTB.Text.Replace(" ", "") != certificateSt.Replace(" ", ""))
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(cv.Value.Subject), false);
+                    if (st != certificateSt)
                     {
                         if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
@@ -773,8 +782,8 @@ namespace Gurux.DLMS.UI.Ecdsa
                 }
                 if ((ClientAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ck) && ck.Value != null)
                 {
-                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ck.Value.Subject));
-                    if (SystemTitleTB.Text.Replace(" ", "") != certificateSt.Replace(" ", ""))
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ck.Value.Subject), false);
+                    if (st != certificateSt)
                     {
                         if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
@@ -1056,10 +1065,15 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     ItalySystemTitleTb.Text = GXDLMSConverter.SystemTitleToString(Standard.Italy, tmp, false);
                 }
+                else
+                {
+                    ItalySystemTitleTb.Text = "";
+                }
             }
             catch (Exception)
             {
                 //Ignore all exceptions.
+                ItalySystemTitleTb.Text = "";
             }
         }
     }
