@@ -314,6 +314,55 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        delegate void UpdatePasswordDialogEventHandler(GXActionArgs arg);
+
+        void OnUpdatePassword(GXActionArgs arg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new UpdatePasswordDialogEventHandler(OnUpdatePassword), arg).AsyncWaitHandle.WaitOne();
+            }
+            else
+            {
+                //Update pw.
+                GXTextDlg dlg;
+                if (arg.Action == ActionType.Write)
+                {
+                    dlg = new GXTextDlg("Update Low level password.", "Password", "");
+                }
+                else
+                {
+                    dlg = new GXTextDlg("Update High level password.", "Password", "");
+                }
+                arg.Handled = dlg.ShowDialog(Parent) != DialogResult.OK;
+                if (!arg.Handled)
+                {
+                    byte[] value;
+                    if (!dlg.GetValue().StartsWith("0x"))
+                    {
+                        value = ASCIIEncoding.ASCII.GetBytes(dlg.GetValue());
+                    }
+                    else
+                    {
+                        value = GXDLMSTranslator.HexToBytes(dlg.GetValue());
+                    }
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    if (arg.Action == ActionType.Write)
+                    {
+                        target.Secret = value;
+                    }
+                    else
+                    {
+                        GXByteBuffer bb = new GXByteBuffer();
+                        bb.SetUInt8((byte)DataType.OctetString);
+                        bb.SetUInt8((byte)value.Length);
+                        bb.Set(value);
+                        arg.Value = bb.Array();
+                    }
+                }
+            }
+        }
+
         delegate void ShowUserDialogEventHandler(bool addUser, GXActionArgs arg);
 
         void OnShowDialog(bool addUser, GXActionArgs arg)
@@ -389,42 +438,7 @@ namespace Gurux.DLMS.UI
             if ((arg.Action == ActionType.Write && arg.Index == 7) ||
                 arg.Action == ActionType.Action && arg.Index == 2)
             {
-                //Update pw.
-                GXTextDlg dlg;
-                if (arg.Action == ActionType.Write)
-                {
-                    dlg = new GXTextDlg("Update Low level password.", "Password", "");
-                }
-                else
-                {
-                    dlg = new GXTextDlg("Update High level password.", "Password", "");
-                }
-                arg.Handled = dlg.ShowDialog(Parent) != DialogResult.OK;
-                if (!arg.Handled)
-                {
-                    byte[] value;
-                    if (!dlg.GetValue().StartsWith("0x"))
-                    {
-                        value = ASCIIEncoding.ASCII.GetBytes(dlg.GetValue());
-                    }
-                    else
-                    {
-                        value = GXDLMSTranslator.HexToBytes(dlg.GetValue());
-                    }
-                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
-                    if (arg.Action == ActionType.Write)
-                    {
-                        target.Secret = value;
-                    }
-                    else
-                    {
-                        GXByteBuffer bb = new GXByteBuffer();
-                        bb.SetUInt8((byte)DataType.OctetString);
-                        bb.SetUInt8((byte)value.Length);
-                        bb.Set(value);
-                        arg.Value = bb.Array();
-                    }
-                }
+                OnUpdatePassword(arg);
             }
             else if (arg.Action == ActionType.Write && arg.Index == 2)
             {
