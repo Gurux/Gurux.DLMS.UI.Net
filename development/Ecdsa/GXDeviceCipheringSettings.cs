@@ -350,7 +350,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 if (SecuritySuite == SecuritySuite.GMac)
                 {
-                    return GetAsHex(ServerSystemTitle0.Text, SystemTitleAscii0Cb.Checked, false);
+                    return GetAsHex(ServerSystemTitle0.Text, false, false);
                 }
                 return GetAsHex(ServerSystemTitleTB.Text, false, false);
             }
