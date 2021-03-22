@@ -724,6 +724,11 @@ namespace Gurux.DLMS.UI
                     if (att == null || string.IsNullOrEmpty(att.Xml))
                     {
                         this.Type = ValueFieldType.TextBox;
+                        if (att != null)
+                        {
+                            att = target.Attributes.Find(index);
+                            att.UIValueType = ValueFieldType.TextBox;
+                        }
                         UpdateValueItems(target, index, value);
                     }
                     dataGridView1.ReadOnly = att != null && (att.Access & AccessMode.Write) == 0;

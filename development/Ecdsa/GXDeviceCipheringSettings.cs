@@ -267,17 +267,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                 DedicatedKeyTb.Text = value;
             }
         }
-        public bool PreEstablished
-        {
-            get
-            {
-                return UsePreEstablishedApplicationAssociations.Checked;
-            }
-            set
-            {
-                UsePreEstablishedApplicationAssociations.Checked = value;
-            }
-        }
 
         public bool DedicatedKeyAscii
         {
