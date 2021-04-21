@@ -27,7 +27,7 @@ namespace Gurux.DLMS.UI
         }
         #region Windows Form Designer generated code
         private GroupBox groupBox1;
-        private Label ServerAddressLbl;
+        private Label ServiceAddressLbl;
         private GXValueField LogicalNameTB;
         private ErrorProvider errorProvider1;
         private Label DescriptionLbl;
@@ -39,16 +39,16 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSLlcSscsSetupView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.BaseAddressLbl = new System.Windows.Forms.Label();
             this.BaseAddressTb = new Gurux.DLMS.UI.GXValueField();
-            this.ServerAddressTb = new Gurux.DLMS.UI.GXValueField();
+            this.ServiceAddressTb = new Gurux.DLMS.UI.GXValueField();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
-            this.ServerAddressLbl = new System.Windows.Forms.Label();
+            this.ServiceAddressLbl = new System.Windows.Forms.Label();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ResetBtn = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -61,10 +61,10 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.ResetBtn);
             this.groupBox1.Controls.Add(this.BaseAddressLbl);
             this.groupBox1.Controls.Add(this.BaseAddressTb);
-            this.groupBox1.Controls.Add(this.ServerAddressTb);
+            this.groupBox1.Controls.Add(this.ServiceAddressTb);
             this.groupBox1.Controls.Add(this.DescriptionLbl);
             this.groupBox1.Controls.Add(this.DescriptionTB);
-            this.groupBox1.Controls.Add(this.ServerAddressLbl);
+            this.groupBox1.Controls.Add(this.ServiceAddressLbl);
             this.groupBox1.Controls.Add(this.LogicalNameTB);
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -73,6 +73,17 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "LLC SSCS Setup Object";
+            // 
+            // ResetBtn
+            // 
+            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetBtn.Index = 1;
+            this.ResetBtn.Location = new System.Drawing.Point(200, 126);
+            this.ResetBtn.Name = "ResetBtn";
+            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.ResetBtn.TabIndex = 9;
+            this.ResetBtn.Text = "Reset";
+            this.ResetBtn.UseVisualStyleBackColor = true;
             // 
             // BaseAddressLbl
             // 
@@ -97,19 +108,19 @@ namespace Gurux.DLMS.UI
             this.BaseAddressTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
             this.BaseAddressTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
-            // ServerAddressTb
+            // ServiceAddressTb
             // 
-            this.ServerAddressTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ServiceAddressTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerAddressTb.Index = 2;
-            this.ServerAddressTb.Location = new System.Drawing.Point(104, 74);
-            this.ServerAddressTb.Name = "ServerAddressTb";
-            this.ServerAddressTb.NotifyChanges = false;
-            this.ServerAddressTb.Size = new System.Drawing.Size(171, 20);
-            this.ServerAddressTb.TabIndex = 6;
-            this.ServerAddressTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.ServerAddressTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ServerAddressTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            this.ServiceAddressTb.Index = 2;
+            this.ServiceAddressTb.Location = new System.Drawing.Point(104, 74);
+            this.ServiceAddressTb.Name = "ServiceAddressTb";
+            this.ServiceAddressTb.NotifyChanges = false;
+            this.ServiceAddressTb.Size = new System.Drawing.Size(171, 20);
+            this.ServiceAddressTb.TabIndex = 6;
+            this.ServiceAddressTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.ServiceAddressTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ServiceAddressTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // DescriptionLbl
             // 
@@ -130,14 +141,14 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Size = new System.Drawing.Size(172, 20);
             this.DescriptionTB.TabIndex = 1;
             // 
-            // ServerAddressLbl
+            // ServiceAddressLbl
             // 
-            this.ServerAddressLbl.AutoSize = true;
-            this.ServerAddressLbl.Location = new System.Drawing.Point(7, 74);
-            this.ServerAddressLbl.Name = "ServerAddressLbl";
-            this.ServerAddressLbl.Size = new System.Drawing.Size(82, 13);
-            this.ServerAddressLbl.TabIndex = 2;
-            this.ServerAddressLbl.Text = "Server Address:";
+            this.ServiceAddressLbl.AutoSize = true;
+            this.ServiceAddressLbl.Location = new System.Drawing.Point(7, 74);
+            this.ServiceAddressLbl.Name = "ServiceAddressLbl";
+            this.ServiceAddressLbl.Size = new System.Drawing.Size(87, 13);
+            this.ServiceAddressLbl.TabIndex = 2;
+            this.ServiceAddressLbl.Text = "Service Address:";
             // 
             // LogicalNameTB
             // 
@@ -166,17 +177,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // ResetBtn
-            // 
-            this.ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetBtn.Index = 1;
-            this.ResetBtn.Location = new System.Drawing.Point(200, 126);
-            this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.ResetBtn.TabIndex = 9;
-            this.ResetBtn.Text = "Reset";
-            this.ResetBtn.UseVisualStyleBackColor = true;
-            // 
             // GXDLMSLlcSscsSetupView
             // 
             this.ClientSize = new System.Drawing.Size(320, 201);
@@ -194,7 +194,7 @@ namespace Gurux.DLMS.UI
 
         private Label BaseAddressLbl;
         private GXValueField BaseAddressTb;
-        private GXValueField ServerAddressTb;
+        private GXValueField ServiceAddressTb;
         private GXButton ResetBtn;
     }
 }

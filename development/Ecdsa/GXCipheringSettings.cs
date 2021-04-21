@@ -618,7 +618,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         private void SecurityCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             _translator.Security = Security;
-            BlockCipherKeyTB.ReadOnly = _translator.Security == Security.None || _translator.Security == Security.Authentication;
+            BlockCipherKeyTB.ReadOnly = _translator.Security == Security.None;
             AuthenticationKey0TB.ReadOnly = _translator.Security == Security.None || _translator.Security == Security.Encryption;
         }
 

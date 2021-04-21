@@ -502,7 +502,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         private void SecurityCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             Security s = (Security)SecurityCB.SelectedItem;
-            BlockCipherKeyTB.ReadOnly = s == Security.None || s == Security.Authentication;
+            BlockCipherKeyTB.ReadOnly = s == Security.None;
             AuthenticationKeyTB.ReadOnly = AuthenticationKey0TB.ReadOnly = s == Security.None || s == Security.Encryption;
         }
 

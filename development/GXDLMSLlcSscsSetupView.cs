@@ -120,7 +120,7 @@ namespace Gurux.DLMS.UI
         {
             if (Dirty && index == 2)
             {
-                errorProvider1.SetError(ServerAddressTb, Properties.Resources.ValueChangedTxt);
+                errorProvider1.SetError(ServiceAddressTb, Properties.Resources.ValueChangedTxt);
             }
             else if (Dirty && index == 3)
             {
