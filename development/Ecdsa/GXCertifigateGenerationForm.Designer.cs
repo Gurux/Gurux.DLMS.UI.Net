@@ -35,6 +35,7 @@
             this.Pkcs10Tb = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ServerTlsCb = new System.Windows.Forms.RadioButton();
             this.KeyAgreementCb = new System.Windows.Forms.RadioButton();
             this.DigitalSignatureCb = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -42,6 +43,7 @@
             this.SystemTitleTb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
+            this.ClientTlsCb = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -104,19 +106,31 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.ClientTlsCb);
+            this.groupBox3.Controls.Add(this.ServerTlsCb);
             this.groupBox3.Controls.Add(this.KeyAgreementCb);
             this.groupBox3.Controls.Add(this.DigitalSignatureCb);
             this.groupBox3.Location = new System.Drawing.Point(18, 14);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(319, 55);
+            this.groupBox3.Size = new System.Drawing.Size(421, 55);
             this.groupBox3.TabIndex = 60;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Certificate type";
             // 
+            // ServerTlsCb
+            // 
+            this.ServerTlsCb.AutoSize = true;
+            this.ServerTlsCb.Location = new System.Drawing.Point(233, 23);
+            this.ServerTlsCb.Name = "ServerTlsCb";
+            this.ServerTlsCb.Size = new System.Drawing.Size(79, 17);
+            this.ServerTlsCb.TabIndex = 73;
+            this.ServerTlsCb.Text = "Server TLS";
+            this.ServerTlsCb.UseVisualStyleBackColor = true;
+            // 
             // KeyAgreementCb
             // 
             this.KeyAgreementCb.AutoSize = true;
-            this.KeyAgreementCb.Location = new System.Drawing.Point(130, 23);
+            this.KeyAgreementCb.Location = new System.Drawing.Point(125, 23);
             this.KeyAgreementCb.Name = "KeyAgreementCb";
             this.KeyAgreementCb.Size = new System.Drawing.Size(97, 17);
             this.KeyAgreementCb.TabIndex = 71;
@@ -140,9 +154,9 @@
             this.groupBox2.Controls.Add(this.CSRBtn);
             this.groupBox2.Controls.Add(this.SystemTitleTb);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(343, 14);
+            this.groupBox2.Location = new System.Drawing.Point(445, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(448, 55);
+            this.groupBox2.Size = new System.Drawing.Size(346, 55);
             this.groupBox2.TabIndex = 69;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Generate Certificate Signing Request from Private Key";
@@ -150,7 +164,7 @@
             // CSRBtn
             // 
             this.CSRBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CSRBtn.Location = new System.Drawing.Point(367, 20);
+            this.CSRBtn.Location = new System.Drawing.Point(265, 20);
             this.CSRBtn.Name = "CSRBtn";
             this.CSRBtn.Size = new System.Drawing.Size(75, 23);
             this.CSRBtn.TabIndex = 1;
@@ -160,15 +174,15 @@
             // 
             // SystemTitleTb
             // 
-            this.SystemTitleTb.Location = new System.Drawing.Point(93, 23);
+            this.SystemTitleTb.Location = new System.Drawing.Point(80, 23);
             this.SystemTitleTb.Name = "SystemTitleTb";
-            this.SystemTitleTb.Size = new System.Drawing.Size(200, 20);
+            this.SystemTitleTb.Size = new System.Drawing.Size(193, 20);
             this.SystemTitleTb.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 26);
+            this.label1.Location = new System.Drawing.Point(10, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 69;
@@ -184,6 +198,16 @@
             this.SaveBtn.Text = "Save...";
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            // 
+            // ClientTlsCb
+            // 
+            this.ClientTlsCb.AutoSize = true;
+            this.ClientTlsCb.Location = new System.Drawing.Point(325, 23);
+            this.ClientTlsCb.Name = "ClientTlsCb";
+            this.ClientTlsCb.Size = new System.Drawing.Size(74, 17);
+            this.ClientTlsCb.TabIndex = 74;
+            this.ClientTlsCb.Text = "Client TLS";
+            this.ClientTlsCb.UseVisualStyleBackColor = true;
             // 
             // GXCertifigateGenerationForm
             // 
@@ -227,5 +251,7 @@
         private System.Windows.Forms.RadioButton DigitalSignatureCb;
         private System.Windows.Forms.RadioButton KeyAgreementCb;
         private System.Windows.Forms.Button SaveBtn;
+        private System.Windows.Forms.RadioButton ServerTlsCb;
+        private System.Windows.Forms.RadioButton ClientTlsCb;
     }
 }

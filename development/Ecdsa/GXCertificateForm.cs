@@ -1,7 +1,10 @@
 ﻿using Gurux.DLMS.ASN;
 using Gurux.DLMS.ASN.Enums;
 using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -21,9 +24,27 @@ namespace Gurux.DLMS.UI.Ecdsa
             private set;
         }
 
+        Hashtable keys = new Hashtable();
+        //List of duplicate public keys.
+        Hashtable duplicate = new Hashtable();
+
         private void AddCertificate(GXx509Certificate cert, string path, string st)
         {
             ListViewItem li = new ListViewItem(cert.PublicKey.Scheme.ToString());
+            string tmp = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(cert.Subject));
+            tmp += ((int)cert.KeyUsage).ToString();
+            object tmp2 = keys[tmp];
+            //Show duplicate certificates.
+            if (tmp2 == null)
+            {
+                keys[tmp] = cert.KeyUsage;
+                duplicate[tmp] = li;
+            }
+            else
+            {
+                ((ListViewItem)duplicate[tmp]).BackColor = Color.Yellow;
+                li.BackColor = Color.Yellow;
+            }
             li.StateImageIndex = li.ImageIndex = 0;
             li.SubItems.Add(cert.SerialNumber.ToString());
             li.SubItems.Add(cert.Subject);
@@ -43,6 +64,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             li.SubItems.Add(sb.ToString());
             li.SubItems.Add(Path.GetFileNameWithoutExtension(path));
+            li.SubItems.Add(cert.Description);
             CertificatesList.Items.Add(li);
             li.Tag = path;
             if (st != null && cert.Subject.Contains(st))
@@ -74,8 +96,18 @@ namespace Gurux.DLMS.UI.Ecdsa
             Title = title;
             foreach (string p in Directory.GetFiles(CertificateFolder, "*.pem"))
             {
-                GXx509Certificate cert = GXx509Certificate.Load(p);
-                AddCertificate(cert, p, st);
+                try
+                {
+                    GXx509Certificate cert = GXx509Certificate.Load(p);
+                    AddCertificate(cert, p, st);
+                }
+                catch(Exception ex)
+                {
+                    ListViewItem li = new ListViewItem(new string[]{ex.Message, "", "", "", "", Path.GetFileNameWithoutExtension(p)});
+                    li.Tag = p;
+                    li.BackColor = Color.Red;
+                    CertificatesList.Items.Add(li);
+                }
             }
         }
 
@@ -86,10 +118,22 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             CertificatesList.Items.Clear();
             Certificates.Clear();
+            keys.Clear();
+            duplicate.Clear();
             foreach (string p in Directory.GetFiles(CertificateFolder, "*.pem"))
             {
-                GXx509Certificate cert = GXx509Certificate.Load(p);
-                AddCertificate(cert, p, null);
+                try
+                {
+                    GXx509Certificate cert = GXx509Certificate.Load(p);
+                    AddCertificate(cert, p, null);
+                }
+                catch (Exception ex)
+                {
+                    ListViewItem li = new ListViewItem(new string[] { ex.Message, "", "", "", "", Path.GetFileNameWithoutExtension(p) });
+                    li.Tag = p;
+                    li.BackColor = Color.Red;
+                    CertificatesList.Items.Add(li);
+                }
             }
         }
 
@@ -179,6 +223,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                         File.Delete((string)it.Tag);
                         it.Remove();
                     }
+                    RefreshCertificates();
                 }
             }
             catch (Exception ex)
@@ -237,6 +282,12 @@ namespace Gurux.DLMS.UI.Ecdsa
         internal void ShowInfo(GXx509Certificate cert)
         {
             StringBuilder sb = new StringBuilder();
+            if (!string.IsNullOrEmpty(cert.Description))
+            {
+                sb.AppendLine("Description:");
+                sb.AppendLine(cert.Description);
+                sb.AppendLine("");
+            }
             sb.AppendLine("Public key info:");
             sb.AppendLine(cert.ToString());
             MessageBox.Show(Parent, sb.ToString());
@@ -282,6 +333,39 @@ namespace Gurux.DLMS.UI.Ecdsa
         public void UpdateUI()
         {
             RefreshCertificates();
+        }
+
+        private void openContainingFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(CertificateFolder);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Parent, ex.Message);
+            }
+        }
+
+        private void descriptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ListViewItem it = CertificatesList.SelectedItems[0];
+                GXTextDlg dlg = new GXTextDlg("Certificate description.", "Certificate description:", it.SubItems[6].Text);
+                if (dlg.ShowDialog(Parent) == DialogResult.OK)
+                {
+                    string desc = dlg.GetValue();
+                    GXx509Certificate cert = GXx509Certificate.Load((string)it.Tag);
+                    cert.Description = desc;
+                    cert.Save((string)it.Tag);
+                    it.SubItems[6].Text = desc;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Parent, ex.Message);
+            }
         }
     }
 }

@@ -54,6 +54,7 @@ namespace Gurux.DLMS.UI
         public GXDLMSSecuritySetupView()
         {
             InitializeComponent();
+            SecurityPolicyCb.Items.AddRange(new object[] { SecurityPolicy.None, SecurityPolicy.Authenticated, SecurityPolicy.Encrypted, SecurityPolicy.AuthenticatedEncrypted });
         }
 
         #region IGXDLMSView Members
@@ -66,7 +67,16 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
-            if (index != 2)
+            if (index == 2)
+            {
+                SecurityPolicyCb.SelectedItem = (SecurityPolicy)value;
+            }
+            else if (index == 5)
+            {
+                GXDLMSSecuritySetup target = (GXDLMSSecuritySetup)Target;
+                SystemTitleDescriptionTb.Text = GXDLMSConverter.SystemTitleToString(Standard.DLMS, target.ServerSystemTitle, true);
+            }
+            else
             {
                 throw new IndexOutOfRangeException("index");
             }
@@ -77,7 +87,7 @@ namespace Gurux.DLMS.UI
         {
             if (arg.Index == 1)
             {
-                arg.Value = new GXEnum((byte) SecurityPolicyTB.Value);
+                arg.Value = new GXEnum((byte)SecurityPolicyCb.SelectedItem);
             }
             else if (arg.Index == 2)
             {
@@ -106,7 +116,7 @@ namespace Gurux.DLMS.UI
                 }
                 else
                 {
-                    arg.Value = SecurityPolicyTB.Value;
+                    arg.Value = SecurityPolicyCb.SelectedItem;
                 }
             }
             else if (arg.Action == ActionType.Action && arg.Index == 2)
@@ -117,7 +127,7 @@ namespace Gurux.DLMS.UI
                 }
                 else
                 {
-                    arg.Value = SecurityPolicyTB.Value;
+                    arg.Value = SecurityPolicyCb.SelectedItem;
                 }
             }
         }
@@ -169,9 +179,8 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
-            if (index == 2)
+            if (index == 2 || index == 5)
             {
-                SecurityPolicyTB.ReadOnly = !connected || Target.GetMethodAccess(1) == MethodAccessMode.NoAccess;
             }
             else
             {
@@ -181,6 +190,7 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
         {
+            SecurityPolicyCb.Enabled = connected && Target.GetMethodAccess(1) != MethodAccessMode.NoAccess;
         }
 
         #endregion

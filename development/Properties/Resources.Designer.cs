@@ -178,6 +178,26 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #Registration Authority.
+        ///#http://oid-info.com/get/2.16
+        ///#Name;OID
+        ///Algeria;{joint-iso-itu-t(2) country(16) dz(12)}
+        ///Andorra;{joint-iso-itu-t(2) country(16) ad(20)}
+        ///Argentina;{joint-iso-itu-t(2) country(16) ar(32)}
+        ///Australia;{iso(1) member-body(2) au(36)}
+        ///Austria;{iso(1) member-body(2) at(40)}
+        ///Bangladesh (the People&apos;s Republic of);{joint-iso-itu-t(2) country(16) bd(50));
+        ///Benin;{joint-iso-itu-t(2) country(16) bj(204)}
+        ///Bolivia (Plurinational State of);{joint-iso-itu-t(2) country(16) bo(68));
+        ///Brazil;{jo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to De-install M-Bus slave device..
         /// </summary>
         internal static string DeInstallMBusClient {

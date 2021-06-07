@@ -35,6 +35,8 @@
             this.KeyAddMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.KeyRenameMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.GetCertificateMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.InfoMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.openContainingFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.KeyRemoveMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -42,7 +44,8 @@
             this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KeyCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileNameCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.InfoMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.DescriptionCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.descriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.KeyMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,50 +56,66 @@
             this.KeyAddMnu,
             this.KeyRenameMnu,
             this.GetCertificateMnu,
+            this.descriptionToolStripMenuItem,
             this.InfoMnu,
+            this.openContainingFolderToolStripMenuItem,
             this.toolStripMenuItem2,
             this.KeyRemoveMnu});
             this.KeyMenu.Name = "contextMenuStrip1";
-            this.KeyMenu.Size = new System.Drawing.Size(159, 142);
+            this.KeyMenu.Size = new System.Drawing.Size(202, 208);
             this.KeyMenu.Opening += new System.ComponentModel.CancelEventHandler(this.KeyMenu_Opening);
             // 
             // GenerateKeyMnu
             // 
             this.GenerateKeyMnu.Name = "GenerateKeyMnu";
-            this.GenerateKeyMnu.Size = new System.Drawing.Size(180, 22);
+            this.GenerateKeyMnu.Size = new System.Drawing.Size(201, 22);
             this.GenerateKeyMnu.Text = "Generate...";
             this.GenerateKeyMnu.Click += new System.EventHandler(this.GenerateKeyMnu_Click);
             // 
             // KeyAddMnu
             // 
             this.KeyAddMnu.Name = "KeyAddMnu";
-            this.KeyAddMnu.Size = new System.Drawing.Size(180, 22);
+            this.KeyAddMnu.Size = new System.Drawing.Size(201, 22);
             this.KeyAddMnu.Text = "Add..";
             this.KeyAddMnu.Click += new System.EventHandler(this.KeyAddMnu_Click);
             // 
             // KeyRenameMnu
             // 
             this.KeyRenameMnu.Name = "KeyRenameMnu";
-            this.KeyRenameMnu.Size = new System.Drawing.Size(180, 22);
+            this.KeyRenameMnu.Size = new System.Drawing.Size(201, 22);
             this.KeyRenameMnu.Text = "Rename...";
             this.KeyRenameMnu.Click += new System.EventHandler(this.KeyRenameMnu_Click);
             // 
             // GetCertificateMnu
             // 
             this.GetCertificateMnu.Name = "GetCertificateMnu";
-            this.GetCertificateMnu.Size = new System.Drawing.Size(180, 22);
+            this.GetCertificateMnu.Size = new System.Drawing.Size(201, 22);
             this.GetCertificateMnu.Text = "Get Certificate...";
             this.GetCertificateMnu.Click += new System.EventHandler(this.GetCertificateMnu_Click);
+            // 
+            // InfoMnu
+            // 
+            this.InfoMnu.Name = "InfoMnu";
+            this.InfoMnu.Size = new System.Drawing.Size(201, 22);
+            this.InfoMnu.Text = "Info...";
+            this.InfoMnu.Click += new System.EventHandler(this.InfoMnu_Click);
+            // 
+            // openContainingFolderToolStripMenuItem
+            // 
+            this.openContainingFolderToolStripMenuItem.Name = "openContainingFolderToolStripMenuItem";
+            this.openContainingFolderToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.openContainingFolderToolStripMenuItem.Text = "Open Containing Folder";
+            this.openContainingFolderToolStripMenuItem.Click += new System.EventHandler(this.openContainingFolderToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(198, 6);
             // 
             // KeyRemoveMnu
             // 
             this.KeyRemoveMnu.Name = "KeyRemoveMnu";
-            this.KeyRemoveMnu.Size = new System.Drawing.Size(180, 22);
+            this.KeyRemoveMnu.Size = new System.Drawing.Size(201, 22);
             this.KeyRemoveMnu.Text = "Remove";
             this.KeyRemoveMnu.Click += new System.EventHandler(this.KeyRemoveMnu_Click);
             // 
@@ -112,7 +131,8 @@
             this.KeyList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Type,
             this.KeyCh,
-            this.FileNameCh});
+            this.FileNameCh,
+            this.DescriptionCh});
             this.KeyList.ContextMenuStrip = this.KeyMenu;
             this.KeyList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KeyList.FullRowSelect = true;
@@ -139,12 +159,17 @@
             this.FileNameCh.Text = "File name";
             this.FileNameCh.Width = 183;
             // 
-            // InfoMnu
+            // DescriptionCh
             // 
-            this.InfoMnu.Name = "InfoMnu";
-            this.InfoMnu.Size = new System.Drawing.Size(180, 22);
-            this.InfoMnu.Text = "Info...";
-            this.InfoMnu.Click += new System.EventHandler(this.InfoMnu_Click);
+            this.DescriptionCh.Text = "Description";
+            this.DescriptionCh.Width = 250;
+            // 
+            // descriptionToolStripMenuItem
+            // 
+            this.descriptionToolStripMenuItem.Name = "descriptionToolStripMenuItem";
+            this.descriptionToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.descriptionToolStripMenuItem.Text = "Description...";
+            this.descriptionToolStripMenuItem.Click += new System.EventHandler(this.descriptionToolStripMenuItem_Click);
             // 
             // GXKeyForm
             // 
@@ -176,5 +201,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem GetCertificateMnu;
         private System.Windows.Forms.ToolStripMenuItem InfoMnu;
+        private System.Windows.Forms.ToolStripMenuItem openContainingFolderToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader DescriptionCh;
+        private System.Windows.Forms.ToolStripMenuItem descriptionToolStripMenuItem;
     }
 }

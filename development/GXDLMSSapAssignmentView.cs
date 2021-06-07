@@ -91,16 +91,16 @@ namespace Gurux.DLMS.UI
 
         delegate void ShowUserDialogEventHandler(bool addUser, GXActionArgs arg);
 
-        void OnShowDialog(bool addUser, GXActionArgs arg)
+        void OnShowDialog(bool addSap, GXActionArgs arg)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new ShowUserDialogEventHandler(OnShowDialog), addUser, arg).AsyncWaitHandle.WaitOne();
+                BeginInvoke(new ShowUserDialogEventHandler(OnShowDialog), addSap, arg).AsyncWaitHandle.WaitOne();
             }
             else
             {
                 GXDLMSSapAssignment target = Target as GXDLMSSapAssignment;
-                if (addUser)
+                if (addSap)
                 {
                     GXSapDlg dlg = new GXSapDlg(0, "", false);
                     if (dlg.ShowDialog(this) == DialogResult.OK)

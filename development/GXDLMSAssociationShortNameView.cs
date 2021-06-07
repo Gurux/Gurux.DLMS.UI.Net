@@ -275,7 +275,7 @@ namespace Gurux.DLMS.UI
                     GXDLMSAssociationShortName target = Target as GXDLMSAssociationShortName;
                     ListViewItem li = ObjectsView.SelectedItems[0];
                     GXDLMSObject it = (GXDLMSObject)li.Tag;
-                    GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, false, false);
+                    GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(target, it, false, false);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         it = dlg.GetTarget();

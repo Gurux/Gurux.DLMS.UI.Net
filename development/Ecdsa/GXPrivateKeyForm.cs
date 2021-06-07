@@ -29,8 +29,8 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 PrivateKey.Text = "";
                 GeneratedKeyTb.Text = "";
-                KeyValuePair<GXPrivateKey, GXPublicKey> k = GXEcdsa.GenerateKeyPair(Key256.Checked ? Ecc.P256 : Ecc.P384);
-                GXEcdsa.Validate(k.Value);
+                KeyValuePair<GXPublicKey, GXPrivateKey> k = GXEcdsa.GenerateKeyPair(Key256.Checked ? Ecc.P256 : Ecc.P384);
+                GXEcdsa.Validate(k.Key);
                 Key = new GXPkcs8(k);
                 GXEcdsa.Validate(Key.PublicKey);
                 PrivateKey.Text = Key.ToPem();
@@ -64,9 +64,9 @@ namespace Gurux.DLMS.UI.Ecdsa
                 GeneratedKeyTb.Text = "";
                 if (string.IsNullOrEmpty(PrivateKey.Text))
                 {
-                    KeyValuePair<GXPrivateKey, GXPublicKey> k = GXEcdsa.GenerateKeyPair(Key256.Checked ? Ecc.P256 : Ecc.P384);
+                    KeyValuePair<GXPublicKey, GXPrivateKey> k = GXEcdsa.GenerateKeyPair(Key256.Checked ? Ecc.P256 : Ecc.P384);
                     Key = new GXPkcs8(k);
-                    GXEcdsa.Validate(k.Value);
+                    GXEcdsa.Validate(k.Key);
                 }
                 else
                 {

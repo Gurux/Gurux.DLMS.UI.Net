@@ -1,4 +1,5 @@
 ﻿using Gurux.DLMS.ASN;
+using Gurux.DLMS.ASN.Enums;
 using Gurux.DLMS.Objects.Enums;
 using System;
 using System.IO;
@@ -46,7 +47,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             cf = new GXCertificateForm(this, _address, certificatesFolder, title, _systemTitle);
             // Certificate is not generated if the certificate is found for the given system title.
-            if (_systemTitle != null && cf.Certificates.FindBySystemTitle(_systemTitle) != null)
+            if (_systemTitle != null && cf.Certificates.FindBySystemTitle(_systemTitle, KeyUsage.None) != null)
             {
                 _systemTitle = null;
             }

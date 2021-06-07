@@ -32,6 +32,7 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.ASN.Enums;
 using Gurux.DLMS.Objects.Enums;
 using System;
 using System.Windows.Forms;
@@ -64,6 +65,15 @@ namespace Gurux.DLMS.UI.Ecdsa
             private set;
         }
 
+        /// <summary>
+        /// Is TLS for the server or the client.
+        /// </summary>
+        public ExtendedKeyUsage ExtendedKeyUsage
+        {
+            get;
+            private set;
+        }
+
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
@@ -77,9 +87,21 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     CertificateType = CertificateType.DigitalSignature;
                 }
-                else
+                else if (KeyAgreementCb.Checked)
                 {
                     CertificateType = CertificateType.KeyAgreement;
+                }
+                else
+                {
+                    if (ServerTlsCb.Checked)
+                    {
+                        ExtendedKeyUsage = ExtendedKeyUsage.ServerAuth;
+                    }
+                    else
+                    {
+                        ExtendedKeyUsage = ExtendedKeyUsage.ClientAuth;
+                    }
+                    CertificateType = CertificateType.TLS;
                 }
             }
             catch (Exception ex)

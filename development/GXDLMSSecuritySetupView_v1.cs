@@ -43,14 +43,15 @@ using Gurux.DLMS.ASN;
 using Gurux.DLMS.UI.Ecdsa;
 using System.Numerics;
 using System.Text;
+using Gurux.DLMS.ASN.Enums;
 
 namespace Gurux.DLMS.UI
 {
     /// <summary>
     /// Online help:
-    /// https://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSSecuritySetup
+    /// https://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSSecuritySetup1
     /// </summary>
-    [GXDLMSViewAttribute(typeof(GXDLMSSecuritySetup), 1)]
+    [GXDLMSViewAttribute(typeof(GXDLMSSecuritySetup1), 1)]
     partial class GXDLMSSecuritySetupView_v1 : Form, IGXDLMSView
     {
         string path = null;
@@ -65,12 +66,12 @@ namespace Gurux.DLMS.UI
         public GXDLMSSecuritySetupView_v1()
         {
             InitializeComponent();
-            SecurityPolicyTB.Items.Add(SecurityPolicy.AuthenticatedRequest);
-            SecurityPolicyTB.Items.Add(SecurityPolicy.EncryptedRequest);
-            SecurityPolicyTB.Items.Add(SecurityPolicy.DigitallySignedRequest);
-            SecurityPolicyTB.Items.Add(SecurityPolicy.AuthenticatedResponse);
-            SecurityPolicyTB.Items.Add(SecurityPolicy.EncryptedResponse);
-            SecurityPolicyTB.Items.Add(SecurityPolicy.DigitallySignedResponse);
+            SecurityPolicyTB.Items.Add(SecurityPolicy1.AuthenticatedRequest);
+            SecurityPolicyTB.Items.Add(SecurityPolicy1.EncryptedRequest);
+            SecurityPolicyTB.Items.Add(SecurityPolicy1.DigitallySignedRequest);
+            SecurityPolicyTB.Items.Add(SecurityPolicy1.AuthenticatedResponse);
+            SecurityPolicyTB.Items.Add(SecurityPolicy1.EncryptedResponse);
+            SecurityPolicyTB.Items.Add(SecurityPolicy1.DigitallySignedResponse);
         }
 
         #region IGXDLMSView Members
@@ -83,7 +84,7 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
-            GXDLMSSecuritySetup target = (GXDLMSSecuritySetup)Target;
+            GXDLMSSecuritySetup1 target = (GXDLMSSecuritySetup1)Target;
             if (index == 6)
             {
                 CertificatesLv.Items.Clear();
@@ -103,12 +104,16 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 2)
             {
-                SecurityPolicyTB.SetItemChecked(0, (target.SecurityPolicy & SecurityPolicy.AuthenticatedRequest) != 0);
-                SecurityPolicyTB.SetItemChecked(1, (target.SecurityPolicy & SecurityPolicy.EncryptedRequest) != 0);
-                SecurityPolicyTB.SetItemChecked(2, (target.SecurityPolicy & SecurityPolicy.DigitallySignedRequest) != 0);
-                SecurityPolicyTB.SetItemChecked(3, (target.SecurityPolicy & SecurityPolicy.AuthenticatedResponse) != 0);
-                SecurityPolicyTB.SetItemChecked(4, (target.SecurityPolicy & SecurityPolicy.EncryptedResponse) != 0);
-                SecurityPolicyTB.SetItemChecked(5, (target.SecurityPolicy & SecurityPolicy.DigitallySignedResponse) != 0);
+                SecurityPolicyTB.SetItemChecked(0, (target.SecurityPolicy & SecurityPolicy1.AuthenticatedRequest) != 0);
+                SecurityPolicyTB.SetItemChecked(1, (target.SecurityPolicy & SecurityPolicy1.EncryptedRequest) != 0);
+                SecurityPolicyTB.SetItemChecked(2, (target.SecurityPolicy & SecurityPolicy1.DigitallySignedRequest) != 0);
+                SecurityPolicyTB.SetItemChecked(3, (target.SecurityPolicy & SecurityPolicy1.AuthenticatedResponse) != 0);
+                SecurityPolicyTB.SetItemChecked(4, (target.SecurityPolicy & SecurityPolicy1.EncryptedResponse) != 0);
+                SecurityPolicyTB.SetItemChecked(5, (target.SecurityPolicy & SecurityPolicy1.DigitallySignedResponse) != 0);
+            }
+            else if (index == 5)
+            {
+                SystemTitleDescriptionTb.Text = GXDLMSConverter.SystemTitleToString(Standard.DLMS, target.ServerSystemTitle, true);
             }
             else
             {
@@ -137,7 +142,7 @@ namespace Gurux.DLMS.UI
                     {
                         List<KeyValuePair<GlobalKeyType, byte[]>> list = new List<KeyValuePair<GlobalKeyType, byte[]>>();
                         list.Add(new KeyValuePair<GlobalKeyType, byte[]>(dlg.Type, dlg.Key));
-                        arg.Value = (Target as GXDLMSSecuritySetup).GlobalKeyTransfer(arg.Client, dlg.Kek, list);
+                        arg.Value = (Target as GXDLMSSecuritySetup1).GlobalKeyTransfer(arg.Client, dlg.Kek, list);
                     }
                     else
                     {
@@ -149,7 +154,7 @@ namespace Gurux.DLMS.UI
                     GXCertificateType dlg = new GXCertificateType("Generate key pair");
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
-                        arg.Value = (Target as GXDLMSSecuritySetup).GenerateKeyPair(arg.Client, dlg.GetValue());
+                        arg.Value = (Target as GXDLMSSecuritySetup1).GenerateKeyPair(arg.Client, dlg.GetValue());
                     }
                     else
                     {
@@ -162,7 +167,7 @@ namespace Gurux.DLMS.UI
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         _certificateType = dlg.GetValue();
-                        arg.Value = (Target as GXDLMSSecuritySetup).GenerateCertificate(arg.Client, _certificateType);
+                        arg.Value = (Target as GXDLMSSecuritySetup1).GenerateCertificate(arg.Client, _certificateType);
                     }
                     else
                     {
@@ -176,7 +181,7 @@ namespace Gurux.DLMS.UI
                         throw new Exception("Failed to export certificate. Select certificate to export.");
                     }
                     GXDLMSCertificateInfo cert = (GXDLMSCertificateInfo)CertificatesLv.SelectedItems[0].Tag;
-                    arg.Value = (Target as GXDLMSSecuritySetup).ExportCertificateBySerial(arg.Client, cert.SerialNumber,
+                    arg.Value = (Target as GXDLMSSecuritySetup1).ExportCertificateBySerial(arg.Client, cert.SerialNumber,
                         ASCIIEncoding.ASCII.GetBytes(cert.Issuer));
                 }
                 else if (arg.Index == 8)
@@ -187,7 +192,7 @@ namespace Gurux.DLMS.UI
                     }
                     GXDLMSCertificateInfo cert = (GXDLMSCertificateInfo)CertificatesLv.SelectedItems[0].Tag;
                     CertificatesLv.SelectedItems[0].Remove();
-                    arg.Value = (Target as GXDLMSSecuritySetup).RemoveCertificateBySerial(arg.Client, cert.SerialNumber,
+                    arg.Value = (Target as GXDLMSSecuritySetup1).RemoveCertificateBySerial(arg.Client, cert.SerialNumber,
                         ASCIIEncoding.ASCII.GetBytes(cert.Issuer));
                 }
             }
@@ -222,7 +227,7 @@ namespace Gurux.DLMS.UI
                     foreach (string fileName in dlg.FileNames)
                     {
                         GXx509Certificate cert = GXx509Certificate.Load(fileName);
-                        arg.Value = ((GXDLMSSecuritySetup)arg.Target).ImportCertificate(arg.Client, cert);
+                        arg.Value = ((GXDLMSSecuritySetup1)arg.Target).ImportCertificate(arg.Client, cert);
                     }
                 }
                 else
@@ -261,13 +266,17 @@ namespace Gurux.DLMS.UI
                         throw new Exception("System title isn't included in Common name.");
                     }
                     string name;
-                    if (dlg2.Certificate.KeyUsage == ASN.Enums.KeyUsage.DigitalSignature)
+                    if (dlg2.Certificate.KeyUsage == KeyUsage.DigitalSignature)
                     {
                         name = "D";
                     }
-                    else if (dlg2.Certificate.KeyUsage == ASN.Enums.KeyUsage.KeyAgreement)
+                    else if (dlg2.Certificate.KeyUsage == KeyUsage.KeyAgreement)
                     {
                         name = "A";
+                    }
+                    else if (dlg2.Certificate.KeyUsage == (KeyUsage)(KeyUsage.KeyAgreement | KeyUsage.DigitalSignature))
+                    {
+                        name = "T";
                     }
                     else
                     {
@@ -281,35 +290,9 @@ namespace Gurux.DLMS.UI
                     if (dlg.ShowDialog(Parent) == DialogResult.OK)
                     {
                         dlg2.Certificate.Save(dlg.FileName);
+                        path = dlg.FileName;
                     }
-                    //                    string path = dlg.Certificate.Subject;
-                    //                  path = path.Replace("CN=", "");
-                    //                    path = Path.Combine(CertificateFolder, path) + ".pem";
-                    //                dlg.Certificate.Save(path);
-                    //                    AddCertificate(dlg.Certificate, path, null);
                 }
-
-                //GXCertifigateGenerationForm
-                /*
-                                SaveFileDialog dlg = new SaveFileDialog();
-                                if (string.IsNullOrEmpty(path))
-                                {
-                                    dlg.InitialDirectory = Directory.GetCurrentDirectory();
-                                }
-                                else
-                                {
-                                    FileInfo fi = new FileInfo(path);
-                                    dlg.InitialDirectory = fi.DirectoryName;
-                                    dlg.FileName = fi.Name;
-                                }
-                                dlg.Filter = Properties.Resources.CertificateFilterTxt;
-                                dlg.DefaultExt = ".csr";
-                                dlg.ValidateNames = true;
-                                if (dlg.ShowDialog(Parent) == DialogResult.OK)
-                                {
-                                    csr.Save(dlg.FileName);
-                                }
-                */
             }
             catch (Exception ex)
             {
@@ -357,6 +340,7 @@ namespace Gurux.DLMS.UI
                 if (dlg.ShowDialog(Parent) == DialogResult.OK)
                 {
                     csr.Save(dlg.FileName);
+                    path = dlg.FileName;
                 }
             }
             catch (Exception ex)
@@ -482,6 +466,9 @@ namespace Gurux.DLMS.UI
             if (index == 2)
             {
                 SecurityPolicyTB.Enabled = !(!connected || Target.GetMethodAccess(1) == MethodAccessMode.NoAccess);
+            }
+            else if (index == 5)
+            {
             }
             else if (index != 6)
             {

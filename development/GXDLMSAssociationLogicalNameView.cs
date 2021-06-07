@@ -38,6 +38,7 @@ using System.Windows.Forms;
 using Gurux.DLMS.Objects;
 using Gurux.DLMS.Enums;
 using System.Collections.Generic;
+using Gurux.DLMS.Objects.Enums;
 
 namespace Gurux.DLMS.UI
 {
@@ -48,12 +49,50 @@ namespace Gurux.DLMS.UI
     [GXDLMSViewAttribute(typeof(GXDLMSAssociationLogicalName))]
     partial class GXDLMSAssociationLogicalNameView : Form, IGXDLMSView
     {
+
+        class Country
+        {
+            public string Name = "";
+            public byte JointIsoCtt;
+            public byte CountryElement;
+            public UInt16 CountryName;
+
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
+
+        List<Country> Countries = new List<Country>();
+
         /// <summary>
         /// Constructor.
         /// </summary>
         public GXDLMSAssociationLogicalNameView()
         {
             InitializeComponent();
+            string[] countries = Properties.Resources.Country.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string it in countries)
+            {
+                if (!it.StartsWith("#"))
+                {
+                    Country c = new Country();
+                    string[] data = it.Split(new char[] { ';' });
+                    c.Name = data[0];
+                    string[] items = data[1].Split('.');
+                    c.JointIsoCtt = byte.Parse(items[0]);
+                    c.CountryElement = byte.Parse(items[1]);
+                    c.CountryName = UInt16.Parse(items[2].Substring(3, items[2].Length - 4));
+                    Countries.Add(c);
+                    ApplicationRegistrationAuthorityCb.Items.Add(c);
+                    AuthenticationRegistrationAuthorityCb.Items.Add(c);
+                }
+            }
+
+            foreach (var it in Enum.GetValues(typeof(Authentication)))
+            {
+                AuthenticationMechanismIdCb.Items.Add(it);
+            }
         }
 
         #region IGXDLMSView Members
@@ -62,6 +101,43 @@ namespace Gurux.DLMS.UI
         {
             get;
             set;
+        }
+
+        Country FindCountry(byte jointIsoCtt, byte countryElement, UInt16 countryName)
+        {
+            foreach (var it in Countries)
+            {
+                if (it.JointIsoCtt == jointIsoCtt && it.CountryElement == countryElement && it.CountryName == countryName)
+                {
+                    return it;
+                }
+            }
+            return null;
+        }
+
+        private bool Freeze;
+
+        private void ShowConformance(Conformance c)
+        {
+            Freeze = true;
+            GeneralProtectionCB.Checked = (c & Conformance.GeneralProtection) != 0;
+            GeneralBlockTransferCB.Checked = (c & Conformance.GeneralBlockTransfer) != 0;
+            Attribute0SetReferencingCB.Checked = (c & Conformance.Attribute0SupportedWithSet) != 0;
+            PriorityManagementCB.Checked = (c & Conformance.PriorityMgmtSupported) != 0;
+            Attribute0GetReferencingCB.Checked = (c & Conformance.Attribute0SupportedWithGet) != 0;
+            GetBlockTransferCB.Checked = (c & Conformance.BlockTransferWithGetOrRead) != 0;
+            SetBlockTransferCB.Checked = (c & Conformance.BlockTransferWithSetOrWrite) != 0;
+            ActionBlockTransferCB.Checked = (c & Conformance.BlockTransferWithAction) != 0;
+            MultipleReferencesCB.Checked = (c & Conformance.MultipleReferences) != 0;
+            DataNotificationCB.Checked = (c & Conformance.DataNotification) != 0;
+            AccessCB.Checked = (c & Conformance.Access) != 0;
+            GetCB.Checked = (c & Conformance.Get) != 0;
+            SetCB.Checked = (c & Conformance.Set) != 0;
+            SelectiveAccessCB.Checked = (c & Conformance.SelectiveAccess) != 0;
+            EventNotificationCB.Checked = (c & Conformance.EventNotification) != 0;
+            ActionCB.Checked = (c & Conformance.Action) != 0;
+            DeltaValueEncodingCb.Checked = (c & Conformance.DeltaValueEncoding) != 0;
+            Freeze = false;
         }
 
         public void OnValueChanged(int index, object value, bool user, bool connected)
@@ -92,8 +168,16 @@ namespace Gurux.DLMS.UI
                                 {
                                     str += ", ";
                                 }
-                                AccessMode mode = it.GetAccess(pos);
-                                str += pos.ToString() + " = " + mode;
+                                if (target.Version < 3)
+                                {
+                                    AccessMode mode = it.GetAccess(pos);
+                                    str += pos.ToString() + " = " + mode;
+                                }
+                                else
+                                {
+                                    AccessMode3 mode = it.GetAccess3(pos);
+                                    str += pos.ToString() + " = " + mode;
+                                }
                             }
                             li.SubItems.Add(str);
                             //Show method access.
@@ -105,8 +189,16 @@ namespace Gurux.DLMS.UI
                                 {
                                     str += ", ";
                                 }
-                                MethodAccessMode mode = it.GetMethodAccess(pos);
-                                str += pos.ToString() + " = " + mode;
+                                if (target.Version < 3)
+                                {
+                                    MethodAccessMode mode = it.GetMethodAccess(pos);
+                                    str += pos.ToString() + " = " + mode;
+                                }
+                                else
+                                {
+                                    MethodAccessMode3 mode = it.GetMethodAccess3(pos);
+                                    str += pos.ToString() + " = " + mode;
+                                }
                             }
                             li.SubItems.Add(str);
                         }
@@ -121,19 +213,40 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 4)
             {
-                // Application context name.
-                ApplicationJointISOCTTTb.Text = Convert.ToString(target.ApplicationContextName.JointIsoCtt);
-                ApplicationCountryTb.Text = Convert.ToString(target.ApplicationContextName.Country);
-                ApplicationCountryNameTb.Text = Convert.ToString(target.ApplicationContextName.CountryName);
-                ApplicationIdentifiedOrganizationTb.Text = Convert.ToString(target.ApplicationContextName.IdentifiedOrganization);
-                ApplicationDLMSUATb.Text = Convert.ToString(target.ApplicationContextName.DlmsUA);
-                ApplicationContextTb.Text = Convert.ToString(target.ApplicationContextName.ApplicationContext);
-                ApplicationContextIDTb.Text = Convert.ToString(target.ApplicationContextName.ContextId);
+                try
+                {
+                    this.ApplicationContextIDCb.SelectedIndexChanged -= new System.EventHandler(this.ApplicationContextIDCb_SelectedIndexChanged);
+                    ApplicationContextIDCb.Items.Clear();
+                    if (target.ApplicationContextName.ContextId == ApplicationContextName.LogicalName ||
+                        target.ApplicationContextName.ContextId == ApplicationContextName.LogicalNameWithCiphering)
+                    {
+                        ApplicationContextIDCb.Items.AddRange(new object[] {
+                        ApplicationContextName.LogicalName, ApplicationContextName.LogicalNameWithCiphering});
+                    }
+                    else
+                    {
+                        ApplicationContextIDCb.Items.AddRange(new object[] {
+                        ApplicationContextName.ShortName, ApplicationContextName.ShortNameWithCiphering});
+                    }
+                    // Application context name.
+                    ApplicationJointISOCTTTb.Text = Convert.ToString(target.ApplicationContextName.JointIsoCtt);
+                    ApplicationCountryTb.Text = Convert.ToString(target.ApplicationContextName.Country);
+                    ApplicationCountryNameTb.Text = Convert.ToString(target.ApplicationContextName.CountryName);
+                    ApplicationIdentifiedOrganizationTb.Text = Convert.ToString(target.ApplicationContextName.IdentifiedOrganization);
+                    ApplicationDLMSUATb.Text = Convert.ToString(target.ApplicationContextName.DlmsUA);
+                    ApplicationContextTb.Text = Convert.ToString(target.ApplicationContextName.ApplicationContext);
+                    ApplicationContextIDCb.SelectedItem = target.ApplicationContextName.ContextId;
+                    ApplicationRegistrationAuthorityCb.SelectedItem = FindCountry(target.ApplicationContextName.JointIsoCtt, target.ApplicationContextName.Country, target.ApplicationContextName.CountryName);
+                }
+                finally
+                {
+                    ApplicationContextIDCb.SelectedIndexChanged += new System.EventHandler(this.ApplicationContextIDCb_SelectedIndexChanged);
+                }
             }
             else if (index == 5)
             {
                 // xDLMS_context_info
-                ConformanceTB.Text = target.XDLMSContextInfo.Conformance.ToString();
+                ShowConformance(target.XDLMSContextInfo.Conformance);
                 MaxReceivePDUSizeTb.Text = target.XDLMSContextInfo.MaxReceivePduSize.ToString();
                 MaxSendPDUSizeTb.Text = target.XDLMSContextInfo.MaxSendPduSize.ToString();
                 DLMSVersionNumberTB.Text = target.XDLMSContextInfo.DlmsVersionNumber.ToString();
@@ -141,6 +254,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 6)
             {
+                Freeze = true;
                 // authentication_mechanism_name
                 AuthenticationJointISOCTTTb.Text = Convert.ToString(target.AuthenticationMechanismName.JointIsoCtt);
                 AuthenticationCountryTb.Text = Convert.ToString(target.AuthenticationMechanismName.Country);
@@ -148,7 +262,9 @@ namespace Gurux.DLMS.UI
                 AuthenticationIdentifiedorganizationTb.Text = Convert.ToString(target.AuthenticationMechanismName.IdentifiedOrganization);
                 AuthenticationDLMSUATb.Text = Convert.ToString(target.AuthenticationMechanismName.DlmsUA);
                 AuthenticationMechanismNameTb.Text = Convert.ToString(target.AuthenticationMechanismName.AuthenticationMechanismName);
-                AuthenticationMechanismIdTb.Text = Convert.ToString(target.AuthenticationMechanismName.MechanismId);
+                AuthenticationMechanismIdCb.Text = Convert.ToString(target.AuthenticationMechanismName.MechanismId);
+                AuthenticationRegistrationAuthorityCb.SelectedItem = FindCountry(target.AuthenticationMechanismName.JointIsoCtt, target.AuthenticationMechanismName.Country, target.AuthenticationMechanismName.CountryName);
+                Freeze = false;
             }
             else if (index == 7)
             {
@@ -169,6 +285,7 @@ namespace Gurux.DLMS.UI
                 //security_setup_reference
                 if (target.Parent != null)
                 {
+                    SecuritySetupCb.Items.Add("");
                     foreach (GXDLMSSecuritySetup it in target.Parent.GetObjects(ObjectType.SecuritySetup))
                     {
                         SecuritySetupCb.Items.Add(it);
@@ -222,37 +339,45 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            bool writable = connected && (access & AccessMode.Write) != 0;
             if (index == 2)
             {
             }
             else if (index == 3)
             {
-                ClientSAPTb.ReadOnly = ServerSAPTb.ReadOnly = (access & AccessMode.Write) == 0;
+                ClientSAPTb.ReadOnly = ServerSAPTb.ReadOnly = !writable;
             }
             else if (index == 4)
             {
                 // Application context name.
                 ApplicationJointISOCTTTb.ReadOnly = ApplicationCountryTb.ReadOnly =
                 ApplicationCountryNameTb.ReadOnly = ApplicationIdentifiedOrganizationTb.ReadOnly =
-                ApplicationDLMSUATb.ReadOnly = ApplicationContextTb.ReadOnly =
-                ApplicationContextIDTb.ReadOnly = (access & AccessMode.Write) == 0;
+                ApplicationDLMSUATb.ReadOnly = ApplicationContextTb.ReadOnly = true;
+                ApplicationContextIDCb.Enabled = writable;
             }
             else if (index == 5)
             {
                 // xDLMS_context_info
-                ConformanceTB.ReadOnly = MaxReceivePDUSizeTb.ReadOnly = MaxSendPDUSizeTb.ReadOnly =
-                    DLMSVersionNumberTB.ReadOnly = CypheringInfoTb.ReadOnly = (access & AccessMode.Write) == 0;
+                MaxReceivePDUSizeTb.ReadOnly = MaxSendPDUSizeTb.ReadOnly =
+                    DLMSVersionNumberTB.ReadOnly = CypheringInfoTb.ReadOnly = !writable;
+
+                GeneralProtectionCB.Enabled = GeneralBlockTransferCB.Enabled = Attribute0SetReferencingCB.Enabled =
+                    PriorityManagementCB.Enabled = Attribute0GetReferencingCB.Enabled = GetBlockTransferCB.Enabled =
+                SetBlockTransferCB.Enabled = ActionBlockTransferCB.Enabled = MultipleReferencesCB.Enabled =
+                DataNotificationCB.Enabled = AccessCB.Enabled = GetCB.Enabled = SetCB.Enabled =
+                SelectiveAccessCB.Enabled = EventNotificationCB.Enabled = ActionCB.Enabled = DeltaValueEncodingCb.Enabled = writable;
             }
             else if (index == 6)
             {
                 // authentication_mechanism_name
                 AuthenticationJointISOCTTTb.ReadOnly = AuthenticationCountryTb.ReadOnly = AuthenticationCountryNameTb.ReadOnly =
                     AuthenticationIdentifiedorganizationTb.ReadOnly = AuthenticationDLMSUATb.ReadOnly =
-                    AuthenticationMechanismNameTb.ReadOnly = AuthenticationMechanismIdTb.ReadOnly = (access & AccessMode.Write) == 0;
+                    AuthenticationMechanismNameTb.ReadOnly = !writable;
+                AuthenticationMechanismIdCb.Enabled = writable;
             }
             else if (index == 9)
             {
-                SecuritySetupCb.Enabled = (access & AccessMode.Write) != 0;
+                SecuritySetupCb.Enabled = writable;
             }
         }
 
@@ -285,10 +410,10 @@ namespace Gurux.DLMS.UI
                         return;
                     }
                 }
-                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(it, true, remove);
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(target, it, true, remove);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
-                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
                     if (remove)
                     {
                         arg.Value = target.RemoveObject(arg.Client, it);
@@ -459,7 +584,10 @@ namespace Gurux.DLMS.UI
                 arg.Action = ActionType.Read;
                 arg.Index = 10;
             }
-            arg.Action = ActionType.None;
+            else
+            {
+                arg.Action = ActionType.None;
+            }
         }
 
         public System.Windows.Forms.ErrorProvider ErrorProvider
@@ -517,8 +645,246 @@ namespace Gurux.DLMS.UI
 
         private void SecuritySetupCb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            errorProvider1.SetError(SecuritySetupCb, Properties.Resources.ValueChangedTxt);
-            Target.UpdateDirty(9, SecuritySetupCb.SelectedItem);
+            try
+            {
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                if (SecuritySetupCb.SelectedItem is GXDLMSSecuritySetup)
+                {
+                    target.SecuritySetupReference = ((GXDLMSSecuritySetup)SecuritySetupCb.SelectedItem).LogicalName;
+                }
+                else
+                {
+                    target.SecuritySetupReference = null;
+                }
+                errorProvider1.SetError(SecuritySetupCb, Properties.Resources.ValueChangedTxt);
+                Target.UpdateDirty(9, SecuritySetupCb.SelectedItem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        private void ApplicationContextIDCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                target.ApplicationContextName.ContextId = (ApplicationContextName)ApplicationContextIDCb.SelectedItem;
+                errorProvider1.SetError(ApplicationContextIDCb, Properties.Resources.ValueChangedTxt);
+                Target.UpdateDirty(4, ApplicationContextIDCb.SelectedItem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        private void MaxReceivePDUSizeTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MaxReceivePDUSizeTb.Text != "")
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    UInt16 v;
+                    if (UInt16.TryParse(MaxReceivePDUSizeTb.Text, out v) && target.XDLMSContextInfo.MaxReceivePduSize != v)
+                    {
+                        target.XDLMSContextInfo.MaxReceivePduSize = v;
+                        Target.UpdateDirty(5, target.XDLMSContextInfo);
+                        errorProvider1.SetError(MaxReceivePDUSizeTb, Properties.Resources.ValueChangedTxt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MaxSendPDUSizeTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MaxSendPDUSizeTb.Text != "")
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    UInt16 v;
+                    if (UInt16.TryParse(MaxSendPDUSizeTb.Text, out v) && target.XDLMSContextInfo.MaxSendPduSize != v)
+                    {
+                        target.XDLMSContextInfo.MaxSendPduSize = v;
+                        Target.UpdateDirty(5, target.XDLMSContextInfo);
+                        errorProvider1.SetError(MaxSendPDUSizeTb, Properties.Resources.ValueChangedTxt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// User has change client SAP.
+        /// </summary>
+        private void ClientSAPTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ClientSAPTb.Text != "")
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    byte v;
+                    if (byte.TryParse(ClientSAPTb.Text, out v) && target.ClientSAP != v)
+                    {
+                        if (v > 0x7F)
+                        {
+                            throw new ArgumentOutOfRangeException("Client SAP must be between 0 to 127");
+                        }
+                        target.ClientSAP = v;
+                        Target.UpdateDirty(3, target.ClientSAP);
+                        errorProvider1.SetError(ClientSAPTb, Properties.Resources.ValueChangedTxt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// User has change server SAP.
+        /// </summary>
+        private void ServerSAPTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ServerSAPTb.Text != "")
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    UInt16 v;
+                    if (UInt16.TryParse(ServerSAPTb.Text, out v) && target.ServerSAP != v)
+                    {
+                        if (v > 0x3FFF)
+                        {
+                            throw new ArgumentOutOfRangeException("Server SAP must be between 0 to 16383");
+                        }
+                        target.ServerSAP = v;
+                        Target.UpdateDirty(3, target.ServerSAP);
+                        errorProvider1.SetError(ServerSAPTb, Properties.Resources.ValueChangedTxt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AuthenticationMechanismIdCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!Freeze)
+            {
+                try
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    target.AuthenticationMechanismName.MechanismId = (Authentication)AuthenticationMechanismIdCb.SelectedItem;
+                    errorProvider1.SetError(AuthenticationMechanismIdCb, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(6, AuthenticationMechanismIdCb.SelectedItem);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
+            }
+        }
+
+        private void OnConformanceChange(object sender, EventArgs e)
+        {
+            if (!Freeze)
+            {
+                try
+                {
+                    Conformance c = Conformance.None;
+                    if (GeneralProtectionCB.Checked)
+                    {
+                        c |= Conformance.GeneralProtection;
+                    }
+                    if (GeneralBlockTransferCB.Checked)
+                    {
+                        c |= Conformance.GeneralBlockTransfer;
+                    }
+                    if (Attribute0SetReferencingCB.Checked)
+                    {
+                        c |= Conformance.Attribute0SupportedWithSet;
+                    }
+                    if (PriorityManagementCB.Checked)
+                    {
+                        c |= Conformance.PriorityMgmtSupported;
+                    }
+                    if (Attribute0GetReferencingCB.Checked)
+                    {
+                        c |= Conformance.Attribute0SupportedWithGet;
+                    }
+                    if (GetBlockTransferCB.Checked)
+                    {
+                        c |= Conformance.BlockTransferWithGetOrRead;
+                    }
+                    if (SetBlockTransferCB.Checked)
+                    {
+                        c |= Conformance.BlockTransferWithSetOrWrite;
+                    }
+                    if (ActionBlockTransferCB.Checked)
+                    {
+                        c |= Conformance.BlockTransferWithAction;
+                    }
+                    if (MultipleReferencesCB.Checked)
+                    {
+                        c |= Conformance.MultipleReferences;
+                    }
+                    if (DataNotificationCB.Checked)
+                    {
+                        c |= Conformance.DataNotification;
+                    }
+                    if (AccessCB.Checked)
+                    {
+                        c |= Conformance.Access;
+                    }
+                    if (GetCB.Checked)
+                    {
+                        c |= Conformance.Get;
+                    }
+                    if (SetCB.Checked)
+                    {
+                        c |= Conformance.Set;
+                    }
+                    if (SelectiveAccessCB.Checked)
+                    {
+                        c |= Conformance.SelectiveAccess;
+                    }
+                    if (EventNotificationCB.Checked)
+                    {
+                        c |= Conformance.EventNotification;
+                    }
+                    if (ActionCB.Checked)
+                    {
+                        c |= Conformance.Action;
+                    }
+                    if (DeltaValueEncodingCb.Checked)
+                    {
+                        c |= Conformance.DeltaValueEncoding;
+                    }
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    target.XDLMSContextInfo.Conformance = c;
+                    errorProvider1.SetError(LNSettings, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(5, target.XDLMSContextInfo);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
+            }
         }
     }
 }

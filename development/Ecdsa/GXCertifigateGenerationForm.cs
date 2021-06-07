@@ -32,6 +32,7 @@
 //---------------------------------------------------------------------------
 
 using Gurux.DLMS.ASN;
+using Gurux.DLMS.ASN.Enums;
 using Gurux.DLMS.Ecdsa;
 using Gurux.DLMS.Objects.Enums;
 using System;
@@ -72,11 +73,15 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 DigitalSignatureCb.Checked = true;
             }
-            else
+            else if (type == CertificateType.KeyAgreement)
             {
                 KeyAgreementCb.Checked = true;
             }
-            KeyAgreementCb.Enabled = DigitalSignatureCb.Enabled = false;
+            else
+            {
+                ServerTlsCb.Checked = true;
+            }
+            ServerTlsCb.Enabled = KeyAgreementCb.Enabled = DigitalSignatureCb.Enabled = false;
         }
 
         private void LoadBtn_Click(object sender, EventArgs e)
@@ -115,16 +120,30 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             try
             {
-                List<KeyValuePair<CertificateType, GXPkcs10>> certificates = new List<KeyValuePair<CertificateType, GXPkcs10>>();
-                GXPkcs10 pkcs10 = GXPkcs10.FromPem(Pkcs10Tb.Text);
+                List<GXCertificateRequest> certificates = new List<GXCertificateRequest>();
+                GXCertificateRequest it = new GXCertificateRequest();
+                it.Certificate = GXPkcs10.FromPem(Pkcs10Tb.Text);
                 if (DigitalSignatureCb.Checked)
                 {
-                    certificates.Add(new KeyValuePair<CertificateType, GXPkcs10>(CertificateType.DigitalSignature, pkcs10));
+                    it.CertificateType = CertificateType.DigitalSignature;
                 }
                 else if (KeyAgreementCb.Checked)
                 {
-                    certificates.Add(new KeyValuePair<CertificateType, GXPkcs10>(CertificateType.KeyAgreement, pkcs10));
+                    it.CertificateType = CertificateType.KeyAgreement;
                 }
+                else
+                {
+                    if (ServerTlsCb.Checked)
+                    {
+                        it.ExtendedKeyUsage = ExtendedKeyUsage.ServerAuth;
+                    }
+                    else
+                    {
+                        it.ExtendedKeyUsage = ExtendedKeyUsage.ClientAuth;
+                    }
+                    it.CertificateType = CertificateType.TLS;
+                }
+                certificates.Add(it);
                 Certificate = GXPkcs10.GetCertificate(_address, certificates)[0];
             }
             catch (Exception ex)
@@ -177,7 +196,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     string path = dlg.FileName;
                     GXPkcs8 pk = GXPkcs8.Load(path);
-                    KeyValuePair<GXPrivateKey, GXPublicKey> kp = new KeyValuePair<GXPrivateKey, GXPublicKey>(pk.PrivateKey, pk.PublicKey);
+                    KeyValuePair<GXPublicKey, GXPrivateKey> kp = new KeyValuePair<GXPublicKey, GXPrivateKey>(pk.PublicKey, pk.PrivateKey);
                     //Generate certificate request and ask new x509Certificate.
                     GXPkcs10 pkc10 = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(st));
                     Pkcs10Tb.Text = pkc10.ToPem();

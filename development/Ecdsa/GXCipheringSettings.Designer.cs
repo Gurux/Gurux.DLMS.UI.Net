@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CipheringTab = new System.Windows.Forms.TabPage();
+            this.SystemTitleDescriptionTb = new System.Windows.Forms.TextBox();
             this.SecuritySuiteCb = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SystemTitleAsciiCb = new System.Windows.Forms.CheckBox();
@@ -53,19 +55,14 @@
             this.PasswordBtn = new System.Windows.Forms.Button();
             this.InvocationCounterTB = new System.Windows.Forms.TextBox();
             this.InvocationCounterLbl = new System.Windows.Forms.Label();
-            this.BlockCipherKeyAsciiCb = new System.Windows.Forms.CheckBox();
-            this.AuthenticationKey0AsciiCb = new System.Windows.Forms.CheckBox();
-            this.AuthenticationKey0TB = new System.Windows.Forms.TextBox();
-            this.BlockCipherKeyTB = new System.Windows.Forms.TextBox();
-            this.AuthenticationKeyLbl = new System.Windows.Forms.Label();
-            this.BlockCipherKeyLbl = new System.Windows.Forms.Label();
             this.CipheringV1Tab = new System.Windows.Forms.TabPage();
             this.Cipheringv1 = new System.Windows.Forms.Panel();
-            this.AuthenticationKeyAsciiCb = new System.Windows.Forms.CheckBox();
-            this.AuthenticationKeyTB = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.ClearBtn = new System.Windows.Forms.Button();
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ServerTlsInfoBtn = new System.Windows.Forms.Button();
+            this.ServerTlsCb = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.ServerAgreementKeyInfoBtn = new System.Windows.Forms.Button();
             this.ServerSigningKeyInfoBtn = new System.Windows.Forms.Button();
             this.ServerSigningKeysCb = new System.Windows.Forms.ComboBox();
@@ -73,12 +70,22 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ClientTlsInfoBtn = new System.Windows.Forms.Button();
+            this.ClientTlsCb = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.ClientAgreementKeyInfoBtn = new System.Windows.Forms.Button();
             this.ClientSigningKeysInfoBtn = new System.Windows.Forms.Button();
             this.ClientSigningKeysCb = new System.Windows.Forms.ComboBox();
             this.ClientAgreementKeysCb = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.BlockCipherKeyAsciiCb = new System.Windows.Forms.CheckBox();
+            this.AuthenticationKey0AsciiCb = new System.Windows.Forms.CheckBox();
+            this.AuthenticationKey0TB = new System.Windows.Forms.TextBox();
+            this.BlockCipherKeyTB = new System.Windows.Forms.TextBox();
+            this.AuthenticationKeyLbl = new System.Windows.Forms.Label();
+            this.BlockCipherKeyLbl = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.CipheringTab.SuspendLayout();
             this.CipheringV0Tab.SuspendLayout();
@@ -107,6 +114,13 @@
             // 
             // CipheringTab
             // 
+            this.CipheringTab.Controls.Add(this.BlockCipherKeyAsciiCb);
+            this.CipheringTab.Controls.Add(this.AuthenticationKey0AsciiCb);
+            this.CipheringTab.Controls.Add(this.AuthenticationKey0TB);
+            this.CipheringTab.Controls.Add(this.BlockCipherKeyTB);
+            this.CipheringTab.Controls.Add(this.AuthenticationKeyLbl);
+            this.CipheringTab.Controls.Add(this.BlockCipherKeyLbl);
+            this.CipheringTab.Controls.Add(this.SystemTitleDescriptionTb);
             this.CipheringTab.Controls.Add(this.SecuritySuiteCb);
             this.CipheringTab.Controls.Add(this.label1);
             this.CipheringTab.Controls.Add(this.SystemTitleAsciiCb);
@@ -124,6 +138,16 @@
             this.CipheringTab.TabIndex = 2;
             this.CipheringTab.Text = "Ciphering";
             this.CipheringTab.UseVisualStyleBackColor = true;
+            // 
+            // SystemTitleDescriptionTb
+            // 
+            this.SystemTitleDescriptionTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SystemTitleDescriptionTb.Location = new System.Drawing.Point(108, 110);
+            this.SystemTitleDescriptionTb.Name = "SystemTitleDescriptionTb";
+            this.SystemTitleDescriptionTb.ReadOnly = true;
+            this.SystemTitleDescriptionTb.Size = new System.Drawing.Size(300, 20);
+            this.SystemTitleDescriptionTb.TabIndex = 105;
             // 
             // SecuritySuiteCb
             // 
@@ -197,6 +221,7 @@
             this.ServerSystemTitleTB.Name = "ServerSystemTitleTB";
             this.ServerSystemTitleTB.Size = new System.Drawing.Size(176, 20);
             this.ServerSystemTitleTB.TabIndex = 3;
+            this.ServerSystemTitleTB.TextChanged += new System.EventHandler(this.ServerSystemTitleTB_TextChanged);
             this.ServerSystemTitleTB.Leave += new System.EventHandler(this.ServerSystemTitleTB_Leave);
             // 
             // ServerSystemtitleLbl
@@ -230,9 +255,9 @@
             // 
             this.CipheringPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CipheringPanel.Location = new System.Drawing.Point(3, 110);
+            this.CipheringPanel.Location = new System.Drawing.Point(3, 188);
             this.CipheringPanel.Name = "CipheringPanel";
-            this.CipheringPanel.Size = new System.Drawing.Size(450, 220);
+            this.CipheringPanel.Size = new System.Drawing.Size(450, 233);
             this.CipheringPanel.TabIndex = 5;
             // 
             // CipheringV0Tab
@@ -257,12 +282,6 @@
             this.Cipheringv0.Controls.Add(this.PasswordBtn);
             this.Cipheringv0.Controls.Add(this.InvocationCounterTB);
             this.Cipheringv0.Controls.Add(this.InvocationCounterLbl);
-            this.Cipheringv0.Controls.Add(this.BlockCipherKeyAsciiCb);
-            this.Cipheringv0.Controls.Add(this.AuthenticationKey0AsciiCb);
-            this.Cipheringv0.Controls.Add(this.AuthenticationKey0TB);
-            this.Cipheringv0.Controls.Add(this.BlockCipherKeyTB);
-            this.Cipheringv0.Controls.Add(this.AuthenticationKeyLbl);
-            this.Cipheringv0.Controls.Add(this.BlockCipherKeyLbl);
             this.Cipheringv0.Location = new System.Drawing.Point(3, 3);
             this.Cipheringv0.Name = "Cipheringv0";
             this.Cipheringv0.Size = new System.Drawing.Size(450, 219);
@@ -272,7 +291,7 @@
             // 
             this.DedicatedKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DedicatedKeyAsciiCb.AutoSize = true;
-            this.DedicatedKeyAsciiCb.Location = new System.Drawing.Point(390, 57);
+            this.DedicatedKeyAsciiCb.Location = new System.Drawing.Point(390, 5);
             this.DedicatedKeyAsciiCb.Name = "DedicatedKeyAsciiCb";
             this.DedicatedKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
             this.DedicatedKeyAsciiCb.TabIndex = 5;
@@ -284,7 +303,7 @@
             // 
             this.DedicatedKeyTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DedicatedKeyTb.Location = new System.Drawing.Point(107, 55);
+            this.DedicatedKeyTb.Location = new System.Drawing.Point(107, 3);
             this.DedicatedKeyTb.Name = "DedicatedKeyTb";
             this.DedicatedKeyTb.Size = new System.Drawing.Size(277, 20);
             this.DedicatedKeyTb.TabIndex = 4;
@@ -293,7 +312,7 @@
             // DedicatedKeyLbl
             // 
             this.DedicatedKeyLbl.AutoSize = true;
-            this.DedicatedKeyLbl.Location = new System.Drawing.Point(4, 58);
+            this.DedicatedKeyLbl.Location = new System.Drawing.Point(4, 6);
             this.DedicatedKeyLbl.Name = "DedicatedKeyLbl";
             this.DedicatedKeyLbl.Size = new System.Drawing.Size(80, 13);
             this.DedicatedKeyLbl.TabIndex = 97;
@@ -303,7 +322,7 @@
             // 
             this.ChallengeAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ChallengeAsciiCb.AutoSize = true;
-            this.ChallengeAsciiCb.Location = new System.Drawing.Point(390, 105);
+            this.ChallengeAsciiCb.Location = new System.Drawing.Point(390, 53);
             this.ChallengeAsciiCb.Name = "ChallengeAsciiCb";
             this.ChallengeAsciiCb.Size = new System.Drawing.Size(53, 17);
             this.ChallengeAsciiCb.TabIndex = 8;
@@ -315,7 +334,7 @@
             // 
             this.ChallengeTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChallengeTb.Location = new System.Drawing.Point(107, 106);
+            this.ChallengeTb.Location = new System.Drawing.Point(107, 54);
             this.ChallengeTb.Name = "ChallengeTb";
             this.ChallengeTb.Size = new System.Drawing.Size(277, 20);
             this.ChallengeTb.TabIndex = 7;
@@ -324,7 +343,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 109);
+            this.label2.Location = new System.Drawing.Point(2, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 93;
@@ -333,7 +352,7 @@
             // PasswordBtn
             // 
             this.PasswordBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PasswordBtn.Location = new System.Drawing.Point(317, 137);
+            this.PasswordBtn.Location = new System.Drawing.Point(317, 85);
             this.PasswordBtn.Name = "PasswordBtn";
             this.PasswordBtn.Size = new System.Drawing.Size(126, 23);
             this.PasswordBtn.TabIndex = 9;
@@ -345,7 +364,7 @@
             // 
             this.InvocationCounterTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.InvocationCounterTB.Location = new System.Drawing.Point(107, 80);
+            this.InvocationCounterTB.Location = new System.Drawing.Point(107, 28);
             this.InvocationCounterTB.Name = "InvocationCounterTB";
             this.InvocationCounterTB.Size = new System.Drawing.Size(277, 20);
             this.InvocationCounterTB.TabIndex = 6;
@@ -354,73 +373,11 @@
             // InvocationCounterLbl
             // 
             this.InvocationCounterLbl.AutoSize = true;
-            this.InvocationCounterLbl.Location = new System.Drawing.Point(2, 83);
+            this.InvocationCounterLbl.Location = new System.Drawing.Point(2, 31);
             this.InvocationCounterLbl.Name = "InvocationCounterLbl";
             this.InvocationCounterLbl.Size = new System.Drawing.Size(96, 13);
             this.InvocationCounterLbl.TabIndex = 90;
             this.InvocationCounterLbl.Text = "Invocation counter";
-            // 
-            // BlockCipherKeyAsciiCb
-            // 
-            this.BlockCipherKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BlockCipherKeyAsciiCb.AutoSize = true;
-            this.BlockCipherKeyAsciiCb.Location = new System.Drawing.Point(390, 6);
-            this.BlockCipherKeyAsciiCb.Name = "BlockCipherKeyAsciiCb";
-            this.BlockCipherKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
-            this.BlockCipherKeyAsciiCb.TabIndex = 1;
-            this.BlockCipherKeyAsciiCb.Text = "ASCII";
-            this.BlockCipherKeyAsciiCb.UseVisualStyleBackColor = true;
-            this.BlockCipherKeyAsciiCb.CheckedChanged += new System.EventHandler(this.BlockCipherKeyAsciiCb_CheckedChanged);
-            // 
-            // AuthenticationKey0AsciiCb
-            // 
-            this.AuthenticationKey0AsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKey0AsciiCb.AutoSize = true;
-            this.AuthenticationKey0AsciiCb.Location = new System.Drawing.Point(390, 32);
-            this.AuthenticationKey0AsciiCb.Name = "AuthenticationKey0AsciiCb";
-            this.AuthenticationKey0AsciiCb.Size = new System.Drawing.Size(53, 17);
-            this.AuthenticationKey0AsciiCb.TabIndex = 3;
-            this.AuthenticationKey0AsciiCb.Text = "ASCII";
-            this.AuthenticationKey0AsciiCb.UseVisualStyleBackColor = true;
-            this.AuthenticationKey0AsciiCb.CheckedChanged += new System.EventHandler(this.AuthenticationKey0AsciiCb_CheckedChanged);
-            // 
-            // AuthenticationKey0TB
-            // 
-            this.AuthenticationKey0TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKey0TB.Location = new System.Drawing.Point(107, 29);
-            this.AuthenticationKey0TB.Name = "AuthenticationKey0TB";
-            this.AuthenticationKey0TB.Size = new System.Drawing.Size(277, 20);
-            this.AuthenticationKey0TB.TabIndex = 2;
-            this.AuthenticationKey0TB.Leave += new System.EventHandler(this.AuthenticationKey0TB_Leave);
-            // 
-            // BlockCipherKeyTB
-            // 
-            this.BlockCipherKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BlockCipherKeyTB.Location = new System.Drawing.Point(107, 3);
-            this.BlockCipherKeyTB.Name = "BlockCipherKeyTB";
-            this.BlockCipherKeyTB.Size = new System.Drawing.Size(277, 20);
-            this.BlockCipherKeyTB.TabIndex = 0;
-            this.BlockCipherKeyTB.Leave += new System.EventHandler(this.BlockCipherKeyTB_Leave);
-            // 
-            // AuthenticationKeyLbl
-            // 
-            this.AuthenticationKeyLbl.AutoSize = true;
-            this.AuthenticationKeyLbl.Location = new System.Drawing.Point(2, 32);
-            this.AuthenticationKeyLbl.Name = "AuthenticationKeyLbl";
-            this.AuthenticationKeyLbl.Size = new System.Drawing.Size(99, 13);
-            this.AuthenticationKeyLbl.TabIndex = 85;
-            this.AuthenticationKeyLbl.Text = "Authentication Key:";
-            // 
-            // BlockCipherKeyLbl
-            // 
-            this.BlockCipherKeyLbl.AutoSize = true;
-            this.BlockCipherKeyLbl.Location = new System.Drawing.Point(2, 6);
-            this.BlockCipherKeyLbl.Name = "BlockCipherKeyLbl";
-            this.BlockCipherKeyLbl.Size = new System.Drawing.Size(91, 13);
-            this.BlockCipherKeyLbl.TabIndex = 84;
-            this.BlockCipherKeyLbl.Text = "Block Cipher Key:";
             // 
             // CipheringV1Tab
             // 
@@ -436,52 +393,30 @@
             // 
             this.Cipheringv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Cipheringv1.Controls.Add(this.AuthenticationKeyAsciiCb);
-            this.Cipheringv1.Controls.Add(this.AuthenticationKeyTB);
-            this.Cipheringv1.Controls.Add(this.label7);
+            this.Cipheringv1.Controls.Add(this.ClearBtn);
             this.Cipheringv1.Controls.Add(this.UpdateBtn);
             this.Cipheringv1.Controls.Add(this.groupBox3);
             this.Cipheringv1.Controls.Add(this.groupBox2);
             this.Cipheringv1.Location = new System.Drawing.Point(8, 3);
             this.Cipheringv1.Name = "Cipheringv1";
-            this.Cipheringv1.Size = new System.Drawing.Size(440, 219);
+            this.Cipheringv1.Size = new System.Drawing.Size(440, 308);
             this.Cipheringv1.TabIndex = 82;
             // 
-            // AuthenticationKeyAsciiCb
+            // ClearBtn
             // 
-            this.AuthenticationKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKeyAsciiCb.AutoSize = true;
-            this.AuthenticationKeyAsciiCb.Location = new System.Drawing.Point(343, 3);
-            this.AuthenticationKeyAsciiCb.Name = "AuthenticationKeyAsciiCb";
-            this.AuthenticationKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
-            this.AuthenticationKeyAsciiCb.TabIndex = 90;
-            this.AuthenticationKeyAsciiCb.Text = "ASCII";
-            this.AuthenticationKeyAsciiCb.UseVisualStyleBackColor = true;
-            this.AuthenticationKeyAsciiCb.CheckedChanged += new System.EventHandler(this.AuthenticationKeyAsciiCb_CheckedChanged);
-            // 
-            // AuthenticationKeyTB
-            // 
-            this.AuthenticationKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKeyTB.Location = new System.Drawing.Point(106, 0);
-            this.AuthenticationKeyTB.Name = "AuthenticationKeyTB";
-            this.AuthenticationKeyTB.Size = new System.Drawing.Size(230, 20);
-            this.AuthenticationKeyTB.TabIndex = 89;
-            this.AuthenticationKeyTB.Leave += new System.EventHandler(this.AuthenticationKeyTB_Leave);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1, 3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 13);
-            this.label7.TabIndex = 91;
-            this.label7.Text = "Authentication Key:";
+            this.ClearBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClearBtn.Location = new System.Drawing.Point(260, 196);
+            this.ClearBtn.Name = "ClearBtn";
+            this.ClearBtn.Size = new System.Drawing.Size(75, 23);
+            this.ClearBtn.TabIndex = 92;
+            this.ClearBtn.Text = "Clear";
+            this.ClearBtn.UseVisualStyleBackColor = true;
+            this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
             // UpdateBtn
             // 
             this.UpdateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateBtn.Location = new System.Drawing.Point(339, 178);
+            this.UpdateBtn.Location = new System.Drawing.Point(341, 196);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(75, 23);
             this.UpdateBtn.TabIndex = 88;
@@ -493,18 +428,54 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.ServerTlsInfoBtn);
+            this.groupBox3.Controls.Add(this.ServerTlsCb);
+            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.ServerAgreementKeyInfoBtn);
             this.groupBox3.Controls.Add(this.ServerSigningKeyInfoBtn);
             this.groupBox3.Controls.Add(this.ServerSigningKeysCb);
             this.groupBox3.Controls.Add(this.ServerAgreementKeysCb);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(1, 98);
+            this.groupBox3.Location = new System.Drawing.Point(3, 96);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(415, 74);
+            this.groupBox3.Size = new System.Drawing.Size(415, 97);
             this.groupBox3.TabIndex = 87;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Server keys:";
+            // 
+            // ServerTlsInfoBtn
+            // 
+            this.ServerTlsInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ServerTlsInfoBtn.Location = new System.Drawing.Point(338, 66);
+            this.ServerTlsInfoBtn.Name = "ServerTlsInfoBtn";
+            this.ServerTlsInfoBtn.Size = new System.Drawing.Size(75, 23);
+            this.ServerTlsInfoBtn.TabIndex = 96;
+            this.ServerTlsInfoBtn.Text = "Info...";
+            this.ServerTlsInfoBtn.UseVisualStyleBackColor = true;
+            this.ServerTlsInfoBtn.Click += new System.EventHandler(this.ServerTlsInfoBtn_Click);
+            // 
+            // ServerTlsCb
+            // 
+            this.ServerTlsCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ServerTlsCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ServerTlsCb.FormattingEnabled = true;
+            this.ServerTlsCb.Location = new System.Drawing.Point(102, 68);
+            this.ServerTlsCb.Name = "ServerTlsCb";
+            this.ServerTlsCb.Size = new System.Drawing.Size(230, 21);
+            this.ServerTlsCb.TabIndex = 94;
+            this.ServerTlsCb.SelectedIndexChanged += new System.EventHandler(this.ServerTlsCb_SelectedIndexChanged);
+            this.ServerTlsCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ServerTlsCb_Format);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 95;
+            this.label9.Text = "TSL:";
             // 
             // ServerAgreementKeyInfoBtn
             // 
@@ -576,18 +547,54 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ClientTlsInfoBtn);
+            this.groupBox2.Controls.Add(this.ClientTlsCb);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.ClientAgreementKeyInfoBtn);
             this.groupBox2.Controls.Add(this.ClientSigningKeysInfoBtn);
             this.groupBox2.Controls.Add(this.ClientSigningKeysCb);
             this.groupBox2.Controls.Add(this.ClientAgreementKeysCb);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(1, 21);
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(415, 74);
+            this.groupBox2.Size = new System.Drawing.Size(415, 97);
             this.groupBox2.TabIndex = 86;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Client keys:";
+            // 
+            // ClientTlsInfoBtn
+            // 
+            this.ClientTlsInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientTlsInfoBtn.Location = new System.Drawing.Point(340, 69);
+            this.ClientTlsInfoBtn.Name = "ClientTlsInfoBtn";
+            this.ClientTlsInfoBtn.Size = new System.Drawing.Size(75, 23);
+            this.ClientTlsInfoBtn.TabIndex = 93;
+            this.ClientTlsInfoBtn.Text = "Info...";
+            this.ClientTlsInfoBtn.UseVisualStyleBackColor = true;
+            this.ClientTlsInfoBtn.Click += new System.EventHandler(this.ClientTlsInfoBtn_Click);
+            // 
+            // ClientTlsCb
+            // 
+            this.ClientTlsCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientTlsCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ClientTlsCb.FormattingEnabled = true;
+            this.ClientTlsCb.Location = new System.Drawing.Point(102, 68);
+            this.ClientTlsCb.Name = "ClientTlsCb";
+            this.ClientTlsCb.Size = new System.Drawing.Size(230, 21);
+            this.ClientTlsCb.TabIndex = 91;
+            this.ClientTlsCb.SelectedIndexChanged += new System.EventHandler(this.ClientTlsCb_SelectedIndexChanged);
+            this.ClientTlsCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientTlsCb_Format);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 69);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 92;
+            this.label8.Text = "TSL:";
             // 
             // ClientAgreementKeyInfoBtn
             // 
@@ -655,6 +662,68 @@
             this.label3.TabIndex = 86;
             this.label3.Text = "Signing:";
             // 
+            // BlockCipherKeyAsciiCb
+            // 
+            this.BlockCipherKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BlockCipherKeyAsciiCb.AutoSize = true;
+            this.BlockCipherKeyAsciiCb.Location = new System.Drawing.Point(391, 139);
+            this.BlockCipherKeyAsciiCb.Name = "BlockCipherKeyAsciiCb";
+            this.BlockCipherKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
+            this.BlockCipherKeyAsciiCb.TabIndex = 107;
+            this.BlockCipherKeyAsciiCb.Text = "ASCII";
+            this.BlockCipherKeyAsciiCb.UseVisualStyleBackColor = true;
+            this.BlockCipherKeyAsciiCb.CheckedChanged += new System.EventHandler(this.BlockCipherKeyAsciiCb_CheckedChanged);
+            // 
+            // AuthenticationKey0AsciiCb
+            // 
+            this.AuthenticationKey0AsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AuthenticationKey0AsciiCb.AutoSize = true;
+            this.AuthenticationKey0AsciiCb.Location = new System.Drawing.Point(391, 165);
+            this.AuthenticationKey0AsciiCb.Name = "AuthenticationKey0AsciiCb";
+            this.AuthenticationKey0AsciiCb.Size = new System.Drawing.Size(53, 17);
+            this.AuthenticationKey0AsciiCb.TabIndex = 109;
+            this.AuthenticationKey0AsciiCb.Text = "ASCII";
+            this.AuthenticationKey0AsciiCb.UseVisualStyleBackColor = true;
+            this.AuthenticationKey0AsciiCb.CheckedChanged += new System.EventHandler(this.AuthenticationKey0AsciiCb_CheckedChanged);
+            // 
+            // AuthenticationKey0TB
+            // 
+            this.AuthenticationKey0TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AuthenticationKey0TB.Location = new System.Drawing.Point(108, 162);
+            this.AuthenticationKey0TB.Name = "AuthenticationKey0TB";
+            this.AuthenticationKey0TB.Size = new System.Drawing.Size(277, 20);
+            this.AuthenticationKey0TB.TabIndex = 108;
+            this.AuthenticationKey0TB.Leave += new System.EventHandler(this.AuthenticationKey0TB_Leave);
+            // 
+            // BlockCipherKeyTB
+            // 
+            this.BlockCipherKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BlockCipherKeyTB.Location = new System.Drawing.Point(108, 136);
+            this.BlockCipherKeyTB.Name = "BlockCipherKeyTB";
+            this.BlockCipherKeyTB.Size = new System.Drawing.Size(277, 20);
+            this.BlockCipherKeyTB.TabIndex = 106;
+            this.BlockCipherKeyTB.Leave += new System.EventHandler(this.BlockCipherKeyTB_Leave);
+            // 
+            // AuthenticationKeyLbl
+            // 
+            this.AuthenticationKeyLbl.AutoSize = true;
+            this.AuthenticationKeyLbl.Location = new System.Drawing.Point(3, 165);
+            this.AuthenticationKeyLbl.Name = "AuthenticationKeyLbl";
+            this.AuthenticationKeyLbl.Size = new System.Drawing.Size(99, 13);
+            this.AuthenticationKeyLbl.TabIndex = 111;
+            this.AuthenticationKeyLbl.Text = "Authentication Key:";
+            // 
+            // BlockCipherKeyLbl
+            // 
+            this.BlockCipherKeyLbl.AutoSize = true;
+            this.BlockCipherKeyLbl.Location = new System.Drawing.Point(3, 139);
+            this.BlockCipherKeyLbl.Name = "BlockCipherKeyLbl";
+            this.BlockCipherKeyLbl.Size = new System.Drawing.Size(91, 13);
+            this.BlockCipherKeyLbl.TabIndex = 110;
+            this.BlockCipherKeyLbl.Text = "Block Cipher Key:";
+            // 
             // GXCipheringSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,7 +740,6 @@
             this.Cipheringv0.PerformLayout();
             this.CipheringV1Tab.ResumeLayout(false);
             this.Cipheringv1.ResumeLayout(false);
-            this.Cipheringv1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -705,12 +773,6 @@
         private System.Windows.Forms.Button PasswordBtn;
         private System.Windows.Forms.TextBox InvocationCounterTB;
         private System.Windows.Forms.Label InvocationCounterLbl;
-        private System.Windows.Forms.CheckBox BlockCipherKeyAsciiCb;
-        private System.Windows.Forms.CheckBox AuthenticationKey0AsciiCb;
-        private System.Windows.Forms.TextBox AuthenticationKey0TB;
-        private System.Windows.Forms.TextBox BlockCipherKeyTB;
-        private System.Windows.Forms.Label AuthenticationKeyLbl;
-        private System.Windows.Forms.Label BlockCipherKeyLbl;
         private System.Windows.Forms.TabPage CipheringV1Tab;
         private System.Windows.Forms.Panel Cipheringv1;
         private System.Windows.Forms.Button UpdateBtn;
@@ -730,8 +792,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox SecuritySuiteCb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox AuthenticationKeyAsciiCb;
-        private System.Windows.Forms.TextBox AuthenticationKeyTB;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox SystemTitleDescriptionTb;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button ServerTlsInfoBtn;
+        private System.Windows.Forms.ComboBox ServerTlsCb;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button ClientTlsInfoBtn;
+        private System.Windows.Forms.ComboBox ClientTlsCb;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button ClearBtn;
+        private System.Windows.Forms.CheckBox BlockCipherKeyAsciiCb;
+        private System.Windows.Forms.CheckBox AuthenticationKey0AsciiCb;
+        private System.Windows.Forms.TextBox AuthenticationKey0TB;
+        private System.Windows.Forms.TextBox BlockCipherKeyTB;
+        private System.Windows.Forms.Label AuthenticationKeyLbl;
+        private System.Windows.Forms.Label BlockCipherKeyLbl;
     }
 }

@@ -36,6 +36,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.SystemTitleDescriptionTb = new System.Windows.Forms.TextBox();
             this.SecurityPolicyTB = new System.Windows.Forms.CheckedListBox();
             this.UpdateKeyBtn = new Gurux.DLMS.UI.GXButton();
             this.ActivateSecurityBtn = new Gurux.DLMS.UI.GXButton();
@@ -51,6 +52,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gxButton1 = new Gurux.DLMS.UI.GXButton();
             this.ImportCertificateBtn = new Gurux.DLMS.UI.GXButton();
             this.ExportCertificateBtn = new Gurux.DLMS.UI.GXButton();
             this.GenerateCertificateRequestBtn = new Gurux.DLMS.UI.GXButton();
@@ -63,7 +65,6 @@ namespace Gurux.DLMS.UI
             this.SubjectCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubjectAltNameCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.gxButton1 = new Gurux.DLMS.UI.GXButton();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -79,7 +80,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(610, 346);
+            this.groupBox1.Size = new System.Drawing.Size(610, 448);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Security Setup Object";
@@ -94,11 +95,12 @@ namespace Gurux.DLMS.UI
             this.tabControl1.Location = new System.Drawing.Point(6, 19);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(598, 321);
+            this.tabControl1.Size = new System.Drawing.Size(598, 423);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.SystemTitleDescriptionTb);
             this.tabPage1.Controls.Add(this.SecurityPolicyTB);
             this.tabPage1.Controls.Add(this.UpdateKeyBtn);
             this.tabPage1.Controls.Add(this.ActivateSecurityBtn);
@@ -116,24 +118,34 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(590, 295);
+            this.tabPage1.Size = new System.Drawing.Size(590, 397);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // SystemTitleDescriptionTb
+            // 
+            this.SystemTitleDescriptionTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SystemTitleDescriptionTb.Location = new System.Drawing.Point(107, 137);
+            this.SystemTitleDescriptionTb.Multiline = true;
+            this.SystemTitleDescriptionTb.Name = "SystemTitleDescriptionTb";
+            this.SystemTitleDescriptionTb.ReadOnly = true;
+            this.SystemTitleDescriptionTb.Size = new System.Drawing.Size(258, 94);
+            this.SystemTitleDescriptionTb.TabIndex = 38;
+            // 
             // SecurityPolicyTB
             // 
             this.SecurityPolicyTB.FormattingEnabled = true;
-            this.SecurityPolicyTB.Location = new System.Drawing.Point(107, 140);
+            this.SecurityPolicyTB.Location = new System.Drawing.Point(108, 237);
             this.SecurityPolicyTB.Name = "SecurityPolicyTB";
             this.SecurityPolicyTB.Size = new System.Drawing.Size(257, 154);
             this.SecurityPolicyTB.TabIndex = 26;
             // 
             // UpdateKeyBtn
             // 
-            this.UpdateKeyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdateKeyBtn.Index = 2;
-            this.UpdateKeyBtn.Location = new System.Drawing.Point(472, 239);
+            this.UpdateKeyBtn.Location = new System.Drawing.Point(371, 58);
             this.UpdateKeyBtn.Name = "UpdateKeyBtn";
             this.UpdateKeyBtn.Size = new System.Drawing.Size(103, 23);
             this.UpdateKeyBtn.TabIndex = 18;
@@ -142,9 +154,8 @@ namespace Gurux.DLMS.UI
             // 
             // ActivateSecurityBtn
             // 
-            this.ActivateSecurityBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ActivateSecurityBtn.Index = 1;
-            this.ActivateSecurityBtn.Location = new System.Drawing.Point(500, 135);
+            this.ActivateSecurityBtn.Location = new System.Drawing.Point(380, 237);
             this.ActivateSecurityBtn.Name = "ActivateSecurityBtn";
             this.ActivateSecurityBtn.Size = new System.Drawing.Size(75, 23);
             this.ActivateSecurityBtn.TabIndex = 20;
@@ -158,7 +169,7 @@ namespace Gurux.DLMS.UI
             this.ServerSystemTitleTB.Index = 5;
             this.ServerSystemTitleTB.Location = new System.Drawing.Point(108, 111);
             this.ServerSystemTitleTB.Name = "ServerSystemTitleTB";
-            this.ServerSystemTitleTB.NotifyChanges = false;
+            this.ServerSystemTitleTB.NotifyChanges = true;
             this.ServerSystemTitleTB.Size = new System.Drawing.Size(467, 20);
             this.ServerSystemTitleTB.TabIndex = 16;
             this.ServerSystemTitleTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
@@ -195,13 +206,11 @@ namespace Gurux.DLMS.UI
             // 
             // SuiteTB
             // 
-            this.SuiteTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.SuiteTB.Index = 3;
             this.SuiteTB.Location = new System.Drawing.Point(108, 59);
             this.SuiteTB.Name = "SuiteTB";
             this.SuiteTB.NotifyChanges = false;
-            this.SuiteTB.Size = new System.Drawing.Size(467, 72);
+            this.SuiteTB.Size = new System.Drawing.Size(257, 72);
             this.SuiteTB.TabIndex = 12;
             this.SuiteTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
@@ -236,7 +245,7 @@ namespace Gurux.DLMS.UI
             // SecurityPolicyLbl
             // 
             this.SecurityPolicyLbl.AutoSize = true;
-            this.SecurityPolicyLbl.Location = new System.Drawing.Point(11, 140);
+            this.SecurityPolicyLbl.Location = new System.Drawing.Point(11, 237);
             this.SecurityPolicyLbl.Name = "SecurityPolicyLbl";
             this.SecurityPolicyLbl.Size = new System.Drawing.Size(38, 13);
             this.SecurityPolicyLbl.TabIndex = 15;
@@ -274,16 +283,27 @@ namespace Gurux.DLMS.UI
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(590, 295);
+            this.tabPage2.Size = new System.Drawing.Size(590, 397);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Certificates";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // gxButton1
+            // 
+            this.gxButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gxButton1.Index = 8;
+            this.gxButton1.Location = new System.Drawing.Point(474, 368);
+            this.gxButton1.Name = "gxButton1";
+            this.gxButton1.Size = new System.Drawing.Size(111, 23);
+            this.gxButton1.TabIndex = 28;
+            this.gxButton1.Text = "Remove certificate";
+            this.gxButton1.UseVisualStyleBackColor = true;
             // 
             // ImportCertificateBtn
             // 
             this.ImportCertificateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ImportCertificateBtn.Index = 6;
-            this.ImportCertificateBtn.Location = new System.Drawing.Point(240, 266);
+            this.ImportCertificateBtn.Location = new System.Drawing.Point(240, 368);
             this.ImportCertificateBtn.Name = "ImportCertificateBtn";
             this.ImportCertificateBtn.Size = new System.Drawing.Size(111, 23);
             this.ImportCertificateBtn.TabIndex = 27;
@@ -295,7 +315,7 @@ namespace Gurux.DLMS.UI
             // 
             this.ExportCertificateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExportCertificateBtn.Index = 7;
-            this.ExportCertificateBtn.Location = new System.Drawing.Point(357, 266);
+            this.ExportCertificateBtn.Location = new System.Drawing.Point(357, 368);
             this.ExportCertificateBtn.Name = "ExportCertificateBtn";
             this.ExportCertificateBtn.Size = new System.Drawing.Size(111, 23);
             this.ExportCertificateBtn.TabIndex = 26;
@@ -307,7 +327,7 @@ namespace Gurux.DLMS.UI
             // 
             this.GenerateCertificateRequestBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.GenerateCertificateRequestBtn.Index = 5;
-            this.GenerateCertificateRequestBtn.Location = new System.Drawing.Point(123, 266);
+            this.GenerateCertificateRequestBtn.Location = new System.Drawing.Point(123, 368);
             this.GenerateCertificateRequestBtn.Name = "GenerateCertificateRequestBtn";
             this.GenerateCertificateRequestBtn.Size = new System.Drawing.Size(111, 23);
             this.GenerateCertificateRequestBtn.TabIndex = 25;
@@ -319,7 +339,7 @@ namespace Gurux.DLMS.UI
             // 
             this.GenerateKeyPairBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.GenerateKeyPairBtn.Index = 4;
-            this.GenerateKeyPairBtn.Location = new System.Drawing.Point(6, 266);
+            this.GenerateKeyPairBtn.Location = new System.Drawing.Point(6, 368);
             this.GenerateKeyPairBtn.Name = "GenerateKeyPairBtn";
             this.GenerateKeyPairBtn.Size = new System.Drawing.Size(111, 23);
             this.GenerateKeyPairBtn.TabIndex = 24;
@@ -344,7 +364,7 @@ namespace Gurux.DLMS.UI
             this.CertificatesLv.HideSelection = false;
             this.CertificatesLv.Location = new System.Drawing.Point(6, 6);
             this.CertificatesLv.Name = "CertificatesLv";
-            this.CertificatesLv.Size = new System.Drawing.Size(570, 254);
+            this.CertificatesLv.Size = new System.Drawing.Size(570, 356);
             this.CertificatesLv.TabIndex = 23;
             this.CertificatesLv.UseCompatibleStateImageBehavior = false;
             this.CertificatesLv.View = System.Windows.Forms.View.Details;
@@ -384,20 +404,9 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // gxButton1
-            // 
-            this.gxButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.gxButton1.Index = 8;
-            this.gxButton1.Location = new System.Drawing.Point(474, 266);
-            this.gxButton1.Name = "gxButton1";
-            this.gxButton1.Size = new System.Drawing.Size(111, 23);
-            this.gxButton1.TabIndex = 28;
-            this.gxButton1.Text = "Remove certificate";
-            this.gxButton1.UseVisualStyleBackColor = true;
-            // 
             // GXDLMSSecuritySetupView_v1
             // 
-            this.ClientSize = new System.Drawing.Size(634, 370);
+            this.ClientSize = new System.Drawing.Size(634, 472);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSSecuritySetupView_v1";
@@ -442,5 +451,6 @@ namespace Gurux.DLMS.UI
         private GXButton ExportCertificateBtn;
         private CheckedListBox SecurityPolicyTB;
         private GXButton gxButton1;
+        private TextBox SystemTitleDescriptionTb;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Gurux.DLMS.ASN;
+using Gurux.DLMS.ASN.Enums;
 using Gurux.DLMS.Ecdsa;
 using Gurux.DLMS.Ecdsa.Enums;
 using Gurux.DLMS.Objects.Enums;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -26,7 +28,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         private byte[] _systemTitle;
         private readonly string _address;
 
-        public GXKeyForm(IGXUpdater updater, string address, string keyFolder, string certificateFolder, string title, SecuritySuite securitySuiteCb, byte[] systemTitle)
+        public GXKeyForm(IGXUpdater updater, string address, string keyFolder, string certificateFolder, string title, SecuritySuite securitySuite, byte[] systemTitle)
         {
             InitializeComponent();
             _updater = updater;
@@ -44,16 +46,16 @@ namespace Gurux.DLMS.UI.Ecdsa
                     GXPkcs8 cert = GXPkcs8.Load(p);
                     AddKey(cert, p);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                    System.Diagnostics.Debug.WriteLine("Failed to open " + p);
+                    Debug.WriteLine("Failed to open " + p);
                 }
             }
             if (_systemTitle != null)
             {
                 string path = Path.Combine(KeyFolder, "D" + GXDLMSTranslator.ToHex(_systemTitle, false)) + ".pem";
                 //Generate private key for digital signature.
-                GXPkcs8 digitalSignature = new GXPkcs8(GXEcdsa.GenerateKeyPair(securitySuiteCb == SecuritySuite.Ecdsa256 ? Ecc.P256 : Ecc.P384));
+                GXPkcs8 digitalSignature = new GXPkcs8(GXEcdsa.GenerateKeyPair(securitySuite == SecuritySuite.Suite1 ? Ecc.P256 : Ecc.P384));
                 digitalSignature.Save(path);
                 AddKey(digitalSignature, path);
                 path = Path.Combine(KeyFolder, "A" + GXDLMSTranslator.ToHex(_systemTitle, false)) + ".pem";
@@ -63,24 +65,36 @@ namespace Gurux.DLMS.UI.Ecdsa
                 AddKey(keyAgreement, path);
 
                 //Get CRS.
-                KeyValuePair<GXPrivateKey, GXPublicKey> kp = new KeyValuePair<GXPrivateKey, GXPublicKey>(digitalSignature.PrivateKey, digitalSignature.PublicKey);
+                KeyValuePair<GXPublicKey, GXPrivateKey> kp = new KeyValuePair<GXPublicKey, GXPrivateKey>(digitalSignature.PublicKey, digitalSignature.PrivateKey);
                 //Generate certificate request and ask new x509Certificate.
-                GXPkcs10 pkc10DS = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(_systemTitle));
-                GXPkcs10 pkc10KA = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(_systemTitle));
                 //Note! There is a limit how many request you can do in a day.
-                List<KeyValuePair<CertificateType, GXPkcs10>> certifications = new List<KeyValuePair<CertificateType, GXPkcs10>>();
-                certifications.Add(new KeyValuePair<CertificateType, GXPkcs10>(CertificateType.DigitalSignature, pkc10DS));
-                certifications.Add(new KeyValuePair<CertificateType, GXPkcs10>(CertificateType.KeyAgreement, pkc10KA));
+                List<GXCertificateRequest> certifications = new List<GXCertificateRequest>();
+                GXCertificateRequest it = new GXCertificateRequest();
+                it.Certificate = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(_systemTitle));
+                it.CertificateType = CertificateType.DigitalSignature;
+                certifications.Add(it);
+                it = new GXCertificateRequest();
+                it.Certificate = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(_systemTitle));
+                it.CertificateType = CertificateType.KeyAgreement;
+                certifications.Add(it);
                 GXx509Certificate[] certificates = GXPkcs10.GetCertificate(address, certifications);
                 foreach (GXx509Certificate cert in certificates)
                 {
-                    if (cert.KeyUsage == ASN.Enums.KeyUsage.DigitalSignature)
+                    if (cert.KeyUsage == KeyUsage.DigitalSignature)
                     {
                         path = "D" + GXDLMSTranslator.ToHex(_systemTitle, false);
                     }
-                    else if (cert.KeyUsage == ASN.Enums.KeyUsage.KeyAgreement)
+                    else if (cert.KeyUsage == KeyUsage.KeyAgreement)
                     {
                         path = "A" + GXDLMSTranslator.ToHex(_systemTitle, false);
+                    }
+                    else if (cert.KeyUsage == (KeyUsage.KeyAgreement | KeyUsage.DigitalSignature))
+                    {
+                        path = "T" + GXDLMSTranslator.ToHex(_systemTitle, false);
+                    }
+                    else
+                    {
+                        path = "O" + GXDLMSTranslator.ToHex(_systemTitle, false);
                     }
                     path = Path.Combine(_certificateFolder, path) + ".pem";
                     cert.Save(path);
@@ -94,6 +108,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             ListViewItem li = new ListViewItem(cert.PrivateKey.Scheme.ToString());
             li.SubItems.Add(cert.PrivateKey.ToHex(false));
             li.SubItems.Add(Path.GetFileNameWithoutExtension(path));
+            li.SubItems.Add(cert.Description);
             li.StateImageIndex = li.ImageIndex = 1;
             KeyList.Items.Add(li).Tag = path;
             privateKeys.Add(cert);
@@ -124,7 +139,7 @@ namespace Gurux.DLMS.UI.Ecdsa
 
         private void RemoveKey(string path)
         {
-            foreach(ListViewItem it in KeyList.Items)
+            foreach (ListViewItem it in KeyList.Items)
             {
                 if (path.Equals(it.Tag))
                 {
@@ -268,25 +283,60 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     SystemTitle = dlg.SystemTitle;
                     GXPkcs8 pk = GXPkcs8.Load((string)it.Tag);
-                    KeyValuePair<GXPrivateKey, GXPublicKey> kp = new KeyValuePair<GXPrivateKey, GXPublicKey>(pk.PrivateKey, pk.PublicKey);
+                    KeyValuePair<GXPublicKey, GXPrivateKey> kp = new KeyValuePair<GXPublicKey, GXPrivateKey>(pk.PublicKey, pk.PrivateKey);
+                    List<GXCertificateRequest> certifications = new List<GXCertificateRequest>();
+                    GXCertificateRequest it2 = new GXCertificateRequest();
+                    it2.CertificateType = dlg.CertificateType;
+                    it2.ExtendedKeyUsage = dlg.ExtendedKeyUsage;
                     //Generate certificate request and ask new x509Certificate.
-                    GXPkcs10 pkc10 = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(SystemTitle));
-
-                    List<KeyValuePair<CertificateType, GXPkcs10>> certifications = new List<KeyValuePair<CertificateType, GXPkcs10>>();
-                    certifications.Add(new KeyValuePair<CertificateType, GXPkcs10>(dlg.CertificateType, pkc10));
+                    it2.Certificate = GXPkcs10.CreateCertificateSigningRequest(kp, GXAsn1Converter.SystemTitleToSubject(SystemTitle));
+                    certifications.Add(it2);
                     //Note! There is a limit how many request you can do in a day.
                     GXx509Certificate[] certificates = GXPkcs10.GetCertificate(_address, certifications);
                     foreach (GXx509Certificate cert in certificates)
                     {
-                        if (cert.KeyUsage == ASN.Enums.KeyUsage.DigitalSignature)
+                        if (cert.KeyUsage == KeyUsage.DigitalSignature)
                         {
-                            _path = "D" + GXDLMSTranslator.ToHex(SystemTitle, false);
+                            _path = "D" + Path.GetFileName((string)it.Tag);
                         }
-                        else if (cert.KeyUsage == ASN.Enums.KeyUsage.KeyAgreement)
+                        else if (cert.KeyUsage == KeyUsage.KeyAgreement)
                         {
-                            _path = "A" + GXDLMSTranslator.ToHex(SystemTitle, false);
+                            _path = "A" + Path.GetFileName((string)it.Tag);
                         }
-                        _path = Path.Combine(_certificateFolder, _path) + ".pem";
+                        else if (cert.KeyUsage == (KeyUsage.KeyAgreement | KeyUsage.DigitalSignature))
+                        {
+                            //TLS.
+                            _path = "T" + Path.GetFileName((string)it.Tag);
+                        }
+                        else
+                        {
+                            //Other.
+                            _path = "O" + Path.GetFileName((string)it.Tag);
+                        }
+
+                        if (File.Exists(_path))
+                        {
+                            if (cert.KeyUsage == KeyUsage.DigitalSignature)
+                            {
+                                _path = "D" + GXDLMSTranslator.ToHex(SystemTitle, false);
+                            }
+                            else if (cert.KeyUsage == KeyUsage.KeyAgreement)
+                            {
+                                _path = "A" + GXDLMSTranslator.ToHex(SystemTitle, false);
+                            }
+                            else if (cert.KeyUsage == (KeyUsage.KeyAgreement | KeyUsage.DigitalSignature))
+                            {
+                                //TLS.
+                                _path = "T" + GXDLMSTranslator.ToHex(SystemTitle, false);
+                            }
+                            else
+                            {
+                                //Other.
+                                _path = "O" + GXDLMSTranslator.ToHex(SystemTitle, false);
+                            }
+                            _path += ".pem";
+                        }
+                        _path = Path.Combine(_certificateFolder, _path);
                         cert.Save(_path);
                     }
                     _updater.UpdateUI();
@@ -301,6 +351,12 @@ namespace Gurux.DLMS.UI.Ecdsa
         internal void ShowInfo(GXPkcs8 cert)
         {
             StringBuilder sb = new StringBuilder();
+            if (!string.IsNullOrEmpty(cert.Description))
+            {
+                sb.AppendLine("Description:");
+                sb.AppendLine(cert.Description);
+                sb.AppendLine("");
+            }
             sb.AppendLine("Private key:");
             sb.AppendLine(cert.PrivateKey.ToHex());
             sb.AppendLine(Environment.NewLine);
@@ -315,6 +371,39 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 ListViewItem it = KeyList.SelectedItems[0];
                 ShowInfo(GXPkcs8.Load((string)it.Tag));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Parent, ex.Message);
+            }
+        }
+
+        private void openContainingFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(KeyFolder);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Parent, ex.Message);
+            }
+        }
+
+        private void descriptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ListViewItem it = KeyList.SelectedItems[0];
+                GXTextDlg dlg = new GXTextDlg("Certificate description.", "Certificate description:", it.SubItems[3].Text);
+                if (dlg.ShowDialog(Parent) == DialogResult.OK)
+                {
+                    string desc = dlg.GetValue();
+                    GXPkcs8 cert = GXPkcs8.Load((string)it.Tag);
+                    cert.Description = desc;
+                    cert.Save((string)it.Tag);
+                    it.SubItems[3].Text = desc;
+                }
             }
             catch (Exception ex)
             {
