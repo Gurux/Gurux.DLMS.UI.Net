@@ -403,26 +403,69 @@ namespace Gurux.DLMS.UI
         private void CheckedlistBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             int value = 0;
-            foreach (object it in checkedlistBox1.Items)
+            if (Target.GetDataType(Index) == DataType.BitString)
             {
-                if (it is GXObisValueItem)
+                StringBuilder bb = new StringBuilder();
+                //Add default values.
+                foreach (var it in checkedlistBox1.Items)
                 {
-                    if ((it as GXObisValueItem).MaskSize != 0)
+                    for(int pos = bb.Length; pos <= ((GXObisValueItem)it).Value; ++pos)
                     {
-                        value |= Convert.ToInt32(((GXObisValueItem)it).Value);
+                        bb.Append('0');
                     }
-                    else
+                    if (checkedlistBox1.CheckedItems.Contains(it))
                     {
-                        value |= 1 << Convert.ToInt32(((GXObisValueItem)it).Value);
+                        bb[Convert.ToInt32(((GXObisValueItem)it).Value)] = '1';
                     }
+                }
+                object val = checkedlistBox1.Items[e.Index];
+                if (e.NewValue == CheckState.Checked)
+                {
+                    bb[Convert.ToInt32(((GXObisValueItem)val).Value)] = '1';
                 }
                 else
                 {
-                    value |= Convert.ToInt32(it);
+                    bb[Convert.ToInt32(((GXObisValueItem)val).Value)] = '0';
                 }
+                SetDirty(true, new GXBitString(bb.ToString()));
             }
-            SetDirty(true, value);
+            else
+            {
+                List<object> list = new List<object>();
+                foreach (var it in checkedlistBox1.CheckedItems)
+                {
+                    list.Add(it);
+                }
+                if (e.NewValue == CheckState.Checked)
+                {
+                    list.Add(checkedlistBox1.Items[e.Index]);
+                }
+                else
+                {
+                    list.Remove(checkedlistBox1.Items[e.Index]);
+                }
+                foreach (var it in list)
+                {
+                    if (it is GXObisValueItem)
+                    {
+                        if ((it as GXObisValueItem).MaskSize != 0)
+                        {
+                            value |= Convert.ToInt32(((GXObisValueItem)it).Value);
+                        }
+                        else
+                        {
+                            value |= 1 << Convert.ToInt32(((GXObisValueItem)it).Value);
+                        }
+                    }
+                    else
+                    {
+                        value |= Convert.ToInt32(it);
+                    }
+                }
+                SetDirty(true, value);
+            }
         }
+
         bool Compare(object original, object value)
         {
             if (original is byte[])
@@ -528,12 +571,34 @@ namespace Gurux.DLMS.UI
                         DataType ui = Target.GetUIDataType(Index);
                         if (value is string && (ui == DataType.OctetString) || ui == DataType.None)
                         {
-                            value = GXDLMSTranslator.HexToBytes((string)value);
+                            value = GXDLMSTranslator.HexToBytes(Convert.ToString(value));
                         }
                     }
                     else if (dt == DataType.BitString)
                     {
-                        value = new GXBitString((string)value);
+                        if (!(value is GXBitString))
+                        {
+                            if (value is string)
+                            {
+                                value = new GXBitString((string)value);
+                            }
+                            else if (value is sbyte || value is sbyte)
+                            {
+                                value = GXBitString.ToBitString(Convert.ToUInt32(value), 8);
+                            }
+                            else if (value is Int16 || value is UInt16)
+                            {
+                                value = GXBitString.ToBitString(Convert.ToUInt32(value), 16);
+                            }
+                            else if (value is Int32 || value is UInt32)
+                            {
+                                value = GXBitString.ToBitString(Convert.ToUInt32(value), 32);
+                            }
+                            else
+                            {
+                                throw new ArgumentException("Invalid bit string value.");
+                            }
+                        }
                     }
                     else
                     {
