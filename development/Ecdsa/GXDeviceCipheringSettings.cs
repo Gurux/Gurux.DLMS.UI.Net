@@ -26,11 +26,36 @@ namespace Gurux.DLMS.UI.Ecdsa
         /// <summary>
         /// Private keys.
         /// </summary>
-        public GXPkcs8Collection _privateKeys;
+        internal GXPkcs8Collection _privateKeys;
         /// <summary>
         /// Public keys.
         /// </summary>
-        public GXx509CertificateCollection _certifications;
+        internal GXx509CertificateCollection _certifications;
+
+        public List<KeyValuePair<GXPkcs8, GXx509Certificate>> GetClientKeys(string systemTitle)
+        {            
+            byte[] st = GXDLMSTranslator.HexToBytes(systemTitle);
+            List<KeyValuePair<GXPkcs8, GXx509Certificate>> list = new List<KeyValuePair<GXPkcs8, GXx509Certificate>>();
+            if (st.Length == 8)
+            {
+                string subject = GXAsn1Converter.SystemTitleToSubject(st);
+                GXPkcs8 k;
+                foreach (GXx509Certificate cert in _certifications)
+                {
+                    if (cert.Subject == subject)
+                    {
+                        if ((k = _privateKeys.Find(cert.PublicKey)) != null)
+                        {
+                            if ((cert.KeyUsage & KeyUsage.DigitalSignature) != 0)
+                            {
+                                list.Add(new KeyValuePair<GXPkcs8, GXx509Certificate>(k, cert));
+                            }
+                        }
+                    }
+                }
+            }
+            return list;
+        }
 
         private void ShowKeys()
         {
@@ -1301,7 +1326,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 MessageBox.Show(Parent, ex.Message);
             }
-        }      
+        }
 
         /// <summary>
         /// Update server system title if Italy standard is used.
@@ -1355,7 +1380,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 MessageBox.Show(Parent, ex.Message);
             }
-        }       
+        }
 
         private void ClientTlsInfoBtn_Click(object sender, EventArgs e)
         {

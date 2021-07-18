@@ -61,6 +61,12 @@
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.MccTb = new System.Windows.Forms.TextBox();
+            this.MccLbl = new System.Windows.Forms.Label();
+            this.ChannelNumberTb = new System.Windows.Forms.TextBox();
+            this.ChannelNumberLbl = new System.Windows.Forms.Label();
+            this.MncTb = new System.Windows.Forms.TextBox();
+            this.MncLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.CellInfoCb.SuspendLayout();
             this.TimeMenu.SuspendLayout();
@@ -120,6 +126,12 @@
             // 
             this.CellInfoCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CellInfoCb.Controls.Add(this.ChannelNumberTb);
+            this.CellInfoCb.Controls.Add(this.ChannelNumberLbl);
+            this.CellInfoCb.Controls.Add(this.MncTb);
+            this.CellInfoCb.Controls.Add(this.MncLbl);
+            this.CellInfoCb.Controls.Add(this.MccTb);
+            this.CellInfoCb.Controls.Add(this.MccLbl);
             this.CellInfoCb.Controls.Add(this.BerTb);
             this.CellInfoCb.Controls.Add(this.SignalQualityTb);
             this.CellInfoCb.Controls.Add(this.BerLbl);
@@ -139,26 +151,26 @@
             // 
             this.BerTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BerTb.Location = new System.Drawing.Point(103, 96);
+            this.BerTb.Location = new System.Drawing.Point(103, 69);
             this.BerTb.Name = "BerTb";
             this.BerTb.ReadOnly = true;
-            this.BerTb.Size = new System.Drawing.Size(238, 20);
+            this.BerTb.Size = new System.Drawing.Size(70, 20);
             this.BerTb.TabIndex = 22;
             // 
             // SignalQualityTb
             // 
             this.SignalQualityTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SignalQualityTb.Location = new System.Drawing.Point(103, 70);
+            this.SignalQualityTb.Location = new System.Drawing.Point(259, 43);
             this.SignalQualityTb.Name = "SignalQualityTb";
             this.SignalQualityTb.ReadOnly = true;
-            this.SignalQualityTb.Size = new System.Drawing.Size(239, 20);
+            this.SignalQualityTb.Size = new System.Drawing.Size(81, 20);
             this.SignalQualityTb.TabIndex = 21;
             // 
             // BerLbl
             // 
             this.BerLbl.AutoSize = true;
-            this.BerLbl.Location = new System.Drawing.Point(7, 100);
+            this.BerLbl.Location = new System.Drawing.Point(7, 73);
             this.BerLbl.Name = "BerLbl";
             this.BerLbl.Size = new System.Drawing.Size(32, 13);
             this.BerLbl.TabIndex = 20;
@@ -167,7 +179,7 @@
             // SignalQualityLbl
             // 
             this.SignalQualityLbl.AutoSize = true;
-            this.SignalQualityLbl.Location = new System.Drawing.Point(7, 73);
+            this.SignalQualityLbl.Location = new System.Drawing.Point(179, 46);
             this.SignalQualityLbl.Name = "SignalQualityLbl";
             this.SignalQualityLbl.Size = new System.Drawing.Size(74, 13);
             this.SignalQualityLbl.TabIndex = 19;
@@ -180,7 +192,7 @@
             this.LocationIDTb.Location = new System.Drawing.Point(102, 43);
             this.LocationIDTb.Name = "LocationIDTb";
             this.LocationIDTb.ReadOnly = true;
-            this.LocationIDTb.Size = new System.Drawing.Size(238, 20);
+            this.LocationIDTb.Size = new System.Drawing.Size(71, 20);
             this.LocationIDTb.TabIndex = 18;
             // 
             // CellIDTb
@@ -219,7 +231,6 @@
             this.PSStatusTb.Location = new System.Drawing.Point(103, 127);
             this.PSStatusTb.Name = "PSStatusTb";
             this.PSStatusTb.NotifyChanges = false;
-            this.PSStatusTb.ReadOnly = true;
             this.PSStatusTb.Size = new System.Drawing.Size(238, 20);
             this.PSStatusTb.TabIndex = 16;
             this.PSStatusTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
@@ -327,7 +338,6 @@
             this.StatusTB.Location = new System.Drawing.Point(102, 75);
             this.StatusTB.Name = "StatusTB";
             this.StatusTB.NotifyChanges = false;
-            this.StatusTB.ReadOnly = true;
             this.StatusTB.Size = new System.Drawing.Size(238, 20);
             this.StatusTB.TabIndex = 5;
             this.StatusTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
@@ -349,7 +359,6 @@
             this.CSAttachmentTb.Location = new System.Drawing.Point(102, 101);
             this.CSAttachmentTb.Name = "CSAttachmentTb";
             this.CSAttachmentTb.NotifyChanges = false;
-            this.CSAttachmentTb.ReadOnly = true;
             this.CSAttachmentTb.Size = new System.Drawing.Size(238, 20);
             this.CSAttachmentTb.TabIndex = 3;
             this.CSAttachmentTb.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
@@ -390,6 +399,63 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            // 
+            // MccTb
+            // 
+            this.MccTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MccTb.Location = new System.Drawing.Point(259, 66);
+            this.MccTb.Name = "MccTb";
+            this.MccTb.ReadOnly = true;
+            this.MccTb.Size = new System.Drawing.Size(81, 20);
+            this.MccTb.TabIndex = 24;
+            // 
+            // MccLbl
+            // 
+            this.MccLbl.AutoSize = true;
+            this.MccLbl.Location = new System.Drawing.Point(179, 70);
+            this.MccLbl.Name = "MccLbl";
+            this.MccLbl.Size = new System.Drawing.Size(33, 13);
+            this.MccLbl.TabIndex = 23;
+            this.MccLbl.Text = "MCC:";
+            // 
+            // ChannelNumberTb
+            // 
+            this.ChannelNumberTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChannelNumberTb.Location = new System.Drawing.Point(258, 92);
+            this.ChannelNumberTb.Name = "ChannelNumberTb";
+            this.ChannelNumberTb.ReadOnly = true;
+            this.ChannelNumberTb.Size = new System.Drawing.Size(81, 20);
+            this.ChannelNumberTb.TabIndex = 28;
+            // 
+            // ChannelNumberLbl
+            // 
+            this.ChannelNumberLbl.AutoSize = true;
+            this.ChannelNumberLbl.Location = new System.Drawing.Point(178, 96);
+            this.ChannelNumberLbl.Name = "ChannelNumberLbl";
+            this.ChannelNumberLbl.Size = new System.Drawing.Size(49, 13);
+            this.ChannelNumberLbl.TabIndex = 27;
+            this.ChannelNumberLbl.Text = "Channel:";
+            // 
+            // MncTb
+            // 
+            this.MncTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MncTb.Location = new System.Drawing.Point(102, 95);
+            this.MncTb.Name = "MncTb";
+            this.MncTb.ReadOnly = true;
+            this.MncTb.Size = new System.Drawing.Size(70, 20);
+            this.MncTb.TabIndex = 26;
+            // 
+            // MncLbl
+            // 
+            this.MncLbl.AutoSize = true;
+            this.MncLbl.Location = new System.Drawing.Point(6, 99);
+            this.MncLbl.Name = "MncLbl";
+            this.MncLbl.Size = new System.Drawing.Size(34, 13);
+            this.MncLbl.TabIndex = 25;
+            this.MncLbl.Text = "MNC:";
             // 
             // GXDLMSGSMDiagnosticView
             // 
@@ -443,5 +509,11 @@
         private System.Windows.Forms.Label CellIDLbl;
         private GXValueField CaptureTimeTb;
         private System.Windows.Forms.Label CaptureTimeLbl;
+        private System.Windows.Forms.TextBox ChannelNumberTb;
+        private System.Windows.Forms.Label ChannelNumberLbl;
+        private System.Windows.Forms.TextBox MncTb;
+        private System.Windows.Forms.Label MncLbl;
+        private System.Windows.Forms.TextBox MccTb;
+        private System.Windows.Forms.Label MccLbl;
     }
 }

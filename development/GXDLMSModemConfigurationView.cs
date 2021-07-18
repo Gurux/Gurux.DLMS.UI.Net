@@ -65,6 +65,24 @@ namespace Gurux.DLMS.UI
             set;
         }
 
+        private void UpdateModemInitialisationUI(GXDLMSModemInitialisation it, ListViewItem li)
+        {
+            if (li == null)
+            {
+                li = new ListViewItem(it.Request);
+                li.SubItems.Add(it.Response);
+                li.SubItems.Add(it.Delay.ToString());
+                li.Tag = it;
+                InitialisationView.Items.Add(li);
+            }
+            else
+            {
+                li.SubItems[0].Text = it.Request;
+                li.SubItems[1].Text = it.Response;
+                li.SubItems[2].Text = it.Delay.ToString();
+            }
+        }
+
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
@@ -75,11 +93,7 @@ namespace Gurux.DLMS.UI
                 {
                     foreach (GXDLMSModemInitialisation it in target.InitialisationStrings)
                     {
-                        ListViewItem li = new ListViewItem(it.Request);
-                        li.SubItems.Add(it.Response);
-                        li.SubItems.Add(it.Delay.ToString());
-                        li.Tag = it;
-                        InitialisationView.Items.Add(li);
+                        UpdateModemInitialisationUI(it, null);
                     }
                 }
             }
@@ -190,6 +204,64 @@ namespace Gurux.DLMS.UI
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
+            GXDLMSModemInitialisation item = new GXDLMSModemInitialisation();
+            GXDLMSModemConfigurationDlg dlg = new GXDLMSModemConfigurationDlg(item);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                List<GXDLMSModemInitialisation> list = new List<GXDLMSModemInitialisation>();
+                if (target.InitialisationStrings != null)
+                {
+                    list.AddRange(target.InitialisationStrings);
+                    list.Add(item);
+                }
+                target.InitialisationStrings = list.ToArray();
+                UpdateModemInitialisationUI(item, null);
+                errorProvider1.SetError(InitialisationView, Properties.Resources.ValueChangedTxt);
+                target.UpdateDirty(3, target.InitialisationStrings);
+            }
+        }
+
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            if (InitialisationView.SelectedItems.Count == 1)
+            {
+                ListViewItem li = InitialisationView.SelectedItems[0];
+                GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
+                GXDLMSModemInitialisation item = InitialisationView.SelectedItems[0].Tag as GXDLMSModemInitialisation;
+                GXDLMSModemConfigurationDlg dlg = new GXDLMSModemConfigurationDlg(item);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    UpdateModemInitialisationUI(item, li);
+                    errorProvider1.SetError(InitialisationView, Properties.Resources.ValueChangedTxt);
+                    target.UpdateDirty(3, target.InitialisationStrings);
+                }
+            }
+        }
+
+        private void RemoveBtn_Click(object sender, EventArgs e)
+        {
+            GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
+            List<GXDLMSModemInitialisation> list = new List<GXDLMSModemInitialisation>();
+            if (target.InitialisationStrings != null)
+            {
+                list.AddRange(target.InitialisationStrings);
+            }
+
+            while (InitialisationView.SelectedItems.Count != 0)
+            {
+                ListViewItem li = InitialisationView.SelectedItems[0];
+                GXDLMSModemInitialisation item = (GXDLMSModemInitialisation)li.Tag;
+                li.Remove();
+                errorProvider1.SetError(InitialisationView, Properties.Resources.ValueChangedTxt);
+                Target.UpdateDirty(3, target.InitialisationStrings);
+                list.Remove(item);
+            }
+            target.InitialisationStrings = list.ToArray();
         }
     }
 }

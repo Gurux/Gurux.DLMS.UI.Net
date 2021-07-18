@@ -33,8 +33,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2106.1501, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2106.1501\lib\net46\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2107.1801, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.9.0.2107.1801\lib\net46\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="GXDLMSIecTwistedPairSetupView.designer.cs">
       <DependentUpon>GXDLMSIecTwistedPairSetupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSModemConfigurationDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSModemConfigurationDlg.designer.cs">
+      <DependentUpon>GXDLMSModemConfigurationDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs">
       <SubType>Form</SubType>
@@ -251,11 +257,11 @@
     <Compile Include="GXDLMSParameterMonitorView.designer.cs">
       <DependentUpon>GXDLMSParameterMonitorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXDLMSSecuritySetupView_v1.cs">
+    <Compile Include="GXDLMSSecuritySetupView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GXDLMSSecuritySetupView_v1.designer.cs">
-      <DependentUpon>GXDLMSSecuritySetupView_v1.cs</DependentUpon>
+    <Compile Include="GXDLMSSecuritySetupView.designer.cs">
+      <DependentUpon>GXDLMSSecuritySetupView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXSecuritySetupKeyDlg.cs">
       <SubType>Form</SubType>
@@ -669,12 +675,6 @@
     <Compile Include="GXDLMSScriptTableView.designer.cs">
       <DependentUpon>GXDLMSScriptTableView.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXDLMSSecuritySetupView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GXDLMSSecuritySetupView.designer.cs">
-      <DependentUpon>GXDLMSSecuritySetupView.cs</DependentUpon>
-    </Compile>
     <Compile Include="GXDLMSSpecialDaysTableDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -747,6 +747,9 @@
     <EmbeddedResource Include="GXDLMSIecTwistedPairSetupView.resx">
       <DependentUpon>GXDLMSIecTwistedPairSetupView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSModemConfigurationDlg.resx">
+      <DependentUpon>GXDLMSModemConfigurationDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.resx">
       <DependentUpon>GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationDataView.cs</DependentUpon>
     </EmbeddedResource>
@@ -813,8 +816,8 @@
     <EmbeddedResource Include="GXDLMSParameterMonitorView.resx">
       <DependentUpon>GXDLMSParameterMonitorView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GXDLMSSecuritySetupView_v1.resx">
-      <DependentUpon>GXDLMSSecuritySetupView_v1.cs</DependentUpon>
+    <EmbeddedResource Include="GXDLMSSecuritySetupView.resx">
+      <DependentUpon>GXDLMSSecuritySetupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXSecuritySetupKeyDlg.resx">
       <DependentUpon>GXSecuritySetupKeyDlg.cs</DependentUpon>
@@ -1026,9 +1029,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSScriptTableView.resx">
       <DependentUpon>GXDLMSScriptTableView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GXDLMSSecuritySetupView.resx">
-      <DependentUpon>GXDLMSSecuritySetupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSSpecialDaysTableDlg.resx">
       <DependentUpon>GXDLMSSpecialDaysTableDlg.cs</DependentUpon>

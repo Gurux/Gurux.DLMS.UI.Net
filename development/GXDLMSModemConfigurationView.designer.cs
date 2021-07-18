@@ -41,21 +41,21 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSModemConfigurationView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ModemProfileLbl = new System.Windows.Forms.Label();
-            this.InitialisationLbl = new System.Windows.Forms.Label();
-            this.CommunicationSpeedLbl = new System.Windows.Forms.Label();
-            this.LogicalNameLbl = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ModemProfileTB = new System.Windows.Forms.TextBox();
+            this.RemoveBtn = new System.Windows.Forms.Button();
+            this.EditBtn = new System.Windows.Forms.Button();
             this.InitialisationView = new System.Windows.Forms.ListView();
             this.RequestHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ResponseHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DelayHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RemoveBtn = new System.Windows.Forms.Button();
-            this.EditBtn = new System.Windows.Forms.Button();
             this.AddBtn = new System.Windows.Forms.Button();
-            this.ModemProfileTB = new System.Windows.Forms.TextBox();
+            this.ModemProfileLbl = new System.Windows.Forms.Label();
+            this.InitialisationLbl = new System.Windows.Forms.Label();
             this.CommunicationSpeedTB = new Gurux.DLMS.UI.GXValueField();
+            this.CommunicationSpeedLbl = new System.Windows.Forms.Label();
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.LogicalNameLbl = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -83,47 +83,36 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Text = "Modem Configuration Object";
             this.groupBox1.UseCompatibleTextRendering = true;
             // 
-            // ModemProfileLbl
+            // ModemProfileTB
             // 
-            this.ModemProfileLbl.AutoSize = true;
-            this.ModemProfileLbl.Location = new System.Drawing.Point(6, 246);
-            this.ModemProfileLbl.Name = "ModemProfileLbl";
-            this.ModemProfileLbl.Size = new System.Drawing.Size(77, 13);
-            this.ModemProfileLbl.TabIndex = 6;
-            this.ModemProfileLbl.Text = "Modem Profile:";
+            this.ModemProfileTB.Location = new System.Drawing.Point(102, 246);
+            this.ModemProfileTB.Multiline = true;
+            this.ModemProfileTB.Name = "ModemProfileTB";
+            this.ModemProfileTB.Size = new System.Drawing.Size(383, 112);
+            this.ModemProfileTB.TabIndex = 24;
+            this.ModemProfileTB.Leave += new System.EventHandler(this.ModemProfileTB_Leave);
             // 
-            // InitialisationLbl
+            // RemoveBtn
             // 
-            this.InitialisationLbl.AutoSize = true;
-            this.InitialisationLbl.Location = new System.Drawing.Point(6, 76);
-            this.InitialisationLbl.Name = "InitialisationLbl";
-            this.InitialisationLbl.Size = new System.Drawing.Size(64, 13);
-            this.InitialisationLbl.TabIndex = 4;
-            this.InitialisationLbl.Text = "Initialisation:";
+            this.RemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveBtn.Location = new System.Drawing.Point(410, 217);
+            this.RemoveBtn.Name = "RemoveBtn";
+            this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveBtn.TabIndex = 23;
+            this.RemoveBtn.Text = "Remove";
+            this.RemoveBtn.UseVisualStyleBackColor = true;
+            this.RemoveBtn.Click += new System.EventHandler(this.RemoveBtn_Click);
             // 
-            // CommunicationSpeedLbl
+            // EditBtn
             // 
-            this.CommunicationSpeedLbl.AutoSize = true;
-            this.CommunicationSpeedLbl.Location = new System.Drawing.Point(6, 50);
-            this.CommunicationSpeedLbl.Name = "CommunicationSpeedLbl";
-            this.CommunicationSpeedLbl.Size = new System.Drawing.Size(41, 13);
-            this.CommunicationSpeedLbl.TabIndex = 2;
-            this.CommunicationSpeedLbl.Text = "Speed:";
-            // 
-            // LogicalNameLbl
-            // 
-            this.LogicalNameLbl.AutoSize = true;
-            this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
-            this.LogicalNameLbl.Name = "LogicalNameLbl";
-            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
-            this.LogicalNameLbl.TabIndex = 0;
-            this.LogicalNameLbl.Text = "Logical Name:";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditBtn.Location = new System.Drawing.Point(329, 217);
+            this.EditBtn.Name = "EditBtn";
+            this.EditBtn.Size = new System.Drawing.Size(75, 23);
+            this.EditBtn.TabIndex = 22;
+            this.EditBtn.Text = "Edit...";
+            this.EditBtn.UseVisualStyleBackColor = true;
+            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
             // 
             // InitialisationView
             // 
@@ -159,26 +148,6 @@ namespace Gurux.DLMS.UI
             this.DelayHeader.Text = "Delay";
             this.DelayHeader.Width = 218;
             // 
-            // RemoveBtn
-            // 
-            this.RemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveBtn.Location = new System.Drawing.Point(410, 217);
-            this.RemoveBtn.Name = "RemoveBtn";
-            this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.RemoveBtn.TabIndex = 23;
-            this.RemoveBtn.Text = "Remove";
-            this.RemoveBtn.UseVisualStyleBackColor = true;
-            // 
-            // EditBtn
-            // 
-            this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditBtn.Location = new System.Drawing.Point(329, 217);
-            this.EditBtn.Name = "EditBtn";
-            this.EditBtn.Size = new System.Drawing.Size(75, 23);
-            this.EditBtn.TabIndex = 22;
-            this.EditBtn.Text = "Edit...";
-            this.EditBtn.UseVisualStyleBackColor = true;
-            // 
             // AddBtn
             // 
             this.AddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -188,15 +157,25 @@ namespace Gurux.DLMS.UI
             this.AddBtn.TabIndex = 21;
             this.AddBtn.Text = "Add...";
             this.AddBtn.UseVisualStyleBackColor = true;
+            this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
-            // ModemProfileTB
+            // ModemProfileLbl
             // 
-            this.ModemProfileTB.Location = new System.Drawing.Point(102, 246);
-            this.ModemProfileTB.Multiline = true;
-            this.ModemProfileTB.Name = "ModemProfileTB";
-            this.ModemProfileTB.Size = new System.Drawing.Size(383, 112);
-            this.ModemProfileTB.TabIndex = 24;
-            this.ModemProfileTB.Leave += new System.EventHandler(this.ModemProfileTB_Leave);
+            this.ModemProfileLbl.AutoSize = true;
+            this.ModemProfileLbl.Location = new System.Drawing.Point(6, 246);
+            this.ModemProfileLbl.Name = "ModemProfileLbl";
+            this.ModemProfileLbl.Size = new System.Drawing.Size(77, 13);
+            this.ModemProfileLbl.TabIndex = 6;
+            this.ModemProfileLbl.Text = "Modem Profile:";
+            // 
+            // InitialisationLbl
+            // 
+            this.InitialisationLbl.AutoSize = true;
+            this.InitialisationLbl.Location = new System.Drawing.Point(6, 76);
+            this.InitialisationLbl.Name = "InitialisationLbl";
+            this.InitialisationLbl.Size = new System.Drawing.Size(64, 13);
+            this.InitialisationLbl.TabIndex = 4;
+            this.InitialisationLbl.Text = "Initialisation:";
             // 
             // CommunicationSpeedTB
             // 
@@ -210,6 +189,15 @@ namespace Gurux.DLMS.UI
             this.CommunicationSpeedTB.TabIndex = 0;
             this.CommunicationSpeedTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
+            // CommunicationSpeedLbl
+            // 
+            this.CommunicationSpeedLbl.AutoSize = true;
+            this.CommunicationSpeedLbl.Location = new System.Drawing.Point(6, 50);
+            this.CommunicationSpeedLbl.Name = "CommunicationSpeedLbl";
+            this.CommunicationSpeedLbl.Size = new System.Drawing.Size(41, 13);
+            this.CommunicationSpeedLbl.TabIndex = 2;
+            this.CommunicationSpeedLbl.Text = "Speed:";
+            // 
             // LogicalNameTB
             // 
             this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -221,6 +209,21 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB.Size = new System.Drawing.Size(383, 20);
             this.LogicalNameTB.TabIndex = 1;
             this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // LogicalNameLbl
+            // 
+            this.LogicalNameLbl.AutoSize = true;
+            this.LogicalNameLbl.Location = new System.Drawing.Point(6, 24);
+            this.LogicalNameLbl.Name = "LogicalNameLbl";
+            this.LogicalNameLbl.Size = new System.Drawing.Size(75, 13);
+            this.LogicalNameLbl.TabIndex = 0;
+            this.LogicalNameLbl.Text = "Logical Name:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
             // GXDLMSModemConfigurationView
             // 

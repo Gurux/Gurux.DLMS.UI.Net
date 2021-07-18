@@ -76,6 +76,9 @@ namespace Gurux.DLMS.UI
                 LocationIDTb.Text = target.CellInfo.LocationId.ToString("X4");
                 SignalQualityTb.Text = target.CellInfo.SignalQuality.ToString();
                 BerTb.Text = target.CellInfo.Ber.ToString();
+                MccTb.Text = target.CellInfo.MobileCountryCode.ToString();
+                MncTb.Text = target.CellInfo.MobileNetworkCode.ToString();
+                ChannelNumberTb.Text = target.CellInfo.ChannelNumber.ToString();
             }
             else if (index == 7)
             {
@@ -97,7 +100,8 @@ namespace Gurux.DLMS.UI
             bool enable = connected && (access & AccessMode.Write) != 0;
             if (index == 6)
             {
-                CellIDTb.ReadOnly = LocationIDTb.ReadOnly = SignalQualityTb.ReadOnly = BerTb.ReadOnly = !enable;
+                MccTb.ReadOnly = MncTb.ReadOnly = ChannelNumberTb.ReadOnly = CellIDTb.ReadOnly =
+                    LocationIDTb.ReadOnly = SignalQualityTb.ReadOnly = BerTb.ReadOnly = !enable;
             }
             else if (index == 7)
             {
