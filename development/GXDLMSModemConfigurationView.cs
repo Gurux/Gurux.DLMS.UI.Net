@@ -217,8 +217,8 @@ namespace Gurux.DLMS.UI
                 if (target.InitialisationStrings != null)
                 {
                     list.AddRange(target.InitialisationStrings);
-                    list.Add(item);
                 }
+                list.Add(item);
                 target.InitialisationStrings = list.ToArray();
                 UpdateModemInitialisationUI(item, null);
                 errorProvider1.SetError(InitialisationView, Properties.Resources.ValueChangedTxt);
