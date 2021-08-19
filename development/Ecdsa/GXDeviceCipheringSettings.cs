@@ -489,7 +489,8 @@ namespace Gurux.DLMS.UI.Ecdsa
                                       Security.Encryption, Security.AuthenticationEncryption });
             KeyAgreementSchemeCb.Items.AddRange(new object[] {
                 KeyAgreementScheme.OnePassDiffieHellman,
-                KeyAgreementScheme.StaticUnifiedModel});
+                KeyAgreementScheme.StaticUnifiedModel,
+                KeyAgreementScheme.GeneralSigning});
             SecurityCB.SelectedIndex = 0;
             KeyAgreementSchemeCb.SelectedIndex = 0;
             SecuritySuiteCb.SelectedIndex = 0;

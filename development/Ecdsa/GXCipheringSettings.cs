@@ -30,20 +30,24 @@ namespace Gurux.DLMS.UI.Ecdsa
         /// <summary>
         /// Public key certifications.
         /// </summary>
-        private List<KeyValuePair<GXPkcs8, GXx509Certificate>> KeyPairs;
+        public List<KeyValuePair<GXPkcs8, GXx509Certificate>> KeyPairs;
 
         public GXCipheringSettings(GXDLMSTranslator translator, string keysPath, string certificatesPath,
                             string clientAgreementKey,
                             string clientSigningKey,
+                            string clientTls,
                             string serverAgreementKey,
-                            string serverSigningKey)
+                            string serverSigningKey,
+                            string serverTls)
         {
             InitializeComponent();
             KeyPairs = new List<KeyValuePair<GXPkcs8, GXx509Certificate>>();
             ClientAgreementKey = clientAgreementKey;
             ClientSigningKey = clientSigningKey;
+            ClientTls = clientTls;
             ServerAgreementKey = serverAgreementKey;
             ServerSigningKey = serverSigningKey;
+            ServerTls = serverTls;
             _translator = translator;
             _privateKeys = new GXPkcs8Collection();
             _certifications = new GXx509CertificateCollection();
@@ -163,13 +167,13 @@ namespace Gurux.DLMS.UI.Ecdsa
                 }
             }
             //Select default values.
-            if (!string.IsNullOrEmpty(ClientSigningKey))
+            if (!string.IsNullOrEmpty(clientSigningKey))
             {
                 foreach (object tmp in ClientSigningKeysCb.Items)
                 {
                     if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
                     {
-                        if (it.Value.SerialNumber.ToString() == ClientSigningKey)
+                        if (it.Value.SerialNumber.ToString() == clientSigningKey)
                         {
                             ClientSigningKeysCb.SelectedItem = it;
                             break;
@@ -181,13 +185,13 @@ namespace Gurux.DLMS.UI.Ecdsa
             {
                 ClientSigningKeysCb.SelectedIndex = 0;
             }
-            if (!string.IsNullOrEmpty(ClientAgreementKey))
+            if (!string.IsNullOrEmpty(clientAgreementKey))
             {
                 foreach (object tmp in ClientAgreementKeysCb.Items)
                 {
                     if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
                     {
-                        if (it.Value.SerialNumber.ToString() == ClientAgreementKey)
+                        if (it.Value.SerialNumber.ToString() == clientAgreementKey)
                         {
                             ClientAgreementKeysCb.SelectedItem = it;
                             break;
@@ -200,13 +204,13 @@ namespace Gurux.DLMS.UI.Ecdsa
                 ClientAgreementKeysCb.SelectedIndex = 0;
             }
 
-            if (!string.IsNullOrEmpty(ClientTls))
+            if (!string.IsNullOrEmpty(clientTls))
             {
                 foreach (object tmp in ClientTlsCb.Items)
                 {
                     if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
                     {
-                        if (it.Value.SerialNumber.ToString() == ClientTls)
+                        if (it.Value.SerialNumber.ToString() == clientTls)
                         {
                             ClientTlsCb.SelectedItem = it;
                             break;
@@ -219,13 +223,13 @@ namespace Gurux.DLMS.UI.Ecdsa
                 ClientTlsCb.SelectedIndex = 0;
             }
 
-            if (!string.IsNullOrEmpty(ServerSigningKey))
+            if (!string.IsNullOrEmpty(serverSigningKey))
             {
                 foreach (object tmp in ServerSigningKeysCb.Items)
                 {
                     if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
                     {
-                        if (it.Value.SerialNumber.ToString() == ServerSigningKey)
+                        if (it.Value.SerialNumber.ToString() == serverSigningKey)
                         {
                             ServerSigningKeysCb.SelectedItem = it;
                             break;
@@ -238,13 +242,13 @@ namespace Gurux.DLMS.UI.Ecdsa
                 ServerSigningKeysCb.SelectedIndex = 0;
             }
 
-            if (!string.IsNullOrEmpty(ServerAgreementKey))
+            if (!string.IsNullOrEmpty(serverAgreementKey))
             {
                 foreach (object tmp in ServerAgreementKeysCb.Items)
                 {
                     if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
                     {
-                        if (it.Value.SerialNumber.ToString() == ServerAgreementKey)
+                        if (it.Value.SerialNumber.ToString() == serverAgreementKey)
                         {
                             ServerAgreementKeysCb.SelectedItem = it;
                             break;
@@ -257,13 +261,13 @@ namespace Gurux.DLMS.UI.Ecdsa
                 ServerAgreementKeysCb.SelectedIndex = 0;
             }
 
-            if (!string.IsNullOrEmpty(ServerTls))
+            if (!string.IsNullOrEmpty(serverTls))
             {
                 foreach (object tmp in ServerTlsCb.Items)
                 {
                     if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
                     {
-                        if (it.Value.SerialNumber.ToString() == ServerTls)
+                        if (it.Value.SerialNumber.ToString() == serverTls)
                         {
                             ServerTlsCb.SelectedItem = it;
                             break;
@@ -1255,150 +1259,153 @@ namespace Gurux.DLMS.UI.Ecdsa
         /// </summary>
         private void UpdateKeys()
         {
-            _translator.Keys.Clear();
-            if (ClientSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> cs)
+            if (_checkSystemTitle)
             {
-                _translator.Keys.Add(cs);
-                ClientSigningKey = cs.Value.SerialNumber.ToString();
-            }
-            else
-            {
-                ClientSigningKey = null;
-            }
-            if (ClientAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ca)
-            {
-                _translator.Keys.Add(ca);
-                ClientAgreementKey = ca.Value.SerialNumber.ToString();
-            }
-            else
-            {
-                ClientAgreementKey = null;
-            }
-            if (ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ct)
-            {
-                _translator.Keys.Add(ct);
-                ClientTls = ct.Value.SerialNumber.ToString();
-            }
-            else
-            {
-                ClientTls = null;
-            }
-            if (ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ss)
-            {
-                _translator.Keys.Add(ss);
-                ServerSigningKey = ss.Value.SerialNumber.ToString();
-            }
-            else
-            {
-                ServerSigningKey = null;
-            }
-            if (ServerAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sa)
-            {
-                _translator.Keys.Add(sa);
-                ServerAgreementKey = sa.Value.SerialNumber.ToString();
-            }
-            else
-            {
-                ServerAgreementKey = null;
-            }
-            if (ServerTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> st)
-            {
-                _translator.Keys.Add(st);
-                ServerTls = st.Value.SerialNumber.ToString();
-            }
-            else
-            {
-                ServerSigningKey = null;
-            }
-            bool check = _checkSystemTitle;
-            if (check && ClientSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> cv)
-            {
-                string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(cv.Value.Subject), true);
-                if (GXDLMSTranslator.ToHex(_translator.SystemTitle, true) != certificateSt)
+                _translator.Keys.Clear();
+                if (ClientSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> cs)
                 {
-                    if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        SystemTitleAscii = false;
-                        SystemTitleTB.Text = certificateSt;
-                        SystemTitleTB_Leave(null, null);
-                        check = false;
-                    }
+                    _translator.Keys.Add(cs);
+                    ClientSigningKey = cs.Value.SerialNumber.ToString();
                 }
-            }
-            if (check && ClientAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ck)
-            {
-                string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ck.Value.Subject), true);
-                if (GXDLMSTranslator.ToHex(_translator.SystemTitle, true) != certificateSt)
+                else
                 {
-                    if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        SystemTitleAscii = false;
-                        SystemTitleTB.Text = certificateSt;
-                        SystemTitleTB_Leave(null, null);
-                        check = false;
-                    }
+                    ClientSigningKey = null;
                 }
-            }
-
-            if (check && ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ct2)
-            {
-                string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ct2.Value.Subject), true);
-                if (GXDLMSTranslator.ToHex(_translator.SystemTitle, true) != certificateSt)
+                if (ClientAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ca)
                 {
-                    if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        SystemTitleAscii = false;
-                        SystemTitleTB.Text = certificateSt;
-                        ServerSystemTitleTB_Leave(null, null);
-                        check = false;
-                    }
+                    _translator.Keys.Add(ca);
+                    ClientAgreementKey = ca.Value.SerialNumber.ToString();
                 }
-            }
-
-            if (check && ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sv)
-            {
-                string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(sv.Value.Subject), true);
-                if (GXDLMSTranslator.ToHex(_translator.ServerSystemTitle, true) != certificateSt)
+                else
                 {
-                    if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        ServerSystemTitleAsciiCb.Checked = false;
-                        ServerSystemTitleTB.Text = certificateSt;
-                        ServerSystemTitleTB_Leave(null, null);
-                        check = false;
-                    }
+                    ClientAgreementKey = null;
                 }
-            }
-            if (check && ServerAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sk)
-            {
-                string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(sk.Value.Subject), true);
-                if (GXDLMSTranslator.ToHex(_translator.ServerSystemTitle, true) != certificateSt)
+                if (ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ct)
                 {
-                    if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        ServerSystemTitleAsciiCb.Checked = false;
-                        ServerSystemTitleTB.Text = certificateSt;
-                        ServerSystemTitleTB_Leave(null, null);
-                        check = false;
-                    }
+                    _translator.Keys.Add(ct);
+                    ClientTls = ct.Value.SerialNumber.ToString();
                 }
-            }
-            if (check && ServerTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> st2)
-            {
-                string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(st2.Value.Subject), false);
-                if (GXDLMSTranslator.ToHex(_translator.ServerSystemTitle, false) != certificateSt)
+                else
                 {
-                    if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                    ClientTls = null;
+                }
+                if (ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ss)
+                {
+                    _translator.Keys.Add(ss);
+                    ServerSigningKey = ss.Value.SerialNumber.ToString();
+                }
+                else
+                {
+                    ServerSigningKey = null;
+                }
+                if (ServerAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sa)
+                {
+                    _translator.Keys.Add(sa);
+                    ServerAgreementKey = sa.Value.SerialNumber.ToString();
+                }
+                else
+                {
+                    ServerAgreementKey = null;
+                }
+                if (ServerTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> st)
+                {
+                    _translator.Keys.Add(st);
+                    ServerTls = st.Value.SerialNumber.ToString();
+                }
+                else
+                {
+                    ServerTls = null;
+                }
+                bool check = _checkSystemTitle;
+                if (check && ClientSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> cv)
+                {
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(cv.Value.Subject), true);
+                    if (GXDLMSTranslator.ToHex(_translator.SystemTitle, true) != certificateSt)
                     {
-                        if (ServerSystemTitleAsciiCb.Checked)
+                        if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            ServerSystemTitleTB.Text = ASCIIEncoding.ASCII.GetString(GXDLMSTranslator.HexToBytes(certificateSt));
+                            SystemTitleAscii = false;
+                            SystemTitleTB.Text = certificateSt;
+                            SystemTitleTB_Leave(null, null);
+                            check = false;
                         }
-                        else
+                    }
+                }
+                if (check && ClientAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ck)
+                {
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ck.Value.Subject), true);
+                    if (GXDLMSTranslator.ToHex(_translator.SystemTitle, true) != certificateSt)
+                    {
+                        if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
+                            SystemTitleAscii = false;
+                            SystemTitleTB.Text = certificateSt;
+                            SystemTitleTB_Leave(null, null);
+                            check = false;
+                        }
+                    }
+                }
+
+                if (check && ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ct2)
+                {
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ct2.Value.Subject), true);
+                    if (GXDLMSTranslator.ToHex(_translator.SystemTitle, true) != certificateSt)
+                    {
+                        if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            SystemTitleAscii = false;
+                            SystemTitleTB.Text = certificateSt;
+                            ServerSystemTitleTB_Leave(null, null);
+                            check = false;
+                        }
+                    }
+                }
+
+                if (check && ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sv)
+                {
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(sv.Value.Subject), true);
+                    if (GXDLMSTranslator.ToHex(_translator.ServerSystemTitle, true) != certificateSt)
+                    {
+                        if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            ServerSystemTitleAsciiCb.Checked = false;
                             ServerSystemTitleTB.Text = certificateSt;
+                            ServerSystemTitleTB_Leave(null, null);
+                            check = false;
                         }
-                        ServerSystemTitleTB_Leave(null, null);
+                    }
+                }
+                if (check && ServerAgreementKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sk)
+                {
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(sk.Value.Subject), true);
+                    if (GXDLMSTranslator.ToHex(_translator.ServerSystemTitle, true) != certificateSt)
+                    {
+                        if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            ServerSystemTitleAsciiCb.Checked = false;
+                            ServerSystemTitleTB.Text = certificateSt;
+                            ServerSystemTitleTB_Leave(null, null);
+                            check = false;
+                        }
+                    }
+                }
+                if (check && ServerTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> st2)
+                {
+                    string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(st2.Value.Subject), false);
+                    if (GXDLMSTranslator.ToHex(_translator.ServerSystemTitle, false) != certificateSt)
+                    {
+                        if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTB.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            if (ServerSystemTitleAsciiCb.Checked)
+                            {
+                                ServerSystemTitleTB.Text = ASCIIEncoding.ASCII.GetString(GXDLMSTranslator.HexToBytes(certificateSt));
+                            }
+                            else
+                            {
+                                ServerSystemTitleTB.Text = certificateSt;
+                            }
+                            ServerSystemTitleTB_Leave(null, null);
+                        }
                     }
                 }
             }

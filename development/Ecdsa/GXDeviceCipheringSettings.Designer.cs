@@ -413,7 +413,7 @@
             this.Cipheringv1.Controls.Add(this.UpdateBtn);
             this.Cipheringv1.Location = new System.Drawing.Point(8, 3);
             this.Cipheringv1.Name = "Cipheringv1";
-            this.Cipheringv1.Size = new System.Drawing.Size(440, 311);
+            this.Cipheringv1.Size = new System.Drawing.Size(449, 311);
             this.Cipheringv1.TabIndex = 82;
             // 
             // tabControl2
@@ -423,7 +423,7 @@
             this.tabControl2.Location = new System.Drawing.Point(3, 27);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(431, 118);
+            this.tabControl2.Size = new System.Drawing.Size(443, 118);
             this.tabControl2.TabIndex = 2;
             // 
             // tabPage1
@@ -440,7 +440,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(423, 92);
+            this.tabPage1.Size = new System.Drawing.Size(435, 92);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Client keys";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -448,7 +448,7 @@
             // ClientTlsInfoBtn
             // 
             this.ClientTlsInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTlsInfoBtn.Location = new System.Drawing.Point(333, 60);
+            this.ClientTlsInfoBtn.Location = new System.Drawing.Point(345, 60);
             this.ClientTlsInfoBtn.Name = "ClientTlsInfoBtn";
             this.ClientTlsInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ClientTlsInfoBtn.TabIndex = 5;
@@ -464,7 +464,7 @@
             this.ClientTlsCb.FormattingEnabled = true;
             this.ClientTlsCb.Location = new System.Drawing.Point(101, 61);
             this.ClientTlsCb.Name = "ClientTlsCb";
-            this.ClientTlsCb.Size = new System.Drawing.Size(226, 21);
+            this.ClientTlsCb.Size = new System.Drawing.Size(238, 21);
             this.ClientTlsCb.TabIndex = 4;
             this.ClientTlsCb.SelectedIndexChanged += new System.EventHandler(this.ClientTlsCb_SelectedIndexChanged);
             this.ClientTlsCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
@@ -481,7 +481,7 @@
             // ClientAgreementKeyInfoBtn
             // 
             this.ClientAgreementKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientAgreementKeyInfoBtn.Location = new System.Drawing.Point(333, 33);
+            this.ClientAgreementKeyInfoBtn.Location = new System.Drawing.Point(345, 33);
             this.ClientAgreementKeyInfoBtn.Name = "ClientAgreementKeyInfoBtn";
             this.ClientAgreementKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ClientAgreementKeyInfoBtn.TabIndex = 3;
@@ -492,7 +492,7 @@
             // ClientSigningKeysInfoBtn
             // 
             this.ClientSigningKeysInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientSigningKeysInfoBtn.Location = new System.Drawing.Point(333, 6);
+            this.ClientSigningKeysInfoBtn.Location = new System.Drawing.Point(345, 6);
             this.ClientSigningKeysInfoBtn.Name = "ClientSigningKeysInfoBtn";
             this.ClientSigningKeysInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ClientSigningKeysInfoBtn.TabIndex = 1;
@@ -508,7 +508,7 @@
             this.ClientSigningKeysCb.FormattingEnabled = true;
             this.ClientSigningKeysCb.Location = new System.Drawing.Point(101, 6);
             this.ClientSigningKeysCb.Name = "ClientSigningKeysCb";
-            this.ClientSigningKeysCb.Size = new System.Drawing.Size(226, 21);
+            this.ClientSigningKeysCb.Size = new System.Drawing.Size(238, 21);
             this.ClientSigningKeysCb.TabIndex = 0;
             this.ClientSigningKeysCb.SelectedIndexChanged += new System.EventHandler(this.ClientSigningKeysCb_SelectedIndexChanged);
             this.ClientSigningKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
@@ -521,7 +521,7 @@
             this.ClientAgreementKeysCb.FormattingEnabled = true;
             this.ClientAgreementKeysCb.Location = new System.Drawing.Point(101, 34);
             this.ClientAgreementKeysCb.Name = "ClientAgreementKeysCb";
-            this.ClientAgreementKeysCb.Size = new System.Drawing.Size(226, 21);
+            this.ClientAgreementKeysCb.Size = new System.Drawing.Size(238, 21);
             this.ClientAgreementKeysCb.TabIndex = 2;
             this.ClientAgreementKeysCb.SelectedIndexChanged += new System.EventHandler(this.ClientAgreementKeysCb_SelectedIndexChanged);
             this.ClientAgreementKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
@@ -558,7 +558,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(423, 92);
+            this.tabPage2.Size = new System.Drawing.Size(435, 92);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Server keys";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -566,7 +566,7 @@
             // ServerTlsInfoBtn
             // 
             this.ServerTlsInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTlsInfoBtn.Location = new System.Drawing.Point(334, 66);
+            this.ServerTlsInfoBtn.Location = new System.Drawing.Point(345, 59);
             this.ServerTlsInfoBtn.Name = "ServerTlsInfoBtn";
             this.ServerTlsInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ServerTlsInfoBtn.TabIndex = 99;
@@ -580,9 +580,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTlsCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTlsCb.FormattingEnabled = true;
-            this.ServerTlsCb.Location = new System.Drawing.Point(102, 68);
+            this.ServerTlsCb.Location = new System.Drawing.Point(101, 61);
             this.ServerTlsCb.Name = "ServerTlsCb";
-            this.ServerTlsCb.Size = new System.Drawing.Size(226, 21);
+            this.ServerTlsCb.Size = new System.Drawing.Size(238, 21);
             this.ServerTlsCb.TabIndex = 97;
             this.ServerTlsCb.SelectedIndexChanged += new System.EventHandler(this.ServerTlsCb_SelectedIndexChanged);
             this.ServerTlsCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
@@ -590,7 +590,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 69);
+            this.label9.Location = new System.Drawing.Point(6, 61);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(30, 13);
             this.label9.TabIndex = 98;
@@ -599,7 +599,7 @@
             // ServerAgreementKeyInfoBtn
             // 
             this.ServerAgreementKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerAgreementKeyInfoBtn.Location = new System.Drawing.Point(334, 39);
+            this.ServerAgreementKeyInfoBtn.Location = new System.Drawing.Point(345, 32);
             this.ServerAgreementKeyInfoBtn.Name = "ServerAgreementKeyInfoBtn";
             this.ServerAgreementKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ServerAgreementKeyInfoBtn.TabIndex = 3;
@@ -610,7 +610,7 @@
             // ServerSigningKeyInfoBtn
             // 
             this.ServerSigningKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerSigningKeyInfoBtn.Location = new System.Drawing.Point(334, 13);
+            this.ServerSigningKeyInfoBtn.Location = new System.Drawing.Point(345, 6);
             this.ServerSigningKeyInfoBtn.Name = "ServerSigningKeyInfoBtn";
             this.ServerSigningKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ServerSigningKeyInfoBtn.TabIndex = 1;
@@ -624,9 +624,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerSigningKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerSigningKeysCb.FormattingEnabled = true;
-            this.ServerSigningKeysCb.Location = new System.Drawing.Point(102, 13);
+            this.ServerSigningKeysCb.Location = new System.Drawing.Point(101, 6);
             this.ServerSigningKeysCb.Name = "ServerSigningKeysCb";
-            this.ServerSigningKeysCb.Size = new System.Drawing.Size(226, 21);
+            this.ServerSigningKeysCb.Size = new System.Drawing.Size(238, 21);
             this.ServerSigningKeysCb.TabIndex = 0;
             this.ServerSigningKeysCb.SelectedIndexChanged += new System.EventHandler(this.ServerSigningKeysCb_SelectedIndexChanged);
             this.ServerSigningKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
@@ -637,9 +637,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerAgreementKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerAgreementKeysCb.FormattingEnabled = true;
-            this.ServerAgreementKeysCb.Location = new System.Drawing.Point(102, 41);
+            this.ServerAgreementKeysCb.Location = new System.Drawing.Point(101, 34);
             this.ServerAgreementKeysCb.Name = "ServerAgreementKeysCb";
-            this.ServerAgreementKeysCb.Size = new System.Drawing.Size(226, 21);
+            this.ServerAgreementKeysCb.Size = new System.Drawing.Size(238, 21);
             this.ServerAgreementKeysCb.TabIndex = 2;
             this.ServerAgreementKeysCb.SelectedIndexChanged += new System.EventHandler(this.ServerAgreementKeysCb_SelectedIndexChanged);
             this.ServerAgreementKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
@@ -647,7 +647,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Location = new System.Drawing.Point(6, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 91;
@@ -656,7 +656,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 20);
+            this.label6.Location = new System.Drawing.Point(6, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 90;
@@ -665,9 +665,9 @@
             // KeyAgreementSchemeCb
             // 
             this.KeyAgreementSchemeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KeyAgreementSchemeCb.Location = new System.Drawing.Point(108, 3);
+            this.KeyAgreementSchemeCb.Location = new System.Drawing.Point(101, 0);
             this.KeyAgreementSchemeCb.Name = "KeyAgreementSchemeCb";
-            this.KeyAgreementSchemeCb.Size = new System.Drawing.Size(172, 21);
+            this.KeyAgreementSchemeCb.Size = new System.Drawing.Size(238, 21);
             this.KeyAgreementSchemeCb.TabIndex = 0;
             // 
             // SchemeLbl
@@ -682,7 +682,7 @@
             // UpdateBtn
             // 
             this.UpdateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateBtn.Location = new System.Drawing.Point(344, 3);
+            this.UpdateBtn.Location = new System.Drawing.Point(345, 3);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(75, 23);
             this.UpdateBtn.TabIndex = 1;
