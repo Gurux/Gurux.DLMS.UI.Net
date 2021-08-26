@@ -82,7 +82,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.BlockCipherKeyAsciiCb = new System.Windows.Forms.CheckBox();
             this.AuthenticationKey0AsciiCb = new System.Windows.Forms.CheckBox();
-            this.AuthenticationKey0TB = new System.Windows.Forms.TextBox();
+            this.AuthenticationKeyTB = new System.Windows.Forms.TextBox();
             this.BlockCipherKeyTB = new System.Windows.Forms.TextBox();
             this.AuthenticationKeyLbl = new System.Windows.Forms.Label();
             this.BlockCipherKeyLbl = new System.Windows.Forms.Label();
@@ -116,7 +116,7 @@
             // 
             this.CipheringTab.Controls.Add(this.BlockCipherKeyAsciiCb);
             this.CipheringTab.Controls.Add(this.AuthenticationKey0AsciiCb);
-            this.CipheringTab.Controls.Add(this.AuthenticationKey0TB);
+            this.CipheringTab.Controls.Add(this.AuthenticationKeyTB);
             this.CipheringTab.Controls.Add(this.BlockCipherKeyTB);
             this.CipheringTab.Controls.Add(this.AuthenticationKeyLbl);
             this.CipheringTab.Controls.Add(this.BlockCipherKeyLbl);
@@ -684,17 +684,17 @@
             this.AuthenticationKey0AsciiCb.TabIndex = 109;
             this.AuthenticationKey0AsciiCb.Text = "ASCII";
             this.AuthenticationKey0AsciiCb.UseVisualStyleBackColor = true;
-            this.AuthenticationKey0AsciiCb.CheckedChanged += new System.EventHandler(this.AuthenticationKey0AsciiCb_CheckedChanged);
+            this.AuthenticationKey0AsciiCb.CheckedChanged += new System.EventHandler(this.AuthenticationKeyAsciiCb_CheckedChanged);
             // 
             // AuthenticationKey0TB
             // 
-            this.AuthenticationKey0TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.AuthenticationKeyTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthenticationKey0TB.Location = new System.Drawing.Point(108, 162);
-            this.AuthenticationKey0TB.Name = "AuthenticationKey0TB";
-            this.AuthenticationKey0TB.Size = new System.Drawing.Size(277, 20);
-            this.AuthenticationKey0TB.TabIndex = 108;
-            this.AuthenticationKey0TB.Leave += new System.EventHandler(this.AuthenticationKey0TB_Leave);
+            this.AuthenticationKeyTB.Location = new System.Drawing.Point(108, 162);
+            this.AuthenticationKeyTB.Name = "AuthenticationKey0TB";
+            this.AuthenticationKeyTB.Size = new System.Drawing.Size(277, 20);
+            this.AuthenticationKeyTB.TabIndex = 108;
+            this.AuthenticationKeyTB.Leave += new System.EventHandler(this.AuthenticationKey0TB_Leave);
             // 
             // BlockCipherKeyTB
             // 
@@ -803,7 +803,7 @@
         private System.Windows.Forms.Button ClearBtn;
         private System.Windows.Forms.CheckBox BlockCipherKeyAsciiCb;
         private System.Windows.Forms.CheckBox AuthenticationKey0AsciiCb;
-        private System.Windows.Forms.TextBox AuthenticationKey0TB;
+        private System.Windows.Forms.TextBox AuthenticationKeyTB;
         private System.Windows.Forms.TextBox BlockCipherKeyTB;
         private System.Windows.Forms.Label AuthenticationKeyLbl;
         private System.Windows.Forms.Label BlockCipherKeyLbl;

@@ -33,7 +33,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         internal GXx509CertificateCollection _certifications;
 
         public List<KeyValuePair<GXPkcs8, GXx509Certificate>> GetClientKeys(string systemTitle)
-        {            
+        {
             byte[] st = GXDLMSTranslator.HexToBytes(systemTitle);
             List<KeyValuePair<GXPkcs8, GXx509Certificate>> list = new List<KeyValuePair<GXPkcs8, GXx509Certificate>>();
             if (st.Length == 8)
@@ -224,18 +224,6 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
         }
 
-        public KeyAgreementScheme KeyAgreementScheme
-        {
-            get
-            {
-                return (KeyAgreementScheme)KeyAgreementSchemeCb.SelectedItem;
-            }
-            set
-            {
-                KeyAgreementSchemeCb.SelectedItem = value;
-            }
-        }
-
         public Security Security
         {
             get
@@ -244,6 +232,11 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             set
             {
+                //TODO: Obsolete. This can be remove at some point.
+                if (value == Security.DigitallySigned)
+                {
+                    value = Security.AuthenticationEncryption;
+                }
                 SecurityCB.SelectedItem = value;
             }
         }
@@ -380,6 +373,21 @@ namespace Gurux.DLMS.UI.Ecdsa
         }
 
         /// <summary>
+        /// Signing.
+        /// </summary>
+        public Signing Signing
+        {
+            get
+            {
+                return (Signing)SigningCb.SelectedItem;
+            }
+            set
+            {
+                SigningCb.SelectedItem = value;
+            }
+        }
+
+        /// <summary>
         /// Signing key of the client.
         /// </summary>
         public string ClientSigningKey
@@ -484,15 +492,11 @@ namespace Gurux.DLMS.UI.Ecdsa
             _certifications = new GXx509CertificateCollection();
             _privateKeys.Import(keysPath);
             _certifications.Import(certificatesPath);
+            SigningCb.Items.AddRange(new object[] { Signing.None, Signing.OnePassDiffieHellman, Signing.StaticUnifiedModel, Signing.GeneralSigning });
             SecuritySuiteCb.Items.AddRange(new object[] { SecuritySuite.Suite0, SecuritySuite.Suite1, SecuritySuite.Suite2 });
             SecurityCB.Items.AddRange(new object[] { Security.None, Security.Authentication,
                                       Security.Encryption, Security.AuthenticationEncryption });
-            KeyAgreementSchemeCb.Items.AddRange(new object[] {
-                KeyAgreementScheme.OnePassDiffieHellman,
-                KeyAgreementScheme.StaticUnifiedModel,
-                KeyAgreementScheme.GeneralSigning});
             SecurityCB.SelectedIndex = 0;
-            KeyAgreementSchemeCb.SelectedIndex = 0;
             SecuritySuiteCb.SelectedIndex = 0;
             ShowKeys();
             _checkSystemTitle = true;
@@ -614,42 +618,6 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             Security selected = (Security)SecurityCB.SelectedItem;
             AuthenticationKeyTB.ReadOnly = BlockCipherKeyTB.ReadOnly = selected == Security.None;
-            if (selected != Security.DigitallySigned)
-            {
-                while (Cipheringv1.Controls.Count == 0)
-                {
-                    while (CipheringPanel.Controls.Count != 0)
-                    {
-                        Control ctr = CipheringPanel.Controls[0];
-                        ctr.Visible = false;
-                        Cipheringv1.Controls.Add(ctr);
-                    }
-                }
-                while (Cipheringv0.Controls.Count != 0)
-                {
-                    Control ctr = Cipheringv0.Controls[0];
-                    CipheringPanel.Controls.Add(ctr);
-                    ctr.Visible = true;
-                }
-            }
-            else
-            {
-                while (Cipheringv0.Controls.Count == 0)
-                {
-                    while (CipheringPanel.Controls.Count != 0)
-                    {
-                        Control ctr = CipheringPanel.Controls[0];
-                        ctr.Visible = false;
-                        Cipheringv0.Controls.Add(ctr);
-                    }
-                }
-                while (Cipheringv1.Controls.Count != 0)
-                {
-                    Control ctr = Cipheringv1.Controls[0];
-                    CipheringPanel.Controls.Add(ctr);
-                    ctr.Visible = true;
-                }
-            }
         }
 
         /// <summary>
@@ -1279,31 +1247,6 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
         }
 
-        private void SecuritySuiteCb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Security selected = (Security)SecurityCB.SelectedItem;
-            SecurityCB.Items.Clear();
-            if (SecuritySuite == SecuritySuite.Suite0)
-            {
-                SecurityCB.Items.AddRange(new object[] { Security.None, Security.Authentication,
-                                      Security.Encryption, Security.AuthenticationEncryption });
-                if (selected < Security.DigitallySigned)
-                {
-                    SecurityCB.SelectedItem = selected;
-                }
-                else
-                {
-                    SecurityCB.SelectedIndex = 0;
-                }
-            }
-            else
-            {
-                SecurityCB.Items.AddRange(new object[] { Security.None, Security.Authentication,
-                                      Security.Encryption, Security.AuthenticationEncryption, Security.DigitallySigned });
-                SecurityCB.SelectedItem = selected;
-            }
-        }
-
         /// <summary>
         /// Generate private key and certificate for the client.
         /// </summary>
@@ -1466,6 +1409,51 @@ namespace Gurux.DLMS.UI.Ecdsa
         private void SystemTitleAsciiCb_CheckStateChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void SigningCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Signing selected = (Signing)SigningCb.SelectedItem;
+            if (selected == Signing.None)
+            {
+                while (Cipheringv1.Controls.Count == 0)
+                {
+                    while (CipheringPanel.Controls.Count != 0)
+                    {
+                        Control ctr = CipheringPanel.Controls[0];
+                        ctr.Visible = false;
+                        Cipheringv1.Controls.Add(ctr);
+                    }
+                }
+                while (Cipheringv0.Controls.Count != 0)
+                {
+                    Control ctr = Cipheringv0.Controls[0];
+                    CipheringPanel.Controls.Add(ctr);
+                    ctr.Visible = true;
+                }
+            }
+            else
+            {
+                //Static unified model doesn't use signing key.
+                ClientSigningKeysCb.Enabled = ServerSigningKeysCb.Enabled = selected != Signing.StaticUnifiedModel;
+                //General signing doesn't use agreement key.
+                ClientAgreementKeysCb.Enabled = ServerAgreementKeysCb.Enabled = selected != Signing.GeneralSigning;
+                while (Cipheringv0.Controls.Count == 0)
+                {
+                    while (CipheringPanel.Controls.Count != 0)
+                    {
+                        Control ctr = CipheringPanel.Controls[0];
+                        ctr.Visible = false;
+                        Cipheringv0.Controls.Add(ctr);
+                    }
+                }
+                while (Cipheringv1.Controls.Count != 0)
+                {
+                    Control ctr = Cipheringv1.Controls[0];
+                    CipheringPanel.Controls.Add(ctr);
+                    ctr.Visible = true;
+                }
+            }
         }
     }
 }

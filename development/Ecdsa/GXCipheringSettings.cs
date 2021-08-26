@@ -98,15 +98,17 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             if (_translator.AuthenticationKey != null && IsAscii(_translator.AuthenticationKey))
             {
-                AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKey0AsciiCb_CheckedChanged;
+                AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKeyAsciiCb_CheckedChanged;
                 AuthenticationKey0AsciiCb.Checked = true;
-                AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKey0AsciiCb_CheckedChanged;
+                AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKeyAsciiCb_CheckedChanged;
+                AuthenticationKeyTB.Text = ASCIIEncoding.ASCII.GetString(_translator.AuthenticationKey);
             }
             else
             {
-                AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKey0AsciiCb_CheckedChanged;
+                AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKeyAsciiCb_CheckedChanged;
                 AuthenticationKey0AsciiCb.Checked = false;
-                AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKey0AsciiCb_CheckedChanged;
+                AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKeyAsciiCb_CheckedChanged;
+                AuthenticationKeyTB.Text = GXDLMSTranslator.ToHex(_translator.AuthenticationKey);
             }
 
             if (_translator.DedicatedKey != null && IsAscii(_translator.DedicatedKey))
@@ -527,17 +529,17 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             get
             {
-                return GXDLMSTranslator.HexToBytes(GetAsHex(AuthenticationKey0TB.Text, AuthenticationKey0AsciiCb.Checked, false));
+                return GXDLMSTranslator.HexToBytes(GetAsHex(AuthenticationKeyTB.Text, AuthenticationKey0AsciiCb.Checked, false));
             }
             set
             {
                 if (AuthenticationKey0AsciiCb.Checked)
                 {
-                    AuthenticationKey0TB.Text = ASCIIEncoding.ASCII.GetString(value);
+                    AuthenticationKeyTB.Text = ASCIIEncoding.ASCII.GetString(value);
                 }
                 else
                 {
-                    AuthenticationKey0TB.Text = GXDLMSTranslator.ToHex(value);
+                    AuthenticationKeyTB.Text = GXDLMSTranslator.ToHex(value);
                 }
             }
         }
@@ -550,9 +552,9 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             set
             {
-                AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKey0AsciiCb_CheckedChanged;
+                AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKeyAsciiCb_CheckedChanged;
                 AuthenticationKey0AsciiCb.Checked = value;
-                AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKey0AsciiCb_CheckedChanged;
+                AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKeyAsciiCb_CheckedChanged;
             }
         }
 
@@ -764,11 +766,11 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
         }
 
-        private void AuthenticationKey0AsciiCb_CheckedChanged(object sender, EventArgs e)
+        private void AuthenticationKeyAsciiCb_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                UpdateValue(AuthenticationKey0TB, AuthenticationKey0AsciiCb.Checked);
+                UpdateValue(AuthenticationKeyTB, AuthenticationKey0AsciiCb.Checked);
             }
             catch (Exception ex)
             {
@@ -797,7 +799,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 GXCiphering c = new GXCiphering(null);
                 c.SystemTitle = GXDLMSTranslator.HexToBytes(GetAsHex(SystemTitleTB.Text, SystemTitleAsciiCb.Checked));
                 c.BlockCipherKey = GXDLMSTranslator.HexToBytes(GetAsHex(BlockCipherKeyTB.Text, BlockCipherKeyAsciiCb.Checked));
-                c.AuthenticationKey = GXDLMSTranslator.HexToBytes(GetAsHex(AuthenticationKey0TB.Text, AuthenticationKey0AsciiCb.Checked));
+                c.AuthenticationKey = GXDLMSTranslator.HexToBytes(GetAsHex(AuthenticationKeyTB.Text, AuthenticationKey0AsciiCb.Checked));
                 c.InvocationCounter = UInt32.Parse(InvocationCounterTB.Text);
                 MessageBox.Show(Parent, GXDLMSTranslator.ToHex(c.GenerateGmacPassword(GXDLMSTranslator.HexToBytes(GetAsHex(ChallengeTb.Text, ChallengeAsciiCb.Checked))), true));
             }
@@ -836,7 +838,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             _translator.Security = Security;
             BlockCipherKeyTB.ReadOnly = _translator.Security == Security.None;
-            AuthenticationKey0TB.ReadOnly = _translator.Security == Security.None || _translator.Security == Security.Encryption;
+            AuthenticationKeyTB.ReadOnly = _translator.Security == Security.None || _translator.Security == Security.Encryption;
         }
 
         /// <summary>
@@ -1060,25 +1062,25 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             try
             {
-                int len = AuthenticationKey0TB.Text.Replace(" ", "").Length;
+                int len = AuthenticationKeyTB.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
                     if (len == 32)
                     {
                         if (AuthenticationKey0AsciiCb.Checked)
                         {
-                            AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKey0AsciiCb_CheckedChanged;
+                            AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKeyAsciiCb_CheckedChanged;
                             AuthenticationKey0AsciiCb.Checked = false;
-                            AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKey0AsciiCb_CheckedChanged;
+                            AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKeyAsciiCb_CheckedChanged;
                         }
                     }
                     else if (len == 16)
                     {
                         if (!AuthenticationKey0AsciiCb.Checked)
                         {
-                            AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKey0AsciiCb_CheckedChanged;
+                            AuthenticationKey0AsciiCb.CheckedChanged -= AuthenticationKeyAsciiCb_CheckedChanged;
                             AuthenticationKey0AsciiCb.Checked = true;
-                            AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKey0AsciiCb_CheckedChanged;
+                            AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKeyAsciiCb_CheckedChanged;
                         }
                     }
                     else
@@ -1086,11 +1088,11 @@ namespace Gurux.DLMS.UI.Ecdsa
                         throw new Exception("Invalid authentication key.");
                     }
                 }
-                _translator.AuthenticationKey = GXDLMSTranslator.HexToBytes(GetAsHex(AuthenticationKey0TB.Text, AuthenticationKey0AsciiCb.Checked, false));
+                _translator.AuthenticationKey = GXDLMSTranslator.HexToBytes(GetAsHex(AuthenticationKeyTB.Text, AuthenticationKey0AsciiCb.Checked, false));
             }
             catch (Exception ex)
             {
-                AuthenticationKey0TB.Select();
+                AuthenticationKeyTB.Select();
                 MessageBox.Show(Parent, ex.Message);
             }
         }
