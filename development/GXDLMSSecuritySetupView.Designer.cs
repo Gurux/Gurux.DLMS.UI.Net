@@ -36,6 +36,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.SecurityCb = new System.Windows.Forms.ComboBox();
             this.SystemTitleDescriptionTb = new System.Windows.Forms.TextBox();
             this.SecurityPolicyTB = new System.Windows.Forms.CheckedListBox();
             this.UpdateKeyBtn = new Gurux.DLMS.UI.GXButton();
@@ -52,7 +53,7 @@ namespace Gurux.DLMS.UI
             this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.gxButton1 = new Gurux.DLMS.UI.GXButton();
+            this.RemoveCertificateBtn = new Gurux.DLMS.UI.GXButton();
             this.ImportCertificateBtn = new Gurux.DLMS.UI.GXButton();
             this.ExportCertificateBtn = new Gurux.DLMS.UI.GXButton();
             this.GenerateCertificateRequestBtn = new Gurux.DLMS.UI.GXButton();
@@ -65,7 +66,6 @@ namespace Gurux.DLMS.UI
             this.SubjectCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubjectAltNameCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.SecurityCb = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -124,6 +124,14 @@ namespace Gurux.DLMS.UI
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // SecurityCb
+            // 
+            this.SecurityCb.FormattingEnabled = true;
+            this.SecurityCb.Location = new System.Drawing.Point(107, 237);
+            this.SecurityCb.Name = "SecurityCb";
+            this.SecurityCb.Size = new System.Drawing.Size(258, 21);
+            this.SecurityCb.TabIndex = 40;
             // 
             // SystemTitleDescriptionTb
             // 
@@ -276,7 +284,7 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.gxButton1);
+            this.tabPage2.Controls.Add(this.RemoveCertificateBtn);
             this.tabPage2.Controls.Add(this.ImportCertificateBtn);
             this.tabPage2.Controls.Add(this.ExportCertificateBtn);
             this.tabPage2.Controls.Add(this.GenerateCertificateRequestBtn);
@@ -290,16 +298,16 @@ namespace Gurux.DLMS.UI
             this.tabPage2.Text = "Certificates";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // gxButton1
+            // RemoveCertificateBtn
             // 
-            this.gxButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.gxButton1.Index = 8;
-            this.gxButton1.Location = new System.Drawing.Point(474, 368);
-            this.gxButton1.Name = "gxButton1";
-            this.gxButton1.Size = new System.Drawing.Size(111, 23);
-            this.gxButton1.TabIndex = 28;
-            this.gxButton1.Text = "Remove certificate";
-            this.gxButton1.UseVisualStyleBackColor = true;
+            this.RemoveCertificateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveCertificateBtn.Index = 8;
+            this.RemoveCertificateBtn.Location = new System.Drawing.Point(474, 368);
+            this.RemoveCertificateBtn.Name = "RemoveCertificateBtn";
+            this.RemoveCertificateBtn.Size = new System.Drawing.Size(111, 23);
+            this.RemoveCertificateBtn.TabIndex = 28;
+            this.RemoveCertificateBtn.Text = "Remove certificate";
+            this.RemoveCertificateBtn.UseVisualStyleBackColor = true;
             // 
             // ImportCertificateBtn
             // 
@@ -311,7 +319,6 @@ namespace Gurux.DLMS.UI
             this.ImportCertificateBtn.TabIndex = 27;
             this.ImportCertificateBtn.Text = "Import Certificate";
             this.ImportCertificateBtn.UseVisualStyleBackColor = true;
-            this.ImportCertificateBtn.Click += new System.EventHandler(this.gxButton4_Click);
             // 
             // ExportCertificateBtn
             // 
@@ -323,7 +330,6 @@ namespace Gurux.DLMS.UI
             this.ExportCertificateBtn.TabIndex = 26;
             this.ExportCertificateBtn.Text = "Export certificate...";
             this.ExportCertificateBtn.UseVisualStyleBackColor = true;
-            this.ExportCertificateBtn.Click += new System.EventHandler(this.gxButton3_Click);
             // 
             // GenerateCertificateRequestBtn
             // 
@@ -335,7 +341,6 @@ namespace Gurux.DLMS.UI
             this.GenerateCertificateRequestBtn.TabIndex = 25;
             this.GenerateCertificateRequestBtn.Text = "Certificate request...";
             this.GenerateCertificateRequestBtn.UseVisualStyleBackColor = true;
-            this.GenerateCertificateRequestBtn.Click += new System.EventHandler(this.gxButton2_Click);
             // 
             // GenerateKeyPairBtn
             // 
@@ -347,7 +352,6 @@ namespace Gurux.DLMS.UI
             this.GenerateKeyPairBtn.TabIndex = 24;
             this.GenerateKeyPairBtn.Text = "Key pair...";
             this.GenerateKeyPairBtn.UseVisualStyleBackColor = true;
-            this.GenerateKeyPairBtn.Click += new System.EventHandler(this.gxButton1_Click);
             // 
             // CertificatesLv
             // 
@@ -406,14 +410,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // SecurityCb
-            // 
-            this.SecurityCb.FormattingEnabled = true;
-            this.SecurityCb.Location = new System.Drawing.Point(107, 237);
-            this.SecurityCb.Name = "SecurityCb";
-            this.SecurityCb.Size = new System.Drawing.Size(258, 21);
-            this.SecurityCb.TabIndex = 40;
-            // 
             // GXDLMSSecuritySetupView
             // 
             this.ClientSize = new System.Drawing.Size(634, 472);
@@ -460,7 +456,7 @@ namespace Gurux.DLMS.UI
         private GXButton ImportCertificateBtn;
         private GXButton ExportCertificateBtn;
         private CheckedListBox SecurityPolicyTB;
-        private GXButton gxButton1;
+        private GXButton RemoveCertificateBtn;
         private TextBox SystemTitleDescriptionTb;
         private ComboBox SecurityCb;
     }

@@ -63,15 +63,11 @@ namespace Gurux.DLMS.UI.Ecdsa
             ServerAgreementKeysCb.Items.Clear();
             ClientSigningKeysCb.Items.Clear();
             ServerSigningKeysCb.Items.Clear();
-            ClientTlsCb.Items.Clear();
-            ServerTlsCb.Items.Clear();
 
             ClientAgreementKeysCb.Items.Add("");
             ServerAgreementKeysCb.Items.Add("");
             ClientSigningKeysCb.Items.Add("");
             ServerSigningKeysCb.Items.Add("");
-            ClientTlsCb.Items.Add("");
-            ServerTlsCb.Items.Add("");
             //Add all private keys.
             GXPkcs8 k;
             foreach (GXx509Certificate cert in _certifications)
@@ -79,37 +75,28 @@ namespace Gurux.DLMS.UI.Ecdsa
                 if ((k = _privateKeys.Find(cert.PublicKey)) != null)
                 {
                     KeyValuePair<GXPkcs8, GXx509Certificate> tmp = new KeyValuePair<GXPkcs8, GXx509Certificate>(k, cert);
-                    if (cert.KeyUsage == KeyUsage.KeyAgreement)
+                    if ((cert.KeyUsage & KeyUsage.KeyAgreement) != 0)
                     {
                         ClientAgreementKeysCb.Items.Add(tmp);
                         ServerAgreementKeysCb.Items.Add(tmp);
                     }
-                    else if (cert.KeyUsage == KeyUsage.DigitalSignature)
+                    if ((cert.KeyUsage & KeyUsage.DigitalSignature) != 0)
                     {
                         ClientSigningKeysCb.Items.Add(tmp);
                         ServerSigningKeysCb.Items.Add(tmp);
-                    }
-                    else if (cert.KeyUsage == (KeyUsage.KeyAgreement | KeyUsage.DigitalSignature))
-                    {
-                        ClientTlsCb.Items.Add(tmp);
-                        ServerTlsCb.Items.Add(tmp);
                     }
                 }
                 else
                 {
                     //This is server key if private key is not found.
                     KeyValuePair<GXPkcs8, GXx509Certificate> tmp = new KeyValuePair<GXPkcs8, GXx509Certificate>(k, cert);
-                    if (cert.KeyUsage == KeyUsage.KeyAgreement)
+                    if ((cert.KeyUsage & KeyUsage.KeyAgreement) != 0)
                     {
                         ServerAgreementKeysCb.Items.Add(tmp);
                     }
-                    else if (cert.KeyUsage == KeyUsage.DigitalSignature)
+                    if ((cert.KeyUsage & KeyUsage.DigitalSignature) != 0)
                     {
                         ServerSigningKeysCb.Items.Add(tmp);
-                    }
-                    else if (cert.KeyUsage == (KeyUsage.KeyAgreement | KeyUsage.DigitalSignature))
-                    {
-                        ServerTlsCb.Items.Add(tmp);
                     }
                 }
             }
@@ -149,25 +136,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             else
             {
                 ClientAgreementKeysCb.SelectedIndex = 0;
-            }
-            if (!string.IsNullOrEmpty(ClientTls))
-            {
-                foreach (object tmp in ClientTlsCb.Items)
-                {
-                    if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
-                    {
-                        if (it.Value.SerialNumber.ToString() == ClientTls)
-                        {
-                            ClientTlsCb.SelectedItem = it;
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                ClientTlsCb.SelectedIndex = 0;
-            }
+            }           
             if (!string.IsNullOrEmpty(ServerSigningKey))
             {
                 foreach (object tmp in ServerSigningKeysCb.Items)
@@ -203,24 +172,6 @@ namespace Gurux.DLMS.UI.Ecdsa
             else
             {
                 ServerAgreementKeysCb.SelectedIndex = 0;
-            }
-            if (!string.IsNullOrEmpty(ServerTls))
-            {
-                foreach (object tmp in ServerTlsCb.Items)
-                {
-                    if (tmp is KeyValuePair<GXPkcs8, GXx509Certificate> it)
-                    {
-                        if (it.Value.SerialNumber.ToString() == ServerAgreementKey)
-                        {
-                            ServerTlsCb.SelectedItem = it;
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                ServerTlsCb.SelectedIndex = 0;
             }
         }
 
@@ -403,16 +354,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// TLS of the client.
-        /// </summary>
-        public string ClientTls
-        {
-            get;
-            set;
-        }
+        }     
 
         /// <summary>
         /// Signing key of the server.
@@ -431,16 +373,6 @@ namespace Gurux.DLMS.UI.Ecdsa
             get;
             set;
         }
-
-        /// <summary>
-        /// TLS of the server.
-        /// </summary>
-        public string ServerTls
-        {
-            get;
-            set;
-        }
-
 
         /// <summary>
         /// Agreement key of the server.
@@ -656,8 +588,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                 ServerAgreementKeysCb.SelectedItem = null;
                 ClientSigningKeysCb.SelectedItem = null;
                 ServerSigningKeysCb.SelectedItem = null;
-                ClientTlsCb.SelectedItem = null;
-                ServerTlsCb.SelectedItem = null;
                 if (clientST != null)
                 {
                     foreach (object tmp2 in ClientAgreementKeysCb.Items)
@@ -678,17 +608,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                             if (it.Value != null && it.Value.PublicKey.Scheme == scheme && it.Value.Subject.Contains(clientST))
                             {
                                 ClientSigningKeysCb.SelectedItem = it;
-                                break;
-                            }
-                        }
-                    }
-                    foreach (object tmp2 in ClientTlsCb.Items)
-                    {
-                        if (tmp2 is KeyValuePair<GXPkcs8, GXx509Certificate> it)
-                        {
-                            if (it.Value != null && it.Value.PublicKey.Scheme == scheme && it.Value.Subject.Contains(clientST))
-                            {
-                                ClientTlsCb.SelectedItem = it;
                                 break;
                             }
                         }
@@ -717,18 +636,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 break;
                             }
                         }
-                    }
-                    foreach (object tmp2 in ServerTlsCb.Items)
-                    {
-                        if (tmp2 is KeyValuePair<GXPkcs8, GXx509Certificate> it)
-                        {
-                            if (it.Value != null && it.Value.PublicKey.Scheme == scheme && it.Value.Subject.Contains(serverST))
-                            {
-                                ServerTlsCb.SelectedItem = it;
-                                break;
-                            }
-                        }
-                    }
+                    }                  
                 }
             }
             catch (Exception ex)
@@ -949,14 +857,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     ClientAgreementKey = null;
                 }
-                if (ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ct)
-                {
-                    ClientTls = ct.Key.ToDer();
-                }
-                else
-                {
-                    ClientTls = null;
-                }
                 if (ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ss)
                 {
                     ServerSigningKey = ss.Value.ToDer();
@@ -972,14 +872,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                 else
                 {
                     ServerAgreementKey = null;
-                }
-                if (ServerTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> stk)
-                {
-                    ServerTls = stk.Value.ToDer();
-                }
-                else
-                {
-                    ServerTls = null;
                 }
                 bool check = _checkSystemTitle;
                 if (check)
@@ -1018,21 +910,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 check = false;
                             }
                         }
-                    }
-
-                    if (check && (ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> ct3) && ct3.Value != null)
-                    {
-                        string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(ct3.Value.Subject), false);
-                        if (st != certificateSt)
-                        {
-                            if (MessageBox.Show(Parent, string.Format("System title '{0}' of the client is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", SystemTitleTb.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                SystemTitleAsciiCb.Checked = false;
-                                SystemTitleTb.Text = certificateSt;
-                                check = false;
-                            }
-                        }
-                    }
+                    }                   
 
                     if (check && ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sv)
                     {
@@ -1057,18 +935,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 check = false;
                             }
                         }
-                    }
-                    if (check && ServerTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> st3)
-                    {
-                        string certificateSt = GXDLMSTranslator.ToHex(GXAsn1Converter.SystemTitleFromSubject(st3.Value.Subject), false);
-                        if (ServerSystemTitleTb.Text.Replace(" ", "") != certificateSt)
-                        {
-                            if (MessageBox.Show(Parent, string.Format("System title '{0}' of the server is different than in the certificate '{1}'. Do you want to update the system title from the certificate?", ServerSystemTitleTb.Text, certificateSt), "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                ServerSystemTitleTb.Text = certificateSt;
-                            }
-                        }
-                    }
+                    }                  
                 }
             }
         }
@@ -1147,14 +1014,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     ClientAgreementKeysCb.SelectedItem = null;
                 }
-                if (!string.IsNullOrEmpty(ClientTls))
-                {
-                    SelectWithPrivateKey(ClientTlsCb, GXPkcs8.FromDer(ClientTls));
-                }
-                else
-                {
-                    ClientTlsCb.SelectedItem = null;
-                }
                 if (!string.IsNullOrEmpty(ServerSigningKey))
                 {
                     SelectWithCertificate(ServerSigningKeysCb, ServerSigningKey);
@@ -1170,14 +1029,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                 else
                 {
                     ServerAgreementKeysCb.SelectedItem = null;
-                }
-                if (!string.IsNullOrEmpty(ServerTls))
-                {
-                    SelectWithCertificate(ServerTlsCb, ServerTls);
-                }
-                else
-                {
-                    ServerTlsCb.SelectedItem = null;
                 }
             }
             finally
@@ -1323,22 +1174,6 @@ namespace Gurux.DLMS.UI.Ecdsa
             catch (Exception ex)
             {
                 MessageBox.Show(Parent, ex.Message);
-            }
-        }
-
-        private void ClientTlsInfoBtn_Click(object sender, EventArgs e)
-        {
-            if (ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> v)
-            {
-                ShowInfo(Parent, v);
-            }
-        }
-
-        private void ServerTlsInfoBtn_Click(object sender, EventArgs e)
-        {
-            if (ClientTlsCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> v)
-            {
-                ShowInfo(Parent, v);
             }
         }
 

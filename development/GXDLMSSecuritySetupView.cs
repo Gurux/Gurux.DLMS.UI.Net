@@ -4,7 +4,7 @@
 //
 //
 //
-// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSSecuritySetupView_v1.cs $
+// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSSecuritySetupView.cs $
 //
 // Version:         $Revision: 5795 $,
 //                  $Date: 2012-10-02 13:22:54 +0300 (ti, 02 loka 2012) $
@@ -41,7 +41,6 @@ using Gurux.DLMS.Objects.Enums;
 using System.IO;
 using Gurux.DLMS.ASN;
 using Gurux.DLMS.UI.Ecdsa;
-using System.Numerics;
 using System.Text;
 using Gurux.DLMS.ASN.Enums;
 
@@ -504,26 +503,6 @@ namespace Gurux.DLMS.UI
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
-        }
-
-        private void gxButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gxButton2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gxButton4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gxButton3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

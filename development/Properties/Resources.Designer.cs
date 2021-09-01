@@ -181,15 +181,22 @@ namespace Gurux.DLMS.UI.Properties {
         ///   Looks up a localized string similar to #Registration Authority.
         ///#http://oid-info.com/get/2.16
         ///#Name;OID
-        ///Algeria;{joint-iso-itu-t(2) country(16) dz(12)}
-        ///Andorra;{joint-iso-itu-t(2) country(16) ad(20)}
-        ///Argentina;{joint-iso-itu-t(2) country(16) ar(32)}
-        ///Australia;{iso(1) member-body(2) au(36)}
-        ///Austria;{iso(1) member-body(2) at(40)}
-        ///Bangladesh (the People&apos;s Republic of);{joint-iso-itu-t(2) country(16) bd(50));
-        ///Benin;{joint-iso-itu-t(2) country(16) bj(204)}
-        ///Bolivia (Plurinational State of);{joint-iso-itu-t(2) country(16) bo(68));
-        ///Brazil;{jo [rest of string was truncated]&quot;;.
+        ///Algeria;2.16.dz(12)
+        ///Andorra;2.16.ad(20)
+        ///Argentina;2.16.ar(32)
+        ///Australia;1.2.au(36)
+        ///Austria;1.2.at(40)
+        ///Bangladesh (the People&apos;s Republic of);2.16.bd(50)
+        ///Benin;2.16.bj(204)
+        ///Bolivia (Plurinational State of);2.16.bo(68)
+        ///Brazil;2.16.br(76)
+        ///Bulgaria;2.16.bg(100)
+        ///Canada;2.16.ca(124)
+        ///Cape Verde;2.16.cv(132)
+        ///China (People&apos;s Republic of);1.2.cn(156)
+        ///China (People&apos;s Republic of);2.16.cn(156)
+        ///Côte d&apos;Ivoire;2.16.ci(384)
+        ///Czech Republic;1.2 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Country {
             get {
@@ -333,7 +340,7 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pem files (*.pem)|*.pem|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to Pem files (*.pem)|*.pem|Security files (*.cer)|*.cer|All files (*.*)|*.*.
         /// </summary>
         internal static string PemFilterTxt {
             get {

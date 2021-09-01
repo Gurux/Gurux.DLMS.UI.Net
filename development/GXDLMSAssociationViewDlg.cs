@@ -218,6 +218,7 @@ namespace Gurux.DLMS.UI
                 ObjectTypeCb.Enabled = LogicalNameTb.Enabled = ObjectTypeCb.Enabled = false;
                 DescriptionTb.Text = target.Description;
                 VersionCb.SelectedItem = target.Version;
+                LogicalNameTb_Leave(null, null);
             }
         }
 

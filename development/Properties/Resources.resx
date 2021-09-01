@@ -206,7 +206,7 @@
     <value>Invalid target.</value>
   </data>
   <data name="PemFilterTxt" xml:space="preserve">
-    <value>Pem files (*.pem)|*.pem|All files (*.*)|*.*</value>
+    <value>Pem files (*.pem)|*.pem|Security files (*.cer)|*.cer|All files (*.*)|*.*</value>
   </data>
   <data name="PrivateKeyRemove" xml:space="preserve">
     <value>Are you sure that you want to remove selected private key(s)?</value>

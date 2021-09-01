@@ -94,19 +94,23 @@ namespace Gurux.DLMS.UI.Ecdsa
             Certificates = new GXx509CertificateCollection();
             CertificateFolder = certificateFolder;
             Title = title;
-            foreach (string p in Directory.GetFiles(CertificateFolder, "*.pem"))
+            foreach (string p in Directory.GetFiles(CertificateFolder))
             {
-                try
+                string ext = Path.GetExtension(p);
+                if (string.Compare(ext, ".pem", true) == 0 || string.Compare(ext, ".cer", true) == 0)
                 {
-                    GXx509Certificate cert = GXx509Certificate.Load(p);
-                    AddCertificate(cert, p, st);
-                }
-                catch(Exception ex)
-                {
-                    ListViewItem li = new ListViewItem(new string[]{ex.Message, "", "", "", "", Path.GetFileNameWithoutExtension(p)});
-                    li.Tag = p;
-                    li.BackColor = Color.Red;
-                    CertificatesList.Items.Add(li);
+                    try
+                    {
+                        GXx509Certificate cert = GXx509Certificate.Load(p);
+                        AddCertificate(cert, p, st);
+                    }
+                    catch (Exception ex)
+                    {
+                        ListViewItem li = new ListViewItem(new string[] { ex.Message, "", "", "", "", Path.GetFileNameWithoutExtension(p) });
+                        li.Tag = p;
+                        li.BackColor = Color.Red;
+                        CertificatesList.Items.Add(li);
+                    }
                 }
             }
         }
@@ -120,19 +124,23 @@ namespace Gurux.DLMS.UI.Ecdsa
             Certificates.Clear();
             keys.Clear();
             duplicate.Clear();
-            foreach (string p in Directory.GetFiles(CertificateFolder, "*.pem"))
+            foreach (string p in Directory.GetFiles(CertificateFolder))
             {
-                try
+                string ext = Path.GetExtension(p);
+                if (string.Compare(ext, ".pem", true) == 0 || string.Compare(ext, ".cer", true) == 0)
                 {
-                    GXx509Certificate cert = GXx509Certificate.Load(p);
-                    AddCertificate(cert, p, null);
-                }
-                catch (Exception ex)
-                {
-                    ListViewItem li = new ListViewItem(new string[] { ex.Message, "", "", "", "", Path.GetFileNameWithoutExtension(p) });
-                    li.Tag = p;
-                    li.BackColor = Color.Red;
-                    CertificatesList.Items.Add(li);
+                    try
+                    {
+                        GXx509Certificate cert = GXx509Certificate.Load(p);
+                        AddCertificate(cert, p, null);
+                    }
+                    catch (Exception ex)
+                    {
+                        ListViewItem li = new ListViewItem(new string[] { ex.Message, "", "", "", "", Path.GetFileNameWithoutExtension(p) });
+                        li.Tag = p;
+                        li.BackColor = Color.Red;
+                        CertificatesList.Items.Add(li);
+                    }
                 }
             }
         }

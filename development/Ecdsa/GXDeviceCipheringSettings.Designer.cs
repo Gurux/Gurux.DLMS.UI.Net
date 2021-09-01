@@ -61,27 +61,20 @@
             this.DedicatedKeyLbl = new System.Windows.Forms.Label();
             this.CipheringV1Tab = new System.Windows.Forms.TabPage();
             this.Cipheringv1 = new System.Windows.Forms.Panel();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ClientTlsInfoBtn = new System.Windows.Forms.Button();
-            this.ClientTlsCb = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.ClientAgreementKeyInfoBtn = new System.Windows.Forms.Button();
-            this.ClientSigningKeysInfoBtn = new System.Windows.Forms.Button();
-            this.ClientSigningKeysCb = new System.Windows.Forms.ComboBox();
-            this.ClientAgreementKeysCb = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ServerTlsInfoBtn = new System.Windows.Forms.Button();
-            this.ServerTlsCb = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ServerAgreementKeyInfoBtn = new System.Windows.Forms.Button();
             this.ServerSigningKeyInfoBtn = new System.Windows.Forms.Button();
-            this.ServerSigningKeysCb = new System.Windows.Forms.ComboBox();
-            this.ServerAgreementKeysCb = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.ServerSigningKeysCb = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ServerAgreementKeysCb = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ClientAgreementKeyInfoBtn = new System.Windows.Forms.Button();
+            this.ClientAgreementKeysCb = new System.Windows.Forms.ComboBox();
+            this.ClientSigningKeysInfoBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ClientSigningKeysCb = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
@@ -90,9 +83,8 @@
             this.Cipheringv0.SuspendLayout();
             this.CipheringV1Tab.SuspendLayout();
             this.Cipheringv1.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // helpProvider1
@@ -426,197 +418,33 @@
             // 
             this.Cipheringv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Cipheringv1.Controls.Add(this.tabControl2);
+            this.Cipheringv1.Controls.Add(this.groupBox2);
+            this.Cipheringv1.Controls.Add(this.groupBox1);
             this.Cipheringv1.Controls.Add(this.UpdateBtn);
             this.Cipheringv1.Location = new System.Drawing.Point(8, 3);
             this.Cipheringv1.Name = "Cipheringv1";
             this.Cipheringv1.Size = new System.Drawing.Size(458, 311);
             this.Cipheringv1.TabIndex = 82;
             // 
-            // tabControl2
+            // groupBox2
             // 
-            this.tabControl2.Controls.Add(this.tabPage1);
-            this.tabControl2.Controls.Add(this.tabPage2);
-            this.tabControl2.Location = new System.Drawing.Point(3, 27);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(452, 118);
-            this.tabControl2.TabIndex = 2;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.ClientTlsInfoBtn);
-            this.tabPage1.Controls.Add(this.ClientTlsCb);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.ClientAgreementKeyInfoBtn);
-            this.tabPage1.Controls.Add(this.ClientSigningKeysInfoBtn);
-            this.tabPage1.Controls.Add(this.ClientSigningKeysCb);
-            this.tabPage1.Controls.Add(this.ClientAgreementKeysCb);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(444, 92);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Client keys";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // ClientTlsInfoBtn
-            // 
-            this.ClientTlsInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTlsInfoBtn.Location = new System.Drawing.Point(364, 60);
-            this.ClientTlsInfoBtn.Name = "ClientTlsInfoBtn";
-            this.ClientTlsInfoBtn.Size = new System.Drawing.Size(75, 23);
-            this.ClientTlsInfoBtn.TabIndex = 5;
-            this.ClientTlsInfoBtn.Text = "Info...";
-            this.ClientTlsInfoBtn.UseVisualStyleBackColor = true;
-            this.ClientTlsInfoBtn.Click += new System.EventHandler(this.ClientTlsInfoBtn_Click);
-            // 
-            // ClientTlsCb
-            // 
-            this.ClientTlsCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTlsCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ClientTlsCb.FormattingEnabled = true;
-            this.ClientTlsCb.Location = new System.Drawing.Point(101, 61);
-            this.ClientTlsCb.Name = "ClientTlsCb";
-            this.ClientTlsCb.Size = new System.Drawing.Size(247, 21);
-            this.ClientTlsCb.TabIndex = 4;
-            this.ClientTlsCb.SelectedIndexChanged += new System.EventHandler(this.ClientTlsCb_SelectedIndexChanged);
-            this.ClientTlsCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 62);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 13);
-            this.label8.TabIndex = 95;
-            this.label8.Text = "TSL:";
-            // 
-            // ClientAgreementKeyInfoBtn
-            // 
-            this.ClientAgreementKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientAgreementKeyInfoBtn.Location = new System.Drawing.Point(364, 33);
-            this.ClientAgreementKeyInfoBtn.Name = "ClientAgreementKeyInfoBtn";
-            this.ClientAgreementKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
-            this.ClientAgreementKeyInfoBtn.TabIndex = 3;
-            this.ClientAgreementKeyInfoBtn.Text = "Info...";
-            this.ClientAgreementKeyInfoBtn.UseVisualStyleBackColor = true;
-            this.ClientAgreementKeyInfoBtn.Click += new System.EventHandler(this.ClientAgreementKeyInfoBtn_Click);
-            // 
-            // ClientSigningKeysInfoBtn
-            // 
-            this.ClientSigningKeysInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientSigningKeysInfoBtn.Location = new System.Drawing.Point(364, 6);
-            this.ClientSigningKeysInfoBtn.Name = "ClientSigningKeysInfoBtn";
-            this.ClientSigningKeysInfoBtn.Size = new System.Drawing.Size(75, 23);
-            this.ClientSigningKeysInfoBtn.TabIndex = 1;
-            this.ClientSigningKeysInfoBtn.Text = "Info...";
-            this.ClientSigningKeysInfoBtn.UseVisualStyleBackColor = true;
-            this.ClientSigningKeysInfoBtn.Click += new System.EventHandler(this.ClientSigningKeysInfoBtn_Click);
-            // 
-            // ClientSigningKeysCb
-            // 
-            this.ClientSigningKeysCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientSigningKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ClientSigningKeysCb.FormattingEnabled = true;
-            this.ClientSigningKeysCb.Location = new System.Drawing.Point(101, 6);
-            this.ClientSigningKeysCb.Name = "ClientSigningKeysCb";
-            this.ClientSigningKeysCb.Size = new System.Drawing.Size(247, 21);
-            this.ClientSigningKeysCb.TabIndex = 0;
-            this.ClientSigningKeysCb.SelectedIndexChanged += new System.EventHandler(this.ClientSigningKeysCb_SelectedIndexChanged);
-            this.ClientSigningKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
-            // 
-            // ClientAgreementKeysCb
-            // 
-            this.ClientAgreementKeysCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientAgreementKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ClientAgreementKeysCb.FormattingEnabled = true;
-            this.ClientAgreementKeysCb.Location = new System.Drawing.Point(101, 34);
-            this.ClientAgreementKeysCb.Name = "ClientAgreementKeysCb";
-            this.ClientAgreementKeysCb.Size = new System.Drawing.Size(247, 21);
-            this.ClientAgreementKeysCb.TabIndex = 2;
-            this.ClientAgreementKeysCb.SelectedIndexChanged += new System.EventHandler(this.ClientAgreementKeysCb_SelectedIndexChanged);
-            this.ClientAgreementKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
-            this.label4.TabIndex = 87;
-            this.label4.Text = "Agreement:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 86;
-            this.label3.Text = "Signing:";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ServerTlsInfoBtn);
-            this.tabPage2.Controls.Add(this.ServerTlsCb);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.ServerAgreementKeyInfoBtn);
-            this.tabPage2.Controls.Add(this.ServerSigningKeyInfoBtn);
-            this.tabPage2.Controls.Add(this.ServerSigningKeysCb);
-            this.tabPage2.Controls.Add(this.ServerAgreementKeysCb);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(444, 92);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Server keys";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ServerTlsInfoBtn
-            // 
-            this.ServerTlsInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTlsInfoBtn.Location = new System.Drawing.Point(365, 59);
-            this.ServerTlsInfoBtn.Name = "ServerTlsInfoBtn";
-            this.ServerTlsInfoBtn.Size = new System.Drawing.Size(75, 23);
-            this.ServerTlsInfoBtn.TabIndex = 99;
-            this.ServerTlsInfoBtn.Text = "Info...";
-            this.ServerTlsInfoBtn.UseVisualStyleBackColor = true;
-            this.ServerTlsInfoBtn.Click += new System.EventHandler(this.ServerTlsInfoBtn_Click);
-            // 
-            // ServerTlsCb
-            // 
-            this.ServerTlsCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTlsCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ServerTlsCb.FormattingEnabled = true;
-            this.ServerTlsCb.Location = new System.Drawing.Point(101, 61);
-            this.ServerTlsCb.Name = "ServerTlsCb";
-            this.ServerTlsCb.Size = new System.Drawing.Size(247, 21);
-            this.ServerTlsCb.TabIndex = 97;
-            this.ServerTlsCb.SelectedIndexChanged += new System.EventHandler(this.ServerTlsCb_SelectedIndexChanged);
-            this.ServerTlsCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 61);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
-            this.label9.TabIndex = 98;
-            this.label9.Text = "TSL:";
+            this.groupBox2.Controls.Add(this.ServerAgreementKeyInfoBtn);
+            this.groupBox2.Controls.Add(this.ServerSigningKeyInfoBtn);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.ServerSigningKeysCb);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.ServerAgreementKeysCb);
+            this.groupBox2.Location = new System.Drawing.Point(3, 87);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(448, 64);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Server keys";
             // 
             // ServerAgreementKeyInfoBtn
             // 
             this.ServerAgreementKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerAgreementKeyInfoBtn.Location = new System.Drawing.Point(365, 32);
+            this.ServerAgreementKeyInfoBtn.Location = new System.Drawing.Point(368, 35);
             this.ServerAgreementKeyInfoBtn.Name = "ServerAgreementKeyInfoBtn";
             this.ServerAgreementKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ServerAgreementKeyInfoBtn.TabIndex = 3;
@@ -627,7 +455,7 @@
             // ServerSigningKeyInfoBtn
             // 
             this.ServerSigningKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerSigningKeyInfoBtn.Location = new System.Drawing.Point(365, 6);
+            this.ServerSigningKeyInfoBtn.Location = new System.Drawing.Point(368, 9);
             this.ServerSigningKeyInfoBtn.Name = "ServerSigningKeyInfoBtn";
             this.ServerSigningKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
             this.ServerSigningKeyInfoBtn.TabIndex = 1;
@@ -635,18 +463,36 @@
             this.ServerSigningKeyInfoBtn.UseVisualStyleBackColor = true;
             this.ServerSigningKeyInfoBtn.Click += new System.EventHandler(this.ServerSigningKeyInfoBtn_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 90;
+            this.label6.Text = "Signing:";
+            // 
             // ServerSigningKeysCb
             // 
             this.ServerSigningKeysCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerSigningKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerSigningKeysCb.FormattingEnabled = true;
-            this.ServerSigningKeysCb.Location = new System.Drawing.Point(101, 6);
+            this.ServerSigningKeysCb.Location = new System.Drawing.Point(104, 9);
             this.ServerSigningKeysCb.Name = "ServerSigningKeysCb";
             this.ServerSigningKeysCb.Size = new System.Drawing.Size(247, 21);
             this.ServerSigningKeysCb.TabIndex = 0;
             this.ServerSigningKeysCb.SelectedIndexChanged += new System.EventHandler(this.ServerSigningKeysCb_SelectedIndexChanged);
             this.ServerSigningKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 37);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 91;
+            this.label5.Text = "Agreement:";
             // 
             // ServerAgreementKeysCb
             // 
@@ -654,30 +500,93 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerAgreementKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerAgreementKeysCb.FormattingEnabled = true;
-            this.ServerAgreementKeysCb.Location = new System.Drawing.Point(101, 34);
+            this.ServerAgreementKeysCb.Location = new System.Drawing.Point(104, 36);
             this.ServerAgreementKeysCb.Name = "ServerAgreementKeysCb";
             this.ServerAgreementKeysCb.Size = new System.Drawing.Size(247, 21);
             this.ServerAgreementKeysCb.TabIndex = 2;
             this.ServerAgreementKeysCb.SelectedIndexChanged += new System.EventHandler(this.ServerAgreementKeysCb_SelectedIndexChanged);
             this.ServerAgreementKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
             // 
-            // label5
+            // groupBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 13);
-            this.label5.TabIndex = 91;
-            this.label5.Text = "Agreement:";
+            this.groupBox1.Controls.Add(this.ClientAgreementKeyInfoBtn);
+            this.groupBox1.Controls.Add(this.ClientAgreementKeysCb);
+            this.groupBox1.Controls.Add(this.ClientSigningKeysInfoBtn);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.ClientSigningKeysCb);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(3, 25);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(448, 61);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Client keys";
             // 
-            // label6
+            // ClientAgreementKeyInfoBtn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 90;
-            this.label6.Text = "Signing:";
+            this.ClientAgreementKeyInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientAgreementKeyInfoBtn.Location = new System.Drawing.Point(367, 37);
+            this.ClientAgreementKeyInfoBtn.Name = "ClientAgreementKeyInfoBtn";
+            this.ClientAgreementKeyInfoBtn.Size = new System.Drawing.Size(75, 23);
+            this.ClientAgreementKeyInfoBtn.TabIndex = 3;
+            this.ClientAgreementKeyInfoBtn.Text = "Info...";
+            this.ClientAgreementKeyInfoBtn.UseVisualStyleBackColor = true;
+            this.ClientAgreementKeyInfoBtn.Click += new System.EventHandler(this.ClientAgreementKeyInfoBtn_Click);
+            // 
+            // ClientAgreementKeysCb
+            // 
+            this.ClientAgreementKeysCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientAgreementKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ClientAgreementKeysCb.FormattingEnabled = true;
+            this.ClientAgreementKeysCb.Location = new System.Drawing.Point(104, 38);
+            this.ClientAgreementKeysCb.Name = "ClientAgreementKeysCb";
+            this.ClientAgreementKeysCb.Size = new System.Drawing.Size(247, 21);
+            this.ClientAgreementKeysCb.TabIndex = 2;
+            this.ClientAgreementKeysCb.SelectedIndexChanged += new System.EventHandler(this.ClientAgreementKeysCb_SelectedIndexChanged);
+            this.ClientAgreementKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
+            // 
+            // ClientSigningKeysInfoBtn
+            // 
+            this.ClientSigningKeysInfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientSigningKeysInfoBtn.Location = new System.Drawing.Point(367, 10);
+            this.ClientSigningKeysInfoBtn.Name = "ClientSigningKeysInfoBtn";
+            this.ClientSigningKeysInfoBtn.Size = new System.Drawing.Size(75, 23);
+            this.ClientSigningKeysInfoBtn.TabIndex = 1;
+            this.ClientSigningKeysInfoBtn.Text = "Info...";
+            this.ClientSigningKeysInfoBtn.UseVisualStyleBackColor = true;
+            this.ClientSigningKeysInfoBtn.Click += new System.EventHandler(this.ClientSigningKeysInfoBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 86;
+            this.label3.Text = "Signing:";
+            // 
+            // ClientSigningKeysCb
+            // 
+            this.ClientSigningKeysCb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientSigningKeysCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ClientSigningKeysCb.FormattingEnabled = true;
+            this.ClientSigningKeysCb.Location = new System.Drawing.Point(104, 10);
+            this.ClientSigningKeysCb.Name = "ClientSigningKeysCb";
+            this.ClientSigningKeysCb.Size = new System.Drawing.Size(247, 21);
+            this.ClientSigningKeysCb.TabIndex = 0;
+            this.ClientSigningKeysCb.SelectedIndexChanged += new System.EventHandler(this.ClientSigningKeysCb_SelectedIndexChanged);
+            this.ClientSigningKeysCb.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ClientSigningKeysCb_Format);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 39);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.TabIndex = 87;
+            this.label4.Text = "Agreement:";
             // 
             // UpdateBtn
             // 
@@ -706,11 +615,10 @@
             this.Cipheringv0.PerformLayout();
             this.CipheringV1Tab.ResumeLayout(false);
             this.Cipheringv1.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -737,21 +645,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button GenerateDedicatedKeyBtn;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button ClientTlsInfoBtn;
-        private System.Windows.Forms.ComboBox ClientTlsCb;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button ClientAgreementKeyInfoBtn;
         private System.Windows.Forms.Button ClientSigningKeysInfoBtn;
         private System.Windows.Forms.ComboBox ClientSigningKeysCb;
         private System.Windows.Forms.ComboBox ClientAgreementKeysCb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button ServerTlsInfoBtn;
-        private System.Windows.Forms.ComboBox ServerTlsCb;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button ServerAgreementKeyInfoBtn;
         private System.Windows.Forms.Button ServerSigningKeyInfoBtn;
         private System.Windows.Forms.ComboBox ServerSigningKeysCb;
@@ -772,5 +671,7 @@
         private System.Windows.Forms.CheckBox UsePreEstablishedApplicationAssociations;
         private System.Windows.Forms.ComboBox SigningCb;
         private System.Windows.Forms.Label SigningLbl;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

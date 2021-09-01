@@ -39,16 +39,20 @@ namespace Gurux.DLMS.UI.Ecdsa
             KeyFolder = keyFolder;
             Title = title;
 
-            foreach (string p in Directory.GetFiles(keyFolder, "*.pem"))
+            foreach (string p in Directory.GetFiles(keyFolder))
             {
-                try
+                string ext = Path.GetExtension(p);
+                if (string.Compare(ext, ".pem", true) == 0 || string.Compare(ext, ".cer", true) == 0)
                 {
-                    GXPkcs8 cert = GXPkcs8.Load(p);
-                    AddKey(cert, p);
-                }
-                catch (Exception)
-                {
-                    Debug.WriteLine("Failed to open " + p);
+                    try
+                    {
+                        GXPkcs8 cert = GXPkcs8.Load(p);
+                        AddKey(cert, p);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.WriteLine("Failed to open " + p);
+                    }
                 }
             }
             if (_systemTitle != null)
@@ -171,12 +175,22 @@ namespace Gurux.DLMS.UI.Ecdsa
                 dlg.Filter = Properties.Resources.PemFilterTxt;
                 dlg.DefaultExt = ".pem";
                 dlg.ValidateNames = true;
+                StringBuilder sb = new StringBuilder();
                 if (dlg.ShowDialog(Parent) == DialogResult.OK)
                 {
+                    GXPkcs8 key;
                     foreach (string fileName in dlg.FileNames)
                     {
                         _path = fileName;
-                        GXPkcs8 key = GXPkcs8.Load(fileName);
+                        try
+                        {
+                            key = GXPkcs8.Load(fileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            sb.AppendLine(fileName);
+                            continue;
+                        }
                         string path = Path.Combine(KeyFolder, Path.GetFileName(fileName));
                         if (File.Exists(path))
                         {
@@ -191,6 +205,10 @@ namespace Gurux.DLMS.UI.Ecdsa
                         KeyList.SelectedItems.Clear();
                         AddKey(key, path).Selected = true;
                     }
+                }
+                if (sb.Length != 0)
+                {
+                    MessageBox.Show(Parent, "Failed to load file(s)" + Environment.NewLine + sb.ToString());
                 }
             }
             catch (Exception ex)
