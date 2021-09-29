@@ -34,15 +34,23 @@ namespace Gurux.DLMS.UI.Ecdsa
 
         public List<KeyValuePair<GXPkcs8, GXx509Certificate>> GetClientKeys(string systemTitle)
         {
-            byte[] st = GXDLMSTranslator.HexToBytes(systemTitle);
-            List<KeyValuePair<GXPkcs8, GXx509Certificate>> list = new List<KeyValuePair<GXPkcs8, GXx509Certificate>>();
-            if (st.Length == 8)
+            byte[] st = null;
+            if (!string.IsNullOrEmpty(systemTitle))
             {
-                string subject = GXAsn1Converter.SystemTitleToSubject(st);
+                st = GXDLMSTranslator.HexToBytes(systemTitle);
+            }
+            List<KeyValuePair<GXPkcs8, GXx509Certificate>> list = new List<KeyValuePair<GXPkcs8, GXx509Certificate>>();
+            if (st == null || st.Length == 8)
+            {
+                string subject = null;
+                if (st != null)
+                {
+                    subject = GXAsn1Converter.SystemTitleToSubject(st);
+                }
                 GXPkcs8 k;
                 foreach (GXx509Certificate cert in _certifications)
                 {
-                    if (cert.Subject == subject)
+                    if (subject == null || cert.Subject.Contains(subject))
                     {
                         if ((k = _privateKeys.Find(cert.PublicKey)) != null)
                         {
@@ -136,7 +144,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             else
             {
                 ClientAgreementKeysCb.SelectedIndex = 0;
-            }           
+            }
             if (!string.IsNullOrEmpty(ServerSigningKey))
             {
                 foreach (object tmp in ServerSigningKeysCb.Items)
@@ -337,6 +345,21 @@ namespace Gurux.DLMS.UI.Ecdsa
                 SigningCb.SelectedItem = value;
             }
         }
+        /// <summary>
+        /// Signing.
+        /// </summary>
+        public bool SignInitiateRequestResponse
+        {
+            get
+            {
+                return SignInitiateRequestResponseCb.Checked;
+            }
+            set
+            {
+                SignInitiateRequestResponseCb.Checked = value;
+            }
+        }
+
 
         /// <summary>
         /// Signing key of the client.
@@ -354,7 +377,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             get;
             set;
-        }     
+        }
 
         /// <summary>
         /// Signing key of the server.
@@ -636,7 +659,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 break;
                             }
                         }
-                    }                  
+                    }
                 }
             }
             catch (Exception ex)
@@ -910,7 +933,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 check = false;
                             }
                         }
-                    }                   
+                    }
 
                     if (check && ServerSigningKeysCb.SelectedItem is KeyValuePair<GXPkcs8, GXx509Certificate> sv)
                     {
@@ -935,7 +958,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 check = false;
                             }
                         }
-                    }                  
+                    }
                 }
             }
         }
@@ -1289,6 +1312,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                     ctr.Visible = true;
                 }
             }
-        }
+        }        
     }
 }

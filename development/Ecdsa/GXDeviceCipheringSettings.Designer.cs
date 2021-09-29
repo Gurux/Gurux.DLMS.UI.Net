@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.SignInitiateRequestResponseCb = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CipheringTab = new System.Windows.Forms.TabPage();
             this.SigningCb = new System.Windows.Forms.ComboBox();
@@ -90,6 +91,18 @@
             // helpProvider1
             // 
             this.helpProvider1.HelpNamespace = "https://www.gurux.fi/GXDLMSDirector.DeviceProperties";
+            // 
+            // SignInitiateRequestResponseCb
+            // 
+            this.SignInitiateRequestResponseCb.AutoSize = true;
+            this.helpProvider1.SetHelpString(this.SignInitiateRequestResponseCb, "Is protected release used.");
+            this.SignInitiateRequestResponseCb.Location = new System.Drawing.Point(107, 7);
+            this.SignInitiateRequestResponseCb.Name = "SignInitiateRequestResponseCb";
+            this.helpProvider1.SetShowHelp(this.SignInitiateRequestResponseCb, true);
+            this.SignInitiateRequestResponseCb.Size = new System.Drawing.Size(186, 17);
+            this.SignInitiateRequestResponseCb.TabIndex = 66;
+            this.SignInitiateRequestResponseCb.Text = "Sign Initiate request and response";
+            this.SignInitiateRequestResponseCb.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
@@ -418,6 +431,7 @@
             // 
             this.Cipheringv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Cipheringv1.Controls.Add(this.SignInitiateRequestResponseCb);
             this.Cipheringv1.Controls.Add(this.groupBox2);
             this.Cipheringv1.Controls.Add(this.groupBox1);
             this.Cipheringv1.Controls.Add(this.UpdateBtn);
@@ -615,6 +629,7 @@
             this.Cipheringv0.PerformLayout();
             this.CipheringV1Tab.ResumeLayout(false);
             this.Cipheringv1.ResumeLayout(false);
+            this.Cipheringv1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -673,5 +688,6 @@
         private System.Windows.Forms.Label SigningLbl;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox SignInitiateRequestResponseCb;
     }
 }

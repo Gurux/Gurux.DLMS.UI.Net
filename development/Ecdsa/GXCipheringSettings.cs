@@ -827,7 +827,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 break;
                             }
                         }
-                    }                   
+                    }
                 }
                 if (serverST != null)
                 {
@@ -852,7 +852,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                 break;
                             }
                         }
-                    }                   
+                    }
                 }
             }
             catch (Exception ex)
@@ -1261,10 +1261,9 @@ namespace Gurux.DLMS.UI.Ecdsa
                             ServerSystemTitleAsciiCb.Checked = false;
                             ServerSystemTitleTB.Text = certificateSt;
                             ServerSystemTitleTB_Leave(null, null);
-                            check = false;
                         }
                     }
-                }               
+                }
             }
         }
 
@@ -1380,7 +1379,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 MessageBox.Show(Parent, ex.Message);
             }
         }
-      
+
         private void ServerSystemTitleTB_TextChanged(object sender, EventArgs e)
         {
             try
