@@ -33,8 +33,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2109.2901, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2109.2901\lib\net46\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2110.403, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Gurux.DLMS.9.0.2110.403\lib\net46\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -112,6 +112,12 @@
     </Compile>
     <Compile Include="GXDLMSArbitratorView.designer.cs">
       <DependentUpon>GXDLMSArbitratorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSNtpSetupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSNtpSetupView.designer.cs">
+      <DependentUpon>GXDLMSNtpSetupView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSIecTwistedPairSetupView.cs">
       <SubType>Form</SubType>
@@ -232,6 +238,12 @@
     </Compile>
     <Compile Include="GXCertificateType.Designer.cs">
       <DependentUpon>GXCertificateType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSNtpDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSNtpDlg.Designer.cs">
+      <DependentUpon>GXDLMSNtpDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="SaudiArabia\GXDLMSMeterReadingParameterView.cs">
       <SubType>Form</SubType>
@@ -744,6 +756,9 @@
     <EmbeddedResource Include="GXDLMSArbitratorView.resx">
       <DependentUpon>GXDLMSArbitratorView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSNtpSetupView.resx">
+      <DependentUpon>GXDLMSNtpSetupView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIecTwistedPairSetupView.resx">
       <DependentUpon>GXDLMSIecTwistedPairSetupView.cs</DependentUpon>
     </EmbeddedResource>
@@ -803,6 +818,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXCertificateType.resx">
       <DependentUpon>GXCertificateType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSNtpDlg.resx">
+      <DependentUpon>GXDLMSNtpDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaudiArabia\GXDLMSMeterReadingParameterView.resx">
       <DependentUpon>GXDLMSMeterReadingParameterView.cs</DependentUpon>
@@ -1045,6 +1063,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
