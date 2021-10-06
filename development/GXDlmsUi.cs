@@ -400,20 +400,33 @@ namespace Gurux.DLMS.UI
                     }
                     if (method && btn.Index == index && btn.Action == ActionType.Action)
                     {
-                        MethodAccessMode ma = target.GetMethodAccess(index);
-                        OnUpdateAccessRights(view, btn, connected && ma != MethodAccessMode.NoAccess);
+                        bool access = target.GetMethodAccess(index) != MethodAccessMode.NoAccess;
+                        if (!access)
+                        {
+                            access = target.GetMethodAccess3(index) != MethodAccessMode3.NoAccess;
+                        }
+                        OnUpdateAccessRights(view, btn, connected && access);
                         return true;
                     }
                     if (!method && btn.Index == index && (btn.Action == ActionType.Read || btn.Action == ActionType.Write))
                     {
-                        AccessMode am = target.GetAccess(index);
                         if (btn.Action == ActionType.Read)
                         {
-                            OnUpdateAccessRights(view, btn, connected && ((am & AccessMode.Read) != 0));
+                            bool access = (target.GetAccess(index) & AccessMode.Read) != 0;
+                            if (!access)
+                            {
+                                access = (target.GetAccess3(index) & AccessMode3.Read) != 0;
+                            }
+                            OnUpdateAccessRights(view, btn, connected && access);
                         }
                         else if (btn.Action == ActionType.Write)
                         {
-                            OnUpdateAccessRights(view, btn, connected && ((am & AccessMode.Write) != 0));
+                            bool access = (target.GetAccess(index) & AccessMode.Write) != 0;
+                            if (!access)
+                            {
+                                access = (target.GetAccess3(index) & AccessMode3.Write) != 0;
+                            }
+                            OnUpdateAccessRights(view, btn, connected && access);
                         }
                     }
                 }

@@ -97,10 +97,25 @@ namespace Gurux.DLMS.UI
 
         #region IGXDLMSView Members
 
+        GXDLMSObject _target;
         public GXDLMSObject Target
         {
-            get;
-            set;
+            get
+            {
+                return _target;
+            }
+            set
+            {
+                _target = value;
+                if (value != null)
+                {
+                    VersionTb.Text = value.Version.ToString();
+                }
+                else
+                {
+                    VersionTb.Text = "";
+                }                
+            }
         }
 
         Country FindCountry(byte jointIsoCtt, byte countryElement, UInt16 countryName)

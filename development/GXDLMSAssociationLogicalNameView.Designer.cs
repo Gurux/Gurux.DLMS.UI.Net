@@ -21,8 +21,12 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSAssociationLogicalNameView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.VersionLbl = new System.Windows.Forms.Label();
+            this.VersionTb = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.AddObjectBtn = new Gurux.DLMS.UI.GXButton();
+            this.RemoveObjectBtn = new Gurux.DLMS.UI.GXButton();
             this.ObjectsView = new System.Windows.Forms.ListView();
             this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VersionHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -30,6 +34,7 @@ namespace Gurux.DLMS.UI
             this.AttributeAccesssHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MethodAccessHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.UpdateHighPwBtn = new Gurux.DLMS.UI.GXButton();
             this.SecuritySetupCb = new System.Windows.Forms.ComboBox();
             this.SecretTB = new System.Windows.Forms.TextBox();
             this.SecretAsciiCb = new System.Windows.Forms.CheckBox();
@@ -41,6 +46,8 @@ namespace Gurux.DLMS.UI
             this.ClientSAPLbl = new System.Windows.Forms.Label();
             this.SecretLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.UpdatePwBtn = new Gurux.DLMS.UI.GXButton();
+            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.LNSettings = new System.Windows.Forms.GroupBox();
             this.DeltaValueEncodingCb = new System.Windows.Forms.CheckBox();
@@ -104,19 +111,14 @@ namespace Gurux.DLMS.UI
             this.AuthenticationJointISOCTTTb = new System.Windows.Forms.TextBox();
             this.AuthenticationJointISOCTTLbl = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.AddUserBtn = new Gurux.DLMS.UI.GXButton();
+            this.RemoveUserBtn = new Gurux.DLMS.UI.GXButton();
             this.UsersList = new System.Windows.Forms.ListView();
             this.UserIdCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UserNameCh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.AddObjectBtn = new Gurux.DLMS.UI.GXButton();
-            this.RemoveObjectBtn = new Gurux.DLMS.UI.GXButton();
-            this.UpdateHighPwBtn = new Gurux.DLMS.UI.GXButton();
-            this.UpdatePwBtn = new Gurux.DLMS.UI.GXButton();
-            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
-            this.AddUserBtn = new Gurux.DLMS.UI.GXButton();
-            this.RemoveUserBtn = new Gurux.DLMS.UI.GXButton();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -135,6 +137,8 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.VersionLbl);
+            this.groupBox1.Controls.Add(this.VersionTb);
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.LogicalNameTB);
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
@@ -144,6 +148,23 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Association Logical  Name Object";
+            // 
+            // VersionLbl
+            // 
+            this.VersionLbl.AutoSize = true;
+            this.VersionLbl.Location = new System.Drawing.Point(335, 24);
+            this.VersionLbl.Name = "VersionLbl";
+            this.VersionLbl.Size = new System.Drawing.Size(45, 13);
+            this.VersionLbl.TabIndex = 16;
+            this.VersionLbl.Text = "Version:";
+            // 
+            // VersionTb
+            // 
+            this.VersionTb.Location = new System.Drawing.Point(428, 21);
+            this.VersionTb.Name = "VersionTb";
+            this.VersionTb.ReadOnly = true;
+            this.VersionTb.Size = new System.Drawing.Size(100, 20);
+            this.VersionTb.TabIndex = 15;
             // 
             // tabControl1
             // 
@@ -174,6 +195,28 @@ namespace Gurux.DLMS.UI
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Objects";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // AddObjectBtn
+            // 
+            this.AddObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddObjectBtn.Index = 3;
+            this.AddObjectBtn.Location = new System.Drawing.Point(421, 283);
+            this.AddObjectBtn.Name = "AddObjectBtn";
+            this.AddObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddObjectBtn.TabIndex = 22;
+            this.AddObjectBtn.Text = "Add";
+            this.AddObjectBtn.UseVisualStyleBackColor = true;
+            // 
+            // RemoveObjectBtn
+            // 
+            this.RemoveObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveObjectBtn.Index = 4;
+            this.RemoveObjectBtn.Location = new System.Drawing.Point(502, 283);
+            this.RemoveObjectBtn.Name = "RemoveObjectBtn";
+            this.RemoveObjectBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveObjectBtn.TabIndex = 21;
+            this.RemoveObjectBtn.Text = "Remove";
+            this.RemoveObjectBtn.UseVisualStyleBackColor = true;
             // 
             // ObjectsView
             // 
@@ -239,6 +282,16 @@ namespace Gurux.DLMS.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "General";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // UpdateHighPwBtn
+            // 
+            this.UpdateHighPwBtn.Index = 2;
+            this.UpdateHighPwBtn.Location = new System.Drawing.Point(260, 119);
+            this.UpdateHighPwBtn.Name = "UpdateHighPwBtn";
+            this.UpdateHighPwBtn.Size = new System.Drawing.Size(141, 23);
+            this.UpdateHighPwBtn.TabIndex = 36;
+            this.UpdateHighPwBtn.Text = "Update High password";
+            this.UpdateHighPwBtn.UseVisualStyleBackColor = true;
             // 
             // SecuritySetupCb
             // 
@@ -347,6 +400,29 @@ namespace Gurux.DLMS.UI
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Association Status:";
+            // 
+            // UpdatePwBtn
+            // 
+            this.UpdatePwBtn.Action = Gurux.DLMS.UI.ActionType.Write;
+            this.UpdatePwBtn.Index = 7;
+            this.UpdatePwBtn.Location = new System.Drawing.Point(114, 119);
+            this.UpdatePwBtn.Name = "UpdatePwBtn";
+            this.UpdatePwBtn.Size = new System.Drawing.Size(140, 23);
+            this.UpdatePwBtn.TabIndex = 28;
+            this.UpdatePwBtn.Text = "Update Low password";
+            this.UpdatePwBtn.UseVisualStyleBackColor = true;
+            // 
+            // gxValueField1
+            // 
+            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gxValueField1.Index = 8;
+            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
+            this.gxValueField1.Name = "gxValueField1";
+            this.gxValueField1.NotifyChanges = false;
+            this.gxValueField1.Size = new System.Drawing.Size(335, 20);
+            this.gxValueField1.TabIndex = 29;
+            this.gxValueField1.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // tabPage3
             // 
@@ -1005,6 +1081,28 @@ namespace Gurux.DLMS.UI
             this.tabPage6.Text = "User List";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // AddUserBtn
+            // 
+            this.AddUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddUserBtn.Index = 5;
+            this.AddUserBtn.Location = new System.Drawing.Point(418, 280);
+            this.AddUserBtn.Name = "AddUserBtn";
+            this.AddUserBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddUserBtn.TabIndex = 20;
+            this.AddUserBtn.Text = "Add";
+            this.AddUserBtn.UseVisualStyleBackColor = true;
+            // 
+            // RemoveUserBtn
+            // 
+            this.RemoveUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveUserBtn.Index = 6;
+            this.RemoveUserBtn.Location = new System.Drawing.Point(499, 280);
+            this.RemoveUserBtn.Name = "RemoveUserBtn";
+            this.RemoveUserBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveUserBtn.TabIndex = 16;
+            this.RemoveUserBtn.Text = "Remove";
+            this.RemoveUserBtn.UseVisualStyleBackColor = true;
+            // 
             // UsersList
             // 
             this.UsersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1033,6 +1131,16 @@ namespace Gurux.DLMS.UI
             this.UserNameCh.Text = "Name";
             this.UserNameCh.Width = 418;
             // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(185, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -1047,95 +1155,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // AddObjectBtn
-            // 
-            this.AddObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddObjectBtn.Index = 3;
-            this.AddObjectBtn.Location = new System.Drawing.Point(421, 283);
-            this.AddObjectBtn.Name = "AddObjectBtn";
-            this.AddObjectBtn.Size = new System.Drawing.Size(75, 23);
-            this.AddObjectBtn.TabIndex = 22;
-            this.AddObjectBtn.Text = "Add";
-            this.AddObjectBtn.UseVisualStyleBackColor = true;
-            // 
-            // RemoveObjectBtn
-            // 
-            this.RemoveObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveObjectBtn.Index = 4;
-            this.RemoveObjectBtn.Location = new System.Drawing.Point(502, 283);
-            this.RemoveObjectBtn.Name = "RemoveObjectBtn";
-            this.RemoveObjectBtn.Size = new System.Drawing.Size(75, 23);
-            this.RemoveObjectBtn.TabIndex = 21;
-            this.RemoveObjectBtn.Text = "Remove";
-            this.RemoveObjectBtn.UseVisualStyleBackColor = true;
-            // 
-            // UpdateHighPwBtn
-            // 
-            this.UpdateHighPwBtn.Index = 2;
-            this.UpdateHighPwBtn.Location = new System.Drawing.Point(260, 119);
-            this.UpdateHighPwBtn.Name = "UpdateHighPwBtn";
-            this.UpdateHighPwBtn.Size = new System.Drawing.Size(141, 23);
-            this.UpdateHighPwBtn.TabIndex = 36;
-            this.UpdateHighPwBtn.Text = "Update High password";
-            this.UpdateHighPwBtn.UseVisualStyleBackColor = true;
-            // 
-            // UpdatePwBtn
-            // 
-            this.UpdatePwBtn.Action = Gurux.DLMS.UI.ActionType.Write;
-            this.UpdatePwBtn.Index = 7;
-            this.UpdatePwBtn.Location = new System.Drawing.Point(114, 119);
-            this.UpdatePwBtn.Name = "UpdatePwBtn";
-            this.UpdatePwBtn.Size = new System.Drawing.Size(140, 23);
-            this.UpdatePwBtn.TabIndex = 28;
-            this.UpdatePwBtn.Text = "Update Low password";
-            this.UpdatePwBtn.UseVisualStyleBackColor = true;
-            // 
-            // gxValueField1
-            // 
-            this.gxValueField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gxValueField1.Index = 8;
-            this.gxValueField1.Location = new System.Drawing.Point(114, 93);
-            this.gxValueField1.Name = "gxValueField1";
-            this.gxValueField1.NotifyChanges = false;
-            this.gxValueField1.Size = new System.Drawing.Size(335, 20);
-            this.gxValueField1.TabIndex = 29;
-            this.gxValueField1.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
-            // 
-            // AddUserBtn
-            // 
-            this.AddUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddUserBtn.Index = 5;
-            this.AddUserBtn.Location = new System.Drawing.Point(418, 280);
-            this.AddUserBtn.Name = "AddUserBtn";
-            this.AddUserBtn.Size = new System.Drawing.Size(75, 23);
-            this.AddUserBtn.TabIndex = 20;
-            this.AddUserBtn.Text = "Add";
-            this.AddUserBtn.UseVisualStyleBackColor = true;
-            // 
-            // RemoveUserBtn
-            // 
-            this.RemoveUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveUserBtn.Index = 6;
-            this.RemoveUserBtn.Location = new System.Drawing.Point(499, 280);
-            this.RemoveUserBtn.Name = "RemoveUserBtn";
-            this.RemoveUserBtn.Size = new System.Drawing.Size(75, 23);
-            this.RemoveUserBtn.TabIndex = 16;
-            this.RemoveUserBtn.Text = "Remove";
-            this.RemoveUserBtn.UseVisualStyleBackColor = true;
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(512, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSAssociationLogicalNameView
             // 
@@ -1260,5 +1279,7 @@ namespace Gurux.DLMS.UI
         private CheckBox SelectiveAccessCB;
         private CheckBox EventNotificationCB;
         private CheckBox ActionCB;
+        private Label VersionLbl;
+        private TextBox VersionTb;
     }
 }
