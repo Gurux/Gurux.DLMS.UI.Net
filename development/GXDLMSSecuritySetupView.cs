@@ -141,12 +141,21 @@ namespace Gurux.DLMS.UI
             {
                 if (arg.Index == 1)
                 {
-                    byte value = 0;
-                    foreach (SecurityPolicy it in SecurityPolicyTB.CheckedItems)
+                    if (Target.Version == 1)
                     {
-                        value |= Convert.ToByte(it);
+                        byte value = 0;
+                        foreach (SecurityPolicy it in SecurityPolicyTB.CheckedItems)
+                        {
+                            value |= Convert.ToByte(it);
+                        }
+                        arg.Value = new GXEnum(value);
+
                     }
-                    arg.Value = new GXEnum(value);
+                    else
+                    {
+                        //Version 0.
+                        arg.Value = new GXEnum((byte) SecurityCb.SelectedItem);                        
+                    }
                 }
                 else if (arg.Index == 2)
                 {

@@ -197,7 +197,7 @@ namespace Gurux.DLMS.UI
             {
                 GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
                 target.ModemProfile = this.ModemProfileTB.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                Target.UpdateDirty(2, target.ModemProfile);
+                Target.UpdateDirty(4, target.ModemProfile);
                 errorProvider1.SetError(ModemProfileTB, Properties.Resources.ValueChangedTxt);
             }
             catch (Exception ex)

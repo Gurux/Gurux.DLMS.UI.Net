@@ -128,6 +128,10 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(int index, AccessMode access, bool connected)
         {
+            if (index == 2)
+            {
+                OutputStateCB.Enabled = connected && (access & AccessMode.Write) != 0;
+            }
         }
 
         public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)

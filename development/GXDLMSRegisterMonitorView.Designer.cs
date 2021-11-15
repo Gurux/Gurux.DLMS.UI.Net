@@ -63,9 +63,10 @@ namespace Gurux.DLMS.UI
             this.AttributeIndexLbl = new System.Windows.Forms.Label();
             this.AttributeIndexTB = new System.Windows.Forms.TextBox();
             this.MonitoredLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.ShowAllTargetsCb = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.MonitoredValueGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -86,7 +87,7 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(439, 372);
+            this.groupBox1.Size = new System.Drawing.Size(439, 391);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Register Monitor Object";
@@ -94,7 +95,7 @@ namespace Gurux.DLMS.UI
             // ActionRemoveBtn
             // 
             this.ActionRemoveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActionRemoveBtn.Location = new System.Drawing.Point(352, 343);
+            this.ActionRemoveBtn.Location = new System.Drawing.Point(352, 362);
             this.ActionRemoveBtn.Name = "ActionRemoveBtn";
             this.ActionRemoveBtn.Size = new System.Drawing.Size(75, 23);
             this.ActionRemoveBtn.TabIndex = 31;
@@ -105,7 +106,7 @@ namespace Gurux.DLMS.UI
             // ActionEditBtn
             // 
             this.ActionEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActionEditBtn.Location = new System.Drawing.Point(271, 343);
+            this.ActionEditBtn.Location = new System.Drawing.Point(271, 362);
             this.ActionEditBtn.Name = "ActionEditBtn";
             this.ActionEditBtn.Size = new System.Drawing.Size(75, 23);
             this.ActionEditBtn.TabIndex = 30;
@@ -116,7 +117,7 @@ namespace Gurux.DLMS.UI
             // ActionAddBtn
             // 
             this.ActionAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ActionAddBtn.Location = new System.Drawing.Point(190, 343);
+            this.ActionAddBtn.Location = new System.Drawing.Point(190, 362);
             this.ActionAddBtn.Name = "ActionAddBtn";
             this.ActionAddBtn.Size = new System.Drawing.Size(75, 23);
             this.ActionAddBtn.TabIndex = 29;
@@ -138,9 +139,9 @@ namespace Gurux.DLMS.UI
             this.ActionsLV.FullRowSelect = true;
             this.ActionsLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ActionsLV.HideSelection = false;
-            this.ActionsLV.Location = new System.Drawing.Point(11, 137);
+            this.ActionsLV.Location = new System.Drawing.Point(11, 151);
             this.ActionsLV.Name = "ActionsLV";
-            this.ActionsLV.Size = new System.Drawing.Size(416, 200);
+            this.ActionsLV.Size = new System.Drawing.Size(416, 205);
             this.ActionsLV.TabIndex = 12;
             this.ActionsLV.UseCompatibleStateImageBehavior = false;
             this.ActionsLV.View = System.Windows.Forms.View.Details;
@@ -183,7 +184,7 @@ namespace Gurux.DLMS.UI
             // 
             this.DescriptionTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionTB.Location = new System.Drawing.Point(104, 19);
+            this.DescriptionTB.Location = new System.Drawing.Point(102, 19);
             this.DescriptionTB.Name = "DescriptionTB";
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(329, 20);
@@ -193,13 +194,14 @@ namespace Gurux.DLMS.UI
             // 
             this.MonitoredValueGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.MonitoredValueGB.Controls.Add(this.ShowAllTargetsCb);
             this.MonitoredValueGB.Controls.Add(this.MonitoredValueCb);
             this.MonitoredValueGB.Controls.Add(this.AttributeIndexLbl);
             this.MonitoredValueGB.Controls.Add(this.AttributeIndexTB);
             this.MonitoredValueGB.Controls.Add(this.MonitoredLbl);
             this.MonitoredValueGB.Location = new System.Drawing.Point(0, 72);
             this.MonitoredValueGB.Name = "MonitoredValueGB";
-            this.MonitoredValueGB.Size = new System.Drawing.Size(433, 59);
+            this.MonitoredValueGB.Size = new System.Drawing.Size(433, 73);
             this.MonitoredValueGB.TabIndex = 7;
             this.MonitoredValueGB.TabStop = false;
             this.MonitoredValueGB.Text = "Monitored Value";
@@ -210,7 +212,7 @@ namespace Gurux.DLMS.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MonitoredValueCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MonitoredValueCb.FormattingEnabled = true;
-            this.MonitoredValueCb.Location = new System.Drawing.Point(102, 23);
+            this.MonitoredValueCb.Location = new System.Drawing.Point(102, 19);
             this.MonitoredValueCb.Name = "MonitoredValueCb";
             this.MonitoredValueCb.Size = new System.Drawing.Size(198, 21);
             this.MonitoredValueCb.TabIndex = 13;
@@ -220,7 +222,7 @@ namespace Gurux.DLMS.UI
             // 
             this.AttributeIndexLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AttributeIndexLbl.AutoSize = true;
-            this.AttributeIndexLbl.Location = new System.Drawing.Point(306, 29);
+            this.AttributeIndexLbl.Location = new System.Drawing.Point(306, 22);
             this.AttributeIndexLbl.Name = "AttributeIndexLbl";
             this.AttributeIndexLbl.Size = new System.Drawing.Size(36, 13);
             this.AttributeIndexLbl.TabIndex = 12;
@@ -229,7 +231,7 @@ namespace Gurux.DLMS.UI
             // AttributeIndexTB
             // 
             this.AttributeIndexTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AttributeIndexTB.Location = new System.Drawing.Point(349, 26);
+            this.AttributeIndexTB.Location = new System.Drawing.Point(349, 22);
             this.AttributeIndexTB.Name = "AttributeIndexTB";
             this.AttributeIndexTB.Size = new System.Drawing.Size(61, 20);
             this.AttributeIndexTB.TabIndex = 5;
@@ -238,11 +240,23 @@ namespace Gurux.DLMS.UI
             // MonitoredLbl
             // 
             this.MonitoredLbl.AutoSize = true;
-            this.MonitoredLbl.Location = new System.Drawing.Point(6, 26);
+            this.MonitoredLbl.Location = new System.Drawing.Point(6, 22);
             this.MonitoredLbl.Name = "MonitoredLbl";
             this.MonitoredLbl.Size = new System.Drawing.Size(41, 13);
             this.MonitoredLbl.TabIndex = 8;
             this.MonitoredLbl.Text = "Target:";
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(331, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -259,21 +273,20 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
             // 
-            // LogicalNameTB
+            // ShowAllTargetsCb
             // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(331, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.ShowAllTargetsCb.AutoSize = true;
+            this.ShowAllTargetsCb.Location = new System.Drawing.Point(102, 46);
+            this.ShowAllTargetsCb.Name = "ShowAllTargetsCb";
+            this.ShowAllTargetsCb.Size = new System.Drawing.Size(105, 17);
+            this.ShowAllTargetsCb.TabIndex = 14;
+            this.ShowAllTargetsCb.Text = "Show all Targets";
+            this.ShowAllTargetsCb.UseVisualStyleBackColor = true;
+            this.ShowAllTargetsCb.CheckedChanged += new System.EventHandler(this.ShowAllTargetsCb_CheckedChanged);
             // 
             // GXDLMSRegisterMonitorView
             // 
-            this.ClientSize = new System.Drawing.Size(463, 395);
+            this.ClientSize = new System.Drawing.Size(463, 415);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GXDLMSRegisterMonitorView";
@@ -293,5 +306,6 @@ namespace Gurux.DLMS.UI
         private Button ActionAddBtn;
         private ComboBox MonitoredValueCb;
         private ColumnHeader ThresholdHeader;
+        private CheckBox ShowAllTargetsCb;
     }
 }

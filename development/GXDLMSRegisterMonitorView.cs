@@ -64,6 +64,63 @@ namespace Gurux.DLMS.UI
             set;
         }
 
+        private void UpdateMonitoredValueTargets()
+        {
+            GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
+            this.MonitoredValueCb.SelectedIndexChanged -= new System.EventHandler(this.MonitoredValueCb_SelectedIndexChanged);
+            try
+            {
+                MonitoredValueCb.Items.Clear();
+                if (target.Parent != null)
+                {
+                    if (ShowAllTargetsCb.Checked)
+                    {
+                        foreach (GXDLMSObject it in target.Parent)
+                        {
+                            MonitoredValueCb.Items.Add(it);
+                        }
+                    }
+                    else
+                    {
+                        foreach (GXDLMSObject it in target.Parent.GetObjects(
+                            new ObjectType[] { ObjectType.Data, ObjectType.Register, ObjectType.ExtendedRegister, ObjectType.DemandRegister }))
+                        {
+                            MonitoredValueCb.Items.Add(it);
+                        }
+                    }
+                }
+                else if (target.MonitoredValue != null && target.MonitoredValue.ObjectType != ObjectType.None)
+                {
+                    GXDLMSObject obj = GXDLMSClient.CreateObject(target.MonitoredValue.ObjectType);
+                    obj.LogicalName = target.MonitoredValue.LogicalName;
+                    MonitoredValueCb.Items.Add(obj);
+                }
+                if (target.MonitoredValue != null && target.MonitoredValue.ObjectType != ObjectType.None)
+                {
+                    if (target.Parent != null)
+                    {
+                        MonitoredValueCb.SelectedItem = target.Parent.FindByLN(target.MonitoredValue.ObjectType, target.MonitoredValue.LogicalName);
+                    }
+                    else
+                    {
+                        GXDLMSObject it = GXDLMSClient.CreateObject(target.MonitoredValue.ObjectType);
+                        it.LogicalName = target.MonitoredValue.LogicalName;
+                        MonitoredValueCb.SelectedItem = it;
+                    }
+                    AttributeIndexTB.Text = target.MonitoredValue.AttributeIndex.ToString();
+                }
+                else
+                {
+                    MonitoredValueCb.SelectedItem = null;
+                    AttributeIndexTB.Text = "";
+                }
+            }
+            finally
+            {
+                this.MonitoredValueCb.SelectedIndexChanged += new System.EventHandler(this.MonitoredValueCb_SelectedIndexChanged);
+            }
+        }
+
         public void OnValueChanged(int index, object value, bool user, bool connected)
         {
             GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
@@ -72,47 +129,7 @@ namespace Gurux.DLMS.UI
             }
             else if (index == 3)
             {
-                this.MonitoredValueCb.SelectedIndexChanged -= new System.EventHandler(this.MonitoredValueCb_SelectedIndexChanged);
-                try
-                {
-                    MonitoredValueCb.Items.Clear();
-                    if (target.Parent != null)
-                    {
-                        foreach (GXDLMSObject it in target.Parent.GetObjects(
-                            new ObjectType[] { ObjectType.Data, ObjectType.Register, ObjectType.ExtendedRegister, ObjectType.DemandRegister }))
-                        {
-                            MonitoredValueCb.Items.Add(it);
-                        }
-                    }
-                    else if (target.MonitoredValue != null && target.MonitoredValue.ObjectType != ObjectType.None)
-                    {
-                        GXDLMSRegister it = new GXDLMSRegister(target.MonitoredValue.LogicalName);
-                        MonitoredValueCb.Items.Add(it);
-                    }
-                    if (target.MonitoredValue != null && target.MonitoredValue.ObjectType != ObjectType.None)
-                    {
-                        if (target.Parent != null)
-                        {
-                            MonitoredValueCb.SelectedItem = target.Parent.FindByLN(target.MonitoredValue.ObjectType, target.MonitoredValue.LogicalName);
-                        }
-                        else
-                        {
-                            GXDLMSObject it = GXDLMSClient.CreateObject(target.MonitoredValue.ObjectType);
-                            it.LogicalName = target.MonitoredValue.LogicalName;
-                            MonitoredValueCb.SelectedItem = it;
-                        }
-                        AttributeIndexTB.Text = target.MonitoredValue.AttributeIndex.ToString();
-                    }
-                    else
-                    {
-                        MonitoredValueCb.SelectedItem = null;
-                        AttributeIndexTB.Text = "";
-                    }
-                }
-                finally
-                {
-                    this.MonitoredValueCb.SelectedIndexChanged += new System.EventHandler(this.MonitoredValueCb_SelectedIndexChanged);
-                }
+                UpdateMonitoredValueTargets();
             }
             else if (index == 4)
             {
@@ -363,6 +380,18 @@ namespace Gurux.DLMS.UI
                 }
                 target.Thresholds = thresholds.ToArray();
                 target.Actions = actions.ToArray();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ShowAllTargetsCb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                UpdateMonitoredValueTargets();
             }
             catch (Exception ex)
             {

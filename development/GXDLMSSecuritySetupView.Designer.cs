@@ -127,6 +127,7 @@ namespace Gurux.DLMS.UI
             // 
             // SecurityCb
             // 
+            this.SecurityCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SecurityCb.FormattingEnabled = true;
             this.SecurityCb.Location = new System.Drawing.Point(107, 237);
             this.SecurityCb.Name = "SecurityCb";
