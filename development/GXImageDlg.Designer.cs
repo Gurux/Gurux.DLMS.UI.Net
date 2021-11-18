@@ -112,7 +112,6 @@
             // 
             // InfoBtn
             // 
-            this.InfoBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoBtn.Enabled = false;
             this.InfoBtn.Location = new System.Drawing.Point(12, 76);
             this.InfoBtn.Name = "InfoBtn";
@@ -124,6 +123,7 @@
             // 
             // AsciiCb
             // 
+            this.AsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AsciiCb.AutoSize = true;
             this.AsciiCb.Checked = true;
             this.AsciiCb.CheckState = System.Windows.Forms.CheckState.Checked;
