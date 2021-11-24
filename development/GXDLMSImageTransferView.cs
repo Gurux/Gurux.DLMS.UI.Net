@@ -377,8 +377,18 @@ namespace Gurux.DLMS.UI
                 if (arg.Index == 1)
                 {
                     OnDescription("Image transfer initiated.");
-                    arg.Action = ActionType.Read;
-                    arg.Index = 6;
+                    //Sanxing meter can't handle read after ImageTransfer is initiate.
+                    if (string.Compare(arg.Client.ManufacturerId, "AUX", true) == 0)
+                    {
+                        //Invoke Initiates image transfer.
+                        arg.Index = 2;
+                        transformingImage = true;
+                    }
+                    else
+                    {
+                        arg.Action = ActionType.Read;
+                        arg.Index = 6;
+                    }
                 }
                 else if (arg.Index == 2)
                 {
@@ -439,10 +449,11 @@ namespace Gurux.DLMS.UI
                             }
                             return;
                         }
-                    }
+                    }                    
                     OnDescription(Properties.Resources.ImageActivatedTxt);
                     arg.Action = ActionType.None;
                     arg.Rebooting = true;
+                    GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
