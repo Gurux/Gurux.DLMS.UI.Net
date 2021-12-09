@@ -65,9 +65,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index != 2)
+            if (arg.Index != 2)
             {
                 throw new IndexOutOfRangeException("index");
             }
@@ -104,15 +104,15 @@ namespace Gurux.DLMS.UI
             li.Tag = item;
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index != 2)
+            if (arg.Index != 2)
             {
                 throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

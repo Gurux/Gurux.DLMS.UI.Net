@@ -65,10 +65,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSAutoConnect target = Target as GXDLMSAutoConnect;
-            if (index == 5)
+            if (arg.Index == 5)
             {
                 CallingWindowLV.Items.Clear();
                 foreach (var it in target.CallingWindow)
@@ -78,7 +78,7 @@ namespace Gurux.DLMS.UI
                     li.Tag = it;
                 }
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 DestinationLv.Items.Clear();
                 if (target.Destinations != null)
@@ -95,20 +95,20 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 5)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 5)
             {
                 TimeAddBtn.Enabled = TimeEditBtn.Enabled = TimeRemoveBtn.Enabled = enabled;
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 DestinationAddBtn.Enabled = DestinationEditBtn.Enabled = DestinationRemoveBtn.Enabled = enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

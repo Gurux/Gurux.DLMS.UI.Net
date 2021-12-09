@@ -65,16 +65,16 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
 
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

@@ -79,13 +79,13 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
-                if (value is byte[] && (value as byte[]).Length == 6)
+                if (arg.Value is byte[] && (arg.Value as byte[]).Length == 6)
                 {
-                    GXBitString bs = new GXBitString(GXBitString.ToBitString((byte[])value, 0, 16));
+                    GXBitString bs = new GXBitString(GXBitString.ToBitString((byte[])arg.Value, 0, 16));
                     int val = Convert.ToUInt16(bs);
                     ValuesLb.ItemCheck -= ValuesLb_ItemCheck;
                     for (int pos = 0; pos != 16; ++pos)
@@ -93,7 +93,7 @@ namespace Gurux.DLMS.UI
                         ValuesLb.SetItemChecked(pos, bs.Value[pos] == '1');
                     }
                     ValuesLb.ItemCheck += ValuesLb_ItemCheck;
-                    GXByteBuffer bb = new GXByteBuffer((byte[])value);
+                    GXByteBuffer bb = new GXByteBuffer((byte[])arg.Value);
                     bb.Position = 2;
                     DurationTb.Text = bb.GetUInt32().ToString();
                     HexTb.Text = bb.ToString();
@@ -157,13 +157,13 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
-                bool enabled = (connected && (access & AccessMode.Write) != 0);
-                ValuesLb.Enabled = enabled;
-                DurationTb.ReadOnly = !enabled;
+                bool writable = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+                ValuesLb.Enabled = writable;
+                DurationTb.ReadOnly = !writable;
             }
             else
             {
@@ -171,7 +171,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion

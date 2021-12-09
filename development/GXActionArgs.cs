@@ -99,5 +99,14 @@ namespace Gurux.DLMS.UI
             get;
             set;
         }
+
+        /// <summary>
+        /// Extra information can be saved for the tag.
+        /// </summary>
+        public object Tag
+        {
+            get;
+            set;
+        }
     }
 }

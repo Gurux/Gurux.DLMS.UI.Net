@@ -4,11 +4,11 @@
 //
 //
 //
-// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSDisconnectControlView.cs $
+// Filename:        $HeadURL: svn://mars/Projects/GuruxClub/GXDLMSDirector/Development/Views/GXDLMSCommunicationPortProtectionView.cs $
 //
-// Version:         $Revision: 5795 $,
-//                  $Date: 2012-10-02 13:22:54 +0300 (ti, 02 loka 2012) $
-//                  $Author: kurumi $
+// Version:         $Revision: 8933 $,
+//                  $Date: 2016-11-23 09:20:07 +0200 (ke, 23 marras 2016) $
+//                  $Author: gurux01 $
 //
 // Copyright (c) Gurux Ltd
 //
@@ -44,15 +44,16 @@ namespace Gurux.DLMS.UI
 {
     /// <summary>
     /// Online help:
-    /// https://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSDisconnectControl
+    /// https://www.gurux.fi/Gurux.DLMS.Objects.GXDLMSCommunicationPortProtection
     /// </summary>
-    [GXDLMSViewAttribute(typeof(GXDLMSDisconnectControl))]
-    partial class GXDLMSDisconnectControlView : Form, IGXDLMSView
+    [GXDLMSViewAttribute(typeof(GXDLMSCommunicationPortProtection))]
+    partial class GXDLMSCommunicationPortProtectionView : Form, IGXDLMSView
     {
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GXDLMSDisconnectControlView()
+        public GXDLMSCommunicationPortProtectionView()
         {
             InitializeComponent();
         }
@@ -67,30 +68,15 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (arg.Index == 2)
-            {
-                OutputStateCB.CheckedChanged -= new System.EventHandler(OutputStateCB_CheckedChanged);
-                GXDLMSDisconnectControl target = Target as GXDLMSDisconnectControl;
-                this.OutputStateCB.Checked = target.OutputState;
-                OutputStateCB.CheckedChanged += new System.EventHandler(OutputStateCB_CheckedChanged);
-            }
-            else if (arg.Index != 0)
-            {
-                throw new IndexOutOfRangeException("index");
-            }
+            throw new IndexOutOfRangeException("index");
         }
 
         public void PreAction(GXActionArgs arg)
         {
-            arg.Value = (sbyte)0;
         }
 
         public void PostAction(GXActionArgs arg)
         {
-            if (arg.Exception == null)
-            {
-                GXHelpers.ShowMessageBox(this, Properties.Resources.ActionImplemented, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
             arg.Action = ActionType.None;
         }
 
@@ -118,7 +104,7 @@ namespace Gurux.DLMS.UI
         {
             if (Dirty && index == 2)
             {
-                errorProvider1.SetError(ControlStateCB, Properties.Resources.ValueChangedTxt);
+                errorProvider1.SetError(ProtectionModeCb, Properties.Resources.ValueChangedTxt);
             }
             else
             {
@@ -128,16 +114,16 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (arg.Index == 2)
-            {
-                OutputStateCB.Enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
-            }
+            throw new IndexOutOfRangeException("index");
         }
 
         public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion
+
+
+
 
         private void ValueTB_KeyUp(object sender, KeyEventArgs e)
         {
@@ -147,14 +133,6 @@ namespace Gurux.DLMS.UI
         private void ValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
-        }
-
-        private void OutputStateCB_CheckedChanged(object sender, EventArgs e)
-        {
-            bool check = OutputStateCB.Checked;
-            (Target as GXDLMSDisconnectControl).OutputState = check;
-            Target.UpdateDirty(2, check);
-            errorProvider1.SetError(OutputStateCB, Properties.Resources.ValueChangedTxt);
         }
     }
 }

@@ -66,9 +66,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 5)
+            if (arg.Index == 5)
             {
                 GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                 KeyTable.Items.Clear();
@@ -83,7 +83,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 11)
+            else if (arg.Index == 11)
             {
                 GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                 NeighbourTable.Items.Clear();
@@ -146,13 +146,13 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 5)
+            if (arg.Index == 5)
             {
 
             }
-            else if (index == 11)
+            else if (arg.Index == 11)
             {
 
             }
@@ -162,7 +162,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion

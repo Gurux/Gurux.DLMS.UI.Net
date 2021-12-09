@@ -65,7 +65,7 @@ namespace Gurux.DLMS.UI
         public GXDLMSSecuritySetupView()
         {
             InitializeComponent();
-           // SecurityCb.ite
+            // SecurityCb.ite
             SecurityPolicyTB.Items.Add(SecurityPolicy.AuthenticatedRequest);
             SecurityPolicyTB.Items.Add(SecurityPolicy.EncryptedRequest);
             SecurityPolicyTB.Items.Add(SecurityPolicy.DigitallySignedRequest);
@@ -86,10 +86,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSSecuritySetup target = (GXDLMSSecuritySetup)Target;
-            if (index == 6)
+            if (arg.Index == 6)
             {
                 CertificatesLv.Items.Clear();
                 if (target.Certificates != null)
@@ -106,7 +106,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 2)
+            else if (arg.Index == 2)
             {
                 SecurityCb.Visible = Target.Version == 0;
                 SecurityPolicyTB.Visible = Target.Version == 1;
@@ -124,7 +124,7 @@ namespace Gurux.DLMS.UI
                     SecurityPolicyTB.SetItemChecked(5, (target.SecurityPolicy & SecurityPolicy.DigitallySignedResponse) != 0);
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 SystemTitleDescriptionTb.Text = GXDLMSConverter.SystemTitleToString(Standard.DLMS, target.ServerSystemTitle, true);
             }
@@ -154,7 +154,7 @@ namespace Gurux.DLMS.UI
                     else
                     {
                         //Version 0.
-                        arg.Value = new GXEnum((byte) SecurityCb.SelectedItem);                        
+                        arg.Value = new GXEnum((byte)SecurityCb.SelectedItem);
                     }
                 }
                 else if (arg.Index == 2)
@@ -483,22 +483,22 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
-                SecurityPolicyTB.Enabled = !(!connected || Target.GetMethodAccess(1) == MethodAccessMode.NoAccess);
+                SecurityPolicyTB.Enabled = !(!arg.Connected || !arg.Client.CanWrite(Target, 1));
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
             }
-            else if (index != 6)
+            else if (arg.Index != 6)
             {
                 throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

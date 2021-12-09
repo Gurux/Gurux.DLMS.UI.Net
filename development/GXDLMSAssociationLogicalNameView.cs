@@ -116,7 +116,7 @@ namespace Gurux.DLMS.UI
                     VersionTb.Text = "";
                 }                
             }
-        }
+        }      
 
         Country FindCountry(byte jointIsoCtt, byte countryElement, UInt16 countryName)
         {
@@ -155,11 +155,11 @@ namespace Gurux.DLMS.UI
             Freeze = false;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
             //object list.
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 GXDLMSObjectCollection items = target.ObjectList;
                 ObjectsView.Items.Clear();
@@ -221,12 +221,12 @@ namespace Gurux.DLMS.UI
                 }
             }
             //Associated partners ID.
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 ClientSAPTb.Text = Convert.ToString(target.ClientSAP);
                 ServerSAPTb.Text = Convert.ToString(target.ServerSAP);
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 try
                 {
@@ -258,7 +258,7 @@ namespace Gurux.DLMS.UI
                     ApplicationContextIDCb.SelectedIndexChanged += new System.EventHandler(this.ApplicationContextIDCb_SelectedIndexChanged);
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 // xDLMS_context_info
                 ShowConformance(target.XDLMSContextInfo.Conformance);
@@ -267,7 +267,7 @@ namespace Gurux.DLMS.UI
                 DLMSVersionNumberTB.Text = target.XDLMSContextInfo.DlmsVersionNumber.ToString();
                 CypheringInfoTb.Text = GXDLMSTranslator.ToHex(target.XDLMSContextInfo.CypheringInfo);
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 Freeze = true;
                 // authentication_mechanism_name
@@ -281,7 +281,7 @@ namespace Gurux.DLMS.UI
                 AuthenticationRegistrationAuthorityCb.SelectedItem = FindCountry(target.AuthenticationMechanismName.JointIsoCtt, target.AuthenticationMechanismName.Country, target.AuthenticationMechanismName.CountryName);
                 Freeze = false;
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 //Secret.
                 if (GXHelpers.IsAscii(target.Secret))
@@ -294,7 +294,7 @@ namespace Gurux.DLMS.UI
                     SecretTB.Text = GXDLMSTranslator.ToHex(target.Secret);
                 }
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 SecuritySetupCb.Items.Clear();
                 //security_setup_reference
@@ -321,8 +321,8 @@ namespace Gurux.DLMS.UI
                     SecuritySetupCb.SelectedIndexChanged += new System.EventHandler(this.SecuritySetupCb_SelectedIndexChanged);
                 }
             }
-            //user list.
-            else if (index == 10)
+            //User list.
+            else if (arg.Index == 10)
             {
                 List<KeyValuePair<byte, string>> items = target.UserList;
                 UsersList.Items.Clear();
@@ -336,7 +336,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 11) //Current user
+            else if (arg.Index == 11) //Current user
             {
                 foreach (ListViewItem it in UsersList.Items)
                 {
@@ -352,17 +352,17 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool writable = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool writable= arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 ClientSAPTb.ReadOnly = ServerSAPTb.ReadOnly = !writable;
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 // Application context name.
                 ApplicationJointISOCTTTb.ReadOnly = ApplicationCountryTb.ReadOnly =
@@ -370,7 +370,7 @@ namespace Gurux.DLMS.UI
                 ApplicationDLMSUATb.ReadOnly = ApplicationContextTb.ReadOnly = true;
                 ApplicationContextIDCb.Enabled = writable;
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 // xDLMS_context_info
                 MaxReceivePDUSizeTb.ReadOnly = MaxSendPDUSizeTb.ReadOnly =
@@ -382,7 +382,7 @@ namespace Gurux.DLMS.UI
                 DataNotificationCB.Enabled = AccessCB.Enabled = GetCB.Enabled = SetCB.Enabled =
                 SelectiveAccessCB.Enabled = EventNotificationCB.Enabled = ActionCB.Enabled = DeltaValueEncodingCb.Enabled = writable;
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 // authentication_mechanism_name
                 AuthenticationJointISOCTTTb.ReadOnly = AuthenticationCountryTb.ReadOnly = AuthenticationCountryNameTb.ReadOnly =
@@ -390,13 +390,13 @@ namespace Gurux.DLMS.UI
                     AuthenticationMechanismNameTb.ReadOnly = !writable;
                 AuthenticationMechanismIdCb.Enabled = writable;
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 SecuritySetupCb.Enabled = writable;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

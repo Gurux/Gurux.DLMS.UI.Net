@@ -103,14 +103,14 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSTariffPlan target = Target as GXDLMSTariffPlan;
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 EnabledCB.Checked = target.Enabled;
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 DefaultTariffBandTb.Text = target.Plan.DefaultTariffBand.ToString();
                 WeeklyActivationTb.Text = target.Plan.WeeklyActivation;
@@ -418,11 +418,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
             throw new IndexOutOfRangeException("index");
         }

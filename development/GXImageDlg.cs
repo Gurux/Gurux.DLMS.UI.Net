@@ -32,6 +32,10 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using Gurux.DLMS.ASN;
+using Gurux.DLMS.Ecdsa;
+using Gurux.DLMS.ManufacturerSettings;
+using Gurux.DLMS.Secure;
 using System;
 using System.IO;
 using System.Text;
@@ -42,41 +46,73 @@ namespace Gurux.DLMS.UI
 {
     public partial class GXImageDlg : Form
     {
+        bool AddSignatureToIdentifier;
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GXImageDlg()
+        public GXImageDlg(ManufactureSettings settings, GXDLMSClient client)
         {
             InitializeComponent();
+            IdentificationTb.Text = Properties.Settings.Default.Identification;
             FileNameTb.Text = Properties.Settings.Default.ImageFile;
+            SigningKeyTb.Text = Properties.Settings.Default.SigningKey;
+            if (client is GXDLMSSecureClient cl)
+            {                
+                AddSignatureToIdentifier = cl.Ciphering.SecuritySuite != Objects.Enums.SecuritySuite.Suite0 && 
+                    (settings & ManufactureSettings.SignImageWithEcdsa) != 0;
+            }
+            else
+            {
+                AddSignatureToIdentifier = false;
+            }
+            if (!AddSignatureToIdentifier)
+            {
+                SignatureGb.Visible = false;
+            }
         }
 
+        /// <summary>
+        /// Get the firmware image.
+        /// </summary>
         public byte[] Image
         {
             get;
             private set;
         }
 
-        public bool IsAscii
+        /// <summary>
+        /// Get image identifier.
+        /// </summary>
+        /// <returns></returns>
+        public byte[] GetImageIdentifier()
         {
-            get
+            GXByteBuffer bb = new GXByteBuffer();
+            if (AsciiCb.Checked)
             {
-                return AsciiCb.Checked;
+                bb.Set(ASCIIEncoding.ASCII.GetBytes(IdentificationTb.Text));
             }
+            else
+            {
+                bb.SetHexString(IdentificationTb.Text);
+            }
+            if (AddSignatureToIdentifier)
+            {
+                bb.SetHexString(SignatureTb.Text);
+            }
+            return bb.Array();
         }
-
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (TextTb.Text.Length == 0)
+                if (IdentificationTb.Text.Length == 0)
                 {
                     throw new Exception("Image identification is invalid.");
                 }
                 if (FileNameTb.Text.Length == 0 || !File.Exists(FileNameTb.Text))
                 {
-                    throw new Exception("Invalid image.");
+                    throw new Exception("Invalid image file.");
                 }
                 if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
                 {
@@ -90,6 +126,16 @@ namespace Gurux.DLMS.UI
                 {
                     Image = File.ReadAllBytes(FileNameTb.Text);
                 }
+                if (AddSignatureToIdentifier)
+                {
+                    if (SignatureTb.Text.Length == 0)
+                    {
+                        throw new Exception("Invalid signature.");
+                    }
+
+                    Properties.Settings.Default.SigningKey = SigningKeyTb.Text;
+                }
+                Properties.Settings.Default.Identification = IdentificationTb.Text;
                 Properties.Settings.Default.ImageFile = FileNameTb.Text;
             }
             catch (Exception ex)
@@ -181,7 +227,7 @@ namespace Gurux.DLMS.UI
                 {
                     FileNameTb.Text = dlg.FileName;
                 }
-                if (TextTb.Text == "")
+                if (IdentificationTb.Text == "")
                 {
                     if (string.Compare(Path.GetExtension(FileNameTb.Text), ".xml", true) == 0)
                     {
@@ -190,16 +236,16 @@ namespace Gurux.DLMS.UI
                         byte[] arr = GetIdentification(doc.ChildNodes);
                         if (GXByteBuffer.IsAsciiString(arr))
                         {
-                            TextTb.Text = ASCIIEncoding.ASCII.GetString(arr);
+                            IdentificationTb.Text = ASCIIEncoding.ASCII.GetString(arr);
                         }
                         else
                         {
-                            TextTb.Text = GXDLMSTranslator.ToHex(arr);
+                            IdentificationTb.Text = GXDLMSTranslator.ToHex(arr);
                         }
                     }
                     else
                     {
-                        TextTb.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
+                        IdentificationTb.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
                     }
                 }
             }
@@ -225,6 +271,103 @@ namespace Gurux.DLMS.UI
         private void FileNameTb_TextChanged(object sender, EventArgs e)
         {
             InfoBtn.Enabled = FileNameTb.Text.Length != 0;
+        }
+
+        private void CertificatesCb_Format(object sender, ListControlConvertEventArgs e)
+        {
+            if (e.Value is GXx509Certificate cert)
+            {
+                e.Value = cert.Subject + " #" + cert.SerialNumber;
+            }
+        }
+
+        /// <summary>
+        /// Get the signature for the image.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SignBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Multiselect = false;
+                if (SigningKeyTb.Text == "" || Path.GetFileName(SigningKeyTb.Text) == "")
+                {
+                    dlg.InitialDirectory = Directory.GetCurrentDirectory();
+                    dlg.Filter = Properties.Resources.PemFilterTxt;
+                    dlg.DefaultExt = ".pem";
+                    dlg.ValidateNames = true;
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        SigningKeyTb.Text = dlg.FileName;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                GXPkcs8 key = GXPkcs8.Load(SigningKeyTb.Text);
+                GXEcdsa ecdsa = new GXEcdsa(key.PrivateKey);
+                SignatureTb.Text = GXDLMSTranslator.ToHex(ecdsa.Sign(File.ReadAllBytes(FileNameTb.Text)));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void VerifyBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Multiselect = false;
+                if (SigningKeyTb.Text == "" || Path.GetFileName(SigningKeyTb.Text) == "")
+                {
+                    dlg.InitialDirectory = Directory.GetCurrentDirectory();
+                    dlg.Filter = Properties.Resources.PemFilterTxt;
+                    dlg.DefaultExt = ".pem";
+                    dlg.ValidateNames = true;
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        SigningKeyTb.Text = dlg.FileName;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                GXPkcs8 key = GXPkcs8.Load(SigningKeyTb.Text);
+                GXEcdsa ecdsa = new GXEcdsa(key.PublicKey);
+                if (ecdsa.Verify(GXDLMSTranslator.HexToBytes(SignatureTb.Text), File.ReadAllBytes(FileNameTb.Text)))
+                {
+                    MessageBox.Show(this, "Verification succeeded.", "Signature verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(this, "Verification failed.", "Signature verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AsciiCb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IdentificationTb.Text != "")
+            {
+                if (AsciiCb.Checked)
+                {
+                    IdentificationTb.Text = ASCIIEncoding.ASCII.GetString(GXDLMSTranslator.HexToBytes(IdentificationTb.Text));
+                }
+                else
+                {
+                    IdentificationTb.Text = GXDLMSTranslator.ToHex(ASCIIEncoding.ASCII.GetBytes(IdentificationTb.Text));
+                }
+            }
         }
     }
 }

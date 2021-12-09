@@ -65,9 +65,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 ScalerTB.Text = ((GXDLMSRegister)Target).Scaler.ToString();
                 UnitTB.SelectedItem = ((GXDLMSRegister)Target).Unit;
@@ -78,10 +78,10 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 3)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 3)
             {
                 UnitTB.Enabled = enabled;
                 ScalerTB.ReadOnly = !enabled;
@@ -92,7 +92,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
             throw new IndexOutOfRangeException("index");
         }

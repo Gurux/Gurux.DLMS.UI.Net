@@ -249,6 +249,7 @@ namespace Gurux.DLMS.UI
                 {
                     Target.ShortName = UInt16.Parse(ShortNameTb.Text);
                 }
+                //Update access rights.
             }
             catch (Exception ex)
             {
@@ -470,9 +471,11 @@ namespace Gurux.DLMS.UI
                         if (ver < 3)
                         {
                             ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access = (AccessMode)access;
+                            ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access3 = 0;
                         }
                         else
                         {
+                            ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access = 0;
                             if (access == 0)
                             {
                                 ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access3 = 0;
@@ -510,9 +513,11 @@ namespace Gurux.DLMS.UI
                     if (ver < 3)
                     {
                         ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess = (MethodAccessMode)access;
+                        ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess3 = 0;
                     }
                     else
                     {
+                        ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess = 0;
                         if (access == 0)
                         {
                             ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess3 = 0;

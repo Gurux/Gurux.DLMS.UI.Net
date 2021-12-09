@@ -63,9 +63,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 4)
+            if (arg.Index == 4)
             {
                 UnicastAddressView.Items.Clear();
                 GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
@@ -78,7 +78,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 MulticastAddressView.Items.Clear();
                 GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
@@ -91,7 +91,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 GatewayAddressView.Items.Clear();
                 GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
@@ -104,7 +104,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 10)
+            else if (arg.Index == 10)
             {
                 DiscoverySetupView.Items.Clear();
                 GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
@@ -119,21 +119,21 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index != 0)
+            else if (arg.Index != 0)
             {
                 throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 10)
+            if (arg.Index == 10)
             {
-                AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = connected && (access & AccessMode.Write) != 0;
+                AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

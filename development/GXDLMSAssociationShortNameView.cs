@@ -68,11 +68,11 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSAssociationShortName target = Target as GXDLMSAssociationShortName;
             GXDLMSObjectCollection items = target.ObjectList;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 ObjectsView.Items.Clear();
                 if (items != null)
@@ -119,7 +119,7 @@ namespace Gurux.DLMS.UI
                 }
             }
             //Update Access rights.
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 //access_rights: access_right
                 foreach (GXDLMSObject it in items)
@@ -155,7 +155,7 @@ namespace Gurux.DLMS.UI
 
             }
             //security_setup_reference
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 //security_setup_reference
                 foreach (GXDLMSSecuritySetup it in target.Parent.GetObjects(ObjectType.SecuritySetup))
@@ -171,16 +171,16 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
 
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 7)
+            if (arg.Index == 7)
             {
-                SecretTB.ReadOnly = mode == MethodAccessMode.NoAccess;
+                SecretTB.ReadOnly = !(arg.Connected && arg.Client.CanInvoke(Target, arg.Index));
                 SecretAsciiCb.Enabled = !SecretTB.ReadOnly;
             }
         }

@@ -66,10 +66,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationData target = Target as GXDLMSPrimeNbOfdmPlcMacNetworkAdministrationData;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 MulticastView.Items.Clear();
                 if (target.MulticastEntries != null)
@@ -81,7 +81,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 SwitchTableView.Items.Clear();
                 if (target.SwitchTable != null)
@@ -92,7 +92,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 DirectTableView.Items.Clear();
                 if (target.DirectTable != null)
@@ -110,7 +110,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 AvailableSwitchesView.Items.Clear();
                 if (target.AvailableSwitches != null)
@@ -126,7 +126,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 PhyCommmunicationView.Items.Clear();
                 if (target.Communications != null)
@@ -224,22 +224,22 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
             }
             else
@@ -248,7 +248,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion

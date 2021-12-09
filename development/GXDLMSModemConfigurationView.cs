@@ -83,10 +83,10 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSModemConfiguration target = Target as GXDLMSModemConfiguration;
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 InitialisationView.Items.Clear();
                 if (target.InitialisationStrings != null)
@@ -97,7 +97,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 if (target.ModemProfile == null)
                 {
@@ -119,14 +119,14 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 3)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 3)
             {
                 InitialisationView.Enabled = AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = enabled;
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 ModemProfileTB.Enabled = enabled;
             }
@@ -136,7 +136,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
             throw new IndexOutOfRangeException("index");
         }

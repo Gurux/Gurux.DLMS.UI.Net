@@ -153,10 +153,10 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSActivityCalendar target = Target as GXDLMSActivityCalendar;
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 SeasonProfileActiveLV.Items.Clear();
                 if (target.SeasonProfileActive != null)
@@ -167,7 +167,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 AWeekProfileLV.Items.Clear();
                 if (target.WeekProfileTableActive != null)
@@ -178,14 +178,14 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 ActiveDaysList.Items.Clear();
                 if (target.DayProfileTableActive != null)
                 {
                     foreach (GXDLMSDayProfile it in target.DayProfileTableActive)
                     {
-                        UpdateDayProfile(it, null, index);
+                        UpdateDayProfile(it, null, arg.Index);
                     }
                 }
                 //Select first item.
@@ -194,7 +194,7 @@ namespace Gurux.DLMS.UI
                     ActiveDaysList.Items[0].Selected = true;
                 }
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 SeasonProfilePassiveLV.Items.Clear();
                 if (target.SeasonProfilePassive != null)
@@ -205,7 +205,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
                 PWeekProfileLV.Items.Clear();
                 if (target.WeekProfileTablePassive != null)
@@ -216,14 +216,14 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 PassiveDaysList.Items.Clear();
                 if (target.DayProfileTablePassive != null)
                 {
                     foreach (GXDLMSDayProfile it in target.DayProfileTablePassive)
                     {
-                        UpdateDayProfile(it, null, index);
+                        UpdateDayProfile(it, null, arg.Index);
                     }
                 }
                 //Select first item.
@@ -234,36 +234,36 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 3)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 3)
             {
                 SeasonProfileActiveRemoveBtn.Enabled = SeasonProfileActiveEditBtn.Enabled = SeasonProfileActiveAddBtn.Enabled = enabled;
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 WeekProfileActiveRemoveBtn.Enabled = WeekProfileActiveEditBtn.Enabled = WeekProfileActiveAddBtn.Enabled = enabled;
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 AddDayActiveBtn.Enabled = DayProfileActiveRemoveBtn.Enabled = DayProfileActiveEditBtn.Enabled = ActiveActionAddBtn.Enabled = enabled;
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 SeasonProfilePassiveRemoveBtn.Enabled = SeasonProfilePassiveEditBtn.Enabled = SeasonProfilePassiveAddBtn.Enabled = enabled;
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
                 WeekProfilePassiveRemoveBtn.Enabled = WeekProfilePassiveEditBtn.Enabled = WeekProfilePassiveAddBtn.Enabled = enabled;
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 AddDayPassiveBtn.Enabled = DayProfilePassiveRemoveBtn.Enabled = DayProfilePassiveEditBtn.Enabled = PassiveActionAddBtn.Enabled = enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

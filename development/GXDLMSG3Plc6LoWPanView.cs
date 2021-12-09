@@ -175,10 +175,10 @@ namespace Gurux.DLMS.UI
         }
 
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSG3Plc6LoWPan target = (GXDLMSG3Plc6LoWPan)Target;
-            switch (index)
+            switch (arg.Index)
             {
                 case 5:
                     ShowPrefixTable(target);
@@ -251,9 +251,9 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            switch (index)
+            switch (arg.Index)
             {
                 case 5:
                 case 6:
@@ -269,7 +269,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion

@@ -68,9 +68,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 ObjectsLV.Items.Clear();
                 foreach (var it in ((GXDLMSPushSetup)Target).PushObjectList)
@@ -83,7 +83,7 @@ namespace Gurux.DLMS.UI
                     li.Tag = it;
                 }
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 ServiceCB.SelectedIndexChanged -= new System.EventHandler(this.ServiceCB_SelectedIndexChanged);
                 ServiceCB.SelectedItem = ((GXDLMSPushSetup)Target).Service;
@@ -96,7 +96,7 @@ namespace Gurux.DLMS.UI
                 MessageCB.SelectedItem = ((GXDLMSPushSetup)Target).Message;
                 MessageCB.SelectedIndexChanged += new System.EventHandler(this.MessageCB_SelectedIndexChanged);
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 CommunicationWindowLV.Items.Clear();
                 foreach (KeyValuePair<GXDateTime, GXDateTime> it in ((GXDLMSPushSetup)Target).CommunicationWindow)
@@ -161,20 +161,20 @@ namespace Gurux.DLMS.UI
             errorProvider1.Clear();
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
                 ObjectsAddBtn.Enabled = ObjectsEditBtn.Enabled =
                     ObjectsRemoveBtn.Enabled = ObjectsMenu.Enabled = enabled;
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 MessageCB.Enabled = MessageCB.Enabled = enabled;
                 DestinationTB.ReadOnly = !enabled;
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 CommunicationAdd.Enabled = CommunicationEdit.Enabled =
                     CommunicationRemove.Enabled = CommunicationWindowMenu.Enabled = enabled;
@@ -185,11 +185,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 1)
+            if (arg.Index == 1)
             {
-                PushBtn.Enabled = connected && mode == MethodAccessMode.Access;
+                PushBtn.Enabled = arg.Connected && arg.Client.CanInvoke(Target, arg.Index);
             }
         }
 

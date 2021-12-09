@@ -372,12 +372,12 @@ namespace Gurux.DLMS.UI
             ProfileGenericView.DataSource = dt;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSCompactData target = Target as GXDLMSCompactData;
-            if (index == 2)
+            if (arg.Index == 2)
             {
-                if (!user)
+                if (!arg.User)
                 {
                     UpdateCaptureObjects();
                 }
@@ -390,7 +390,7 @@ namespace Gurux.DLMS.UI
                 }
                 ProfileGenericView.Refresh();
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 CaptureObjectsLv.Items.Clear();
                 foreach (var it in target.CaptureObjects)
@@ -401,7 +401,7 @@ namespace Gurux.DLMS.UI
                     li.Tag = it;
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 List<object> types = GXDLMSCompactData.GetDataTypes(target.TemplateDescription);
                 StringBuilder sb = new StringBuilder();
@@ -500,19 +500,19 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
                 BufferTb.ReadOnly = !enabled;
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
                     ColumnAddBtn.Enabled = ColumnEditBtn.Enabled = ColumnRemoveBtn.Enabled = enabled;
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 TemplateDescriptionTb.ReadOnly = !enabled;
             }
@@ -522,7 +522,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
             throw new IndexOutOfRangeException("index");
         }

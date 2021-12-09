@@ -78,10 +78,10 @@ namespace Gurux.DLMS.UI
             return true;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSRegisterActivation target = (GXDLMSRegisterActivation)Target;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 // register_assignment
                 Assigments.Items.Clear();
@@ -95,7 +95,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 // mask_list
                 Masks.Items.Clear();
@@ -129,7 +129,7 @@ namespace Gurux.DLMS.UI
                     ActiveMasksCb.Items.Add(str);
                 }
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 string str;
                 if (target.ActiveMask != null && IsAscii(target.ActiveMask))
@@ -146,21 +146,22 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
                 // register_assignment
-                Assigments.Enabled = connected && access != AccessMode.NoAccess;
+                Assigments.Enabled = enabled;
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 // mask_list
-                Masks.Enabled = connected && access != AccessMode.NoAccess;
+                Masks.Enabled = enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

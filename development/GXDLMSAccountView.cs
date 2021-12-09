@@ -76,10 +76,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSAccount target = Target as GXDLMSAccount;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 try
                 {
@@ -94,7 +94,7 @@ namespace Gurux.DLMS.UI
                     AccountStatusCb.SelectedIndexChanged += new System.EventHandler(AccountStatusCb_SelectedIndexChanged);
                 }
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 CreditReferenceView.Items.Clear();
                 if (target.CreditReferences != null)
@@ -105,7 +105,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 10)
+            else if (arg.Index == 10)
             {
                 ChargeReferenceView.Items.Clear();
                 if (target.ChargeReferences != null)
@@ -116,7 +116,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 11)
+            else if (arg.Index == 11)
             {
                 CreditChargeView.Items.Clear();
                 if (target.CreditChargeConfigurations != null)
@@ -130,7 +130,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 12)
+            else if (arg.Index == 12)
             {
                 TokenGatewayView.Items.Clear();
                 if (target.TokenGatewayConfigurations != null)
@@ -143,7 +143,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index == 15)
+            else if (arg.Index == 15)
             {
                 CurrencyNameTb.Text = target.Currency.Name;
                 CurrencyScaleTb.Text = target.Currency.Scale.ToString();
@@ -221,41 +221,36 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            switch (arg.Index)
             {
-                PaymentModeCb.Enabled = AccountStatusCb.Enabled = enabled;
-            }
-            else if (index == 9)
-            {
-                CreditReferenceAdd.Enabled = CreditReferenceEdit.Enabled = CreditReferenceRemove.Enabled = enabled;
-            }
-            else if (index == 10)
-            {
-                ChargeReferenceAdd.Enabled = ChargeReferenceEdit.Enabled = ChargeReferenceRemove.Enabled = enabled;
-            }
-            else if (index == 11)
-            {
-                CreditChargeAdd.Enabled = CreditChargeEdit.Enabled = CreditChargeRemove.Enabled = enabled;
-            }
-            else if (index == 12)
-            {
-                TokenGatewayAdd.Enabled = TokenGatewayEdit.Enabled = TokenGatewayRemove.Enabled = enabled;
-            }
-            else if (index == 15)
-            {
-                CurrencyNameTb.ReadOnly = CurrencyScaleTb.ReadOnly = !enabled;
-                CurrencyUnitTb.Enabled = enabled;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException("index");
+                case 2:
+                    PaymentModeCb.Enabled = AccountStatusCb.Enabled = enabled;
+                    break;
+                case 9:
+                    CreditReferenceAdd.Enabled = CreditReferenceEdit.Enabled = CreditReferenceRemove.Enabled = enabled;
+                    break;
+                case 10:
+                    ChargeReferenceAdd.Enabled = ChargeReferenceEdit.Enabled = ChargeReferenceRemove.Enabled = enabled;
+                    break;
+                case 11:
+                    CreditChargeAdd.Enabled = CreditChargeEdit.Enabled = CreditChargeRemove.Enabled = enabled;
+                    break;
+                case 12:
+                    TokenGatewayAdd.Enabled = TokenGatewayEdit.Enabled = TokenGatewayRemove.Enabled = enabled;
+                    break;
+                case 15:
+                    CurrencyNameTb.ReadOnly = CurrencyScaleTb.ReadOnly = !enabled;
+                    CurrencyUnitTb.Enabled = enabled;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion

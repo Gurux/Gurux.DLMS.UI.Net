@@ -66,9 +66,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 ScriptsTree.Nodes.Clear();
                 foreach (GXDLMSScript it in ((GXDLMSScriptTable)Target).Scripts)
@@ -90,10 +90,10 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
                 addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
                     AddBtn.Enabled = EditBtn.Enabled = RemoveBtn.Enabled = enabled;
@@ -105,9 +105,9 @@ namespace Gurux.DLMS.UI
 
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (mode & MethodAccessMode.Access) != 0;
+            bool enabled = arg.Connected && arg.Client.CanInvoke(Target, arg.Index);
             ScriptId.ReadOnly = !enabled;
         }
 

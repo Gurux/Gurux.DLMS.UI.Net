@@ -51,6 +51,18 @@ namespace Gurux.DLMS.UI
         {
             parameters = p;
             InitializeComponent();
+            if ((p.Hide & SearchDialogHidden.Obis) != 0)
+            {
+                LogicalNameRb.Visible = false;
+                AnyTextRb.Visible = false;
+                AnyTextRb.Checked = true;
+            }
+            if ((p.Hide & SearchDialogHidden.Text) != 0)
+            {
+                AnyTextRb.Visible = false;
+                LogicalNameRb.Visible = false;
+                LogicalNameRb.Checked = true;
+            }
             if (!string.IsNullOrEmpty(parameters.Text))
             {
                 FindTb.Text = p.Text;
@@ -189,7 +201,7 @@ namespace Gurux.DLMS.UI
 
         private void AnyTextRb_CheckedChanged(object sender, EventArgs e)
         {
-            this.Text = "Find by any text";
+            this.Text = "Find";
         }
     }
 }

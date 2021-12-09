@@ -66,10 +66,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSGprsSetup target = Target as GXDLMSGprsSetup;
-            if (index == 4)
+            if (arg.Index == 4)
             {
                 CPrecedenceTB.Text = target.DefaultQualityOfService.Precedence.ToString();
                 CDelayTB.Text = target.DefaultQualityOfService.Delay.ToString();
@@ -88,11 +88,12 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 4)
+            if (arg.Index == 4)
             {
-                CPrecedenceTB.ReadOnly = !(access == AccessMode.Write || access == AccessMode.ReadWrite);
+                bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+                CPrecedenceTB.ReadOnly = !enabled;
                 CReliabilityTB.ReadOnly = CDelayTB.ReadOnly = CPrecedenceTB.ReadOnly;
                 CPeakThroughputTB.ReadOnly = CMeanThroughputTB.ReadOnly = CPrecedenceTB.ReadOnly;
                 MPrecedenceTB.ReadOnly = MDelayTB.ReadOnly = MReliabilityTB.ReadOnly = CPrecedenceTB.ReadOnly;
@@ -104,7 +105,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

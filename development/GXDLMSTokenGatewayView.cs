@@ -67,10 +67,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSTokenGateway target = (GXDLMSTokenGateway)Target;
-            if (index == 4)
+            if (arg.Index == 4)
             {
                 DescriptionsView.Items.Clear();
                 foreach (string it in target.Descriptions)
@@ -78,7 +78,7 @@ namespace Gurux.DLMS.UI
                     DescriptionsView.Items.Add(it);
                 }
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 StatusCodeTb.SelectedItem = target.StatusCode;
                 DataValueTb.Text = target.DataValue;
@@ -171,14 +171,14 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 4)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 4)
             {
                 DescriptionsAdd.Enabled = DescriptionsEdit.Enabled = DescriptionsRemove.Enabled = enabled;
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 StatusCodeTb.Enabled = enabled;
                 DataValueTb.ReadOnly = !enabled;
@@ -189,7 +189,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
         #endregion

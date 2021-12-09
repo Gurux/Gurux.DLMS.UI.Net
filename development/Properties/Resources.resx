@@ -181,6 +181,9 @@
   <data name="ImageTransferDisabled" xml:space="preserve">
     <value>Image transfer is not enabled.</value>
   </data>
+  <data name="ImageTransferedNotActivatedTxt" xml:space="preserve">
+    <value>Image transfered, but not activated.</value>
+  </data>
   <data name="ImageTransferEnabled" xml:space="preserve">
     <value>Image transfer is enabled.</value>
   </data>

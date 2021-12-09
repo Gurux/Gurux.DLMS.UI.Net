@@ -107,9 +107,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 GXDLMSMBusClient target = Target as GXDLMSMBusClient;
                 CaptureDefinitionView.Items.Clear();
@@ -128,11 +128,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int attributeID, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

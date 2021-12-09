@@ -64,9 +64,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 8)
+            if (arg.Index == 8)
             {
                 GXDLMSIp4Setup target = Target as GXDLMSIp4Setup;
                 UseDhcpCp.CheckedChanged -= new System.EventHandler(UseDHCCB_CheckedChanged);
@@ -80,17 +80,17 @@ namespace Gurux.DLMS.UI
                 }
                 UseDhcpCp.CheckedChanged += new System.EventHandler(UseDHCCB_CheckedChanged);
             }
-            else if (index != 0)
+            else if (arg.Index != 0)
             {
                 throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 8)
+            if (arg.Index == 8)
             {
-                UseDhcpCp.Enabled = (access & AccessMode.Write) != 0;
+                UseDhcpCp.Enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
             }
             else
             {
@@ -98,7 +98,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

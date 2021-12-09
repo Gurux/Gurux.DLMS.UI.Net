@@ -67,10 +67,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSGSMDiagnostic target = Target as GXDLMSGSMDiagnostic;
-            if (index == 6)
+            if (arg.Index == 6)
             {
                 CellIDTb.Text = target.CellInfo.CellId.ToString(target.Version == 0 ? "X4" : "X8");
                 LocationIDTb.Text = target.CellInfo.LocationId.ToString("X4");
@@ -80,7 +80,7 @@ namespace Gurux.DLMS.UI
                 MncTb.Text = target.CellInfo.MobileNetworkCode.ToString();
                 ChannelNumberTb.Text = target.CellInfo.ChannelNumber.ToString();
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 AdjacentCellsLV.Items.Clear();
                 if (target.AdjacentCells != null)
@@ -95,21 +95,21 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enable = connected && (access & AccessMode.Write) != 0;
-            if (index == 6)
+            bool enable = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 6)
             {
                 MccTb.ReadOnly = MncTb.ReadOnly = ChannelNumberTb.ReadOnly = CellIDTb.ReadOnly =
                     LocationIDTb.ReadOnly = SignalQualityTb.ReadOnly = BerTb.ReadOnly = !enable;
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 AdjacentCellsLV.Enabled = enable;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

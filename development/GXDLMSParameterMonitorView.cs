@@ -59,10 +59,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSParameterMonitor target = Target as GXDLMSParameterMonitor;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 if (target.ChangedParameter != null && target.ChangedParameter.Target != null)
                 {
@@ -77,7 +77,7 @@ namespace Gurux.DLMS.UI
                     ValueTb.Text = "";
                 }
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 ParametersLV.Items.Clear();
                 if (target.Parameters != null)
@@ -92,16 +92,16 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
-            if (index == 4)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 4)
             {
                 AddBtn.Enabled = RemoveBtn.Enabled = enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

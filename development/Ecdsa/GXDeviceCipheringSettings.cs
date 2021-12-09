@@ -191,11 +191,6 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             set
             {
-                //TODO: Obsolete. This can be remove at some point.
-                if (value == Security.DigitallySigned)
-                {
-                    value = Security.AuthenticationEncryption;
-                }
                 SecurityCB.SelectedItem = value;
             }
         }

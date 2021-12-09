@@ -66,43 +66,39 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 1)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            switch (arg.Index)
             {
-                this.LogicalNameTB.ReadOnly = (access & AccessMode.Write) == 0;
-            }
-            else if (index == 2)
-            {
-                this.PortTB.ReadOnly = (access & AccessMode.Write) == 0;
-            }
-            else if (index == 3)
-            {
-                this.IPReferenceTB.ReadOnly = (access & AccessMode.Write) == 0;
-            }
-            else if (index == 4)
-            {
-                this.MaximumSegmentSizeTB.ReadOnly = (access & AccessMode.Write) == 0;
-            }
-            else if (index == 5)
-            {
-                this.MaxConnectionsTB.ReadOnly = (access & AccessMode.Write) == 0;
-            }
-            else if (index == 6)
-            {
-                this.InactivityTimeoutTB.ReadOnly = (access & AccessMode.Write) == 0;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException("index");
+                case 1:
+                    LogicalNameTB.ReadOnly = !enabled;
+                    break;
+                case 2:
+                    PortTB.ReadOnly = !enabled;
+                    break;
+                case 3:
+                    IPReferenceTB.ReadOnly = !enabled;
+                    break;
+                case 4:
+                    MaximumSegmentSizeTB.ReadOnly = !enabled;
+                    break;
+                case 5:
+                    MaxConnectionsTB.ReadOnly = !enabled;
+                    break;
+                case 6:
+                    InactivityTimeoutTB.ReadOnly = !enabled;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

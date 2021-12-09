@@ -222,7 +222,15 @@ namespace Gurux.DLMS.UI
                     {
                         obj.Target = view.Target;
                         obj.UpdateValueItems(view.Target, index, value);
-                        obj.Value = value;
+                        if (obj.Index != 1 && view.Target.GetLastReadTime(index) == DateTime.MinValue
+                            && obj.Type != ValueFieldType.CheckedListBox)
+                        {
+                            obj.Value = null;
+                        }
+                        else
+                        {
+                            obj.Value = value;
+                        }
                         item = obj;
                     }
                 }
@@ -242,14 +250,14 @@ namespace Gurux.DLMS.UI
             return item;
         }
 
-        delegate void UpdatePropertyEventHandler(GXDLMSObject obj, int index, IGXDLMSView view, bool connected, bool user);
+        delegate void UpdatePropertyEventHandler(GXDLMSClient client, GXDLMSObject obj, int index, IGXDLMSView view, bool connected, bool user);
 
         /// <summary>
         /// Update selected values of given COSEM object.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="view"></param>
-        public static void UpdateProperty(GXDLMSObject obj, int index, IGXDLMSView view, bool connected, bool user)
+        public static void UpdateProperty(GXDLMSClient client, GXDLMSObject obj, int index, IGXDLMSView view, bool connected, bool user)
         {
             if (obj == null)
             {
@@ -259,7 +267,7 @@ namespace Gurux.DLMS.UI
             {
                 try
                 {
-                    (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), obj, index, view, connected, user);
+                    (view as Form).BeginInvoke(new UpdatePropertyEventHandler(UpdateProperty), client, obj, index, view, connected, user);
                 }
                 catch (Exception ex)
                 {
@@ -289,7 +297,8 @@ namespace Gurux.DLMS.UI
                     GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value);
                     if (item == null || item.NotifyChanges)
                     {
-                        view.OnValueChanged(it, value, user, connected);
+                        GXDLMSViewArguments arg = new GXDLMSViewArguments() { Client = client, Index = it, Connected = connected, User = user, Value = value };
+                        view.OnValueChanged(arg);
                     }
                     if (it == index)
                     {
@@ -332,14 +341,14 @@ namespace Gurux.DLMS.UI
             return found;
         }
 
-        delegate void UpdateAccessRightsEventHandler(IGXDLMSView view, object target, bool enabled);
-        delegate void AccessRightsChangeEventHandler(IGXDLMSView view, GXDLMSObject target, int index, int mode, bool connected, bool method);
+        delegate void UpdateAccessRightsEventHandler(IGXDLMSView view, GXDLMSClient client, object target, bool enabled);
+        delegate void AccessRightsChangeEventHandler(IGXDLMSView view, GXDLMSClient client, GXDLMSObject target, int index, bool connected, bool method);
 
-        private static void OnUpdateAccessRights(IGXDLMSView view, object target, bool enabled)
+        private static void OnUpdateAccessRights(IGXDLMSView view, GXDLMSClient client, object target, bool enabled)
         {
             if ((view as Form).InvokeRequired)
             {
-                (view as Form).BeginInvoke(new UpdateAccessRightsEventHandler(OnUpdateAccessRights), view, target, enabled);
+                (view as Form).BeginInvoke(new UpdateAccessRightsEventHandler(OnUpdateAccessRights), view, client, target, enabled);
             }
             else
             {
@@ -353,27 +362,27 @@ namespace Gurux.DLMS.UI
                 }
             }
         }
-
-        private static void OnAccessRightsChange(IGXDLMSView view, GXDLMSObject target, int index, int mode, bool connected, bool method)
+        private static void OnAccessRightsChange(IGXDLMSView view, GXDLMSClient client, GXDLMSObject target, int index, bool connected, bool method)
         {
             if ((view as Form).InvokeRequired)
             {
-                (view as Form).BeginInvoke(new AccessRightsChangeEventHandler(OnAccessRightsChange), view, target, index, mode, connected, method);
+                (view as Form).BeginInvoke(new AccessRightsChangeEventHandler(OnAccessRightsChange), view, client, target, index, connected, method);
             }
             else
             {
+                GXDLMSViewArguments arg = new GXDLMSViewArguments() { Client = client, Index = index, Connected = connected };
                 if (method)
                 {
-                    view.OnAccessRightsChange(index, (MethodAccessMode)mode, connected);
+                    view.OnMethodAccessRightsChange(arg);
                 }
                 else
                 {
-                    view.OnAccessRightsChange(index, (AccessMode)mode, connected);
+                    view.OnAccessRightsChange(arg);
                 }
             }
         }
 
-        private static bool UpdateAccessRights(IGXDLMSView view, System.Windows.Forms.Control.ControlCollection controls, GXDLMSObject target, int index, bool method, bool connected)
+        private static bool UpdateAccessRights(IGXDLMSView view, GXDLMSClient client, System.Windows.Forms.Control.ControlCollection controls, GXDLMSObject target, int index, bool method, bool connected)
         {
             foreach (Control it in controls)
             {
@@ -383,56 +392,90 @@ namespace Gurux.DLMS.UI
                     if (obj.Index == index)
                     {
                         obj.Target = target;
-                        AccessMode am = target.GetAccess(index);
-                        OnUpdateAccessRights(view, obj, connected && ((am & AccessMode.Write) != 0));
+                        bool access = connected;
+                        if (connected)
+                        {
+                            if (client != null)
+                            {
+                                access = client.CanWrite(target, index);
+                            }
+                            else
+                            {
+                                AccessMode am = target.GetAccess(index);
+                                access = (am & AccessMode.Write) != 0;
+                            }
+                        }
+                        OnUpdateAccessRights(view, client, obj, connected && access);
                         return !obj.NotifyChanges;
                     }
                 }
                 else if (it is GXButton)
                 {
+                    bool access;
                     GXButton btn = it as GXButton;
                     btn.Target = target;
                     //Update custom buttons.
                     if (method && index == 0 && btn.Index < 1)
                     {
-                        OnUpdateAccessRights(view, btn, connected);
+                        OnUpdateAccessRights(view, client, btn, connected);
                         continue;
                     }
                     if (method && btn.Index == index && btn.Action == ActionType.Action)
                     {
-                        bool access = target.GetMethodAccess(index) != MethodAccessMode.NoAccess;
-                        if (!access)
+                        if (client != null)
                         {
-                            access = target.GetMethodAccess3(index) != MethodAccessMode3.NoAccess;
+                            access = client.CanInvoke(target, index);
                         }
-                        OnUpdateAccessRights(view, btn, connected && access);
+                        else
+                        {
+                            access = target.GetMethodAccess(index) != MethodAccessMode.NoAccess;
+                            if (!access)
+                            {
+                                access = target.GetMethodAccess3(index) != MethodAccessMode3.NoAccess;
+                            }
+                        }
+                        OnUpdateAccessRights(view, client, btn, connected && access);
                         return true;
                     }
                     if (!method && btn.Index == index && (btn.Action == ActionType.Read || btn.Action == ActionType.Write))
                     {
                         if (btn.Action == ActionType.Read)
                         {
-                            bool access = (target.GetAccess(index) & AccessMode.Read) != 0;
-                            if (!access)
+                            if (client != null)
                             {
-                                access = (target.GetAccess3(index) & AccessMode3.Read) != 0;
+                                access = client.CanRead(target, index);
                             }
-                            OnUpdateAccessRights(view, btn, connected && access);
+                            else
+                            {
+                                access = (target.GetAccess(index) & AccessMode.Read) != 0;
+                                if (!access)
+                                {
+                                    access = (target.GetAccess3(index) & AccessMode3.Read) != 0;
+                                }
+                            }
+                            OnUpdateAccessRights(view, client, btn, connected && access);
                         }
                         else if (btn.Action == ActionType.Write)
                         {
-                            bool access = (target.GetAccess(index) & AccessMode.Write) != 0;
-                            if (!access)
+                            if (client != null)
                             {
-                                access = (target.GetAccess3(index) & AccessMode3.Write) != 0;
+                                access = client.CanRead(target, index);
                             }
-                            OnUpdateAccessRights(view, btn, connected && access);
+                            else
+                            {
+                                access = (target.GetAccess(index) & AccessMode.Write) != 0;
+                                if (!access)
+                                {
+                                    access = (target.GetAccess3(index) & AccessMode3.Write) != 0;
+                                }
+                            }
+                            OnUpdateAccessRights(view, client, btn, connected && access);
                         }
                     }
                 }
                 else if (it.Controls.Count != 0)
                 {
-                    bool ret = UpdateAccessRights(view, it.Controls, target, index, method, connected);
+                    bool ret = UpdateAccessRights(view, client, it.Controls, target, index, method, connected);
                     //If object is updated.
                     if (ret)
                     {
@@ -449,7 +492,7 @@ namespace Gurux.DLMS.UI
         /// <param name="view"></param>
         /// <param name="target"></param>
         /// <param name="connected"></param>
-        public static void UpdateAccessRights(IGXDLMSView view, GXDLMSObject target, bool connected)
+        public static void UpdateAccessRights(IGXDLMSView view, GXDLMSClient client, GXDLMSObject target, bool connected)
         {
             //Update attributes.
             List<int> attributeIndexes = new List<int>();
@@ -457,7 +500,7 @@ namespace Gurux.DLMS.UI
             ControlCollection controls = (view as Form).Controls;
             for (int index = 1; index <= (target as IGXDLMSBase).GetAttributeCount(); ++index)
             {
-                if (!UpdateAccessRights(view, controls, target, index, false, connected))
+                if (!UpdateAccessRights(view, client, controls, target, index, false, connected))
                 {
                     attributeIndexes.Add(index);
                 }
@@ -465,7 +508,7 @@ namespace Gurux.DLMS.UI
             //Update methods.
             for (int index = 0; index <= (target as IGXDLMSBase).GetMethodCount(); ++index)
             {
-                if (!UpdateAccessRights(view, controls, target, index, true, connected))
+                if (!UpdateAccessRights(view, client, controls, target, index, true, connected))
                 {
                     if (index != 0)
                     {
@@ -475,12 +518,12 @@ namespace Gurux.DLMS.UI
             }
             foreach (int index in attributeIndexes)
             {
-                OnAccessRightsChange(view, target, index, (int)target.GetAccess(index), connected, false);
+                OnAccessRightsChange(view, client, target, index, connected, false);
             }
             //Update methods.
             foreach (int index in methodIndexes)
             {
-                OnAccessRightsChange(view, target, index, (int)target.GetMethodAccess(index), connected, true);
+                OnAccessRightsChange(view, client, target, index, connected, true);
             }
         }
 
@@ -490,13 +533,13 @@ namespace Gurux.DLMS.UI
         /// <param name="view"></param>
         /// <param name="target"></param>
         /// <param name="connected"></param>
-        public static void ObjectChanged(IGXDLMSView view, GXDLMSObject target, bool connected)
+        public static void ObjectChanged(IGXDLMSView view, GXDLMSClient client, GXDLMSObject target, bool connected)
         {
-            UpdateAccessRights(view, target, connected);
+            UpdateAccessRights(view, client, target, connected);
 
             for (int index = 1; index <= (target as IGXDLMSBase).GetAttributeCount(); ++index)
             {
-                UpdateProperty(target, index, view, connected, true);
+                UpdateProperty(client, target, index, view, connected, true);
             }
         }
 

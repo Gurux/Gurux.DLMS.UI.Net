@@ -41,6 +41,31 @@ using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
+    public class GXDLMSViewArguments
+    {
+        /// <summary>
+        /// DLMS Client.
+        /// </summary>
+        public GXDLMSClient Client;
+        /// <summary>
+        /// Attribute or method index.
+        /// </summary>
+        public int Index;
+        /// <summary>
+        /// Is connection established to the meter.
+        /// </summary>
+        public bool Connected;
+        /// <summary>
+        /// New value is used with OnValueChanged.
+        /// </summary>
+        public object Value;
+        /// <summary>
+        /// True, if user has updated the value.
+        /// This is used with OnValueChanged.
+        /// </summary>
+        public bool User;
+    }
+
     public interface IGXDLMSView
     {
         /// <summary>
@@ -55,27 +80,20 @@ namespace Gurux.DLMS.UI
         /// <summary>
         /// Called after value has changed and if attribute index is not set to GXValueField.
         /// </summary>
-        /// <param name="index">Attribute index.</param>
-        /// <param name="value">New value.</param>
-        /// <param name="user">True, if user has updated the value.</param>
-        /// <param name="connected">Is connected to the meter.</param>
-        void OnValueChanged(int index, object value, bool user, bool connected);
+        /// <param name="arg">UI Arguments.</param>
+        void OnValueChanged(GXDLMSViewArguments arg);
 
         /// <summary>
         /// Called after access rights changed and if  Attribute ID is not set to GXValueField.
         /// </summary>
-        /// <param name="index">Attribute index.</param>
-        /// <param name="mode">Attribute access mode.</param>
-        /// <param name="connected">Is connected to the meter.</param>
-        void OnAccessRightsChange(int index, AccessMode mode, bool connected);
+        /// <param name="arg">UI Arguments.</param>
+        void OnAccessRightsChange(GXDLMSViewArguments arg);
 
         /// <summary>
         /// Called after action access rights changed and if Attribute ID is not set to GXButton.
         /// </summary>
-        /// <param name="index">Action index.</param>
-        /// <param name="mode">Method access mode.</param>
-        /// <param name="connected">Is connected to the meter.</param>
-        void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected);
+        /// <param name="arg">UI Arguments.</param>
+        void OnMethodAccessRightsChange(GXDLMSViewArguments arg);
 
         /// <summary>
         /// Called to update UI after value has change.

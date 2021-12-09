@@ -499,11 +499,11 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
-                if (!user)
+                if (!arg.User)
                 {
                     UpdateCaptureObjects();
                 }
@@ -515,7 +515,7 @@ namespace Gurux.DLMS.UI
                 }
                 ProfileGenericView.Refresh();
             }
-            if (index == 3)
+            if (arg.Index == 3)
             {
                 GXDLMSProfileGeneric target = Target as GXDLMSProfileGeneric;
                 CaptureObjectsLv.Items.Clear();
@@ -529,17 +529,17 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 3)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 3)
             {
                 addToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = removeToolStripMenuItem.Enabled =
                     ColumnAddBtn.Enabled = ColumnEditBtn.Enabled = ColumnRemoveBtn.Enabled = enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

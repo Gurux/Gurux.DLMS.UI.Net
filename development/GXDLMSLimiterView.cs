@@ -66,9 +66,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 MonitoredValueTB.Items.Clear();
                 int pos, selected = -1;
@@ -93,7 +93,7 @@ namespace Gurux.DLMS.UI
                 MonitoredIndexTB.Text = ((GXDLMSLimiter)Target).MonitoredAttributeIndex.ToString();
                 MonitoredIndexTB.Leave += new System.EventHandler(MonitoredIndexTB_Leave);
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
                 IdTb.Leave -= new System.EventHandler(IdTb_Leave);
                 IdTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.ID.ToString();
@@ -114,7 +114,7 @@ namespace Gurux.DLMS.UI
                 DurationTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.Duration.ToString();
                 DurationTb.Leave += new System.EventHandler(DurationTb_Leave);
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 if (((GXDLMSLimiter)Target).EmergencyProfileGroupIDs != null)
                 {
@@ -123,7 +123,7 @@ namespace Gurux.DLMS.UI
                     EmergencyProfileGroupIDsTB.Leave += new System.EventHandler(EmergencyProfileGroupIDsTB_Leave);
                 }
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
                 IdTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.ID.ToString();
                 if (((GXDLMSLimiter)Target).EmergencyProfile.ActivationTime == null)
@@ -136,20 +136,20 @@ namespace Gurux.DLMS.UI
                 }
                 DurationTb.Text = ((GXDLMSLimiter)Target).EmergencyProfile.Duration.ToString();
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
                 if (((GXDLMSLimiter)Target).EmergencyProfileGroupIDs != null)
                 {
                     EmergencyProfileGroupIDsTB.Text = string.Join(",", ((GXDLMSLimiter)Target).EmergencyProfileGroupIDs);
                 }
             }
-            else if (index == 10)
+            else if (arg.Index == 10)
             {
                 EmergencyProfileActiveCB.CheckedChanged -= new System.EventHandler(EmergencyProfileActiveCB_CheckedChanged);
-                EmergencyProfileActiveCB.Checked = (bool)value;
+                EmergencyProfileActiveCB.Checked = (bool)arg.Value;
                 EmergencyProfileActiveCB.CheckedChanged += new System.EventHandler(EmergencyProfileActiveCB_CheckedChanged);
             }
-            else if (index == 11)
+            else if (arg.Index == 11)
             {
                 ActionOverScript.Items.Clear();
                 int pos, selected = -1;
@@ -211,7 +211,7 @@ namespace Gurux.DLMS.UI
                 ActionUnderThresholdIndexTB.Text = (Target as GXDLMSLimiter).ActionUnderThreshold.ScriptSelector.ToString();
                 ActionUnderThresholdIndexTB.Leave += new System.EventHandler(ActionUnderThresholdIndexTB_Leave);
             }
-            else if (index == 11)
+            else if (arg.Index == 11)
             {
                 ActionOverScript.Items.Clear();
                 int pos, selected = -1;
@@ -305,33 +305,34 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
-                MonitoredValueTB.Enabled = (access & AccessMode.Write) != 0;
-                MonitoredIndexTB.ReadOnly = (access & AccessMode.Write) == 0;
+                MonitoredValueTB.Enabled = enabled;
+                MonitoredIndexTB.ReadOnly = !enabled;
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
-                DurationTb.ReadOnly = ActivationTimeTb.ReadOnly = IdTb.ReadOnly = (access & AccessMode.Write) == 0;
+                DurationTb.ReadOnly = ActivationTimeTb.ReadOnly = IdTb.ReadOnly = !enabled;
             }
-            else if (index == 9)
+            else if (arg.Index == 9)
             {
-                EmergencyProfileGroupIDsTB.ReadOnly = (access & AccessMode.Write) == 0;
+                EmergencyProfileGroupIDsTB.ReadOnly = !enabled;
             }
-            else if (index == 10)
+            else if (arg.Index == 10)
             {
-                EmergencyProfileActiveCB.Enabled = (access & AccessMode.Write) != 0;
+                EmergencyProfileActiveCB.Enabled = enabled;
             }
-            else if (index == 11)
+            else if (arg.Index == 11)
             {
-                ActionOverScript.Enabled = ActionUnderScript.Enabled = ActionOverScript.Enabled = (access & AccessMode.Write) != 0;
-                ActionUnderThresholdIndexTB.ReadOnly = ActionOverThresholdIndexTB.ReadOnly = (access & AccessMode.Write) == 0;
+                ActionOverScript.Enabled = ActionUnderScript.Enabled = ActionOverScript.Enabled = enabled;
+                ActionUnderThresholdIndexTB.ReadOnly = ActionOverThresholdIndexTB.ReadOnly = !enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

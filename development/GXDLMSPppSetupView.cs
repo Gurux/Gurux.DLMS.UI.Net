@@ -66,9 +66,9 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 5)
+            if (arg.Index == 5)
             {
                 GXDLMSPppSetup target = Target as GXDLMSPppSetup;
                 UserNameTB.TextChanged -= new System.EventHandler(this.UserNameTB_TextChanged);
@@ -99,9 +99,9 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 5)
+            if (arg.Index == 5)
             {
             }
             else
@@ -110,7 +110,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

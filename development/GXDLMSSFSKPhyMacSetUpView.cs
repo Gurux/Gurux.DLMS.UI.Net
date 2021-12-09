@@ -64,13 +64,13 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 11)
+            if (arg.Index == 11)
             {
                 RepeaterStatusCB.Checked = (Target as GXDLMSSFSKPhyMacSetUp).RepeaterStatus;
             }
-            else if (index == 14)
+            else if (arg.Index == 14)
             {
                 SynchronizationLockedCB.Checked = (Target as GXDLMSSFSKPhyMacSetUp).SynchronizationLocked;
             }
@@ -80,15 +80,16 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 11)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 11)
             {
-                RepeaterStatusCB.Enabled = (access & AccessMode.Write) != 0;
+                RepeaterStatusCB.Enabled = enabled;
             }
-            else if (index == 14)
+            else if (arg.Index == 14)
             {
-                SynchronizationLockedCB.Enabled = (access & AccessMode.Write) != 0;
+                SynchronizationLockedCB.Enabled = enabled;
             }
             else
             {
@@ -96,7 +97,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

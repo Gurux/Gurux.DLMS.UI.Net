@@ -65,10 +65,10 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSActionSchedule schedule = Target as GXDLMSActionSchedule;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 ScriptNameTB.Items.Clear();
                 if (schedule.Parent != null)
@@ -89,7 +89,7 @@ namespace Gurux.DLMS.UI
                 }
                 ScriptSelectorTB.Text = schedule.ExecutedScriptSelector.ToString();
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 Time.Items.Clear();
                 if (schedule.ExecutionTime != null)
@@ -104,21 +104,21 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
                 ScriptSelectorTB.ReadOnly = !enabled;
                 ScriptNameTB.Enabled = enabled;
             }
-            else if (index == 4)
+            else if (arg.Index == 4)
             {
                 TimeAddBtn.Enabled = TimeEditBtn.Enabled = TimeRemoveBtn.Enabled = Time.Enabled = enabled;
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

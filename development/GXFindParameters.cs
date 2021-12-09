@@ -30,8 +30,33 @@
 // Full text may be retrieved at http://www.gnu.org/licenses/gpl-2.0.txt
 //---------------------------------------------------------------------------
 
+using System;
+
 namespace Gurux.DLMS.UI
 {
+    /// <summary>
+    /// Defines what fields are not shown on the search dialog.
+    /// </summary>
+    /// <remarks>
+    /// In default all fields are visible.
+    /// </remarks>
+    [Flags]
+    public enum SearchDialogHidden
+    {
+        /// <summary>
+        /// All fields are visible.
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// OBIS code is hidden.
+        /// </summary>
+        Obis = 1,
+        /// <summary>
+        /// Text field is hidden.
+        /// </summary>
+        Text = 2
+    }
+
     public class GXFindParameters
     {
         /// <summary>
@@ -47,6 +72,15 @@ namespace Gurux.DLMS.UI
         /// Text to search for.
         /// </summary>
         public string Text
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Hidden fiels.
+        /// </summary>
+        public SearchDialogHidden Hide
         {
             get;
             set;

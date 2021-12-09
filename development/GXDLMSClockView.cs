@@ -74,33 +74,33 @@ namespace Gurux.DLMS.UI
             TimeZoneCb.CheckedChanged -= new System.EventHandler(TimeZoneCb_CheckedChanged);
             TimeZoneCb.Checked = value != -1;
             TimeZoneCb.CheckedChanged += new System.EventHandler(TimeZoneCb_CheckedChanged);
-            TimeZoneTB.ReadOnly = !connected || value == -1;
+            TimeZoneTB.ReadOnly = connected || value == -1;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSClock target = Target as GXDLMSClock;
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 //This is handled before.
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
-                UpdateTimeZone(target, connected, (int)value);
+                UpdateTimeZone(target, arg.Connected, (int)arg.Value);
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
-                BeginTB.Value = value;
+                BeginTB.Value = arg.Value;
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
-                EndTB.Value = value;
+                EndTB.Value = arg.Value;
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
-                DeviationTB.Value = value;
+                DeviationTB.Value = arg.Value;
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
                 EnabledCB.CheckedChanged -= new System.EventHandler(EnabledCB_CheckedChanged);
                 this.EnabledCB.Checked = target.Enabled;
@@ -113,37 +113,37 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool enabled = connected && (access & AccessMode.Write) != 0;
-            if (index == 2)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 2)
             {
                 TimeTB.ReadOnly = !enabled;
                 UpdateTimeBtn.Enabled = enabled;
             }
-            else if (index == 3)
+            else if (arg.Index == 3)
             {
                 GXDLMSClock target = Target as GXDLMSClock;
                 TimeZoneCb.Enabled = enabled;
                 CurrentTimeZoneBtn.Enabled = enabled;
                 if (enabled)
                 {
-                    UpdateTimeZone(target, connected, target.TimeZone);
+                    UpdateTimeZone(target, arg.Connected && arg.Client.CanWrite(Target, arg.Index), target.TimeZone);
                 }
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 BeginTB.ReadOnly = !enabled;
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 EndTB.ReadOnly = !enabled;
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 DeviationTB.ReadOnly = !enabled;
             }
-            else if (index == 8)
+            else if (arg.Index == 8)
             {
                 EnabledCB.Enabled = enabled;
             }
@@ -152,7 +152,7 @@ namespace Gurux.DLMS.UI
                 throw new IndexOutOfRangeException("index");
             }
         }
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

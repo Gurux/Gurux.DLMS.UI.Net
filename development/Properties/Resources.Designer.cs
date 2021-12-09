@@ -268,6 +268,15 @@ namespace Gurux.DLMS.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image transfered, but not activated..
+        /// </summary>
+        internal static string ImageTransferedNotActivatedTxt {
+            get {
+                return ResourceManager.GetString("ImageTransferedNotActivatedTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image transfer is enabled..
         /// </summary>
         internal static string ImageTransferEnabled {

@@ -64,26 +64,27 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
                 GXDLMSSFSKActiveInitiator target = Target as GXDLMSSFSKActiveInitiator;
                 SystemTitleTB.Text = GXDLMSTranslator.ToHex(target.SystemTitle);
                 MACAddressTB.Text = target.MacAddress.ToString();
                 LSAPSelectorTB.Text = target.LSapSelector.ToString();
             }
-            else if (index != 0)
+            else if (arg.Index != 0)
             {
                 throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            if (arg.Index == 2)
             {
-                SystemTitleTB.ReadOnly = MACAddressTB.ReadOnly = LSAPSelectorTB.ReadOnly = (access & AccessMode.Write) != 0;
+                bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+                SystemTitleTB.ReadOnly = MACAddressTB.ReadOnly = LSAPSelectorTB.ReadOnly = !enabled;
             }
             else
             {
@@ -91,7 +92,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
         }
 

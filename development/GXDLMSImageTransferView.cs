@@ -40,6 +40,7 @@ using System.Text;
 using System.IO;
 using System.Threading;
 using Gurux.DLMS.Objects.Enums;
+using Gurux.DLMS.ManufacturerSettings;
 
 namespace Gurux.DLMS.UI
 {
@@ -50,8 +51,14 @@ namespace Gurux.DLMS.UI
     [GXDLMSViewAttribute(typeof(GXDLMSImageTransfer))]
     public partial class GXDLMSImageTransferView : Form, IGXDLMSView
     {
-        byte[] imageIdentifier = null;
-        byte[] image;
+        /// <summary>
+        /// Is verify allowed.
+        /// </summary>
+        bool VerifyAllowed = false;
+        /// <summary>
+        /// Is activation allowed.
+        /// </summary>
+        bool ActivationAllowed = false;
 
         /// <summary>
         /// Constructor.
@@ -71,25 +78,25 @@ namespace Gurux.DLMS.UI
             set;
         }
 
-        public void OnValueChanged(int index, object value, bool user, bool connected)
+        public void OnValueChanged(GXDLMSViewArguments arg)
         {
             GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
-            if (index == 3)
+            if (arg.Index == 3)
             {
-                ImageTransferredBlocksStatusTB.Text = (string) value;
+                ImageTransferredBlocksStatusTB.Text = (string)arg.Value;
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
                 ImageTransferEnabledCB.CheckedChanged -= new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
                 ImageTransferEnabledCB.Checked = target.ImageTransferEnabled;
                 ImageTransferEnabledCB.CheckedChanged += new System.EventHandler(ImageTransferEnabledCB_CheckedChanged);
             }
-            else if (index == 6)
+            else if (arg.Index == 6)
             {
                 ImageTransferStatusTb.Text = target.ImageTransferStatus.ToString();
                 ManualBtn_CheckedChanged(null, null);
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
                 ImagesView.Items.Clear();
                 if (target.ImageActivateInfo != null)
@@ -117,7 +124,7 @@ namespace Gurux.DLMS.UI
                     }
                 }
             }
-            else if (index != 0)
+            else if (arg.Index != 0)
             {
                 throw new IndexOutOfRangeException("index");
             }
@@ -194,27 +201,57 @@ namespace Gurux.DLMS.UI
                 DescriptionList.Items.Clear();
                 if (dlg.ShowDialog(this) != DialogResult.OK)
                 {
-                    imageIdentifier = null;
                     arg.Action = ActionType.None;
                     return;
                 }
-                if (dlg.IsAscii)
-                {
-                    imageIdentifier = ASCIIEncoding.ASCII.GetBytes(dlg.TextTb.Text);
-                }
-                else
-                {
-                    imageIdentifier = GXDLMSTranslator.HexToBytes(dlg.TextTb.Text);
-                }
+                GXImageUpdateStatus status = new GXImageUpdateStatus();
+                arg.Tag = status;
+                status.ImageIdentifier = dlg.GetImageIdentifier();
                 arg.Text = "Updating image " + Path.GetFileNameWithoutExtension(dlg.FileNameTb.Text) + "...";
                 OnDescription("Updating image " + dlg.FileNameTb.Text);
-                image = dlg.Image;
+                status.Image = dlg.Image;
             }
         }
 
-        int statusReadCount = 0;
-        bool updatingImage = false;
-        bool transformingImage = false;
+        /// <summary>
+        /// In image update following steps are made:
+        /// 1. Image_transfer_enabled is read.
+        /// 2. Image block size is read.
+        /// 3. image_transferred_blocks_status is read to check is image try to update before.
+        /// 3. image_transfer_initiate
+        /// 4. image_transfer_status is read.
+        /// 5. image_block_transfer
+        /// 6. image_transfer_status is read.
+        /// 7. image_transfer_status is read.
+        /// 8. image_verify is called.
+        /// 9. image_transfer_status is read.
+        /// 10. image_activate is called.
+        /// </summary>
+
+        class GXImageUpdateStatus
+        {
+            /// <summary>
+            /// How many times status is try to read.
+            /// </summary>
+            public int StatusReadCount = 0;
+            /// <summary>
+            /// Is image transforming in progress.
+            /// </summary>
+            public bool TransformingImage = false;
+            /// <summary>
+            /// Image identifier.
+            /// </summary>
+            public byte[] ImageIdentifier = null;
+            /// <summary>
+            /// Image to update.
+            /// </summary>
+            public byte[] Image;
+            /// <summary>
+            /// Image start index.
+            /// </summary>
+            public int ImageStartIndex;
+        }
+
         public void PreAction(GXActionArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
@@ -222,7 +259,12 @@ namespace Gurux.DLMS.UI
             {
                 if (arg.Index == 1)
                 {
-                    if (!updatingImage)
+                    if (arg.Tag is GXImageUpdateStatus status)
+                    {
+                        //Initiate the Image transfer process.
+                        arg.Value = it.ImageTransferInitiate(arg.Client, status.ImageIdentifier, status.Image.Length);
+                    }
+                    else
                     {
                         //Check that delay is correct and save it.
                         GetDelay(arg);
@@ -230,8 +272,11 @@ namespace Gurux.DLMS.UI
                         {
                             return;
                         }
+                        GXManufacturerCollection manufacturers = new GXManufacturerCollection();
+                        GXManufacturerCollection.ReadManufacturerSettings(manufacturers);
+                        GXManufacturer man = manufacturers.FindByIdentification(arg.Client.ManufacturerId);
                         Properties.Settings.Default.ImageDelay = (int)arg.Value / 1000;
-                        GXImageDlg dlg = new GXImageDlg();
+                        GXImageDlg dlg = new GXImageDlg(man.ManucatureSettings, arg.Client);
                         OnImageDialog(dlg, arg);
                         if (arg.Action == ActionType.None)
                         {
@@ -239,21 +284,15 @@ namespace Gurux.DLMS.UI
                         }
                         arg.Index = 5;
                         arg.Action = ActionType.Read;
-                        transformingImage = false;
-                        updatingImage = true;
                         return;
                     }
-                    //Initiate the Image transfer process.
-                    arg.Value = it.ImageTransferInitiate(arg.Client, imageIdentifier, image.Length);
-                    imageIdentifier = null;
-                    updatingImage = false;
-                    statusReadCount = 0;
                 }
                 else if (arg.Index == 2)
                 {
                     //Start image block transfer.
+                    GXImageUpdateStatus status = (GXImageUpdateStatus)arg.Tag;
                     int imageBlockCount;
-                    arg.Value = it.ImageBlockTransfer(arg.Client, image, out imageBlockCount);
+                    arg.Value = it.ImageBlockTransfer(arg.Client, status.Image, status.ImageStartIndex, out imageBlockCount);
                     OnDescription("Sending " + imageBlockCount + " blocks.");
                 }
                 else if (arg.Index == 3)
@@ -272,13 +311,13 @@ namespace Gurux.DLMS.UI
         public void PostAction(GXActionArgs arg)
         {
             GXDLMSImageTransfer it = Target as GXDLMSImageTransfer;
+            GXImageUpdateStatus status = (GXImageUpdateStatus)arg.Tag;
             if (arg.Action == ActionType.Read)
             {
                 if (arg.Index == 5)
                 {
                     if (!it.ImageTransferEnabled)
                     {
-                        updatingImage = false;
                         GXHelpers.ShowMessageBox(this, Properties.Resources.ImageTransferDisabled, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         arg.Action = ActionType.None;
                         return;
@@ -289,6 +328,36 @@ namespace Gurux.DLMS.UI
                 }
                 else if (arg.Index == 2)
                 {
+                    OnDescription(Properties.Resources.ImageBlockSize + it.ImageBlockSize);
+                    //Read image_transferred_blocks_status.
+                    arg.Index = 3;
+                }
+                else if (arg.Index == 3)
+                {
+                    int index = 0;
+                    foreach (char b in it.ImageTransferredBlocksStatus)
+                    {
+                        if (b == '0')
+                        {
+                            DialogResult ret = GXHelpers.ShowMessageBox(this, index + " Image blocks already exists. Do you want to overwrite image? " + Environment.NewLine
+                                + "Answering No will update missing blocks.", "GXDLMSDirector",
+                                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                            if (ret == DialogResult.Cancel)
+                            {
+                                arg.Action = ActionType.None;
+                                return;
+                            }
+                            if (ret == DialogResult.No)
+                            {
+                                status.ImageStartIndex = index;
+                                arg.Index = 2;
+                                arg.Action = ActionType.Action;
+                                return;
+                            }
+                            break;
+                        }
+                        ++index;
+                    }
                     OnDescription(Properties.Resources.ImageBlockSize + it.ImageBlockSize);
                     //Invoke Initiates image transfer.
                     arg.Index = 1;
@@ -307,30 +376,41 @@ namespace Gurux.DLMS.UI
                     switch (it.ImageTransferStatus)
                     {
                         case ImageTransferStatus.NotInitiated:
-                            if (++statusReadCount > 10)
+                            if (++status.StatusReadCount > 10)
                             {
                                 OnDescription("Failed to read Image transfer status after image transfer initiate.");
                                 GXHelpers.ShowMessageBox(this, "Failed to read Image transfer status after image transfer initiate.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 arg.Action = ActionType.None;
-                                updatingImage = false;
                                 return;
                             }
                             Thread.Sleep(delay);
                             arg.Index = 6;
                             break;
                         case ImageTransferStatus.TransferInitiated:
-                            if (!transformingImage)
+                            if (!status.TransformingImage)
                             {
                                 arg.Action = ActionType.Action;
                                 arg.Index = 2;
-                                transformingImage = true;
+                                status.TransformingImage = true;
                             }
                             else
                             {
                                 if (!Properties.Settings.Default.ImageManualUpdate)
                                 {
-                                    arg.Index = 3;
                                     arg.Action = ActionType.Action;
+                                    if (arg.Client.CanInvoke(arg.Target, 3))
+                                    {
+                                        arg.Index = 3;
+                                    }
+                                    else if (arg.Client.CanInvoke(arg.Target, 4))
+                                    {
+                                        arg.Index = 4;
+                                    }
+                                    else
+                                    {
+                                        GXHelpers.ShowMessageBox(this, Properties.Resources.ImageTransferedNotActivatedTxt, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        arg.Action = ActionType.None;
+                                    }
                                 }
                                 else
                                 {
@@ -377,18 +457,8 @@ namespace Gurux.DLMS.UI
                 if (arg.Index == 1)
                 {
                     OnDescription("Image transfer initiated.");
-                    //Sanxing meter can't handle read after ImageTransfer is initiate.
-                    if (string.Compare(arg.Client.ManufacturerId, "AUX", true) == 0)
-                    {
-                        //Invoke Initiates image transfer.
-                        arg.Index = 2;
-                        transformingImage = true;
-                    }
-                    else
-                    {
-                        arg.Action = ActionType.Read;
-                        arg.Index = 6;
-                    }
+                    arg.Action = ActionType.Read;
+                    arg.Index = 6;
                 }
                 else if (arg.Index == 2)
                 {
@@ -449,7 +519,7 @@ namespace Gurux.DLMS.UI
                             }
                             return;
                         }
-                    }                    
+                    }
                     OnDescription(Properties.Resources.ImageActivatedTxt);
                     arg.Action = ActionType.None;
                     arg.Rebooting = true;
@@ -506,31 +576,38 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        public void OnAccessRightsChange(int index, AccessMode access, bool connected)
+        public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 3)
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            if (arg.Index == 3)
             {
-                ImageTransferredBlocksStatusTB.ReadOnly = !(connected && (Target.GetAccess(index) & AccessMode.Write) != 0);
+                ImageTransferredBlocksStatusTB.ReadOnly = !enabled;
             }
-            else if (index == 5)
+            else if (arg.Index == 5)
             {
-                ImageTransferEnabledCB.Enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
+                ImageTransferEnabledCB.Enabled = enabled;
             }
-            else if (index == 7)
+            else if (arg.Index == 7)
             {
-                ImagesView.Enabled = connected && (Target.GetAccess(index) & AccessMode.Write) != 0;
+                ImagesView.Enabled = enabled;
             }
-            else if (index != 6)
+            else if (arg.Index != 6)
             {
                 throw new IndexOutOfRangeException("index");
             }
         }
 
-        public void OnAccessRightsChange(int index, MethodAccessMode mode, bool connected)
+        public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
-            if (index == 2)
+            VerifyAllowed = arg.Connected && arg.Client.CanInvoke(Target, 3);
+            ActivationAllowed = arg.Connected && arg.Client.CanInvoke(Target, 4);
+
+            if (arg.Index == 2)
             {
-                ManualBtn.Enabled = DelayTb.Enabled = ActivateImageBtn.Enabled = VerifyImageBtn.Enabled = UpdateImageBtn.Enabled && connected && mode != MethodAccessMode.NoAccess;
+                GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
+                ManualBtn.Enabled = !arg.Connected;
+                VerifyImageBtn.Enabled = VerifyAllowed && Properties.Settings.Default.ImageManualUpdate && (target.ImageTransferStatus == ImageTransferStatus.TransferInitiated || target.ImageTransferStatus == ImageTransferStatus.VerificationFailed);
+                ActivateImageBtn.Enabled = ActivationAllowed && Properties.Settings.Default.ImageManualUpdate && target.ImageTransferStatus == ImageTransferStatus.VerificationSuccessful;
                 if (ManualBtn.Enabled)
                 {
                     ManualBtn_CheckedChanged(null, null);
@@ -571,9 +648,9 @@ namespace Gurux.DLMS.UI
             {
                 Properties.Settings.Default.ImageManualUpdate = ManualBtn.Checked;
                 GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
-                DelayTb.ReadOnly = Properties.Settings.Default.ImageManualUpdate;
-                VerifyImageBtn.Enabled = Properties.Settings.Default.ImageManualUpdate && (target.ImageTransferStatus == ImageTransferStatus.TransferInitiated || target.ImageTransferStatus == ImageTransferStatus.VerificationFailed);
-                ActivateImageBtn.Enabled = Properties.Settings.Default.ImageManualUpdate && target.ImageTransferStatus == ImageTransferStatus.VerificationSuccessful;
+                DelayTb.ReadOnly = Properties.Settings.Default.ImageManualUpdate || !ManualBtn.Enabled;
+                VerifyImageBtn.Enabled = VerifyAllowed && Properties.Settings.Default.ImageManualUpdate && (target.ImageTransferStatus == ImageTransferStatus.TransferInitiated || target.ImageTransferStatus == ImageTransferStatus.VerificationFailed);
+                ActivateImageBtn.Enabled = ActivationAllowed && Properties.Settings.Default.ImageManualUpdate && target.ImageTransferStatus == ImageTransferStatus.VerificationSuccessful;
             }
         }
     }
