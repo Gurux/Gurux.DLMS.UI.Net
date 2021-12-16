@@ -79,6 +79,7 @@ namespace Gurux.DLMS.UI
             {
                 DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
                 column.DataPropertyName = "Access3";
+                column.ReadOnly = true;
                 AccessRightsColumn = column;
             }
             AccessRightsColumn.Name = "Access";
@@ -105,6 +106,7 @@ namespace Gurux.DLMS.UI
             {
                 DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
                 column.DataPropertyName = "MethodAccess3";
+                column.ReadOnly = true;
                 MethodAccessRightsColumn = column;
             }
             MethodAccessRightsColumn.Name = "Method access";
@@ -258,6 +260,76 @@ namespace Gurux.DLMS.UI
             }
         }
 
+        private void UpdateAttributes()
+        {
+            bindingSource1.Clear();
+            List<GXDLMSAttributeSettings> list = new List<GXDLMSAttributeSettings>();
+            string[] names = (Target as IGXDLMSBase).GetNames();
+            for (int pos = 0; pos != (Target as IGXDLMSBase).GetAttributeCount(); ++pos)
+            {
+                GXDLMSAttributeSettings a = new GXDLMSAttributeSettings() { Index = pos + 1, Name = names[pos] };
+                Target.Attributes.Add(a);
+                //Logical name is always read-only.
+                if (pos == 0)
+                {
+                    if (version < 3)
+                    {
+                        a.Access = AccessMode.Read;
+                    }
+                    else
+                    {
+                        a.Access3 = AccessMode3.Read;
+                    }
+                }
+                else
+                {
+                    if (version < 3)
+                    {
+                        AccessMode mode = Target.GetAccess(1 + pos);
+                        a.Access = mode;
+                    }
+                    else
+                    {
+                        AccessMode3 mode = Target.GetAccess3(1 + pos);
+                        a.Access3 = mode;
+                    }
+
+                }
+                list.Add(a);
+            }
+            foreach (var it in list)
+            {
+                bindingSource1.Add(it);
+            }
+            Accessrights.DataSource = bindingSource1;
+            //Show method access levels of COSEM object.
+            bindingSource3.Clear();
+            list.Clear();
+            //Add all methods.
+            names = (Target as IGXDLMSBase).GetMethodNames();
+            for (int pos = 0; pos != (Target as IGXDLMSBase).GetMethodCount(); ++pos)
+            {
+                GXDLMSAttributeSettings a = new GXDLMSAttributeSettings() { Index = pos + 1, Name = names[pos] };
+                Target.MethodAttributes.Add(a);
+                if (version < 3)
+                {
+                    MethodAccessMode mode = Target.GetMethodAccess(1 + pos);
+                    a.MethodAccess = mode;
+                }
+                else
+                {
+                    MethodAccessMode3 mode = Target.GetMethodAccess3(1 + pos);
+                    a.MethodAccess3 = mode;
+                }
+                list.Add(a);
+            }
+            foreach (var it in list)
+            {
+                bindingSource3.Add(it);
+            }
+            MethodAccessrights.DataSource = bindingSource3;
+        }
+
         /// <summary>
         /// Object type has changed.
         /// </summary>
@@ -278,123 +350,30 @@ namespace Gurux.DLMS.UI
             //Restore default columns if old target is association LN.
             if (Target is GXDLMSAssociationLogicalName)
             {
+                VersionCb.Enabled = true;
                 CreateAccessrightsColumns(version);
             }
-            Target = GXDLMSClient.CreateObject((ObjectType)ObjectTypeCb.SelectedItem);
-            bindingSource1.Clear();
-            SortedList<int, GXDLMSAttributeSettings> list = new SortedList<int, GXDLMSAttributeSettings>();
-            //Add all attributes.
-            if (version < 2)
+            if (Target == null || Target.ObjectType != (ObjectType)ObjectTypeCb.SelectedItem)
             {
-                ((DataGridViewComboBoxColumn)AccessRightsColumn).DataSource = null;
-                AccessMode[] arr = new AccessMode[] { AccessMode.NoAccess, AccessMode.Read, AccessMode.Write, AccessMode.ReadWrite };
-                ((DataGridViewComboBoxColumn)AccessRightsColumn).DataSource = arr;
+                Target = GXDLMSClient.CreateObject((ObjectType)ObjectTypeCb.SelectedItem);
             }
-            else if (version < 3)
-            {
-                ((DataGridViewComboBoxColumn)AccessRightsColumn).DataSource = null;
-                AccessMode[] arr = new AccessMode[] { AccessMode.NoAccess, AccessMode.Read, AccessMode.Write, AccessMode.ReadWrite,
-                AccessMode.AuthenticatedRead, AccessMode.AuthenticatedWrite, AccessMode.AuthenticatedReadWrite};
-                ((DataGridViewComboBoxColumn)AccessRightsColumn).DataSource = arr;
-            }
-            string[] names = (Target as IGXDLMSBase).GetNames();
-            for (int pos = 0; pos != (Target as IGXDLMSBase).GetAttributeCount(); ++pos)
-            {
-                if (!list.ContainsKey(pos + 1))
-                {
-                    GXDLMSAttributeSettings a = new GXDLMSAttributeSettings() { Index = pos + 1, Name = names[pos] };
-                    Target.Attributes.Add(a);
-                    //Logical name is always read-only.
-                    if (pos == 0)
-                    {
-                        if (version < 3)
-                        {
-                            a.Access = AccessMode.Read;
-                        }
-                        else
-                        {
-                            a.Access3 = AccessMode3.Read;
-                        }
-                    }
-                    list.Add(pos + 1, a);
-                }
-                else
-                {
-                    GXDLMSAttributeSettings a = list[pos + 1];
-                    if (a.Type == DataType.None)
-                    {
-                        a.Type = (Target as IGXDLMSBase).GetDataType(a.Index);
-                    }
-                    if (string.IsNullOrEmpty(a.Name))
-                    {
-                        a.Name = names[pos];
-                    }
-                }
-            }
-            foreach (var it in list)
-            {
-                bindingSource1.Add(it.Value);
-            }
-            Accessrights.DataSource = bindingSource1;
-            if (version < 3)
-            {
-                ((DataGridViewComboBoxColumn)MethodAccessRightsColumn).DataSource = null;
-                ((DataGridViewComboBoxColumn)MethodAccessRightsColumn).Items.Clear();
-                MethodAccessMode[] arr = new MethodAccessMode[] { MethodAccessMode.NoAccess, MethodAccessMode.Access, MethodAccessMode.AuthenticatedAccess };
-                ((DataGridViewComboBoxColumn)MethodAccessRightsColumn).DataSource = arr;
-            }
-            else
-            {
-                // MethodAccessRightsColumn.DataSource = Enum.GetValues(typeof(MethodAccessMode3));
-            }
-            //Show method access levels of COSEM object.
-            bindingSource3.Clear();
-            list.Clear();
-            foreach (GXDLMSAttributeSettings it in (Target as GXDLMSObject).MethodAttributes)
-            {
-                list.Add(it.Index, it);
-            }
-
-            //Add all methods.
-            names = (Target as IGXDLMSBase).GetMethodNames();
-            for (int pos = 0; pos != (Target as IGXDLMSBase).GetMethodCount(); ++pos)
-            {
-                if (!list.ContainsKey(pos + 1))
-                {
-                    GXDLMSAttributeSettings a = new GXDLMSAttributeSettings() { Index = pos + 1, Name = names[pos] };
-                    Target.MethodAttributes.Add(a);
-                    a.MethodAccess = MethodAccessMode.Access;
-                    list.Add(pos + 1, a);
-                }
-                else
-                {
-                    GXDLMSAttributeSettings a = list[pos + 1];
-                    if (string.IsNullOrEmpty(a.Name))
-                    {
-                        a.Name = names[pos];
-                    }
-                }
-            }
-            foreach (var it in list)
-            {
-                bindingSource3.Add(it.Value);
-            }
-            MethodAccessrights.DataSource = bindingSource3;
+            UpdateAttributes();
             //Update max version number.
             VersionCb.Items.Clear();
             for (int pos = 0; pos != 1 + (Target as IGXDLMSBase).GetMaxSupportedVersion(); ++pos)
             {
                 VersionCb.Items.Insert(0, pos);
             }
-            //Version 2 is default version for Association LN. 
             if (Target is GXDLMSAssociationLogicalName)
             {
-                VersionCb.SelectedItem = 2;
+                VersionCb.SelectedItem = version;
+                VersionCb.Enabled = false;
             }
             else
             {
                 VersionCb.SelectedIndex = 0;
             }
+
         }
 
         /// <summary>
@@ -472,6 +451,7 @@ namespace Gurux.DLMS.UI
                         {
                             ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access = (AccessMode)access;
                             ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access3 = 0;
+                            Target.SetAccess(it.Index, (AccessMode)access);
                         }
                         else
                         {
@@ -484,6 +464,7 @@ namespace Gurux.DLMS.UI
                             {
                                 ((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access3 |= (AccessMode3)access;
                             }
+                            Target.SetAccess3(1 + it.Index, (AccessMode3)((GXDLMSAttributeSettings)bindingSource1[it.Index]).Access3);
                         }
                         Accessrights.UpdateCellValue(2, it.Index);
                     }
@@ -514,6 +495,7 @@ namespace Gurux.DLMS.UI
                     {
                         ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess = (MethodAccessMode)access;
                         ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess3 = 0;
+                        Target.SetMethodAccess(it.Index, (MethodAccessMode)access);
                     }
                     else
                     {
@@ -526,6 +508,7 @@ namespace Gurux.DLMS.UI
                         {
                             ((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess3 |= (MethodAccessMode3)access;
                         }
+                        Target.SetMethodAccess3(1 + it.Index, (MethodAccessMode3)((GXDLMSAttributeSettings)bindingSource3[it.Index]).MethodAccess3);
                     }
                     MethodAccessrights.UpdateCellValue(2, it.Index);
                 }
@@ -538,15 +521,16 @@ namespace Gurux.DLMS.UI
 
         private void VersionCb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Target is GXDLMSAssociationLogicalName)
+            int ver = (int)VersionCb.SelectedItem;
+            bool changed = Target.Version != ver;
+            Target.Version = ver;
+            if (changed)
             {
-                int ver = (int)VersionCb.SelectedItem;
-                bool changed = Target.Version != ver;
-                Target.Version = ver;
-                if (changed)
+                if (Target is GXDLMSAssociationLogicalName)
                 {
                     CreateAccessrightsColumns(ver);
                 }
+                UpdateAttributes();
             }
         }
     }

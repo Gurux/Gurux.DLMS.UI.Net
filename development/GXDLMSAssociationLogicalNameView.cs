@@ -114,9 +114,9 @@ namespace Gurux.DLMS.UI
                 else
                 {
                     VersionTb.Text = "";
-                }                
+                }
             }
-        }      
+        }
 
         Country FindCountry(byte jointIsoCtt, byte countryElement, UInt16 countryName)
         {
@@ -354,7 +354,7 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
-            bool writable= arg.Connected && arg.Client.CanWrite(Target, arg.Index);
+            bool writable = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
             if (arg.Index == 2)
             {
             }
@@ -398,6 +398,10 @@ namespace Gurux.DLMS.UI
 
         public void OnMethodAccessRightsChange(GXDLMSViewArguments arg)
         {
+            if (arg.Index == 2)
+            {
+                UpdatePwBtn.Enabled = arg.Client.CanInvoke(Target, 2);
+            }
         }
 
         delegate void ShowDialogEventHandler(GXDLMSObject it, GXActionArgs arg);
@@ -411,8 +415,21 @@ namespace Gurux.DLMS.UI
             else
             {
                 ListViewItem li = null;
-                bool remove = it == null;
+                bool remove = arg.Index == 4 && it == null;
                 if (remove)
+                {
+                    if (ObjectsView.SelectedItems.Count == 1)
+                    {
+                        li = ObjectsView.SelectedItems[0];
+                        it = (GXDLMSObject)li.Tag;
+                    }
+                    else
+                    {
+                        arg.Handled = true;
+                        return;
+                    }
+                }
+                if (arg.Index == -1)
                 {
                     if (ObjectsView.SelectedItems.Count == 1)
                     {
@@ -429,8 +446,9 @@ namespace Gurux.DLMS.UI
                 GXDLMSAssociationViewDlg dlg = new GXDLMSAssociationViewDlg(target, it, true, remove);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
-                    if (remove)
+                    if (remove || arg.Index == -1)
                     {
+                        arg.Tag = dlg.GetTarget();
                         arg.Value = target.RemoveObject(arg.Client, it);
                         li.Remove();
                     }
@@ -554,8 +572,22 @@ namespace Gurux.DLMS.UI
 
         public void PreAction(GXActionArgs arg)
         {
+            //Edit object in association view.
+            if (arg.Action == ActionType. Action && arg.Index == -1)
+            {
+                if (arg.Tag == null)
+                {
+                    OnShowDialog(null, arg);
+                }
+                else
+                {
+                    GXDLMSAssociationLogicalName target = Target as GXDLMSAssociationLogicalName;
+                    arg.Value = target.AddObject(arg.Client, arg.Tag as GXDLMSObject);
+                    arg.Tag = null;
+                }
+            }
             //Add object to association view.
-            if (arg.Index == 3)
+            else if (arg.Index == 3)
             {
                 GXDLMSObject it = new GXDLMSData();
                 OnShowDialog(it, arg);
@@ -589,7 +621,16 @@ namespace Gurux.DLMS.UI
 
         public void PostAction(GXActionArgs arg)
         {
-            if (arg.Action == ActionType.Action && (arg.Index == 4 || arg.Index == 4))
+            //Edit object in association view.
+            if (arg.Action == ActionType.Action && arg.Index == -1)
+            {
+                if (arg.Tag == null)
+                {
+                    arg.Action = ActionType.Read;
+                    arg.Index = 2;
+                }
+            }
+            else if (arg.Action == ActionType.Action && (arg.Index == 4 || arg.Index == 4))
             {
                 arg.Action = ActionType.Read;
                 arg.Index = 2;

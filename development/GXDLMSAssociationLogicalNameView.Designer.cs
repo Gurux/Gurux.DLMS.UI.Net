@@ -25,6 +25,7 @@ namespace Gurux.DLMS.UI
             this.VersionTb = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.EditBtn = new Gurux.DLMS.UI.GXButton();
             this.AddObjectBtn = new Gurux.DLMS.UI.GXButton();
             this.RemoveObjectBtn = new Gurux.DLMS.UI.GXButton();
             this.ObjectsView = new System.Windows.Forms.ListView();
@@ -185,6 +186,7 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.EditBtn);
             this.tabPage1.Controls.Add(this.AddObjectBtn);
             this.tabPage1.Controls.Add(this.RemoveObjectBtn);
             this.tabPage1.Controls.Add(this.ObjectsView);
@@ -196,6 +198,17 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "Objects";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // EditBtn
+            // 
+            this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EditBtn.Index = -1;
+            this.EditBtn.Location = new System.Drawing.Point(6, 283);
+            this.EditBtn.Name = "EditBtn";
+            this.EditBtn.Size = new System.Drawing.Size(75, 23);
+            this.EditBtn.TabIndex = 23;
+            this.EditBtn.Text = "Edit...";
+            this.EditBtn.UseVisualStyleBackColor = true;
+            // 
             // AddObjectBtn
             // 
             this.AddObjectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -204,7 +217,7 @@ namespace Gurux.DLMS.UI
             this.AddObjectBtn.Name = "AddObjectBtn";
             this.AddObjectBtn.Size = new System.Drawing.Size(75, 23);
             this.AddObjectBtn.TabIndex = 22;
-            this.AddObjectBtn.Text = "Add";
+            this.AddObjectBtn.Text = "Add...";
             this.AddObjectBtn.UseVisualStyleBackColor = true;
             // 
             // RemoveObjectBtn
@@ -215,7 +228,7 @@ namespace Gurux.DLMS.UI
             this.RemoveObjectBtn.Name = "RemoveObjectBtn";
             this.RemoveObjectBtn.Size = new System.Drawing.Size(75, 23);
             this.RemoveObjectBtn.TabIndex = 21;
-            this.RemoveObjectBtn.Text = "Remove";
+            this.RemoveObjectBtn.Text = "Remove...";
             this.RemoveObjectBtn.UseVisualStyleBackColor = true;
             // 
             // ObjectsView
@@ -1281,5 +1294,6 @@ namespace Gurux.DLMS.UI
         private CheckBox ActionCB;
         private Label VersionLbl;
         private TextBox VersionTb;
+        private GXButton EditBtn;
     }
 }

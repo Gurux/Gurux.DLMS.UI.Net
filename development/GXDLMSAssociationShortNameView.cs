@@ -93,8 +93,17 @@ namespace Gurux.DLMS.UI
                             {
                                 str.Append(", ");
                             }
-                            AccessMode mode = it.GetAccess(pos);
-                            str.Append(pos.ToString() + " = " + mode);
+                            if (target.Version < 3)
+                            {
+                                AccessMode mode = it.GetAccess(pos);
+                                str.Append(pos.ToString() + " = " + mode);
+                            }
+                            else
+                            {
+                                AccessMode3 mode = it.GetAccess3(pos);
+                                str.Append(pos.ToString() + " = " + mode);
+
+                            }
                         }
                         li.SubItems.Add(str.ToString());
                         //Show method access.
@@ -106,8 +115,16 @@ namespace Gurux.DLMS.UI
                             {
                                 str.Append(", ");
                             }
-                            MethodAccessMode mode = it.GetMethodAccess(pos);
-                            str.Append(pos.ToString() + " = " + mode);
+                            if (target.Version < 3)
+                            {
+                                MethodAccessMode mode = it.GetMethodAccess(pos);
+                                str.Append(pos.ToString() + " = " + mode);
+                            }
+                            else
+                            {
+                                MethodAccessMode3 mode = it.GetMethodAccess3(pos);
+                                str.Append(pos.ToString() + " = " + mode);
+                            }
                         }
                         li.SubItems.Add(str.ToString());
                         if (it.ShortName != 0)

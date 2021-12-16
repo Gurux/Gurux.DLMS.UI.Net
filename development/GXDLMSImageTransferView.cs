@@ -470,7 +470,7 @@ namespace Gurux.DLMS.UI
                 {
                     if (arg.Exception is GXDLMSException)
                     {
-                        //If meter is activating image.
+                        //If meter is verifying the image.
                         if ((arg.Exception as GXDLMSException).ErrorCode == (int)ErrorCode.TemporaryFailure)
                         {
                             if (!Properties.Settings.Default.ImageManualUpdate)
@@ -485,8 +485,12 @@ namespace Gurux.DLMS.UI
                                 Thread.Sleep(delay);
                                 arg.Value = null;
                             }
-                            return;
                         }
+                        else
+                        {
+                            OnDescription("Image verifying failed.");
+                        }
+                        return;
                     }
                     if (!Properties.Settings.Default.ImageManualUpdate)
                     {
@@ -517,8 +521,12 @@ namespace Gurux.DLMS.UI
                                 Thread.Sleep(delay);
                                 arg.Value = null;
                             }
-                            return;
                         }
+                        else
+                        {
+                            OnDescription("Image activation failed.");
+                        }
+                        return;
                     }
                     OnDescription(Properties.Resources.ImageActivatedTxt);
                     arg.Action = ActionType.None;
@@ -649,8 +657,8 @@ namespace Gurux.DLMS.UI
                 Properties.Settings.Default.ImageManualUpdate = ManualBtn.Checked;
                 GXDLMSImageTransfer target = Target as GXDLMSImageTransfer;
                 DelayTb.ReadOnly = Properties.Settings.Default.ImageManualUpdate || !ManualBtn.Enabled;
-                VerifyImageBtn.Enabled = VerifyAllowed && Properties.Settings.Default.ImageManualUpdate && (target.ImageTransferStatus == ImageTransferStatus.TransferInitiated || target.ImageTransferStatus == ImageTransferStatus.VerificationFailed);
-                ActivateImageBtn.Enabled = ActivationAllowed && Properties.Settings.Default.ImageManualUpdate && target.ImageTransferStatus == ImageTransferStatus.VerificationSuccessful;
+                VerifyImageBtn.Enabled = VerifyAllowed && Properties.Settings.Default.ImageManualUpdate;
+                ActivateImageBtn.Enabled = ActivationAllowed && Properties.Settings.Default.ImageManualUpdate;
             }
         }
     }

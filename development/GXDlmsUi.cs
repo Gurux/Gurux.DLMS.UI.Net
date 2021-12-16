@@ -459,7 +459,7 @@ namespace Gurux.DLMS.UI
                         {
                             if (client != null)
                             {
-                                access = client.CanRead(target, index);
+                                access = client.CanWrite(target, index);
                             }
                             else
                             {
