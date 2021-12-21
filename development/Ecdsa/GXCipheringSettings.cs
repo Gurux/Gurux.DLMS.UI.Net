@@ -382,7 +382,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             set
             {
-                SystemTitleAscii = value.Length != 8;
+                SystemTitleAscii = value != null && value.Length != 8;
                 if (SystemTitleAsciiCb.Checked)
                 {
                     SystemTitleTB.Text = ASCIIEncoding.ASCII.GetString(value);
@@ -402,7 +402,7 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
             set
             {
-                ServerSystemTitleAsciiCb.Checked = value.Length != 8;
+                ServerSystemTitleAsciiCb.Checked = value != null && value.Length != 8;
                 if (ServerSystemTitleAsciiCb.Checked)
                 {
                     ServerSystemTitleTB.Text = ASCIIEncoding.ASCII.GetString(value);
