@@ -218,14 +218,14 @@ namespace Gurux.DLMS.UI
         /// 1. Image_transfer_enabled is read.
         /// 2. Image block size is read.
         /// 3. image_transferred_blocks_status is read to check is image try to update before.
-        /// 3. image_transfer_initiate
-        /// 4. image_transfer_status is read.
-        /// 5. image_block_transfer
-        /// 6. image_transfer_status is read.
+        /// 4. image_transfer_initiate
+        /// 5. image_transfer_status is read.
+        /// 6. image_block_transfer
         /// 7. image_transfer_status is read.
-        /// 8. image_verify is called.
-        /// 9. image_transfer_status is read.
-        /// 10. image_activate is called.
+        /// 8. image_transfer_status is read.
+        /// 9. image_verify is called.
+        /// 10. image_transfer_status is read.
+        /// 11. image_activate is called.
         /// </summary>
 
         class GXImageUpdateStatus
