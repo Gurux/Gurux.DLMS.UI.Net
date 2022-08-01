@@ -186,7 +186,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                         {
                             key = GXPkcs8.Load(fileName);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             sb.AppendLine(fileName);
                             continue;
