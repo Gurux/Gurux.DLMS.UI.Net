@@ -85,7 +85,7 @@ namespace Gurux.DLMS.UI
                 }
                 Data.ValueInformation = GXDLMSTranslator.HexToBytes(ValueInformationTb.Text);
                 Data.DataInformation = GXDLMSTranslator.HexToBytes(DataInformationTb.Text);
-                Data.Data = Convert.ChangeType(Data, GXDLMSConverter.GetDataType((DataType)DataTypeCb.SelectedItem));
+                Data.Data = Convert.ChangeType(DataTb.Text, GXDLMSConverter.GetDataType((DataType)DataTypeCb.SelectedItem));
             }
             catch (Exception ex)
             {
