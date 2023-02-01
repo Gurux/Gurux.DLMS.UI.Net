@@ -166,7 +166,6 @@ namespace Gurux.DLMS.UI
             }
             else
             {
-                GXDLMSIp6Setup target = Target as GXDLMSIp6Setup;
                 if (arg.Index == 5)
                 {
                     GXClockPresetTimeDlg dlg = new GXClockPresetTimeDlg();
