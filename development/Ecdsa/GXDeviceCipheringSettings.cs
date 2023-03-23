@@ -32,6 +32,11 @@ namespace Gurux.DLMS.UI.Ecdsa
         /// </summary>
         internal GXx509CertificateCollection _certifications;
 
+        /// <summary>
+        /// Returns client certificates.
+        /// </summary>
+        /// <param name="systemTitle">CLient system title.</param>
+        /// <returns>Client certificates.</returns>
         public List<KeyValuePair<GXPkcs8, GXx509Certificate>> GetClientKeys(string systemTitle)
         {
             byte[] st = null;
@@ -52,6 +57,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 {
                     if (subject == null || cert.Subject.Contains(subject))
                     {
+                        //Don't add client certificates. Only server certificates are added.
                         if ((k = _privateKeys.Find(cert.PublicKey)) != null)
                         {
                             if ((cert.KeyUsage & KeyUsage.DigitalSignature) != 0)
