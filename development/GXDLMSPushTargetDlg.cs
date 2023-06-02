@@ -47,14 +47,14 @@ namespace Gurux.DLMS.UI
 {
     public partial class GXDLMSPushTargetDlg : Form
     {
-        public KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> Target
+        public GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> Target
         {
             get;
             private set;
         }
 
         public GXDLMSPushTargetDlg(
-            KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> target,
+            GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> target,
             GXDLMSObjectCollection objects)
         {
             Target = target;
@@ -82,7 +82,7 @@ namespace Gurux.DLMS.UI
                 {
                     throw new Exception("Invalid index.");
                 }
-                Target = new KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>(TargetCb.SelectedItem as GXDLMSObject, new GXDLMSCaptureObject(int.Parse(IndexTB.Text), 0));
+                Target = new GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>(TargetCb.SelectedItem as GXDLMSObject, new GXDLMSCaptureObject(int.Parse(IndexTB.Text), 0));
             }
             catch (Exception ex)
             {

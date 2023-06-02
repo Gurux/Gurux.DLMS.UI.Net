@@ -224,7 +224,7 @@ namespace Gurux.DLMS.UI
             try
             {
                 GXDLMSPushSetup target = Target as GXDLMSPushSetup;
-                KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = new KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>();
+                GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = new GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>();
                 GXDLMSPushTargetDlg dlg = new GXDLMSPushTargetDlg(it, target.Parent as GXDLMSObjectCollection);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
@@ -257,7 +257,7 @@ namespace Gurux.DLMS.UI
                 {
                     GXDLMSPushSetup target = Target as GXDLMSPushSetup;
                     ListViewItem li = ObjectsLV.SelectedItems[0];
-                    KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = (KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
+                    GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> it = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
                     GXDLMSPushTargetDlg dlg = new GXDLMSPushTargetDlg(it, target.Parent as GXDLMSObjectCollection);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
@@ -288,12 +288,12 @@ namespace Gurux.DLMS.UI
         {
             try
             {
-                KeyValuePair<GXDLMSObject, GXDLMSCaptureObject> item;
+                GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject> item;
                 GXDLMSPushSetup target = Target as GXDLMSPushSetup;
                 while (ObjectsLV.SelectedItems.Count != 0)
                 {
                     ListViewItem li = ObjectsLV.SelectedItems[0];
-                    item = (KeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
+                    item = (GXKeyValuePair<GXDLMSObject, GXDLMSCaptureObject>)li.Tag;
                     ObjectsLV.Items.Remove(ObjectsLV.SelectedItems[0]);
                     errorProvider1.SetError(ObjectsLV, Properties.Resources.ValueChangedTxt);
                     Target.UpdateDirty(2, target.PushObjectList);
