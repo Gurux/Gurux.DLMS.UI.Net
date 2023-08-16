@@ -399,7 +399,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         }
 
         /// <summary>
-        /// Agreement key of the server.
+        /// Pre-established association is used.
         /// </summary>
         public bool PreEstablishedApplicationAssociations
         {
@@ -412,6 +412,22 @@ namespace Gurux.DLMS.UI.Ecdsa
                 UsePreEstablishedApplicationAssociations.Checked = value;
             }
         }
+
+        /// <summary>
+        /// SNRM message is ignored with pre-established connections.
+        /// </summary>
+        public bool IgnoreSNRMWithPreEstablished
+        {
+            get
+            {
+                return PreEstablishedApplicationAssociations && IgnoreSNRM.Checked;
+            }
+            set
+            {
+                IgnoreSNRM.Checked = value;
+            }
+        }
+
 
         public string ServerSystemTitle
         {
@@ -497,6 +513,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         private void UsePreEstablishedApplicationAssociations_CheckedChanged(object sender, EventArgs e)
         {
             ServerSystemTitleTb.ReadOnly = !UsePreEstablishedApplicationAssociations.Checked;
+            IgnoreSNRM.Enabled = UsePreEstablishedApplicationAssociations.Checked;
         }
 
         private void UpdateValue(TextBox value, bool ascii)
@@ -1313,6 +1330,6 @@ namespace Gurux.DLMS.UI.Ecdsa
                     ctr.Visible = true;
                 }
             }
-        }        
+        }
     }
 }

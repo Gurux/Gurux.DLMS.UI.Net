@@ -78,6 +78,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.IgnoreSNRM = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.CipheringTab.SuspendLayout();
             this.CipheringV0Tab.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // CipheringTab
             // 
+            this.CipheringTab.Controls.Add(this.IgnoreSNRM);
             this.CipheringTab.Controls.Add(this.SigningCb);
             this.CipheringTab.Controls.Add(this.SigningLbl);
             this.CipheringTab.Controls.Add(this.ServerSystemTitleTb);
@@ -328,9 +330,9 @@
             // 
             this.CipheringPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CipheringPanel.Location = new System.Drawing.Point(7, 131);
+            this.CipheringPanel.Location = new System.Drawing.Point(7, 151);
             this.CipheringPanel.Name = "CipheringPanel";
-            this.CipheringPanel.Size = new System.Drawing.Size(458, 247);
+            this.CipheringPanel.Size = new System.Drawing.Size(458, 227);
             this.CipheringPanel.TabIndex = 12;
             // 
             // CipheringV0Tab
@@ -613,6 +615,17 @@
             this.UpdateBtn.UseVisualStyleBackColor = true;
             this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
+            // IgnoreSNRM
+            // 
+            this.IgnoreSNRM.AutoSize = true;
+            this.IgnoreSNRM.Enabled = false;
+            this.IgnoreSNRM.Location = new System.Drawing.Point(5, 128);
+            this.IgnoreSNRM.Name = "IgnoreSNRM";
+            this.IgnoreSNRM.Size = new System.Drawing.Size(136, 17);
+            this.IgnoreSNRM.TabIndex = 119;
+            this.IgnoreSNRM.Text = "Ignore SNRM message";
+            this.IgnoreSNRM.UseVisualStyleBackColor = true;
+            // 
             // GXDeviceCipheringSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -689,5 +702,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox SignInitiateRequestResponseCb;
+        private System.Windows.Forms.CheckBox IgnoreSNRM;
     }
 }
