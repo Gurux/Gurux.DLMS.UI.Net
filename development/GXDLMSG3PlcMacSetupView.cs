@@ -34,11 +34,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS;
-using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
@@ -68,9 +65,9 @@ namespace Gurux.DLMS.UI
 
         public void OnValueChanged(GXDLMSViewArguments arg)
         {
+            GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
             if (arg.Index == 5)
             {
-                GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                 KeyTable.Items.Clear();
                 if (target.KeyTable != null)
                 {
@@ -85,7 +82,6 @@ namespace Gurux.DLMS.UI
             }
             else if (arg.Index == 11)
             {
-                GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
                 NeighbourTable.Items.Clear();
                 if (target.NeighbourTable != null)
                 {
@@ -97,6 +93,25 @@ namespace Gurux.DLMS.UI
                         li.SubItems.Add(it.ToneMap);
                         li.Tag = it;
                         NeighbourTable.Items.Add(li);
+                    }
+                }
+            }
+            else if (arg.Index == 23)
+            {
+                BroadcastMaxCW.Checked = target.MacBroadcastMaxCwEnabled;
+            }
+            else if (arg.Index == 25)
+            {
+                PosTable.Items.Clear();
+                if (target.MacPosTable != null)
+                {
+                    foreach (var it in target.MacPosTable)
+                    {
+                        ListViewItem li = new ListViewItem(it.ShortAddress.ToString());
+                        li.SubItems.Add(it.LQI.ToString());
+                        li.SubItems.Add(it.ValidTime.ToString());
+                        li.Tag = it;
+                        PosTable.Items.Add(li);
                     }
                 }
             }
@@ -148,6 +163,7 @@ namespace Gurux.DLMS.UI
 
         public void OnAccessRightsChange(GXDLMSViewArguments arg)
         {
+            bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
             if (arg.Index == 5)
             {
 
@@ -155,6 +171,13 @@ namespace Gurux.DLMS.UI
             else if (arg.Index == 11)
             {
 
+            }
+            else if (arg.Index == 23)
+            {
+                BroadcastMaxCW.Enabled = enabled;
+            }
+            else if (arg.Index == 25)
+            {
             }
             else
             {
@@ -221,8 +244,18 @@ namespace Gurux.DLMS.UI
                     GXDLMSKeyTableDlg dlg = new GXDLMSKeyTableDlg(item);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
+                        int index = target.KeyTable.IndexOf(item);
+                        target.KeyTable.Remove(item);
                         item.Key = dlg.id;
                         item.Value = dlg.key;
+                        if (index != -1)
+                        {
+                            target.KeyTable.Insert(index, item);
+                        }
+                        else
+                        {
+                            target.KeyTable.Add(item);
+                        }
                         li.SubItems[0].Text = item.Key.ToString();
                         li.SubItems[1].Text = GXDLMSTranslator.ToHex(item.Value);
                         Target.UpdateDirty(5, target.KeyTable);
@@ -336,7 +369,7 @@ namespace Gurux.DLMS.UI
                 }
                 while (NeighbourTable.SelectedItems.Count != 0)
                 {
-                    list.Remove((GXDLMSNeighbourTable) NeighbourTable.SelectedItems[0].Tag);
+                    list.Remove((GXDLMSNeighbourTable)NeighbourTable.SelectedItems[0].Tag);
                     NeighbourTable.Items.Remove(NeighbourTable.SelectedItems[0]);
                     errorProvider1.SetError(NeighbourTable, Properties.Resources.ValueChangedTxt);
                 }

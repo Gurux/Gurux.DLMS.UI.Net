@@ -40,20 +40,31 @@ namespace Gurux.DLMS.UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
             this.DisableDefaultRoutingCB = new System.Windows.Forms.CheckBox();
             this.DeviceTypeLbl = new System.Windows.Forms.Label();
+            this.CoordShortAddressTb = new Gurux.DLMS.UI.GXValueField();
             this.CoordShortAddressLbl = new System.Windows.Forms.Label();
+            this.MetricTypeTb = new Gurux.DLMS.UI.GXValueField();
             this.MetricTypeLbl = new System.Windows.Forms.Label();
+            this.ActiveKeyIndexTb = new Gurux.DLMS.UI.GXValueField();
             this.ActiveKeyIndexLbl = new System.Windows.Forms.Label();
+            this.PathDiscoveryTimeTb = new Gurux.DLMS.UI.GXValueField();
             this.PathDiscoveryTimeLbl = new System.Windows.Forms.Label();
+            this.MaxJoinWaitTimeTB = new Gurux.DLMS.UI.GXValueField();
             this.MaxJoinWaitTimeLbl = new System.Windows.Forms.Label();
+            this.BroadcastLogTableEntryTtlTb = new Gurux.DLMS.UI.GXValueField();
             this.BroadcastLogTableEntryTtlLbl = new System.Windows.Forms.Label();
+            this.SecurityLevelTb = new Gurux.DLMS.UI.GXValueField();
             this.SecurityLevelLbl = new System.Windows.Forms.Label();
+            this.WeakLqiValueTb = new Gurux.DLMS.UI.GXValueField();
             this.WeakLqiValueLbl = new System.Windows.Forms.Label();
+            this.MaxHopsTb = new Gurux.DLMS.UI.GXValueField();
             this.MaxHopsLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.PrefixTable = new System.Windows.Forms.ListView();
@@ -67,6 +78,16 @@ namespace Gurux.DLMS.UI
             this.RoutingTableEntryTtlHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KrHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KmHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KcHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KqHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KhHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KrtHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RreqRetriesHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RreqRerrWaitHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BlacklistTableEntryTtlHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UnicastRreqGenEnableHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RlcEnabledHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AddRevLinkCostHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NeighbourTableRemoveTbBtn = new System.Windows.Forms.Button();
             this.NeighbourTableAddBtn = new System.Windows.Forms.Button();
             this.NeighbourTableEditBtn = new System.Windows.Forms.Button();
@@ -82,50 +103,30 @@ namespace Gurux.DLMS.UI
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.RoutingMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.RoutingAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.RoutingEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.RoutingRemove = new System.Windows.Forms.ToolStripMenuItem();
-            this.KcHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KqHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KhHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KrtHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RreqRetriesHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RreqRerrWaitHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.BlacklistTableEntryTtlHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UnicastRreqGenEnableHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RlcEnabledHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AddRevLinkCostHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ContextInformation = new System.Windows.Forms.ListView();
             this.CIDHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ContextHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CompressionHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ValidLifetimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.BlackList = new System.Windows.Forms.ListView();
             this.NeighbourAddressHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ValidTimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage7 = new System.Windows.Forms.TabPage();
             this.BroadcastLog = new System.Windows.Forms.ListView();
             this.SourceAddressHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SequenceNumberHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ValidTimeHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.GroupTable = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
-            this.CoordShortAddressTb = new Gurux.DLMS.UI.GXValueField();
-            this.MetricTypeTb = new Gurux.DLMS.UI.GXValueField();
-            this.ActiveKeyIndexTb = new Gurux.DLMS.UI.GXValueField();
-            this.PathDiscoveryTimeTb = new Gurux.DLMS.UI.GXValueField();
-            this.MaxJoinWaitTimeTB = new Gurux.DLMS.UI.GXValueField();
-            this.BroadcastLogTableEntryTtlTb = new Gurux.DLMS.UI.GXValueField();
-            this.SecurityLevelTb = new Gurux.DLMS.UI.GXValueField();
-            this.WeakLqiValueTb = new Gurux.DLMS.UI.GXValueField();
-            this.MaxHopsTb = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
+            this.RoutingMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RoutingAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.RoutingEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.RoutingRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefaultCoordRouteEnabledCb = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -174,6 +175,18 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.Size = new System.Drawing.Size(571, 20);
             this.DescriptionTB.TabIndex = 4;
             // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(570, 20);
+            this.LogicalNameTB.TabIndex = 1;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // LogicalNameLbl
             // 
             this.LogicalNameLbl.AutoSize = true;
@@ -210,6 +223,7 @@ namespace Gurux.DLMS.UI
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.DefaultCoordRouteEnabledCb);
             this.tabPage1.Controls.Add(this.gxValueField1);
             this.tabPage1.Controls.Add(this.DisableDefaultRoutingCB);
             this.tabPage1.Controls.Add(this.DeviceTypeLbl);
@@ -239,6 +253,16 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // gxValueField1
+            // 
+            this.gxValueField1.Index = 19;
+            this.gxValueField1.Location = new System.Drawing.Point(111, 141);
+            this.gxValueField1.Name = "gxValueField1";
+            this.gxValueField1.NotifyChanges = false;
+            this.gxValueField1.Size = new System.Drawing.Size(104, 112);
+            this.gxValueField1.TabIndex = 10;
+            this.gxValueField1.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
+            // 
             // DisableDefaultRoutingCB
             // 
             this.DisableDefaultRoutingCB.AutoSize = true;
@@ -259,6 +283,19 @@ namespace Gurux.DLMS.UI
             this.DeviceTypeLbl.TabIndex = 43;
             this.DeviceTypeLbl.Text = "Device Type:";
             // 
+            // CoordShortAddressTb
+            // 
+            this.CoordShortAddressTb.Index = 17;
+            this.CoordShortAddressTb.Location = new System.Drawing.Point(110, 112);
+            this.CoordShortAddressTb.Name = "CoordShortAddressTb";
+            this.CoordShortAddressTb.NotifyChanges = false;
+            this.CoordShortAddressTb.ReadOnly = true;
+            this.CoordShortAddressTb.Size = new System.Drawing.Size(104, 20);
+            this.CoordShortAddressTb.TabIndex = 8;
+            this.CoordShortAddressTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.CoordShortAddressTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.CoordShortAddressTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // CoordShortAddressLbl
             // 
             this.CoordShortAddressLbl.AutoSize = true;
@@ -267,6 +304,19 @@ namespace Gurux.DLMS.UI
             this.CoordShortAddressLbl.Size = new System.Drawing.Size(78, 13);
             this.CoordShortAddressLbl.TabIndex = 39;
             this.CoordShortAddressLbl.Text = "Coord address:";
+            // 
+            // MetricTypeTb
+            // 
+            this.MetricTypeTb.Index = 16;
+            this.MetricTypeTb.Location = new System.Drawing.Point(353, 87);
+            this.MetricTypeTb.Name = "MetricTypeTb";
+            this.MetricTypeTb.NotifyChanges = false;
+            this.MetricTypeTb.ReadOnly = true;
+            this.MetricTypeTb.Size = new System.Drawing.Size(104, 20);
+            this.MetricTypeTb.TabIndex = 7;
+            this.MetricTypeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.MetricTypeTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MetricTypeTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // MetricTypeLbl
             // 
@@ -277,6 +327,19 @@ namespace Gurux.DLMS.UI
             this.MetricTypeLbl.TabIndex = 37;
             this.MetricTypeLbl.Text = "Metric type:";
             // 
+            // ActiveKeyIndexTb
+            // 
+            this.ActiveKeyIndexTb.Index = 15;
+            this.ActiveKeyIndexTb.Location = new System.Drawing.Point(111, 84);
+            this.ActiveKeyIndexTb.Name = "ActiveKeyIndexTb";
+            this.ActiveKeyIndexTb.NotifyChanges = false;
+            this.ActiveKeyIndexTb.ReadOnly = true;
+            this.ActiveKeyIndexTb.Size = new System.Drawing.Size(104, 20);
+            this.ActiveKeyIndexTb.TabIndex = 6;
+            this.ActiveKeyIndexTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.ActiveKeyIndexTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.ActiveKeyIndexTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // ActiveKeyIndexLbl
             // 
             this.ActiveKeyIndexLbl.AutoSize = true;
@@ -285,6 +348,19 @@ namespace Gurux.DLMS.UI
             this.ActiveKeyIndexLbl.Size = new System.Drawing.Size(89, 13);
             this.ActiveKeyIndexLbl.TabIndex = 35;
             this.ActiveKeyIndexLbl.Text = "Active key Index:";
+            // 
+            // PathDiscoveryTimeTb
+            // 
+            this.PathDiscoveryTimeTb.Index = 14;
+            this.PathDiscoveryTimeTb.Location = new System.Drawing.Point(353, 61);
+            this.PathDiscoveryTimeTb.Name = "PathDiscoveryTimeTb";
+            this.PathDiscoveryTimeTb.NotifyChanges = false;
+            this.PathDiscoveryTimeTb.ReadOnly = true;
+            this.PathDiscoveryTimeTb.Size = new System.Drawing.Size(104, 20);
+            this.PathDiscoveryTimeTb.TabIndex = 5;
+            this.PathDiscoveryTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.PathDiscoveryTimeTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.PathDiscoveryTimeTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // PathDiscoveryTimeLbl
             // 
@@ -295,6 +371,19 @@ namespace Gurux.DLMS.UI
             this.PathDiscoveryTimeLbl.TabIndex = 33;
             this.PathDiscoveryTimeLbl.Text = "Path discovery time:";
             // 
+            // MaxJoinWaitTimeTB
+            // 
+            this.MaxJoinWaitTimeTB.Index = 13;
+            this.MaxJoinWaitTimeTB.Location = new System.Drawing.Point(111, 58);
+            this.MaxJoinWaitTimeTB.Name = "MaxJoinWaitTimeTB";
+            this.MaxJoinWaitTimeTB.NotifyChanges = false;
+            this.MaxJoinWaitTimeTB.ReadOnly = true;
+            this.MaxJoinWaitTimeTB.Size = new System.Drawing.Size(104, 20);
+            this.MaxJoinWaitTimeTB.TabIndex = 4;
+            this.MaxJoinWaitTimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.MaxJoinWaitTimeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MaxJoinWaitTimeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // MaxJoinWaitTimeLbl
             // 
             this.MaxJoinWaitTimeLbl.AutoSize = true;
@@ -303,6 +392,19 @@ namespace Gurux.DLMS.UI
             this.MaxJoinWaitTimeLbl.Size = new System.Drawing.Size(84, 13);
             this.MaxJoinWaitTimeLbl.TabIndex = 31;
             this.MaxJoinWaitTimeLbl.Text = "Max Join WaitT:";
+            // 
+            // BroadcastLogTableEntryTtlTb
+            // 
+            this.BroadcastLogTableEntryTtlTb.Index = 7;
+            this.BroadcastLogTableEntryTtlTb.Location = new System.Drawing.Point(352, 35);
+            this.BroadcastLogTableEntryTtlTb.Name = "BroadcastLogTableEntryTtlTb";
+            this.BroadcastLogTableEntryTtlTb.NotifyChanges = false;
+            this.BroadcastLogTableEntryTtlTb.ReadOnly = true;
+            this.BroadcastLogTableEntryTtlTb.Size = new System.Drawing.Size(104, 20);
+            this.BroadcastLogTableEntryTtlTb.TabIndex = 3;
+            this.BroadcastLogTableEntryTtlTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.BroadcastLogTableEntryTtlTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.BroadcastLogTableEntryTtlTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // BroadcastLogTableEntryTtlLbl
             // 
@@ -313,6 +415,19 @@ namespace Gurux.DLMS.UI
             this.BroadcastLogTableEntryTtlLbl.TabIndex = 29;
             this.BroadcastLogTableEntryTtlLbl.Text = "Broadcast Log TTL:";
             // 
+            // SecurityLevelTb
+            // 
+            this.SecurityLevelTb.Index = 4;
+            this.SecurityLevelTb.Location = new System.Drawing.Point(110, 32);
+            this.SecurityLevelTb.Name = "SecurityLevelTb";
+            this.SecurityLevelTb.NotifyChanges = false;
+            this.SecurityLevelTb.ReadOnly = true;
+            this.SecurityLevelTb.Size = new System.Drawing.Size(104, 20);
+            this.SecurityLevelTb.TabIndex = 2;
+            this.SecurityLevelTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.SecurityLevelTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.SecurityLevelTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // SecurityLevelLbl
             // 
             this.SecurityLevelLbl.AutoSize = true;
@@ -322,6 +437,19 @@ namespace Gurux.DLMS.UI
             this.SecurityLevelLbl.TabIndex = 27;
             this.SecurityLevelLbl.Text = "Security Level:";
             // 
+            // WeakLqiValueTb
+            // 
+            this.WeakLqiValueTb.Index = 3;
+            this.WeakLqiValueTb.Location = new System.Drawing.Point(352, 9);
+            this.WeakLqiValueTb.Name = "WeakLqiValueTb";
+            this.WeakLqiValueTb.NotifyChanges = false;
+            this.WeakLqiValueTb.ReadOnly = true;
+            this.WeakLqiValueTb.Size = new System.Drawing.Size(104, 20);
+            this.WeakLqiValueTb.TabIndex = 1;
+            this.WeakLqiValueTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.WeakLqiValueTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.WeakLqiValueTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
+            // 
             // WeakLqiValueLbl
             // 
             this.WeakLqiValueLbl.AutoSize = true;
@@ -330,6 +458,19 @@ namespace Gurux.DLMS.UI
             this.WeakLqiValueLbl.Size = new System.Drawing.Size(89, 13);
             this.WeakLqiValueLbl.TabIndex = 25;
             this.WeakLqiValueLbl.Text = "Weak LQI Value:";
+            // 
+            // MaxHopsTb
+            // 
+            this.MaxHopsTb.Index = 2;
+            this.MaxHopsTb.Location = new System.Drawing.Point(110, 6);
+            this.MaxHopsTb.Name = "MaxHopsTb";
+            this.MaxHopsTb.NotifyChanges = false;
+            this.MaxHopsTb.ReadOnly = true;
+            this.MaxHopsTb.Size = new System.Drawing.Size(104, 20);
+            this.MaxHopsTb.TabIndex = 0;
+            this.MaxHopsTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            this.MaxHopsTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
+            this.MaxHopsTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
             // 
             // MaxHopsLbl
             // 
@@ -362,6 +503,7 @@ namespace Gurux.DLMS.UI
             this.PrefixHeader});
             this.PrefixTable.FullRowSelect = true;
             this.PrefixTable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.PrefixTable.HideSelection = false;
             this.PrefixTable.Location = new System.Drawing.Point(3, 3);
             this.PrefixTable.Name = "PrefixTable";
             this.PrefixTable.Size = new System.Drawing.Size(659, 349);
@@ -438,6 +580,7 @@ namespace Gurux.DLMS.UI
             this.AddRevLinkCostHeader});
             this.RoutingConfiguration.FullRowSelect = true;
             this.RoutingConfiguration.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.RoutingConfiguration.HideSelection = false;
             this.RoutingConfiguration.Location = new System.Drawing.Point(0, 0);
             this.RoutingConfiguration.Name = "RoutingConfiguration";
             this.RoutingConfiguration.Size = new System.Drawing.Size(662, 349);
@@ -464,6 +607,53 @@ namespace Gurux.DLMS.UI
             // 
             this.KmHeader.Text = "Km";
             this.KmHeader.Width = 33;
+            // 
+            // KcHeader
+            // 
+            this.KcHeader.Text = "Kc";
+            this.KcHeader.Width = 42;
+            // 
+            // KqHeader
+            // 
+            this.KqHeader.Text = "Kq";
+            this.KqHeader.Width = 38;
+            // 
+            // KhHeader
+            // 
+            this.KhHeader.Text = "Kh";
+            this.KhHeader.Width = 39;
+            // 
+            // KrtHeader
+            // 
+            this.KrtHeader.Text = "Krt";
+            this.KrtHeader.Width = 38;
+            // 
+            // RreqRetriesHeader
+            // 
+            this.RreqRetriesHeader.Text = "Rreq Retries";
+            this.RreqRetriesHeader.Width = 79;
+            // 
+            // RreqRerrWaitHeader
+            // 
+            this.RreqRerrWaitHeader.Text = "Rreq Rerr Wait";
+            this.RreqRerrWaitHeader.Width = 88;
+            // 
+            // BlacklistTableEntryTtlHeader
+            // 
+            this.BlacklistTableEntryTtlHeader.Text = "Black list TTL";
+            this.BlacklistTableEntryTtlHeader.Width = 92;
+            // 
+            // UnicastRreqGenEnableHeader
+            // 
+            this.UnicastRreqGenEnableHeader.Text = "Unicast Rreq Gen Enable";
+            // 
+            // RlcEnabledHeader
+            // 
+            this.RlcEnabledHeader.Text = "Rlc Enabled";
+            // 
+            // AddRevLinkCostHeader
+            // 
+            this.AddRevLinkCostHeader.Text = "Add Rev Link Cost";
             // 
             // NeighbourTableRemoveTbBtn
             // 
@@ -551,6 +741,7 @@ namespace Gurux.DLMS.UI
             this.columnHeader6});
             this.Routing.FullRowSelect = true;
             this.Routing.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.Routing.HideSelection = false;
             this.Routing.Location = new System.Drawing.Point(0, 0);
             this.Routing.Name = "Routing";
             this.Routing.Size = new System.Drawing.Size(662, 349);
@@ -598,6 +789,45 @@ namespace Gurux.DLMS.UI
             this.tabPage5.Text = "Context information";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // ContextInformation
+            // 
+            this.ContextInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContextInformation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.CIDHeader,
+            this.ContextHeader,
+            this.CompressionHeader9,
+            this.ValidLifetimeHeader});
+            this.ContextInformation.FullRowSelect = true;
+            this.ContextInformation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.ContextInformation.HideSelection = false;
+            this.ContextInformation.Location = new System.Drawing.Point(0, 0);
+            this.ContextInformation.Name = "ContextInformation";
+            this.ContextInformation.Size = new System.Drawing.Size(662, 349);
+            this.ContextInformation.TabIndex = 10;
+            this.ContextInformation.UseCompatibleStateImageBehavior = false;
+            this.ContextInformation.View = System.Windows.Forms.View.Details;
+            // 
+            // CIDHeader
+            // 
+            this.CIDHeader.Text = "CID";
+            this.CIDHeader.Width = 74;
+            // 
+            // ContextHeader
+            // 
+            this.ContextHeader.Text = "Context";
+            this.ContextHeader.Width = 89;
+            // 
+            // CompressionHeader9
+            // 
+            this.CompressionHeader9.Text = "Compression";
+            this.CompressionHeader9.Width = 84;
+            // 
+            // ValidLifetimeHeader
+            // 
+            this.ValidLifetimeHeader.Text = "Valid lifetime";
+            this.ValidLifetimeHeader.Width = 79;
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.BlackList);
@@ -607,6 +837,33 @@ namespace Gurux.DLMS.UI
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Blacklist";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // BlackList
+            // 
+            this.BlackList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BlackList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.NeighbourAddressHeader,
+            this.ValidTimeHeader});
+            this.BlackList.FullRowSelect = true;
+            this.BlackList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.BlackList.HideSelection = false;
+            this.BlackList.Location = new System.Drawing.Point(3, 0);
+            this.BlackList.Name = "BlackList";
+            this.BlackList.Size = new System.Drawing.Size(662, 349);
+            this.BlackList.TabIndex = 11;
+            this.BlackList.UseCompatibleStateImageBehavior = false;
+            this.BlackList.View = System.Windows.Forms.View.Details;
+            // 
+            // NeighbourAddressHeader
+            // 
+            this.NeighbourAddressHeader.Text = "Neighbour Address";
+            this.NeighbourAddressHeader.Width = 122;
+            // 
+            // ValidTimeHeader
+            // 
+            this.ValidTimeHeader.Text = "Valid Time";
+            this.ValidTimeHeader.Width = 216;
             // 
             // tabPage7
             // 
@@ -618,6 +875,39 @@ namespace Gurux.DLMS.UI
             this.tabPage7.Text = "Broadcast log";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // BroadcastLog
+            // 
+            this.BroadcastLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BroadcastLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SourceAddressHeader,
+            this.SequenceNumberHeader,
+            this.ValidTimeHeader2});
+            this.BroadcastLog.FullRowSelect = true;
+            this.BroadcastLog.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.BroadcastLog.HideSelection = false;
+            this.BroadcastLog.Location = new System.Drawing.Point(0, 0);
+            this.BroadcastLog.Name = "BroadcastLog";
+            this.BroadcastLog.Size = new System.Drawing.Size(662, 349);
+            this.BroadcastLog.TabIndex = 12;
+            this.BroadcastLog.UseCompatibleStateImageBehavior = false;
+            this.BroadcastLog.View = System.Windows.Forms.View.Details;
+            // 
+            // SourceAddressHeader
+            // 
+            this.SourceAddressHeader.Text = "Source Address";
+            this.SourceAddressHeader.Width = 90;
+            // 
+            // SequenceNumberHeader
+            // 
+            this.SequenceNumberHeader.Text = "Sequence Number";
+            this.SequenceNumberHeader.Width = 109;
+            // 
+            // ValidTimeHeader2
+            // 
+            this.ValidTimeHeader2.Text = "Valid Time";
+            this.ValidTimeHeader2.Width = 95;
+            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.GroupTable);
@@ -627,6 +917,39 @@ namespace Gurux.DLMS.UI
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Group";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // GroupTable
+            // 
+            this.GroupTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupTable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.GroupTable.FullRowSelect = true;
+            this.GroupTable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.GroupTable.HideSelection = false;
+            this.GroupTable.Location = new System.Drawing.Point(2, 0);
+            this.GroupTable.Name = "GroupTable";
+            this.GroupTable.Size = new System.Drawing.Size(662, 349);
+            this.GroupTable.TabIndex = 13;
+            this.GroupTable.UseCompatibleStateImageBehavior = false;
+            this.GroupTable.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Source Address";
+            this.columnHeader7.Width = 90;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Sequence Number";
+            this.columnHeader8.Width = 109;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Valid Time";
+            this.columnHeader9.Width = 95;
             // 
             // RoutingMenu
             // 
@@ -658,309 +981,15 @@ namespace Gurux.DLMS.UI
             this.RoutingRemove.Text = "Remove";
             this.RoutingRemove.Click += new System.EventHandler(this.RoutingRemoveBtn_Click);
             // 
-            // KcHeader
-            // 
-            this.KcHeader.Text = "Kc";
-            this.KcHeader.Width = 42;
-            // 
-            // KqHeader
-            // 
-            this.KqHeader.Text = "Kq";
-            this.KqHeader.Width = 38;
-            // 
-            // KhHeader
-            // 
-            this.KhHeader.Text = "Kh";
-            this.KhHeader.Width = 39;
-            // 
-            // KrtHeader
-            // 
-            this.KrtHeader.Text = "Krt";
-            this.KrtHeader.Width = 38;
-            // 
-            // RreqRetriesHeader
-            // 
-            this.RreqRetriesHeader.Text = "Rreq Retries";
-            this.RreqRetriesHeader.Width = 79;
-            // 
-            // RreqRerrWaitHeader
-            // 
-            this.RreqRerrWaitHeader.Text = "Rreq Rerr Wait";
-            this.RreqRerrWaitHeader.Width = 88;
-            // 
-            // BlacklistTableEntryTtlHeader
-            // 
-            this.BlacklistTableEntryTtlHeader.Text = "Black list TTL";
-            this.BlacklistTableEntryTtlHeader.Width = 92;
-            // 
-            // UnicastRreqGenEnableHeader
-            // 
-            this.UnicastRreqGenEnableHeader.Text = "Unicast Rreq Gen Enable";
-            // 
-            // RlcEnabledHeader
-            // 
-            this.RlcEnabledHeader.Text = "Rlc Enabled";
-            // 
-            // AddRevLinkCostHeader
-            // 
-            this.AddRevLinkCostHeader.Text = "Add Rev Link Cost";
-            // 
-            // ContextInformation
-            // 
-            this.ContextInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContextInformation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CIDHeader,
-            this.ContextHeader,
-            this.CompressionHeader9,
-            this.ValidLifetimeHeader});
-            this.ContextInformation.FullRowSelect = true;
-            this.ContextInformation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.ContextInformation.Location = new System.Drawing.Point(0, 0);
-            this.ContextInformation.Name = "ContextInformation";
-            this.ContextInformation.Size = new System.Drawing.Size(662, 349);
-            this.ContextInformation.TabIndex = 10;
-            this.ContextInformation.UseCompatibleStateImageBehavior = false;
-            this.ContextInformation.View = System.Windows.Forms.View.Details;
-            // 
-            // CIDHeader
-            // 
-            this.CIDHeader.Text = "CID";
-            this.CIDHeader.Width = 74;
-            // 
-            // ContextHeader
-            // 
-            this.ContextHeader.Text = "Context";
-            this.ContextHeader.Width = 89;
-            // 
-            // CompressionHeader9
-            // 
-            this.CompressionHeader9.Text = "Compression";
-            this.CompressionHeader9.Width = 84;
-            // 
-            // ValidLifetimeHeader
-            // 
-            this.ValidLifetimeHeader.Text = "Valid lifetime";
-            this.ValidLifetimeHeader.Width = 79;
-            // 
-            // BlackList
-            // 
-            this.BlackList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BlackList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.NeighbourAddressHeader,
-            this.ValidTimeHeader});
-            this.BlackList.FullRowSelect = true;
-            this.BlackList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.BlackList.Location = new System.Drawing.Point(3, 0);
-            this.BlackList.Name = "BlackList";
-            this.BlackList.Size = new System.Drawing.Size(662, 349);
-            this.BlackList.TabIndex = 11;
-            this.BlackList.UseCompatibleStateImageBehavior = false;
-            this.BlackList.View = System.Windows.Forms.View.Details;
-            // 
-            // NeighbourAddressHeader
-            // 
-            this.NeighbourAddressHeader.Text = "Neighbour Address";
-            this.NeighbourAddressHeader.Width = 122;
-            // 
-            // ValidTimeHeader
-            // 
-            this.ValidTimeHeader.Text = "Valid Time";
-            this.ValidTimeHeader.Width = 216;
-            // 
-            // BroadcastLog
-            // 
-            this.BroadcastLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BroadcastLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.SourceAddressHeader,
-            this.SequenceNumberHeader,
-            this.ValidTimeHeader2});
-            this.BroadcastLog.FullRowSelect = true;
-            this.BroadcastLog.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.BroadcastLog.Location = new System.Drawing.Point(0, 0);
-            this.BroadcastLog.Name = "BroadcastLog";
-            this.BroadcastLog.Size = new System.Drawing.Size(662, 349);
-            this.BroadcastLog.TabIndex = 12;
-            this.BroadcastLog.UseCompatibleStateImageBehavior = false;
-            this.BroadcastLog.View = System.Windows.Forms.View.Details;
-            // 
-            // SourceAddressHeader
-            // 
-            this.SourceAddressHeader.Text = "Source Address";
-            this.SourceAddressHeader.Width = 90;
-            // 
-            // SequenceNumberHeader
-            // 
-            this.SequenceNumberHeader.Text = "Sequence Number";
-            this.SequenceNumberHeader.Width = 109;
-            // 
-            // ValidTimeHeader2
-            // 
-            this.ValidTimeHeader2.Text = "Valid Time";
-            this.ValidTimeHeader2.Width = 95;
-            // 
-            // GroupTable
-            // 
-            this.GroupTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupTable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9});
-            this.GroupTable.FullRowSelect = true;
-            this.GroupTable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.GroupTable.Location = new System.Drawing.Point(2, 0);
-            this.GroupTable.Name = "GroupTable";
-            this.GroupTable.Size = new System.Drawing.Size(662, 349);
-            this.GroupTable.TabIndex = 13;
-            this.GroupTable.UseCompatibleStateImageBehavior = false;
-            this.GroupTable.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Source Address";
-            this.columnHeader7.Width = 90;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Sequence Number";
-            this.columnHeader8.Width = 109;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Valid Time";
-            this.columnHeader9.Width = 95;
-            // 
-            // gxValueField1
-            // 
-            this.gxValueField1.Index = 19;
-            this.gxValueField1.Location = new System.Drawing.Point(111, 141);
-            this.gxValueField1.Name = "gxValueField1";
-            this.gxValueField1.ReadOnly = true;
-            this.gxValueField1.Size = new System.Drawing.Size(104, 112);
-            this.gxValueField1.TabIndex = 10;
-            this.gxValueField1.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
-            // 
-            // CoordShortAddressTb
-            // 
-            this.CoordShortAddressTb.Index = 17;
-            this.CoordShortAddressTb.Location = new System.Drawing.Point(110, 112);
-            this.CoordShortAddressTb.Name = "CoordShortAddressTb";
-            this.CoordShortAddressTb.ReadOnly = true;
-            this.CoordShortAddressTb.Size = new System.Drawing.Size(104, 20);
-            this.CoordShortAddressTb.TabIndex = 8;
-            this.CoordShortAddressTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.CoordShortAddressTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.CoordShortAddressTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MetricTypeTb
-            // 
-            this.MetricTypeTb.Index = 16;
-            this.MetricTypeTb.Location = new System.Drawing.Point(353, 87);
-            this.MetricTypeTb.Name = "MetricTypeTb";
-            this.MetricTypeTb.ReadOnly = true;
-            this.MetricTypeTb.Size = new System.Drawing.Size(104, 20);
-            this.MetricTypeTb.TabIndex = 7;
-            this.MetricTypeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.MetricTypeTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MetricTypeTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // ActiveKeyIndexTb
-            // 
-            this.ActiveKeyIndexTb.Index = 15;
-            this.ActiveKeyIndexTb.Location = new System.Drawing.Point(111, 84);
-            this.ActiveKeyIndexTb.Name = "ActiveKeyIndexTb";
-            this.ActiveKeyIndexTb.ReadOnly = true;
-            this.ActiveKeyIndexTb.Size = new System.Drawing.Size(104, 20);
-            this.ActiveKeyIndexTb.TabIndex = 6;
-            this.ActiveKeyIndexTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.ActiveKeyIndexTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.ActiveKeyIndexTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // PathDiscoveryTimeTb
-            // 
-            this.PathDiscoveryTimeTb.Index = 14;
-            this.PathDiscoveryTimeTb.Location = new System.Drawing.Point(353, 61);
-            this.PathDiscoveryTimeTb.Name = "PathDiscoveryTimeTb";
-            this.PathDiscoveryTimeTb.ReadOnly = true;
-            this.PathDiscoveryTimeTb.Size = new System.Drawing.Size(104, 20);
-            this.PathDiscoveryTimeTb.TabIndex = 5;
-            this.PathDiscoveryTimeTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.PathDiscoveryTimeTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.PathDiscoveryTimeTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MaxJoinWaitTimeTB
-            // 
-            this.MaxJoinWaitTimeTB.Index = 13;
-            this.MaxJoinWaitTimeTB.Location = new System.Drawing.Point(111, 58);
-            this.MaxJoinWaitTimeTB.Name = "MaxJoinWaitTimeTB";
-            this.MaxJoinWaitTimeTB.ReadOnly = true;
-            this.MaxJoinWaitTimeTB.Size = new System.Drawing.Size(104, 20);
-            this.MaxJoinWaitTimeTB.TabIndex = 4;
-            this.MaxJoinWaitTimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.MaxJoinWaitTimeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MaxJoinWaitTimeTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // BroadcastLogTableEntryTtlTb
-            // 
-            this.BroadcastLogTableEntryTtlTb.Index = 7;
-            this.BroadcastLogTableEntryTtlTb.Location = new System.Drawing.Point(352, 35);
-            this.BroadcastLogTableEntryTtlTb.Name = "BroadcastLogTableEntryTtlTb";
-            this.BroadcastLogTableEntryTtlTb.ReadOnly = true;
-            this.BroadcastLogTableEntryTtlTb.Size = new System.Drawing.Size(104, 20);
-            this.BroadcastLogTableEntryTtlTb.TabIndex = 3;
-            this.BroadcastLogTableEntryTtlTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.BroadcastLogTableEntryTtlTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.BroadcastLogTableEntryTtlTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // SecurityLevelTb
-            // 
-            this.SecurityLevelTb.Index = 4;
-            this.SecurityLevelTb.Location = new System.Drawing.Point(110, 32);
-            this.SecurityLevelTb.Name = "SecurityLevelTb";
-            this.SecurityLevelTb.ReadOnly = true;
-            this.SecurityLevelTb.Size = new System.Drawing.Size(104, 20);
-            this.SecurityLevelTb.TabIndex = 2;
-            this.SecurityLevelTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.SecurityLevelTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.SecurityLevelTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // WeakLqiValueTb
-            // 
-            this.WeakLqiValueTb.Index = 3;
-            this.WeakLqiValueTb.Location = new System.Drawing.Point(352, 9);
-            this.WeakLqiValueTb.Name = "WeakLqiValueTb";
-            this.WeakLqiValueTb.ReadOnly = true;
-            this.WeakLqiValueTb.Size = new System.Drawing.Size(104, 20);
-            this.WeakLqiValueTb.TabIndex = 1;
-            this.WeakLqiValueTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.WeakLqiValueTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.WeakLqiValueTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // MaxHopsTb
-            // 
-            this.MaxHopsTb.Index = 2;
-            this.MaxHopsTb.Location = new System.Drawing.Point(110, 6);
-            this.MaxHopsTb.Name = "MaxHopsTb";
-            this.MaxHopsTb.ReadOnly = true;
-            this.MaxHopsTb.Size = new System.Drawing.Size(104, 20);
-            this.MaxHopsTb.TabIndex = 0;
-            this.MaxHopsTb.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            this.MaxHopsTb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTB_KeyPress);
-            this.MaxHopsTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ValueTB_KeyUp);
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(103, 45);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.Size = new System.Drawing.Size(570, 20);
-            this.LogicalNameTB.TabIndex = 1;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // DefaultCoordRouteEnabledCb
+            // 
+            this.DefaultCoordRouteEnabledCb.AutoSize = true;
+            this.DefaultCoordRouteEnabledCb.Location = new System.Drawing.Point(245, 141);
+            this.DefaultCoordRouteEnabledCb.Name = "DefaultCoordRouteEnabledCb";
+            this.DefaultCoordRouteEnabledCb.Size = new System.Drawing.Size(158, 17);
+            this.DefaultCoordRouteEnabledCb.TabIndex = 44;
+            this.DefaultCoordRouteEnabledCb.Text = "Default coord route enabled";
+            this.DefaultCoordRouteEnabledCb.UseVisualStyleBackColor = true;
             // 
             // GXDLMSG3Plc6LoWPanView
             // 
@@ -1072,5 +1101,6 @@ namespace Gurux.DLMS.UI
         private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
+        private CheckBox DefaultCoordRouteEnabledCb;
     }
 }

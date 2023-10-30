@@ -46,31 +46,7 @@ using System.Xml;
 using System.Linq;
 
 namespace Gurux.DLMS.UI
-{
-    internal class LogicalName
-    {
-        readonly string logicalName;
-        public LogicalName(string value)
-        {
-            logicalName = value;
-        }
-        public static implicit operator string(LogicalName value)
-        {
-            return value.logicalName;
-        }
-        public static implicit operator LogicalName(string value)
-        {
-            return new LogicalName(value);
-        }
-
-        public override string ToString()
-        {
-            return logicalName;
-        }
-    }
-
-    delegate void UpdateValueItemsEventHandler(GXDLMSObject target, int index, object value);
-
+{   
     public partial class GXValueField : UserControl
     {
         bool dirty;

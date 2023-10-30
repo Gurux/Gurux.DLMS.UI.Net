@@ -69,6 +69,7 @@ namespace Gurux.DLMS.UI
             this.checkedlistBox1 = new System.Windows.Forms.CheckedListBox();
             this.bitString = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.bitPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,20 +103,13 @@ namespace Gurux.DLMS.UI
             // 
             // bitPanel
             // 
-            this.bitPanel.Location = new System.Drawing.Point(0, 0);
+            this.bitPanel.Controls.Add(this.checkedlistBox1);
+            this.bitPanel.Controls.Add(this.bitString);
             this.bitPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bitPanel.Location = new System.Drawing.Point(0, 0);
             this.bitPanel.Name = "bitPanel";
-            this.bitPanel.Size = new System.Drawing.Size(194, 20);
+            this.bitPanel.Size = new System.Drawing.Size(194, 22);
             this.bitPanel.TabIndex = 3;
-
-            // 
-            // bitstring
-            // 
-            this.bitString.Location = new System.Drawing.Point(0, 0);
-            this.bitString.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bitString.Name = "bitstring";
-            this.bitString.Size = new System.Drawing.Size(194, 20);
-            this.bitString.TabIndex = 3;
             // 
             // checkedlistBox1
             // 
@@ -123,9 +117,17 @@ namespace Gurux.DLMS.UI
             this.checkedlistBox1.FormattingEnabled = true;
             this.checkedlistBox1.Location = new System.Drawing.Point(0, 0);
             this.checkedlistBox1.Name = "checkedlistBox1";
-            this.checkedlistBox1.Size = new System.Drawing.Size(194, 22);
+            this.checkedlistBox1.Size = new System.Drawing.Size(194, 2);
             this.checkedlistBox1.TabIndex = 0;
             this.checkedlistBox1.Visible = false;
+            // 
+            // bitString
+            // 
+            this.bitString.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bitString.Location = new System.Drawing.Point(0, 2);
+            this.bitString.Name = "bitString";
+            this.bitString.Size = new System.Drawing.Size(194, 20);
+            this.bitString.TabIndex = 3;
             // 
             // dataGridView1
             // 
@@ -135,15 +137,6 @@ namespace Gurux.DLMS.UI
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(194, 22);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.CellFormatting += DataGridView1_CellFormatting;
-            this.dataGridView1.CellParsing += DataGridView1_CellParsing;
-            this.dataGridView1.RowsRemoved += DataGridView1_RowsRemoved;
-            this.dataGridView1.RowsAdded += DataGridView1_RowsAdded;
-            dataGridView1.DataError += DataGridView1_DataError;
-
-            this.bitPanel.Controls.Add(this.checkedlistBox1);
-            this.bitPanel.Controls.Add(this.bitString);
             // 
             // GXValueField
             // 
@@ -156,6 +149,7 @@ namespace Gurux.DLMS.UI
             this.Controls.Add(this.dataGridView1);
             this.Name = "GXValueField";
             this.Size = new System.Drawing.Size(194, 22);
+            this.bitPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

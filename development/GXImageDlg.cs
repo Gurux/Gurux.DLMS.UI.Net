@@ -175,7 +175,7 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
-        /// Try to get identification from xml file.
+        /// Try to get image from xml file.
         /// </summary>
         /// <param name="nodes">XML nodes.</param>
         /// <returns>Found dentification.</returns>

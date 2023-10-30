@@ -92,7 +92,7 @@ namespace Gurux.DLMS.UI
                 li.SubItems.Add(item.Kh.ToString());
                 li.SubItems.Add(item.Krt.ToString());
                 li.SubItems.Add(item.RreqRetries.ToString());
-                li.SubItems.Add(item.RreqRerrWait.ToString());
+                li.SubItems.Add(item.RreqReqWait.ToString());
                 li.SubItems.Add(item.BlacklistTableEntryTtl.ToString());
                 li.SubItems.Add(item.UnicastRreqGenEnable.ToString());
                 li.SubItems.Add(item.RlcEnabled.ToString());
@@ -206,6 +206,11 @@ namespace Gurux.DLMS.UI
                     DisableDefaultRoutingCB.Checked = target.DisableDefaultRouting;
                     DisableDefaultRoutingCB.CheckedChanged += new System.EventHandler(this.DisableDefaultRoutingCB_CheckedChanged);
                     break;
+                case 20:
+                    DefaultCoordRouteEnabledCb.Checked = target.DefaultCoordRouteEnabled;
+                    break;
+                case 21:
+                    break;
                 default:
                     throw new IndexOutOfRangeException("index");
             }
@@ -263,6 +268,8 @@ namespace Gurux.DLMS.UI
                 case 11:
                 case 12:
                 case 18:
+                case 20:
+                case 21:
                     break;
                 default:
                     throw new IndexOutOfRangeException("index");
