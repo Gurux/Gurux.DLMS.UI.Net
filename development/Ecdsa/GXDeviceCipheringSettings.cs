@@ -752,6 +752,19 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
         }
 
+
+        bool IsHex(int len)
+        {            
+            return (SecuritySuite != SecuritySuite.Suite2 && len == 32)
+                || SecuritySuite == SecuritySuite.Suite2 && len == 64;
+        }
+
+        bool IsAscii(int len)
+        {
+            return (SecuritySuite != SecuritySuite.Suite2 && len == 16)
+                || SecuritySuite == SecuritySuite.Suite2 && len == 32;
+        }
+
         private void BlockCipherKeyTB_Leave(object sender, EventArgs e)
         {
             try
@@ -759,14 +772,14 @@ namespace Gurux.DLMS.UI.Ecdsa
                 int len = BlockCipherKeyTB.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
-                    if (len == 32)
+                    if (IsHex(len))
                     {
                         if (BlockCipherKeyAscii)
                         {
                             BlockCipherKeyAscii = false;
                         }
                     }
-                    else if (len == 16)
+                    else if (IsAscii(len))
                     {
                         if (!BlockCipherKeyAscii)
                         {
@@ -794,14 +807,14 @@ namespace Gurux.DLMS.UI.Ecdsa
                 int len = DedicatedKeyTb.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
-                    if (len == 32)
+                    if (IsHex(len))
                     {
                         if (DedicatedKeyAscii)
                         {
                             DedicatedKeyAscii = false;
                         }
                     }
-                    else if (len == 16)
+                    else if (IsAscii(len))
                     {
                         if (!DedicatedKeyAscii)
                         {
@@ -1249,14 +1262,14 @@ namespace Gurux.DLMS.UI.Ecdsa
                 int len = AuthenticationKeyTB.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
-                    if (len == 32)
+                    if (IsHex(len))
                     {
                         if (AuthenticationKeyAscii)
                         {
                             AuthenticationKeyAscii = false;
                         }
                     }
-                    else if (len == 16)
+                    else if (IsAscii(len))
                     {
                         if (!AuthenticationKeyAscii)
                         {

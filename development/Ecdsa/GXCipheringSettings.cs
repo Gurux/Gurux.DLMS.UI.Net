@@ -926,6 +926,18 @@ namespace Gurux.DLMS.UI.Ecdsa
                 ShowInfo(Parent, v);
             }
         }
+        bool IsHex(int len)
+        {
+            return (SecuritySuite != SecuritySuite.Suite2 && len == 32)
+                || SecuritySuite == SecuritySuite.Suite2 && len == 64;
+        }
+
+        bool IsAscii(int len)
+        {
+            return (SecuritySuite != SecuritySuite.Suite2 && len == 16)
+                || SecuritySuite == SecuritySuite.Suite2 && len == 32;
+        }
+
 
         private void BlockCipherKeyTB_Leave(object sender, EventArgs e)
         {
@@ -934,7 +946,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 int len = BlockCipherKeyTB.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
-                    if (len == 32)
+                    if (IsHex(len))
                     {
                         if (BlockCipherKeyAsciiCb.Checked)
                         {
@@ -943,7 +955,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                             BlockCipherKeyAsciiCb.CheckedChanged += BlockCipherKeyAsciiCb_CheckedChanged;
                         }
                     }
-                    else if (len == 16)
+                    else if (IsAscii(len))
                     {
                         if (!BlockCipherKeyAsciiCb.Checked)
                         {
@@ -972,7 +984,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 int len = AuthenticationKeyTB.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
-                    if (len == 32)
+                    if (IsHex(len))
                     {
                         if (AuthenticationKey0AsciiCb.Checked)
                         {
@@ -981,7 +993,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                             AuthenticationKey0AsciiCb.CheckedChanged += AuthenticationKeyAsciiCb_CheckedChanged;
                         }
                     }
-                    else if (len == 16)
+                    else if (IsAscii(len))
                     {
                         if (!AuthenticationKey0AsciiCb.Checked)
                         {
@@ -1011,7 +1023,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                 int len = DedicatedKeyTb.Text.Replace(" ", "").Length;
                 if (len != 0)
                 {
-                    if (len == 32)
+                    if (IsHex(len))
                     {
                         if (DedicatedKeyAsciiCb.Checked)
                         {
@@ -1020,7 +1032,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                             DedicatedKeyAsciiCb.CheckedChanged += DedicatedKeyAsciiCb_CheckedChanged;
                         }
                     }
-                    else if (len == 16)
+                    else if (IsAscii(len))
                     {
                         if (!DedicatedKeyAsciiCb.Checked)
                         {
