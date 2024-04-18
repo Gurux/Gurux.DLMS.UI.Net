@@ -176,7 +176,24 @@ namespace Gurux.DLMS.UI.Ecdsa
                             _path = fileName;
                             if (File.Exists(fileName))
                             {
-                                GXx509Certificate cert = GXx509Certificate.Load(fileName);
+                                GXx509Certificate cert;
+                                try
+                                {
+                                    cert = GXx509Certificate.Load(_path);
+                                }
+                                catch (Exception ex)
+                                {
+                                    //Try to load hex cert.
+                                    try
+                                    {
+                                        cert = GXx509Certificate.FromHexString(File.ReadAllText(_path));
+                                        _path = Path.GetFileNameWithoutExtension(fileName) + ".pem";
+                                    }
+                                    catch (Exception)
+                                    {
+                                        throw ex;
+                                    }
+                                }
                                 foreach (ListViewItem it in CertificatesList.Items)
                                 {
                                     if (it.SubItems[1].Text == cert.SerialNumber.ToString())
@@ -185,7 +202,7 @@ namespace Gurux.DLMS.UI.Ecdsa
                                             ". File name:" + Path.GetFileNameWithoutExtension((string)it.Tag));
                                     }
                                 }
-                                string path = Path.Combine(CertificateFolder, Path.GetFileName(fileName));
+                                string path = Path.Combine(CertificateFolder, Path.GetFileName(_path));
                                 cert.Save(path);
                                 AddCertificate(cert, path, null);
                             }
