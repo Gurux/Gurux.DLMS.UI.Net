@@ -33,6 +33,10 @@
             this.SignInitiateRequestResponseCb = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CipheringTab = new System.Windows.Forms.TabPage();
+            this.BroadcastKeyAsciiCb = new System.Windows.Forms.CheckBox();
+            this.BroadcastKeyTb = new System.Windows.Forms.TextBox();
+            this.BroadcastKeyLbl = new System.Windows.Forms.Label();
+            this.IgnoreSNRM = new System.Windows.Forms.CheckBox();
             this.SigningCb = new System.Windows.Forms.ComboBox();
             this.SigningLbl = new System.Windows.Forms.Label();
             this.ServerSystemTitleTb = new System.Windows.Forms.TextBox();
@@ -78,7 +82,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.IgnoreSNRM = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.CipheringTab.SuspendLayout();
             this.CipheringV0Tab.SuspendLayout();
@@ -119,6 +122,9 @@
             // 
             // CipheringTab
             // 
+            this.CipheringTab.Controls.Add(this.BroadcastKeyAsciiCb);
+            this.CipheringTab.Controls.Add(this.BroadcastKeyTb);
+            this.CipheringTab.Controls.Add(this.BroadcastKeyLbl);
             this.CipheringTab.Controls.Add(this.IgnoreSNRM);
             this.CipheringTab.Controls.Add(this.SigningCb);
             this.CipheringTab.Controls.Add(this.SigningLbl);
@@ -147,10 +153,52 @@
             this.CipheringTab.UseVisualStyleBackColor = true;
             this.CipheringTab.Click += new System.EventHandler(this.CipheringTab_Click);
             // 
+            // BroadcastKeyAsciiCb
+            // 
+            this.BroadcastKeyAsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BroadcastKeyAsciiCb.AutoSize = true;
+            this.BroadcastKeyAsciiCb.Location = new System.Drawing.Point(402, 109);
+            this.BroadcastKeyAsciiCb.Name = "BroadcastKeyAsciiCb";
+            this.BroadcastKeyAsciiCb.Size = new System.Drawing.Size(53, 17);
+            this.BroadcastKeyAsciiCb.TabIndex = 121;
+            this.BroadcastKeyAsciiCb.Text = "ASCII";
+            this.BroadcastKeyAsciiCb.UseVisualStyleBackColor = true;
+            this.BroadcastKeyAsciiCb.CheckedChanged += new System.EventHandler(this.BroadcastKeyAsciiCb_CheckedChanged);
+            // 
+            // BroadcastKeyTb
+            // 
+            this.BroadcastKeyTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BroadcastKeyTb.Location = new System.Drawing.Point(115, 108);
+            this.BroadcastKeyTb.Name = "BroadcastKeyTb";
+            this.BroadcastKeyTb.Size = new System.Drawing.Size(277, 20);
+            this.BroadcastKeyTb.TabIndex = 120;
+            this.BroadcastKeyTb.Leave += new System.EventHandler(this.BroadcastKeyTb_Leave);
+            // 
+            // BroadcastKeyLbl
+            // 
+            this.BroadcastKeyLbl.AutoSize = true;
+            this.BroadcastKeyLbl.Location = new System.Drawing.Point(5, 111);
+            this.BroadcastKeyLbl.Name = "BroadcastKeyLbl";
+            this.BroadcastKeyLbl.Size = new System.Drawing.Size(79, 13);
+            this.BroadcastKeyLbl.TabIndex = 122;
+            this.BroadcastKeyLbl.Text = "Broadcast Key:";
+            // 
+            // IgnoreSNRM
+            // 
+            this.IgnoreSNRM.AutoSize = true;
+            this.IgnoreSNRM.Enabled = false;
+            this.IgnoreSNRM.Location = new System.Drawing.Point(6, 157);
+            this.IgnoreSNRM.Name = "IgnoreSNRM";
+            this.IgnoreSNRM.Size = new System.Drawing.Size(136, 17);
+            this.IgnoreSNRM.TabIndex = 119;
+            this.IgnoreSNRM.Text = "Ignore SNRM message";
+            this.IgnoreSNRM.UseVisualStyleBackColor = true;
+            // 
             // SigningCb
             // 
             this.SigningCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SigningCb.Location = new System.Drawing.Point(367, 105);
+            this.SigningCb.Location = new System.Drawing.Point(368, 134);
             this.SigningCb.Name = "SigningCb";
             this.SigningCb.Size = new System.Drawing.Size(98, 21);
             this.SigningCb.TabIndex = 117;
@@ -159,7 +207,7 @@
             // SigningLbl
             // 
             this.SigningLbl.AutoSize = true;
-            this.SigningLbl.Location = new System.Drawing.Point(310, 107);
+            this.SigningLbl.Location = new System.Drawing.Point(311, 130);
             this.SigningLbl.Name = "SigningLbl";
             this.SigningLbl.Size = new System.Drawing.Size(42, 13);
             this.SigningLbl.TabIndex = 118;
@@ -167,7 +215,7 @@
             // 
             // ServerSystemTitleTb
             // 
-            this.ServerSystemTitleTb.Location = new System.Drawing.Point(161, 106);
+            this.ServerSystemTitleTb.Location = new System.Drawing.Point(162, 135);
             this.ServerSystemTitleTb.Name = "ServerSystemTitleTb";
             this.ServerSystemTitleTb.ReadOnly = true;
             this.ServerSystemTitleTb.Size = new System.Drawing.Size(138, 20);
@@ -177,7 +225,7 @@
             // UsePreEstablishedApplicationAssociations
             // 
             this.UsePreEstablishedApplicationAssociations.AutoSize = true;
-            this.UsePreEstablishedApplicationAssociations.Location = new System.Drawing.Point(5, 108);
+            this.UsePreEstablishedApplicationAssociations.Location = new System.Drawing.Point(6, 137);
             this.UsePreEstablishedApplicationAssociations.Name = "UsePreEstablishedApplicationAssociations";
             this.UsePreEstablishedApplicationAssociations.Size = new System.Drawing.Size(155, 17);
             this.UsePreEstablishedApplicationAssociations.TabIndex = 7;
@@ -330,7 +378,7 @@
             // 
             this.CipheringPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CipheringPanel.Location = new System.Drawing.Point(7, 151);
+            this.CipheringPanel.Location = new System.Drawing.Point(8, 180);
             this.CipheringPanel.Name = "CipheringPanel";
             this.CipheringPanel.Size = new System.Drawing.Size(458, 227);
             this.CipheringPanel.TabIndex = 12;
@@ -615,17 +663,6 @@
             this.UpdateBtn.UseVisualStyleBackColor = true;
             this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
-            // IgnoreSNRM
-            // 
-            this.IgnoreSNRM.AutoSize = true;
-            this.IgnoreSNRM.Enabled = false;
-            this.IgnoreSNRM.Location = new System.Drawing.Point(5, 128);
-            this.IgnoreSNRM.Name = "IgnoreSNRM";
-            this.IgnoreSNRM.Size = new System.Drawing.Size(136, 17);
-            this.IgnoreSNRM.TabIndex = 119;
-            this.IgnoreSNRM.Text = "Ignore SNRM message";
-            this.IgnoreSNRM.UseVisualStyleBackColor = true;
-            // 
             // GXDeviceCipheringSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -703,5 +740,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox SignInitiateRequestResponseCb;
         private System.Windows.Forms.CheckBox IgnoreSNRM;
+        private System.Windows.Forms.CheckBox BroadcastKeyAsciiCb;
+        private System.Windows.Forms.TextBox BroadcastKeyTb;
+        private System.Windows.Forms.Label BroadcastKeyLbl;
     }
 }

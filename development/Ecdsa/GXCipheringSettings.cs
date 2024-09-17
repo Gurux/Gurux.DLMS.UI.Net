@@ -1473,5 +1473,18 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
 
         }
+
+        private void BroadcastKey0AsciiCb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                UpdateValue(BroadcastKeyTb, BroadcastKey0AsciiCb.Checked);
+            }
+            catch (Exception ex)
+            {
+                BroadcastKey0AsciiCb.Checked = !BroadcastKey0AsciiCb.Checked;
+                MessageBox.Show(Parent, ex.Message);
+            }
+        }
     }
 }

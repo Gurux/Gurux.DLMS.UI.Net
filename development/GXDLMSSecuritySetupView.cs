@@ -204,7 +204,7 @@ namespace Gurux.DLMS.UI
                     }
                     GXDLMSCertificateInfo cert = (GXDLMSCertificateInfo)CertificatesLv.SelectedItems[0].Tag;
                     arg.Value = (Target as GXDLMSSecuritySetup).ExportCertificateBySerial(arg.Client, cert.SerialNumber,
-                        ASCIIEncoding.ASCII.GetBytes(cert.Issuer));
+                        cert.IssuerRaw);
                 }
                 else if (arg.Index == 8)
                 {
@@ -214,8 +214,8 @@ namespace Gurux.DLMS.UI
                     }
                     GXDLMSCertificateInfo cert = (GXDLMSCertificateInfo)CertificatesLv.SelectedItems[0].Tag;
                     CertificatesLv.SelectedItems[0].Remove();
-                    arg.Value = (Target as GXDLMSSecuritySetup).RemoveCertificateBySerial(arg.Client, cert.SerialNumber,
-                        ASCIIEncoding.ASCII.GetBytes(cert.Issuer));
+                    arg.Value = (Target as GXDLMSSecuritySetup).RemoveCertificateBySerial(arg.Client, 
+                        cert.SerialNumber, cert.IssuerRaw);
                 }
             }
             catch (Exception ex)

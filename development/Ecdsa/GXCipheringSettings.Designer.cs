@@ -80,6 +80,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.BroadcastKey0AsciiCb = new System.Windows.Forms.CheckBox();
+            this.BroadcastKeyTb = new System.Windows.Forms.TextBox();
+            this.BroadcastKeyLbl = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.CipheringTab.SuspendLayout();
             this.CipheringV0Tab.SuspendLayout();
@@ -108,6 +111,9 @@
             // 
             // CipheringTab
             // 
+            this.CipheringTab.Controls.Add(this.BroadcastKey0AsciiCb);
+            this.CipheringTab.Controls.Add(this.BroadcastKeyTb);
+            this.CipheringTab.Controls.Add(this.BroadcastKeyLbl);
             this.CipheringTab.Controls.Add(this.BlockCipherKeyAsciiCb);
             this.CipheringTab.Controls.Add(this.AuthenticationKey0AsciiCb);
             this.CipheringTab.Controls.Add(this.AuthenticationKeyTB);
@@ -311,9 +317,9 @@
             // 
             this.CipheringPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CipheringPanel.Location = new System.Drawing.Point(3, 188);
+            this.CipheringPanel.Location = new System.Drawing.Point(3, 212);
             this.CipheringPanel.Name = "CipheringPanel";
-            this.CipheringPanel.Size = new System.Drawing.Size(450, 233);
+            this.CipheringPanel.Size = new System.Drawing.Size(450, 209);
             this.CipheringPanel.TabIndex = 5;
             // 
             // CipheringV0Tab
@@ -647,6 +653,36 @@
             this.label3.TabIndex = 86;
             this.label3.Text = "Signing:";
             // 
+            // BroadcastKey0AsciiCb
+            // 
+            this.BroadcastKey0AsciiCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BroadcastKey0AsciiCb.AutoSize = true;
+            this.BroadcastKey0AsciiCb.Location = new System.Drawing.Point(391, 191);
+            this.BroadcastKey0AsciiCb.Name = "BroadcastKey0AsciiCb";
+            this.BroadcastKey0AsciiCb.Size = new System.Drawing.Size(53, 17);
+            this.BroadcastKey0AsciiCb.TabIndex = 113;
+            this.BroadcastKey0AsciiCb.Text = "ASCII";
+            this.BroadcastKey0AsciiCb.UseVisualStyleBackColor = true;
+            this.BroadcastKey0AsciiCb.CheckedChanged += new System.EventHandler(this.BroadcastKey0AsciiCb_CheckedChanged);
+            // 
+            // BroadcastKeyTb
+            // 
+            this.BroadcastKeyTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BroadcastKeyTb.Location = new System.Drawing.Point(108, 188);
+            this.BroadcastKeyTb.Name = "BroadcastKeyTb";
+            this.BroadcastKeyTb.Size = new System.Drawing.Size(277, 20);
+            this.BroadcastKeyTb.TabIndex = 112;
+            // 
+            // BroadcastKeyLbl
+            // 
+            this.BroadcastKeyLbl.AutoSize = true;
+            this.BroadcastKeyLbl.Location = new System.Drawing.Point(3, 191);
+            this.BroadcastKeyLbl.Name = "BroadcastKeyLbl";
+            this.BroadcastKeyLbl.Size = new System.Drawing.Size(79, 13);
+            this.BroadcastKeyLbl.TabIndex = 114;
+            this.BroadcastKeyLbl.Text = "Broadcast Key:";
+            // 
             // GXCipheringSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -724,5 +760,8 @@
         private System.Windows.Forms.TextBox BlockCipherKeyTB;
         private System.Windows.Forms.Label AuthenticationKeyLbl;
         private System.Windows.Forms.Label BlockCipherKeyLbl;
+        private System.Windows.Forms.CheckBox BroadcastKey0AsciiCb;
+        private System.Windows.Forms.TextBox BroadcastKeyTb;
+        private System.Windows.Forms.Label BroadcastKeyLbl;
     }
 }

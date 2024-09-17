@@ -306,6 +306,33 @@ namespace Gurux.DLMS.UI.Ecdsa
             }
         }
 
+        public string BroadcastKey
+        {
+            get
+            {
+                return GetAsHex(BroadcastKeyTb.Text, BroadcastKeyAsciiCb.Checked, false);
+            }
+            set
+            {
+                BroadcastKeyTb.Text = value;
+            }
+        }
+
+        public bool BroadcastKeyAscii
+        {
+            get
+            {
+                return BroadcastKeyAsciiCb.Checked;
+            }
+            set
+            {
+                BroadcastKeyAsciiCb.CheckedChanged -= BroadcastKeyAsciiCb_CheckedChanged;
+                BroadcastKeyAsciiCb.Checked = value;
+                BroadcastKeyAsciiCb.CheckedChanged += BroadcastKeyAsciiCb_CheckedChanged;
+            }
+        }
+
+
         public string DedicatedKey
         {
             get
@@ -590,7 +617,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         private void SecurityCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             Security selected = (Security)SecurityCB.SelectedItem;
-            AuthenticationKeyTB.ReadOnly = BlockCipherKeyTB.ReadOnly = selected == Security.None;
+            BroadcastKeyTb.ReadOnly =  AuthenticationKeyTB.ReadOnly = BlockCipherKeyTB.ReadOnly = selected == Security.None;
         }
 
         /// <summary>
@@ -1342,6 +1369,54 @@ namespace Gurux.DLMS.UI.Ecdsa
                     CipheringPanel.Controls.Add(ctr);
                     ctr.Visible = true;
                 }
+            }
+        }
+
+        private void BroadcastKeyAsciiCb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                UpdateValue(BroadcastKeyTb, BroadcastKeyAsciiCb.Checked);
+            }
+            catch (Exception ex)
+            {
+                BroadcastKeyAscii = !BroadcastKeyAsciiCb.Checked;
+                MessageBox.Show(Parent, ex.Message);
+            }
+        }
+
+        private void BroadcastKeyTb_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int len = BroadcastKeyTb.Text.Replace(" ", "").Length;
+                if (len != 0)
+                {
+                    if (IsHex(len))
+                    {
+                        if (BroadcastKeyAscii)
+                        {
+                            BroadcastKeyAscii = false;
+                        }
+                    }
+                    else if (IsAscii(len))
+                    {
+                        if (!BroadcastKeyAscii)
+                        {
+                            BroadcastKeyAscii = true;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid broadcast key.");
+                    }
+                }
+                GetAsHex(BroadcastKeyTb.Text, BroadcastKeyAsciiCb.Checked, false);
+            }
+            catch (Exception ex)
+            {
+                BroadcastKeyTb.Select();
+                MessageBox.Show(Parent, ex.Message);
             }
         }
     }
