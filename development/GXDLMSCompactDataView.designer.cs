@@ -68,6 +68,7 @@ namespace Gurux.DLMS.UI
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -218,7 +219,8 @@ namespace Gurux.DLMS.UI
             this.CaptureObjectsLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ObjectTypeHeader,
             this.LogicalNameHeader,
-            this.AttributeHeader});
+            this.AttributeHeader,
+            this.dataHeader});
             this.CaptureObjectsLv.FullRowSelect = true;
             this.CaptureObjectsLv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.CaptureObjectsLv.HideSelection = false;
@@ -400,6 +402,11 @@ namespace Gurux.DLMS.UI
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             // 
+            // dataHeader
+            // 
+            this.dataHeader.Text = "Data index:";
+            this.dataHeader.Width = 75;
+            // 
             // GXDLMSCompactDataView
             // 
             this.ClientSize = new System.Drawing.Size(560, 483);
@@ -445,5 +452,6 @@ namespace Gurux.DLMS.UI
         private ToolStripMenuItem removeToolStripMenuItem;
         private TextBox TemplateDescriptionTb;
         private TextBox BufferTb;
+        private ColumnHeader dataHeader;
     }
 }

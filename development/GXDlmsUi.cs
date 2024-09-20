@@ -295,10 +295,18 @@ namespace Gurux.DLMS.UI
                     bool dirty = view.Target.GetDirty(it, out value);
                     value = view.Target.GetValues()[it - 1];
                     GXValueField item = UpdateProperty(view, ((Form)view).Controls, it, value);
-                    if (item == null || item.NotifyChanges)
+                    try
                     {
-                        GXDLMSViewArguments arg = new GXDLMSViewArguments() { Client = client, Index = it, Connected = connected, User = user, Value = value };
-                        view.OnValueChanged(arg);
+                        if (item == null || item.NotifyChanges)
+                        {
+                            GXDLMSViewArguments arg = new GXDLMSViewArguments() { Client = client, Index = it, Connected = connected, User = user, Value = value };
+                            view.OnValueChanged(arg);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(view as Form, ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        return;
                     }
                     if (it == index)
                     {

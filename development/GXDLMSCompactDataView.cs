@@ -398,6 +398,7 @@ namespace Gurux.DLMS.UI
                     ListViewItem li = CaptureObjectsLv.Items.Add(it.Key.ObjectType.ToString());
                     li.SubItems.Add(it.Key.LogicalName);
                     li.SubItems.Add(it.Value.AttributeIndex.ToString());
+                    li.SubItems.Add(it.Value.DataIndex.ToString());
                     li.Tag = it;
                 }
             }
@@ -428,10 +429,7 @@ namespace Gurux.DLMS.UI
                 else
                 {
                     sb.Append("[");
-                    if (!AppendDataType(sb, (IEnumerable<object>)it))
-                    {
-                        sb.Length -= 2;
-                    }
+                    AppendDataType(sb, (IEnumerable<object>)it);
                     sb.Append("], ");
                 }
             }
