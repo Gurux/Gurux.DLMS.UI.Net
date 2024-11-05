@@ -33,12 +33,8 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using Gurux.DLMS;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS.Enums;
 
 namespace Gurux.DLMS.UI
 {
@@ -118,7 +114,7 @@ namespace Gurux.DLMS.UI
             arg.Action = ActionType.None;
         }
 
-        public System.Windows.Forms.ErrorProvider ErrorProvider
+        public ErrorProvider ErrorProvider
         {
             get
             {
@@ -141,6 +137,246 @@ namespace Gurux.DLMS.UI
         {
 
         }
-        #endregion     
+        #endregion
+
+        private void CPrecedenceTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(CPrecedenceTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.DefaultQualityOfService.Precedence != v)
+                {
+                    target.DefaultQualityOfService.Precedence = v;
+                    errorProvider1.SetError(CPrecedenceTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.DefaultQualityOfService.Precedence);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CDelayTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(CDelayTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.DefaultQualityOfService.Delay != v)
+                {
+                    target.DefaultQualityOfService.Delay = v;
+                    errorProvider1.SetError(CDelayTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.DefaultQualityOfService.Delay);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CReliabilityTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(CReliabilityTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.DefaultQualityOfService.Reliability != v)
+                {
+                    target.DefaultQualityOfService.Reliability = v;
+                    errorProvider1.SetError(CReliabilityTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.DefaultQualityOfService.Reliability);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CPeakThroughputTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(CPeakThroughputTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.DefaultQualityOfService.PeakThroughput != v)
+                {
+                    target.DefaultQualityOfService.PeakThroughput = v;
+                    errorProvider1.SetError(CPeakThroughputTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.DefaultQualityOfService.PeakThroughput);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CMeanThroughputTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(CMeanThroughputTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.DefaultQualityOfService.MeanThroughput != v)
+                {
+                    target.DefaultQualityOfService.MeanThroughput = v;
+                    errorProvider1.SetError(CMeanThroughputTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.DefaultQualityOfService.MeanThroughput);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MPrecedenceTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(MPrecedenceTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.RequestedQualityOfService.Precedence != v)
+                {
+                    target.RequestedQualityOfService.Precedence = v;
+                    errorProvider1.SetError(MPrecedenceTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.RequestedQualityOfService.Precedence);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MDelayTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(MDelayTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.RequestedQualityOfService.Delay != v)
+                {
+                    target.RequestedQualityOfService.Delay = v;
+                    errorProvider1.SetError(MDelayTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.RequestedQualityOfService.Delay);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MReliabilityTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(MReliabilityTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.RequestedQualityOfService.Reliability != v)
+                {
+                    target.RequestedQualityOfService.Reliability = v;
+                    errorProvider1.SetError(MReliabilityTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.RequestedQualityOfService.Reliability);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MPeakThroughputTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(MPeakThroughputTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.RequestedQualityOfService.PeakThroughput != v)
+                {
+                    target.RequestedQualityOfService.PeakThroughput = v;
+                    errorProvider1.SetError(MPeakThroughputTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.RequestedQualityOfService.PeakThroughput);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MMeanThroughputTB_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                byte v;
+                if (!byte.TryParse(MMeanThroughputTB.Text, out v))
+                {
+                    throw new Exception("Invalid value.");
+                }
+                GXDLMSGprsSetup target = (GXDLMSGprsSetup)Target;
+                if (target.RequestedQualityOfService.MeanThroughput != v)
+                {
+                    target.RequestedQualityOfService.MeanThroughput = v;
+                    errorProvider1.SetError(MMeanThroughputTB, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(4, target.RequestedQualityOfService.MeanThroughput);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

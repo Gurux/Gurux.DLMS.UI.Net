@@ -135,7 +135,7 @@ namespace Gurux.DLMS.UI
             this.groupBox3.Size = new System.Drawing.Size(296, 142);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Quality of Service";
+            this.groupBox3.Text = "Requested Quality of Service";
             // 
             // MMeanThroughputTB
             // 
@@ -143,6 +143,7 @@ namespace Gurux.DLMS.UI
             this.MMeanThroughputTB.Name = "MMeanThroughputTB";
             this.MMeanThroughputTB.Size = new System.Drawing.Size(168, 20);
             this.MMeanThroughputTB.TabIndex = 16;
+            this.MMeanThroughputTB.Leave += new System.EventHandler(this.MMeanThroughputTB_Leave);
             // 
             // MMeanThroughputLbl
             // 
@@ -159,6 +160,7 @@ namespace Gurux.DLMS.UI
             this.MPeakThroughputTB.Name = "MPeakThroughputTB";
             this.MPeakThroughputTB.Size = new System.Drawing.Size(168, 20);
             this.MPeakThroughputTB.TabIndex = 14;
+            this.MPeakThroughputTB.Leave += new System.EventHandler(this.MPeakThroughputTB_Leave);
             // 
             // MPeakThroughputLbl
             // 
@@ -175,6 +177,7 @@ namespace Gurux.DLMS.UI
             this.MReliabilityTB.Name = "MReliabilityTB";
             this.MReliabilityTB.Size = new System.Drawing.Size(168, 20);
             this.MReliabilityTB.TabIndex = 12;
+            this.MReliabilityTB.Leave += new System.EventHandler(this.MReliabilityTB_Leave);
             // 
             // MReliabilityLbl
             // 
@@ -191,6 +194,7 @@ namespace Gurux.DLMS.UI
             this.MDelayTB.Name = "MDelayTB";
             this.MDelayTB.Size = new System.Drawing.Size(168, 20);
             this.MDelayTB.TabIndex = 10;
+            this.MDelayTB.Leave += new System.EventHandler(this.MDelayTB_Leave);
             // 
             // MDelayLbl
             // 
@@ -207,6 +211,7 @@ namespace Gurux.DLMS.UI
             this.MPrecedenceTB.Name = "MPrecedenceTB";
             this.MPrecedenceTB.Size = new System.Drawing.Size(168, 20);
             this.MPrecedenceTB.TabIndex = 8;
+            this.MPrecedenceTB.Leave += new System.EventHandler(this.MPrecedenceTB_Leave);
             // 
             // MPrecedenceLbl
             // 
@@ -234,7 +239,7 @@ namespace Gurux.DLMS.UI
             this.groupBox2.Size = new System.Drawing.Size(296, 142);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Quality of Service";
+            this.groupBox2.Text = "Default Quality of Service";
             // 
             // CMeanThroughputTB
             // 
@@ -242,6 +247,7 @@ namespace Gurux.DLMS.UI
             this.CMeanThroughputTB.Name = "CMeanThroughputTB";
             this.CMeanThroughputTB.Size = new System.Drawing.Size(168, 20);
             this.CMeanThroughputTB.TabIndex = 16;
+            this.CMeanThroughputTB.Leave += new System.EventHandler(this.CMeanThroughputTB_Leave);
             // 
             // CMeanThroughputLbl
             // 
@@ -258,6 +264,7 @@ namespace Gurux.DLMS.UI
             this.CPeakThroughputTB.Name = "CPeakThroughputTB";
             this.CPeakThroughputTB.Size = new System.Drawing.Size(168, 20);
             this.CPeakThroughputTB.TabIndex = 14;
+            this.CPeakThroughputTB.Leave += new System.EventHandler(this.CPeakThroughputTB_Leave);
             // 
             // CPeakThroughputLbl
             // 
@@ -274,6 +281,7 @@ namespace Gurux.DLMS.UI
             this.CReliabilityTB.Name = "CReliabilityTB";
             this.CReliabilityTB.Size = new System.Drawing.Size(168, 20);
             this.CReliabilityTB.TabIndex = 12;
+            this.CReliabilityTB.Leave += new System.EventHandler(this.CReliabilityTB_Leave);
             // 
             // CReliabilityLbl
             // 
@@ -290,6 +298,7 @@ namespace Gurux.DLMS.UI
             this.CDelayTB.Name = "CDelayTB";
             this.CDelayTB.Size = new System.Drawing.Size(168, 20);
             this.CDelayTB.TabIndex = 10;
+            this.CDelayTB.Leave += new System.EventHandler(this.CDelayTB_Leave);
             // 
             // CDelayLbl
             // 
@@ -306,6 +315,7 @@ namespace Gurux.DLMS.UI
             this.CPrecedenceTB.Name = "CPrecedenceTB";
             this.CPrecedenceTB.Size = new System.Drawing.Size(168, 20);
             this.CPrecedenceTB.TabIndex = 8;
+            this.CPrecedenceTB.Leave += new System.EventHandler(this.CPrecedenceTB_Leave);
             // 
             // CPrecedenceLbl
             // 
