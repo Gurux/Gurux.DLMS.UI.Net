@@ -35,7 +35,6 @@
 using System;
 using System.Windows.Forms;
 using Gurux.DLMS.Objects;
-using Gurux.DLMS.Enums;
 using Gurux.DLMS.Objects.Italy;
 using Gurux.DLMS.Objects.Italy.Enums;
 
@@ -580,23 +579,23 @@ namespace Gurux.DLMS.UI
             {
                 if (sender == WsSiStartHour1Tb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.WorkingDayIntervals[0].StartHour = byte.Parse(WsSiStartHour1Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.SaturdayIntervals[0].StartHour = byte.Parse(WsSiStartHour1Tb.Text);
                 }
                 else if (sender == WsSiStartHour2Tb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.WorkingDayIntervals[1].StartHour = byte.Parse(WsSiStartHour2Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.SaturdayIntervals[1].StartHour = byte.Parse(WsSiStartHour2Tb.Text);
                 }
                 else if (sender == WsSiStartHour3Tb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.WorkingDayIntervals[2].StartHour = byte.Parse(WsSiStartHour3Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.SaturdayIntervals[2].StartHour = byte.Parse(WsSiStartHour3Tb.Text);
                 }
                 else if (sender == WsSiStartHour4Tb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.WorkingDayIntervals[3].StartHour = byte.Parse(WsSiStartHour4Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.SaturdayIntervals[3].StartHour = byte.Parse(WsSiStartHour4Tb.Text);
                 }
                 else if (sender == WsSiStartHour5Tb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.WorkingDayIntervals[4].StartHour = byte.Parse(WsSiStartHour5Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.SaturdayIntervals[4].StartHour = byte.Parse(WsSiStartHour5Tb.Text);
                 }
                 Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.WinterSeason);
                 errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
@@ -1085,25 +1084,25 @@ namespace Gurux.DLMS.UI
                 }
                 else if (sender == SSSiStartHour2Tb && SSSiStartHour2Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[0].StartHour = byte.Parse(SSSiStartHour2Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[1].StartHour = byte.Parse(SSSiStartHour2Tb.Text);
                     Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.SummerSeason);
                     errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
                 }
                 else if (sender == SSSiStartHour3Tb && SSSiStartHour3Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[0].StartHour = byte.Parse(SSSiStartHour3Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[2].StartHour = byte.Parse(SSSiStartHour3Tb.Text);
                     Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.SummerSeason);
                     errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
                 }
                 else if (sender == SSSiStartHour4Tb && SSSiStartHour4Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[0].StartHour = byte.Parse(SSSiStartHour4Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[3].StartHour = byte.Parse(SSSiStartHour4Tb.Text);
                     Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.SummerSeason);
                     errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
                 }
                 else if (sender == SSSiStartHour5Tb && SSSiStartHour5Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[0].StartHour = byte.Parse(SSSiStartHour5Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.SaturdayIntervals[4].StartHour = byte.Parse(SSSiStartHour5Tb.Text);
                     Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.SummerSeason);
                     errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
                 }
@@ -1133,19 +1132,19 @@ namespace Gurux.DLMS.UI
                 }
                 else if (sender == SSHiStartHour2Tb && SSHiStartHour2Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour2Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[1].StartHour = byte.Parse(SSHiStartHour2Tb.Text);
                 }
                 else if (sender == SSHiStartHour3Tb && SSHiStartHour3Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour3Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[2].StartHour = byte.Parse(SSHiStartHour3Tb.Text);
                 }
                 else if (sender == SSHiStartHour4Tb && SSHiStartHour4Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour4Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[3].StartHour = byte.Parse(SSHiStartHour4Tb.Text);
                 }
                 else if (sender == SSHiStartHour5Tb && SSHiStartHour5Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour5Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.HolidayIntervals[4].StartHour = byte.Parse(SSHiStartHour5Tb.Text);
                 }
                 Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.SummerSeason);
                 errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
@@ -1173,21 +1172,21 @@ namespace Gurux.DLMS.UI
                 {
                     (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[0].StartHour = byte.Parse(WsHiStartHour1Tb.Text);
                 }
-                else if (sender == SSHiStartHour2Tb && SSHiStartHour2Tb.Text != "")
+                else if (sender == WsHiStartHour2Tb && WsHiStartHour2Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour2Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[1].StartHour = byte.Parse(WsHiStartHour2Tb.Text);
                 }
-                else if (sender == SSHiStartHour3Tb && SSHiStartHour3Tb.Text != "")
+                else if (sender == WsHiStartHour3Tb && WsHiStartHour3Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour3Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[2].StartHour = byte.Parse(WsHiStartHour3Tb.Text);
                 }
-                else if (sender == SSHiStartHour4Tb && SSHiStartHour4Tb.Text != "")
+                else if (sender == WsHiStartHour4Tb && WsHiStartHour4Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour4Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[3].StartHour = byte.Parse(WsHiStartHour4Tb.Text);
                 }
-                else if (sender == SSHiStartHour5Tb && SSHiStartHour5Tb.Text != "")
+                else if (sender == WsHiStartHour5Tb && WsHiStartHour5Tb.Text != "")
                 {
-                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[0].StartHour = byte.Parse(SSHiStartHour5Tb.Text);
+                    (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[4].StartHour = byte.Parse(WsHiStartHour5Tb.Text);
                 }
                 Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.WinterSeason);
                 errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
