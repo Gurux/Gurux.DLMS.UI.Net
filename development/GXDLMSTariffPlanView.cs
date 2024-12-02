@@ -189,21 +189,21 @@ namespace Gurux.DLMS.UI
                 WsSdIntervalTariff5Cb.SelectedIndexChanged += new System.EventHandler(this.WsSdIntervalTariffCb_SelectedIndexChanged);
 
 
-                WsSdInterval1Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsSdInterval1Cb.CheckedChanged -= new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
                 WsSdInterval1Cb.Checked = target.Plan.WinterSeason.SaturdayIntervals[0].UseInterval;
-                WsSdInterval1Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsSdInterval2Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsSdInterval1Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
+                WsSdInterval2Cb.CheckedChanged -= new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
                 WsSdInterval2Cb.Checked = target.Plan.WinterSeason.SaturdayIntervals[1].UseInterval;
-                WsSdInterval2Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsSdInterval3Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsSdInterval2Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
+                WsSdInterval3Cb.CheckedChanged -= new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
                 WsSdInterval3Cb.Checked = target.Plan.WinterSeason.SaturdayIntervals[2].UseInterval;
-                WsSdInterval3Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsSdInterval4Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsSdInterval3Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
+                WsSdInterval4Cb.CheckedChanged -= new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
                 WsSdInterval4Cb.Checked = target.Plan.WinterSeason.SaturdayIntervals[3].UseInterval;
-                WsSdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsSdInterval5Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsSdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
+                WsSdInterval5Cb.CheckedChanged -= new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
                 WsSdInterval5Cb.Checked = target.Plan.WinterSeason.SaturdayIntervals[4].UseInterval;
-                WsSdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsSdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
 
                 //Holiday intervals.
                 WsHiStartHour1Tb.Text = target.Plan.WinterSeason.HolidayIntervals[0].StartHour.ToString();
@@ -232,21 +232,21 @@ namespace Gurux.DLMS.UI
                 WsHdIntervalTariff5Cb.SelectedItem = target.Plan.WinterSeason.HolidayIntervals[4].IntervalTariff;
                 WsHdIntervalTariff5Cb.SelectedIndexChanged += new System.EventHandler(this.WsHdIntervalTariffCb_SelectedIndexChanged);
 
-                WsHdInterval1Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsHdInterval1Cb.CheckedChanged -= new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
                 WsHdInterval1Cb.Checked = target.Plan.WinterSeason.HolidayIntervals[0].UseInterval;
-                WsHdInterval1Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsHdInterval2Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsHdInterval1Cb.CheckedChanged += new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
+                WsHdInterval2Cb.CheckedChanged -= new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
                 WsHdInterval2Cb.Checked = target.Plan.WinterSeason.HolidayIntervals[1].UseInterval;
-                WsHdInterval2Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsHdInterval3Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsHdInterval2Cb.CheckedChanged += new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
+                WsHdInterval3Cb.CheckedChanged -= new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
                 WsHdInterval3Cb.Checked = target.Plan.WinterSeason.HolidayIntervals[2].UseInterval;
-                WsHdInterval3Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsHdInterval4Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsHdInterval3Cb.CheckedChanged += new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
+                WsHdInterval4Cb.CheckedChanged -= new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
                 WsHdInterval4Cb.Checked = target.Plan.WinterSeason.HolidayIntervals[3].UseInterval;
-                WsHdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                WsHdInterval5Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsHdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
+                WsHdInterval5Cb.CheckedChanged -= new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
                 WsHdInterval5Cb.Checked = target.Plan.WinterSeason.HolidayIntervals[4].UseInterval;
-                WsHdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                WsHdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsHdIntervalEnabled_CheckedChanged);
 
                 //Summer
                 t = new GXDateTime(-1, target.Plan.SummerSeason.Month != 0 ? target.Plan.SummerSeason.Month : 1,
@@ -365,10 +365,10 @@ namespace Gurux.DLMS.UI
                 SsHdInterval3Cb.CheckedChanged += new System.EventHandler(this.SSHiUseIntervalCb_CheckedChanged);
                 SsHdInterval4Cb.CheckedChanged -= new System.EventHandler(this.SSHiUseIntervalCb_CheckedChanged);
                 SsHdInterval4Cb.Checked = target.Plan.SummerSeason.HolidayIntervals[3].UseInterval;
-                SsHdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
-                SsHdInterval5Cb.CheckedChanged -= new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                SsHdInterval4Cb.CheckedChanged += new System.EventHandler(this.SSHiUseIntervalCb_CheckedChanged);
+                SsHdInterval5Cb.CheckedChanged -= new System.EventHandler(this.SSHiUseIntervalCb_CheckedChanged);
                 SsHdInterval5Cb.Checked = target.Plan.SummerSeason.HolidayIntervals[4].UseInterval;
-                SsHdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+                SsHdInterval5Cb.CheckedChanged += new System.EventHandler(this.SSHiUseIntervalCb_CheckedChanged);
             }
             else
             {
@@ -819,7 +819,7 @@ namespace Gurux.DLMS.UI
             }
         }
 
-        private void WsSiIntervalEnabled_CheckedChanged(object sender, EventArgs e)
+        private void WsSdIntervalEnabled_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -844,6 +844,49 @@ namespace Gurux.DLMS.UI
                     else if (sender == WsSdInterval5Cb)
                     {
                         (Target as GXDLMSTariffPlan).Plan.WinterSeason.SaturdayIntervals[4].UseInterval = WsSdInterval5Cb.Checked;
+                    }
+                    Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.WinterSeason);
+                    errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Parent, ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Parent, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void WsHdIntervalEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    if (sender == WsHdInterval1Cb)
+                    {
+                        (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[0].UseInterval = WsHdInterval1Cb.Checked;
+                    }
+                    else if (sender == WsHdInterval2Cb)
+                    {
+                        (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[1].UseInterval = WsHdInterval2Cb.Checked;
+                    }
+                    else if (sender == WsHdInterval3Cb)
+                    {
+                        (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[2].UseInterval = WsHdInterval3Cb.Checked;
+                    }
+                    else if (sender == WsHdInterval4Cb)
+                    {
+                        (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[3].UseInterval = WsHdInterval4Cb.Checked;
+                    }
+                    else if (sender == WsHdInterval5Cb)
+                    {
+                        (Target as GXDLMSTariffPlan).Plan.WinterSeason.HolidayIntervals[4].UseInterval = WsHdInterval5Cb.Checked;
                     }
                     Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.WinterSeason);
                     errorProvider1.SetError((Control)sender, Properties.Resources.ValueChangedTxt);
@@ -906,19 +949,19 @@ namespace Gurux.DLMS.UI
                 }
                 else if (sender == SsWdInterval2Cb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[0].UseInterval = SsWdInterval2Cb.Checked;
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[1].UseInterval = SsWdInterval2Cb.Checked;
                 }
                 else if (sender == SsWdInterval3Cb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[0].UseInterval = SsWdInterval3Cb.Checked;
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[2].UseInterval = SsWdInterval3Cb.Checked;
                 }
                 else if (sender == SsWdInterval4Cb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[0].UseInterval = SsWdInterval4Cb.Checked;
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[3].UseInterval = SsWdInterval4Cb.Checked;
                 }
                 else if (sender == SsWdInterval5Cb)
                 {
-                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[0].UseInterval = SsWdInterval5Cb.Checked;
+                    (Target as GXDLMSTariffPlan).Plan.SummerSeason.WorkingDayIntervals[4].UseInterval = SsWdInterval5Cb.Checked;
                 }
 
                 Target.UpdateDirty(4, (Target as GXDLMSTariffPlan).Plan.SummerSeason);

@@ -729,7 +729,7 @@ namespace Gurux.DLMS.UI
             this.WsSdInterval5Cb.TabIndex = 71;
             this.WsSdInterval5Cb.Text = "In use";
             this.WsSdInterval5Cb.UseVisualStyleBackColor = false;
-            this.WsSdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+            this.WsSdInterval5Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
             // 
             // label18
             // 
@@ -776,7 +776,7 @@ namespace Gurux.DLMS.UI
             this.WsSdInterval4Cb.TabIndex = 66;
             this.WsSdInterval4Cb.Text = "In use";
             this.WsSdInterval4Cb.UseVisualStyleBackColor = false;
-            this.WsSdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+            this.WsSdInterval4Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
             // 
             // label21
             // 
@@ -823,7 +823,7 @@ namespace Gurux.DLMS.UI
             this.WsSdInterval3Cb.TabIndex = 61;
             this.WsSdInterval3Cb.Text = "In use";
             this.WsSdInterval3Cb.UseVisualStyleBackColor = false;
-            this.WsSdInterval3Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+            this.WsSdInterval3Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
             // 
             // label29
             // 
@@ -870,7 +870,7 @@ namespace Gurux.DLMS.UI
             this.WsSdInterval2Cb.TabIndex = 56;
             this.WsSdInterval2Cb.Text = "In use";
             this.WsSdInterval2Cb.UseVisualStyleBackColor = false;
-            this.WsSdInterval2Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+            this.WsSdInterval2Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
             // 
             // label31
             // 
@@ -917,7 +917,7 @@ namespace Gurux.DLMS.UI
             this.WsSdInterval1Cb.TabIndex = 51;
             this.WsSdInterval1Cb.Text = "In use";
             this.WsSdInterval1Cb.UseVisualStyleBackColor = false;
-            this.WsSdInterval1Cb.CheckedChanged += new System.EventHandler(this.WsSiIntervalEnabled_CheckedChanged);
+            this.WsSdInterval1Cb.CheckedChanged += new System.EventHandler(this.WsSdIntervalEnabled_CheckedChanged);
             // 
             // label33
             // 
