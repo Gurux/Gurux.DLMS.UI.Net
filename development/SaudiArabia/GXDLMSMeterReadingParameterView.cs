@@ -85,7 +85,7 @@ namespace Gurux.DLMS.UI
             {
                 if (arg.Value is byte[] && (arg.Value as byte[]).Length == 6)
                 {
-                    GXBitString bs = new GXBitString(GXBitString.ToBitString((byte[])arg.Value, 0, 16));
+                    GXBitString bs = new GXBitString((byte[])arg.Value, 0);
                     int val = Convert.ToUInt16(bs);
                     ValuesLb.ItemCheck -= ValuesLb_ItemCheck;
                     for (int pos = 0; pos != 16; ++pos)

@@ -560,15 +560,15 @@ namespace Gurux.DLMS.UI
                             }
                             else if (value is sbyte || value is sbyte)
                             {
-                                value = GXBitString.ToBitString(Convert.ToUInt32(value), 8);
+                                value = new GXBitString(Convert.ToUInt32(value), 0);
                             }
                             else if (value is Int16 || value is UInt16)
                             {
-                                value = GXBitString.ToBitString(Convert.ToUInt32(value), 16);
+                                value = new GXBitString(Convert.ToUInt32(value), 0);
                             }
                             else if (value is Int32 || value is UInt32)
                             {
-                                value = GXBitString.ToBitString(Convert.ToUInt32(value), 32);
+                                value = new GXBitString(Convert.ToUInt32(value), 0);
                             }
                             else
                             {
@@ -1059,7 +1059,7 @@ namespace Gurux.DLMS.UI
                             GXObisValueItem it = (GXObisValueItem)checkedlistBox1.Items[pos];
                             if (it.MaskSize != 0)
                             {
-                                string tmp = bs.Value.Substring(it.Shift, it.MaskSize);
+                                string tmp = new GXBitString(bs.Value).ToString().Substring(it.Shift, it.MaskSize);
                                 GXBitString bb2 = new GXBitString(tmp);
                                 c = Convert.ToInt32(bb2) == it.Value;
                             }
@@ -1247,25 +1247,7 @@ namespace Gurux.DLMS.UI
                                         }
                                         else if (dc.DataType == typeof(GXBitString))
                                         {
-                                            GXBitString bs;
-                                            if (it.Name == "BitString")
-                                            {
-                                                bs = new GXBitString(v.InnerText);
-                                            }
-                                            else
-                                            {
-                                                UInt32 val = Convert.ToUInt32(v.InnerText);
-                                                int bits = 8;
-                                                if (val > 0xFFFF)
-                                                {
-                                                    bits = 32;
-                                                }
-                                                else if (val > 0xFF)
-                                                {
-                                                    bits = 16;
-                                                }
-                                                bs = new GXBitString(new string(GXBitString.ToBitString(val, bits).Reverse().ToArray()));
-                                            }
+                                            GXBitString bs = new GXBitString(v.InnerText);
                                             row.Add(bs);
                                         }
                                         else
