@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gurux.DLMS, Version=9.0.2501.901, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\GXDLMSDirector\Development\packages\Gurux.DLMS.9.0.2501.901\lib\net48\Gurux.DLMS.dll</HintPath>
+      <HintPath>packages\Gurux.DLMS.9.0.2501.901\lib\net48\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
