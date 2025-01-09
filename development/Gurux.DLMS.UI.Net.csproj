@@ -33,8 +33,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gurux.DLMS, Version=9.0.2412.3101, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Gurux.DLMS.9.0.2412.3101\lib\net48\Gurux.DLMS.dll</HintPath>
+    <Reference Include="Gurux.DLMS, Version=9.0.2501.901, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\GXDLMSDirector\Development\packages\Gurux.DLMS.9.0.2501.901\lib\net48\Gurux.DLMS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="GXDLMSArbitratorView.designer.cs">
       <DependentUpon>GXDLMSArbitratorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXDLMSFunctionControlView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXDLMSFunctionControlView.Designer.cs">
+      <DependentUpon>GXDLMSFunctionControlView.cs</DependentUpon>
     </Compile>
     <Compile Include="GXDLMSIEC6205541Attributes.cs">
       <SubType>Form</SubType>
@@ -238,6 +244,12 @@
     </Compile>
     <Compile Include="Ecdsa\GXPrivateKeyForm.Designer.cs">
       <DependentUpon>GXPrivateKeyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXFunctionControlFunctionDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXFunctionControlFunctionDlg.Designer.cs">
+      <DependentUpon>GXFunctionControlFunctionDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="GXRegisterMonitorTargetDlg.cs">
       <SubType>Form</SubType>
@@ -756,6 +768,9 @@
     <EmbeddedResource Include="GXDLMSArbitratorView.resx">
       <DependentUpon>GXDLMSArbitratorView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSFunctionControlView.resx">
+      <DependentUpon>GXDLMSFunctionControlView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIEC6205541Attributes.resx">
       <DependentUpon>GXDLMSIEC6205541Attributes.cs</DependentUpon>
     </EmbeddedResource>
@@ -815,6 +830,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ecdsa\GXPrivateKeyForm.resx">
       <DependentUpon>GXPrivateKeyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXFunctionControlFunctionDlg.resx">
+      <DependentUpon>GXFunctionControlFunctionDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXRegisterMonitorTargetDlg.resx">
       <DependentUpon>GXRegisterMonitorTargetDlg.cs</DependentUpon>
