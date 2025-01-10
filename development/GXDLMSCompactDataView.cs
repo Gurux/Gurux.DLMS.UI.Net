@@ -156,7 +156,7 @@ namespace Gurux.DLMS.UI
             {
                 standard = ((GXDLMSClient)target.Parent.Parent).Standard;
             }
-            List<object> rows = GXDLMSCompactData.GetData(target.TemplateDescription, target.Buffer, standard == Standard.Italy);
+            List<object> rows = GXDLMSCompactData.GetData(target.TemplateDescription, target.Buffer);
             if (structures)
             {
                 List<object[]> data = new List<object[]>();

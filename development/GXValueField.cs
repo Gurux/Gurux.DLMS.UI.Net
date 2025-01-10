@@ -587,9 +587,12 @@ namespace Gurux.DLMS.UI
                         }
                     }
                 }
-                else if ((dt == DataType.Array || dt == DataType.Structure) && value is string)
+                else if ((dt == DataType.Array || dt == DataType.Structure) && value is string str)
                 {
-                    value = GXDLMSTranslator.XmlToValue((string)value);
+                    if (str != null && str.StartsWith("<"))
+                    {
+                        value = GXDLMSTranslator.XmlToValue(str);
+                    }
                 }
                 v.Value = value;
                 if (Target.Parent != null && Target.Parent.Parent is GXDLMSClient)
