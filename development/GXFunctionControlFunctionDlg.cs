@@ -115,7 +115,7 @@ namespace Gurux.DLMS.UI
                     throw new Exception("Targets are not selected.");
                 }
                 TargetName = NameTb.Text;
-                TargetEnabled = TargetTb.Enabled;
+                TargetEnabled = EnabledCB.Checked;
             }
             catch (Exception ex)
             {

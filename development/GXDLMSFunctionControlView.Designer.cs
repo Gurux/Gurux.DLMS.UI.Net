@@ -27,7 +27,6 @@ namespace Gurux.DLMS.UI
         }
         #region Windows Form Designer generated code
         private GroupBox groupBox1;
-        private Label FunctionNameLbl;
         private GXValueField LogicalNameTB;
         private ErrorProvider errorProvider1;
         private Label DescriptionLbl;
@@ -45,12 +44,8 @@ namespace Gurux.DLMS.UI
             this.ActivationStatusView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FunctionStatusCb = new System.Windows.Forms.CheckBox();
-            this.FunctionStatusLbl = new System.Windows.Forms.Label();
-            this.FunctionNameTb = new System.Windows.Forms.TextBox();
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.DescriptionTB = new System.Windows.Forms.TextBox();
-            this.FunctionNameLbl = new System.Windows.Forms.Label();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gxButton1 = new Gurux.DLMS.UI.GXButton();
@@ -71,12 +66,8 @@ namespace Gurux.DLMS.UI
             this.groupBox1.Controls.Add(this.AddFunctionBtn);
             this.groupBox1.Controls.Add(this.SetStatusBtn);
             this.groupBox1.Controls.Add(this.ActivationStatusView);
-            this.groupBox1.Controls.Add(this.FunctionStatusCb);
-            this.groupBox1.Controls.Add(this.FunctionStatusLbl);
-            this.groupBox1.Controls.Add(this.FunctionNameTb);
             this.groupBox1.Controls.Add(this.DescriptionLbl);
             this.groupBox1.Controls.Add(this.DescriptionTB);
-            this.groupBox1.Controls.Add(this.FunctionNameLbl);
             this.groupBox1.Controls.Add(this.LogicalNameTB);
             this.groupBox1.Controls.Add(this.LogicalNameLbl);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -96,9 +87,9 @@ namespace Gurux.DLMS.UI
             this.columnHeader4});
             this.FunctionListView.FullRowSelect = true;
             this.FunctionListView.HideSelection = false;
-            this.FunctionListView.Location = new System.Drawing.Point(200, 123);
+            this.FunctionListView.Location = new System.Drawing.Point(200, 71);
             this.FunctionListView.Name = "FunctionListView";
-            this.FunctionListView.Size = new System.Drawing.Size(278, 209);
+            this.FunctionListView.Size = new System.Drawing.Size(278, 261);
             this.FunctionListView.TabIndex = 30;
             this.FunctionListView.UseCompatibleStateImageBehavior = false;
             this.FunctionListView.View = System.Windows.Forms.View.Details;
@@ -122,9 +113,9 @@ namespace Gurux.DLMS.UI
             this.columnHeader2});
             this.ActivationStatusView.FullRowSelect = true;
             this.ActivationStatusView.HideSelection = false;
-            this.ActivationStatusView.Location = new System.Drawing.Point(11, 123);
+            this.ActivationStatusView.Location = new System.Drawing.Point(11, 71);
             this.ActivationStatusView.Name = "ActivationStatusView";
-            this.ActivationStatusView.Size = new System.Drawing.Size(183, 209);
+            this.ActivationStatusView.Size = new System.Drawing.Size(183, 261);
             this.ActivationStatusView.TabIndex = 25;
             this.ActivationStatusView.UseCompatibleStateImageBehavior = false;
             this.ActivationStatusView.View = System.Windows.Forms.View.Details;
@@ -138,32 +129,6 @@ namespace Gurux.DLMS.UI
             // columnHeader2
             // 
             this.columnHeader2.Text = "Status:";
-            // 
-            // FunctionStatusCb
-            // 
-            this.FunctionStatusCb.Location = new System.Drawing.Point(103, 100);
-            this.FunctionStatusCb.Name = "FunctionStatusCb";
-            this.FunctionStatusCb.Size = new System.Drawing.Size(37, 17);
-            this.FunctionStatusCb.TabIndex = 24;
-            this.FunctionStatusCb.UseVisualStyleBackColor = false;
-            // 
-            // FunctionStatusLbl
-            // 
-            this.FunctionStatusLbl.AutoSize = true;
-            this.FunctionStatusLbl.Location = new System.Drawing.Point(8, 100);
-            this.FunctionStatusLbl.Name = "FunctionStatusLbl";
-            this.FunctionStatusLbl.Size = new System.Drawing.Size(82, 13);
-            this.FunctionStatusLbl.TabIndex = 22;
-            this.FunctionStatusLbl.Text = "Function status:";
-            // 
-            // FunctionNameTb
-            // 
-            this.FunctionNameTb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FunctionNameTb.Location = new System.Drawing.Point(103, 72);
-            this.FunctionNameTb.Name = "FunctionNameTb";
-            this.FunctionNameTb.Size = new System.Drawing.Size(374, 20);
-            this.FunctionNameTb.TabIndex = 21;
             // 
             // DescriptionLbl
             // 
@@ -183,15 +148,6 @@ namespace Gurux.DLMS.UI
             this.DescriptionTB.ReadOnly = true;
             this.DescriptionTB.Size = new System.Drawing.Size(375, 20);
             this.DescriptionTB.TabIndex = 1;
-            // 
-            // FunctionNameLbl
-            // 
-            this.FunctionNameLbl.AutoSize = true;
-            this.FunctionNameLbl.Location = new System.Drawing.Point(7, 74);
-            this.FunctionNameLbl.Name = "FunctionNameLbl";
-            this.FunctionNameLbl.Size = new System.Drawing.Size(82, 13);
-            this.FunctionNameLbl.TabIndex = 2;
-            this.FunctionNameLbl.Text = "Function Name:";
             // 
             // LogicalNameLbl
             // 
@@ -267,10 +223,6 @@ namespace Gurux.DLMS.UI
         }
 
         #endregion
-
-        private TextBox FunctionNameTb;
-        private Label FunctionStatusLbl;
-        private CheckBox FunctionStatusCb;
         private ListView ActivationStatusView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
