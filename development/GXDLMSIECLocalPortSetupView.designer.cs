@@ -52,25 +52,25 @@ namespace Gurux.DLMS.UI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GXDLMSIECLocalPortSetupView));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Password5TB = new Gurux.DLMS.UI.GXValueField();
             this.Password5Lbl = new System.Windows.Forms.Label();
+            this.Password2TB = new Gurux.DLMS.UI.GXValueField();
             this.Password2Lbl = new System.Windows.Forms.Label();
+            this.Password1TB = new Gurux.DLMS.UI.GXValueField();
             this.Password1Lbl = new System.Windows.Forms.Label();
+            this.DeviceAddressTB = new Gurux.DLMS.UI.GXValueField();
             this.DeviceAddressLbl = new System.Windows.Forms.Label();
+            this.ResponseTimeTB = new Gurux.DLMS.UI.GXValueField();
             this.ResponseTimeLbl = new System.Windows.Forms.Label();
+            this.MaximumBaudrateTB = new Gurux.DLMS.UI.GXValueField();
             this.MaximumBaudrateLbl = new System.Windows.Forms.Label();
+            this.DefaultBaudrateTB = new Gurux.DLMS.UI.GXValueField();
             this.DefaultBaudrateLbl = new System.Windows.Forms.Label();
+            this.DefaultModeTB = new Gurux.DLMS.UI.GXValueField();
             this.DefaultModeLbl = new System.Windows.Forms.Label();
+            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.LogicalNameLbl = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Password5TB = new Gurux.DLMS.UI.GXValueField();
-            this.Password2TB = new Gurux.DLMS.UI.GXValueField();
-            this.Password1TB = new Gurux.DLMS.UI.GXValueField();
-            this.DeviceAddressTB = new Gurux.DLMS.UI.GXValueField();
-            this.ResponseTimeTB = new Gurux.DLMS.UI.GXValueField();
-            this.MaximumBaudrateTB = new Gurux.DLMS.UI.GXValueField();
-            this.DefaultBaudrateTB = new Gurux.DLMS.UI.GXValueField();
-            this.DefaultModeTB = new Gurux.DLMS.UI.GXValueField();
-            this.LogicalNameTB = new Gurux.DLMS.UI.GXValueField();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -104,6 +104,18 @@ namespace Gurux.DLMS.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IEC Local Port Setup";
             // 
+            // Password5TB
+            // 
+            this.Password5TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Password5TB.Index = 9;
+            this.Password5TB.Location = new System.Drawing.Point(102, 229);
+            this.Password5TB.Name = "Password5TB";
+            this.Password5TB.NotifyChanges = false;
+            this.Password5TB.Size = new System.Drawing.Size(208, 20);
+            this.Password5TB.TabIndex = 8;
+            this.Password5TB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // Password5Lbl
             // 
             this.Password5Lbl.AutoSize = true;
@@ -112,6 +124,18 @@ namespace Gurux.DLMS.UI
             this.Password5Lbl.Size = new System.Drawing.Size(65, 13);
             this.Password5Lbl.TabIndex = 16;
             this.Password5Lbl.Text = "Password 5:";
+            // 
+            // Password2TB
+            // 
+            this.Password2TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Password2TB.Index = 8;
+            this.Password2TB.Location = new System.Drawing.Point(102, 203);
+            this.Password2TB.Name = "Password2TB";
+            this.Password2TB.NotifyChanges = false;
+            this.Password2TB.Size = new System.Drawing.Size(208, 20);
+            this.Password2TB.TabIndex = 7;
+            this.Password2TB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // Password2Lbl
             // 
@@ -122,6 +146,18 @@ namespace Gurux.DLMS.UI
             this.Password2Lbl.TabIndex = 14;
             this.Password2Lbl.Text = "Password 2:";
             // 
+            // Password1TB
+            // 
+            this.Password1TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Password1TB.Index = 7;
+            this.Password1TB.Location = new System.Drawing.Point(102, 177);
+            this.Password1TB.Name = "Password1TB";
+            this.Password1TB.NotifyChanges = false;
+            this.Password1TB.Size = new System.Drawing.Size(208, 20);
+            this.Password1TB.TabIndex = 6;
+            this.Password1TB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
             // Password1Lbl
             // 
             this.Password1Lbl.AutoSize = true;
@@ -130,6 +166,18 @@ namespace Gurux.DLMS.UI
             this.Password1Lbl.Size = new System.Drawing.Size(65, 13);
             this.Password1Lbl.TabIndex = 12;
             this.Password1Lbl.Text = "Password 1:";
+            // 
+            // DeviceAddressTB
+            // 
+            this.DeviceAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeviceAddressTB.Index = 6;
+            this.DeviceAddressTB.Location = new System.Drawing.Point(102, 151);
+            this.DeviceAddressTB.Name = "DeviceAddressTB";
+            this.DeviceAddressTB.NotifyChanges = false;
+            this.DeviceAddressTB.Size = new System.Drawing.Size(208, 20);
+            this.DeviceAddressTB.TabIndex = 5;
+            this.DeviceAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // DeviceAddressLbl
             // 
@@ -140,6 +188,18 @@ namespace Gurux.DLMS.UI
             this.DeviceAddressLbl.TabIndex = 10;
             this.DeviceAddressLbl.Text = "Device Address:";
             // 
+            // ResponseTimeTB
+            // 
+            this.ResponseTimeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResponseTimeTB.Index = 5;
+            this.ResponseTimeTB.Location = new System.Drawing.Point(102, 125);
+            this.ResponseTimeTB.Name = "ResponseTimeTB";
+            this.ResponseTimeTB.NotifyChanges = false;
+            this.ResponseTimeTB.Size = new System.Drawing.Size(208, 20);
+            this.ResponseTimeTB.TabIndex = 4;
+            this.ResponseTimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
+            // 
             // ResponseTimeLbl
             // 
             this.ResponseTimeLbl.AutoSize = true;
@@ -148,6 +208,18 @@ namespace Gurux.DLMS.UI
             this.ResponseTimeLbl.Size = new System.Drawing.Size(84, 13);
             this.ResponseTimeLbl.TabIndex = 8;
             this.ResponseTimeLbl.Text = "Response Time:";
+            // 
+            // MaximumBaudrateTB
+            // 
+            this.MaximumBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaximumBaudrateTB.Index = 4;
+            this.MaximumBaudrateTB.Location = new System.Drawing.Point(102, 99);
+            this.MaximumBaudrateTB.Name = "MaximumBaudrateTB";
+            this.MaximumBaudrateTB.NotifyChanges = false;
+            this.MaximumBaudrateTB.Size = new System.Drawing.Size(208, 20);
+            this.MaximumBaudrateTB.TabIndex = 3;
+            this.MaximumBaudrateTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
             // 
             // MaximumBaudrateLbl
             // 
@@ -158,6 +230,18 @@ namespace Gurux.DLMS.UI
             this.MaximumBaudrateLbl.TabIndex = 6;
             this.MaximumBaudrateLbl.Text = "Maximum Baudrate:";
             // 
+            // DefaultBaudrateTB
+            // 
+            this.DefaultBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefaultBaudrateTB.Index = 3;
+            this.DefaultBaudrateTB.Location = new System.Drawing.Point(102, 73);
+            this.DefaultBaudrateTB.Name = "DefaultBaudrateTB";
+            this.DefaultBaudrateTB.NotifyChanges = false;
+            this.DefaultBaudrateTB.Size = new System.Drawing.Size(208, 20);
+            this.DefaultBaudrateTB.TabIndex = 2;
+            this.DefaultBaudrateTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
+            // 
             // DefaultBaudrateLbl
             // 
             this.DefaultBaudrateLbl.AutoSize = true;
@@ -167,6 +251,18 @@ namespace Gurux.DLMS.UI
             this.DefaultBaudrateLbl.TabIndex = 4;
             this.DefaultBaudrateLbl.Text = "Default Baudrate:";
             // 
+            // DefaultModeTB
+            // 
+            this.DefaultModeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefaultModeTB.Index = 2;
+            this.DefaultModeTB.Location = new System.Drawing.Point(102, 47);
+            this.DefaultModeTB.Name = "DefaultModeTB";
+            this.DefaultModeTB.NotifyChanges = false;
+            this.DefaultModeTB.Size = new System.Drawing.Size(208, 20);
+            this.DefaultModeTB.TabIndex = 1;
+            this.DefaultModeTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
+            // 
             // DefaultModeLbl
             // 
             this.DefaultModeLbl.AutoSize = true;
@@ -175,6 +271,18 @@ namespace Gurux.DLMS.UI
             this.DefaultModeLbl.Size = new System.Drawing.Size(74, 13);
             this.DefaultModeLbl.TabIndex = 2;
             this.DefaultModeLbl.Text = "Default Mode:";
+            // 
+            // LogicalNameTB
+            // 
+            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogicalNameTB.Index = 1;
+            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
+            this.LogicalNameTB.Name = "LogicalNameTB";
+            this.LogicalNameTB.NotifyChanges = false;
+            this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
+            this.LogicalNameTB.TabIndex = 0;
+            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // LogicalNameLbl
             // 
@@ -190,114 +298,6 @@ namespace Gurux.DLMS.UI
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
-            // 
-            // Password5TB
-            // 
-            this.Password5TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Password5TB.Index = 9;
-            this.Password5TB.Location = new System.Drawing.Point(102, 229);
-            this.Password5TB.Name = "Password5TB";
-            this.Password5TB.NotifyChanges = false;
-            this.Password5TB.Size = new System.Drawing.Size(208, 20);
-            this.Password5TB.TabIndex = 8;
-            this.Password5TB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // Password2TB
-            // 
-            this.Password2TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Password2TB.Index = 8;
-            this.Password2TB.Location = new System.Drawing.Point(102, 203);
-            this.Password2TB.Name = "Password2TB";
-            this.Password2TB.NotifyChanges = false;
-            this.Password2TB.Size = new System.Drawing.Size(208, 20);
-            this.Password2TB.TabIndex = 7;
-            this.Password2TB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // Password1TB
-            // 
-            this.Password1TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Password1TB.Index = 7;
-            this.Password1TB.Location = new System.Drawing.Point(102, 177);
-            this.Password1TB.Name = "Password1TB";
-            this.Password1TB.NotifyChanges = false;
-            this.Password1TB.Size = new System.Drawing.Size(208, 20);
-            this.Password1TB.TabIndex = 6;
-            this.Password1TB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // DeviceAddressTB
-            // 
-            this.DeviceAddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeviceAddressTB.Index = 6;
-            this.DeviceAddressTB.Location = new System.Drawing.Point(102, 151);
-            this.DeviceAddressTB.Name = "DeviceAddressTB";
-            this.DeviceAddressTB.NotifyChanges = false;
-            this.DeviceAddressTB.Size = new System.Drawing.Size(208, 20);
-            this.DeviceAddressTB.TabIndex = 5;
-            this.DeviceAddressTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // ResponseTimeTB
-            // 
-            this.ResponseTimeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResponseTimeTB.Index = 5;
-            this.ResponseTimeTB.Location = new System.Drawing.Point(102, 125);
-            this.ResponseTimeTB.Name = "ResponseTimeTB";
-            this.ResponseTimeTB.NotifyChanges = false;
-            this.ResponseTimeTB.Size = new System.Drawing.Size(208, 20);
-            this.ResponseTimeTB.TabIndex = 4;
-            this.ResponseTimeTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
-            // 
-            // MaximumBaudrateTB
-            // 
-            this.MaximumBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaximumBaudrateTB.Index = 4;
-            this.MaximumBaudrateTB.Location = new System.Drawing.Point(102, 99);
-            this.MaximumBaudrateTB.Name = "MaximumBaudrateTB";
-            this.MaximumBaudrateTB.NotifyChanges = false;
-            this.MaximumBaudrateTB.Size = new System.Drawing.Size(208, 20);
-            this.MaximumBaudrateTB.TabIndex = 3;
-            this.MaximumBaudrateTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
-            // 
-            // DefaultBaudrateTB
-            // 
-            this.DefaultBaudrateTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DefaultBaudrateTB.Index = 3;
-            this.DefaultBaudrateTB.Location = new System.Drawing.Point(102, 73);
-            this.DefaultBaudrateTB.Name = "DefaultBaudrateTB";
-            this.DefaultBaudrateTB.NotifyChanges = false;
-            this.DefaultBaudrateTB.Size = new System.Drawing.Size(208, 20);
-            this.DefaultBaudrateTB.TabIndex = 2;
-            this.DefaultBaudrateTB.Type = Gurux.DLMS.Enums.ValueFieldType.CompoBox;
-            // 
-            // DefaultModeTB
-            // 
-            this.DefaultModeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DefaultModeTB.Index = 2;
-            this.DefaultModeTB.Location = new System.Drawing.Point(102, 47);
-            this.DefaultModeTB.Name = "DefaultModeTB";
-            this.DefaultModeTB.NotifyChanges = false;
-            this.DefaultModeTB.Size = new System.Drawing.Size(208, 20);
-            this.DefaultModeTB.TabIndex = 1;
-            this.DefaultModeTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // LogicalNameTB
-            // 
-            this.LogicalNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogicalNameTB.Index = 1;
-            this.LogicalNameTB.Location = new System.Drawing.Point(102, 21);
-            this.LogicalNameTB.Name = "LogicalNameTB";
-            this.LogicalNameTB.NotifyChanges = false;
-            this.LogicalNameTB.Size = new System.Drawing.Size(208, 20);
-            this.LogicalNameTB.TabIndex = 0;
-            this.LogicalNameTB.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
             // 
             // GXDLMSIECLocalPortSetupView
             // 

@@ -943,7 +943,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             try
             {
-                int len = BlockCipherKeyTB.Text.Replace(" ", "").Length;
+                int len = BlockCipherKeyTB.Text.Trim().Replace(" ", "").Length;
                 if (len != 0)
                 {
                     if (IsHex(len))
@@ -981,7 +981,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             try
             {
-                int len = AuthenticationKeyTB.Text.Replace(" ", "").Length;
+                int len = AuthenticationKeyTB.Text.Trim().Replace(" ", "").Length;
                 if (len != 0)
                 {
                     if (IsHex(len))
@@ -1020,7 +1020,7 @@ namespace Gurux.DLMS.UI.Ecdsa
         {
             try
             {
-                int len = DedicatedKeyTb.Text.Replace(" ", "").Length;
+                int len = DedicatedKeyTb.Text.Trim().Replace(" ", "").Length;
                 if (len != 0)
                 {
                     if (IsHex(len))
