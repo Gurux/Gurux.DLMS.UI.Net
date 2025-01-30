@@ -385,7 +385,7 @@ namespace Gurux.DLMS.UI
             try
             {
                 (Target as GXDLMSCharge).UnitChargePassive.Commodity.Target = (GXDLMSObject)PassiveTargetCb.SelectedItem;
-                Target.UpdateDirty(5, PassiveTargetCb.SelectedItem);
+                Target.UpdateDirty(6, PassiveTargetCb.SelectedItem);
                 errorProvider1.SetError(PassiveTargetCb, Properties.Resources.ValueChangedTxt);
             }
             catch (Exception ex)
