@@ -126,6 +126,15 @@ namespace Gurux.DLMS.UI
             GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
             if (arg.Index == 2)
             {
+                //Add thresholds.
+                ThresholdsLv.Items.Clear();
+                if (target.Thresholds != null)
+                {
+                    foreach (var it in target.Thresholds)
+                    {
+                        ThresholdsLv.Items.Add(Convert.ToString(it));
+                    }
+                }
             }
             else if (arg.Index == 3)
             {
@@ -133,33 +142,16 @@ namespace Gurux.DLMS.UI
             }
             else if (arg.Index == 4)
             {
+                //Add actions.
                 ActionsLV.Items.Clear();
                 if (target.Actions != null)
                 {
-                    int pos = 0;
                     foreach (GXDLMSActionSet it in target.Actions)
                     {
-                        string threshold = "";
-                        if (target.Thresholds != null && target.Thresholds.Length > pos)
-                        {
-                            threshold = Convert.ToString(target.Thresholds[pos]);
-                        }
-                        ++pos;
-                        ListViewItem li = ActionsLV.Items.Add(threshold);
-                        li.SubItems.AddRange(new string[] {it.ActionUp.LogicalName, it.ActionUp.ScriptSelector.ToString(),
+                        ListViewItem li = ActionsLV.Items.Add(it.ActionUp.LogicalName);
+                        li.SubItems.AddRange(new string[] {it.ActionUp.ScriptSelector.ToString(),
                                                         it.ActionDown.LogicalName, it.ActionDown.ScriptSelector.ToString()
                                                       });
-                    }
-                    //Add extra Thresholds.
-                    if (target.Thresholds != null && pos < target.Thresholds.Length)
-                    {
-                        for (; pos != target.Thresholds.Length; ++pos)
-                        {
-                            string threshold = Convert.ToString(target.Thresholds[pos]);
-                            ListViewItem li = ActionsLV.Items.Add(threshold);
-                            li.SubItems.AddRange(new string[] {"", "",
-                                                        "", ""});
-                        }
                     }
                 }
             }
@@ -170,6 +162,7 @@ namespace Gurux.DLMS.UI
             bool enabled = arg.Connected && arg.Client.CanWrite(Target, arg.Index);
             if (arg.Index == 2)
             {
+                ThresholdAddBtn.Enabled = ThresholdEditBtn.Enabled = ThresholdRemoveBtn.Enabled = enabled;
             }
             else if (arg.Index == 3)
             {
@@ -225,8 +218,7 @@ namespace Gurux.DLMS.UI
             switch (index)
             {
                 case 2:
-                    //Threadsholds are saved to actions list.
-                    errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
+                    errorProvider1.SetError(ThresholdsLv, Properties.Resources.ValueChangedTxt);
                     break;
                 case 3:
                     errorProvider1.SetError(MonitoredValueCb, Properties.Resources.ValueChangedTxt);
@@ -286,22 +278,32 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
-        ///Add new action script and threshold.
+        /// Add new action script.
         /// </summary>
         private void ActionAddBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
-                GXRegisterMonitorTargetDlg dlg = new GXRegisterMonitorTargetDlg(target, target.Thresholds.Length, false);
+                AccessMode access = target.GetAccess(2);
+                bool thresholdsWrite = access > AccessMode.Read;
+                GXDLMSActionSet set = new GXDLMSActionSet();
+                GXRegisterMonitorActionsDlg dlg = new GXRegisterMonitorActionsDlg(target,
+                    set, false);
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
+                    List<GXDLMSActionSet> actions = new List<GXDLMSActionSet>();
+                    if (target.Actions != null)
+                    {
+                        actions.AddRange(target.Actions);
+                    }
+                    actions.Add(set);
+                    target.Actions = actions.ToArray();
                     errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
-                    Target.UpdateDirty(2, target.Thresholds);
                     Target.UpdateDirty(4, target.Actions);
                     GXDLMSActionSet it = target.Actions[target.Actions.Length - 1];
-                    ListViewItem li = ActionsLV.Items.Add(Convert.ToString(target.Thresholds[target.Thresholds.Length - 1]));
-                    li.SubItems.AddRange(new string[] {it.ActionUp.LogicalName, it.ActionUp.ScriptSelector.ToString(),
+                    ListViewItem li = ActionsLV.Items.Add(it.ActionUp.LogicalName);
+                    li.SubItems.AddRange(new string[] {it.ActionUp.ScriptSelector.ToString(),
                                                         it.ActionDown.LogicalName, it.ActionDown.ScriptSelector.ToString()
                                                       });
                 }
@@ -313,7 +315,7 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
-        ///Edit action script and threshold.
+        /// Edit action script.
         /// </summary>
         private void ActionEditBtn_Click(object sender, EventArgs e)
         {
@@ -321,21 +323,19 @@ namespace Gurux.DLMS.UI
             {
                 if (ActionsLV.SelectedItems.Count == 1)
                 {
+                    GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
                     ListViewItem li = ActionsLV.SelectedItems[0];
                     int index = ActionsLV.Items.IndexOf(li);
-                    GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
-                    GXRegisterMonitorTargetDlg dlg = new GXRegisterMonitorTargetDlg(target, index, false);
+                    GXDLMSActionSet set = target.Actions[index];
+                    var dlg = new GXRegisterMonitorActionsDlg(target, set, false);
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
                         errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
-                        Target.UpdateDirty(2, target.Thresholds);
                         Target.UpdateDirty(4, target.Actions);
-                        GXDLMSActionSet it = target.Actions[index];
-                        li.SubItems[0].Text = Convert.ToString(target.Thresholds[index]);
-                        li.SubItems[1].Text = it.ActionUp.LogicalName;
-                        li.SubItems[2].Text = it.ActionUp.ScriptSelector.ToString();
-                        li.SubItems[3].Text = it.ActionDown.LogicalName;
-                        li.SubItems[4].Text = it.ActionDown.ScriptSelector.ToString();
+                        li.SubItems[0].Text = set.ActionUp.LogicalName;
+                        li.SubItems[1].Text = set.ActionUp.ScriptSelector.ToString();
+                        li.SubItems[2].Text = set.ActionDown.LogicalName;
+                        li.SubItems[3].Text = set.ActionDown.ScriptSelector.ToString();
                     }
                 }
             }
@@ -346,18 +346,13 @@ namespace Gurux.DLMS.UI
         }
 
         /// <summary>
-        ///Remove action script and threshold.
+        /// Remove action script(s).
         /// </summary>
         private void ActionRemoveBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
-                List<object> thresholds = new List<object>();
-                if (target.Thresholds != null)
-                {
-                    thresholds.AddRange(target.Thresholds);
-                }
                 List<GXDLMSActionSet> actions = new List<GXDLMSActionSet>();
                 if (target.Actions != null)
                 {
@@ -372,13 +367,10 @@ namespace Gurux.DLMS.UI
                 {
                     int index = ActionsLV.SelectedItems.IndexOf(it);
                     ActionsLV.Items.RemoveAt(index);
-                    errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
-                    Target.UpdateDirty(2, target.Thresholds);
-                    Target.UpdateDirty(4, target.Actions);
-                    thresholds.RemoveAt(index);
                     actions.RemoveAt(index);
                 }
-                target.Thresholds = thresholds.ToArray();
+                errorProvider1.SetError(ActionsLV, Properties.Resources.ValueChangedTxt);
+                Target.UpdateDirty(4, target.Actions);
                 target.Actions = actions.ToArray();
             }
             catch (Exception ex)
@@ -392,6 +384,93 @@ namespace Gurux.DLMS.UI
             try
             {
                 UpdateMonitoredValueTargets();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        ///Add new threshold value.
+        /// </summary>
+        private void ThresholdAddBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
+                AccessMode access = target.GetAccess(2);
+                bool thresholdsWrite = access > AccessMode.Read;
+                var dlg = new GXRegisterMonitorThresholdDlg(target, target.Thresholds.Length, false);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    errorProvider1.SetError(ThresholdsLv, Properties.Resources.ValueChangedTxt);
+                    Target.UpdateDirty(2, target.Thresholds);
+                    GXDLMSActionSet it = target.Actions[target.Actions.Length - 1];
+                    ListViewItem li = ThresholdsLv.Items.Add(Convert.ToString(target.Thresholds[target.Thresholds.Length - 1]));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        ///Edit threshold value.
+        /// </summary>
+        private void ThresholdEditBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ThresholdsLv.SelectedItems.Count == 1)
+                {
+                    ListViewItem li = ThresholdsLv.SelectedItems[0];
+                    int index = ThresholdsLv.Items.IndexOf(li);
+                    GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
+                    var dlg = new GXRegisterMonitorThresholdDlg(target, index, false);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        errorProvider1.SetError(ThresholdsLv, Properties.Resources.ValueChangedTxt);
+                        Target.UpdateDirty(2, target.Thresholds);
+                        GXDLMSActionSet it = target.Actions[index];
+                        li.SubItems[0].Text = Convert.ToString(target.Thresholds[index]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        ///Edit threshold value.
+        /// </summary>
+        private void ThresholdRemoveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GXDLMSRegisterMonitor target = Target as GXDLMSRegisterMonitor;
+                List<object> thresholds = new List<object>();
+                if (target.Thresholds != null)
+                {
+                    thresholds.AddRange(target.Thresholds);
+                }
+                List<ListViewItem> list = new List<ListViewItem>();
+                foreach (ListViewItem it in ThresholdsLv.SelectedItems)
+                {
+                    list.Add(it);
+                }
+                foreach (ListViewItem it in list)
+                {
+                    int index = ThresholdsLv.SelectedItems.IndexOf(it);
+                    ThresholdsLv.Items.RemoveAt(index);
+                    thresholds.RemoveAt(index);
+                }
+                errorProvider1.SetError(ThresholdsLv, Properties.Resources.ValueChangedTxt);
+                Target.UpdateDirty(2, target.Thresholds);
+                target.Thresholds = thresholds.ToArray();
             }
             catch (Exception ex)
             {

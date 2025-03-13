@@ -251,11 +251,17 @@
     <Compile Include="GXFunctionControlFunctionDlg.Designer.cs">
       <DependentUpon>GXFunctionControlFunctionDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="GXRegisterMonitorTargetDlg.cs">
+    <Compile Include="GXRegisterMonitorThresholdDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GXRegisterMonitorTargetDlg.Designer.cs">
-      <DependentUpon>GXRegisterMonitorTargetDlg.cs</DependentUpon>
+    <Compile Include="GXRegisterMonitorThresholdDlg.Designer.cs">
+      <DependentUpon>GXRegisterMonitorThresholdDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GXRegisterMonitorActionsDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GXRegisterMonitorActionsDlg.Designer.cs">
+      <DependentUpon>GXRegisterMonitorActionsDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Ecdsa\GXCertificateSigningRequestDlg.cs">
       <SubType>Form</SubType>
@@ -834,8 +840,11 @@
     <EmbeddedResource Include="GXFunctionControlFunctionDlg.resx">
       <DependentUpon>GXFunctionControlFunctionDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GXRegisterMonitorTargetDlg.resx">
-      <DependentUpon>GXRegisterMonitorTargetDlg.cs</DependentUpon>
+    <EmbeddedResource Include="GXRegisterMonitorThresholdDlg.resx">
+      <DependentUpon>GXRegisterMonitorThresholdDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXRegisterMonitorActionsDlg.resx">
+      <DependentUpon>GXRegisterMonitorActionsDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ecdsa\GXCertificateSigningRequestDlg.resx">
       <DependentUpon>GXCertificateSigningRequestDlg.cs</DependentUpon>
