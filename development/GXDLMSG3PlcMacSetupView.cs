@@ -100,7 +100,7 @@ namespace Gurux.DLMS.UI
             {
                 BroadcastMaxCW.CheckedChanged -= new EventHandler(BroadcastMaxCW_CheckedChanged);
                 BroadcastMaxCW.Checked = target.MacBroadcastMaxCwEnabled;
-                BroadcastMaxCW.CheckedChanged -= new EventHandler(BroadcastMaxCW_CheckedChanged);
+                BroadcastMaxCW.CheckedChanged += new EventHandler(BroadcastMaxCW_CheckedChanged);
             }
             else if (arg.Index == 25)
             {
