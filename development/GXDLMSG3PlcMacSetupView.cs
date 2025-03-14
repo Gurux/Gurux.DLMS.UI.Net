@@ -98,7 +98,9 @@ namespace Gurux.DLMS.UI
             }
             else if (arg.Index == 23)
             {
+                BroadcastMaxCW.CheckedChanged -= new EventHandler(BroadcastMaxCW_CheckedChanged);
                 BroadcastMaxCW.Checked = target.MacBroadcastMaxCwEnabled;
+                BroadcastMaxCW.CheckedChanged -= new EventHandler(BroadcastMaxCW_CheckedChanged);
             }
             else if (arg.Index == 25)
             {
@@ -380,6 +382,15 @@ namespace Gurux.DLMS.UI
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void BroadcastMaxCW_CheckedChanged(object sender, EventArgs e)
+        {
+            GXDLMSG3PlcMacSetup target = Target as GXDLMSG3PlcMacSetup;
+            target.MacBroadcastMaxCwEnabled = BroadcastMaxCW.Checked;
+            Target.UpdateDirty(23, target.MacBroadcastMaxCwEnabled);
+            errorProvider1.SetError(BroadcastMaxCW, Properties.Resources.ValueChangedTxt);
+
         }
     }
 }
