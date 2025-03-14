@@ -202,12 +202,14 @@ namespace Gurux.DLMS.UI
                     ShowGroupTable(target);
                     break;
                 case 18:
-                    DisableDefaultRoutingCB.CheckedChanged -= new System.EventHandler(this.DisableDefaultRoutingCB_CheckedChanged);
+                    DisableDefaultRoutingCB.CheckedChanged -= new EventHandler(DisableDefaultRoutingCB_CheckedChanged);
                     DisableDefaultRoutingCB.Checked = target.DisableDefaultRouting;
-                    DisableDefaultRoutingCB.CheckedChanged += new System.EventHandler(this.DisableDefaultRoutingCB_CheckedChanged);
+                    DisableDefaultRoutingCB.CheckedChanged += new EventHandler(DisableDefaultRoutingCB_CheckedChanged);
                     break;
                 case 20:
+                    DefaultCoordRouteEnabledCb.CheckedChanged -= new EventHandler(DefaultCoordRouteEnabledCb_CheckedChanged);
                     DefaultCoordRouteEnabledCb.Checked = target.DefaultCoordRouteEnabled;
+                    DefaultCoordRouteEnabledCb.CheckedChanged += new EventHandler(DefaultCoordRouteEnabledCb_CheckedChanged);
                     break;
                 case 21:
                     break;
@@ -298,8 +300,18 @@ namespace Gurux.DLMS.UI
         {
             GXDLMSG3Plc6LoWPan target = (GXDLMSG3Plc6LoWPan)Target;
             target.DisableDefaultRouting = DisableDefaultRoutingCB.Checked;
+            Target.UpdateDirty(18, target.DisableDefaultRouting);
             errorProvider1.SetError(DisableDefaultRoutingCB, Properties.Resources.ValueChangedTxt);
         }
+
+        private void DefaultCoordRouteEnabledCb_CheckedChanged(object sender, EventArgs e)
+        {
+            GXDLMSG3Plc6LoWPan target = (GXDLMSG3Plc6LoWPan)Target;
+            target.DefaultCoordRouteEnabled = DefaultCoordRouteEnabledCb.Checked;
+            Target.UpdateDirty(19, target.DefaultCoordRouteEnabled);
+            errorProvider1.SetError(DefaultCoordRouteEnabledCb, Properties.Resources.ValueChangedTxt);
+        }
+
 
         /// <summary>
         /// Add new item to routing table.

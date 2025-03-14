@@ -45,6 +45,10 @@ namespace Gurux.DLMS.UI
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gxValueField2 = new Gurux.DLMS.UI.GXValueField();
+            this.label3 = new System.Windows.Forms.Label();
+            this.gxValueField3 = new Gurux.DLMS.UI.GXValueField();
+            this.label1 = new System.Windows.Forms.Label();
             this.DefaultCoordRouteEnabledCb = new System.Windows.Forms.CheckBox();
             this.gxValueField1 = new Gurux.DLMS.UI.GXValueField();
             this.DisableDefaultRoutingCB = new System.Windows.Forms.CheckBox();
@@ -127,10 +131,6 @@ namespace Gurux.DLMS.UI
             this.RoutingAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.RoutingEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.RoutingRemove = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.gxValueField3 = new Gurux.DLMS.UI.GXValueField();
-            this.gxValueField2 = new Gurux.DLMS.UI.GXValueField();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -261,6 +261,46 @@ namespace Gurux.DLMS.UI
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // gxValueField2
+            // 
+            this.gxValueField2.Index = 23;
+            this.gxValueField2.Location = new System.Drawing.Point(352, 169);
+            this.gxValueField2.Name = "gxValueField2";
+            this.gxValueField2.NotifyChanges = false;
+            this.gxValueField2.ReadOnly = true;
+            this.gxValueField2.Size = new System.Drawing.Size(104, 20);
+            this.gxValueField2.TabIndex = 49;
+            this.gxValueField2.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(241, 173);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 50;
+            this.label3.Text = "High LQI:";
+            // 
+            // gxValueField3
+            // 
+            this.gxValueField3.Index = 22;
+            this.gxValueField3.Location = new System.Drawing.Point(111, 171);
+            this.gxValueField3.Name = "gxValueField3";
+            this.gxValueField3.NotifyChanges = false;
+            this.gxValueField3.ReadOnly = true;
+            this.gxValueField3.Size = new System.Drawing.Size(104, 20);
+            this.gxValueField3.TabIndex = 47;
+            this.gxValueField3.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 174);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Low LQI:";
+            // 
             // DefaultCoordRouteEnabledCb
             // 
             this.DefaultCoordRouteEnabledCb.AutoSize = true;
@@ -270,6 +310,7 @@ namespace Gurux.DLMS.UI
             this.DefaultCoordRouteEnabledCb.TabIndex = 44;
             this.DefaultCoordRouteEnabledCb.Text = "Default coord route enabled";
             this.DefaultCoordRouteEnabledCb.UseVisualStyleBackColor = true;
+            this.DefaultCoordRouteEnabledCb.CheckedChanged += new System.EventHandler(this.DefaultCoordRouteEnabledCb_CheckedChanged);
             // 
             // gxValueField1
             // 
@@ -998,46 +1039,6 @@ namespace Gurux.DLMS.UI
             this.RoutingRemove.Size = new System.Drawing.Size(117, 22);
             this.RoutingRemove.Text = "Remove";
             this.RoutingRemove.Click += new System.EventHandler(this.RoutingRemoveBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 174);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Low LQI:";
-            // 
-            // gxValueField3
-            // 
-            this.gxValueField3.Index = 22;
-            this.gxValueField3.Location = new System.Drawing.Point(111, 171);
-            this.gxValueField3.Name = "gxValueField3";
-            this.gxValueField3.NotifyChanges = false;
-            this.gxValueField3.ReadOnly = true;
-            this.gxValueField3.Size = new System.Drawing.Size(104, 20);
-            this.gxValueField3.TabIndex = 47;
-            this.gxValueField3.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // gxValueField2
-            // 
-            this.gxValueField2.Index = 23;
-            this.gxValueField2.Location = new System.Drawing.Point(352, 169);
-            this.gxValueField2.Name = "gxValueField2";
-            this.gxValueField2.NotifyChanges = false;
-            this.gxValueField2.ReadOnly = true;
-            this.gxValueField2.Size = new System.Drawing.Size(104, 20);
-            this.gxValueField2.TabIndex = 49;
-            this.gxValueField2.Type = Gurux.DLMS.Enums.ValueFieldType.TextBox;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(241, 173);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 50;
-            this.label3.Text = "High LQI:";
             // 
             // GXDLMSG3Plc6LoWPanView
             // 
