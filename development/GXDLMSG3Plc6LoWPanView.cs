@@ -308,7 +308,7 @@ namespace Gurux.DLMS.UI
         {
             GXDLMSG3Plc6LoWPan target = (GXDLMSG3Plc6LoWPan)Target;
             target.DefaultCoordRouteEnabled = DefaultCoordRouteEnabledCb.Checked;
-            Target.UpdateDirty(19, target.DefaultCoordRouteEnabled);
+            Target.UpdateDirty(20, target.DefaultCoordRouteEnabled);
             errorProvider1.SetError(DefaultCoordRouteEnabledCb, Properties.Resources.ValueChangedTxt);
         }
 
