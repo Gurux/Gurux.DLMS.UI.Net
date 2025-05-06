@@ -125,8 +125,6 @@ namespace Gurux.DLMS.UI
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.GroupTable = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RoutingMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RoutingAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.RoutingEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -982,9 +980,7 @@ namespace Gurux.DLMS.UI
             this.GroupTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupTable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader7});
             this.GroupTable.FullRowSelect = true;
             this.GroupTable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.GroupTable.HideSelection = false;
@@ -997,18 +993,8 @@ namespace Gurux.DLMS.UI
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Source Address";
+            this.columnHeader7.Text = "Group Address";
             this.columnHeader7.Width = 90;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Sequence Number";
-            this.columnHeader8.Width = 109;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Valid Time";
-            this.columnHeader9.Width = 95;
             // 
             // RoutingMenu
             // 
@@ -1148,8 +1134,6 @@ namespace Gurux.DLMS.UI
         private ColumnHeader ValidTimeHeader2;
         private ListView GroupTable;
         private ColumnHeader columnHeader7;
-        private ColumnHeader columnHeader8;
-        private ColumnHeader columnHeader9;
         private CheckBox DefaultCoordRouteEnabledCb;
         private GXValueField gxValueField2;
         private Label label3;
