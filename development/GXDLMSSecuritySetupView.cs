@@ -487,7 +487,7 @@ namespace Gurux.DLMS.UI
         {
             if (arg.Index == 2)
             {
-                SecurityPolicyTB.Enabled = !(!arg.Connected || !arg.Client.CanWrite(Target, 1));
+                SecurityPolicyTB.Enabled = !(!arg.Connected || !arg.Client.CanWrite(Target, 2));
             }
             else if (arg.Index == 5)
             {

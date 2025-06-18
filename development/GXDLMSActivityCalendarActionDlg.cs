@@ -48,6 +48,11 @@ namespace Gurux.DLMS.UI
             {
                 TimeTb.Text = target.StartTime.ToFormatString();
             }
+            else
+            {
+                //Add default value.
+                TimeTb.Text = new GXTime(0, 0, 0, 0).ToFormatString();
+            }
             int pos, selected = -1;
             foreach (GXDLMSObject it in scripts)
             {
