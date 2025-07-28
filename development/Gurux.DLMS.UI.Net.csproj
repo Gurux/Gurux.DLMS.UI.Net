@@ -131,6 +131,9 @@
     <Compile Include="GXDLMSIEC6205541Attributes.designer.cs">
       <DependentUpon>GXDLMSIEC6205541Attributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="GXDLMSMBusDiagnosticView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GXDLMSNtpSetupView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -779,6 +782,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSIEC6205541Attributes.resx">
       <DependentUpon>GXDLMSIEC6205541Attributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GXDLMSMBusDiagnosticView.resx">
+      <DependentUpon>GXDLMSMBusDiagnosticView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GXDLMSNtpSetupView.resx">
       <DependentUpon>GXDLMSNtpSetupView.cs</DependentUpon>
